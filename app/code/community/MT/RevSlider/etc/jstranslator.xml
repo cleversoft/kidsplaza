@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_RevSlider
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<jstranslator>
+    <confirm-delete-all-layers translate="message" module="revslider">
+        <message>Do you really want to delete all the layers?</message>
+    </confirm-delete-all-layers>
+</jstranslator>
+

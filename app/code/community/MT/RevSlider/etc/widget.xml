@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_RevSlider
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<widgets>
+    <revslider type="revslider/slider_preview" translate="name description">
+        <name>MT Revolution Slider</name>
+        <description>Adds a slider to block / page</description>
+        <parameters>
+            <id translate="label">
+                <label>Slider ID</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>revslider/source_slider</source_model>
+            </id>
+        </parameters>
+    </revslider>
+</widgets>
