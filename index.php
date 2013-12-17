@@ -79,9 +79,9 @@ if (isset($_SERVER['MAGE_IS_DEVELOPER_MODE'])) {
 umask(0);
 
 /* Store or website code */
-$mageRunCode = isset($_SERVER['MAGE_RUN_CODE']) ? $_SERVER['MAGE_RUN_CODE'] : '';
+$mageRunCode = isset($_COOKIE['location']) ? $_COOKIE['location'] : '';
 
 /* Run store or run website */
-$mageRunType = isset($_SERVER['MAGE_RUN_TYPE']) ? $_SERVER['MAGE_RUN_TYPE'] : 'store';
+$mageRunType = 'website';
 
 Mage::run($mageRunCode, $mageRunType);

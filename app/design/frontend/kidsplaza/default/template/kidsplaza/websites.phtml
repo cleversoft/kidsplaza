@@ -1,0 +1,10 @@
+<div class="location-switcher" style="clear: both;color: #fff">
+    <label for="select-location"><?php echo $this->__('Select Location:') ?></label>
+    <select id="select-location" title="<?php echo $this->__('Select Location') ?>" onchange="window.loc.setLocation(this.value)">
+        <?php foreach ($this->getWebsites() as $website): ?>
+            <option value="<?php echo $website['code']?>" <?php if ($website['selected']):?>selected="selected"<?php endif ?>>
+                <?php echo $website['label']?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>

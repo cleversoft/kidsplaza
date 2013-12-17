@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_KidsPlaza
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_KidsPlaza>
+            <version>1.0</version>
+        </MT_KidsPlaza>
+    </modules>
+
+    <global>
+        <helpers>
+            <kidsplaza>
+                <class>MT_KidsPlaza_Helper</class>
+            </kidsplaza>
+        </helpers>
+        <blocks>
+            <kidsplaza>
+                <class>MT_KidsPlaza_Block</class>
+            </kidsplaza>
+        </blocks>
+    </global>
+</config>
