@@ -25,3 +25,5 @@ skin/install
 skin/frontend/base
 skin/frontend/default
 var
+tests
+codeception.yml
