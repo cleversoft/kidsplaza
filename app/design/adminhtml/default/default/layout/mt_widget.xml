@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <adminhtml_widget_instance_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_widget_instance_edit>
+    <adminhtml_cms_page_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_cms_page_edit>
+    <adminhtml_cms_block_edit>
+        <reference name="head">
+            <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
+            <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-ui-1.10.3.min.js</script></action>
+            <action method="addJs"><script>mt/widget/widget.js</script></action>
+        </reference>
+    </adminhtml_cms_block_edit>
+</layout>

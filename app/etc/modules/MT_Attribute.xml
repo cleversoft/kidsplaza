@@ -2,7 +2,7 @@
 <!--
 /**
 * @category    MT
-* @package     MT_Extensions
+* @package     MT_Attribute
 * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
 * @license     GNU General Public License version 2 or later
 * @author      MagentoThemes.net
@@ -11,9 +11,12 @@
 -->
 <config>
     <modules>
-        <MT_Extensions>
+        <MT_Attribute>
             <active>true</active>
-            <codePool>local</codePool>
-        </MT_Extensions>
+            <codePool>community</codePool>
+            <depends>
+                <MT_Extensions/>
+            </depends>
+        </MT_Attribute>
     </modules>
 </config>

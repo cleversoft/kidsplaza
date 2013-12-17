@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <sections>
+        <mtattribute translate="label">
+            <label>MT Attribute</label>
+            <tab>mtext</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <show translate="label comment">
+                            <label>Show on Detail</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mtattribute/system_config_source_show</source_model>
+                            <comment>How to show attribute's image on Product Detail</comment>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show>
+                        <width translate="label comment">
+                            <label>Image Width on Detail</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>In pixel, height should auto-scale</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show separator=",">2,3</show>
+                            </depends>
+                        </width>
+                        <show2 translate="label comment">
+                            <label>Show on List</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show attribute option image to Product Listing</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show2>
+                        <width2 translate="label comment">
+                            <label>Image Width on List</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>In pixel, height should auto-scale</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show2>1</show2>
+                            </depends>
+                        </width2>
+                        <show3 translate="label comment">
+                            <label>Show on Layer</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Show attribute option image to Catalog Product Layer</comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </show3>
+                        <width3 translate="label comment">
+                            <label>Image Width on Layer</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>In pixel, height should auto-scale</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <show3>1</show3>
+                            </depends>
+                        </width3>
+                    </fields>
+                </general>
+                <czoom translate="label">
+                    <label>Cloud Zoom</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enable translate="label comment">
+                            <label>Enable Cloud Zoom</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable Cloud Zoom in Product Detail Page</comment>
+                        </enable>
+                        <width translate="label comment">
+                            <label>Zoom Width</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>The width of the zoom window in pixels. If it is missing, the width will be the same as the small image</comment>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </width>
+                        <height translate="label comment">
+                            <label>Zoom Height</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>The height of the zoom window in pixels. If it is missing, the height will be the same as the small image</comment>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </height>
+                        <position translate="label comment">
+                            <label>Zoom Position</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mtattribute/system_config_source_position</source_model>
+                            <comment>Specifies the position of the zoom window relative to the small image</comment>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </position>
+                        <adjustX translate="label comment">
+                            <label>Adjust X</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Allows you to fine tune the x-position of the zoom window</comment>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </adjustX>
+                        <adjustY translate="label comment">
+                            <label>Adjust Y</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Allows you to fine tune the y-position of the zoom window</comment>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </adjustY>
+                        <count translate="label comment">
+                            <label>More Views Count</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Number of images show on More Views (replace by FlexSlider)</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </count>
+                        <margin translate="label comment">
+                            <label>More Views Item Margin</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Left and Right margin (by FlexSlider)</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </margin>
+                    </fields>
+                </czoom>
+            </groups>
+        </mtattribute>
+    </sections>
+</config>
