@@ -8,6 +8,7 @@ app/locale/en_US
 downloader
 errors
 includes
+media/catalog/product/cache
 js/calendar
 js/extjs
 js/flash
