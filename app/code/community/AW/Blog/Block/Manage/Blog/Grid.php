@@ -56,6 +56,17 @@ class AW_Blog_Block_Manage_Blog_Grid extends Mage_Adminhtml_Block_Widget_Grid
     protected function _prepareColumns()
     {
         $this->addColumn(
+            'thumb',
+            array(
+                'header'    => Mage::helper('blog')->__('Thumb'),
+                'filter'    => false,
+                'sortable'  => false,
+                'width'     => 100,
+                'renderer'  => 'blog/widget_grid_column_renderer_thumb'
+            )
+        );
+
+        $this->addColumn(
             'post_id',
             array(
                  'header' => Mage::helper('blog')->__('ID'),

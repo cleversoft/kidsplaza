@@ -85,4 +85,14 @@ class AW_Blog_Model_Mysql4_Cat_Collection extends Mage_Core_Model_Mysql4_Collect
         ;
         return $this;
     }
+
+    public function getParentAvailable()
+    {
+        $out = array();
+        $out[] = array('value' => 0, 'label' => 'Root Category', 'childs' => array());
+        foreach ($this as $item){
+            //
+        }
+        return $out;
+    }
 }

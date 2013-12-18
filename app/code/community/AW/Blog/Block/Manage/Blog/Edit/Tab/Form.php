@@ -190,6 +190,17 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Form extends Mage_Adminhtml_Block_Widge
             $config = null;
         }
 
+        $thumb = $fieldset->addField('thumb', 'text', array(
+            'name'   => 'thumb',
+            'label'  => Mage::helper('blog')->__('Thumbnail'),
+            'title'  => Mage::helper('blog')->__('Post Thumbnail')
+        ));
+        $form->getElement('thumb')->setRenderer(
+            $this->getLayout()->createBlock('mtext/adminhtml_widget_form_element_browser', '', array(
+                'element' => $thumb
+            ))
+        );
+
         if (Mage::getStoreConfig('blog/blog/useshortcontent')) {
             $fieldset->addField(
                 'short_content',

@@ -41,4 +41,9 @@ class AW_Blog_Block_Manage_Blog_Edit_Form extends Mage_Adminhtml_Block_Widget_Fo
         $this->setForm($form);
         return parent::_prepareForm();
     }
+
+    protected function _prepareLayout(){
+        parent::_prepareLayout();
+        Mage::helper('mtext')->loadJsLibs('browser');
+    }
 }
