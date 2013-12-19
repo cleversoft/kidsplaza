@@ -91,15 +91,6 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Form extends Mage_Adminhtml_Block_Widge
             );
         }
 
-        $categories = array();
-        $collection = Mage::getModel('blog/cat')->getCollection()->setOrder('sort_order', 'asc');
-        foreach ($collection as $cat) {
-            $categories[] = (array(
-                'label' => (string)$cat->getTitle(),
-                'value' => $cat->getCatId()
-            ));
-        }
-
         $fieldset->addField(
             'cat_id',
             'multiselect',

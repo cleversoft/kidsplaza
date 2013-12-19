@@ -23,10 +23,10 @@ class AW_Blog_Block_Widget_Grid_Column_Renderer_Category extends Mage_Adminhtml_
             $parent = Mage::getModel('blog/cat')->load($model->getParent());
             if ($parent->getId()){
                 if ($parent->getParent()) $path = array_merge($path, $this->_getPath($parent));
-                else $path[] = $parent->getTitle();
+                else $path[] = Mage::helper('core')->escapeHtml($parent->getTitle());
             }
         }
-        $path[] = $model->getTitle();
+        $path[] = Mage::helper('core')->escapeHtml($model->getTitle());
         return $path;
     }
 }

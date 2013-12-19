@@ -103,6 +103,24 @@ class AW_Blog_Block_Manage_Blog_Grid extends Mage_Adminhtml_Block_Widget_Grid
             )
         );
 
+        $cats = Mage::getModel('blog/cat')->getCollection()->getParentAvailable(0);
+        $catOpts = array();
+        foreach ($cats as $cat){
+            $catOpts[$cat['value']] = $cat['label'];
+        }
+
+        $this->addColumn(
+            'category',
+            array(
+                'header'    => Mage::helper('blog')->__('Category'),
+                'type'      => 'options',
+                'options'   => $catOpts,
+                'sortable'  => false,
+                'renderer'  => 'blog/widget_grid_column_renderer_categories',
+                'filter_condition_callback' => array($this, '_filterCategoryCallback')
+            )
+        );
+
         $this->addColumn(
             'created_time',
             array(
@@ -165,6 +183,13 @@ class AW_Blog_Block_Manage_Blog_Grid extends Mage_Adminhtml_Block_Widget_Grid
         );
 
         return parent::_prepareColumns();
+    }
+
+    protected function _filterCategoryCallback($collection, $column){
+        $value = $column->getFilter()->getValue();
+        if ($value != null){
+            $this->getCollection()->addCatFilter($value);
+        }
     }
 
     protected function _prepareMassaction()
