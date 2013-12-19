@@ -54,17 +54,16 @@ class AW_Blog_Manage_CatController extends Mage_Adminhtml_Controller_Action
     {
         if ($this->getRequest()->getParam('id') > 0) {
             try {
-                $model = Mage::getModel('blog/cat');
+                $model = Mage::getModel('blog/cat')->load((int)$this->getRequest()->getParam('id'));
 
-                $model
-                    ->setId($this->getRequest()->getParam('id'))
-                    ->delete()
-                ;
+                if ($model->getId()){
+                    $model->delete();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('adminhtml')->__('pos was successfully deleted')
-                );
-                $this->_redirect('*/*/');
+                    Mage::getSingleton('adminhtml/session')->addSuccess(
+                        Mage::helper('adminhtml')->__('Post was successfully deleted')
+                    );
+                    $this->_redirect('*/*/');
+                }
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
                 $this->_redirect('*/*/edit', array('id' => $this->getRequest()->getParam('id')));

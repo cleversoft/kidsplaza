@@ -72,7 +72,7 @@ class AW_Blog_Block_Manage_Cat_Edit_Form extends Mage_Adminhtml_Block_Widget_For
                 'label'     => Mage::helper('blog')->__('Parent'),
                 'name'      => 'parent',
                 'required'  => false,
-                'values'    => Mage::getModel('blog/cat')->getCollection()->getParentAvailable()
+                'values'    => Mage::getModel('blog/cat')->getCollection()->getParentAvailable(0, Mage::registry('blog_data')->getId())
             )
         );
 

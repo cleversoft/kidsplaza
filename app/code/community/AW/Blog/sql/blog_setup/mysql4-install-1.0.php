@@ -75,7 +75,7 @@ try {
             PRIMARY KEY ( `cat_id` )
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-        INSERT INTO {$this->getTable('blog/cat')} (`cat_id`, `title`, `identifier`) VALUES (NULL, 'News', 'news');
+        INSERT INTO {$this->getTable('blog/cat')} (`cat_id`, `title`, `identifier`, `parent`) VALUES (NULL, 'News', 'news', 0);
 
         CREATE TABLE IF NOT EXISTS {$this->getTable('blog/store')} (
             `post_id` smallint(6) unsigned,

@@ -88,6 +88,17 @@ class AW_Blog_Block_Manage_Cat_Grid extends Mage_Adminhtml_Block_Widget_Grid
         );
 
         $this->addColumn(
+            'parent',
+            array(
+                'header'    => Mage::helper('blog')->__('Parent'),
+                'filter'    => false,
+                'sortable'  => false,
+                'index'     => 'parent',
+                'renderer'  => 'blog/widget_grid_column_renderer_category'
+            )
+        );
+
+        $this->addColumn(
             'sort_order',
             array(
                  'header' => Mage::helper('blog')->__('Sort Order'),

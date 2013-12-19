@@ -1,3 +1,14 @@
 .head-blog {
     background-image: url(../images/icon_blog.png);
 }
+span.blog-cat-padding{
+    display: inline-block;
+    width: 16px;
+    height: 14px;
+}
+div.blog-cat-tree span.blog-cat-padding:last-child{
+    background: url(../images/elbow-end.gif) no-repeat;
+}
+div.blog-cat-tree{
+    height: 18px;
+}

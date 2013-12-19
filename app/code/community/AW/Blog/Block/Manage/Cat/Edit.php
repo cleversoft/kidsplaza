@@ -37,6 +37,10 @@ class AW_Blog_Block_Manage_Cat_Edit extends Mage_Adminhtml_Block_Widget_Form_Con
 
         $this->_updateButton('save', 'label', Mage::helper('blog')->__('Save Category'));
         $this->_updateButton('delete', 'label', Mage::helper('blog')->__('Delete Category'));
+        $this->_updateButton('delete', 'onclick', sprintf('deleteConfirm(\'%s\',\'%s\')',
+            Mage::helper('blog')->__('Are you sure you want to do this?\nAll children categories will be deleted.'),
+            $this->getDeleteUrl()
+        ));
 
         $this->_addButton(
             'saveandcontinue',

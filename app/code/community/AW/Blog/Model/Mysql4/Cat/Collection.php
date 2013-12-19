@@ -27,6 +27,9 @@
 
 class AW_Blog_Model_Mysql4_Cat_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
 {
+    protected $_data;
+    protected $_index;
+
     public function _construct()
     {
         $this->_init('blog/cat');
@@ -86,12 +89,36 @@ class AW_Blog_Model_Mysql4_Cat_Collection extends Mage_Core_Model_Mysql4_Collect
         return $this;
     }
 
-    public function getParentAvailable()
+    public function getParentAvailable($parent, $exclude)
+    {
+        if (!$this->_data && !$this->_index){
+            $data = array();
+            $index = array();
+            foreach ($this as $item){
+                $data[$item->getId()] = $item;
+                $index[(int)$item->getParent()][] = $item->getId();
+            }
+            $this->_data = $data;
+            $this->_index = $index;
+        }
+
+        $out[] = array('value' => 0, 'label' => 'Root Category');
+        if (isset($this->_index[$parent])) $out = array_merge($out, $this->_getParentAvailable($parent, 1, $exclude));
+
+        return $out;
+    }
+
+    protected function _getParentAvailable($parent, $level, $exclude)
     {
         $out = array();
-        $out[] = array('value' => 0, 'label' => 'Root Category', 'childs' => array());
-        foreach ($this as $item){
-            //
+        if ($this->_index && $this->_data && isset($this->_index[$parent])){
+            foreach ($this->_index[$parent] as $id){
+                if ($exclude != $id){
+                    $i = $this->_data[$id];
+                    $out[] = array('value' => $id, 'label' => str_repeat('--', $level) . $i->getTitle());
+                    if (isset($this->_index[$id])) $out = array_merge($out, $this->_getParentAvailable($id, $level + 1, $exclude));
+                }
+            }
         }
         return $out;
     }

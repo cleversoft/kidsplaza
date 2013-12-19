@@ -64,4 +64,12 @@ class AW_Blog_Model_Cat extends Mage_Core_Model_Abstract
         }
         return $content;
     }
+
+    protected function _afterDelete(){
+        $collection = $this->getCollection()->addFieldToFilter('parent', array('eq' => $this->getId()));
+        foreach ($collection as $item){
+            $item->delete();
+        }
+        return parent::_afterDelete();
+    }
 }
