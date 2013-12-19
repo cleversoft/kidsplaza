@@ -109,7 +109,7 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Form extends Mage_Adminhtml_Block_Widge
                  'title'    => Mage::helper('blog')->__('Category'),
                  'required' => true,
                  'style'    => 'height:100px',
-                 'values'   => $categories,
+                 'values'   => Mage::getModel('blog/cat')->getCollection()->getParentAvailable(0),
             )
         );
 

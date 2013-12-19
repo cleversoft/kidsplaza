@@ -89,7 +89,7 @@ class AW_Blog_Model_Mysql4_Cat_Collection extends Mage_Core_Model_Mysql4_Collect
         return $this;
     }
 
-    public function getParentAvailable($parent, $exclude)
+    public function getParentAvailable($parent, $exclude=null)
     {
         if (!$this->_data && !$this->_index){
             $data = array();
