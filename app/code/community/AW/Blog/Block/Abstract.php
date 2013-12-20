@@ -289,7 +289,7 @@ abstract class AW_Blog_Block_Abstract extends Mage_Core_Block_Template
                 ->addPresentFilter()
                 ->addEnableFilter(AW_Blog_Model_Status::STATUS_ENABLED)
                 ->addStoreFilter()
-                ->joinComments()
+                //->joinComments()
                 ->setOrder('created_time', 'desc');
 
             $collection->setPageSize((int)self::$_helper->postsPerPage());

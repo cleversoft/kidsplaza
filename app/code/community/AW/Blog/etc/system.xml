@@ -121,15 +121,24 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </parse_cms>
-                        <perpage translate="label">
-                            <label>Posts per Page</label>
+                        <grid_per_page_values translate="label">
+                            <label>Posts per Page in Grid View</label>
                             <comment>Comma-separated</comment>
                             <frontend_type>text</frontend_type>
                             <sort_order>30</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </perpage>
+                        </grid_per_page_values>
+                        <list_per_page_values translate="label">
+                            <label>Posts per Page in List View</label>
+                            <comment>Comma-separated</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </list_per_page_values>
                         <bookmarkspost translate="label">
                             <label>Show Bookmarks in Posts</label>
                             <frontend_type>select</frontend_type>

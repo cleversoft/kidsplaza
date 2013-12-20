@@ -297,6 +297,8 @@
                 <dateformat>full</dateformat>
                 <layout>page/2columns-right.phtml</layout>
                 <comments>1</comments>
+                <grid_per_page_values>12,24</grid_per_page_values>
+                <list_per_page_values>12,24</list_per_page_values>
                 <useshortcontent>1</useshortcontent>
                 <rss>1</rss>
                 <rssimage>images/BlogLogo.png</rssimage>

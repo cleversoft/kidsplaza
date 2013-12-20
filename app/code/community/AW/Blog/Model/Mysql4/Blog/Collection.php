@@ -104,12 +104,12 @@ class AW_Blog_Model_Mysql4_Blog_Collection extends Mage_Core_Model_Mysql4_Collec
 
             $this
                 ->getSelect()
-                ->joinLeft(
+                ->join(
                     array('store_table' => $this->getTable('store')),
                     'main_table.post_id = store_table.post_id',
                     array()
                 )
-                ->where('store_table.store_id in (?)', array(0, $store))
+                ->where('store_table.store_id in (?)', array(0, (int)$store))
             ;
         }
         return $this;

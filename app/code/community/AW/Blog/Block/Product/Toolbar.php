@@ -25,7 +25,7 @@
  */
 
 
-class AW_Blog_Block_Product_Toolbar extends AW_Blog_Block_Product_ToolbarCommon
+class AW_Blog_Block_Product_Toolbar extends Mage_Catalog_Block_Product_List_Toolbar
 {
     public function setCollection($collection)
     {
@@ -55,12 +55,46 @@ class AW_Blog_Block_Product_Toolbar extends AW_Blog_Block_Product_ToolbarCommon
 
     public function getCurrentMode()
     {
-        return null;
+        $mode = $this->_getData('_current_grid_mode');
+        if ($mode) {
+            return $mode;
+        }
+        $modes = array_keys($this->_availableMode);
+        $defaultMode = current($modes);
+        $mode = $this->getRequest()->getParam($this->getModeVarName());
+        if ($mode) {
+            if ($mode == $defaultMode) {
+                Mage::getSingleton('blog/session')->unsDisplayMode();
+            } else {
+                Mage::getSingleton('blog/session')->setData('display_mode', $mode);
+            }
+        } else {
+            $mode = Mage::getSingleton('blog/session')->getDisplayMode();
+        }
+
+        if (!$mode || !isset($this->_availableMode[$mode])) {
+            $mode = $defaultMode;
+        }
+        $this->setData('_current_grid_mode', $mode);
+        return $mode;
     }
 
-    public function getAvailableLimit()
+    protected function _getAvailableLimit($mode)
     {
-        return $this->getPost()->getAvailLimits();
+        if (isset($this->_availableLimit[$mode])) {
+            return $this->_availableLimit[$mode];
+        }
+        $perPageConfigKey = 'blog/blog/' . $mode . '_per_page_values';
+        $perPageValues = (string)Mage::getStoreConfig($perPageConfigKey);
+        $perPageValues = explode(',', $perPageValues);
+        $perPageValues = array_combine($perPageValues, $perPageValues);
+
+        return $perPageValues;
+    }
+
+    public function isEnabledViewSwitcher()
+    {
+        return true;
     }
 
     public function getCurrentDirection()
@@ -81,6 +115,38 @@ class AW_Blog_Block_Product_Toolbar extends AW_Blog_Block_Product_ToolbarCommon
 
     public function getLimit()
     {
-        return $this->getRequest()->getParam($this->getLimitVarName());
+        $limit = $this->_getData('_current_limit');
+        if ($limit) {
+            return $limit;
+        }
+
+        $limits = $this->getAvailableLimit();
+        $defaultLimit = $this->getDefaultPerPageValue();
+        if (!$defaultLimit || !isset($limits[$defaultLimit])) {
+            $keys = array_keys($limits);
+            $defaultLimit = $keys[0];
+        }
+
+        $limit = $this->getRequest()->getParam($this->getLimitVarName());
+        if ($limit && isset($limits[$limit])) {
+            if ($limit == $defaultLimit) {
+                Mage::getSingleton('blog/session')->unsLimitPage();
+            } else {
+                Mage::getSingleton('blog/session')->setData('limit_page', $limit);
+            }
+        } else {
+            $limit = Mage::getSingleton('blog/session')->getLimitPage();
+        }
+        if (!$limit || !isset($limits[$limit])) {
+            $limit = $defaultLimit;
+        }
+
+        $this->setData('_current_limit', $limit);
+        return $limit;
+    }
+
+    public function getDefaultPerPageValue()
+    {
+        return null;
     }
 }
