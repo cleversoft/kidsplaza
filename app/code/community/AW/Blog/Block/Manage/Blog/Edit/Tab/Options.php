@@ -31,6 +31,17 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Options extends Mage_Adminhtml_Block_Wi
     {
         $form = new Varien_Data_Form();
         $this->setForm($form);
+
+        $classForm = $form->addFieldset('class_form', array('legend' => Mage::helper('blog')->__('Custom Class')));
+        $classForm->addField('custom_classes', 'text', array(
+            'name'      => 'custom_classes',
+            'label'     => Mage::helper('blog')->__('Custom Classes'),
+            'title'     => Mage::helper('blog')->__('Custom Classes'),
+            'note'      => Mage::helper('blog')->__('Separated by white space'),
+            'style'     => 'width: 520px;'
+        ));
+
+
         $fieldset = $form->addFieldset('blog_form', array('legend' => Mage::helper('blog')->__('Meta Data')));
 
         $fieldset->addField(
