@@ -8,7 +8,7 @@ app/locale/en_US/*
 downloader/*
 errors/*
 includes/*
-media/catalog/product/cache/*
+media/catalog/*
 js/calendar/*
 js/extjs/*
 js/flash/*
