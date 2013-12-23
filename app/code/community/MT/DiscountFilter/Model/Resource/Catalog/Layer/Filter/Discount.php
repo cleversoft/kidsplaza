@@ -13,18 +13,58 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
     }
 
     public function applyFilterToCollection($filter, $value){
+        $session    = Mage::getSingleton('customer/session');
+        $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
         $collection = $filter->getLayer()->getProductCollection();
         $tableAlias = 'catalogrule_product_idx';
-        $connection = $this->getReadConnection();
-        $subQuery   = $connection->select()->distinct()->from($this->getMainTable(), array('product_id'));
-        $conditions = "{$tableAlias}.product_id = e.entity_id";
+        $connection = $this->_getReadAdapter();
+
+        $subSelect  = $connection->select()
+            ->from($this->getMainTable(), array('product_id', 'customer_group_id'));
+
+        $conditions = array(
+            "{$tableAlias}.product_id = e.entity_id",
+            $connection->quoteInto("{$tableAlias}.customer_group_id = ?", $customerGroupId)
+        );
 
         $collection->getSelect()->join(
-            array($tableAlias => $subQuery),
-            $conditions,
+            array($tableAlias => $subSelect),
+            join(' AND ', $conditions),
             array()
         );
 
         return $this;
+    }
+
+    public function getCount($filter){
+        $session    = Mage::getSingleton('customer/session');
+        $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
+        $connection = $this->_getReadAdapter();
+        $tableAlias = 'catalogrule_product_idx';
+
+        /* @var $select Varien_Db_Select */
+        $select = clone $filter->getLayer()->getProductCollection()->getSelect();
+        $select->reset(Zend_Db_Select::COLUMNS);
+        $select->reset(Zend_Db_Select::ORDER);
+        $select->reset(Zend_Db_Select::LIMIT_COUNT);
+        $select->reset(Zend_Db_Select::LIMIT_OFFSET);
+        $from = $select->getPart('from');
+        foreach ($from as $key => $item){
+            if ($key == 'price_index') unset($from[$key]);
+        }
+        $select->setPart('from', $from);
+
+        $conditions = array(
+            "{$tableAlias}.product_id = e.entity_id",
+            $connection->quoteInto("{$tableAlias}.customer_group_id = ?", $customerGroupId)
+        );
+
+        $select->join(
+            array($tableAlias => $this->getMainTable()),
+            join(' AND ', $conditions),
+            array('count' => new Zend_Db_Expr("COUNT({$tableAlias}.product_id)"))
+        );
+
+        return $connection->fetchRow($select);
     }
 }

@@ -19,6 +19,9 @@ class MT_DiscountFilter_Model_Catalog_Layer_Filter_Discount extends Mage_Catalog
         return Mage::helper('discountfilter')->__('Promotion');
     }
 
+    /**
+     * @return MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount
+     */
     protected function _getResource(){
         if (is_null($this->_resource)){
             $this->_resource = Mage::getResourceModel('discountfilter/catalog_layer_filter_discount');
@@ -39,12 +42,16 @@ class MT_DiscountFilter_Model_Catalog_Layer_Filter_Discount extends Mage_Catalog
     }
 
     protected function _getItemsData(){
-        return array(
-            array(
-                'label' => Mage::helper('discountfilter')->__('Discount'),
-                'value' => 1,
-                'count' => 1
-            )
-        );
+        $data = $this->_getResource()->getCount($this);
+
+        if (isset($data['count']) && $data['count'] > 0){
+            return array(
+                array(
+                    'label' => Mage::helper('discountfilter')->__('Discount'),
+                    'value' => 1,
+                    'count' => (int)$data['count']
+                )
+            );
+        }else return array();
     }
 }

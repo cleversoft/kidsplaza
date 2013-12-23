@@ -36,7 +36,11 @@
             <li class="item">
                 <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
                     <?php if (!$_item->getRequiredOptions()): ?>
-                        <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo Mage::helper('tax')->getPrice($_item, $_item->getFinalPrice())?>"/>
+                        <?php $_price = $_item->getFinalPrice() ?>
+                        <?php //$_oldPrice = $_item->getPrice() ?>
+                        <?php $_priceIncTax = Mage::helper('tax')->getPrice($_item, $_price, true) ?>
+                        <?php $_priceExcTax = Mage::helper('tax')->getPrice($_item, $_price) ?>
+                        <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price?>" price1="<?php echo $_priceIncTax?>" price2="<?php echo $_priceExcTax?>"/>
                     <?php endif; ?>
                 <?php endif; ?>
                 <div class="product">
@@ -82,21 +86,24 @@
         var checkboxes = $$('.related-checkbox');
         var values = [], prices = [];
         for(var i=0;i<checkboxes.length;i++){
-            var product = checkboxes[i].value, price = checkboxes[i].readAttribute('price');
+            var product = checkboxes[i].value;
+
             if(checkboxes[i].checked){
+                var price = checkboxes[i].readAttribute('price'),
+                    includeTax = checkboxes[i].readAttribute('price1'),
+                    excludeTax = checkboxes[i].readAttribute('price2');
+
                 values.push(product);
-                prices.push({product: product, price: price});
+                prices.push({product: product, price: price, excludeTax: excludeTax, includeTax: includeTax});
             }else{
-                prices.push({product: product, price: 0});
+                prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
             }
         }
         if($('related-products-field')){
             $('related-products-field').value = values.join(',');
         }
         for(var i=0;i<prices.length;i++){
-            optionsPrice.addCustomPrices('related-' + prices[i].product, {
-                price: prices[i].price
-            });
+            optionsPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
         }
         optionsPrice.reload();
     }
