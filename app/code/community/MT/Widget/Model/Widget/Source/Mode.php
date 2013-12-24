@@ -18,8 +18,9 @@ class MT_Widget_Model_Widget_Source_Mode{
             array('value' => 'specificed', 'label' => Mage::helper('mtwidget')->__('Specified Products')),
             array('value' => 'random', 'label' => Mage::helper('mtwidget')->__('Random Products')),
             array('value' => 'related', 'label' => Mage::helper('mtwidget')->__('Related Products')),
-            array('value' => 'up', 'label' => Mage::helper('mtwidget')->__('Up-sells')),
-            array('value' => 'cross', 'label' => Mage::helper('mtwidget')->__('Cross-sells'))
+            array('value' => 'up', 'label' => Mage::helper('mtwidget')->__('Up-sell Products')),
+            array('value' => 'cross', 'label' => Mage::helper('mtwidget')->__('Cross-sell Products')),
+            array('value' => 'discount', 'label' => Mage::helper('mtwidget')->__('Discount Products'))
         );
     	if ($attribute->getId()){
         	$modes[] = array(

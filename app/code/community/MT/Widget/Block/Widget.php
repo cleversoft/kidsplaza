@@ -12,10 +12,13 @@ class MT_Widget_Block_Widget
     implements Mage_Widget_Block_Interface {
 
     protected $_productCollection;
+    protected $_customerGroupId;
 
     protected function _construct(){
         parent::_construct();
         $this->setData('cache_tags', array('MT_WIDGET'));
+        $session = Mage::getSingleton('customer/session');
+        $this->_customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
     }
 
     protected function _prepareLayout(){
@@ -44,7 +47,8 @@ class MT_Widget_Block_Widget
             $this->getData('scroll'),
             $this->getData('column'),
             $this->getData('namespace'),
-            $this->getData('speed')
+            $this->getData('speed'),
+            $this->_customerGroupId
         );
     }
 
@@ -250,14 +254,16 @@ class MT_Widget_Block_Widget
                     $collection = $this->getSpecificedCollection();
                     break;
                 case 'related':
-                    $collection = $this->_getRelatedCollection();
+                    $collection = $this->getRelatedCollection();
                     break;
                 case 'up':
-                    $collection = $this->_getUpSellCollection();
+                    $collection = $this->getUpSellCollection();
                     break;
                 case 'cross':
-                    $collection = $this->_getCrossSellCollection();
+                    $collection = $this->getCrossSellCollection();
                     break;
+                case 'discount':
+                    $collection = $this->getDiscountCollection();
             }
             Mage::dispatchEvent('catalog_block_product_list_collection', array(
                 'collection' => $collection
@@ -267,7 +273,7 @@ class MT_Widget_Block_Widget
         return $this->_productCollection;
     }
 
-    protected function _getUpSellCollection(){
+    protected function getUpSellCollection(){
         $product = Mage::registry('product');
         /* @var $product Mage_Catalog_Model_Product */
 
@@ -306,7 +312,7 @@ class MT_Widget_Block_Widget
         return array();
     }
 
-    protected function _getCrossSellCollection(){
+    protected function getCrossSellCollection(){
         $product = Mage::registry('product');
         /* @var $product Mage_Catalog_Model_Product */
 
@@ -330,7 +336,7 @@ class MT_Widget_Block_Widget
         return array();
     }
 
-    protected function _getRelatedCollection(){
+    protected function getRelatedCollection(){
         $product = Mage::registry('product');
         /* @var $product Mage_Catalog_Model_Product */
 
@@ -361,7 +367,43 @@ class MT_Widget_Block_Widget
         return array();
     }
 
-    public function getSpecificedCollection(){
+    protected function getDiscountCollection(){
+        $catIds = explode(',', $this->getCategoryIds());
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addAttributeToSelect('*')
+            ->addMinimalPrice()
+            ->addUrlRewrite()
+            ->addTaxPercents()
+            ->addStoreFilter()
+            ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+            ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
+
+        $resource = Mage::getSingleton('core/resource');
+        $connection = $resource->getConnection('core_read');
+        $tableName = $resource->getTableName('catalogrule/rule_product');
+        $tableAlias = 'catalogrule_product_idx';
+        $subSelect  = $connection->select()->from($tableName, array('product_id', 'customer_group_id'));
+        $conditions = array(
+            "{$tableAlias}.product_id = e.entity_id",
+            $connection->quoteInto("{$tableAlias}.customer_group_id = ?", $this->_customerGroupId)
+        );
+        $collection->getSelect()->join(
+            array($tableAlias => $subSelect),
+            join(' AND ', $conditions),
+            array()
+        );
+
+        if ($catIds){
+            $catProIds = $this->getProductIdsByCategories($catIds);
+            if (count($catProIds)) $collection->addIdFilter($catProIds);
+        }
+
+        $collection->setPage(1, $this->getLimit());
+        $collection->load();
+        return $collection;
+    }
+
+    protected function getSpecificedCollection(){
         $catIds = explode(',', $this->getCategoryIds());
         $proIds = explode(',', $this->getProductIds());
         if($catIds) {
@@ -393,16 +435,19 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    public function getRandomCollection(){
+    protected function getRandomCollection(){
+        $catIds = explode(',', $this->getCategoryIds());
+        $catProIds = $this->getProductIdsByCategories($catIds);
         $collection = Mage::getResourceModel('catalog/product_collection');
         Mage::getModel('catalog/layer')->prepareProductCollection($collection);
-        $collection->getSelect()->order('rand()');
+        $collection->getSelect()->order('RAND()');
         $collection->addStoreFilter();
+        if (count($catProIds)) $collection->addIdFilter($catProIds);
         $collection->setPage(1, $this->getLimit());
         return $collection;
     }
 
-    public function getNewCollection(){
+    protected function getNewCollection(){
         $todayDate  = Mage::app()->getLocale()->date()->toString(Varien_Date::DATETIME_INTERNAL_FORMAT);
         $catids = $this->getCategoryIds();
         if($catids) {
@@ -446,7 +491,7 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    public function getLatestCollection($fieldorder='updated_at', $order='desc') {
+    protected function getLatestCollection($fieldorder='updated_at', $order='desc') {
         $catIds = $this->getCategoryIds();
         if($catIds) {
             $catIds = explode(',', $catIds);
@@ -479,7 +524,7 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    public function getBestSellerCollection() {
+    protected function getBestSellerCollection() {
         $catIds = $this->getCategoryIds();
         if($catIds) {
             $catIds = explode(',', $catIds);
@@ -508,7 +553,7 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    public function getMostViewedCollection() {
+    protected function getMostViewedCollection() {
         $ids = Mage::getResourceModel('reports/product_collection')->addViewsCount()->load()->getLoadedIds();
         $catIds = $this->getCategoryIds();
         if($catIds) {
@@ -543,7 +588,7 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    public function getFeaturedCollection() {
+    protected function getFeaturedCollection() {
         $catIds = $this->getCategoryIds();
         if($catIds) {
             $catIds = explode(',', $catIds);
@@ -592,12 +637,14 @@ class MT_Widget_Block_Widget
 
     public function getProductIdsByCategories($catIds) {
         $productIds = array();
-        if(count($catIds)) {
+        if(is_array($catIds) && count($catIds)) {
             foreach($catIds as $catId) {
-                $productIdArr = $this->getProductsByCategory($catId);
-                if(count($productIdArr)) {
-                    foreach($productIdArr as $product) {
-                        $productIds[] = $product->getId();
+                if (is_numeric($catId)) {
+                    $productIdArr = $this->getProductsByCategory($catId);
+                    if(count($productIdArr)) {
+                        foreach($productIdArr as $product) {
+                            $productIds[] = $product->getId();
+                        }
                     }
                 }
             }
