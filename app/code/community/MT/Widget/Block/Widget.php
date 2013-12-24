@@ -627,7 +627,7 @@ class MT_Widget_Block_Widget
             ->addStoreFilter();
 
         if($catId) {
-            $category = Mage::getModel('catalog/category')->load($catId, array('entity_id'));
+            $category = Mage::getModel('catalog/category')->load($catId);
             if($category->getId()) {
                 $collection->addCategoryFilter($category);
             }
