@@ -8,18 +8,26 @@
  * @email       support@magentothemes.net
  */
 class MT_DiscountFilter_Block_Catalog_Layer_View extends Mage_Catalog_Block_Layer_View{
-    protected function _prepareLayout(){
-        $discountBlock = $this->getLayout()->createBlock('discountfilter/catalog_layer_filter_discount')
-            ->setLayer($this->getLayer())
-            ->init();
+    protected function isEnable(){
+        return (bool)Mage::getStoreConfigFlag('discountfilter/general/enable');
+    }
 
-        $this->setChild('discount_filter', $discountBlock);
+    protected function _prepareLayout(){
+        if ($this->isEnable()){
+            $discountBlock = $this->getLayout()->createBlock('discountfilter/catalog_layer_filter_discount')
+                ->setLayer($this->getLayer())
+                ->init();
+
+            $this->setChild('discount_filter', $discountBlock);
+        }
         return parent::_prepareLayout();
     }
 
     public function getFilters(){
         $filters = parent::getFilters();
-        $filters[] = $this->getChild('discount_filter');
+        if ($this->isEnable()){
+            $filters[] = $this->getChild('discount_filter');
+        }
         return $filters;
     }
 }

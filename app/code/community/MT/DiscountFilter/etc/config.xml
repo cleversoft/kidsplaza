@@ -42,4 +42,13 @@
             </catalog>
         </blocks>
     </global>
+
+    <default>
+        <discountfilter>
+            <general>
+                <enable>1</enable>
+                <result>0</result>
+            </general>
+        </discountfilter>
+    </default>
 </config>

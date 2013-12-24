@@ -52,6 +52,16 @@ class MT_DiscountFilter_Model_Catalog_Layer_Filter_Discount extends Mage_Catalog
                     'count' => (int)$data['count']
                 )
             );
-        }else return array();
+        }else{
+            if (!Mage::getStoreConfigFlag('discountfilter/general/result')){
+                return array(
+                    array(
+                        'label' => Mage::helper('discountfilter')->__('Discount'),
+                        'value' => 1,
+                        'count' => 0
+                    )
+                );
+            }else return array();
+        }
     }
 }

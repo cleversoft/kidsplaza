@@ -14,6 +14,7 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
      *
      * @param $view Mage_Catalog_Block_Product_View
      * @return string
+     * @version 1.8.1.0
      */
     public function getJsonConfig($view) {
         $_request = Mage::getSingleton('tax/calculation')->getRateRequest(false, false, false);
