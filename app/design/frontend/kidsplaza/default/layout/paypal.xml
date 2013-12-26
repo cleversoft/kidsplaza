@@ -101,11 +101,11 @@ Available logo types can be assigned with action="setLogoType":
             </block>
         </reference>
         <update handle="SHORTCUT_popup" />
-        <reference name="right">
+        <!--reference name="right">
             <block type="paypal/logo" name="paypal.partner.right.logo" template="paypal/partner/logo.phtml">
-                <!--action method="setLogoType"><value>wePrefer_150x60</value></action-->
+                <action method="setLogoType"><value>wePrefer_150x60</value></action>
             </block>
-        </reference>
+        </reference-->
     </catalog_product_view>
 
     <catalog_category_default>
@@ -156,9 +156,9 @@ Available logo types can be assigned with action="setLogoType":
     </checkout_onepage_failure>
 
     <cms_index_index>
-        <reference name="right">
+        <!--reference name="right">
             <block type="paypal/logo" name="paypal.partner.right.logo" template="paypal/partner/logo.phtml"/>
-        </reference>
+        </reference-->
     </cms_index_index>
 
     <default>

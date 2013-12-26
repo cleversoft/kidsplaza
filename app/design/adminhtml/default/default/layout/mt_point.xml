@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Point
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <mtpointadmin_rate_index>
+        <reference name="content">
+            <block type="mtpoint/adminhtml_rate" name="mtpoint_rate"/>
+        </reference>
+    </mtpointadmin_rate_index>
+
+    <mtpointadmin_rate_edit>
+        <reference name="content">
+            <block type="mtpoint/adminhtml_rate_edit" name="mtpoint_rate_edit"/>
+        </reference>
+    </mtpointadmin_rate_edit>
+</layout>

@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Point
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+    <modules>
+        <MT_Point>
+            <version>1.0</version>
+        </MT_Point>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtpoint>
+                <class>MT_Point_Block</class>
+            </mtpoint>
+        </blocks>
+        <helpers>
+            <mtpoint>
+                <class>MT_Point_Helper</class>
+            </mtpoint>
+        </helpers>
+        <models>
+            <mtpoint>
+                <class>MT_Point_Model</class>
+                <resourceModel>mtpoint_mysql4</resourceModel>
+            </mtpoint>
+            <mtpoint_mysql4>
+                <class>MT_Point_Model_Mysql4</class>
+                <entities>
+                    <point>
+                        <table>mt_point</table>
+                    </point>
+                    <history>
+                        <table>mt_point_history</table>
+                    </history>
+                    <rate>
+                        <table>mt_point_rate</table>
+                    </rate>
+                </entities>
+            </mtpoint_mysql4>
+        </models>
+        <resources>
+            <mtpoint_setup>
+                <setup>
+                    <module>MT_Point</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mtpoint_setup>
+        </resources>
+    </global>
+
+    <admin>
+        <routers>
+            <mtpointadmin>
+                <use>admin</use>
+                <args>
+                    <module>MT_Point</module>
+                    <frontName>mtpointadmin</frontName>
+                </args>
+            </mtpointadmin>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtpoint>
+                    <file>mt_point.xml</file>
+                </mtpoint>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

@@ -9,6 +9,8 @@ downloader/*
 errors/*
 includes/*
 media/catalog/*
+media/js/*
+media/css/*
 js/calendar/*
 js/extjs/*
 js/flash/*

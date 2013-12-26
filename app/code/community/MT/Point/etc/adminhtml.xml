@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Point
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <menu>
+        <promo>
+            <children>
+                <mtpoint translate="title">
+                    <title>MT Customer Point Rate</title>
+                    <action>mtpointadmin/rate/index</action>
+                    <sort_order>99</sort_order>
+                </mtpoint>
+            </children>
+        </promo>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtpoint translate="title">
+                                        <title>MT Point Settings</title>
+                                    </mtpoint>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
