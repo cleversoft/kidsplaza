@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category     MT
+ * @package      MT_Review
+ *
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ *
+ */
+ -->
+<config>
+    <menu>
+        <mt translate="title" module="mtreview">
+            <title>MT</title>
+            <sort_order>71</sort_order>
+            <children>
+                <mtreview translate="title" module="mtreview">
+                    <title>MT Review</title>
+                    <children>
+                        <pending translate="title" module="mtreview">
+                            <title>Pending Reviews</title>
+                            <sort_order>1</sort_order>
+                            <action>mtreview/adminhtml_review/pending</action>
+                        </pending>
+                        <review_report translate="title" module="mtreview">
+                            <title>Reviews Report</title>
+                            <sort_order>2</sort_order>
+                            <action>mtreview/adminhtml_report</action>
+                        </review_report>
+                        <mtreview translate="title" module="mtreview">
+                            <title>All Reviews</title>
+                            <sort_order>3</sort_order>
+                            <action>mtreview/adminhtml_review/index</action>
+                        </mtreview>
+                        <mtreview_config translate="title" module="mtreview">
+                            <title>Configuration</title>
+                            <sort_order>4</sort_order>
+                            <action>adminhtml/system_config/edit/section/mtreview</action>
+                        </mtreview_config>
+                    </children>
+                </mtreview>
+            </children>
+        </mt>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtreview>
+                                        <title>MT Review</title>
+                                    </mtreview>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <mt translate="title" module="mtreview">
+                        <title>MT</title>
+                        <sort_order>71</sort_order>
+                        <children>
+                            <mtreview translate="title">
+                                <title>MT Review</title>
+                                <children>
+                                    <mtreview translate="title">
+                                        <title>Review Manager</title>
+                                        <sort_order>1</sort_order>
+                                    </mtreview>
+                                </children>
+                            </mtreview>
+                        </children>
+                    </mt>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

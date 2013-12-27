@@ -19,7 +19,7 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
         $tableAlias = 'catalogrule_product_idx';
         $connection = $this->_getReadAdapter();
 
-        $subSelect  = $connection->select()
+        $subSelect  = $connection->select()->distinct()
             ->from($this->getMainTable(), array('product_id', 'customer_group_id'));
 
         $conditions = array(
