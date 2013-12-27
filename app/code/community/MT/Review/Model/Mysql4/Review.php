@@ -14,4 +14,5 @@
  */
 class MT_Review_Model_Mysql4_Review extends MT_Review_Model_Resource_Review
 {
+
 }
