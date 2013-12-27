@@ -52,3 +52,4 @@ class MT_Review_Adminhtml_ReportController extends Mage_Adminhtml_Controller_Act
             $this->getLayout()->createBlock('mtreview/adminhtml_report_grid')->toHtml() );
     }
 }
+

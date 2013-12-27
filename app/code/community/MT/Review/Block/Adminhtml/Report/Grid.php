@@ -94,3 +94,4 @@ class MT_Review_Block_Adminhtml_Report_Grid extends Mage_Adminhtml_Block_Widget_
         return $this->getUrl('*/*/grid', array('_current'=>true));
     }
 }
+

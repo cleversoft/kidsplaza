@@ -35,3 +35,4 @@ class MT_Review_Block_Adminhtml_Report_Report extends Mage_Adminhtml_Block_Widge
 
     }
 }
+

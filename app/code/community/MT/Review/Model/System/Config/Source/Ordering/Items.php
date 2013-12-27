@@ -23,3 +23,4 @@ class MT_Review_Model_System_Config_Source_Ordering_Items
         );
     }
 }
+
