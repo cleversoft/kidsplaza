@@ -21,4 +21,11 @@
             <block type="mtpoint/adminhtml_rate_edit" name="mtpoint_rate_edit"/>
         </reference>
     </mtpointadmin_rate_edit>
+
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <block type="mtpoint/adminhtml_customer_edit_tab_point" name="customer_edit_tab_point"/>
+            <action method="addTab"><name>customer_edit_tab_point</name><block>customer_edit_tab_point</block></action>
+        </reference>
+    </adminhtml_customer_edit>
 </layout>

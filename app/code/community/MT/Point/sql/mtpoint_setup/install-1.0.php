@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS {$this->getTable('mtpoint/history')} (
   `balance` int(11) NULL DEFAULT NULL,
   `delta` int(11) NULL DEFAULT NULL,
   `comment` text NULL DEFAULT NULL,
-  `create_at` timestamp NOT NULL,
+  `created_at` timestamp NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ");
