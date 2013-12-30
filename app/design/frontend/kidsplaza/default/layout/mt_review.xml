@@ -60,7 +60,9 @@
             <action method="addJs"><script>varien/product.js</script></action>
             <action method="addJs"><script>varien/configurable.js</script></action>
             <action method="addJs"><script>mt/review/jquery-1.10.2.min.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addCss"><stylesheet>mt/review/css/jquery.rating.css</stylesheet></action>
             <action method="addCss"><stylesheet>mt/review/css/mt-review.css</stylesheet></action>
         </reference>
         <reference name="content">

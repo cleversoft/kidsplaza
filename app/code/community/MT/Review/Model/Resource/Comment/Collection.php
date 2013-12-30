@@ -14,6 +14,12 @@
  */
 class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resource_Db_Collection_Abstract
 {
+    /**
+     * Add store data flag
+     *
+     * @var boolean
+     */
+    protected $_addStoreDataFlag     = false;
 
     /**
      * Review detail table
@@ -26,7 +32,7 @@ class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resour
     {
         $this->_init('mtreview/comment');
         $this->_reviewDetailTable   = $this->getTable('mtreview/review_detail');
-
+        $this->_reviewStoreTable = Mage::getSingleton('core/resource')->getTableName('mtreview/review_store');
     }
 
     /**
@@ -53,6 +59,64 @@ class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resour
                 'rdt.review_id = main_table.review_id',
                 array('rdt.title','rdt.nickname', 'rdt.detail', 'rdt.customer_id', 'rdt.store_id'));
         return $this;
+    }
+
+    /**
+     * Add stores data
+     *
+     */
+    public function addStoreData()
+    {
+        $this->_addStoreDataFlag = true;
+        return $this;
+    }
+
+    /**
+     * Action after load
+     *
+     */
+    protected function _afterLoad()
+    {
+        parent::_afterLoad();
+        if ($this->_addStoreDataFlag) {
+            $this->_addStoreData();
+        }
+        return $this;
+    }
+
+    /**
+     * Add store data
+     *
+     */
+    protected function _addStoreData()
+    {
+        $adapter = $this->getConnection();
+        $reviewsIds = $this->getColumnValues('review_id');
+        $storesToReviews = array();
+        if (count($reviewsIds)>0) {
+            $reviewIdCondition = $this->_getConditionSql('review_id', array('in' => $reviewsIds));
+            $storeIdCondition = $this->_getConditionSql('store_id', array('gt' => 0));
+            $select = $adapter->select()
+                ->from($this->_reviewStoreTable)
+                ->where($reviewIdCondition)
+                ->where($storeIdCondition);
+            $result = $adapter->fetchAll($select);
+            foreach ($result as $row) {
+                if (!isset($storesToReviews[$row['review_id']])) {
+                    $storesToReviews[$row['review_id']] = array();
+                }
+                $storesToReviews[$row['review_id']][] = $row['store_id'];
+            }
+        }
+
+        foreach ($this as $item) {
+            if (isset($storesToReviews[$item->getReviewId()])) {
+                $item->setData('stores', $storesToReviews[$item->getReviewId()]);
+            } else {
+                $item->setData('stores', array());
+            }
+
+        }
     }
 
     /**
@@ -91,4 +155,24 @@ class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resour
             ->where('main_table.review_id = ?', $reviewId);
         return $this;
     }
+
+    /**
+     * Adds specific store id into array
+     *
+     * @param array $storeId
+     */
+    public function addStoreFilter($store, $withAdmin = true) {
+        if ($store instanceof Mage_Core_Model_Store) {
+            $store = array($store->getId());
+        }
+        $this->getSelect()->join(
+            array('store_table' => $this->getTable('mtreview/review_store')),
+            'main_table.review_id = store_table.review_id',
+            array()
+        )
+            ->where('main_table.store_id in (?)', ($withAdmin ? array(0, $store) : $store))
+            ->group('main_table.review_id');
+        return $this;
+    }
+
 }

@@ -14,21 +14,9 @@
  */
 class MT_Review_Model_Resource_Report extends Mage_Core_Model_Resource_Db_Abstract
 {
-
-    /**
-     * Review Detail table
-     *
-     * @var string
-     */
-    protected $_reviewDetailTable;
-    /**
-     * Resource status model initialization
-     *
-     */
     protected function _construct()
     {
         $this->_init('mtreview/review_report', 'id');
-        $this->_reviewDetailTable   = $this->getTable('mtreview/review_detail');
     }
 
 }

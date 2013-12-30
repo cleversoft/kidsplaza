@@ -31,14 +31,19 @@
                             <sort_order>2</sort_order>
                             <action>mtreview/adminhtml_report</action>
                         </review_report>
+                        <review_comment translate="title" module="mtreview">
+                            <title>Reviews Comments</title>
+                            <sort_order>3</sort_order>
+                            <action>mtreview/adminhtml_comments</action>
+                        </review_comment>
                         <mtreview translate="title" module="mtreview">
                             <title>All Reviews</title>
-                            <sort_order>3</sort_order>
+                            <sort_order>4</sort_order>
                             <action>mtreview/adminhtml_review/index</action>
                         </mtreview>
                         <mtreview_config translate="title" module="mtreview">
                             <title>Configuration</title>
-                            <sort_order>4</sort_order>
+                            <sort_order>5</sort_order>
                             <action>adminhtml/system_config/edit/section/mtreview</action>
                         </mtreview_config>
                     </children>

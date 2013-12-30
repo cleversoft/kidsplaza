@@ -18,7 +18,7 @@ class MT_Review_Block_Adminhtml_Review_Grid extends Mage_Adminhtml_Block_Widget_
     public function __construct()
     {
         parent::__construct();
-        $this->setId('reviwGrid');
+        $this->setId('reviewGrid');
         $this->setDefaultSort('created_at');
     }
 

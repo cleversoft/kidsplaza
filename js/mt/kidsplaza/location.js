@@ -6,7 +6,7 @@ Location.prototype = {
     initialize: function(){
         this.location = Mage.Cookies ? Mage.Cookies.get(this.locationVar) : null;
         if (!this.location){
-            //this.showLocationSelect();
+            this.showLocationSelect();
         }
     },
     showLocationSelect: function(){

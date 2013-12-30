@@ -26,7 +26,7 @@ class MT_Review_Adminhtml_ReportController extends Mage_Adminhtml_Controller_Act
         $this->renderLayout();
     }
     
-    public function deleteAbuseAction()
+    public function deleteReportAction()
     {
         if ( $id = $this->getRequest()->getParam('id') )
         {
@@ -43,13 +43,6 @@ class MT_Review_Adminhtml_ReportController extends Mage_Adminhtml_Controller_Act
             }
         }
         $this->_redirect('*/*/');
-    }
-
-    public function reportGridAction()
-    {
-        $this->loadLayout();
-        $this->getResponse()->setBody(
-            $this->getLayout()->createBlock('mtreview/adminhtml_report_grid')->toHtml() );
     }
 }
 

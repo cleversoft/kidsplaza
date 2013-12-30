@@ -91,13 +91,6 @@ class MT_Review_Block_Adminhtml_Review_Edit_Form extends Mage_Adminhtml_Block_Wi
             $review->setSelectStores(Mage::app()->getStore(true)->getId());
         }
 
-        $fieldset->addField('parent_review_id', 'select', array(
-            'label'     => Mage::helper('review')->__('Parent Review'),
-            'required'  => true,
-            'name'      => 'parent_review_id',
-            'values'    => Mage::helper('mtreview')->getReviewParentOptionArray(),
-        ));
-
         $fieldset->addField('nickname', 'text', array(
             'label'     => Mage::helper('review')->__('Nickname'),
             'required'  => true,

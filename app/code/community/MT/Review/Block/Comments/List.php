@@ -31,6 +31,7 @@ class MT_Review_Block_Comments_List extends MT_Review_Block_Product_View
     {
         $collection = Mage::getModel('mtreview/comment')->getCollection()
                     ->addReviewFilter($this->_reviewId)
+                    ->addStoreFilter(Mage::app()->getStore()->getId())
                     ->setDateOrder('DESC');
         return $collection;
     }

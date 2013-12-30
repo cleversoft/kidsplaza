@@ -12,11 +12,17 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_Review_Model_Comment extends Mage_Core_Model_Abstract {
+class MT_Review_Model_Comment extends Mage_Core_Model_Abstract
+{
 
     protected function _construct()
     {
         $this->_init('mtreview/comment');
+    }
+
+    public function getCommentCollection()
+    {
+        return Mage::getResourceModel('mtreview/comment_collection');
     }
 
 }

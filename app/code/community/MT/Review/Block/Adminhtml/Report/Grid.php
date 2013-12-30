@@ -12,46 +12,53 @@
  * ------------------------------------------------------------------------------
  *
  */
-
 class MT_Review_Block_Adminhtml_Report_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
-    protected $_reviewDetailTable;
 
     public function __construct()
     {
         parent::__construct();
         $this->setId('reportGrid');
         $this->setDefaultSort('report_at');
-                    
     }
 
     protected function _prepareCollection()
     {
-        $collection = Mage::getModel('mtreview/report')->getCollection();
-
+        $model = Mage::getModel('mtreview/report');
+        $collection = $model->getReportCollection();
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
 
     protected function _prepareColumns()
     {
-        $this->addColumn('review_title', array(
-            'header'    => Mage::helper('mtreview')->__('Review title'),
-            'align'     => 'left',
-            'index'     => 'title',
+        $this->addColumn('customer_name', array(
+            'header'        => Mage::helper('mtreview')->__('Customer Name'),
+            'align'         => 'left',
+            'filter_index'  => 'customer_name',
+            'index'         => 'customer_name',
+            'type'          => 'text',
+            'truncate'      => 50,
+            'escape'        => true,
         ));
 
-        $this->addColumn('customer_name', array(
-            'header'    => Mage::helper('mtreview')->__('Reported by'),
-            'align'     => 'left',
-            'index'     => 'customer_name',
+
+        $this->addColumn('title', array(
+            'header'        => Mage::helper('mtreview')->__('Report review'),
+            'align'         => 'left',
+            'index'         => 'title',
+            'type'          => 'text',
+            'truncate'      => 50,
+            'escape'        => true,
         ));
 
         $this->addColumn('report_at', array(
-            'header'    => Mage::helper('mtreview')->__('Report date'),
-            'index'     => 'report_at',
-            'type'      => 'datetime',
-            'width'     => 120,
+            'header'        => Mage::helper('mtreview')->__('Report date'),
+            'align'         => 'left',
+            'type'          => 'datetime',
+            'width'         => '150px',
+            'filter_index'  => 'report_at',
+            'index'         => 'report_at',
         ));
 
         $this->addColumn('action',
@@ -63,7 +70,7 @@ class MT_Review_Block_Adminhtml_Report_Grid extends Mage_Adminhtml_Block_Widget_
                 'actions'   => array(
                     array(
                         'caption'   => Mage::helper('mtreview')->__('Delete'),
-                        'url'       => array('base'=> '*/*/deleteAbuse'),
+                        'url'       => array('base'=> '*/*/deleteReport'),
                         'field'     => 'id',
                         'confirm'   => Mage::helper('mtreview')->__('Are you sure you want to delete the abuse?'),
                     )
@@ -72,26 +79,9 @@ class MT_Review_Block_Adminhtml_Report_Grid extends Mage_Adminhtml_Block_Widget_
                 'sortable'  => false,
                 'index'     => 'stores',
                 'is_system' => true,
-        ));
+            ));
+
 
         return parent::_prepareColumns();
     }
-
-    protected function _prepareMassaction()
-    {
-        $this->setMassactionIdField('reivew_title');
-        $this->setMassactionIdFilter('customer_name');
-    }
-
-    public function getRowUrl($row)
-    {
-        return $this->getUrl('*/adminhtml_review/edit',
-                             array('id' => $row->getReviewId(), 'ret' => 'abuse' ));
-    }
-
-    public function getGridUrl()
-    {
-        return $this->getUrl('*/*/grid', array('_current'=>true));
-    }
 }
-

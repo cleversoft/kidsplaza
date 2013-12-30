@@ -87,7 +87,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
         $this->_title($this->__('New Review'));
 
         $this->loadLayout();
-        $this->_setActiveMenu('catalog/review');
+        $this->_setActiveMenu('mt/review');
 
         $this->getLayout()->getBlock('head')->setCanLoadExtJs(true);
 

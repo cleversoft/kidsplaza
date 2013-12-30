@@ -24,34 +24,26 @@
             <?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
                 <h4><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
                 <span id="input-message-box"></span>
-                <table class="data-table" id="product-review-table">
-                    <col />
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                    <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th><span class="nobr"><?php echo $this->__('1 star') ?></span></th>
-                            <th><span class="nobr"><?php echo $this->__('2 stars') ?></span></th>
-                            <th><span class="nobr"><?php echo $this->__('3 stars') ?></span></th>
-                            <th><span class="nobr"><?php echo $this->__('4 stars') ?></span></th>
-                            <th><span class="nobr"><?php echo $this->__('5 stars') ?></span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($this->getRatings() as $_rating): ?>
-                        <tr>
-                            <th><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></th>
-                        <?php foreach ($_rating->getOptions() as $_option): ?>
-                            <td class="value"><input type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="radio" /></td>
-                        <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                </table>
+                <div id="product-review-table" class="review-rating">
+                    <div class="rating-type-item"></div>
+                    <?php $i = 0;foreach ($this->getRatings() as $_rating): ?>
+                        <div class="rating-type-item">
+                            <span class="rating-type"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></span>
+                            <?php foreach ($_rating->getOptions() as $_option): ?>
+                            <input style="display: none;" type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>-rating-star radio" />
+                            <?php endforeach; ?>
+                        </div>
+                        <script type="text/javascript">
+                            jQuery(function($){
+                                $('.<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>-rating-star').rating({
+                                    callback: function(value, link){
+                                        $(this).attr('checked',true);
+                                    }
+                                });
+                            });
+                        </script>
+                    <?php $i++; endforeach; ?>
+                </div>
                 <input type="hidden" name="validate_rating" class="validate-rating" value="" />
                 <script type="text/javascript">decorateTable('product-review-table')</script>
             <?php endif; ?>
@@ -81,12 +73,12 @@
             </div>
     </form>
     <script type="text/javascript">
-    //<![CDATA[
+        //<![CDATA[
         var dataForm = new VarienForm('review-form');
         Validation.addAllThese(
-        [
-               ['validate-rating', '<?php echo $this->__('Please select one of each of the ratings above') ?>', function(v) {
-                    var trs = $('product-review-table').select('tr');
+            [
+                ['validate-rating', '<?php echo $this->__('Please select one of each of the ratings above') ?>', function(v) {
+                    var trs = $('product-review-table').select('div.rating-type-item');
                     var inputs;
                     var error = 1;
 
@@ -110,9 +102,15 @@
                     }
                     return true;
                 }]
-        ]
+            ]
         );
-    //]]>
+        jQuery(function($){
+            $('.rating-cancel a').on('click',function(){
+                var inputs = $(this).parents('.rating-type-item').find('input');
+                inputs.attr("checked", false);
+            })
+        });
+        //]]>
     </script>
     <?php else: ?>
     <p class="review-nologged" id="review-form">

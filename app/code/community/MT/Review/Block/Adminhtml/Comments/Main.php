@@ -12,15 +12,15 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_Review_Block_Adminhtml_Report_Report extends Mage_Adminhtml_Block_Widget_Grid_Container
+
+class MT_Review_Block_Adminhtml_Comments_Main extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
     public function __construct()
     {
-        $this->_controller = 'adminhtml_report';
+        $this->_controller = 'adminhtml_comments';
         $this->_blockGroup = 'mtreview';
-        $this->_headerText = Mage::helper('mtreview')->__('All Review Report');
+        $this->_headerText = Mage::helper('review')->__('All Comments Reviews');
         parent::__construct();
         $this->_removeButton('add');
     }
 }
-
