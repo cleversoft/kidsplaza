@@ -32,14 +32,12 @@ class MT_Review_Block_Footer extends Mage_Core_Block_Template
         $helper = Mage::helper('mtreview');
         if( $helper->confAllowOnlyLoggedToReport() )
         {
-            return ($helper->confShowReport()
-                && !( $helper->isReportRegistered($this->_reviewId) ) );
+            return ($helper->confShowReport() );
         }
         else
         {
             return ($helper->isUserLogged()
-                && $helper->confShowReport()
-                && !( $helper->isReportRegistered($this->_reviewId) ) );
+                && $helper->confShowReport() );
         }
     }
 
@@ -57,6 +55,5 @@ class MT_Review_Block_Footer extends Mage_Core_Block_Template
     {
         $helper = Mage::helper('mtreview');
         return $helper->confShowHelpfulness();
-
     }
 }

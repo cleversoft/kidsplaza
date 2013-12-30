@@ -215,10 +215,8 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
     {
         $this->getSelect()
             ->joinLeft( array( 'h' => $this->_reviewHelpfulnessTable ),
-                'main_table.review_id = h.review_id',
-                array( 'all_count' => 'COUNT(h.id)',
-                    $attribute => 'SUM(h.value)' ))
-            ->group('main_table.review_id');
+                'h.review_id = main_table.review_id',
+                array( $attribute => 'SUM(h.value)' ))->group('main_table.review_id');
         $this->getSelect()->order($attribute.' '.$dir);
         return $this;
     }
@@ -236,7 +234,6 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
             '(v.review_id = main_table.review_id)',
             array($attribute => 'AVG(percent)'))->group('main_table.review_id');
         $this->getSelect()->order($attribute.' '.$dir);
-        //echo (string)$this->getSelect();die;
         return $this;
     }
 

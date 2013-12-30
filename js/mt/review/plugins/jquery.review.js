@@ -48,6 +48,9 @@ function voteReview(e){
 }
 function reportReview(e){
     var url = jQuery(e).attr('href');
+    var loading = jQuery('<div/>').addClass('loading');
+    jQuery(e).hide();
+    loading.appendTo(jQuery(e).parent());
     data = '&isAjax=1';
     try {
         jQuery.ajax( {
@@ -57,7 +60,7 @@ function reportReview(e){
             type: 'post',
             success : function(data) {
                 if(data.status == 'success'){
-                    jQuery(e).parent().html(data.message);
+                    jQuery(e).parent().html('<span class="mt-reported">'+data.message+'</span>');
                 }
             }
         });

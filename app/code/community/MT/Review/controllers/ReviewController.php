@@ -57,7 +57,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
                 Mage::helper('mtreview')->addReport($reviewId);
                 Mage::helper('mtreview')->markReport($reviewId);
             }
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Thank you for report.'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Reported.'))));
         }
     }
 

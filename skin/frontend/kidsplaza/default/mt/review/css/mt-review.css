@@ -41,6 +41,13 @@
     width: 130px;
     float: left;
 }
+.mt-report .loading {
+    background: url(../images/ajax-loader.gif) no-repeat left top;
+    height: 16px;
+    width: 16px;
+    float: left;
+    margin-left: 24px;
+}
 .comment-loading {
     background: url(../images/ajax-loader.gif) no-repeat left top;
     display: none;
@@ -64,4 +71,7 @@
 .mt-review-footer .mt-comments-list .main-comments .item-comment {
     border-bottom: #dfdfdf solid 1px;
     margin-bottom: 10px;
+}
+.mt-reported {
+    color: #e26703;
 }

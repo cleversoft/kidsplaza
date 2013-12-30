@@ -12,7 +12,12 @@
  * ------------------------------------------------------------------------------
  *
  */
+$helper = Mage::helper('mtreview');
 ?>
 <div class="mt-report">
-    <a href="<?php echo $this->getReportUrl();?>" onclick="return reportReview(this)" class="report-it"><?php echo $this->__('Report it');?></a>
+    <?php if(!$helper->isReportRegistered($this->getReviewId())):?>
+        <a href="<?php echo $this->getReportUrl();?>" onclick="return reportReview(this)" class="report-it"><?php echo $this->__('Report it');?></a>
+    <?php else:?>
+        <span class="mt-reported"><?php echo $this->__('Reported.');?></span>
+    <?php endif;?>
 </div>

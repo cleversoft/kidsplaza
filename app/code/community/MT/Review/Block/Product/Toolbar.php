@@ -24,6 +24,8 @@ class MT_Review_Block_Product_Toolbar extends Mage_Catalog_Block_Product_List_To
             if($this->getCurrentOrder() == 'helpfulness')
             {
                 $this->_collection->sortHelpfulnessReview($this->getCurrentOrder(), $this->getCurrentDirection());
+            }else if($this->getCurrentOrder() == 'rating'){
+                $this->_collection->sortRatingReview($this->getCurrentOrder(), $this->getCurrentDirection());
             }
         }
 
