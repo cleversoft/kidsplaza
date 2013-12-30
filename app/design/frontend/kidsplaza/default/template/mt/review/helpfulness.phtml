@@ -1,0 +1,28 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_Review
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<div class="mt-helpful">
+    <?php if(!Mage::helper('mtreview')->confAllowOnlyLoggedToVote() && !Mage::getSingleton('customer/session')->isLoggedIn()){?>
+        <?php echo $this->__('Do you find this review helpful?');?>
+        <a href="<?php echo $this->getBaseUrl(); ?>customer/account/login/">Yes</a> /
+        <a href="<?php echo $this->getBaseUrl(); ?>customer/account/login/">No</a>
+    <?php }else{?>
+        <?php if($this->canShowHelpfulnessLink()):?>
+            <?php echo $this->__('Do you find this review helpful?');?>
+            <a onclick="return voteReview(this)" href="<?php echo $this->getLinkHelpfulness('Yes');?>">Yes</a> /
+            <a onclick="return voteReview(this)" href="<?php echo $this->getLinkHelpfulness('No');?>">No</a>
+        <?php endif;?>
+    <?php }?>
+</div>

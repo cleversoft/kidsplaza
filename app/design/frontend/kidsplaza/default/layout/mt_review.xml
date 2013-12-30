@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category     MT
+ * @package      MT_Review
+ *
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ **
+ */
+ -->
+<layout version="0.1.0">
+
+    <customer_account>
+        <!-- Mage_Review -->
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="review"><name>reviews</name><path>review/customer</path><label>My Product Reviews</label></action>
+        </reference>
+
+    </customer_account>
+
+    <!--
+    Customer account home dashboard layout
+    -->
+
+    <customer_account_index>
+
+        <!-- Mage_Review -->
+        <reference name="customer_account_dashboard">
+            <block type="review/customer_recent" name="customer_account_dashboard_info1" as="info1" template="review/customer/recent.phtml"/>
+        </reference>
+
+    </customer_account_index>
+
+
+    <!--
+    Product reviews page (?)
+    -->
+
+    <mtreviews>
+        <!-- Mage_Review -->
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+        </reference>
+    </mtreviews>
+
+    <!--
+    Product reviews page
+    -->
+
+    <mtreview_product_list translate="label">
+        <label>Catalog Product Reviews List</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>varien/product.js</script></action>
+            <action method="addJs"><script>varien/configurable.js</script></action>
+            <action method="addJs"><script>mt/review/jquery-1.10.2.min.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addCss"><stylesheet>mt/review/css/mt-review.css</stylesheet></action>
+        </reference>
+        <reference name="content">
+            <block type="mtreview/product_view" name="product.info" template="catalog/product/view.phtml">
+                <block type="catalog/product_view_media" name="product.info.media" as="media" template="catalog/product/view/media.phtml">
+                    <action method="disableGallery"/>
+                </block>
+                <block type="catalog/product_view" name="product.info.addto" as="addto" template="catalog/product/view/addto.phtml"/>
+                <block type="catalog/product_view" name="product.info.addtocart" as="addtocart" template="catalog/product/view/addtocart.phtml">
+                    <!-- workaround: a better place for this code is in paypal.xml -->
+                    <block type="page/html_wrapper" name="review.product.info.addtocart.paypal.wrapper" translate="label" module="paypal">
+                        <label>PayPal Express Checkout Shortcut Wrapper</label>
+                        <block type="paypal/express_shortcut" name="review.product.info.addtocart.paypal" template="paypal/express/shortcut.phtml">
+                            <action method="setIsInCatalogProduct"><value>1</value></action>
+                        </block>
+                    </block>
+                </block>
+                <block type="catalog/product_view" name="product.tierprices" as="tierprices" template="catalog/product/view/tierprices.phtml"/>
+                <block type="core/template" name="product.info.other" as="other" template="mt/review/product/view/other.phtml"/>
+                <block type="page/html_pager" name="product_review_list.toolbar" />
+                <block type="mtreview/product_toolbar" name="mtreview_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+
+                <block type="mtreview/ordering" name="mtreview.ordering"/>
+                <block type="core/template" name="product_review_list.count" template="mt/review/product/view/count.phtml" />
+                <block type="mtreview/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="mt/review/product/view/list.phtml">
+
+                    <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
+                        <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
+                        <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
+                        <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/review/report.phtml" />
+                        <block type="mtreview/comments_list" name="mtreview.comments" as="mtreview_comments" template="mt/review/comments/list.phtml" />
+                    </block>
+                    <block type="mtreview/form" name="product.review.form" as="review_form">
+                        <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+                            <label>Review Form Fields Before</label>
+                            <action method="setMayBeInvisible"><value>1</value></action>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </reference>
+    </mtreview_product_list>
+
+    <mtreview_product_view translate="label">
+        <label>Catalog Product Review View</label>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="mtreview/view" name="review_view"/>
+            <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/mtreview/footer.phtml">
+                <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/mtreview/helpfulness.phtml" />
+                <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/mtreview/report.phtml" />
+            </block>
+        </reference>
+    </mtreview_product_view>
+
+    <mtreview_customer_index translate="label">
+        <label>Customer My Account Product Reviews</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="review/customer_list" name="review_customer_list" template="review/customer/list.phtml"/>
+        </reference>
+    </mtreview_customer_index>
+
+    <mtreview_customer_view translate="label">
+        <label>Customer My Account Review Details</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="review/customer_view" name="customers_review"/>
+        </reference>
+    </mtreview_customer_view>
+
+</layout>

@@ -1,0 +1,67 @@
+.mt-review-footer {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.mt-review-footer .mt-helpful, .mt-review-footer .mt-inappropriate {
+    position: relative;
+    right: 0;
+    width: 50%;
+    float: left;
+}
+.mt-review-footer .mt-inappropriate {
+    text-align: right;
+    float: right;
+}
+.mt-review-footer .mt-inappropriate .mt-inside {
+    width: 30%;
+    display: block;
+    overflow: hidden;
+    float: right;
+}
+.mt-review-footer .mt-inappropriate .mt-reply {
+    float: left;
+    width: 50%;
+}
+.mt-review-footer .mt-inappropriate .mt-report {
+    float: left;
+    width: 50%;
+}
+.mt-review-footer .comment-box {
+    width: 100%;
+    float: left;
+    margin: 10px 0 15px 0;
+}
+.mt-review-footer .comment-box textarea {
+    margin-bottom: 10px;
+    width: 99%;
+    height: 50px;
+}
+.mt-review-footer .btt-submit-review{
+    width: 130px;
+    float: left;
+}
+.comment-loading {
+    background: url(../images/ajax-loader.gif) no-repeat left top;
+    display: none;
+    height: 16px;
+    width: 16px;
+    float: right;
+}
+.mt-review-footer .mt-comments-list {
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+    border-top: #dfdfdf solid 1px;
+}
+.mt-review-footer .mt-comments-list .mt-title {
+    font-weight: bold;
+    padding: 10px 0 0 15px;
+}
+.mt-review-footer .mt-comments-list .main-comments {
+    padding: 10px 0 10px 15px;
+}
+.mt-review-footer .mt-comments-list .main-comments .item-comment {
+    border-bottom: #dfdfdf solid 1px;
+    margin-bottom: 10px;
+}

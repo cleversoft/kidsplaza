@@ -1,0 +1,28 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_Review
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<?php $_items = $this->getCommentsCollection(); ?>
+<?php if(count($_items)):?>
+<div class="mt-title"><?php echo $this->__('Comments:')?></div>
+<?php endif;?>
+<div class="main-comments">
+    <?php foreach($_items as $_item){?>
+    <div class="item-comment">
+        <strong><?php echo $_item->getCustomerName();?></strong>
+        <p><?php echo $this->escapeHtml($_item->getComments());?></p>
+    </div>
+    <?php }?>
+</div>
+

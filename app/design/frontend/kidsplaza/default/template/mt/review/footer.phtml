@@ -1,0 +1,49 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_Review
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<div class="mt-review-footer">
+    <?php
+        if($this->showHelpfulness()){
+            echo $this->getChild('mtreview_helpfulness')->setReviewId($this->getReviewId())->toHtml();
+        }
+    ?>
+    <div class="mt-inappropriate">
+        <div class="mt-inside">
+            <?php
+            if($this->showReply()){
+                echo $this->getChild('mtreview_reply')->setReviewId($this->getReviewId())->toHtml();
+            }
+            if($this->showReport()){
+                echo $this->getChild('mtreview_report')->setReviewId($this->getReviewId())->toHtml();
+            }
+            ?>
+        </div>
+    </div>
+    <?php if($this->showReply()){?>
+    <div class="comment-box" id="commnet_field_<?php echo $this->getReviewId();?>" style="overflow: hidden; display: none;">
+        <textarea placeholder="<?php echo $this->__('Enter your answer in this content. Minimum 100 words, maximum 1500 words.');?>" maxlength="1500" id="comment_detail_<?php echo $this->getReviewId();?>" name="comment_detail_<?php echo $this->getReviewId();?>" class="required-entry ReviewTextArea"></textarea>
+        <div class="btt-submit-review">
+            <span class="comment-loading"></span>
+            <button class="button " onclick="commentReview(this,'<?php echo $this->getReviewId();?>');" type="button">
+                <span><?php echo $this->__('Send')?></span>
+            </button>
+            <button class="button cancel-reply" type="button"><span><?php echo $this->__('Cancel');?></span></button>
+        </div>
+    </div>
+    <?php }?>
+    <div class="mt-comments-list">
+        <?php echo $this->getChild('mtreview_comments')->setReviewId($this->getReviewId())->toHtml();?>
+    </div>
+</div>
