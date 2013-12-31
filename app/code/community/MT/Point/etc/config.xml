@@ -68,6 +68,25 @@
         </events>
     </global>
 
+    <frontend>
+        <routers>
+            <mtpoint>
+                <use>standard</use>
+                <args>
+                    <module>MT_Point</module>
+                    <frontName>mtpoint</frontName>
+                </args>
+            </mtpoint>
+        </routers>
+        <layout>
+            <updates>
+                <mtpoint>
+                    <file>mt_point.xml</file>
+                </mtpoint>
+            </updates>
+        </layout>
+    </frontend>
+
     <admin>
         <routers>
             <mtpointadmin>

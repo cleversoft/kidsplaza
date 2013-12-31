@@ -1,0 +1,17 @@
+<?php
+/**
+* @category    MT
+* @package     MT_Point
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+$point = $this->getPoint();
+?>
+<div class="my-points">
+    <div class="page-title">
+        <h1><?php echo $this->getTitle(); ?></h1>
+    </div>
+    <p><?php echo $this->__('Balance')?>: <?php echo $point->getBalance()?></p>
+</div>

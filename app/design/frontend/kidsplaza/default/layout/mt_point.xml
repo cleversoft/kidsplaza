@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Point
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<layout>
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="mtpoint">
+                <name>point</name>
+                <path>mtpoint/point</path>
+                <label>My Points</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <mtpoint_point_index>
+        <update handle="customer_account" />
+        <reference name="my.account.wrapper">
+            <block type="mtpoint/customer_point" name="customer.point"/>
+        </reference>
+    </mtpoint_point_index>
+</layout>
