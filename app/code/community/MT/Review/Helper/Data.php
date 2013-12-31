@@ -353,13 +353,30 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
         return in_array($reviewId, $abuse);
     }
 
+    public function getTotalReviewHelpfull($reviewId)
+    {
+        $collection = Mage::getModel('mtreview/review')->getCollection()
+            ->addStoreFilter(Mage::app()->getStore()->getId())
+            ->addStatusFilter(MT_Review_Model_Review::STATUS_APPROVED)
+            ->addHelpfulnessSummary();
+
+        foreach ($collection as $review)
+        {
+            if ( $review->getId() === $reviewId )
+            {
+                return $review;
+            }
+        }
+        return null;
+    }
+
     public function yesHelpfulness($reviewId)
     {
         $helpful = Mage::getModel('mtreview/helpfulness');
         $helpful->setReviewId($reviewId)
                 ->setValue(1)
                 ->save();
-        return $this;
+        return $helpful;
     }
 
     public function noHelpfulness($reviewId)

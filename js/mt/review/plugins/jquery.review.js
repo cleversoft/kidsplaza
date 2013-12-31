@@ -28,6 +28,10 @@ jQuery(document).ready(function($){
 });
 function voteReview(e){
     var url = jQuery(e).attr('href');
+    var loading = jQuery('<div/>').addClass('loading');
+    var mainHelpful = jQuery(e).parent();
+    mainHelpful.html('');
+    loading.appendTo(mainHelpful);
     data = '&isAjax=1';
     try {
         jQuery.ajax( {
@@ -37,7 +41,13 @@ function voteReview(e){
             type: 'post',
             success : function(data) {
                 if(data.status == 'success'){
-                    jQuery(e).parent().html(data.message);
+                    total = data.total.match(/\d+/);
+                    if(total[0] == 1){
+                        loading.remove();
+                        mainHelpful.html(data.message);
+                    }else{
+                        mainHelpful.html('<span class="total-helpfull">'+data.total+'</span>');
+                    }
                 }
             }
         });
