@@ -26,6 +26,6 @@ class MT_Point_Model_Mysql4_Point extends Mage_Core_Model_Mysql4_Abstract{
         }else{
             $point->setData(array());
         }
-        return $this;
+        return $point;
     }
 }

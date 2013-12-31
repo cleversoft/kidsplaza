@@ -15,9 +15,9 @@ class MT_Point_Block_Adminhtml_Customer_Edit_Tab_Point_History_Grid extends Mage
     }
 
     protected function _prepareCollection(){
-        $collection = Mage::getModel('mtpoint/history')->getCollection()
-            ->addCustomerFilter($this->getCustomerId())
-            ->setOrder('id', 'desc');
+        $collection = Mage::getModel('mtpoint/history')
+            ->getCollection()
+            ->addCustomerFilter($this->getCustomerId());
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
