@@ -31,7 +31,7 @@ class MT_Review_Block_Adminhtml_Review_Edit extends Mage_Adminhtml_Block_Widget_
                 'onclick',
                 'setLocation(\''
                     . $this->getUrl(
-                        '*/catalog_product/edit',
+                        'adminhtml/catalog_product/edit',
                         array('id' => $this->getRequest()->getParam('productId', false))
                     )
                     .'\')'

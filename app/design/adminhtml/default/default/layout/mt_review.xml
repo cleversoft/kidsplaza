@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>custom</name>
+                <block>mtreview/adminhtml_catalog_product_edit_tab</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <adminhtml_catalog_product_mtreview>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="mtreview/adminhtml_catalog_product_edit_tab_reviews" name="catalog.product.edit.tab.mtreview"/>
+
+        </block>
+    </adminhtml_catalog_product_mtreview>
+</layout>

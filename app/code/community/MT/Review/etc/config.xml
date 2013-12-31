@@ -150,6 +150,13 @@
                     <frontName>mtreview</frontName>
                 </args>
             </mtreview>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <mtreview before="Mage_Adminhtml">MT_Review_Adminhtml</mtreview>
+                    </modules>
+                </args>
+            </adminhtml>
         </routers>
     </admin>
     <adminhtml>
