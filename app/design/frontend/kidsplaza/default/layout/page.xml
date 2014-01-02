@@ -37,11 +37,6 @@ Default layout, loads most of the pages
                 <action method="addCss"><css>bootstrap/css/bootstrap.min.css</css></action>
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
                 <action method="addItem">
-                    <type>skin_css</type>
-                    <name>css/styles-ie.css</name><params/>
-                    <if>lt IE 8</if>
-                </action>
-                <action method="addItem">
                     <type>js_css</type>
                     <css>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.css</css>
                 </action>
@@ -67,9 +62,8 @@ Default layout, loads most of the pages
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
-
+                <action method="addItem"><type>skin_js</type><script>bootstrap/js/bootstrap.min.js</script></action>
                 <action method="addJs"><js>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.pack.js</js></action>
-
                 <action method="addJs"><js>mt/kidsplaza/location.js</js></action>
             </block>
 
