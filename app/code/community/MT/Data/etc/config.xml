@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Data
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_Data>
+            <version>1.0</version>
+        </MT_Data>
+    </modules>
+
+    <global>
+        <models>
+            <mtdata>
+                <class>MT_Data_Model</class>
+            </mtdata>
+        </models>
+        <helpers>
+            <mtdata>
+                <class>MT_Data_Helper</class>
+            </mtdata>
+        </helpers>
+    </global>
+</config>
