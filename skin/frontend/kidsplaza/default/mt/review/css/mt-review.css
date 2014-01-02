@@ -41,6 +41,16 @@
     width: 130px;
     float: left;
 }
+.mt-helpful .loading {
+    background: url(../images/ajax-loader.gif) no-repeat left top;
+    height: 16px;
+    width: 16px;
+    float: left;
+}
+.mt-helpful .total-helpfull {
+    display: block;
+    padding-bottom: 5px;
+}
 .mt-report .loading {
     background: url(../images/ajax-loader.gif) no-repeat left top;
     height: 16px;

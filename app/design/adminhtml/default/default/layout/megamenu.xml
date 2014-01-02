@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/****************************************************** 
+ * @author http://www.9magentothemes.com
+ * @copyright (C) 2012- 9MagentoThemes.Com
+ * @license PHP files are GNU/GPL
+*******************************************************/
+-->
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addJs"><script>magenthemes/megamenu/jquery/1.7.1/jquery.min.js</script></action>
+            <action method="addJs"><script>magenthemes/megamenu/jquery.simple.tree.js</script></action>
+            <action method="addCss"><stylesheet>magenthemes/megamenu/css/tree.css</stylesheet></action>
+        </reference>
+        <block type="megamenu/adminhtml_megamenu_new_form" name="megamenu.type" as="megamenu.type">
+            <action method="addNode"><name>static_block</name><title>Static Block</title><model>cms/block</model><title_field>title</title_field><parent>internal_link</parent></action>
+            <action method="addNode"><name>cms_page</name><title>CMS Page</title><model>cms/page</model><title_field>title</title_field><parent>internal_link</parent></action>
+            <action method="addNode"><name>category</name><title>Category</title><model>catalog/category</model><title_field>name</title_field><parent>internal_link</parent></action>
+        </block>
+    </default>
+    <megamenu_adminhtml_megamenu_edit>
+    	<!--<update handle="editor"/>-->
+        <reference name="left">
+            <block name="megamenu.tree" type="megamenu/adminhtml_megamenu_tree" template="megamenu/megamenu/tree.phtml" />
+        </reference>
+        <reference name="content">
+            <block name="megamenu.edit"  type="megamenu/adminhtml_megamenu_edit" template="megamenu/megamenu/edit.phtml" />
+        </reference> 
+    </megamenu_adminhtml_megamenu_edit> 
+</layout>

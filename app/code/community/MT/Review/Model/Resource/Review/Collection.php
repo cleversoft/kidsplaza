@@ -110,7 +110,7 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
     public function addCustomerFilter($customerId)
     {
         $this->addFilter('customer',
-            $this->getConnection()->quoteInto('detail.customer_id=?', $customerId),
+            $this->getConnection()->quoteInto('d.customer_id=?', $customerId),
             'string');
         return $this;
     }
@@ -221,6 +221,8 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
         return $this;
     }
 
+
+
     /**
      * Set rating order
      *
@@ -234,6 +236,20 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
             '(v.review_id = main_table.review_id)',
             array($attribute => 'AVG(percent)'))->group('main_table.review_id');
         $this->getSelect()->order($attribute.' '.$dir);
+        return $this;
+    }
+
+    /*
+     * Add to collection helpfulness summary
+     */
+    public function addHelpfulnessSummary()
+    {
+        $this->getSelect()
+            ->joinLeft( array( 'yes' => $this->_reviewHelpfulnessTable ),
+                'main_table.review_id = yes.review_id',
+                array( 'all_count' => 'COUNT(yes.id)', 'yes_count' => 'SUM(yes.value)' ))
+            ->group('main_table.review_id')
+        ;
         return $this;
     }
 

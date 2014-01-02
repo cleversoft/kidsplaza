@@ -16,6 +16,8 @@ class MT_Review_Block_Helpfulness extends Mage_Core_Block_Template
 {
     protected $_reviewId;
 
+    protected $_reviewsCollection;
+
     public function _construct() {
         parent::_construct();
     }
@@ -47,5 +49,38 @@ class MT_Review_Block_Helpfulness extends Mage_Core_Block_Template
             return !($helper->isHelpfulnessLogged($this->_reviewId));
         else
             return ($helper->isUserLogged() && !($helper->isHelpfulnessLogged($this->_reviewId)));
+    }
+
+    public function getCollection()
+    {
+        if (null === $this->_reviewsCollection) {
+            $this->_reviewsCollection = Mage::getModel('mtreview/review')->getCollection()
+                ->addStoreFilter(Mage::app()->getStore()->getId())
+                ->addStatusFilter(MT_Review_Model_Review::STATUS_APPROVED)
+                ->addEntityFilter('product', Mage::registry('product')->getId())
+                ->addHelpfulnessSummary();
+        }
+        return $this->_reviewsCollection;
+    }
+
+    public function getFilledReviewById( $reviewId )
+    {
+        foreach ($this->getCollection() as $review)
+        {
+            if ( $review->getId() === $reviewId )
+            {
+                return $review;
+            }
+        }
+        return null;
+    }
+
+    public function getYesCount()
+    {
+        if ( ( $review = $this->getFilledReviewById( $this->_reviewId ) ) !== null )
+        {
+            return $review->getYesCount();
+        }
+        return 0;
     }
 }

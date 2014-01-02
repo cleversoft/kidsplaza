@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/****************************************************** 
+ * @author http://www.9magentothemes.com
+ * @copyright (C) 2012- 9MagentoThemes.Com
+ * @license PHP files are GNU/GPL
+*******************************************************/
+-->
+<config>
+    <modules>
+        <MagenThemes_Megamenu>
+            <active>true</active>
+            <codePool>local</codePool>
+        </MagenThemes_Megamenu>
+    </modules>
+</config> 

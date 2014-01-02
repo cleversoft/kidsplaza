@@ -14,6 +14,9 @@
  */
 ?>
 <div class="mt-helpful">
+    <?php if($this->getYesCount()){?>
+    <span class="total-helpfull"><?php echo $this->__('Have %s Helpfulness', $this->getYesCount());?></span>
+    <?php }?>
     <?php if(!Mage::helper('mtreview')->confAllowOnlyLoggedToVote() && !Mage::getSingleton('customer/session')->isLoggedIn()){?>
         <?php echo $this->__('Do you find this review helpful?');?>
         <a href="<?php echo $this->getBaseUrl(); ?>customer/account/login/">Yes</a> /

@@ -14,6 +14,7 @@
  */
 class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
 {
+    protected $_totalHelpful;
     /**
      * helpful review
      *
@@ -31,9 +32,15 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>$this->__('You can vote only once for the same review'))));
         }
         if($val>0){
-            Mage::helper('mtreview')->yesHelpfulness( $reviewId );
+            $helpful = Mage::helper('mtreview')->yesHelpfulness( $reviewId );
             Mage::helper('mtreview')->loggedHelpfulness( $reviewId );
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Thank you for your vote.'))));
+            if ( ( $review = Mage::helper('mtreview')->getTotalReviewHelpfull( $reviewId ) ) !== null )
+            {
+                $this->_totalHelpful = $this->__('Have %s Helpfulness', $review->getYesCount());
+            }else{
+                $this->_totalHelpful = 0;
+            }
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success', 'total' => $this->_totalHelpful,'message'=>$this->__('Thank you for your vote.'))));
         }else{
             Mage::helper('mtreview')->noHelpfulness( $reviewId );
             Mage::helper('mtreview')->loggedHelpfulness( $reviewId );
