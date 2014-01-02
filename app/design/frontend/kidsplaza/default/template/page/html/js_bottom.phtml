@@ -23,18 +23,8 @@
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+/* @var $this Mage_Page_Block_Html_Head */
 ?>
-<?php
-/**
- * Cookie settings initialization script
- *
- * @see Mage_Page_Block_Js_Cookie
- */
-?>
-
-<script type="text/javascript">
-//<![CDATA[
-Mage.Cookies.path     = '<?php echo $this->getPath()?>';
-Mage.Cookies.domain   = '<?php echo $this->getDomain()?>';
-//]]>
-</script>
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>

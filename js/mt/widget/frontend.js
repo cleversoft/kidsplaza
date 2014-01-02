@@ -6,6 +6,29 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
+'use strict';
+
+jQuery('.flexslider').each(function(i,slider){
+    var id = slider.id;
+    if (!id && !window[id]) return;
+
+    var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column'),
+        config = {
+            minItems: itemsCount,
+            maxItems: itemsCount,
+            animation: 'slide',
+            selector: '.slides > .slide',
+            itemWidth: getFlexSliderItemWidth(id, window[id].responsive, 'width'),
+            onResize: function(slider){
+                var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column');
+                slider.vars.minItems = itemsCount;
+                slider.vars.maxItems = itemsCount;
+            }
+        };
+
+    jQuery('#' + id).flexslider(jQuery.extend(config, window[id].config));
+});
+
 function getFlexSliderItemWidth(id, data, returnType){
     if (data && data.type){
         var containerW = Math.floor(jQuery('#' + id).width());

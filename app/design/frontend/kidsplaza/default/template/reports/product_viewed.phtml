@@ -23,18 +23,21 @@
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+/* @var $this Mage_Reports_Block_Product_Viewed */
 ?>
-<?php
-/**
- * Cookie settings initialization script
- *
- * @see Mage_Page_Block_Js_Cookie
- */
-?>
-
-<script type="text/javascript">
-//<![CDATA[
-Mage.Cookies.path     = '<?php echo $this->getPath()?>';
-Mage.Cookies.domain   = '<?php echo $this->getDomain()?>';
-//]]>
-</script>
+<?php if ($_products = $this->getRecentlyViewedProducts()): ?>
+<div class="block block-list block-viewed">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Recently Viewed Products') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <ol id="recently-viewed-items">
+        <?php foreach ($_products as $_item): ?>
+            <li class="item">
+                <p class="product-name"><a href="<?php echo $this->getProductUrl($_item) ?>"><?php echo $this->helper('catalog/output')->productAttribute($_item, $_item->getName() , 'name') ?></a></p>
+            </li>
+        <?php endforeach; ?>
+        </ol>
+    </div>
+</div>
+<?php endif; ?>

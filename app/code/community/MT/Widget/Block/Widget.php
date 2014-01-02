@@ -22,7 +22,7 @@ class MT_Widget_Block_Widget
     }
 
     protected function _prepareLayout(){
-        $head = $this->getLayout()->getBlock('head');
+        $head = $this->getLayout()->getBlock('js_bottom');
         $head->addJs('mt/extensions/jquery/jquery-1.9.1.min.js');
         $head->addJs('mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js');
         $head->addJs('mt/widget/frontend.js');
@@ -200,7 +200,7 @@ class MT_Widget_Block_Widget
                 return $this->getData('namespace') ? $this->getData('namespace') : 'flex-';
                 break;
             case 'id':
-                return Mage::helper('core')->uniqHash('flexslider-');
+                return Mage::helper('core')->uniqHash('flexslider_');
                 break;
             case 'column':
                 return is_numeric($this->getData('column')) ? $this->getData('column') : 4;

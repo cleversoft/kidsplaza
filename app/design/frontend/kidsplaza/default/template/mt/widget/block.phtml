@@ -1,0 +1,53 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php
+$blocks     = $this->getBlocks();
+$id         = $this->getConfig('id');
+$column     = $this->getConfig('column');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+?>
+<?php if ($scroll == 1):?>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            var itemsCount = getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'column');
+            jQuery('#<?php echo $id?>').flexslider({
+                namespace: '<?php echo $this->getConfig('namespace')?>',
+                slideshow: <?php echo $this->getConfig('autoplay')?>,
+                slideshowSpeed: <?php echo $this->getConfig('speed')?>,
+                animationLoop: <?php echo $this->getConfig('loop')?>,
+                controlNav: <?php echo $this->getConfig('paging')?>,
+                animation: "slide",
+                itemWidth: getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'width'),
+                itemMargin: <?php echo $this->getConfig('margin')?>,
+                minItems: itemsCount,
+                maxItems: itemsCount,
+                selector: ".slides > .slide",
+                move: <?php echo $this->getConfig('move')?>,
+                onResize: function(slider){
+                    var itemsCount = getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'column');
+                    slider.vars.minItems = itemsCount;
+                    slider.vars.maxItems = itemsCount;
+                }
+            });
+        });
+    </script>
+<?php endif ?>
+<div class="slider-block-wrapper<?php echo $scroll==1 ? ' flexslider' : ''?>" id="<?php echo $id ?>">
+    <?php if ($title):?><h2><?php echo $title?></h2><?php endif ?>
+    <div class="slides row">
+        <?php foreach ($blocks as $block): ?>
+            <div class="slide <?php echo $block['class']?>">
+                <?php echo $block['content']?>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>
