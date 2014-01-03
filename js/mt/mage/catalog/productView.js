@@ -8,11 +8,13 @@
  */
 'use strict';
 
-var id = jQuery('.product-view').data('product');
-if (id){
-    var optionsPrice = new Product.OptionsPrice(window['price' + id]);
-    var relatedProductsCheckFlag = false;
-    var productAddToCartForm = new VarienForm('product_addtocart_form');
+jQuery('.product-view').each(function(i, product){
+    var id = jQuery(product).data('product');
+    if (!id) return;
+
+    window.optionsPrice = new Product.OptionsPrice(window['price' + id]);
+    window.relatedProductsCheckFlag = false;
+    window.productAddToCartForm = new VarienForm('product_addtocart_form');
 
     productAddToCartForm.submit = function(button, url) {
         if (this.validator.validate()) {
@@ -64,29 +66,30 @@ if (id){
     $$('.related-checkbox').each(function(elem){
         Event.observe(elem, 'click', addRelatedToProduct)
     });
-}
+});
 
 function selectAllRelated(txt){
     if (relatedProductsCheckFlag == false) {
         $$('.related-checkbox').each(function(elem){
             elem.checked = true;
         });
-        relatedProductsCheckFlag = true;
+        window.relatedProductsCheckFlag = true;
         txt.innerHTML="unselect all";
     } else {
         $$('.related-checkbox').each(function(elem){
             elem.checked = false;
         });
-        relatedProductsCheckFlag = false;
+        window.relatedProductsCheckFlag = false;
         txt.innerHTML="select all";
     }
     addRelatedToProduct();
 }
 
 function addRelatedToProduct(){
-    var checkboxes = $$('.related-checkbox');
-    var values = [], prices = [];
-    for(var i=0;i<checkboxes.length;i++){
+    var checkboxes = $$('.related-checkbox'),
+        values = [], prices = [];
+
+    for(var i=0; i<checkboxes.length; i++){
         var product = checkboxes[i].value;
 
         if(checkboxes[i].checked){
@@ -103,7 +106,7 @@ function addRelatedToProduct(){
     if($('related-products-field')){
         $('related-products-field').value = values.join(',');
     }
-    for(var i=0;i<prices.length;i++){
+    for(var i=0; i<prices.length; i++){
         optionsPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
     }
     optionsPrice.reload();
