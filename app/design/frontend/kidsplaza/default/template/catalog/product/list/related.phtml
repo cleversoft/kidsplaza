@@ -56,58 +56,6 @@
             </li>
         <?php endforeach ?>
         </ol>
-        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
     </div>
-    <script type="text/javascript">
-    //<![CDATA[
-    $$('.related-checkbox').each(function(elem){
-        Event.observe(elem, 'click', addRelatedToProduct)
-    });
-
-    var relatedProductsCheckFlag = false;
-    function selectAllRelated(txt){
-        if (relatedProductsCheckFlag == false) {
-            $$('.related-checkbox').each(function(elem){
-                elem.checked = true;
-            });
-            relatedProductsCheckFlag = true;
-            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
-        } else {
-            $$('.related-checkbox').each(function(elem){
-                elem.checked = false;
-            });
-            relatedProductsCheckFlag = false;
-            txt.innerHTML="<?php echo $this->__('select all') ?>";
-        }
-        addRelatedToProduct();
-    }
-
-    function addRelatedToProduct(){
-        var checkboxes = $$('.related-checkbox');
-        var values = [], prices = [];
-        for(var i=0;i<checkboxes.length;i++){
-            var product = checkboxes[i].value;
-
-            if(checkboxes[i].checked){
-                var price = checkboxes[i].readAttribute('price'),
-                    includeTax = checkboxes[i].readAttribute('price1'),
-                    excludeTax = checkboxes[i].readAttribute('price2');
-
-                values.push(product);
-                prices.push({product: product, price: price, excludeTax: excludeTax, includeTax: includeTax});
-            }else{
-                prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
-            }
-        }
-        if($('related-products-field')){
-            $('related-products-field').value = values.join(',');
-        }
-        for(var i=0;i<prices.length;i++){
-            optionsPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
-        }
-        optionsPrice.reload();
-    }
-    //]]>
-    </script>
 </div>
 <?php endif ?>

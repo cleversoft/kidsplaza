@@ -48,11 +48,6 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
         $select->reset(Zend_Db_Select::ORDER);
         $select->reset(Zend_Db_Select::LIMIT_COUNT);
         $select->reset(Zend_Db_Select::LIMIT_OFFSET);
-        $from = $select->getPart('from');
-        foreach ($from as $key => $item){
-            if ($key == 'price_index') unset($from[$key]);
-        }
-        $select->setPart('from', $from);
 
         $conditions = array(
             "{$tableAlias}.product_id = e.entity_id",
