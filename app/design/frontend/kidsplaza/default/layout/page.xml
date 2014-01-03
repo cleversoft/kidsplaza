@@ -34,25 +34,12 @@ Default layout, loads most of the pages
         <label>All Pages</label>
         <block type="page/html" name="root" output="toHtml" template="page/3columns.phtml">
             <block type="page/html_head" name="head" as="head">
-                <action method="addCss"><css>bootstrap/css/bootstrap.min.css</css></action>
+                <action method="addItem"><type>js_css</type><css>bootstrap/css/bootstrap.min.css</css></action>
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
-                <action method="addItem">
-                    <type>js_css</type>
-                    <css>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.css</css>
-                </action>
+                <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.css</css></action>
 
-                <action method="addItem">
-                    <type>js</type>
-                    <js>mt/extensions/html5shiv/html5shiv.js</js>
-                    <params/>
-                    <if>lt IE 9</if>
-                </action>
-                <action method="addItem">
-                    <type>js</type>
-                    <js>mt/extensions/respond/respond.min.js</js>
-                    <params/>
-                    <if>lt IE 9</if>
-                </action>
+                <action method="addItem"><type>js</type><js>mt/extensions/html5shiv/html5shiv.js</js><params/><if>lt IE 9</if></action>
+                <action method="addItem"><type>js</type><js>mt/extensions/respond/respond.min.js</js><params/><if>lt IE 9</if></action>
             </block>
 
             <block type="page/html_head" name="js_bottom" as="js_bottom" template="page/html/js_bottom.phtml">
@@ -62,7 +49,7 @@ Default layout, loads most of the pages
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
-                <action method="addItem"><type>skin_js</type><script>bootstrap/js/bootstrap.min.js</script></action>
+                <action method="addJs"><script>bootstrap/js/bootstrap.min.js</script></action>
                 <action method="addJs"><js>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.pack.js</js></action>
                 <action method="addJs"><js>mt/kidsplaza/location.js</js></action>
             </block>
