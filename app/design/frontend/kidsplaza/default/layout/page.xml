@@ -38,8 +38,8 @@ Default layout, loads most of the pages
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
                 <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.css</css></action>
 
-                <action method="addItem"><type>js</type><js>mt/extensions/html5shiv/html5shiv.js</js><params/><if>lt IE 9</if></action>
-                <action method="addItem"><type>js</type><js>mt/extensions/respond/respond.min.js</js><params/><if>lt IE 9</if></action>
+                <action method="addItem"><type>js</type><js>html5shiv/html5shiv.js</js><params/><if>lt IE 9</if></action>
+                <action method="addItem"><type>js</type><js>respond/respond.min.js</js><params/><if>lt IE 9</if></action>
             </block>
 
             <block type="page/html_head" name="js_bottom" as="js_bottom" template="page/html/js_bottom.phtml">
