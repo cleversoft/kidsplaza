@@ -177,6 +177,11 @@ Product view
         </reference>
         <reference name="head">
             <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addJs"><script>mt/review/jquery-1.10.2.min.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addCss"><stylesheet>mt/review/css/jquery.rating.css</stylesheet></action>
+            <action method="addCss"><stylesheet>mt/review/css/mt-review.css</stylesheet></action>
         </reference>
         <reference name="js_bottom">
             <action method="addJs"><script>varien/form.js</script></action>
@@ -257,6 +262,21 @@ Product view
                 <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
                 <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
                 <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
+                <block type="mtreview/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="mt/review/product/view/list.phtml">
+                    <block type="mtreview/summary" name="summary_reviews" as="summary_reviews" template="mt/review/product/view/summary.phtml"/>
+                    <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
+                        <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
+                        <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
+                        <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/review/report.phtml" />
+                        <block type="mtreview/comments_list" name="mtreview.comments" as="mtreview_comments" template="mt/review/comments/list.phtml" />
+                    </block>
+                    <block type="mtreview/form" name="product.review.form" as="review_form">
+                        <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+                            <label>Review Form Fields Before</label>
+                            <action method="setMayBeInvisible"><value>1</value></action>
+                        </block>
+                    </block>
+                </block>
             </block>
         </reference>
         <reference name="right">

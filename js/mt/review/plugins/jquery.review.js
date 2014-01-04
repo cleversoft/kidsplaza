@@ -1,4 +1,10 @@
 jQuery(document).ready(function($){
+    $.fn.extend({
+        scrollToMe: function () {
+            var x = jQuery(this).offset().top - 100;
+            $('html,body').animate({scrollTop: x}, 500);
+        }
+    });
     var state = false,
         showComment = function (e) {
             $(e).addClass("active");
@@ -25,7 +31,17 @@ jQuery(document).ready(function($){
         state = false;
     });
 
+    $('.rating-links a.rating-reviews').click(function(){
+        $('#customer-reviews').scrollToMe();
+        return false;
+    });
+    $('.rating-links a.rating-form, .no-rating a').click(function(){
+        $('#review-form').scrollToMe();
+        return false;
+    });
+
 });
+
 function voteReview(e){
     var url = jQuery(e).attr('href');
     var loading = jQuery('<div/>').addClass('loading');
