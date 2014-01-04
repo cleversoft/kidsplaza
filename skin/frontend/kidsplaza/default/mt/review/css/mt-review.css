@@ -85,3 +85,79 @@
 .mt-reported {
     color: #e26703;
 }
+.main-progress {
+    width: 100%;
+    float: left;
+}
+.summary-review {
+    overflow: hidden;
+    width: 70%;
+}
+.review-sum-total {
+    width: 40%;
+    float: left;
+    margin-right: 10px;
+    border-right: #dfdfdf solid 1px;
+}
+.rating-summary-block {
+    width: 50%;
+    float: left;
+}
+.rating-summary-block .main-progress .review-rating-total {
+    width: 100%;
+    float: left;
+}
+.rating-summary-block .main-progress .rating-name {
+    width: 100%;
+    float: left;
+    border-bottom: #dfdfdf solid 1px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    font-weight: bold;
+}
+.rating-summary-block .main-progress .rating-num {
+    float: left;
+    width: 15%;
+}
+.rating-summary-block .main-progress .progress {
+    float: left;
+    width: 75%;
+}
+.rating-summary-block .main-progress .rating-num-total {
+    float: left;
+    width: 10%;
+    padding-left: 10px;
+}
+.ratings-table .rating-item {
+    text-align: center;
+    border-bottom: #dfdfdf solid 1px;
+    padding: 58.3px 0;
+    margin-right: 12px;
+}
+.rating-item .rating-name, .rating-item .all-total {
+    text-align: center;
+    font-weight: bold;
+}
+.review-sum-total p, .average-rating h3 {
+    text-align: center;
+}
+.average-rating h3 {
+    text-align: center;
+    border-bottom: #dfdfdf solid 1px;
+    margin-right: 10px;
+    padding-bottom: 2px;
+}
+.review-sum-total p{
+    padding-top: 10px;
+    font-weight: bold;
+}
+.rating-item .all-total {
+    font-size: 30px;
+    color: red;
+}
+.rating-item .rating-box {
+    margin: 0 auto;
+}
+.product-collateral .box-collateral {
+    margin-top: 10px;
+}

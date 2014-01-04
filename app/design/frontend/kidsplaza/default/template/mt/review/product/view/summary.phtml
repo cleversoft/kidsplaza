@@ -1,0 +1,54 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_Review
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+$summarys = $this->getSummaryBlock();
+$product = $this->getProduct();
+?>
+<?php if(is_array($summarys)):?>
+    <div class="review-sum-total">
+        <div class="average-rating">
+            <h3><?php echo $this->__('Average Rating')?></h3>
+            <?php echo $this->getReviewsSummaryHtml()?>
+        </div>
+        <?php
+        $i=0;
+        foreach($summarys as $summary):?>
+            <?php if($i==0):?>
+            <p><?php echo $this->__('(Total: %s Reviews)',$summary['votes_qty']);?></p>
+            <?php endif;?>
+        <?php $i++;
+        endforeach;?>
+    </div>
+    <div class="rating-summary-block">
+        <?php foreach($summarys as $summary):?>
+            <?php if($summary['votes_qty']>0):?>
+                <div class="main-progress">
+                    <span class="rating-name"><?php echo $summary['name']?></span>
+                    <?php foreach($summary['votes'] as $mark=>$qty):?>
+                        <div class="review-rating-total">
+                            <div class="rating-num"><?php echo $mark;?> star :</div>
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $qty['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $qty['percent'];?>%">
+                                    <span class="sr-only"><?php echo $qty['percent'];?>%</span>
+                                </div>
+                            </div>
+                            <div class="rating-num-total"><?php echo $qty['qty'];?></div>
+                        </div>
+                    <?php endforeach;?>
+                </div>
+            <?php endif;?>
+        <?php endforeach;?>
+    </div>
+<?php endif;?>
+
