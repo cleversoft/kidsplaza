@@ -57,33 +57,6 @@
                     </review_store>
                 </entities>
             </mtreview_resource>
-            <!--<mtreview>
-                <class>MT_Review_Model</class>
-                <resourceModel>review_mysql4</resourceModel>
-            </mtreview>
-            <mtreview_mysql4>
-                <class>MT_Review_Model_Mysql4</class>
-                <entities>
-                    <review>
-                        <table>review</table>
-                    </review>
-                    <review_detail>
-                        <table>mt_review_detail</table>
-                    </review_detail>
-                    <review_status>
-                        <table>review_status</table>
-                    </review_status>
-                    <review_entity>
-                        <table>review_entity</table>
-                    </review_entity>
-                    <review_aggregate>
-                        <table>review_entity_summary</table>
-                    </review_aggregate>
-                    <review_store>
-                        <table>review_store</table>
-                    </review_store>
-                </entities>
-            </mtreview_mysql4>-->
         </models>
         <resources>
             <mtreview_setup>
@@ -96,6 +69,11 @@
             <mtreview>
                 <class>MT_Review_Block</class>
             </mtreview>
+            <review>
+                <rewrite>
+                    <helper>MT_Review_Block_Helper</helper>
+                </rewrite>
+            </review>
         </blocks>
         <helpers>
             <mtreview>
