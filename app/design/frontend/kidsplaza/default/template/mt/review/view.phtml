@@ -53,6 +53,9 @@
                 <?php echo nl2br($this->escapeHtml($this->getReviewData()->getDetail())) ?>
             </dd>
         </dl>
+        <dl>
+            <?php echo $this->getChild('mtreview_footer')->setReviewId( $this->getReviewData()->getId() )->toHtml();?>
+        </dl>
     </div>
     <div class="buttons-set">
         <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Product Reviews') ?></a></p>

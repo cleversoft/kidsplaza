@@ -22,6 +22,12 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
     public function helpfulAction(){
         $val = $this->getRequest()->getParam('val');
         $reviewId   = $this->getRequest()->getParam('reviewId');
+        if ( Mage::getSingleton('customer/session')->isLoggedIn() )
+        {
+            $customerId = Mage::getSingleton('customer/session')->getId();
+        }else{
+            $customerId = null;
+        }
         if (!Mage::helper('mtreview')->confAllowOnlyLoggedToVote()
             && !Mage::helper('mtreview')->isUserLogged() )
         {
@@ -32,7 +38,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>$this->__('You can vote only once for the same review'))));
         }
         if($val>0){
-            $helpful = Mage::helper('mtreview')->yesHelpfulness( $reviewId );
+            $helpful = Mage::helper('mtreview')->yesHelpfulness( $reviewId, $customerId );
             Mage::helper('mtreview')->loggedHelpfulness( $reviewId );
             if ( ( $review = Mage::helper('mtreview')->getTotalReviewHelpfull( $reviewId ) ) !== null )
             {
@@ -42,7 +48,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             }
             return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success', 'total' => $this->_totalHelpful,'message'=>$this->__('Thank you for your vote.'))));
         }else{
-            Mage::helper('mtreview')->noHelpfulness( $reviewId );
+            Mage::helper('mtreview')->noHelpfulness( $reviewId,$customerId );
             Mage::helper('mtreview')->loggedHelpfulness( $reviewId );
             return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Thank you for your vote.'))));
         }

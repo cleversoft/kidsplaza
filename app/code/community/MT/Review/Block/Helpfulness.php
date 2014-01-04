@@ -46,9 +46,9 @@ class MT_Review_Block_Helpfulness extends Mage_Core_Block_Template
     {
         $helper = Mage::helper('mtreview');
         if( $helper->confAllowOnlyLoggedToVote())
-            return !($helper->isHelpfulnessLogged($this->_reviewId));
+            return (!($helper->isCustomerHelpful($this->_reviewId)));
         else
-            return ($helper->isUserLogged() && !($helper->isHelpfulnessLogged($this->_reviewId)));
+            return ($helper->isUserLogged() && !($helper->isCustomerHelpful($this->_reviewId)));
     }
 
     public function getCollection()

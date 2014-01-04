@@ -90,7 +90,6 @@
                 <block type="mtreview/ordering" name="mtreview.ordering"/>
                 <block type="core/template" name="product_review_list.count" template="mt/review/product/view/count.phtml" />
                 <block type="mtreview/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="mt/review/product/view/list.phtml">
-
                     <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
                         <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
                         <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
@@ -111,13 +110,23 @@
     <mtreview_product_view translate="label">
         <label>Catalog Product Review View</label>
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs"><script>mt/review/jquery-1.10.2.min.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
+            <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addCss"><stylesheet>mt/review/css/jquery.rating.css</stylesheet></action>
+            <action method="addCss"><stylesheet>mt/review/css/mt-review.css</stylesheet></action>
         </reference>
         <reference name="content">
-            <block type="mtreview/view" name="review_view"/>
-            <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/mtreview/footer.phtml">
-                <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/mtreview/helpfulness.phtml" />
-                <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/mtreview/report.phtml" />
+            <block type="mtreview/view" name="review_view">
+                <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
+                    <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
+                    <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
+                    <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/review/report.phtml" />
+                    <block type="mtreview/comments_list" name="mtreview.comments" as="mtreview_comments" template="mt/review/comments/list.phtml" />
+                </block>
             </block>
         </reference>
     </mtreview_product_view>

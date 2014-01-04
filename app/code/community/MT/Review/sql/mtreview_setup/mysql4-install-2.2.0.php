@@ -79,6 +79,7 @@ $installer->run("
 CREATE TABLE {$this->getTable('mt_review_helpfulness')}(
   `id` bigint(20) unsigned NOT NULL auto_increment,
   `review_id` bigint(20) unsigned NOT NULL,
+  `customer_id` bigint(20) unsigned NOT NULL,
   `value` int(11) NOT NULL,
   PRIMARY KEY  (`id`),
   KEY `FK_REVIEW_HELPFUL_REVIEW` (`review_id`),

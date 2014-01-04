@@ -161,17 +161,19 @@ class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resour
      *
      * @param array $storeId
      */
-    public function addStoreFilter($store, $withAdmin = true) {
-        if ($store instanceof Mage_Core_Model_Store) {
-            $store = array($store->getId());
-        }
-        $this->getSelect()->join(
-            array('store_table' => $this->getTable('mtreview/review_store')),
-            'main_table.review_id = store_table.review_id',
-            array()
-        )
-            ->where('main_table.store_id in (?)', ($withAdmin ? array(0, $store) : $store))
-            ->group('main_table.review_id');
+    /**
+     * Add store filter
+     *
+     * @param int|array $storeId
+     * @return Mage_Review_Model_Resource_Review_Collection
+     */
+    public function addStoreFilter($storeId)
+    {
+        $inCond = $this->getConnection()->prepareSqlCondition('store.store_id', array('in' => $storeId));
+        $this->getSelect()->join(array('store'=>$this->_reviewStoreTable),
+            'main_table.review_id=store.review_id',
+            array());
+        $this->getSelect()->where($inCond);
         return $this;
     }
 

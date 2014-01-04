@@ -108,6 +108,32 @@ class MT_Review_Model_Review extends Mage_Core_Model_Abstract {
     }
 
     /**
+     * Check if current review approved or not
+     *
+     * @return bool
+     */
+    public function isApproved()
+    {
+        return $this->getStatusId() == self::STATUS_APPROVED;
+    }
+
+    /**
+     * Check if current review available on passed store
+     *
+     * @param int|Mage_Core_Model_Store $store
+     * @return bool
+     */
+    public function isAvailableOnStore($store = null)
+    {
+        $store = Mage::app()->getStore($store);
+        if ($store) {
+            return in_array($store->getId(), (array)$this->getStores());
+        }
+
+        return false;
+    }
+
+    /**
      * Get review entity type id by code
      *
      * @param string $entityCode

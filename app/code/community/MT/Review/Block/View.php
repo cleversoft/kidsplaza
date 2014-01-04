@@ -18,7 +18,7 @@ class MT_Review_Block_View extends Mage_Catalog_Block_Product_Abstract
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('mt/review_view.phtml');
+        $this->setTemplate('mt/review/view.phtml');
     }
 
     /**

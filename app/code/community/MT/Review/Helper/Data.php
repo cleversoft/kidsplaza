@@ -162,6 +162,18 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
 
     }
 
+    public function isCustomerHelpful($reviewId)
+    {
+        if($userId = Mage::getSingleton('customer/session')->getCustomer()->getId()){
+            $helpful = Mage::getModel('mtreview/helpfulness')->getCollection()
+                ->addCustomerFilter($userId)
+                ->addReviewFilter($reviewId);
+            return count($helpful);
+        } else {
+            return $this->isHelpfulnessLogged($reviewId);
+        }
+    }
+
     /**
      * Get review statuses with their codes
      *
@@ -348,9 +360,9 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
     public function isMarkedReport($reviewId)
     {
         $cookies = Mage::getModel('core/cookie');
-        $abuse = explode(',',$cookies->get('report'));
+        $report = explode(',',$cookies->get('report'));
 
-        return in_array($reviewId, $abuse);
+        return in_array($reviewId, $report);
     }
 
     public function getTotalReviewHelpfull($reviewId)
@@ -370,19 +382,21 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
         return null;
     }
 
-    public function yesHelpfulness($reviewId)
+    public function yesHelpfulness($reviewId, $customerId = null)
     {
         $helpful = Mage::getModel('mtreview/helpfulness');
         $helpful->setReviewId($reviewId)
+                ->setCustomerId($customerId)
                 ->setValue(1)
                 ->save();
         return $helpful;
     }
 
-    public function noHelpfulness($reviewId)
+    public function noHelpfulness($reviewId, $customerId = null)
     {
         $helpful = Mage::getModel('mtreview/helpfulness');
         $helpful->setReviewId($reviewId)
+            ->setCustomerId($customerId)
             ->setValue(0)
             ->save();
         return $this;
