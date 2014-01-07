@@ -6,11 +6,11 @@ $root = 3;
 $host = '127.0.0.1';
 $user = 'root';
 $pass = 'tooor';
-$base = Mage::getBaseDir();
-$baseUrl = 'http://kidsplaza.vn/media/';
-$typeId = 'simple';
 $attributeSetId = 9;
 
+$typeId = 'simple';
+$base = Mage::getBaseDir();
+$baseUrl = 'http://kidsplaza.vn/media/';
 $tree = array();
 $attributeBrand = null;
 $attributeSetup = null;
@@ -162,6 +162,7 @@ function process_image(&$product, $data){
     $query = 'select * from idv_sell_product_image_name where proId='.$data['id'];
     $rs = query($query);
     $dir = $base.DS.'var'.DS.'tmp'.DS;
+    if (!is_dir($dir)) mkdir($dir, 0777, true);
     if (!$mediaGalleryBackendModel){
         $mediaGalleryBackendModel = Mage::getModel('catalog/resource_eav_attribute')
             ->loadByCode('catalog_product', 'media_gallery')
@@ -265,7 +266,9 @@ function process_category($data){
                         ));
                         try{
                             if ($data['image']){
-                                $file = $base.DS.'media'.DS.'catalog'.DS.'category'.DS.$data['image'];
+                                $dir = $base.DS.'media'.DS.'catalog'.DS.'category'.DS;
+                                if (!is_dir($dir)) mkdir($dir, 0777, true);
+                                $file = $dir.$data['image'];
                                 $url = $baseUrl.'category/'.$data['image'];
                                 if (!file_exists($file)){
                                     echo 'Saving category image: '.$url;
