@@ -12,7 +12,7 @@
 <config>
     <modules>
         <MT_KidsPlaza>
-            <version>1.0</version>
+            <version>1.1</version>
         </MT_KidsPlaza>
     </modules>
 
@@ -27,5 +27,16 @@
                 <class>MT_KidsPlaza_Block</class>
             </kidsplaza>
         </blocks>
+        <resources>
+            <kidsplaza>
+                <setup>
+                    <module>MT_KidsPlaza</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </kidsplaza>
+        </resources>
     </global>
 </config>
