@@ -59,7 +59,7 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
     public function editAction()
     {
         $id = $this->getRequest()->getParam('id');
-        $model = Mage::getModel('blog/blog')->load($id);
+        $model = Mage::getModel('blog/post')->load($id);
 
         if ($model->getId() || $id == 0) {
             $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
@@ -92,7 +92,7 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
     public function newAction()
     {
         $id = $this->getRequest()->getParam('id');
-        $model = Mage::getModel('blog/blog')->load($id);
+        $model = Mage::getModel('blog/post')->load($id);
 
         $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
         if (!empty($data)) {
@@ -298,7 +298,7 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
 
     protected function _postDelete($postId)
     {
-        $model = Mage::getModel('blog/blog')->load($postId);
+        $model = Mage::getModel('blog/post')->load($postId);
         $_tags = explode(',', $model->getData('tags'));
         $model->delete();
         $_stores = Mage::getSingleton('adminhtml/system_store')->getStoreCollection();
@@ -320,7 +320,7 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
             try {
 
                 foreach ($blogIds as $blogId) {
-                    $blog = Mage::getModel('blog/blog')
+                    $blog = Mage::getModel('blog/post')
                         ->load($blogId)
                         ->setStatus($this->getRequest()->getParam('status'))
                         ->setStores('')

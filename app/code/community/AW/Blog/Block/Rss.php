@@ -58,7 +58,7 @@ class AW_Blog_Block_Rss extends Mage_Rss_Block_Abstract
 
         $rssObj->_addHeader($data);
 
-        $collection = Mage::getModel('blog/blog')->getCollection()
+        $collection = Mage::getModel('blog/post')->getCollection()
             ->addPresentFilter()
             ->addStoreFilter(Mage::app()->getStore()->getId())
             ->setOrder('created_time', 'desc')

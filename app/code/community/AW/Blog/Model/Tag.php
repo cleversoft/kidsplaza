@@ -36,7 +36,7 @@ class AW_Blog_Model_Tag extends Mage_Core_Model_Abstract
     public function refreshCount($store = null)
     {
         //Refreshes tag count
-        $postsCount = Mage::getModel('blog/blog')->getCollection();
+        $postsCount = Mage::getModel('blog/post')->getCollection();
         if ($store) {
             $postsCount->addStoreFilter($store);
         }

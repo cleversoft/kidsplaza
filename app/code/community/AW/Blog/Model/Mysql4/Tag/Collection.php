@@ -62,7 +62,7 @@ class AW_Blog_Model_Mysql4_Tag_Collection extends Mage_Core_Model_Mysql4_Collect
             ->joinLeft(
                 array("stores" => $this->getTable('blog/store')), 'main_table.store_id = stores.store_id', array()
             )
-            ->joinLeft(array("blogs" => $this->getTable('blog/blog')), "stores.post_id = blogs.post_id", array())
+            ->joinLeft(array("blogs" => $this->getTable('blog/post')), "stores.post_id = blogs.post_id", array())
             ->where('blogs.status = 1')
             ->where('tag_count > 0')
             ->where('FIND_IN_SET(main_table.tag, blogs.tags)')

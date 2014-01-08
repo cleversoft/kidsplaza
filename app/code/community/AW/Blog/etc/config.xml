@@ -146,11 +146,8 @@
             <blog_mysql4>
                 <class>AW_Blog_Model_Mysql4</class>
                 <entities>
-                    <blog>
-                        <table>aw_blog</table>
-                    </blog>
                     <post>
-                        <table>aw_blog</table>
+                        <table>aw_blog_post</table>
                     </post>
                     <comment>
                         <table>aw_blog_comment</table>
@@ -171,8 +168,7 @@
                         <table>aw_blog_tags</table>
                     </tag>
 
-
-                    <lblog>
+                    <!--lblog>
                         <table>blog</table>
                     </lblog>
                     <lpost>
@@ -190,11 +186,9 @@
                     <lstore>
                         <table>blog_store</table>
                     </lstore>
-
                     <lcat_store>
                         <table>blog_cat_store</table>
-                    </lcat_store>
-
+                    </lcat_store-->
                 </entities>
             </blog_mysql4>
             <sitemap>

@@ -42,7 +42,7 @@ class AW_Blog_Model_Observer
          */
         $changefreq = (string)Mage::getStoreConfig('sitemap/blog/changefreq');
         $priority = (string)Mage::getStoreConfig('sitemap/blog/priority');
-        $collection = Mage::getModel('blog/blog')->getCollection()->addStoreFilter($storeId);
+        $collection = Mage::getModel('blog/post')->getCollection()->addStoreFilter($storeId);
         Mage::getSingleton('blog/status')->addEnabledFilterToCollection($collection);
         $route = Mage::getStoreConfig('blog/blog/route');
         if ($route == "") {

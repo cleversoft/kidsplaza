@@ -29,7 +29,7 @@ class AW_Blog_Model_Mysql4_Blog extends Mage_Core_Model_Mysql4_Abstract
 {
     public function _construct()
     {
-        $this->_init('blog/blog', 'post_id');
+        $this->_init('blog/post', 'post_id');
     }
 
     protected function _afterSave(Mage_Core_Model_Abstract $object)

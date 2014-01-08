@@ -23,6 +23,3 @@
  * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
  * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
  */
-
-/* @var $installer Mage_Core_Model_Resource_Setup */
-$installer = $this;

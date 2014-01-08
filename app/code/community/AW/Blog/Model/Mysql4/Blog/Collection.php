@@ -30,7 +30,7 @@ class AW_Blog_Model_Mysql4_Blog_Collection extends Mage_Core_Model_Mysql4_Collec
     public function _construct()
     {
         parent::_construct();
-        $this->_init('blog/blog');
+        $this->_init('blog/post');
     }
 
     public function addEnableFilter($status)

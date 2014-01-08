@@ -30,9 +30,8 @@ $installer = $this;
 $installer->startSetup();
 try {
     $installer->run("
-        CREATE TABLE IF NOT EXISTS {$this->getTable('blog/blog')} (
+        CREATE TABLE IF NOT EXISTS {$this->getTable('blog/post')} (
             `post_id` int( 11 ) unsigned NOT NULL AUTO_INCREMENT ,
-            `cat_id` smallint( 11 ) NOT NULL default '0',
             `title` varchar( 255 ) NOT NULL default '',
             `post_content` text NOT NULL ,
             `status` smallint( 6 ) NOT NULL default '0',
@@ -48,9 +47,6 @@ try {
             UNIQUE KEY `identifier` ( `identifier` )
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-        INSERT INTO {$this->getTable('blog/blog')} (`post_id` ,`cat_id`, `title` ,`post_content` ,`status` ,`created_time` ,`update_time` ,`identifier` ,`user` ,`update_user` ,`meta_keywords` ,`meta_description`)
-        VALUES (NULL ,'0', 'Hello World', 'Welcome to Magento Blog by aheadWorks Co. This is your first post. Edit or delete it, then start blogging!', '1', '2010-09-06 07:28:34' , NOW( ) , 'Hello', 'Joe Blogs', 'Joe Blogs', 'Keywords', 'Description');
-
         CREATE TABLE IF NOT EXISTS {$this->getTable('blog/comment')} (
             `comment_id` int( 11 ) unsigned NOT NULL AUTO_INCREMENT ,
             `post_id` smallint( 11 ) NOT NULL default '0',
@@ -62,9 +58,6 @@ try {
             PRIMARY KEY ( `comment_id` )
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-        INSERT INTO {$this->getTable('blog/comment')} (`comment_id` ,`post_id` ,`comment` ,`status` ,`created_time` ,`user` ,`email`)
-        VALUES (NULL , '1', 'This is the first comment. It can be edited, deleted or set to unapproved so it is not displayed. This can be done in the admin panel.', '2', NOW( ) , 'Joe Blogs', 'joe@blogs.com');
-
         CREATE TABLE IF NOT EXISTS {$this->getTable('blog/cat')} (
             `cat_id` int( 11 ) unsigned NOT NULL AUTO_INCREMENT ,
             `title` varchar( 255 ) NOT NULL default '',
@@ -74,8 +67,6 @@ try {
             `meta_description` text NOT NULL ,
             PRIMARY KEY ( `cat_id` )
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
-
-        INSERT INTO {$this->getTable('blog/cat')} (`cat_id`, `title`, `identifier`, `parent`) VALUES (NULL, 'News', 'news', 0);
 
         CREATE TABLE IF NOT EXISTS {$this->getTable('blog/store')} (
             `post_id` smallint(6) unsigned,
@@ -92,15 +83,9 @@ try {
             `post_id` smallint(6) unsigned
         ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
-        ALTER TABLE {$this->getTable('blog/blog')} ADD `tags` TEXT NOT NULL;
-        ALTER TABLE {$this->getTable('blog/blog')} ADD `short_content` TEXT NOT NULL;
-    ");
-} catch (Exception $e) {
-    Mage::logException($e);
-}
+        ALTER TABLE {$this->getTable('blog/post')} ADD `tags` TEXT NOT NULL;
+        ALTER TABLE {$this->getTable('blog/post')} ADD `short_content` TEXT NOT NULL;
 
-try {
-    $installer->run("
         CREATE TABLE IF NOT EXISTS {$this->getTable('blog/tag')} (
             `id` INT( 11 ) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
             `tag` VARCHAR( 255 ) NOT NULL ,

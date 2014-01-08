@@ -285,7 +285,7 @@ abstract class AW_Blog_Block_Abstract extends Mage_Core_Block_Template
     {
         if (!$this->getData('cached_collection')) {
 
-            $collection = Mage::getModel('blog/blog')->getCollection()
+            $collection = Mage::getModel('blog/post')->getCollection()
                 ->addPresentFilter()
                 ->addEnableFilter(AW_Blog_Model_Status::STATUS_ENABLED)
                 ->addStoreFilter()

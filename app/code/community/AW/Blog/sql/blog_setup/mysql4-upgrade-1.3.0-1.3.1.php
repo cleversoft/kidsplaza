@@ -12,6 +12,6 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-ALTER TABLE {$this->getTable('blog/blog')} ADD `thumb` VARCHAR(255) NULL DEFAULT NULL;
+ALTER TABLE {$this->getTable('blog/post')} ADD `thumb` VARCHAR(255) NULL DEFAULT NULL;
 ");
 $installer->endSetup();

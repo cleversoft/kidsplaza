@@ -44,7 +44,7 @@ class AW_Blog_Block_Manage_Blog_Grid extends Mage_Adminhtml_Block_Widget_Grid
 
     protected function _prepareCollection()
     {
-        $collection = Mage::getModel('blog/blog')->getCollection();
+        $collection = Mage::getModel('blog/post')->getCollection();
         $store = $this->_getStore();
         if ($store->getId()) {
             $collection->addStoreFilter($store);

@@ -12,6 +12,6 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-ALTER TABLE {$this->getTable('blog/blog')} ADD `custom_classes` VARCHAR(255) NULL DEFAULT NULL;
+ALTER TABLE {$this->getTable('blog/post')} ADD `custom_classes` VARCHAR(255) NULL DEFAULT NULL;
 ");
 $installer->endSetup();

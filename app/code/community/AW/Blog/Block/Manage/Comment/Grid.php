@@ -40,7 +40,7 @@ class AW_Blog_Block_Manage_Comment_Grid extends Mage_Adminhtml_Block_Widget_Grid
     {
         $collection = Mage::getModel('blog/comment')->getCollection();
         $collection->getSelect()->joinLeft(
-            array('aw_blog_main' => $collection->getTable('blog/blog')), 'main_table.post_id=aw_blog_main.post_id',
+            array('aw_blog_main' => $collection->getTable('blog/post')), 'main_table.post_id=aw_blog_main.post_id',
             array('aw_blog_main.title')
         );
 

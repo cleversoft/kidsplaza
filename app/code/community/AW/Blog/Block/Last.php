@@ -37,7 +37,7 @@ class AW_Blog_Block_Last extends AW_Blog_Block_Menu_Sidebar implements Mage_Widg
 
     public function getRecent()
     {
-        $collection = Mage::getModel('blog/blog')->getCollection()
+        $collection = Mage::getModel('blog/post')->getCollection()
             ->addPresentFilter()
             ->addEnableFilter(AW_Blog_Model_Status::STATUS_ENABLED)
             ->addStoreFilter()

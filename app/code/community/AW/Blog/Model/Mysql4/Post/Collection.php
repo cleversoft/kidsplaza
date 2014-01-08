@@ -25,14 +25,9 @@
  */
 
 
-class AW_Blog_Model_Mysql4_Post_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
+class AW_Blog_Model_Mysql4_Post_Collection extends AW_Blog_Model_Mysql4_Blog_Collection
 {
     protected $_previewFlag;
-
-    protected function _construct()
-    {
-        $this->_init('blog/blog');
-    }
 
     public function toOptionArray()
     {
@@ -44,6 +39,8 @@ class AW_Blog_Model_Mysql4_Post_Collection extends Mage_Core_Model_Mysql4_Collec
         if (!Mage::app()->isSingleStoreMode()) {
             if ($store instanceof Mage_Core_Model_Store) {
                 $store = $store->getId();
+            }else{
+                $store = Mage::app()->getStore()->getId();
             }
 
             $store = (array)$store;

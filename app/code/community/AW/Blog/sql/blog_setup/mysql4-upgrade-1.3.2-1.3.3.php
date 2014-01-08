@@ -12,7 +12,7 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-ALTER TABLE {$this->getTable('blog/blog')} ADD `promotion_start` DATE NULL DEFAULT NULL;
-ALTER TABLE {$this->getTable('blog/blog')} ADD `promotion_end` DATE NULL DEFAULT NULL;
+ALTER TABLE {$this->getTable('blog/post')} ADD `promotion_start` DATE NULL DEFAULT NULL;
+ALTER TABLE {$this->getTable('blog/post')} ADD `promotion_end` DATE NULL DEFAULT NULL;
 ");
 $installer->endSetup();
