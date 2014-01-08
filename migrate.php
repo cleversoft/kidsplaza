@@ -2,11 +2,12 @@
 require_once 'app/Mage.php';
 Mage::app('admin', 'store');
 
-$root = 3;
+$root = 2;
 $host = '127.0.0.1';
 $user = 'root';
 $pass = 'tooor';
-$attributeSetId = 9;
+$attributeSetId = 4;
+$website_ids = array(1, 2);
 
 $typeId = 'simple';
 $base = Mage::getBaseDir();
@@ -15,6 +16,7 @@ $tree = array();
 $attributeBrand = null;
 $attributeSetup = null;
 $mediaGalleryBackendModel = null;
+$brands = array();
 
 $db = @mysql_connect($host, $user, $pass);
 if (!$db) die("Error: db connection\n");
@@ -41,7 +43,7 @@ while ($row = mysql_fetch_assoc($rs)){
         'meta_description' => $row['meta_description'],
         'summary' => $row['summary'],
         'description' => $row['static_html'],
-        'image' => $row['imgUrl'].'.jpg',
+        'image' => $row['imgUrl'],
         'path' => implode('/', array_reverse($path))
     );
 }
@@ -81,7 +83,7 @@ while ($row = mysql_fetch_assoc($rs)){
     $product->setData('meta_description', $row['meta_description']);
     $product->setData('price', $row['market_price']  > $row['price'] ? $row['market_price'] : $row['price']);
     $product->setData('special_price', $row['market_price']  > $row['price'] ? $row['price'] : '');
-    $product->setData('website_ids', array(1, 2));
+    $product->setData('website_ids', $website_ids);
     $product->setData('weight', 1);
     $product->setData('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH);
     $product->setData('status', 1);
@@ -108,12 +110,13 @@ while ($row = mysql_fetch_assoc($rs)){
     if (!$productId) echo 'Saved product: '.$product->getName()."\n\n";
     else echo 'Updated product: '.$product->getName()."\n\n";
 
-    if ($i++ == 1) break;
+    //if ($i++ == 1) break;
+    $i++;
 }
 echo 'Save product(s): '.$i."\n";
 
 function process_brand($data){
-    global $attributeSetup, $attributeBrand;
+    global $attributeSetup, $attributeBrand, $brands;
 
     $out = '';
     if (isset($data['brand'])){
@@ -122,10 +125,21 @@ function process_brand($data){
             $attributeSetup = new Mage_Eav_Model_Entity_Setup('core_setup');
         }
         if ($attributeBrand && $attributeSetup){
-            $options = $attributeBrand->getSource()->getAllOptions(false);
-            foreach ($options as $option){
-                if ($option['label'] == $data['brand']){
-                    $out = $option['value'];
+            if (!count($brands)){
+                $collection = Mage::getResourceModel('eav/entity_attribute_option_collection')
+                    ->setAttributeFilter($attributeBrand->getAttributeId())
+                    ->setStoreFilter(0)
+                    ->load()
+                    ->toOptionArray();
+
+                foreach ($collection as $option){
+                    $brands[$option['value']] = $option['label'];
+                }
+            }
+            foreach ($brands as $brandId => $brand){
+                if ($brand == $data['brand']){
+                    echo 'Exist brand: '.$data['brand']."\n";
+                    $out = $brandId;
                     break;
                 }
             }
@@ -140,11 +154,13 @@ function process_brand($data){
                 $collection = Mage::getResourceModel('eav/entity_attribute_option_collection')
                     ->setAttributeFilter($attributeBrand->getAttributeId())
                     ->setStoreFilter(0)
-                    ->load();
+                    ->load()
+                    ->toOptionArray();
 
-                foreach ($collection->toOptionArray() as $option){
+                foreach ($collection as $option){
                     if ($option['label'] == $data['brand']){
                         $out = $option['value'];
+                        $brands[$option['value']] = $option['label'];
                         break;
                     }
                 }
