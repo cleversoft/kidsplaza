@@ -127,6 +127,18 @@
                             </tr>
                             <tr>
                                 <td class="label">
+                                    <label for="megamenu[label]"><?php echo $this->__('Menu Label');?></label>
+                                </td>
+                                <td class="value">
+                                    <select class="input-text" id="megamenu[label]" name="megamenu[label]">
+                                        <option value=""><?php echo $this->__('-- Please Select --') ?></option>
+                                        <option value="label1" <?php if($megamenu->getLabel()=='label1') echo 'selected="selected"';?>>New</option>
+                                        <option value="label2" <?php if($megamenu->getLabel()=='label2') echo 'selected="selected"';?>>Hot!</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="label">
                                     <label for="megamenu[nofollow]"><?php echo $this->__('Nofollow') ?></label>
                                 </td>
                                 <td class="value">

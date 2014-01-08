@@ -54,6 +54,10 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
     public function getUrlType() {
         return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getUrl();
     }
+
+    public function getCategorySummary() {
+        return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getSummary();
+    }
     
     private function _getObjectType($type) {
         return $this->getLayout()->getBlock('megamenu.nav')->getType($type);
@@ -117,6 +121,10 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
             }
         }
         $html .= '>';
+        if($this->_menu->getLabel()){
+            $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
+            $html .= '<span class="menu-label">'.$label.'</span>';
+        }
 		if($this->_menu->getType() == 'external_link') {
 		    $html .= '<a class="megamenu-title" ';
 		    if($this->_menu->getUrl())
@@ -146,6 +154,8 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
 			    if($this->_level != 0) 
 				$html .= '<span class="no-icon-megamenu"></span>';
 			$html .= '<span>'.$this->_menu->getTitle().'</span></a>';
+                if($this->_level == 1 && $this->_type == 'category')
+                    $html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
 		    }
 		    if($this->_menu->isContent())
 			$html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())

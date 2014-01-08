@@ -12,18 +12,28 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
   	{ 
     	$form = new Varien_Data_Form(); 
       	$this->setForm($form); 
-      	$fieldset = $form->addFieldset('megamenu_form', array('legend'=>Mage::helper('megamenu')->__('Megamenu information'))); 
-      	$fieldset->addField('title', 'text', array( 
-          	'label'     => Mage::helper('megamenu')->__('Title'), 
-          	'class'     => 'required-entry', 
-          	'required'  => true, 
-          	'name'      => 'megamenu[title]', 
-      	)); 
-      	$fieldset->addField('image', 'image', array( 
+      	$fieldset = $form->addFieldset('megamenu_form', array('legend'=>Mage::helper('megamenu')->__('Megamenu information'))); 
+
+      	$fieldset->addField('title', 'text', array(
+          	'label'     => Mage::helper('megamenu')->__('Title'),
+          	'class'     => 'required-entry',
+          	'required'  => true,
+          	'name'      => 'megamenu[title]',
+      	));
+
+        $fieldset->addField('label', 'text', array(
+            'label'     => Mage::helper('megamenu')->__('Menu Label'),
+            'class'     => 'required-entry',
+            'required'  => true,
+            'name'      => 'megamenu[label]',
+        ));
+
+        $fieldset->addField('image', 'image', array(
           	'label'     => Mage::helper('megamenu')->__('Image'), 
           	'required'  => false, 
           	'name'      => 'image', 
-	  	)); 
+	  	)); 
+
 	  	if (!Mage::app()->isSingleStoreMode()) { 
 		  	$fieldset->addField('stores', 'multiselect', array( 
 			  	'label'     => Mage::helper('megamenu')->__('Visible In'), 
@@ -43,12 +53,14 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
           	'label'     => Mage::helper('megamenu')->__('Parent Item'), 
           	'name'      => 'megamenu[parent_id]', 
           	'values'    => $this->itemToOptionArray(), 
-      	)); 
+      	)); 
+
 	  	$fieldset->addField('article', 'select', array( 
           	'label'     => Mage::helper('megamenu')->__('Select Article'), 
           	'name'      => 'megamenu[article]', 
           	'values'    => $this->acticleToOptionArray(), 
-      	)); 
+      	)); 
+
 	  	$fieldset->addField('is_group', 'select', array( 
           	'label'     => Mage::helper('megamenu')->__('Is Group'), 
           	'name'      => 'megamenu[is_group]', 
@@ -62,17 +74,20 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
                   	'label'     => Mage::helper('megamenu')->__('False'), 
               	), 
           	), 
-      	)); 
+      	)); 
+
 	  	$fieldset->addField('width', 'text', array( 
 		  	'label'     => Mage::helper('megamenu')->__('Width'), 
 		  	'required'  => false, 
 		  	'name'      => 'megamenu[width]', 
-	  	)); 
+	  	)); 
+
 	  	$fieldset->addField('subitem_width', 'textarea', array( 
 		  	'label'     => Mage::helper('megamenu')->__('Submenu Item Width'), 
 		  	'required'  => false, 
 		  	'name'      => 'megamenu[subitem_width]', 
-	  	)); 
+	  	)); 
+
 	  	$fieldset->addField('is_content', 'select', array( 
 		  	'label'     => Mage::helper('megamenu')->__('Is Content'), 
 		  	'name'      => 'megamenu[is_content]', 
@@ -86,7 +101,8 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
 				  	'label'     => Mage::helper('megamenu')->__('False'), 
 			  	), 
 		  	), 
-	  	)); 
+	  	)); 
+
 	  	$fieldset->addField('show_title', 'select', array( 
 		  	'label'     => Mage::helper('megamenu')->__('Show Title'), 
 		  	'name'      => 'megamenu[show_title]', 
@@ -106,7 +122,8 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
           	'label'     => Mage::helper('megamenu')->__('Col Position'), 
           	'required'  => false, 
           	'name'      => 'megamenu[col]', 
-      	)); 
+      	)); 
+
       	$fieldset->addField('status', 'select', array( 
           	'label'     => Mage::helper('megamenu')->__('Status'), 
           	'name'      => 'megamenu[status]', 
@@ -120,7 +137,8 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_Edit_Tab_Form extends Mage_A
                   	'label'     => Mage::helper('megamenu')->__('Disabled'), 
               	), 
           	), 
-      	)); 
+      	)); 
+
       	if ( Mage::getSingleton('adminhtml/session')->getMegamenuData() ) 
       	{ 
           	$form->setValues(Mage::getSingleton('adminhtml/session')->getMegamenuData()); 

@@ -20,6 +20,7 @@ $installer->run("
 		CREATE TABLE {$this->getTable('megamenu')} (
 		  `megamenu_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 		  `title` varchar(255) NOT NULL DEFAULT '',
+		  `label` varchar(50) NOT NULL DEFAULT '',
 		  `image` varchar(255) NOT NULL DEFAULT '',
 		  `parent_id` int(11) NOT NULL DEFAULT '0',
 		  `is_group` smallint(6) NOT NULL DEFAULT '2',
