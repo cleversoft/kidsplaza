@@ -102,3 +102,13 @@
         }
     });
 })(jQuery);
+jQuery(window).load(function() {
+    jQuery("#mt_drillnmenu").mtDrillMenu({
+        accordion:true,
+        speed: 500,
+        closedSign: 'collapse',
+        openedSign: 'expand',
+        mouseType: 0,
+        easing: 'easeInOutQuad'
+    });
+});

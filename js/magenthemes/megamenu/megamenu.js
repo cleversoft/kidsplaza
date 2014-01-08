@@ -179,3 +179,8 @@ var Megamenu = Class.create(
         
     }
 });
+var megamenu = new Megamenu('megamenu', {
+    transition: megamenuObject.Transitions,
+    fancy : megamenuObject.Effect,
+    duration: megamenuObject.Duration
+});

@@ -44,6 +44,8 @@ Default layout, loads most of the pages
 
             <block type="page/html_head" name="js_bottom" as="js_bottom" template="page/html/js_bottom.phtml">
                 <action method="addJs"><script>prototype/prototype.js</script></action>
+                <action method="addJs"><script>scriptaculous/scriptaculous.js</script></action>
+                <action method="addJs"><script>scriptaculous/effects.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>

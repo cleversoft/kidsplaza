@@ -57,7 +57,8 @@ class MagenThemes_Megamenu_Adminhtml_MegamenuController extends Mage_Adminhtml_C
 						->setLevel($category->getLevel() - 1)
 						->setIsContent(2)
 						->setShowTitle(1)
-						->setStatus(2)
+						->setShowSub(1)
+						->setStatus(1)
 						->setType('category')
 						->setArticle($category->getId())
 						->setParentId($parentMegamenu->getId());
