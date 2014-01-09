@@ -3,9 +3,8 @@
  * @copyright (C) 2011- 9MagentoThemes.Com
  * @license PHP files are GNU/GPL
 *******************************************************/
-.megamenu-container {
-    background:url("../../megamenu/images/bkg_nav0.jpg") repeat-x scroll 0 0 transparent;
-    height: 47px;
+header .mt-menu-top {
+    background: url(../../megamenu/images/bgmenu.png) repeat-x left top;
 }
 #megamenu {
     margin: 0 auto;
@@ -20,40 +19,66 @@
 }
 #megamenu ul li {
     float: left;
-    position:relative;
     list-style: none outside none;
-    background:url('../../megamenu/images/bg-sep.gif') no-repeat scroll right 0 transparent;
+}
+#megamenu ul li ul li {
+    position: relative;
 }
 #megamenu ul li.root {
-    height:47px;
+    height:46px;
     z-index:11;
+    background: url(../../megamenu/images/icon-sperator.png) no-repeat right center transparent;
+}
+#megamenu ul li.parent a span {
+    background: url(../../megamenu/images/icon-menu-parent.png) no-repeat right center transparent;
+    padding: 0 18px 0 0;
+}
+#megamenu ul li.first {
+    text-indent: -999em;
+    background: none;
+    padding-right: 15px;
+}
+#megamenu ul li.first a{
+    padding: 0;
+    overflow: hidden;
+}
+#megamenu ul li.first img {
+    width: 33px;
+    height: 33px;
+    padding: 0 !important;
+    margin-top: 6px;
+}
+#megamenu ul li.over {
+    background: #fff !important;
+    border-top: #ff4b8c solid 3px;
 }
 #megamenu ul li.last {
     background:0 none;
 }
 #megamenu ul li.root a {
-    line-height: 47px;
+    line-height: 46px;
+}
+#megamenu ul li.root .menu-label {
+    position: absolute;
 }
 #megamenu ul li a {
     z-index: 10;
     position: relative;
-    color: #2F2F2F;
+    color: #fff;
     text-transform:uppercase;
     text-decoration:none;
-    font-weight:bold;
-    font-size: 13px;
-    font-style: normal;
+    font-size: 11px;
     display:block;
     cursor:pointer;
-    padding: 0 14px;
+    padding: 0 5px 0 14px;
 }
 #megamenu ul li a span {
 }
 #megamenu ul li.over > a {
-    color:#003EA4;
+    color:#ff4b8c;
 }
 #megamenu ul li.current > a {
-    color:#003EA4;
+    color:#ff4b8c;
 }
 #megamenu li.background {
     background: url('../images/bg-fancy-right.png') no-repeat top right;
@@ -73,12 +98,15 @@
     background:#fff;
     z-index:7;
     text-align: left;
+    border-left: #dfdfdf solid 1px;
+    border-right: #dfdfdf solid 1px;
+    border-bottom: #dfdfdf solid 1px;
 }
 #megamenu .megamenu-title > img {
     float:left;
 }
 #megamenu .root > .megamenu-title > img {
-    padding:16px 2px 0 0 !important;
+    padding:16px 2px 0 0;
 }
 #megamenu .megamenu-title > img.icon-megamenu {
     padding:10px 2px 0 10px;
