@@ -96,28 +96,40 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
        	}
         
         if($this->_level == 0) {
-            $html .= '<li class="root ';
+            $html .= '<li class="root level-'.$this->_level;
             if($this->activeMenu($this->_menu->getArticle()))
-                $html .= 'active ';
+                $html .= ' active';
 	    if($this->_menu->hasChild(true))
-		    $html .= 'parent';
+		    $html .= ' parent';
             $html .= '" ';
         } else {
             if($this->_menu->isGroup()) {
-                $html .= '<li class="group ';
+                if($this->_menu->hasChild(true)) {
+                    $class = 'class="group level-'.$this->_level.' parent"';
+                }else{
+                    $class = 'class="group level-'.$this->_level.'"';
+                }
+                $html .= '<li '.$class;
                 if($this->activeMenu($this->_menu->getArticle()))
-                    $html .= 'active ';
+                    $html .= ' active';
                 $html .= '" ';
             } else {
-                $html .= '<li ';
-                if($this->activeMenu($this->_menu->getArticle())) {
-                    $html .= 'class="active" ';
+                if($this->_menu->hasChild(true)) {
+                    if($this->activeMenu($this->_menu->getArticle())){
+                        $class = 'class="active level-'.$this->_level.' parent"';
+                    }else{
+                        $class = 'class="level-'.$this->_level.' parent"';
+                    }
+                }else{
+                    $class = 'class="level-'.$this->_level.'"';
                 }
+                $html .= '<li '.$class;
+
             }
         }
         if($this->_menu->hasChild(true)) {
             if(!$this->_menu->isGroup() && $this->_level != 0) {
-                $html .= 'onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);" class="parent"';
+                $html .= ' onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);"';
             }
         }
         $html .= '>';

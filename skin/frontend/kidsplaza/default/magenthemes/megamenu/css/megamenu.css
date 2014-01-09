@@ -24,31 +24,43 @@ header .mt-menu-top {
 #megamenu ul li ul li {
     position: relative;
 }
-#megamenu ul li.root {
+#megamenu ul li.level-0 {
     height:46px;
     z-index:11;
     background: url(../../megamenu/images/icon-sperator.png) no-repeat right center transparent;
 }
-#megamenu ul li.parent a span {
+#megamenu ul li.level-0.parent a span {
     background: url(../../megamenu/images/icon-menu-parent.png) no-repeat right center transparent;
     padding: 0 18px 0 0;
+}
+#megamenu ul li.parent a span, #megamenu ul li.level-0.over a span {
+    background: url(../../megamenu/images/icon-menu-hover.png) no-repeat right center transparent;
+    padding: 0 18px 0 0;
+}
+#megamenu ul li ul li.level-1 a span {
+    background: none !important;
+    padding: 0 !important;
 }
 #megamenu ul li.first {
     text-indent: -999em;
     background: none;
     padding-right: 15px;
 }
-#megamenu ul li.first a{
+#megamenu ul li.level-0.first a{
     padding: 0;
     overflow: hidden;
+    background: url(../../megamenu/images/icon-menu-home.png) no-repeat left 6px;
+    width: 32px;
 }
-#megamenu ul li.first img {
-    width: 33px;
-    height: 33px;
-    padding: 0 !important;
-    margin-top: 6px;
+#megamenu ul li.root.first.over{
+    background: none !important;
+    border: none !important;
 }
 #megamenu ul li.over {
+    background: #fff !important;
+    border-top: #ff4b8c solid 3px;
+}
+#megamenu ul li.current {
     background: #fff !important;
     border-top: #ff4b8c solid 3px;
 }
@@ -101,6 +113,7 @@ header .mt-menu-top {
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;
+    width: 100% !important;
 }
 #megamenu .megamenu-title > img {
     float:left;
