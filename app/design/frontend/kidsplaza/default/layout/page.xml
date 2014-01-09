@@ -36,6 +36,7 @@ Default layout, loads most of the pages
             <block type="page/html_head" name="head" as="head">
                 <action method="addItem"><type>js_css</type><css>bootstrap/css/bootstrap.min.css</css></action>
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
+                <action method="addCss"><stylesheet>css/footer-styles.css</stylesheet></action>
                 <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.css</css></action>
 
                 <action method="addItem"><type>js</type><js>html5shiv/html5shiv.js</js><params/><if>lt IE 9</if></action>
