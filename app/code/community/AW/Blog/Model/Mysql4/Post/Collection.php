@@ -34,7 +34,7 @@ class AW_Blog_Model_Mysql4_Post_Collection extends AW_Blog_Model_Mysql4_Blog_Col
         return $this->_toOptionArray('identifier', 'title');
     }
 
-    public function addStoreFilter($store)
+    public function addStoreFilter($store=null)
     {
         if (!Mage::app()->isSingleStoreMode()) {
             if ($store instanceof Mage_Core_Model_Store) {
