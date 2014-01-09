@@ -54,6 +54,8 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
                 <action method="addJs"><script>bootstrap/js/dropdown.js</script></action>
+                <action method="addJs"><script>bootstrap/js/tooltip.js</script></action>
+                <action method="addJs"><script>bootstrap/js/popover.js</script></action>
                 <action method="addJs"><js>mt/kidsplaza/location.js</js></action>
             </block>
 
@@ -75,6 +77,7 @@ Default layout, loads most of the pages
                 </block>
                 <block type="core/template" name="top.login" as="top.login" template="page/html/login.phtml"/>
                 <block type="kidsplaza/websites" name="top.websites" as="top.websites" template="kidsplaza/websites.phtml"/>
+                <block type="core/text_list" name="top.cart" as="top.cart"/>
                 <block type="core/text_list" name="top.menu" as="top.menu">
                     <label>Navigation Bar</label>
                     <block type="page/html_topmenu" name="catalog.topnav" template="page/html/topmenu.phtml"/>

@@ -13,8 +13,7 @@
     <div class="btn-group">
         <span><?php echo $this->__('This is your location?')?></span>
         <a href="#" class="dropdown-toggle current-location" data-toggle="dropdown">
-            <?php foreach ($this->getWebsites() as $website):?><?php if ($website['selected']):?><?php echo $website['label']?><?php endif ?><?php endforeach ?>
-            &nbsp;<span class="caret"></span>
+            <?php foreach ($this->getWebsites() as $website):?><?php if ($website['selected']):?><?php echo $website['label']?><?php endif ?><?php endforeach ?>&nbsp;<span class="caret"></span>
         </a>
         <ul class="dropdown-menu" role="menu" id="search-menu">
             <?php foreach ($this->getWebsites() as $website): ?>

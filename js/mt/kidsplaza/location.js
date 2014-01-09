@@ -29,4 +29,20 @@ KidsPlazaLocation.prototype = {
     }
 };
 
+var MiniCart = Class.create();
+MiniCart.prototype = {
+    initialize: function(id){
+        this.div = $(id);
+        jQuery('#'+id).find('a.cart-content').popover({
+            placement: 'bottom',
+            html: true,
+            trigger: 'click',
+            content: function(){
+                return jQuery('.cart-items', '#'+id).html()
+            }
+        });
+    }
+}
+
 window.KPLocation = new KidsPlazaLocation();
+window.miniCart = new MiniCart('cart-top');

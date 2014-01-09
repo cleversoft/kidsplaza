@@ -38,5 +38,12 @@
                 </connection>
             </kidsplaza>
         </resources>
+        <models>
+            <directory>
+                <rewrite>
+                    <currency>MT_KidsPlaza_Model_Currency</currency>
+                </rewrite>
+            </directory>
+        </models>
     </global>
 </config>
