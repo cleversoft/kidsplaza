@@ -30,14 +30,13 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
 <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
     <div class="input-group top-search">
         <!--span class="input-group-btnn menu">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                <?php echo $this->__('All')?>&nbsp;<span class="caret"></span>
-            </button>
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><?php echo $this->__('All')?>&nbsp;<span class="caret"></span></button>
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                 <li><a href="javascript:void(0)">Action</a></li>
                 <li><a href="javascript:void(0)">Action</a></li>
             </ul>
         </span-->
+        <i class="glyphicon glyphicon-search"></i>
         <input
             id="search"
             type="text"
@@ -47,9 +46,7 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
             maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>"
             placeholder="<?php echo $this->__('Search')?>"/>
         <span class="input-group-btn">
-            <button type="submit" title="<?php echo $this->__('Search') ?>" class="btn btn-kid">
-                <?php echo $this->__('Search') ?>
-            </button>
+            <button type="submit" title="<?php echo $this->__('Search') ?>" class="btn btn-kid btn-seach"><?php echo $this->__('Search') ?></button>
         </span>
     </div>
     <div id="search_autocomplete" class="search-autocomplete" style="display: none"></div>

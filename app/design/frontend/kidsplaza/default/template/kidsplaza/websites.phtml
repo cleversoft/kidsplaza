@@ -1,10 +1,25 @@
-<div class="location-switcher" style="clear: both;color: #fff">
-    <label for="select-location"><?php echo $this->__('Select Location:') ?></label>
-    <select id="select-location" title="<?php echo $this->__('Select Location') ?>" onchange="window.loc.setLocation(this.value)">
-        <?php foreach ($this->getWebsites() as $website): ?>
-            <option value="<?php echo $website['code']?>" <?php if ($website['selected']):?>selected="selected"<?php endif ?>>
-                <?php echo $website['label']?>
-            </option>
-        <?php endforeach; ?>
-    </select>
+<?php
+/**
+ * @category    MT
+ * @package     KidsPlaza
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<div class="top-location">
+    <i class="glyphicon glyphicon-map-marker"></i>
+    <div class="btn-group">
+        <span><?php echo $this->__('This is your location?')?></span>
+        <a href="#" class="dropdown-toggle current-location" data-toggle="dropdown">
+            <?php foreach ($this->getWebsites() as $website):?><?php if ($website['selected']):?><?php echo $website['label']?><?php endif ?><?php endforeach ?>
+            &nbsp;<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu" id="search-menu">
+            <?php foreach ($this->getWebsites() as $website): ?>
+            <li><a href="#" onclick="return KPLocation.setLocation('<?php echo $website['code']?>')"><?php echo $website['label']?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
 </div>

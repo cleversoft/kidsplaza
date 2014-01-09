@@ -18,6 +18,7 @@ js/jscolor/*
 js/lib/*
 js/mage/*
 js/prototype/*
+!js/prototype/prototype.js
 js/scriptaculous/*
 js/tiny_mce/*
 js/varien/*

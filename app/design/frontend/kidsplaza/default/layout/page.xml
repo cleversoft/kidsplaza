@@ -51,14 +51,14 @@ Default layout, loads most of the pages
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
 
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
-                <action method="addJs"><script>bootstrap/js/bootstrap.min.js</script></action>
-                <action method="addJs"><js>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.pack.js</js></action>
+                <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
+                <action method="addJs"><script>bootstrap/js/dropdown.js</script></action>
                 <action method="addJs"><js>mt/kidsplaza/location.js</js></action>
             </block>
 
-            <!--block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
+            <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
                 <label>Page Top</label>
-            </block-->
+            </block>
 
             <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />
 
@@ -68,6 +68,9 @@ Default layout, loads most of the pages
                 </block>
                 <block type="cms/block" name="top.links" as="top.links">
                     <action method="setBlockId"><block_id>top-links</block_id></action>
+                </block>
+                <block type="cms/block" name="top.banner" as="top.banner">
+                    <action method="setBlockId"><block_id>top-banner</block_id></action>
                 </block>
                 <block type="core/template" name="top.login" as="top.login" template="page/html/login.phtml"/>
                 <block type="kidsplaza/websites" name="top.websites" as="top.websites" template="kidsplaza/websites.phtml"/>
