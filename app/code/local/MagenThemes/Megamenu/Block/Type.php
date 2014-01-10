@@ -80,6 +80,17 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         return false;
     }
 
+    public function isActive(){
+        switch ($this->_menu->getType()){
+            case 'category':
+                $currentCategory = Mage::registry('current_category');
+                $path = $currentCategory ? $currentCategory->getPath() : '';
+                if (in_array($this->_menu->getArticle(), explode('/', $path))) return true;
+                break;
+        }
+        return false;
+    }
+
     public function drawItem()
     {
         $html = '';
@@ -96,8 +107,8 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         }
         if($this->_level == 0) {
             $html .= '<li class="root level-'.$this->_level;
-            if($this->activeMenu($this->_menu->getArticle()))
-                $html .= ' active';
+            if($this->isActive())
+                $html .= ' aactive';
             if($this->_menu->hasChild(true))
                 $html .= ' parent';
             $html .= '" ';
@@ -127,7 +138,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         }
         if($this->_menu->hasChild(true)) {
             if(!$this->_menu->isGroup() && $this->_level != 0) {
-                $html .= ' onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);"';
+                //$html .= ' onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);"';
             }
         }
         $html .= '>';
@@ -164,8 +175,9 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                     if($this->_level != 0)
                         $html .= '<span class="no-icon-megamenu"></span>';
                 $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
-                if($this->_level == 1 && $this->_type == 'category')
-                    $html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
+                //no need summary
+                //if($this->_level == 1 && $this->_type == 'category')
+                    //$html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
             }
             if($this->_menu->isContent())
                 $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())

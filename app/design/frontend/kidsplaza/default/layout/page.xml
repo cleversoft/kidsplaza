@@ -57,10 +57,8 @@ Default layout, loads most of the pages
 
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
-                <action method="addJs"><script>bootstrap/js/dropdown.js</script></action>
-                <action method="addJs"><script>bootstrap/js/tooltip.js</script></action>
-                <action method="addJs"><script>bootstrap/js/popover.js</script></action>
-                <action method="addJs"><js>mt/kidsplaza/location.js</js></action>
+                <action method="addJs"><script>bootstrap/js/bootstrap.min.js</script></action>
+                <action method="addJs"><script>mt/kidsplaza/location.js</script></action>
             </block>
 
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
