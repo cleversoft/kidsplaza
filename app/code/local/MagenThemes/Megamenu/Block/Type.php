@@ -1,9 +1,9 @@
 <?php
-/****************************************************** 
+/******************************************************
  * @author http://www.9magentothemes.com
  * @copyright (C) 2012- 9MagentoThemes.Com
  * @license PHP files are GNU/GPL
-*******************************************************/
+ *******************************************************/
 ?>
 <?php
 class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
@@ -21,36 +21,36 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         $this->_level = $level;
         return $this;
     }
-    
+
     public function hasContent() {
         if($this->_hasContent == true) {
             return true;
         }
         return false;
     }
-    
+
     public function hasLink() {
         if($this->_hasLink == true) {
             return true;
         }
         return false;
     }
-    
-    public function getContentType() { 
+
+    public function getContentType() {
         if($this->hasContent()) {
             return $this->getLayout()->createBlock('cms/block')->setBlockId($this->_menu->getArticle())->toHtml();
         }
         return null;
     }
-    
+
     public function getObjectType() {
         return $this->getLayout()->getBlock('megamenu.nav')->getType($this->_type);
     }
-    
+
     public function getModelOfType() {
         return $this->getObjectType()->getModel();
     }
-    
+
     public function getUrlType() {
         return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getUrl();
     }
@@ -58,49 +58,49 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
     public function getCategorySummary() {
         return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getSummary();
     }
-    
+
     private function _getObjectType($type) {
         return $this->getLayout()->getBlock('megamenu.nav')->getType($type);
     }
-    
+
     public function activeMenu($param) {
         if($this->_routeName == null) {
             return false;
         }
-        
+
         if($this->getRequest()->getRouteName() == $this->_routeName) {
             if($this->_paramName == null) {
                 return false;
             }
-            
+
             if($this->getRequest()->getParam($this->_paramName) == $param) {
                 return true;
             }
         }
         return false;
     }
-    
-	public function drawItem() 
+
+    public function drawItem()
     {
         $html = '';
         if($this->_type == null) {
             return $html;
         }
-        
+
         if(!$this->_menu instanceof MagenThemes_Megamenu_Model_Megamenu) {
             return $html;
         }
-        
-       	if($this->_menu->getStatus() == MagenThemes_Megamenu_Model_Status::STATUS_DISABLED) {
-       		return $html;
-       	}
-        
+
+        if($this->_menu->getStatus() == MagenThemes_Megamenu_Model_Status::STATUS_DISABLED) {
+            return $html;
+        }
+
         if($this->_level == 0) {
             $html .= '<li class="root level-'.$this->_level;
             if($this->activeMenu($this->_menu->getArticle()))
                 $html .= ' active';
-	    if($this->_menu->hasChild(true))
-		    $html .= ' parent';
+            if($this->_menu->hasChild(true))
+                $html .= ' parent';
             $html .= '" ';
         } else {
             if($this->_menu->isGroup()) {
@@ -137,89 +137,97 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
             $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
             $html .= '<span class="menu-label">'.$label.'</span>';
         }
-		if($this->_menu->getType() == 'external_link') {
-		    $html .= '<a class="megamenu-title" ';
-		    if($this->_menu->getUrl())
-			$html .= 'href="'.$this->_menu->getUrl().'" ';
-		    if($this->_menu->getNofollow() == 1) {
-			$html .= 'rel="nofollow"';
-		    }
-		    $html .= '>';
-		    if($this->_menu->getImage())
-			$html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
-		    else
-			if($this->_level != 0) 
-			    $html .= '<span class="no-icon-megamenu"></span>';
-		    $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
-		} else {
-		    if($this->_menu->showTitle()) {
-			$html .= '<a href="'.$this->getUrlType().'" class="megamenu-title" ';
-			if($this->_menu->getNofollow() == 1) {
-			    $html .= 'rel="nofollow" ';
-			}
-			if(!$this->hasLink())
-			    $html .= 'onclick="return false;"';
-			$html .= '>';
-			if($this->_menu->getImage())
-			    $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
-			else
-			    if($this->_level != 0) 
-				$html .= '<span class="no-icon-megamenu"></span>';
-			$html .= '<span>'.$this->_menu->getTitle().'</span></a>';
+        if($this->_menu->getType() == 'external_link') {
+            $html .= '<a class="megamenu-title" ';
+            if($this->_menu->getUrl())
+                $html .= 'href="'.$this->_menu->getUrl().'" ';
+            if($this->_menu->getNofollow() == 1) {
+                $html .= 'rel="nofollow"';
+            }
+            $html .= '>';
+            if($this->_menu->getImage())
+                $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
+            else
+                if($this->_level != 0)
+                    $html .= '<span class="no-icon-megamenu"></span>';
+            $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
+        } else {
+            if($this->_menu->showTitle()) {
+                $html .= '<a href="'.$this->getUrlType().'" class="megamenu-title" ';
+                if($this->_menu->getNofollow() == 1) {
+                    $html .= 'rel="nofollow" ';
+                }
+                if(!$this->hasLink())
+                    $html .= 'onclick="return false;"';
+                $html .= '>';
+                if($this->_menu->getImage())
+                    $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
+                else
+                    if($this->_level != 0)
+                        $html .= '<span class="no-icon-megamenu"></span>';
+                $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
                 if($this->_level == 1 && $this->_type == 'category')
                     $html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
-		    }
-		    if($this->_menu->isContent())
-			$html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
-				    ->setMenu($this->_menu, $this->_level+1)
-				    ->getContentType();
-		}
+            }
+            if($this->_menu->isContent())
+                $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
+                    ->setMenu($this->_menu, $this->_level+1)
+                    ->getContentType();
+        }
         if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if($this->_level != 0 && !$this->_menu->isGroup()) {
                 $html .= '<div class="sub-megamenu" ';
             } else {
                 $html .= '<div class="childcontent" ';
             }
-            
+
             if($this->_menu->getWidth()) {
                 $html .= 'style="width:'.$this->_menu->getWidth().'px;"';
             }
-            
+
             $html .= '>';
-            
+
             $colPositions = array();
             if($this->_menu->getSubitemWidth()) {
-                $colPositions = Mage::helper('megamenu')->getColpositions($this->_menu->getSubitemWidth());   
+                $colPositions = Mage::helper('megamenu')->getColpositions($this->_menu->getSubitemWidth());
             }
-            
+
             if(count($colPositions)) {
+                $i = 1;
                 foreach($colPositions as $col => $width) {
-                    $html .= '<ul class="'.$col.'" style="width:'.$width.'px">';
+                    if($i == 1){
+                        $html .= '<ul class="first '.$col.'" style="width:'.$width.'px">';
+                    }else if($i==count($colPositions)){
+                        $html .= '<ul class="last '.$col.'" style="width:'.$width.'px">';
+                    }else {
+                        $html .= '<ul class="'.$col.'" style="width:'.$width.'px">';
+                    }
                     $childItemsWidthCol = $this->_menu->getChildItem($col);
                     foreach($childItemsWidthCol as $childItem) {
                         $html .= $this->getLayout()->createBlock($this->_getObjectType($childItem->getType())->getBlock())
-                                    ->setMenu($childItem, $this->_level+1)
-                                    ->drawItem();
+                            ->setMenu($childItem, $this->_level+1)
+                            ->drawItem();
                     }
                     $html .= '</ul>';
+                    $i++;
                 }
             } else {
                 $html .= '<ul style="width:'.$this->_menu->getWidth().'px">';
                 $childItemsWidthCol = $this->_menu->getChildItem();
                 foreach($childItemsWidthCol as $childItem) {
                     $html .= $this->getLayout()->createBlock($this->_getObjectType($childItem->getType())->getBlock())
-                                ->setMenu($childItem, $this->_level+1)
-                                ->drawItem();
+                        ->setMenu($childItem, $this->_level+1)
+                        ->drawItem();
                 }
                 $html .= '</ul>';
             }
-            
+
             $html .= '</div>';
         }
         $html .= '</li>';
         return $html;
     }
-    
+
     public function drawDrillItem()
     {
         $html = '';
