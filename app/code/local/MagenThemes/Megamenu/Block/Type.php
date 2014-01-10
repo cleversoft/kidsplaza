@@ -288,6 +288,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
 
                 $html .= $this->_menu->getTitle().'</a>';
             }
+
         }
         if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if($this->_level != 0 && !$this->_menu->isGroup()) {

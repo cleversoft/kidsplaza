@@ -9,8 +9,8 @@
 ?>
 <?php if(Mage::helper('megamenu')->isActive()): ?>
 <?php $rootMenus = $this->getRootMenu(); ?>
-<div class="menu-top container">
-	<div class="megamenu-container hidden-tablet">
+<div class="menu-top container hidden-xs">
+	<div class="megamenu-container">
 		<div id="megamenu">
 			<ul id="mt_megamenu">
 				<?php foreach($rootMenus as $rootMenu): ?>
@@ -25,32 +25,6 @@
 		</div>
 	</div>
 </div>
-<?php if (Mage::getStoreConfigFlag('megamenu/general/enable_bootstrap')):?>
-<div class="navbar visible-xs">
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                    <span class="sr-only"><?php echo $this->__('Navigation');?></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="../" class="navbar-brand"><?php echo $this->__('Navigation');?></a>
-            </div>
-            <div class="menuphone">
-				<nav class="bs-navbar-collapse collapse" role="navigation" style="height: 1px;">
-					<ul id="mt_drillnmenu" class="nav-accordion">
-						<?php foreach($rootMenus as $drillMenu): ?>
-							<?php echo $this->getLayout()->createBlock($this->getType($drillMenu->getType())->getBlock())->setMenu($drillMenu)->drawDrillItem() ?>
-						<?php endforeach; ?>
-					</ul>
-				</nav>
-            </div>
-        </div>
-    </div>
-</div>
-<?php endif; ?>
 <script type="text/javascript">
 //<!CDATA[
     megamenuObject = {};
