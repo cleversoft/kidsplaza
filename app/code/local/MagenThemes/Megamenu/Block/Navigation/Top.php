@@ -10,7 +10,7 @@ class MagenThemes_Megamenu_Block_Navigation_Top extends Mage_Core_Block_Template
     public function __construct(){
         parent::_construct();
         $this->addData(array(
-            //'cache_lifetime'    => 86400,
+            'cache_lifetime'    => 86400,
             'cache_tags'        => array('MagenThemes_Megamenu'),
         ));
     }
@@ -30,13 +30,17 @@ class MagenThemes_Megamenu_Block_Navigation_Top extends Mage_Core_Block_Template
     }
 
     public function getCacheKeyInfo(){
+        $currentCategory = Mage::registry('current_category');
+        $path = $currentCategory ? $currentCategory->getPath() : '';
+        $path = explode('/', $path);
+        if (count($path) >= 3) $categoryKey = $path[2];
+        else $categoryKey = 0;
+
         return array(
             'MagenThemes_Megamenu',
             Mage::app()->getStore()->getId(),
             Mage::getDesign()->getPackageName(),
-            Mage::getDesign()->getTheme('template'),
-            Mage::getSingleton('customer/session')->getCustomerGroupId(),
-            'template' => $this->getTemplate()
+            $categoryKey
         );
     }
 }

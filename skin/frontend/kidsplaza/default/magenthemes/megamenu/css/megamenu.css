@@ -79,7 +79,7 @@ header .mt-menu-top {
     color: #fff;
     text-transform:uppercase;
     text-decoration:none;
-    font-size: 11px;
+    font-size: 12px;
     display:block;
     cursor:pointer;
     padding: 0 5px 0 14px;
@@ -149,9 +149,9 @@ header .mt-menu-top {
     width:100%;
     padding: 0 10px;
 }
-#megamenu div.childcontent ul li.first a {
+/*#megamenu div.childcontent ul li.first a {
     color: #fe498c;
-}
+}*/
 #megamenu div.childcontent ul li a {
     font-size:14px;
     text-transform:none;
@@ -185,7 +185,8 @@ header .mt-menu-top {
     background:#FFFFFF;
     z-index:20;
 }
-#megamenu .sub-megamenu > ul {
+#megamenu .level-0.aactive{
+    font-weight: 700;
 }
 /*Drill menu*/
 .mt-drillmenu {
