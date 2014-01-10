@@ -72,8 +72,9 @@ a.logo{margin-top: 20px;display: block}
 .top-banner .promo  a{padding: 25px 0}
 .dropdown-menu{border-radius: 0}
 .top-cart{position: absolute;top: -25px;right: 0;}
+.top-cart .cart-content .caret{margin-left: -8px;}
 .top-cart .cart-icon{height: 33px;background: url(../images/bgIcons.png) no-repeat 0 -33px;width: 33px;display: inline-block;margin-left: 5px;}
-.top-cart .cart-summary{display: block; font-weight: 700; text-align: center; font-size: 15px; color: #FF427A;margin-left: 10px;}
+.top-cart .cart-summary{display: block; font-weight: 700; text-align: center; font-size: 15px; color: #FF427A;}
 .top-cart .cart-content {display: inline-block;line-height: 16px;color: #634F4F}
 .top-cart .cart-content:hover,.top-cart .cart-content:focus{text-decoration: none;outline: 0}
 .btn-login:focus{outline: 0}
