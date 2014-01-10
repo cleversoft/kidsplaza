@@ -33,7 +33,7 @@ header .mt-menu-top {
     background: url(../../megamenu/images/icon-menu-parent.png) no-repeat right center transparent;
     padding: 0 18px 0 0;
 }
-#megamenu ul li.parent a span, #megamenu ul li.level-0.over a span {
+#megamenu ul li.level-0.active a span, #megamenu ul li.level-0.over a span {
     background: url(../../megamenu/images/icon-menu-hover.png) no-repeat right center transparent;
     padding: 0 18px 0 0;
 }
@@ -41,7 +41,7 @@ header .mt-menu-top {
     background: none !important;
     padding: 0 !important;
 }
-#megamenu ul li.first {
+#megamenu ul li.level-0.first {
     text-indent: -999em;
     background: none;
     padding-right: 15px;
@@ -86,6 +86,11 @@ header .mt-menu-top {
 }
 #megamenu ul li a span {
 }
+#megamenu div.childcontent ul.col1, #megamenu div.childcontent ul.col2 {
+    padding: 0 15px;
+    margin: 15px 0;
+    border-right: #dfdfdf solid 1px;
+}
 #megamenu ul li.over > a {
     color:#ff4b8c;
 }
@@ -113,7 +118,6 @@ header .mt-menu-top {
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;
-    width: 100% !important;
 }
 #megamenu .megamenu-title > img {
     float:left;
@@ -131,10 +135,6 @@ header .mt-menu-top {
     border: 1px solid #cccccc;
     background:#FFFFFF;
 }
-#megamenu .childcontent ul li a {
-    color:#000000;
-    line-height: 32px;
-}
 #megamenu li.over div.childcontent {
     left:0;
 }
@@ -147,16 +147,27 @@ header .mt-menu-top {
     float:left;
     background:none;
     width:100%;
+    padding: 0 10px;
+}
+#megamenu div.childcontent ul li.first a {
+    color: #fe498c;
 }
 #megamenu div.childcontent ul li a {
-    font-size:12px;
+    font-size:14px;
     text-transform:none;
     padding:0;
     display:block;
-    margin: 0 8px;
+    margin: 0;
+    font-weight: bold;
+    color: #525252;
+    line-height: 32px;
 }
 #megamenu div.childcontent ul li a:hover {
-    color: #003EA4;
+    color: #fe498c;
+}
+#megamenu div.childcontent ul li span.cat-summary {
+    color: #828282;
+    font-size: 12px;
 }
 #megamenu div.childcontent ul li.group > a {
     text-transform:uppercase;
