@@ -55,7 +55,7 @@ var MiniSearch = Class.create(Varien.searchForm, {
                 Effect.SlideDown(update, {duration:0.2});
             },
             onHide: function(element, update){
-                Effect.SlideUp(update, {duration:0.2});
+                update.down() && Effect.SlideUp(update, {duration:0.2});
             }
         });
     }
