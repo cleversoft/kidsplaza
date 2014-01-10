@@ -14,7 +14,7 @@
 		<div id="megamenu">
 			<ul id="mt_megamenu">
 				<?php foreach($rootMenus as $rootMenu): ?>
-				<?php echo $this->getLayout()->createBlock($this->getType($rootMenu->getType())->getBlock())->setMenu($rootMenu)->drawItem() ?>
+				    <?php echo $this->getLayout()->createBlock($this->getType($rootMenu->getType())->getBlock())->setMenu($rootMenu)->drawItem() ?>
 				<?php endforeach; ?>
 				<li>
 					<div class="background">
@@ -25,10 +25,7 @@
 		</div>
 	</div>
 </div>
-<?php 
-$enable_bootstrap = Mage::getStoreConfig('megamenu/general/enable_bootstrap');
-if($enable_bootstrap>0){
-?>
+<?php if (Mage::getStoreConfigFlag('megamenu/general/enable_bootstrap')):?>
 <div class="navbar visible-xs">
     <div class="navbar navbar-inverse">
         <div class="container">
@@ -53,12 +50,13 @@ if($enable_bootstrap>0){
         </div>
     </div>
 </div>
-<?php }?>
-<script type="text/javascript"> 
-		//<!CDATA[
-        megamenuObject = {};
-        megamenuObject.Transitions = 'Effect.Transitions.backOut';
-        megamenuObject.Effect = '<?php echo Mage::helper('megamenu')->isActiveFancy() ?>';
-        megamenuObject.Duration = '<?php echo Mage::helper('megamenu')->getDuration() ?>';
+<?php endif; ?>
+<script type="text/javascript">
+//<!CDATA[
+    megamenuObject = {};
+    megamenuObject.Transitions = 'Effect.Transitions.backOut';
+    megamenuObject.Effect = '<?php echo Mage::helper('megamenu')->isActiveFancy() ?>';
+    megamenuObject.Duration = '<?php echo Mage::helper('megamenu')->getDuration() ?>';
+//]>
 </script>
 <?php endif; ?>

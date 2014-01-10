@@ -29,8 +29,8 @@ KidsPlazaLocation.prototype = {
     }
 };
 
-var MiniCart = Class.create();
-MiniCart.prototype = {
+var KidsPlazaCart = Class.create();
+KidsPlazaCart.prototype = {
     initialize: function(id){
         jQuery('#' + id).find('a.cart-content').popover({
             placement: 'bottom',
@@ -43,7 +43,7 @@ MiniCart.prototype = {
     }
 };
 
-var MiniSearch = Class.create(Varien.searchForm, {
+var KidsPlazaSearch = Class.create(Varien.searchForm, {
     initAutocomplete : function(url, destinationElement){
         new Ajax.Autocompleter(this.field, destinationElement, url, {
             paramName: this.field.name,
@@ -53,15 +53,12 @@ var MiniSearch = Class.create(Varien.searchForm, {
             onShow: function(element, update){
                 update.style.width = element.getWidth() + 4 + 'px';
                 Effect.SlideDown(update, {duration:0.2});
-            },
-            onHide: function(element, update){
-                update.down() && Effect.SlideUp(update, {duration:0.2});
             }
         });
     }
 });
 
-window.KPLocation = new KidsPlazaLocation();
-window.miniCart = new MiniCart('cart-top');
-window.searchForm = new MiniSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
-window.searchForm.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
+var KPLocation = new KidsPlazaLocation();
+var KPCart = new KidsPlazaCart('cart-top');
+var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
+KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');

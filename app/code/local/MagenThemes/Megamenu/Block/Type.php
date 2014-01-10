@@ -52,11 +52,11 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
     }
 
     public function getUrlType() {
-        return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getUrl();
+        return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle(), array('url'))->getUrl();
     }
 
     public function getCategorySummary() {
-        return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle())->getSummary();
+        return Mage::getModel($this->getModelOfType())->load($this->_menu->getArticle(), array('summary'))->getSummary();
     }
 
     private function _getObjectType($type) {
@@ -123,7 +123,6 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                     $class = 'class="level-'.$this->_level.'"';
                 }
                 $html .= '<li '.$class;
-
             }
         }
         if($this->_menu->hasChild(true)) {
@@ -220,10 +219,10 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 }
                 $html .= '</ul>';
             }
-
             $html .= '</div>';
         }
         $html .= '</li>';
+
         return $html;
     }
 
@@ -289,7 +288,6 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
 
                 $html .= $this->_menu->getTitle().'</a>';
             }
-
         }
         if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if($this->_level != 0 && !$this->_menu->isGroup()) {

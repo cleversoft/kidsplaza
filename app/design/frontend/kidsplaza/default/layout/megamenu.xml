@@ -18,7 +18,7 @@
         </reference>
         <reference name="js_bottom">
             <action method="addJs" ifconfig="megamenu/general/active"><script>magenthemes/megamenu/megamenu.js</script></action>
-			<action method="addJs" ifconfig="megamenu/general/active"><script>magenthemes/megamenu/jquery.funcymenu.js</script></action>
+			<!--action method="addJs" ifconfig="megamenu/general/active"><script>magenthemes/megamenu/jquery.funcymenu.js</script></action-->
             <action method="addJs" ifconfig="megamenu/general/active"><script>magenthemes/megamenu/drillmenu.js</script></action>
         </reference>
         <reference name="top.menu">
