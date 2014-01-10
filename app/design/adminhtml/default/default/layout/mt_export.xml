@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category     MT
+ * @package      MT_Export
+ *
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ *
+ */
+-->
+<layout>
+	<export_adminhtml_page_index>
+		<reference name="content">
+			<block type="export/adminhtml_page" name="adminhtml_page" />
+		</reference>
+	</export_adminhtml_page_index>
+    <export_adminhtml_block_index>
+        <reference name="content">
+            <block type="export/adminhtml_block" name="adminhtml_block" />
+        </reference>
+    </export_adminhtml_block_index>
+    <export_adminhtml_widget_index>
+        <reference name="content">
+            <block type="export/adminhtml_widget" name="adminhtml_widget" />
+        </reference>
+    </export_adminhtml_widget_index>
+</layout>
