@@ -94,7 +94,6 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         if($this->_menu->getStatus() == MagenThemes_Megamenu_Model_Status::STATUS_DISABLED) {
             return $html;
         }
-
         if($this->_level == 0) {
             $html .= '<li class="root level-'.$this->_level;
             if($this->activeMenu($this->_menu->getArticle()))
