@@ -175,9 +175,8 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                     if($this->_level != 0)
                         $html .= '<span class="no-icon-megamenu"></span>';
                 $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
-                //no need summary
-                //if($this->_level == 1 && $this->_type == 'category')
-                    //$html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
+                if($this->_level == 1 && $this->_type == 'category')
+                    $html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
             }
             if($this->_menu->isContent())
                 $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
