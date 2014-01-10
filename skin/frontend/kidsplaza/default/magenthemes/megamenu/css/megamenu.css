@@ -46,6 +46,9 @@ header .mt-menu-top {
     background: none;
     padding-right: 15px;
 }
+#megamenu ul li.level-0.first.over {
+  margin-left: 0;
+}
 #megamenu ul li.level-0.first a{
     padding: 0;
     overflow: hidden;
@@ -57,9 +60,12 @@ header .mt-menu-top {
     border: none !important;
 }
 #megamenu ul li.over {
-    background: #fff !important;
+    background-color: #fff !important;
+    background-image: none !important;
     border-top: #ff4b8c solid 3px;
+    margin-left: -1px;
 }
+
 #megamenu ul li.current {
     background: #fff !important;
     border-top: #ff4b8c solid 3px;
@@ -86,7 +92,8 @@ header .mt-menu-top {
 }
 #megamenu ul li a span {
 }
-#megamenu div.childcontent ul.col1, #megamenu div.childcontent ul.col2 {
+#megamenu div.childcontent ul.col1,
+#megamenu div.childcontent ul.col2 {
     padding: 0 15px;
     margin: 15px 0;
     border-right: #dfdfdf solid 1px;
@@ -213,7 +220,8 @@ ul.nav-accordion li {
     border: 0 !important;
     box-shadow: none !important;
     margin: 0 0 0 0 !important;
-    padding: 0 0 0 0 !important; }
+    padding: 0 0 0 0 !important;
+}
 
 .navbar-inner a.btn-navbar:hover { background-color: #ECECEC; }
 
@@ -290,7 +298,8 @@ ul.nav-accordion span {
     text-indent: -9999px;
     top: 6px;
     width: 38px;
-    z-index: 9; }
+    z-index: 9;
+}
 
 ul.nav-accordion li span.expand {
     background-color: transparent;
