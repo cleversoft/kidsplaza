@@ -1,0 +1,94 @@
+<root><blocks><cms_block><title><![CDATA[Left Footer Top]]></title><identifier><![CDATA[left-ft-top]]></identifier><content><![CDATA[<div class="left-ft-top">
+<div class="left-inner">&nbsp;</div>
+<h2>Đăng k&yacute; bản tin CỦA CH&Uacute;NG T&Ocirc;I</h2>
+<p>Muốn nghe về SẢN PHẨM MỚI? Bạn h&atilde;y nhập địa chỉ email. Ch&uacute;ng t&ocirc;i hứa CH&Uacute;NG T&Ocirc;I SẼ KH&Ocirc;NG SPAM BẠN.</p>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Right Footer Top]]></title><identifier><![CDATA[right-ft-top]]></identifier><content><![CDATA[<div class="hidden-xs">{{block type="newsletter/subscribe" template="newsletter/subscribe.phtml"}}</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Center 01]]></title><identifier><![CDATA[ft-tong-dai]]></identifier><content><![CDATA[<div class="block ft-tong-dai"><em>&nbsp;</em>
+<div class="block-inner">
+<h2 class="tong-dai">Tổng đ&agrave;i b&aacute;n h&agrave;ng:</h2>
+<span>1900.60.90</span>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Center 02]]></title><identifier><![CDATA[ft-gioi-thieu]]></identifier><content><![CDATA[<div class="block block-gt"><em>&nbsp;</em>
+<div class="block-inner">
+<h2>Về ch&uacute;ng t&ocirc;i</h2>
+<ul>
+<li><a href="#">Giới thiệu Kids plaza</a></li>
+<li><a href="#">Quan điểm kinh doanh</a></li>
+<li><a href="#">Cam kết chất lượng</a></li>
+<li><a href="#">B&aacute;o ch&iacute; n&oacute;i về ch&uacute;ng t&ocirc;i</a></li>
+<li><a href="#">Kids link</a></li>
+<li><a href="#">Tuyển dụng</a></li>
+</ul>
+<div class="read"><a href="#">Xem tất cả </a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Center 03]]></title><identifier><![CDATA[ft-huong-dan]]></identifier><content><![CDATA[<div class="block block-hd"><em>&nbsp;</em>
+<div class="block-inner">
+<h2>Về ch&uacute;ng t&ocirc;i</h2>
+<ul>
+<li><a href="#">Hướng dẫn mua h&agrave;ng</a></li>
+<li><a href="#">Phương thức đổi/ trả h&agrave;ng</a></li>
+<li><a href="#">Phương thức giao h&agrave;ng</a></li>
+<li><a href="#">Phương thức thanh to&aacute;n</a></li>
+<li><a href="#">Phương thức đặt h&agrave;ng</a></li>
+</ul>
+<div class="read"><a href="#">Xem tất cả </a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Center 04]]></title><identifier><![CDATA[ft-van-chuyen]]></identifier><content><![CDATA[<div class="block block-vc"><em>&nbsp;</em>
+<div class="block-inner">
+<h2>H&agrave;ng h&oacute;a - Vận chuyển</h2>
+<ul>
+<li><a href="#">Cam kết dịch vụ kh&aacute;c biệt</a></li>
+<li><a href="#">Cam kết tiết kiệm</a></li>
+<li><a href="#">Cam kết giao h&agrave;ng </a></li>
+<li><a href="#">Cam kết uy t&iacute;n</a></li>
+</ul>
+<div class="read"><a href="#">Xem tất cả </a></div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Bottom ]]></title><identifier><![CDATA[ft-bottom]]></identifier><content><![CDATA[<div class="footer-bt">
+<div class="kidplaza kidshn">
+<em>&nbsp;</em>
+<div class="kids first">
+<h2>Kids plaza H&agrave; Nội</h2>
+</div>
+<div class="kids">
+<div class="item">
+<h2>Q.Đống Đa:</h2>
+<p>Số 20-22 Th&aacute;i Thịnh</p>
+</div>
+<div class="item">
+<h2>Q.Ba Đ&igrave;nh:</h2>
+<p>Số 56 Giang Văn Minh</p>
+</div>
+</div>
+<div class="kids">
+<div class="item">
+<h2>Q.Cầu Giấy:</h2>
+<p>Số 40 Trần Th&aacute;i T&ocirc;ng</p>
+</div>
+<div class="item">
+<h2>Q.H&agrave; Đ&ocirc;ng:</h2>
+<p>Số 44-TT4A Văn Qu&aacute;n</p>
+</div>
+</div>
+<div class="kids">
+<div class="item">
+<h2>Q.Thanh Xu&acirc;n:</h2>
+<p>Số 533 Nguyễn Tr&atilde;i</p>
+</div>
+<div class="item">
+<h2>Q.Hai B&agrave; Trưng:</h2>
+<p>Số 340 Bạch Mai</p>
+</div>
+</div>
+</div>
+<div class="kidplaza kidshcm">
+<em>&nbsp;</em>
+<div class="kids first">
+<h2>Kids plaza Hồ Ch&iacute; Minh</h2>
+</div>
+<div class="kids">
+<div class="item">
+<h2>162L/18 Trường Chinh, P.12, Quận T&acirc;n B&igrave;nh, TPHCM</h2>
+</div>
+</div>
+</div>
+</div>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block><cms_block><title><![CDATA[Footer Coppyright]]></title><identifier><![CDATA[ft-mail]]></identifier><content><![CDATA[<p>Email: <a href="#"> hotro@kidsplaza.vn </a></p>]]></content><is_active>1</is_active><stores><item>0</item></stores></cms_block></blocks></root>
