@@ -62,3 +62,4 @@ var KPLocation = new KidsPlazaLocation();
 var KPCart = new KidsPlazaCart('cart-top');
 var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
 KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
+new VarienForm('newsletter-validate-detail');

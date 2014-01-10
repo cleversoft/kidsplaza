@@ -53,19 +53,19 @@ class MT_Export_Adminhtml_BlockController extends Mage_Adminhtml_Controller_Acti
         } else {
             try {
                 $collection = Mage::getModel('cms/block')->getCollection()->addFieldToFilter('block_id',array('in'=>$blockIds));
-                $xml = '<root>';
-                    $xml.= '<blocks>';
+                $xml = "<root>\n";
+                    $xml.= "<blocks>\n";
                     foreach ($collection as $block) {
-                        $xml.= '<cms_block>';
-                        $xml.= '<title><![CDATA['.$block->getTitle().']]></title>';
-                        $xml.= '<identifier><![CDATA['.$block->getIdentifier().']]></identifier>';
-                        $xml.= '<content><![CDATA['.$block->getContent().']]></content>';
-                        $xml.= '<is_active>'.$block->getIsActive().'</is_active>';
-                        $xml.= '<stores><item>0</item></stores>';
-                        $xml.= '</cms_block>';
+                        $xml.= "<cms_block>\n";
+                        $xml.= "<title><![CDATA[{$block->getTitle()}]]></title>\n";
+                        $xml.= "<identifier><![CDATA[{$block->getIdentifier()}]]></identifier>\n";
+                        $xml.= "<content><![CDATA[{$block->getContent()}]]></content>\n";
+                        $xml.= "<is_active>{$block->getIsActive()}</is_active>\n";
+                        $xml.= "<stores><item>0</item></stores>\n";
+                        $xml.= "</cms_block>\n";
                     }
-                    $xml.= '</blocks>';
-                $xml.= '</root>';
+                    $xml.= "</blocks>\n";
+                $xml.= "</root>\n";
                 $this->_sendUploadResponse($fileName, $xml);
             } catch (Exception $e) {
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());

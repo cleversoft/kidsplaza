@@ -230,7 +230,7 @@ class MagenThemes_Megamenu_Adminhtml_MegamenuController extends Mage_Adminhtml_C
 				}
 		    }
 		    
-		    $model->setData($data['megamenu'])->setStoreId($data['store_id']);
+		    $model->setData($data['megamenu'])->setStoreId(isset($data['store_id']) ? $data['store_id'] : 0);
 		    if($this->getRequest()->getParam('id'))
 			$model->setId($this->getRequest()->getParam('id'));
 		    try {

@@ -10,7 +10,7 @@
 var isBootstrapEvent = false;
 if (window.jQuery) {
     jQuery.noConflict();
-    jQuery('*').on('hide.bs.popover', function(){ isBootstrapEvent = true; })
+    jQuery('*').on('hide.bs.popover', function(){ isBootstrapEvent = true; });
     jQuery('*').on('hide.bs.dropdown', function(){ isBootstrapEvent = true; });
     jQuery('*').on('hide.bs.collapse', function(){ isBootstrapEvent = true; });
     jQuery('*').on('hide.bs.modal', function(){ isBootstrapEvent = true; });

@@ -26,6 +26,11 @@
             <kidsplaza>
                 <class>MT_KidsPlaza_Block</class>
             </kidsplaza>
+            <core>
+                <rewrite>
+                    <messages>MT_KidsPlaza_Block_Messages</messages>
+                </rewrite>
+            </core>
         </blocks>
         <resources>
             <kidsplaza>

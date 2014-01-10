@@ -105,6 +105,13 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         if($this->_menu->getStatus() == MagenThemes_Megamenu_Model_Status::STATUS_DISABLED) {
             return $html;
         }
+
+        $modelType = $this->getModelOfType();
+        if (!$modelType) return '';
+
+        $model = Mage::getModel($modelType)->load($this->_menu->getArticle(), array('summary'));
+        if (!$model->getId()) return '';
+
         if($this->_level == 0) {
             $html .= '<li class="root level-'.$this->_level;
             if($this->isActive())
@@ -162,7 +169,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
             $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
         } else {
             if($this->_menu->showTitle()) {
-                $html .= '<a href="'.$this->getUrlType().'" class="megamenu-title" ';
+                $html .= '<a href="'.$model->getUrl().'" class="megamenu-title" ';
                 if($this->_menu->getNofollow() == 1) {
                     $html .= 'rel="nofollow" ';
                 }
@@ -176,7 +183,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                         $html .= '<span class="no-icon-megamenu"></span>';
                 $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
                 if($this->_level == 1 && $this->_type == 'category')
-                    $html .= '<span class="cat-summary">'.$this->getCategorySummary().'</span>';
+                    $html .= '<span class="cat-summary">'.$model->getSummary().'</span>';
             }
             if($this->_menu->isContent())
                 $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())

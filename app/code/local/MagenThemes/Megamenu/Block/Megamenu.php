@@ -13,7 +13,7 @@ class MagenThemes_Megamenu_Block_Megamenu extends Mage_Core_Block_Template
 	protected function _construct()
 	{
 		parent::_construct();
-		$this->addType('external_link', null,'megamenu/type_external');
+		$this->addType('external_link', null, 'megamenu/type_external');
 	}
 	
 	public function addType($type, $model, $block) {
