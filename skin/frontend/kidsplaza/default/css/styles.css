@@ -57,8 +57,8 @@ a.logo{margin-top: 20px;display: block}
 #search_mini_form{margin-top: 25px;position: relative}
 .top-location {margin-top: 25px;position: relative;margin-left: 15px;font-size: 13px}
 .top-location i{position: absolute;left: -22px;top:8px;font-size: 20px;color: #666}
-.btn-seach{font-weight: 700}
-.dropdown-menu li a{font-size: 13px}
+.btn-seach{font-weight: 700;}
+.dropdown-menu li a{font-size: 13px;}
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{background-color: #67cdfe}
 .current-location{display: block}
 .current-location:hover,.current-location:focus{text-decoration: none}
@@ -91,3 +91,7 @@ a.logo{margin-top: 20px;display: block}
 .top-cart .popover, .top-cart .popover-title{border-radius: 0;}
 .top-cart .popover-title{background: #01A1ED; color: #fff;font-size: 13px;padding: 8px;}
 .top-cart .empty{font-size: 13px;}
+.search-autocomplete {z-index: 9999;position: absolute;border: 4px solid #01A1ED;border-top: 0;background-color: #fff;margin-top: -4px;}
+.search-autocomplete li{list-style: none;padding: 5px;}
+.search-autocomplete li.selected{background-color: #67cdfe;}
+.search-autocomplete .amount {float: right;}

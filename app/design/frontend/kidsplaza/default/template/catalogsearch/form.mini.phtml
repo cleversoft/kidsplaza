@@ -27,7 +27,7 @@
 /* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
 $catalogSearchHelper =  $this->helper('catalogsearch');
 ?>
-<form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get">
+<form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get" data-suggest="<?php echo $catalogSearchHelper->getSuggestUrl() ?>" data-text="<?php echo $this->__('Search entire store here...')?>" autocomplete="off">
     <span class="glyphicon glyphicon-search input-search-bg"></span>
     <div class="input-group top-search">
         <!--span class="input-group-btnn menu">
@@ -43,8 +43,7 @@ $catalogSearchHelper =  $this->helper('catalogsearch');
             name="<?php echo $catalogSearchHelper->getQueryParamName() ?>"
             value="<?php echo $catalogSearchHelper->getEscapedQueryText() ?>"
             class="form-control"
-            maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength();?>"
-            placeholder="<?php echo $this->__('Search')?>"/>
+            maxlength="<?php echo $catalogSearchHelper->getMaxQueryLength() ?>"/>
         <span class="input-group-btn">
             <button type="submit" title="<?php echo $this->__('Search') ?>" class="btn btn-kid btn-seach"><?php echo $this->__('Search') ?></button>
         </span>
