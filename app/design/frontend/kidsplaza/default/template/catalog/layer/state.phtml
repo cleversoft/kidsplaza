@@ -24,15 +24,29 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php $_product = $this->getProduct(); ?>
-<?php $buttonTitle = $this->__('Add to Cart'); ?>
-<?php if($_product->isSaleable()): ?>
-    <div class="add-to-cart">
-        <?php if(!$_product->isGrouped()): ?>
-        <label for="qty"><?php echo $this->__('Qty:') ?></label>
-        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
-        <?php endif; ?>
-        <button type="button" title="<?php echo $buttonTitle ?>" class="btn btn-kid btn-cart" onclick="window.productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
-        <?php echo $this->getChildHtml('', true, true) ?>
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @see Mage_Catalog_Block_Layer_State
+ */
+?>
+<?php $_filters = $this->getActiveFilters() ?>
+<?php if(!empty($_filters)): ?>
+    <div class="panel-heading">
+        <?php echo $this->__('Currently Shopping by:') ?>
+    </div>
+    <div class="panel-body">
+        <ol>
+        <?php foreach ($_filters as $_filter): ?>
+            <li class="state-item">
+                <span class="state-item-name"><?php echo $this->__($_filter->getName()) ?></span>
+                <span class="label label-info"><?php echo $this->stripTags($_filter->getLabel()) ?></span>
+                <a class="filter-remove" href="<?php echo $_filter->getRemoveUrl() ?>" title="<?php echo $this->__('Remove This Item') ?>">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        </ol>
     </div>
 <?php endif; ?>

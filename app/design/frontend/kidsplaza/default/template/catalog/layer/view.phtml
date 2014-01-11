@@ -32,27 +32,34 @@
  */
 ?>
 <?php if($this->canShowBlock()): ?>
-<div class="block block-layered-nav">
-    <div class="block-title">
-        <strong><span><?php echo $this->__('Shop By') ?></span></strong>
-    </div>
-    <div class="block-content">
-        <?php echo $this->getStateHtml() ?>
-        <?php if ($this->getLayer()->getState()->getFilters()): ?>
-            <div class="actions"><a href="<?php echo $this->getClearUrl() ?>"><?php echo $this->__('Clear All') ?></a></div>
+<div class="block-layered-nav">
+    <?php if ($this->getLayer()->getState()->getFilters()): ?>
+        <div class="panel-danger panel">
+            <?php echo $this->getStateHtml() ?>
+            <div class="panel-footer" style="text-align: right">
+                <a href="<?php echo $this->getClearUrl() ?>" title="<?php echo $this->__('Clear All') ?>">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if($this->canShowOptions()): ?>
+        <?php $_filters = $this->getFilters() ?>
+        <?php foreach ($_filters as $_filter): ?>
+        <?php if($_filter->getItemsCount()): ?>
+        <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false?>
+        <div class="panel panel-info<?php echo $enableListJs ? ' list-js' : ''?>">
+            <div class="panel-heading">
+                <?php echo $this->__($_filter->getName()) ?>
+                <?php if ($enableListJs):?>
+                    <input type="text" class="search" placeholder="<?php echo $this->__('Find brand')?>"/>
+                    <span class="search-icon glyphicon glyphicon-search"></span>
+                <?php endif ?>
+            </div>
+            <div class="panel-body"><?php echo $_filter->getHtml() ?></div>
+        </div>
         <?php endif; ?>
-        <?php if($this->canShowOptions()): ?>
-            <p class="block-subtitle"><?php echo $this->__('Shopping Options') ?></p>
-            <dl id="narrow-by-list">
-                <?php $_filters = $this->getFilters() ?>
-                <?php foreach ($_filters as $_filter): ?>
-                <?php if($_filter->getItemsCount()): ?>
-                    <dt><?php echo $this->__($_filter->getName()) ?></dt>
-                    <dd><?php echo $_filter->getHtml() ?></dd>
-                <?php endif; ?>
-                <?php endforeach; ?>
-            </dl>
-        <?php endif; ?>
-    </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
 </div>
 <?php endif; ?>

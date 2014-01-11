@@ -24,15 +24,24 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php $_product = $this->getProduct(); ?>
-<?php $buttonTitle = $this->__('Add to Cart'); ?>
-<?php if($_product->isSaleable()): ?>
-    <div class="add-to-cart">
-        <?php if(!$_product->isGrouped()): ?>
-        <label for="qty"><?php echo $this->__('Qty:') ?></label>
-        <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+<?php
+/**
+ * Template for filter items block
+ *
+ * @see Mage_Catalog_Block_Layer_Filter
+ */
+?>
+<ol class="list">
+<?php foreach ($this->getItems() as $_item): ?>
+    <li class="filter-item">
+        <?php if ($_item->getCount() > 0): ?>
+        <a class="filter-item-name" href="<?php echo $this->urlEscape($_item->getUrl()) ?>"><?php echo $_item->getLabel() ?></a>
+        <span class="filter-item-name-normalize" style="display: none"><?php echo $this->helper('kidsplaza')->normalize($_item->getLabel())?></span>
+        <?php else: echo $_item->getLabel() ?>
         <?php endif; ?>
-        <button type="button" title="<?php echo $buttonTitle ?>" class="btn btn-kid btn-cart" onclick="window.productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
-        <?php echo $this->getChildHtml('', true, true) ?>
-    </div>
-<?php endif; ?>
+        <?php if ($this->shouldDisplayProductCount()): ?>
+        <span class="badge pull-right"><?php echo $_item->getCount() ?></span>
+        <?php endif; ?>
+    </li>
+<?php endforeach ?>
+</ol>

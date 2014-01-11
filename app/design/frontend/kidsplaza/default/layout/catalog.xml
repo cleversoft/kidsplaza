@@ -109,6 +109,8 @@ Category layered navigation layout
         <reference name="js_bottom">
             <action method="addJs"><js>prototype/validation.js</js></action>
             <action method="addJs"><js>varien/js.js</js></action>
+            <action method="addJs"><js>mt/extensions/list/list.min.js</js></action>
+            <action method="addJs"><js>mt/mage/catalog/CategoryView.js</js></action>
         </reference>
         <reference name="left">
             <block type="catalog/layer_view" name="catalog.leftnav" after="currency" template="catalog/layer/view.phtml"/>
@@ -119,7 +121,7 @@ Category layered navigation layout
                     <block type="catalog/product_list_toolbar" name="product_list_toolbar" template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
                     </block>
-                    <action method="setData"><name>column_count</name><value>4</value></action>
+                    <action method="setData"><name>column_count</name><value>5</value></action>
                     <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
                 </block>
             </block>
