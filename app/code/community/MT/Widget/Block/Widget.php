@@ -23,7 +23,7 @@ class MT_Widget_Block_Widget
 
     protected function _prepareLayout(){
         $head = $this->getLayout()->getBlock('js_bottom');
-        $head->addJs('mt/extensions/jquery/jquery-1.9.1.min.js');
+        $head->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
         $head->addJs('mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js');
         $head->addJs('mt/widget/frontend.js');
         return parent::_prepareLayout();
@@ -154,6 +154,9 @@ class MT_Widget_Block_Widget
 
     public function getConfig($name){
         switch ($name){
+            case 'href':
+                return $this->getData('href');
+                break;
             case 'move':
                 return (int)$this->getData('move');
                 break;

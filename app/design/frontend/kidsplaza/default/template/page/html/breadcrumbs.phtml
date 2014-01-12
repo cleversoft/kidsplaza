@@ -25,6 +25,7 @@
  */
 ?>
 <?php if($crumbs && is_array($crumbs)): ?>
+<div class="col-lg-12">
 <ol class="breadcrumb">
     <?php foreach($crumbs as $_crumbName => $_crumbInfo): ?>
         <li>
@@ -38,4 +39,5 @@
         </li>
     <?php endforeach; ?>
 </ol>
+</div>
 <?php endif; ?>

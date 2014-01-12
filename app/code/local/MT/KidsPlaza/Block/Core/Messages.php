@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_KidsPlaza_Block_Messages extends Mage_Core_Block_Messages{
+class MT_KidsPlaza_Block_Core_Messages extends Mage_Core_Block_Messages{
     /**
      * Retrieve messages in HTML format grouped by type
      *
@@ -15,10 +15,10 @@ class MT_KidsPlaza_Block_Messages extends Mage_Core_Block_Messages{
      */
     public function getGroupedHtml() {
         $types = array(
-            Mage_Core_Model_Message::ERROR      => 'alert alert-danger',
-            Mage_Core_Model_Message::WARNING    => 'alert alert-warning',
-            Mage_Core_Model_Message::NOTICE     => 'alert alert-info',
-            Mage_Core_Model_Message::SUCCESS    => 'alert alert-success'
+            Mage_Core_Model_Message::ERROR      => 'alert alert-danger error-msg',
+            Mage_Core_Model_Message::WARNING    => 'alert alert-warning warning-msg',
+            Mage_Core_Model_Message::NOTICE     => 'alert alert-info notice-msg',
+            Mage_Core_Model_Message::SUCCESS    => 'alert alert-success success-msg'
         );
         $html = '';
         foreach ($types as $type => $classes) {

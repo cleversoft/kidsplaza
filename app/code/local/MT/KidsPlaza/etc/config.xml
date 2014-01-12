@@ -28,9 +28,14 @@
             </kidsplaza>
             <core>
                 <rewrite>
-                    <messages>MT_KidsPlaza_Block_Messages</messages>
+                    <messages>MT_KidsPlaza_Block_Core_Messages</messages>
                 </rewrite>
             </core>
+            <catalog>
+                <rewrite>
+                    <layer_filter_category>MT_KidsPlaza_Block_Catalog_Layer_Filter_Category</layer_filter_category>
+                </rewrite>
+            </catalog>
         </blocks>
         <resources>
             <kidsplaza>
@@ -44,9 +49,12 @@
             </kidsplaza>
         </resources>
         <models>
+            <kidsplaza>
+                <class>MT_KidsPlaza_Model</class>
+            </kidsplaza>
             <directory>
                 <rewrite>
-                    <currency>MT_KidsPlaza_Model_Currency</currency>
+                    <currency>MT_KidsPlaza_Model_Directory_Currency</currency>
                 </rewrite>
             </directory>
         </models>

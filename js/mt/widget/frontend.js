@@ -8,7 +8,7 @@
  */
 'use strict';
 
-jQuery('.flexslider').each(function(i,slider){
+jQuery('.flexslider').each(function(i, slider){
     var id = slider.id;
     if (!id && !window[id]) return;
 
@@ -32,6 +32,7 @@ jQuery('.flexslider').each(function(i,slider){
 function getFlexSliderItemWidth(id, data, returnType){
     if (data && data.type){
         var containerW = Math.floor(jQuery('#' + id).width());
+        if (!containerW) return;
         switch (data.type){
             case 'width':
                 if (returnType === 'width') return data.data;

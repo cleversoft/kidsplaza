@@ -28,7 +28,7 @@
 /**
  * Category view template
  *
- * @see Mage_Catalog_Block_Category_View
+ * @var $this Mage_Catalog_Block_Category_View
  */
 ?>
 <?php
@@ -40,7 +40,7 @@
         $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
     }
 ?>
-<div class="page-title category-title">
+<div class="category-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
         <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
     <?php endif; ?>
@@ -54,18 +54,40 @@
 <?php endif; ?>
 
 <?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
-    <div class="category-description well">
+    <div class="category-description well well-sm">
         <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
     </div>
-    <?php endif; ?>
+<?php endif; ?>
 
 <?php if($this->isContentMode()): ?>
     <?php echo $this->getCmsBlockHtml() ?>
-
 <?php elseif($this->isMixedMode()): ?>
     <?php echo $this->getCmsBlockHtml() ?>
     <?php echo $this->getProductListHtml() ?>
-
 <?php else: ?>
-    <?php echo $this->getProductListHtml() ?>
+    <?php if ($_category->hasChildren()):?>
+        <?php $categories = $_category->getChildrenCategories() ?>
+        <?php $this->getChild('product_list')->getLoadedProductCollection()->addCountToCategories($categories)?>
+        <?php foreach ($categories as $c):?>
+            <?php /**@var $c Mage_Catalog_Model_Category */ ?>
+            <?php echo $this->getLayout()->createBlock('mtwidget/widget')
+                ->setTemplate('mt/widget/category-products.phtml')
+                ->setData(array(
+                    'cache' => 86400,
+                    'widget_type' => 'product',
+                    'category_ids' => $c->getId(),
+                    'limit' => 10,
+                    'column' => 5,
+                    'widget_title' => $c->getName(),
+                    'scroll' => 1,
+                    'responsive' => 'width',
+                    'responsive_width' => 165,
+                    'move' => 3,
+                    'href' => $c->getUrl(),
+                    'product_count' => $c->getProductCount()
+                ))->toHtml()?>
+        <?php endforeach?>
+    <?php else: ?>
+        <?php echo $this->getProductListHtml() ?>
+    <?php endif ?>
 <?php endif; ?>

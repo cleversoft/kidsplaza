@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_KidsPlaza_Model_Currency extends Mage_Directory_Model_Currency{
+class MT_KidsPlaza_Model_Directory_Currency extends Mage_Directory_Model_Currency{
     /**
      * Format price to currency format
      *

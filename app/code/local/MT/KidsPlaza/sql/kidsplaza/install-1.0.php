@@ -9,7 +9,7 @@
  */
 $this->startSetup();
 $this->addAttribute('catalog_category', 'summary', array(
-    'group'     => 'General',
+    'group'     => 'General Information',
     'input'     => 'text',
     'type'      => 'text',
     'label'     => 'Summary',
