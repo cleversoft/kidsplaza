@@ -193,7 +193,25 @@ input,textarea{outline: 0;}
 .flexslider h3 .badge{vertical-align: top;background-color: #f0ad4e;color: #fff;}
 .a-right{text-align: right;}
 .a-center{text-align: center;}
-.cart .btn{padding: 5px 10px;}
-.discount input{height: 38px;border-radius: 0;}
+.cart tfoot .btn{padding: 2px 5px;}
+.discount .btn{padding: 3px 10px;}
+.discount input{height: 34px;border-radius: 0;}
 .block-subscribe{width: 280px;}
 .block-subscribe input{height: 40px;border-radius: 0;}
+.fields{clear: both;}
+.fields .field{width: 50%;float: left;}
+.fields .input-box{padding: 5px 5px 5px 0;}
+.fields .input-box input,.fields .input-box select{width: 100%;border-radius: 0;}
+.required em{color: red;float: right;}
+.fields label{font-weight: 400;margin-bottom: 0;}
+.sp-methods input,.fields input[type="checkbox"]{display: inline-block; margin: 0 5px 0 0;vertical-align: middle;}
+.sp-methods label,.control label{font-weight: 400;}
+.opc li:first-child{padding-left: 0;}
+.opc li:last-child{padding-right: 0;}
+.btn-checkout{margin-top: 20px;}
+.review-table th{font-weight: 400;}
+.sp-methods{margin-bottom: 0;}
+.cart .input-group input.qty{width: 50px;padding: 6px 2px;}
+.cart .btn-qty{font-weight: 700;}
+.col-main{min-height: 300px;}
+.opc .please-wait{margin-top: 20px;display: block;}

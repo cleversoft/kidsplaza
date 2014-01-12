@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_OneStepCheckout
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <checkout_onepage_index translate="label">
+        <reference name="head">
+            <action method="addItem" ifconfig="mtonestepcheckout/settings/enable">
+                <type>js_css</type>
+                <css>prototype/windows/themes/default.css</css>
+            </action>
+            <action method="addItem" ifconfig="mtonestepcheckout/settings/enable">
+                <type>js_css</type>
+                <js>mt/extensions/jquery/plugins/nprogress/nprogress.css</js>
+            </action>
+            <!--action method="addItem" ifconfig="mtonestepcheckout/settings/enable">
+                <type>js_css</type>
+                <js>mt/onestepcheckout/checkout.css</js>
+            </action-->
+        </reference>
+        <reference name="js_bottom">
+            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+                <js>mt/extensions/jquery/plugins/nprogress/nprogress.js</js>
+            </action>
+            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+                <js>prototype/window.js</js>
+            </action>
+            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+                <js>mt/onestepcheckout/checkout.js</js>
+            </action>
+            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+                <js>mt/mage/checkout/Onepage.js</js>
+            </action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>page/1column.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <reference name="checkout.onepage.login">
+                <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                    <template>mt/onestepcheckout/onepage/login.phtml</template>
+                </action>
+            </reference>
+            <block type="checkout/cart" name="checkout_cart" before="-">
+                <action method="setCartTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                    <value>mt/onestepcheckout/cart.phtml</value>
+                </action>
+                <action method="setEmptyTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                    <value>checkout/cart/noItems.phtml</value>
+                </action>
+                <action method="chooseTemplate"/>
+                <action method="addItemRender">
+                    <type>simple</type>
+                    <block>checkout/cart_item_renderer</block>
+                    <template>checkout/cart/item/default.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>grouped</type>
+                    <block>checkout/cart_item_renderer_grouped</block>
+                    <template>checkout/cart/item/default.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>configurable</type>
+                    <block>checkout/cart_item_renderer_configurable</block>
+                    <template>checkout/cart/item/default.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>downloadable</type>
+                    <block>downloadable/checkout_cart_item_renderer</block>
+                    <template>downloadable/checkout/cart/item/default.phtml</template>
+                </action>
+            </block>
+        </reference>
+        <reference name="checkout.onepage.billing">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/billing.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.shipping">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/shipping.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.shipping_method">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/shipping_method.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.shipping_method.available">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/shipping_method/available.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.payment">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/payment.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.payment.methods">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/payment/methods.phtml</template>
+            </action>
+        </reference>
+        <reference name="checkout.onepage.review">
+            <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                <template>mt/onestepcheckout/onepage/review.phtml</template>
+            </action>
+            <block type="checkout/onepage_review_info" as="info" name="info">
+                <action method="setTemplate" ifconfig="mtonestepcheckout/settings/enable">
+                    <template>mt/onestepcheckout/onepage/review/info.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>default</type>
+                    <block>checkout/cart_item_renderer</block>
+                    <template>checkout/onepage/review/item.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>grouped</type>
+                    <block>checkout/cart_item_renderer_grouped</block>
+                    <template>checkout/onepage/review/item.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>configurable</type>
+                    <block>checkout/cart_item_renderer_configurable</block>
+                    <template>checkout/onepage/review/item.phtml</template>
+                </action>
+                <action method="addItemRender">
+                    <type>downloadable</type>
+                    <block>downloadable/checkout_cart_item_renderer</block>
+                    <template>downloadable/checkout/onepage/review/item.phtml</template>
+                </action>
+                <block type="checkout/cart_totals" name="checkout.onepage.review.info.totals" as="totals" template="mt/onestepcheckout/onepage/review/totals.phtml"/>
+                <block type="core/text_list" name="checkout.onepage.review.info.items.before" as="items_before" translate="label"/>
+                <block type="core/text_list" name="checkout.onepage.review.info.items.after" as="items_after" translate="label"/>
+                <block type="checkout/agreements" name="checkout.onepage.agreements" as="agreements" template="mt/onestepcheckout/onepage/agreements.phtml"/>
+                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="mt/onestepcheckout/cart/coupon.phtml"/>
+                <block type="core/template" name="checkout.onepage.review.button" as="button" template="mt/onestepcheckout/onepage/review/button.phtml"/>
+            </block>
+        </reference>
+    </checkout_onepage_index>
+</layout>

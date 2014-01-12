@@ -9,6 +9,18 @@
 'use strict';
 
 var MT = MT || {};
+MT.Utils = {
+    disableElement: function(elem){
+        if (!elem) return;
+        elem.disabled = true;
+        elem.addClassName('disabled');
+    },
+    enableElement: function(elem){
+        if (!elem) return;
+        elem.disabled = false;
+        elem.removeClassName('disabled');
+    }
+};
 MT.OneStepCheckout = Class.create();
 MT.OneStepCheckout.prototype = {
     initialize: function(config){
@@ -164,26 +176,27 @@ MT.OneStepCheckout.prototype = {
 
     renderCartQtyButtons: function(input){
         if (input){
-            var minusBtn = new Element('button', {'class':'button button-qty', type:'button'});
-            minusBtn.update('<span>-</span>');
+            $(input).wrap('div', {'class':'input-group'});
+            var minusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
+            minusBtn.update('-');
             minusBtn.observe('click', function(ev){
                 ev.stop();
                 var button = Event.findElement(ev, 'button'),
-                    inputElm = button.up().down('input.qty');
+                    inputElm = button.up('td').down('input.qty');
                 this.handleCartQty(inputElm, '-');
             }.bind(this));
 
-            var plusBtn = new Element('button', {'class':'button button-qty', type:'button'});
-            plusBtn.update('<span>+</span>');
+            var plusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
+            plusBtn.update('+');
             plusBtn.observe('click', function(ev){
                 ev.stop();
                 var button = Event.findElement(ev, 'button'),
-                    inputElm = button.up().down('input.qty');
+                    inputElm = button.up('td').down('input.qty');
                 this.handleCartQty(inputElm, '+');
             }.bind(this));
 
-            $(input).insert({before: minusBtn});
-            $(input).insert({after: plusBtn});
+            $(input).insert({before: minusBtn.wrap('span',{'class':'input-group-btn'})});
+            $(input).insert({after: plusBtn.wrap('span',{'class':'input-group-btn'})});
             $(input).addClassName('a-center');
         }
     },
@@ -230,12 +243,12 @@ MT.OneStepCheckout.prototype = {
     },
 
     addressAfterSend: function(transport){
-        try{
+        //try{
             var response = transport.responseText.evalJSON();
             this.updateBlocks(response);
-        }catch(e){
-            console.log(e);
-        }
+        //}catch(e){
+        //    console.log(e);
+        //}
     },
 
     updateBlocks: function(response){
@@ -474,9 +487,6 @@ MT.Billing.prototype = {
         }
         this.addressUrl = addressUrl;
         this.saveUrl = saveUrl;
-        this.onAddressLoad = this.fillForm.bindAsEventListener(this);
-        this.onSave = this.nextStep.bindAsEventListener(this);
-        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
         this.initActions();
     },
 
@@ -581,37 +591,8 @@ MT.Billing.prototype = {
     resetLoadWaiting: function(transport){
         checkout.setLoadWaiting(false);
         document.body.fire('billing-request:completed', {transport: transport});
-    },
-
-    /**
-     This method recieves the AJAX response on success.
-     There are 3 options: error, redirect or html with shipping options.
-     */
-    nextStep: function(transport){
-        if (transport && transport.responseText){
-            try{
-                var response = eval('(' + transport.responseText + ')');
-            } catch (e) {
-                var response = {};
-            }
-        }
-
-        if (response.error){
-            if ((typeof response.message) == 'string') {
-                alert(response.message);
-            } else {
-                if (window.billingRegionUpdater) {
-                    billingRegionUpdater.update();
-                }
-                alert(response.message.join("\n"));
-            }
-            return false;
-        }
-
-        checkout.setStepResponse(response);
-        payment.initWhatIsCvvListeners();
     }
-}
+};
 
 MT.Shipping = Class.create();
 MT.Shipping.prototype = {
@@ -625,10 +606,6 @@ MT.Shipping.prototype = {
         }
         this.addressUrl = addressUrl;
         this.saveUrl = saveUrl;
-        this.onAddressLoad = this.fillForm.bindAsEventListener(this);
-        this.onSave = this.nextStep.bindAsEventListener(this);
-        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
-        this.useFromBilling = true;
         this.initActions();
     },
 
@@ -750,35 +727,11 @@ MT.Shipping.prototype = {
         checkout.setLoadWaiting(false);
     },
 
-    nextStep: function(transport){
-        if (transport && transport.responseText){
-            try{
-                var response = eval('(' + transport.responseText + ')');
-            } catch (e) {
-                var response = {};
-            }
-        }
-        if (response.error){
-            if ((typeof response.message) == 'string') {
-                alert(response.message);
-            } else {
-                if (window.shippingRegionUpdater) {
-                    shippingRegionUpdater.update();
-                }
-                alert(response.message.join("\n"));
-            }
-            return false;
-        }
-
-        checkout.setStepResponse(response);
-    },
-
     validate: function(){
         return this.f.validator.validate();
     }
-}
+};
 
-// shipping method
 MT.ShippingMethod = Class.create();
 MT.ShippingMethod.prototype = {
     initialize: function(form, saveUrl){
@@ -790,13 +743,13 @@ MT.ShippingMethod.prototype = {
         this.container = this.main.up();
         this.f = new VarienForm(form);
         if ($(this.form)) {
-            $(this.form).observe('submit', function(event){this.save();Event.stop(event);}.bind(this));
+            $(this.form).observe('submit', function(event){
+                this.save();
+                Event.stop(event);
+            }.bind(this));
         }
         this.saveUrl = saveUrl;
         this.isBusy = false;
-        //this.validator = new Validation(this.form);
-        //this.onSave = this.nextStep.bindAsEventListener(this);
-        //this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
         this.initActions();
     },
 
@@ -862,45 +815,8 @@ MT.ShippingMethod.prototype = {
             onFailure: function(){ window.location.href = '';},
             parameters: Form.serialize(this.form)
         });
-    },
-
-    resetLoadWaiting: function(){
-        checkout.setLoadWaiting(false);
-    },
-
-    nextStep: function(transport){
-        if (transport && transport.responseText){
-            try{
-                var response = eval('(' + transport.responseText + ')');
-            } catch (e) {
-                var response = {};
-            }
-        }
-
-        if (response.error) {
-            alert(response.message);
-            return false;
-        }
-
-        if (response.update_section) {
-            $('checkout-'+response.update_section.name+'-load').update(response.update_section.html);
-        }
-
-        payment.initWhatIsCvvListeners();
-
-        if (response.goto_section) {
-            checkout.gotoSection(response.goto_section);
-            checkout.reloadProgressBlock();
-            return;
-        }
-
-        if (response.payment_methods_html) {
-            $('checkout-payment-method-load').update(response.payment_methods_html);
-        }
-
-        checkout.setShippingMethod();
     }
-}
+};
 
 MT.Payment = Class.create();
 MT.Payment.prototype = {
@@ -916,8 +832,6 @@ MT.Payment.prototype = {
         this.container = $(this.form).up('div#checkout-step-payment');
         this.f = new VarienForm(this.form);
         this.saveUrl = saveUrl;
-        this.onSave = this.nextStep.bindAsEventListener(this);
-        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
         this.isBusy = false;
     },
 
@@ -1084,63 +998,20 @@ MT.Payment.prototype = {
         Event.fire(document, 'payment:beforeSend');
         new Ajax.Request(this.saveUrl, {
             method: 'post',
-            //onComplete: this.onComplete,
             onSuccess: function(transport){ Event.fire(document, 'payment:afterSend', {transport:transport})},
             onFailure: function(){ window.location.href = '';},
             parameters: Form.serialize(this.form)
         });
-    },
-
-    resetLoadWaiting: function(){
-        checkout.setLoadWaiting(false);
-    },
-
-    nextStep: function(transport){
-        if (transport && transport.responseText){
-            try{
-                var response = eval('(' + transport.responseText + ')');
-            } catch (e) {
-                var response = {};
-            }
-        }
-        /*
-         * if there is an error in payment, need to show error message
-         */
-        if (response.error) {
-            if (response.fields) {
-                var fields = response.fields.split(',');
-                for (var i=0;i<fields.length;i++) {
-                    var field = null;
-                    if (field = $(fields[i])) {
-                        Validation.ajaxError(field, response.error);
-                    }
-                }
-                return;
-            }
-            alert(response.error);
-            return;
-        }
-
-        checkout.setStepResponse(response);
-    },
-
-    initWhatIsCvvListeners: function(){
-        $$('.cvv-what-is-this').each(function(element){
-            Event.observe(element, 'click', toggleToolTip);
-        });
     }
-}
+};
 
 MT.Review = Class.create();
 MT.Review.prototype = {
-    initialize: function(container, saveUrl, successUrl, agreementsForm){
+    initialize: function(container, saveUrl, successUrl){
         this.getLoadIndicator = function(){};
         this.container = $(container);
         this.saveUrl = saveUrl;
         this.successUrl = successUrl;
-        this.agreementsForm = agreementsForm;
-        this.onSave = this.nextStep.bindAsEventListener(this);
-        this.onComplete = this.resetLoadWaiting.bindAsEventListener(this);
         this.isBusy = false;
     },
 
@@ -1169,8 +1040,8 @@ MT.Review.prototype = {
 
     disableSubmit: function(flag){
         var button = this.container.down('button[type="submit"]');
-        if (flag) button.addClassName('disabled').disabled = true;
-        else button.removeClassName('disabled').disabled = false;
+        if (flag) button && MT.Utils.disableElement(button);
+        else button && MT.Utils.enableElement(button);
     },
 
     toggleSubmit: function(flag){
@@ -1186,82 +1057,21 @@ MT.Review.prototype = {
         }
     },
 
-    save: function(){
-        if (checkout.loadWaiting!=false) return;
-        checkout.setLoadWaiting('review');
-        var params = Form.serialize(payment.form);
-        if (this.agreementsForm) {
-            params += '&'+Form.serialize(this.agreementsForm);
-        }
-        params.save = true;
-        var request = new Ajax.Request(
-            this.saveUrl,
-            {
-                method:'post',
-                parameters:params,
-                onComplete: this.onComplete,
-                onSuccess: this.onSave,
-                onFailure: checkout.ajaxFailure.bind(checkout)
-            }
-        );
-    },
-
-    resetLoadWaiting: function(transport){
-        checkout.setLoadWaiting(false, this.isSuccess);
-    },
-
-    nextStep: function(transport){
-        if (transport && transport.responseText) {
-            try{
-                var response = eval('(' + transport.responseText + ')');
-            } catch (e) {
-                var response = {};
-            }
-            if (response.redirect) {
-                this.isSuccess = true;
-                location.href = response.redirect;
-                return;
-            }
-            if (response.success) {
-                this.isSuccess = true;
-                window.location=this.successUrl;
-            }
-            else{
-                var msg = response.error_messages;
-                if (typeof(msg)=='object') {
-                    msg = msg.join("\n");
-                }
-                if (msg) {
-                    alert(msg);
-                }
-            }
-
-            if (response.update_section) {
-                $('checkout-'+response.update_section.name+'-load').update(response.update_section.html);
-            }
-
-            if (response.goto_section) {
-                checkout.gotoSection(response.goto_section);
-            }
-        }
-    },
-
     isSuccess: false
-}
+};
 
 MT.Coupon = Class.create();
 MT.Coupon.prototype = {
     initialize: function(form){
         this.form = new VarienForm(form);
         this.container = $(form);
+        this.submitBtn = this.container.down('button#coupon-submit');
+        this.cancelBtn = this.container.down('button#coupon-cancel');
         this.initActions();
     },
 
     initActions: function(){
-        var submitBtn = this.container.down('button#coupon-submit'),
-            cancelBtn = this.container.down('button#coupon-cancel');
-
-        submitBtn && submitBtn.observe('click', function(ev){
+        this.submitBtn && this.submitBtn.observe('click', function(ev){
             Event.stop(ev);
             if (this.form.validator.validate()){
                 this.busy(true);
@@ -1283,7 +1093,7 @@ MT.Coupon.prototype = {
             }
         }.bind(this));
 
-        cancelBtn && cancelBtn.observe('click', function(ev){
+        this.cancelBtn && this.cancelBtn.observe('click', function(ev){
             Event.stop(ev);
             $('remove-coupone').value = 1;
             this.busy(true);
@@ -1308,11 +1118,18 @@ MT.Coupon.prototype = {
     busy: function(flag){
         var loading = this.container.down('#coupon-loading');
         if (loading){
-            if (flag) loading.show();
-            else loading.hide();
+            if (flag){
+                loading.show();
+                MT.Utils.disableElement(this.submitBtn);
+                MT.Utils.disableElement(this.cancelBtn);
+            }else{
+                loading.hide();
+                MT.Utils.enableElement(this.submitBtn);
+                MT.Utils.enableElement(this.cancelBtn);
+            }
         }
     }
-}
+};
 
 MT.Terms = Class.create();
 MT.Terms.prototype = {
@@ -1339,4 +1156,4 @@ MT.Terms.prototype = {
     validate: function(){
         return this.f.validator.validate();
     }
-}
+};

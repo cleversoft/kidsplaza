@@ -180,7 +180,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         <?php endif; ?>
     <?php endif; ?>
     <td class="a-center">
-        <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="form-control input-sm qty" maxlength="12" />
+        <input name="cart[<?php echo $_item->getId() ?>][qty]" value="<?php echo $this->getQty() ?>" size="4" title="<?php echo $this->__('Qty') ?>" class="form-control qty" maxlength="12" />
     </td>
 
     <!--Sub total starts here -->
@@ -278,7 +278,7 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
     </td>
     <?php endif; ?>
     <td class="a-center">
-        <a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>">
+        <a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>" class="btn-remove">
             <i class="glyphicon glyphicon-trash"></i>
         </a>
     </td>
