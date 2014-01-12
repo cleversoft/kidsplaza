@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_OneStepCheckout
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_OneStepCheckout>
+            <version>1.0</version>
+        </MT_OneStepCheckout>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtonestepcheckout>
+                <class>MT_OneStepCheckout_Block</class>
+            </mtonestepcheckout>
+            <checkout>
+                <rewrite>
+                    <onepage_shipping>MT_OneStepCheckout_Block_Onepage_Shipping</onepage_shipping>
+                    <onepage_billing>MT_OneStepCheckout_Block_Onepage_Billing</onepage_billing>
+                </rewrite>
+            </checkout>
+        </blocks>
+        <helpers>
+            <mtonestepcheckout>
+                <class>MT_OneStepCheckout_Helper</class>
+            </mtonestepcheckout>
+        </helpers>
+        <events>
+            <checkout_cart_save_before>
+                <observers>
+                    <mtonestepcheckout>
+                        <class>MT_OneStepCheckout_Model_Observer</class>
+                        <method>checkoutCartSaveBefore</method>
+                    </mtonestepcheckout>
+                </observers>
+            </checkout_cart_save_before>
+        </events>
+        <models>
+            <mtonestepcheckout>
+                <class>MT_OneStepCheckout_Model</class>
+            </mtonestepcheckout>
+            <sales>
+                <rewrite>
+                    <quote>MT_OneStepCheckout_Model_Sales_Quote</quote>
+                </rewrite>
+            </sales>
+        </models>
+    </global>
+
+    <frontend>
+        <routers>
+            <mtonestepcheckout>
+                <use>standard</use>
+                <args>
+                    <module>MT_OneStepCheckout</module>
+                    <frontName>mtonestepcheckout</frontName>
+                </args>
+            </mtonestepcheckout>
+        </routers>
+        <layout>
+            <updates>
+                <mtonestepcheckout>
+                    <file>mt_onestepcheckout.xml</file>
+                </mtonestepcheckout>
+            </updates>
+        </layout>
+    </frontend>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtonestepcheckout>
+                    <file>mt_onestepcheckout.xml</file>
+                </mtonestepcheckout>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <mtonestepcheckout>
+            <settings>
+                <enable>1</enable>
+                <cart>1</cart>
+                <bar>1</bar>
+                <bar_color>ff0000</bar_color>
+            </settings>
+            <field>
+                <company>1</company>
+                <city>1</city>
+                <state>1</state>
+                <zip>1</zip>
+                <country>1</country>
+                <telephone>1</telephone>
+                <fax>1</fax>
+            </field>
+        </mtonestepcheckout>
+    </default>
+</config>

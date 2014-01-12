@@ -1,0 +1,42 @@
+/**
+ * @category    MT
+ * @package     MT_OneStepCheckout
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+.opc .section{ width: 33%; display: inline-block; vertical-align: top;}
+.opc .section .step{ padding: 10px; background-color: #fff;}
+.opc .section ul li{ margin-bottom: 5px;}
+.opc .section .step-title{ border: 1px solid #bbafa0; border-bottom: none;}
+#checkout-step-review{ padding: 0; border: none; background: none;}
+
+/* Discount Codes */
+.checkout .discount { border:1px solid #d0cbc1; background:#fff url(images/bkg_block-title.gif) 0 0 repeat-x; padding:12px 15px; margin:0 0 18px; }
+.checkout .discount h2 { background-position:0 0; background-repeat:no-repeat; font:bold 13px/16px Arial, Helvetica, sans-serif; padding:0 0 0 21px; color:#e26703; text-transform:uppercase; }
+.checkout .discount button span { border-color:#406a83; background:#618499; }
+.checkout .discount .buttons-set { margin:10px 0 0; border:0; padding:0; text-align:left; }
+.checkout .discount .buttons-set button.button { float:none; margin-left:0; }
+.checkout .discount {text-align: left}
+.checkout .discount h2 { background-image:url(images/i_discount.gif); }
+.checkout .discount .input-box { margin:8px 0 0; width:260px; }
+.checkout .discount input.input-text { width:254px; }
+.checkout #review-buttons-container {padding-top: 5px;}
+.checkout #discount-coupon-form .discount {margin: 0 0 5px 0;}
+.checkout .opc .checkout-agreements {margin-bottom: 5px; border:1px solid #D0CBC1; padding:5px; text-align: left;}
+.checkout .loading-indicator {text-align: center}
+.checkout .form-list .fields .field {width: 45%; margin-right: 10px}
+.checkout .form-list .fields .field .input-box{width: 100%}
+.checkout .form-list .fields .field .input-box input,
+.checkout .form-list .fields .field .input-box select{width: 100%}
+.checkout .opc .checkout-agreements li {margin: 5px 0 0 0;}
+.checkout #checkout-step-review .loading-indicator { background-color: #F8F7F5;border: 1px solid #BBAFA0; }
+#overlay_modal {background: #000; opacity: 0.5; filter: alpha(opacity=50);}
+.dialog{background: #fff;padding: 10px}
+#checkout-login-popup label{width: 100px}
+#checkout-login-popup .alert_buttons, #checkout-login-popup .validation-advice {margin-left: 100px}
+#checkout-login-popup,#checkout-login-popup_content {height: auto !important;}
+#checkout-login-loading {text-align: center}
+#checkout-login-error {color: red}
+#checkout-term-popup .alert_buttons{text-align: center}

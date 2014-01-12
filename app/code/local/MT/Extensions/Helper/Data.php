@@ -27,12 +27,8 @@ class MT_Extensions_Helper_Data extends Mage_Core_Helper_Abstract{
                         ->addJs('mage/adminhtml/flexuploader.js')
                         ->addJs('mt/extensions/browser.js')
                         ->addJs('prototype/window.js')
-                        ->addItem('js_css', 'prototype/windows/themes/default.css');
-                    if (version_compare(Mage::getVersion(), '1.7.0.0') < 0){
-                        $head->addItem('js_css', 'prototype/windows/themes/magento.css');
-                    }else{
-                        $head->addItem('skin_css', 'lib/prototype/windows/themes/magento.css');
-                    }
+                        ->addItem('js_css', 'prototype/windows/themes/default.css')
+                        ->addItem('skin_css', 'lib/prototype/windows/themes/magento.css');
                     break;
             }
         }
