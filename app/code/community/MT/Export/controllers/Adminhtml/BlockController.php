@@ -88,4 +88,51 @@ class MT_Export_Adminhtml_BlockController extends Mage_Adminhtml_Controller_Acti
         $response->sendResponse();
         die;
     }
+
+    public function importAction(){
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    public function importPostAction(){
+        try{
+            $uploader = new Varien_File_Uploader('file');
+            $uploader->setAllowedExtensions(array('xml'));
+            $uploader->setAllowCreateFolders(true);
+            $uploader->setAllowRenameFiles(false);
+            $uploader->setFilesDispersion(false);
+            $uploader->save('var/tmp/');
+
+            $file = $uploader->getUploadedFileName();
+            $path = Mage::getBaseDir('var') . DS . 'tmp' . DS . $file;
+
+            $data = new Zend_Config_Xml($path);
+            if (!$data) throw new Exception(Mage::helper('export')->__('File invalid.'));
+            if (!$data->blocks || !$data->blocks->cms_block){
+                throw new Exception(Mage::helper('export')->__('Data invalid.'));
+            }
+
+            foreach ($data->blocks->cms_block as $block){
+                $model = Mage::getModel('cms/block');
+                /* @var $model Mage_Cms_Model_Block */
+                $model->load($block->identifier);
+                if ($model->getId()){
+                    $this->_getSession()->addWarning(Mage::helper('export')->__('Skip %s', $model->getTitle()));
+                    continue;
+                }
+                $model->setData(array(
+                    'title' => $block->title,
+                    'identifier' => $block->identifier,
+                    'stores' => array(0),
+                    'is_active' => $block->is_active,
+                    'content' => $block->content
+                ));
+                $model->save();
+                $this->_getSession()->addSuccess(Mage::helper('export')->__('Imported %s', $model->getTitle()));
+            }
+        }catch (Exception $e){
+            $this->_getSession()->addError($e->getMessage());
+        }
+        $this->_redirect('*/*/import');
+    }
 }

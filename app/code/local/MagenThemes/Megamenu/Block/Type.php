@@ -81,13 +81,13 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
     }
 
     public function isActive(){
-        switch ($this->_menu->getType()){
+        /*switch ($this->_menu->getType()){
             case 'category':
                 $currentCategory = Mage::registry('current_category');
                 $path = $currentCategory ? $currentCategory->getPath() : '';
                 if (in_array($this->_menu->getArticle(), explode('/', $path))) return true;
                 break;
-        }
+        }*/
         return false;
     }
 

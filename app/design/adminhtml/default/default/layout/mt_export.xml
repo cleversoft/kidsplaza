@@ -28,4 +28,9 @@
             <block type="export/adminhtml_widget" name="adminhtml_widget" />
         </reference>
     </export_adminhtml_widget_index>
+    <export_adminhtml_block_import>
+        <reference name="content">
+            <block type="export/adminhtml_import_block" name="mt_import_block" />
+        </reference>
+    </export_adminhtml_block_import>
 </layout>

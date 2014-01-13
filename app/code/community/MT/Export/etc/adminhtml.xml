@@ -19,21 +19,26 @@
             <sort_order>71</sort_order>               
             <children>
                 <export translate="title" module="export">
-                    <title>MT Export</title>
+                    <title>MT Import/Export</title>
                     <children>
                         <page translate="title" module="export">
                             <title>Export Page</title>
-                            <sort_order>1</sort_order>
+                            <sort_order>10</sort_order>
                             <action>export/adminhtml_page</action>
                         </page>
                         <block translate="title" module="export">
                             <title>Export Static Block</title>
-                            <sort_order>2</sort_order>
+                            <sort_order>20</sort_order>
                             <action>export/adminhtml_block</action>
                         </block>
+                        <import_block translate="title" module="export">
+                            <title>Import Static Block</title>
+                            <sort_order>21</sort_order>
+                            <action>export/adminhtml_block/import</action>
+                        </import_block>
                         <widget translate="title" module="export">
                             <title>Export Widget</title>
-                            <sort_order>3</sort_order>
+                            <sort_order>30</sort_order>
                             <action>export/adminhtml_widget</action>
                         </widget>
                     </children>
@@ -74,9 +79,13 @@
                                         <title>Export Static Block</title>
                                         <sort_order>2</sort_order>
                                     </block>
+                                    <import_block translate="title">
+                                        <title>Import Static Block</title>
+                                        <sort_order>3</sort_order>
+                                    </import_block>
                                     <widget translate="title">
                                         <title>Export Widget</title>
-                                        <sort_order>3</sort_order>
+                                        <sort_order>4</sort_order>
                                     </widget>
                                 </children>
                             </export>
