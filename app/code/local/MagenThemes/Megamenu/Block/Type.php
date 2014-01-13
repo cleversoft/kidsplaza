@@ -162,16 +162,17 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 $html .= 'rel="nofollow"';
             }
             $html .= '>';
-            if($this->_menu->getLabel()){
-                $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
-                $html .= '<span class="menu-label">'.$label.'</span>';
-            }
             if($this->_menu->getImage())
                 $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
             else
                 if($this->_level != 0)
                     $html .= '<span class="no-icon-megamenu"></span>';
-            $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
+            $html .= '<span>'.$this->_menu->getTitle().'';
+            if($this->_menu->getLabel()){
+                $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
+                $html .= '<span class="menu-label">'.$label.'</span>';
+            }
+            $html .='</span></a>';
         } else {
             if($this->_menu->showTitle()) {
                 $html .= '<a href="'.$model->getUrl().'" class="megamenu-title" ';
@@ -181,16 +182,17 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 if(!$this->hasLink())
                     $html .= 'onclick="return false;"';
                 $html .= '>';
-                if($this->_menu->getLabel()){
-                    $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
-                    $html .= '<span class="menu-label">'.$label.'</span>';
-                }
                 if($this->_menu->getImage())
                     $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
                 else
                     if($this->_level != 0)
                         $html .= '<span class="no-icon-megamenu"></span>';
-                $html .= '<span>'.$this->_menu->getTitle().'</span></a>';
+                $html .= '<span>'.$this->_menu->getTitle().'';
+                if($this->_menu->getLabel()){
+                    $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
+                    $html .= '<span class="menu-label">'.$label.'</span>';
+                }
+                $html .='</span></a>';
                 if($this->_level == 1 && $this->_type == 'category')
                     $html .= '<span class="cat-summary">'.$model->getSummary().'</span>';
             }
