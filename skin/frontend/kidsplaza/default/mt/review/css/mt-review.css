@@ -89,23 +89,12 @@
     width: 100%;
     float: left;
 }
-.summary-review {
-    overflow: hidden;
-    width: 90%;
-}
-.review-sum-total {
-    width: 40%;
-    float: left;
-    margin-right: 10px;
-    border-right: #dfdfdf solid 1px;
-}
-.rating-summary-block {
-    width: 50%;
-    float: left;
-}
 .rating-summary-block .main-progress .review-rating-total {
     width: 100%;
     float: left;
+}
+.review-sum-total, .rating-summary-block {
+    border-right: #dfdfdf solid 1px;
 }
 .rating-summary-block .main-progress .rating-name {
     width: 100%;

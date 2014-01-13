@@ -108,8 +108,12 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
 
         $modelType = $this->getModelOfType();
         if (!$modelType) return '';
+        if($modelType=='category'){
+            $model = Mage::getModel($modelType)->load($this->_menu->getArticle(), array('summary'));
+        }else{
+            $model = Mage::getModel($modelType)->load($this->_menu->getArticle());
+        }
 
-        $model = Mage::getModel($modelType)->load($this->_menu->getArticle(), array('summary'));
         if (!$model->getId()) return '';
 
         if($this->_level == 0) {

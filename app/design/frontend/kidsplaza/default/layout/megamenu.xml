@@ -30,10 +30,10 @@
                 <action method="setTemplate" ifconfig="megamenu/general/active"><template>megamenu/navigation/top.phtml</template></action>
             </block>
         </reference>
-        <!--reference name="root">
+        <reference name="root">
             <block type="megamenu/navigation_top" name="mtcanvas">
                 <action method="setTemplate" ifconfig="megamenu/general/active"><template>megamenu/navigation/canvas.phtml</template></action>
             </block>
-        </reference-->
+        </reference>
     </default>
 </layout>

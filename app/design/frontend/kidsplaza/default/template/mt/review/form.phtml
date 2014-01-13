@@ -30,22 +30,12 @@
                         <div class="rating-type-item">
                             <span class="rating-type"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></span>
                             <?php foreach ($_rating->getOptions() as $_option): ?>
-                            <input style="display: none;" type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>-rating-star radio" />
+                            <input style="display: none;" type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="rating-star radio" />
                             <?php endforeach; ?>
                         </div>
-                        <script type="text/javascript">
-                            jQuery(function($){
-                                $('.<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>-rating-star').rating({
-                                    callback: function(value, link){
-                                        $(this).attr('checked',true);
-                                    }
-                                });
-                            });
-                        </script>
                     <?php $i++; endforeach; ?>
                 </div>
                 <input type="hidden" name="validate_rating" class="validate-rating" value="" />
-                <script type="text/javascript">decorateTable('product-review-table')</script>
             <?php endif; ?>
                 <ul class="form-list">
                     <li>
@@ -74,42 +64,8 @@
     </form>
     <script type="text/javascript">
         //<![CDATA[
-        var dataForm = new VarienForm('review-form');
-        Validation.addAllThese(
-            [
-                ['validate-rating', '<?php echo $this->__('Please select one of each of the ratings above') ?>', function(v) {
-                    var trs = $('product-review-table').select('div.rating-type-item');
-                    var inputs;
-                    var error = 1;
-
-                    for( var j=0; j < trs.length; j++ ) {
-                        var tr = trs[j];
-                        if( j > 0 ) {
-                            inputs = tr.select('input');
-
-                            for( i in inputs ) {
-                                if( inputs[i].checked == true ) {
-                                    error = 0;
-                                }
-                            }
-
-                            if( error == 1 ) {
-                                return false;
-                            } else {
-                                error = 1;
-                            }
-                        }
-                    }
-                    return true;
-                }]
-            ]
-        );
-        jQuery(function($){
-            $('.rating-cancel a').on('click',function(){
-                var inputs = $(this).parents('.rating-type-item').find('input');
-                inputs.attr("checked", false);
-            })
-        });
+        reviewFrom = {};
+        reviewFrom.msg = '<?php echo $this->__('Please select one of each of the ratings above') ?>';
         //]]>
     </script>
     <?php else: ?>

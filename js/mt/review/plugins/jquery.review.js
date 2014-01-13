@@ -35,12 +35,57 @@ jQuery(document).ready(function($){
         $('#customer-reviews').scrollToMe();
         return false;
     });
-    $('.rating-links a.rating-form, .no-rating a').click(function(){
+    $('.rating-links a.rating-form, .no-rating a, button.rating-form').click(function(){
         $('#review-form').scrollToMe();
         return false;
     });
-
+    $('.rating-type-item').each(function(i){
+        if(i>0){
+            $('.'+$(this).attr('class')+' input.rating-star').rating({
+                callback: function(value, link){
+                    $(this).attr('checked',true);
+                }
+            });
+        }
+    });
+    $('.rating-cancel a').on('click',function(){
+        var inputs = $(this).parents('.rating-type-item').find('input');
+        inputs.attr("checked", false);
+    });
 });
+
+if(jQuery('#review-form').length){
+    var dataForm = new VarienForm('review-form');
+    Validation.addAllThese(
+        [
+            ['validate-rating', reviewFrom.msg, function(v) {
+                var trs = $('product-review-table').select('div.rating-type-item');
+                var inputs;
+                var error = 1;
+
+                for( var j=0; j < trs.length; j++ ) {
+                    var tr = trs[j];
+                    if( j > 0 ) {
+                        inputs = tr.select('input');
+
+                        for( i in inputs ) {
+                            if( inputs[i].checked == true ) {
+                                error = 0;
+                            }
+                        }
+
+                        if( error == 1 ) {
+                            return false;
+                        } else {
+                            error = 1;
+                        }
+                    }
+                }
+                return true;
+            }]
+        ]
+    );
+}
 
 function voteReview(e){
     var url = jQuery(e).attr('href');
