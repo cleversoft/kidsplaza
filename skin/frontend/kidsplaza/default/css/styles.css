@@ -305,3 +305,6 @@ p.required{color: red;text-align: right;}
 p.back-link{float: left;}
 .f-left{float: left;}
 .discount{text-align: left;}
+#megamenu li.level-0:first-child, #megamenu li.level-0:last-child{background: none;}
+#megamenu li:first-child a{padding-top: 6px;}
+#megamenu li:first-child span{background: url(../images/bgIcons.png) no-repeat -33px -33px;display: block; width: 33px; height: 33px; text-indent: -9999px;}

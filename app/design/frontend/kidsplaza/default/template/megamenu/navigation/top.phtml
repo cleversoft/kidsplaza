@@ -16,11 +16,6 @@
 				<?php foreach($rootMenus as $rootMenu): ?>
 				    <?php echo $this->getLayout()->createBlock($this->getType($rootMenu->getType())->getBlock())->setMenu($rootMenu)->drawItem() ?>
 				<?php endforeach; ?>
-				<li>
-					<div class="background">
-						<div class="left>"></div>
-					</div>
-				</li>
 			</ul>
 		</div>
 	</div>
