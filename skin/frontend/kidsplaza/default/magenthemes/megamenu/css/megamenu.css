@@ -77,7 +77,30 @@ header .mt-menu-top {
     line-height: 46px;
 }
 #megamenu ul li.root .menu-label {
+    display: inline-block !important;
+    margin-left: 10px;
+    padding: 0 4px;
+    vertical-align: top;
+    background-color: #E21013 !important;
+    color: #FFFFFF ;
+    font-size: 70% ;
+    line-height: 16px;
+    text-transform: uppercase !important;
     position: absolute;
+    top: 10px;
+}
+
+#megamenu ul li.root .menu-label:before {
+    content: "";
+    height: 0;
+    position: absolute;
+    right: 26px;
+    top: 5px;
+    transition: border-color 450ms ease-in-out 0s;
+    width: 0;
+    border-bottom: 3px solid transparent;
+    border-right: 5px solid #E21013 ;
+    border-top: 4px solid transparent;
 }
 #megamenu ul li a {
     z-index: 10;
@@ -92,11 +115,15 @@ header .mt-menu-top {
 }
 #megamenu ul li a span {
 }
+#megamenu div.childcontent ul.last {
+
+    margin: 10px 0 0;
+}
 #megamenu div.childcontent ul.col1,
 #megamenu div.childcontent ul.col2 {
     padding: 0 15px;
     margin: 15px 0;
-    border-right: #dfdfdf solid 1px;
+    border-right: #e5e5e5 solid 1px;
 }
 #megamenu ul li.over > a {
     color:#ff4b8c;
@@ -139,7 +166,7 @@ header .mt-menu-top {
     padding:7px 0 0 0;
 }
 #megamenu div.categorycontent {
-    border: 1px solid #cccccc;
+    border: 1px solid #e5e5e5;
     background:#FFFFFF;
 }
 #megamenu li.over div.childcontent {
@@ -160,12 +187,12 @@ header .mt-menu-top {
     color: #fe498c;
 }*/
 #megamenu div.childcontent ul li a {
-    font-size:14px;
+    font-size:16px;
     text-transform:none;
     padding:0;
     display:block;
     margin: 0;
-    font-weight: bold;
+    font-weight: normal;
     color: #525252;
     line-height: 32px;
 }
@@ -237,7 +264,7 @@ ul.nav-accordion li {
 
 ul.nav-accordion li a {
     background-image: none !important;
-    border-bottom: 1px solid #e1e1e1;
+    border-bottom: 1px solid #e5e5e5;
     display: block;
     font-size: 110%;
     font-weight: bold;

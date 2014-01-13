@@ -10,7 +10,7 @@ class MagenThemes_Megamenu_Block_Navigation_Top extends Mage_Core_Block_Template
     public function __construct(){
         parent::_construct();
         $this->addData(array(
-            'cache_lifetime'    => 86400,
+           // 'cache_lifetime'    => 86400,
             'cache_tags'        => array('MagenThemes_Megamenu'),
         ));
     }
