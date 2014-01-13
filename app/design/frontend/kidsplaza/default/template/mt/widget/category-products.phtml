@@ -53,11 +53,17 @@ $_title             = $this->getConfig('widget_title');
                     itemMargin: <?php echo $this->getConfig('margin')?>,
                     move: <?php echo $this->getConfig('move')?>,
                     start: function(e){
-                        jQuery('.btn-prev', e[0]).click(function(){
+                        jQuery('.btn-prev', e).click(function(){
                             e.flexAnimate(e.getTarget("prev"), true);
+                            setTimeout(function(){
+                                e.find('img.lazy').trigger('widgetnav');
+                            }, 600);
                         });
-                        jQuery('.btn-next', e[0]).click(function(){
+                        jQuery('.btn-next', e).click(function(){
                             e.flexAnimate(e.getTarget("next"), true);
+                            setTimeout(function(){
+                                e.find('img.lazy').trigger('widgetnav');
+                            }, 600);
                         });
                     }
                 }
@@ -88,7 +94,7 @@ $_title             = $this->getConfig('widget_title');
             <li class="slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                    <img class="lazy" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
                 <h2 class="product-name">
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">

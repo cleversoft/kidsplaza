@@ -110,6 +110,7 @@ Category layered navigation layout
             <action method="addJs"><js>prototype/validation.js</js></action>
             <action method="addJs"><js>varien/js.js</js></action>
             <action method="addJs"><js>mt/extensions/list/list.min.js</js></action>
+            <action method="addJs"><js>mt/extensions/jquery/plugins/jquery.lazyload.js</js></action>
             <action method="addJs"><js>mt/mage/catalog/CategoryView.js</js></action>
         </reference>
         <reference name="left">

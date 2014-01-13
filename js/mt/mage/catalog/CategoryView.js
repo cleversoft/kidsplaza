@@ -8,8 +8,14 @@
  */
 'use strict';
 
+//init filter quick search
 jQuery('.list-js').each(function(i,list){
     new List(list, {
         valueNames: ['filter-item-name','filter-item-name-normalize']
     });
+});
+
+//init image lazy load
+jQuery('img.lazy').lazyload({
+    event: 'scroll|widgetnav'
 });

@@ -1117,11 +1117,11 @@
     after: function(){},            //Callback: function(slider) - Fires after each slider animation completes
     end: function(){},              //Callback: function(slider) - Fires when the slider reaches the last slide (asynchronous)
     added: function(){},            //{NEW} Callback: function(slider) - Fires after a slide is added
-    removed: function(){},           //{NEW} Callback: function(slider) - Fires after a slide is removed
+    removed: function(){},          //{NEW} Callback: function(slider) - Fires after a slide is removed
 
     // Custom options
-    onResize: function(slider){}
-  }
+    onResize: function(){}          //Callback: function(slider) - Fires when slider start re-calculate with resize event
+  };
 
 
   //FlexSlider: Plugin Function
