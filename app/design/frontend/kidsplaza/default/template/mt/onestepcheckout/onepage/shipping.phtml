@@ -165,7 +165,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 </ul>
             </fieldset>
         </li>
-        <li class="fields">
+        <li class="fields control">
             <input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" <?php if ($address->getSameAsBilling()):?>checked="checked"<?php endif ?> title="<?php echo $this->__('Use Billing Address') ?>" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" /><label for="shipping:same_as_billing"><?php echo $this->__('Use Billing Address') ?></label>
         </li>
     </ul>

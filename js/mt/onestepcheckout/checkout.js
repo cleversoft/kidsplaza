@@ -82,81 +82,82 @@ MT.OneStepCheckout.prototype = {
         this.cart && this.initCartLinks();
         this.cart && this.initCartButtons();
 
-        if (Windows) Windows.overlayShowEffectOptions = {duration: 0};
-        if (Windows) Windows.overlayHideEffectOptions = {duration: 0};
+        if (window.Windows) Windows.overlayShowEffectOptions = {duration: 0};
+        if (window.Windows) Windows.overlayHideEffectOptions = {duration: 0};
     },
 
-    showLogin: function(){
-        this.loginDialog.f = this.loginDialog.login;
-        this.loginDialog.login.form.show();
-        this.loginDialog.forgot.form.hide();
-        this.loginDialog.errorDiv.innerHTML = '';
-        this.loginDialog.successDiv.innerHTML = '';
+    showLoginForm: function(){
+        var loginForm = $('checkout-login-form'),
+            forgotForm = $('checkout-forgot-form'),
+            success = loginForm.up().down('.alert-success'),
+            error = loginForm.up().down('.alert-danger');
+
+        loginForm.removeClassName('hidden');
+        forgotForm.addClassName('hidden');
+        success.update('');
+        success.addClassName('hidden');
+        error.update('');
+        error.addClassName('hidden');
     },
 
-    showForgot: function(){
-        this.loginDialog.f = this.loginDialog.forgot;
-        this.loginDialog.login.form.hide();
-        this.loginDialog.forgot.form.show();
-        this.loginDialog.errorDiv.innerHTML = '';
-        this.loginDialog.successDiv.innerHTML = '';
+    showForgotForm: function(){
+        var loginForm = $('checkout-login-form'),
+            forgotForm = $('checkout-forgot-form'),
+            success = loginForm.up().down('.alert-success'),
+            error = loginForm.up().down('.alert-danger');
+
+        loginForm.addClassName('hidden');
+        forgotForm.removeClassName('hidden');
+        success.update('');
+        success.addClassName('hidden');
+        error.update('');
+        error.addClassName('hidden');
     },
 
-    showLoginDialog: function(title, okLabel){
-        this.loginDialog = Dialog.confirm($('checkout-login-form').innerHTML, {
-            id: 'checkout-login-popup',
-            showEffect: Element.show,
-            hideEffect: Element.hide,
-            title: title,
-            okLabel: okLabel,
-            width: 500,
-            buttonClass: 'button',
-            onOk: function(win){
-                if (win.f && win.f.validator.validate()){
-                    win.f.form.hide() && win.indicator.show();
-                    new Ajax.Request(win.f.form.action, {
-                        method: 'post',
-                        parameters: win.f.form.serialize(true),
-                        onSuccess: function(transport){
-                            if (transport.responseText){
-                                var response = transport.responseText.evalJSON();
-                                if (response && response.success){
-                                    if (response.forgot){
-                                        win.successDiv.innerHTML = response.message;
-                                        win.f.form.show();
-                                        win.indicator.hide();
-                                    }else{
-                                        window.location.reload();
-                                    }
-                                }else{
-                                    win.errorDiv.innerHTML = response.message;
-                                    win.f.form.show();
-                                    win.indicator.hide();
-                                }
-                            }else win.f.form.show() && win.indicator.hide();
-                        },
-                        onFailure: function(){
-                            win.setHTMLContent(win.fContent);
+    login: function(btn){
+        var form = $(btn).up('form');
+        if (!form) return;
+        var VF = new VarienForm(form);
+        var error = form.up().down('.alert-danger');
+        error && error.addClassName('hidden');
+        var success = form.up().down('.alert-success');
+        success && success.addClassName('hidden');
+        var loader = form.down('.checkout-login-loading');
+        if (VF.validator.validate()){
+            loader && loader.removeClassName('hidden');
+            MT.Utils.disableElement(btn);
+            new Ajax.Request(form.action, {
+                method: 'post',
+                parameters: form.serialize(true),
+                onComplete: function(){
+                    loader && loader.addClassName('hidden');
+                    MT.Utils.enableElement(btn);
+                },
+                onSuccess: function(transport){
+                    if (transport.responseText){
+                        var response = transport.responseText.evalJSON();
+                        if (response && response.success){
+                            if (response.forgot){
+                                success.innerHTML = response.message;
+                                success.removeClassName('hidden');
+                            }else{
+                                window.location.reload();
+                            }
+                        }else{
+                            if (error){
+                                error.innerHTML = response.message;
+                                error.removeClassName('hidden');
+                            }
                         }
-                    });
+                    }else{
+                        form.show();
+                    }
+                },
+                onFailure: function(){
+
                 }
-            }.bind(this),
-            onShow: function(win){
-                var login = win.element.down('#checkout-login'),
-                    forgot = win.element.down('#checkout-forgot'),
-                    indicator = win.element.down('#checkout-login-loading'),
-                    errorDiv = win.element.down('#checkout-login-error'),
-                    successDiv = win.element.down('#checkout-login-success');
-
-                if (login) win.login = new VarienForm(login);
-                if (forgot) win.forgot = new VarienForm(forgot);
-                if (indicator) win.indicator = indicator;
-                if (errorDiv) win.errorDiv = errorDiv;
-                if (successDiv) win.successDiv = successDiv;
-
-                win.f = win.login;
-            }
-        });
+            });
+        }
     },
 
     setConfig: function(config){
@@ -1119,11 +1120,11 @@ MT.Coupon.prototype = {
         var loading = this.container.down('#coupon-loading');
         if (loading){
             if (flag){
-                loading.show();
+                loading.removeClassName('hidden');
                 MT.Utils.disableElement(this.submitBtn);
                 MT.Utils.disableElement(this.cancelBtn);
             }else{
-                loading.hide();
+                loading.addClassName('hidden');
                 MT.Utils.enableElement(this.submitBtn);
                 MT.Utils.enableElement(this.cancelBtn);
             }
