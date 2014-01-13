@@ -44,7 +44,7 @@ header .mt-menu-top {
 #megamenu ul li.level-0.first {
     text-indent: -999em;
     background: none;
-    padding-right: 15px;
+    padding-right: 0;
 }
 #megamenu ul li.level-0.first.over {
   margin-left: 0;
@@ -108,7 +108,7 @@ header .mt-menu-top {
     color: #fff;
     text-transform:uppercase;
     text-decoration:none;
-    font-size: 12px;
+    font-size: 11px;
     display:block;
     cursor:pointer;
     padding: 0 5px 0 14px;
