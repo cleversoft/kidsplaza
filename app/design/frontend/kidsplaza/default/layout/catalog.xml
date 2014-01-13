@@ -172,9 +172,9 @@ Product view
             <action method="addJs"><script>varien/js.js</script></action>
             <action method="addJs"><script>varien/product.js</script></action>
             <action method="addJs"><script>varien/configurable.js</script></action>
-            <action method="addJs"><script>mt/mage/catalog/ProductView.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addJs"><script>mt/mage/catalog/ProductView.js</script></action>
 
             <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
             <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>

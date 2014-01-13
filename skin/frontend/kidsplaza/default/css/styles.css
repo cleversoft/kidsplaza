@@ -204,7 +204,7 @@ input,textarea{outline: 0;}
 .fields .input-box input,.fields .input-box select{width: 100%;border-radius: 0;}
 .required em{color: red;float: right;}
 .fields label{font-weight: 400;margin-bottom: 0;}
-.sp-methods input,.fields input[type="checkbox"]{display: inline-block; margin: 0 5px 0 0;vertical-align: middle;}
+.sp-methods input,.fields input[type="checkbox"]{display: inline-block; margin: 0;vertical-align: middle;}
 .sp-methods label,.control label{font-weight: 400;}
 .opc li:first-child{padding-left: 0;}
 .opc li:last-child{padding-right: 0;}
@@ -215,3 +215,7 @@ input,textarea{outline: 0;}
 .cart .btn-qty{font-weight: 700;}
 .col-main{min-height: 300px;}
 .opc .please-wait{margin-top: 20px;display: block;}
+input.form-control{border-radius: 0;}
+.opc .panel-heading{padding: 6px 15px;}
+.checkout-login-loading{width: 16px;height: 16px;margin-left: 5px;}
+#co-shipping-form .fields label{margin-left: 3px;}

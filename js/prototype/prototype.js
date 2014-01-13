@@ -1929,7 +1929,7 @@ Element.Methods = {
 
   hide: function(element) {
     if (isBootstrapEvent) {
-      isBootstrapEvent == false;
+      isBootstrapEvent = false;
       return;
     }
     element = $(element);

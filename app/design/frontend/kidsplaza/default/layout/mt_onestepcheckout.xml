@@ -29,9 +29,9 @@
             <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
                 <js>mt/extensions/jquery/plugins/nprogress/nprogress.js</js>
             </action>
-            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+            <!--action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
                 <js>prototype/window.js</js>
-            </action>
+            </action-->
             <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
                 <js>mt/onestepcheckout/checkout.js</js>
             </action>
