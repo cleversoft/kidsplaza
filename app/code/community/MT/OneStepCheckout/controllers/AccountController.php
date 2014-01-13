@@ -47,7 +47,7 @@ class MT_OneStepCheckout_AccountController extends Mage_Customer_AccountControll
                 $out['message'] = $this->__('Login and password are required.');
             }
         }
-
+        $session->setBeforeAuthUrl('');
         return $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($out));
     }
 
