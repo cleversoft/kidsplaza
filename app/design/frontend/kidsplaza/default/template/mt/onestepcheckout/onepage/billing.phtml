@@ -191,7 +191,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 </li>
         <?php endif ?>
 
-                <li class="fields">
+                <li class="fields control">
                     <input type="checkbox" id="billing:register">
                     <label for="billing:register"><?php echo $this->__('Create an account for later use')?></label>
                 </li>
@@ -209,7 +209,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                             <input type="password" name="billing[confirm_password]" title="<?php echo $this->__('Confirm Password') ?>" id="billing:confirm_password" class="input-sm form-control required-entry validate-cpassword" />
                         </div>
                     </div>
-                    <div style="padding-top: 5px;clear: both">
+                    <div class="control">
                         <input type="checkbox" name="billing[newsletter]" id="billing:newsletter" value="1"/>
                         <label for="billing:newsletter" style="float: none"><?php echo $this->__('Sign up for newsletter')?></label>
                     </div>
