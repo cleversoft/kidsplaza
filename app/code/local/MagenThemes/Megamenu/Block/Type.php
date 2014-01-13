@@ -170,7 +170,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
             $html .= '<span>'.$this->_menu->getTitle().'';
             if($this->_menu->getLabel()){
                 $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
-                $html .= '<span class="menu-label">'.$label.'</span>';
+                $html .= '<span class="menu-label '.$this->_menu->getLabel().'">'.$label.'</span>';
             }
             $html .='</span></a>';
         } else {
@@ -190,7 +190,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 $html .= '<span>'.$this->_menu->getTitle().'';
                 if($this->_menu->getLabel()){
                     $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
-                    $html .= '<span class="menu-label">'.$label.'</span>';
+                    $html .= '<span class="menu-label '.$this->_menu->getLabel().'">'.$label.'</span>';
                 }
                 $html .='</span></a>';
                 if($this->_level == 1 && $this->_type == 'category')
