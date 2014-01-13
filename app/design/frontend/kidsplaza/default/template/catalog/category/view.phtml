@@ -76,13 +76,12 @@
                     'cache' => 86400,
                     'widget_type' => 'product',
                     'category_ids' => $c->getId(),
-                    'limit' => 10,
-                    'column' => 5,
+                    'limit' => Mage::getStoreConfig('kidsplaza/catalog/limit') ? (int)Mage::getStoreConfig('kidsplaza/catalog/limit') : 10,
                     'widget_title' => $c->getName(),
                     'scroll' => 1,
                     'responsive' => 'width',
-                    'responsive_width' => 165,
-                    'move' => 3,
+                    'responsive_width' => Mage::getStoreConfig('kidsplaza/catalog/width') ? (int)Mage::getStoreConfig('kidsplaza/catalog/width') : 165,
+                    'move' => Mage::getStoreConfig('kidsplaza/catalog/move') ? (int)Mage::getStoreConfig('kidsplaza/catalog/move') : 5,
                     'href' => $c->getUrl(),
                     'product_count' => $c->getProductCount()
                 ))->toHtml()?>
