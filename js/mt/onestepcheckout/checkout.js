@@ -160,63 +160,6 @@ MT.OneStepCheckout.prototype = {
         }
     },
 
-    showLoginDialog: function(title, okLabel){
-        /*this.loginDialog = Dialog.confirm($('checkout-login-form').innerHTML, {
-            id: 'checkout-login-popup',
-            showEffect: Element.show,
-            hideEffect: Element.hide,
-            title: title,
-            okLabel: okLabel,
-            width: 500,
-            buttonClass: 'button',
-            onOk: function(win){
-                if (win.f && win.f.validator.validate()){
-                    win.f.form.hide() && win.indicator.show();
-                    new Ajax.Request(win.f.form.action, {
-                        method: 'post',
-                        parameters: win.f.form.serialize(true),
-                        onSuccess: function(transport){
-                            if (transport.responseText){
-                                var response = transport.responseText.evalJSON();
-                                if (response && response.success){
-                                    if (response.forgot){
-                                        win.successDiv.innerHTML = response.message;
-                                        win.f.form.show();
-                                        win.indicator.hide();
-                                    }else{
-                                        window.location.reload();
-                                    }
-                                }else{
-                                    win.errorDiv.innerHTML = response.message;
-                                    win.f.form.show();
-                                    win.indicator.hide();
-                                }
-                            }else win.f.form.show() && win.indicator.hide();
-                        },
-                        onFailure: function(){
-                            win.setHTMLContent(win.fContent);
-                        }
-                    });
-                }
-            }.bind(this),
-            onShow: function(win){
-                var login = win.element.down('#checkout-login'),
-                    forgot = win.element.down('#checkout-forgot'),
-                    indicator = win.element.down('#checkout-login-loading'),
-                    errorDiv = win.element.down('#checkout-login-error'),
-                    successDiv = win.element.down('#checkout-login-success');
-
-                if (login) win.login = new VarienForm(login);
-                if (forgot) win.forgot = new VarienForm(forgot);
-                if (indicator) win.indicator = indicator;
-                if (errorDiv) win.errorDiv = errorDiv;
-                if (successDiv) win.successDiv = successDiv;
-
-                win.f = win.login;
-            }
-        });*/
-    },
-
     setConfig: function(config){
         for (var i in config){
             this[i] = config[i];

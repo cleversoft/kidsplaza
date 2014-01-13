@@ -26,7 +26,7 @@
             </ol>
             <div class="cart-action">
                 <span class="cart-total pull-left"><?php echo $this->helper('checkout')->formatPrice($this->getSubtotal())?></span>
-                <a href="<?php echo $this->getUrl('checkout/cart/index')?>"><?php echo $this->__('Checkout')?>&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></a>
+                <a href="<?php echo $this->getUrl('checkout/onepage')?>"><?php echo $this->__('Checkout')?>&nbsp;<i class="glyphicon glyphicon-chevron-right"></i></a>
             </div>
         <?php else: ?>
             <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
