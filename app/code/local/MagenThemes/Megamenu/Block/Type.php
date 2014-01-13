@@ -153,10 +153,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
             }
         }
         $html .= '>';
-        if($this->_menu->getLabel()){
-            $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
-            $html .= '<span class="menu-label">'.$label.'</span>';
-        }
+
         if($this->_menu->getType() == 'external_link') {
             $html .= '<a class="megamenu-title" ';
             if($this->_menu->getUrl())
@@ -165,6 +162,10 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 $html .= 'rel="nofollow"';
             }
             $html .= '>';
+            if($this->_menu->getLabel()){
+                $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
+                $html .= '<span class="menu-label">'.$label.'</span>';
+            }
             if($this->_menu->getImage())
                 $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
             else
@@ -180,6 +181,10 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 if(!$this->hasLink())
                     $html .= 'onclick="return false;"';
                 $html .= '>';
+                if($this->_menu->getLabel()){
+                    $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
+                    $html .= '<span class="menu-label">'.$label.'</span>';
+                }
                 if($this->_menu->getImage())
                     $html .= '<img alt="'.$this->_menu->getTitle().'" src="'.Mage::getBaseUrl('media').$this->_menu->getImage().'" width="13" height="13" class="icon-megamenu" />';
                 else
