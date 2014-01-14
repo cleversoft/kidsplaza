@@ -63,3 +63,6 @@ var KPCart = new KidsPlazaCart('cart-top');
 var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
 KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
 new VarienForm('newsletter-validate-detail');
+jQuery('.mt-menu-top').sticky({topSpacing:-1});
+jQuery('.toTop').on('click',function(){jQuery('body').animate({scrollTop:0},500);});
+jQuery(window).scroll(function(){var elm=jQuery('.toTop');if(!elm.length)return;if(jQuery(window).scrollTop()>=400){if(!elm.data('show')){elm.data('show',true);elm.slideDown('fast');}}else{if(elm.data('show')){elm.data('show',false);elm.fadeOut();}}});
