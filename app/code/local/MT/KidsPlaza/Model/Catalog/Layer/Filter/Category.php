@@ -18,8 +18,9 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Mode
         $data = $this->getLayer()->getAggregator()->getCacheData($key);
 
         if ($data === null) {
+            $module = Mage::app()->getFrontController()->getRequest()->getModuleName();
             $categoty   = $this->getCategory();
-            /** @var $categoty Mage_Catalog_Model_Categeory */
+            /** @var $categoty Mage_Catalog_Model_Category */
             $categories = $categoty->getChildrenCategories();
 
             $this->getLayer()->getProductCollection()
@@ -32,7 +33,7 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Mode
                         'label' => Mage::helper('core')->escapeHtml($category->getName()),
                         'value' => $category->getId(),
                         'count' => $category->getProductCount(),
-                        'href'  => $category->getUrl()
+                        'href'  => $module == 'catalog' ? $category->getUrl() : ''
                     );
                 }
             }
