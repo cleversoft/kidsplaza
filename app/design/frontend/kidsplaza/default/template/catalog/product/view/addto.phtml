@@ -23,26 +23,19 @@
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+?>
 
-/**
- * Product additional attributes template
- *
- * @see Mage_Catalog_Block_Product_View_Attributes
- */
-?>
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+    <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+<?php endif; ?>
 <?php
-    $_helper = $this->helper('catalog/output');
-    $_product = $this->getProduct()
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
 ?>
-<?php if($_additional = $this->getAdditionalData()): ?>
-    <table class="table table-bordered table-striped" id="product-attribute-specs-table" style="margin-top: 20px;">
-        <tbody>
-        <?php foreach ($_additional as $_data): ?>
-            <tr>
-                <th><?php echo $this->escapeHtml($this->__($_data['label'])) ?></th>
-                <td class="value"><?php echo $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></td>
-            </tr>
-        <?php endforeach; ?>
-        </tbody>
-    </table>
-<?php endif;?>
+<?php if($_compareUrl) : ?>
+    <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+<?php endif; ?>
+</ul>

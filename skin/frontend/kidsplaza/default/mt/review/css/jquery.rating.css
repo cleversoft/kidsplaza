@@ -18,11 +18,13 @@ div.star-rating{
 /* END jQuery.Rating Plugin CSS */
 .review-rating {
     overflow: hidden;
+    display: inline-block;
+    margin-left: 10px;
 }
 .rating-type-item {
     float: left;
     width: 100%;
-    padding: 4px 0;
+    padding: 0;
 }
 .rating-type-item span {
     float: left;

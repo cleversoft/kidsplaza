@@ -161,11 +161,18 @@
     box-shadow: none;
     overflow: hidden;
     position: relative;
-    padding: 14px 40px 20px;
+    padding: 14px 30px 20px;
     border-style: solid;
 }
-.mt-review-main .form-add {
-    margin-top: 20px;
+.mt-review-main .form-list{
+    margin-top: 5px;
+}
+.mt-review-main .how-do {
+    font-weight: 700;
+    display: inline-block;
+}
+em.required{
+    color: red;
 }
 .mt-review-main .form-add .your-review {
     border-bottom: #dfdfdf solid 1px;

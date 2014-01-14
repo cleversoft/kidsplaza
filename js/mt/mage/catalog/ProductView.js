@@ -67,7 +67,6 @@ jQuery('.product-view').each(function(i, product){
         Event.observe(elem, 'click', addRelatedToProduct)
     });
 });
-
 function selectAllRelated(txt){
     if (relatedProductsCheckFlag == false) {
         $$('.related-checkbox').each(function(elem){
@@ -84,7 +83,6 @@ function selectAllRelated(txt){
     }
     addRelatedToProduct();
 }
-
 function addRelatedToProduct(){
     var checkboxes = $$('.related-checkbox'),
         values = [], prices = [];
@@ -111,66 +109,76 @@ function addRelatedToProduct(){
     }
     optionsPrice.reload();
 }
-
-jQuery(document).ready(function(){
-    var count = moreViewOptions.count;
-    jQuery('#moreViews').flexslider({
-        namespace: 'more-views-',
-        slideshow: false,
-        animation: "slide",
-        itemWidth: getMoreViewsItemWidth('moreViews', count, moreViewOptions.itemMargin),
-        itemMargin: moreViewOptions.itemMargin,
-        minItems: 1,
-        maxItems: count,
-        selector: ".slides > li",
-        controlNav: false
+//init product tabs
+jQuery('#mt_product_tabs a').click(function (e) {
+    e.preventDefault();
+    if(jQuery(this).attr('href')=='#review-form'){
+        jQuery('.mt-review-main').scrollToMe();
+    }else{
+        jQuery(this).tab('show');
+    }
+})
+//init show more
+var content_height_limit = 800;
+jQuery('.tab-content .tab-pane').each(function(){
+    var heightBefore = jQuery(this).height();
+    var mainPane = jQuery(this);
+    var showMore = jQuery('<div/>')
+                    .addClass('show-more')
+                    .css('display','none')
+                    .html('<a class="btn btn-primary">Show More</a>');
+    var showLess = jQuery('<div/>')
+                    .addClass('show-less')
+                    .css('display','none')
+                    .html('<a class="btn btn-primary">Show Less</a>');
+    showMore.appendTo(mainPane);
+    showLess.appendTo(mainPane);
+    var heightAfter = mainPane.height();
+    var height = (heightBefore > heightAfter) ? heightBefore : heightAfter;
+    if (height > content_height_limit) {
+        mainPane.children('div.product-tabs-content-inner').css({'max-height': content_height_limit+'px','overflow':'hidden'});
+        showMore.show();
+    }
+    jQuery('a.btn', showMore).click(function(){
+        mainPane.children('div.product-tabs-content-inner').css('max-height', 'none');
+        showMore.hide();
+        showLess.show();
     });
-    /******* Product Tabs*/
-    jQuery('#mt_product_tabs a').click(function (e) {
-        e.preventDefault();
-        if(jQuery(this).attr('href')=='#review-form'){
-            jQuery('.mt-review-main').scrollToMe();
-        }else{
-            jQuery(this).tab('show');
-        }
-    })
-    /**** Show more*/
-    var content_height_limit = 800;
-    jQuery('.tab-content .tab-pane').each(function(){
-        var heightBefore = jQuery(this).height();
-        var mainPane = jQuery(this);
-        var showMore = jQuery('<div/>')
-                        .addClass('show-more')
-                        .css('display','none')
-                        .html('<span class="btn btn-primary">Show More</span>');
-        var showLess = jQuery('<div/>')
-                        .addClass('show-less')
-                        .css('display','none')
-                        .html('<span class="btn btn-primary">Hide Show More</span>');
-        showMore.appendTo(mainPane);
-        showLess.appendTo(mainPane);
-        var heightAfter = mainPane.height();
-        var height = (heightBefore > heightAfter) ? heightBefore : heightAfter;
-        if (height > content_height_limit) {
-            mainPane.children('div.product-tabs-content-inner').css({'max-height': content_height_limit+'px','overflow':'hidden'});
-            showMore.show();
-        }
-        showMore.click(function(){
-            mainPane.children('div.product-tabs-content-inner').css('max-height', 'none');
-            showMore.hide();
-            showLess.show();
-        });
-
-        showLess.click(function(){
-            mainPane.children('div.product-tabs-content-inner').css('max-height', content_height_limit+'px');
-            showLess.hide();
-            showMore.show();
-            jQuery('#mt_product_tabs').scrollToMe();
-        });
+    jQuery('a.btn', showLess).click(function(){
+        mainPane.children('div.product-tabs-content-inner').css('max-height', content_height_limit+'px');
+        showLess.hide();
+        showMore.show();
+        jQuery('#mt_product_tabs').scrollToMe();
     });
-
 });
 function getMoreViewsItemWidth(id, column, margin){
     var width = jQuery('#'+id).width();
-    return (width/column).toFixed(2) - margin*2;
+    return (width/column).toFixed(2) - margin * 2;
 }
+//init more views
+if (window.moreViewOptions){
+    jQuery(function(){
+        jQuery('#moreViews').flexslider({
+            namespace: 'more-views-',
+            slideshow: false,
+            animation: "slide",
+            itemWidth: getMoreViewsItemWidth('moreViews', moreViewOptions.count, moreViewOptions.itemMargin),
+            itemMargin: moreViewOptions.itemMargin,
+            minItems: 1,
+            maxItems: moreViewOptions.count,
+            selector: ".slides > li",
+            controlNav: false,
+            directionNav: false,
+            start: function(slider){
+                jQuery('.more-views-prev', slider).click(function(){
+                    slider.flexAnimate(slider.getTarget("prev"), true);
+                });
+                jQuery('.more-views-next', slider).click(function(){
+                    slider.flexAnimate(slider.getTarget("next"), true);
+                });
+            }
+        });
+    });
+}
+//init table description
+jQuery('table', '#product_tabs_description_contents').addClass('table');

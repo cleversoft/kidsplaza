@@ -28,7 +28,7 @@
                     <div class="rating-type-item"></div>
                     <?php $i = 0;foreach ($this->getRatings() as $_rating): ?>
                         <div class="rating-type-item">
-                            <span class="rating-type"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></span>
+                            <!--span class="rating-type"><?php echo $this->escapeHtml($_rating->getRatingCode()) ?></span-->
                             <?php foreach ($_rating->getOptions() as $_option): ?>
                             <input style="display: none;" type="radio" name="ratings[<?php echo $_rating->getId() ?>]" id="<?php echo $this->escapeHtml($_rating->getRatingCode()) ?>_<?php echo $_option->getValue() ?>" value="<?php echo $_option->getId() ?>" class="rating-star radio" />
                             <?php endforeach; ?>

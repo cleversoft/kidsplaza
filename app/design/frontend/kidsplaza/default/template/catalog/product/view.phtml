@@ -49,8 +49,8 @@
             <?php echo $this->getChildHtml('media') ?>
         </div>
         <div class="product-shop col-md-7">
-            <div class="product-name">
-                <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+            <div class="page-title">
+                <h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
             </div>
 
             <?php if ($this->canEmailToFriend()): ?>
@@ -63,39 +63,37 @@
             <?php echo $this->getTierPriceHtml() ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
+            <div class="add-to-box">
             <?php if (!$this->hasOptions()):?>
-                <div class="add-to-box">
-                    <?php if($_product->isSaleable()): ?>
-                        <?php echo $this->getChildHtml('addtocart') ?>
-                        <?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
-                            <span class="or"><?php echo $this->__('OR') ?></span>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                    <?php echo $this->getChildHtml('addto') ?>
-                </div>
+                <?php if($_product->isSaleable()): ?>
+                    <?php echo $this->getChildHtml('addtocart') ?>
+                <?php endif; ?>
+                <?php echo $this->getChildHtml('addto') ?>
                 <?php echo $this->getChildHtml('extra_buttons') ?>
             <?php elseif (!$_product->isSaleable()): ?>
-                <div class="add-to-box">
-                    <?php echo $this->getChildHtml('addto') ?>
-                </div>
+                <?php echo $this->getChildHtml('addto') ?>
             <?php endif; ?>
+            </div>
 
             <?php if ($_product->getShortDescription()):?>
-                <div class="short-description">
-                    <h2><?php echo $this->__('Quick Overview') ?></h2>
-                    <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                <div class="short-description panel panel-info">
+                    <div class="panel-heading">
+                        <?php echo $this->__('Quick Overview') ?>
+                    </div>
+                    <div class="panel-body">
+                        <div class="std">
+                            <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                        </div>
+                    </div>
                 </div>
             <?php endif;?>
 
-            <?php echo $this->getChildHtml('other');?>
+            <?php //echo $this->getChildHtml('other');?>
 
             <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                 <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
             <?php endif;?>
-
         </div>
-
-        <div class="clearer"></div>
         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
             <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
         <?php endif;?>

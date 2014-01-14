@@ -36,20 +36,16 @@
             <li class="<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)?' last':'')?>"><a href="#product_tabs_<?php echo $_tab['alias'] ?>_contents"><?php echo $_tab['title']?></a></li>
         <?php endif; ?>
     <?php endforeach; ?>
-            <li class=""><a href="#review-form"><?php echo $this->__('Customer Review');?></a></li>
-    <?php echo $_extraTabs;?>
+    <li class=""><a href="#review-form"><?php echo $this->__('Customer Review');?></a></li>
 </ul>
 <div class="tab-content">
-<?php
-    $i==0;
-    foreach ($this->getTabs() as $_index => $_tab): ?>
+<?php $i=0; foreach ($this->getTabs() as $_index => $_tab): ?>
     <?php if($this->getChildHtml($_tab['alias'])): ?>
-        <div class="tab-pane <?php if($i==0)echo"active";?>" id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
+        <div class="tab-pane <?php if($i++ == 0)echo"active";?>" id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
             <div class="product-tabs-content-inner clearfix">
                 <?php echo $this->getChildHtml($_tab['alias']) ?>
             </div>
         </div>
     <?php endif; ?>
-<?php $i++; endforeach; ?>
+<?php endforeach; ?>
 </div>
-<?php echo $_extraPanes;?>

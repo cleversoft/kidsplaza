@@ -33,40 +33,55 @@
 <?php
     $_product = $this->getProduct();
     $_helper = $this->helper('catalog/output');
-    $zoomW = is_numeric(Mage::getStoreConfig('mtattribute/general/zoomW'))?Mage::getStoreConfig('mtattribute/general/zoomW'):'auto';
-    $zoomH = is_numeric(Mage::getStoreConfig('mtattribute/general/zoomH'))?Mage::getStoreConfig('mtattribute/general/zoomH'):'auto';
+    $zoomW = is_numeric(Mage::getStoreConfig('mtattribute/general/zoomW')) ?
+        Mage::getStoreConfig('mtattribute/general/zoomW') : 'auto';
+    $zoomH = is_numeric(Mage::getStoreConfig('mtattribute/general/zoomH')) ?
+        Mage::getStoreConfig('mtattribute/general/zoomH') : 'auto';
     $margin = (int)Mage::getStoreConfig('mtattribute/czoom/margin');
 ?>
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
-
 <p class="product-image">
-    <a class="cloud-zoom" id="zoomID" rel="<?php echo Mage::helper('mtattribute')->getCloudZoomConfig(true)?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image')?>">
-        <img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image')->resize(350)?>">
+    <a class="cloud-zoom"
+        id="zoomID"
+        rel="<?php echo Mage::helper('mtattribute')->getCloudZoomConfig(true)?>"
+        href="<?php echo $this->helper('catalog/image')->init($_product, 'image')?>">
+
+        <img class="img-responsive"
+             src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image')->resize(430)?>"/>
     </a>
 </p>
 <?php else: ?>
 <p class="product-image">
-        <?php echo $this->helper('mtbolo')->getLabel($_product);  ?>
-
-    <?php
-        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(350).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
-        echo $_helper->productAttribute($_product, $_img, 'image');
-    ?>
+    <img src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(350) ?>"
+        alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"
+        title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"/>
 </p>
-
 <?php endif; ?>
 <?php if (count($this->getGalleryImages()) > 0): ?>
 <div class="more-views" id="moreViews">
-    <!--<h2><?php //echo $this->__('More Views') ?></h2>-->
     <ul class="slides">
     <?php foreach ($this->getGalleryImages() as $_image): ?>
         <li>
-            <a href="<?php echo $_image->getUrl()?>" title="<?php echo $this->htmlEscape($_image->getLabel())?>" class="cloud-zoom-gallery" rel="useZoom:'zoomID',smallImage:'<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(350)?>'">
-                <img class="img-responsive" src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(84, 84)?>" width="85" height="85" alt="<?php echo $this->htmlEscape($_image->getLabel())?>" />
+            <a href="<?php echo $_image->getUrl()?>"
+                title="<?php echo $this->htmlEscape($_image->getLabel())?>"
+                class="cloud-zoom-gallery<?php echo $_image->getFile() == $_product->getImage()?' active':''?>"
+                rel="useZoom:'zoomID',smallImage:'<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $_image->getFile())->resize(430)?>'">
+
+                <img class=""
+                    src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(84, 84)?>"
+                    width="85"
+                    height="85"
+                    alt="<?php echo $this->htmlEscape($_image->getLabel())?>" />
             </a>
         </li>
     <?php endforeach; ?>
     </ul>
+    <a class="more-views-prev more-views-nav" href="javascript:void(0)">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+    </a>
+    <a class="more-views-next more-views-nav" href="javascript:void(0)">
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
 </div>
 <?php endif; ?>
 <script type="text/javascript">
