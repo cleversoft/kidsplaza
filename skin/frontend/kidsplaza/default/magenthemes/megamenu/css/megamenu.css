@@ -26,8 +26,12 @@ header .mt-menu-top {
 }
 #megamenu ul li.level-0 {
     height:46px;
-    z-index:11;
-    background: url(../../megamenu/images/icon-sperator.png) no-repeat right center transparent;
+}
+#megamenu ul li.parent a{
+    border-right: 1px solid #fff;
+    height: 22px;
+    line-height: 22px;
+    margin-top: 12px;
 }
 #megamenu ul li.level-0.parent a span {
     background: url(../../megamenu/images/icon-menu-parent.png) no-repeat right center transparent;
@@ -63,18 +67,13 @@ header .mt-menu-top {
     background-color: #fff !important;
     background-image: none !important;
     border-top: #ff4b8c solid 3px;
-    margin-left: -1px;
 }
-
 #megamenu ul li.current {
     background: #fff !important;
     border-top: #ff4b8c solid 3px;
 }
 #megamenu ul li.last {
     background:0 none;
-}
-#megamenu ul li.root a {
-    line-height: 46px;
 }
 #megamenu ul li.root .menu-label {
     display: inline-block !important;
@@ -89,7 +88,6 @@ header .mt-menu-top {
     position: absolute;
     top: 10px;
 }
-
 #megamenu ul li.root .menu-label:before {
     content: "";
     height: 0;

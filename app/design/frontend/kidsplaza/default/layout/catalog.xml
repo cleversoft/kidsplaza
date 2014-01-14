@@ -177,8 +177,8 @@ Product view
             <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
             <action method="addJs"><script>mt/mage/catalog/ProductView.js</script></action>
 
-            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
-            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <!--action method="addItem"><type>js</type><name>calendar/calendar.js</name></action-->
+            <!--action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action-->
         </reference>
         <reference name="content">
             <block type="catalog/product_view" name="product.info" template="catalog/product/view.phtml">
