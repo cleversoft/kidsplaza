@@ -444,3 +444,17 @@ p.back-link{float: left;}
 #megamenu li.level-0:first-child span{background: url(../images/bgIcons.png) no-repeat -33px -33px;display: block; width: 33px; height: 33px; text-indent: -9999px;}
 .sticky-wrapper .mt-menu-top{width: 100%;z-index: 9999;}
 .toTop{display:none;position: fixed; z-index: 2; right: 5px; bottom: 5px; background: rgb(0,0,0); background: rgba(0,0,0,0.5); color: #fff; font-size: 20px; padding: 5px 10px; cursor: pointer;}
+
+.tab-content .tab-pane .show-more:before {
+    height: 55px;
+    margin-top: -45px;
+    content: -webkit-gradient(linear,left bottom,left top,from(#fff),to(rgba(255,255,255,0)),color-stop(0.5,#fff));
+    display: block;
+}
+.tab-content .tab-pane .show-more span,
+.tab-content .tab-pane .show-less span
+{
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+}
