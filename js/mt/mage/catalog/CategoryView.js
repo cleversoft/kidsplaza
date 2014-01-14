@@ -17,5 +17,6 @@ jQuery('.list-js').each(function(i,list){
 
 //init image lazy load
 jQuery('img.lazy').lazyload({
-    event: 'scroll|widgetnav'
+    event: 'scroll|widgetnav',
+    failure_limit: 10
 });

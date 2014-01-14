@@ -40,14 +40,12 @@
                 if (settings.skip_invisible && !$this.is(":visible")) {
                     return;
                 }
-                if ($.abovethetop(this, settings) ||
-                    $.leftofbegin(this, settings)) {
-                        /* Nothing. */
-                } else if (!$.belowthefold(this, settings) &&
-                    !$.rightoffold(this, settings)) {
-                        $this.trigger("appear");
-                        /* if we found an image we'll load, reset the counter */
-                        counter = 0;
+                if ($.abovethetop(this, settings) || $.leftofbegin(this, settings)) {
+                    /* Nothing. */
+                } else if (!$.belowthefold(this, settings) && !$.rightoffold(this, settings)) {
+                    $this.trigger("appear");
+                    /* if we found an image we'll load, reset the counter */
+                    counter = 0;
                 } else {
                     if (++counter > settings.failure_limit) {
                         return false;
@@ -172,6 +170,9 @@
         /* Force initial check if images should appear. */
         $(document).ready(function() {
             update();
+            setTimeout(function(){
+                update();
+            }, 500);
         });
 
         return this;
@@ -231,7 +232,7 @@
     $.inviewport = function(element, settings) {
          return !$.rightoffold(element, settings) && !$.leftofbegin(element, settings) &&
                 !$.belowthefold(element, settings) && !$.abovethetop(element, settings);
-     };
+    };
 
     /* Custom selectors for your convenience.   */
     /* Use as $("img:below-the-fold").something() or */

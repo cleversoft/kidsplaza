@@ -188,14 +188,14 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 else
                     if($this->_level != 0)
                         $html .= '<span class="no-icon-megamenu"></span>';
-                $html .= '<span>'.$this->_menu->getTitle().'';
+                $html .= '<span>'.$this->escapeHtml($this->_menu->getTitle()).'';
                 if($this->_menu->getLabel()){
                     $label = $this->_menu->getLabel() == 'label1' ? $this->__('New') : $this->__('Hot!');
                     $html .= '<span class="menu-label '.$this->_menu->getLabel().'">'.$label.'</span>';
                 }
                 $html .='</span></a>';
                 if($this->_level == 1 && $this->_type == 'category')
-                    $html .= '<span class="cat-summary">'.$model->getSummary().'</span>';
+                    $html .= '<span class="cat-summary">'.$this->escapeHtml($model->getSummary()).'</span>';
             }
             if($this->_menu->isContent())
                 $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
