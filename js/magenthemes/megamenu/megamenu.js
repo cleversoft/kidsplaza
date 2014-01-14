@@ -52,7 +52,7 @@
         this.show();
     };
 })(jQuery);
-jQuery('#mt_megamenu li.root').hoverIntent(
+jQuery('#mt_megamenu li.root.parent').hoverIntent(
     function(){
         jQuery(this).addClass('over');
     },
