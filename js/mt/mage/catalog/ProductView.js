@@ -134,6 +134,8 @@ jQuery(document).ready(function(){
             jQuery(this).tab('show');
         }
     })
+    /******* Sticky*/
+    jQuery("#mt_product_tabs").sticky({ topSpacing: 70 });
 });
 function getMoreViewsItemWidth(id, column, margin){
     var width = jQuery('#'+id).width();
