@@ -13,11 +13,15 @@
  *
  */
 ?>
-<?php if(count($this->getReviewsCollection()->getItems())>0){?>
-<div class="summary-review row show-grid">
-    <?php echo $this->getChildHtml('summary_reviews'); ?>
+<h2><?php echo $this->__('Customer Reviews') ?></h2>
+<div class="mt-review-main">
+    <?php if(count($this->getReviewsCollection()->getItems())>0){?>
+        <div class="summary-review row show-grid">
+            <?php echo $this->getChildHtml('summary_reviews'); ?>
+        </div>
+    <?php }?>
+    <?php echo $this->getChildHtml('review_form') ?>
 </div>
-<?php }?>
 <?php $_items = $this->getReviewsCollection()->getItems();?>
 <div class="box-collateral box-reviews" id="customer-reviews">
     <?php if (count($_items)):?>
@@ -60,5 +64,4 @@
         <?php echo $this->getChildHtml('review_ordering') ?>
         <?php echo $this->getChildHtml('toolbar') ?>
     <?php endif;?>
-    <?php echo $this->getChildHtml('review_form') ?>
 </div>

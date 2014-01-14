@@ -111,3 +111,31 @@ function addRelatedToProduct(){
     }
     optionsPrice.reload();
 }
+
+jQuery(document).ready(function(){
+    var count = moreViewOptions.count;
+    jQuery('#moreViews').flexslider({
+        namespace: 'more-views-',
+        slideshow: false,
+        animation: "slide",
+        itemWidth: getMoreViewsItemWidth('moreViews', count, moreViewOptions.itemMargin),
+        itemMargin: moreViewOptions.itemMargin,
+        minItems: 1,
+        maxItems: count,
+        selector: ".slides > li",
+        controlNav: false
+    });
+    /******* Product Tabs*/
+    jQuery('#mt_product_tabs a').click(function (e) {
+        e.preventDefault();
+        if(jQuery(this).attr('href')=='#review-form'){
+            jQuery('.summary-review').scrollToMe();
+        }else{
+            jQuery(this).tab('show');
+        }
+    })
+});
+function getMoreViewsItemWidth(id, column, margin){
+    var width = jQuery('#'+id).width();
+    return (width/column).toFixed(2) - margin*2;
+}

@@ -17,6 +17,7 @@ $title      = $this->getConfig('widget_title');
 ?>
 <?php if ($scroll == 1):?>
     <script type="text/javascript">
+
         jQuery(document).ready(function(){
             var itemsCount = getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'column');
             jQuery('#<?php echo $id?>').flexslider({

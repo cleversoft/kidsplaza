@@ -15,7 +15,6 @@
 $summarys = $this->getSummaryBlock();
 $product = $this->getProduct();
 ?>
-<h2><?php echo $this->__('Customer Reviews') ?></h2>
 <?php if(is_array($summarys)):?>
     <div class="review-sum-total col-md-4">
         <div class="average-rating">
@@ -36,23 +35,59 @@ $product = $this->getProduct();
             <?php if($summary['votes_qty']>0):?>
                 <div class="main-progress">
                     <span class="rating-name"><?php echo $summary['name']?></span>
-                    <?php foreach($summary['votes'] as $mark=>$qty):?>
-                        <div class="review-rating-total">
-                            <div class="rating-num"><?php echo $mark;?> star :</div>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $qty['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $qty['percent'];?>%">
-                                    <span class="sr-only"><?php echo $qty['percent'];?>%</span>
-                                </div>
+                    <div class="review-rating-total">
+                        <div class="rating-num"><?php echo $this->__('5 star');?>: </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $summary['votes'][5]['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $summary['votes'][5]['percent'];?>%">
+                                <span class="sr-only"><?php echo $summary['votes'][5]['percent'];?>%</span>
                             </div>
-                            <div class="rating-num-total"><?php echo $qty['qty'];?></div>
                         </div>
-                    <?php endforeach;?>
+                        <div class="rating-num-total"><?php echo $summary['votes'][5]['qty'] ? $summary['votes'][5]['qty']:0;?></div>
+                    </div>
+                    <div class="review-rating-total">
+                        <div class="rating-num"><?php echo $this->__('4 star');?>: </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $summary['votes'][4]['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $summary['votes'][4]['percent'];?>%">
+                                <span class="sr-only"><?php echo $summary['votes'][4]['percent'];?>%</span>
+                            </div>
+                        </div>
+                        <div class="rating-num-total"><?php echo $summary['votes'][4]['qty'] ? $summary['votes'][4]['qty']:0;?></div>
+                    </div>
+                    <div class="review-rating-total">
+                        <div class="rating-num"><?php echo $this->__('3 star');?>: </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $summary['votes'][3]['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $summary['votes'][3]['percent'];?>%">
+                                <span class="sr-only"><?php echo $summary['votes'][3]['percent'];?>%</span>
+                            </div>
+                        </div>
+                        <div class="rating-num-total"><?php echo $summary['votes'][3]['qty'] ? $summary['votes'][3]['qty']:0;?></div>
+                    </div>
+                    <div class="review-rating-total">
+                        <div class="rating-num"><?php echo $this->__('2 star');?>: </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $summary['votes'][2]['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $summary['votes'][2]['percent'];?>%">
+                                <span class="sr-only"><?php echo $summary['votes'][2]['percent'];?>%</span>
+                            </div>
+                        </div>
+                        <div class="rating-num-total"><?php echo $summary['votes'][2]['qty'] ? $summary['votes'][2]['qty']:0;?></div>
+                    </div>
+                    <div class="review-rating-total">
+                        <div class="rating-num"><?php echo $this->__('1 star');?>: </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<?php echo $summary['votes'][1]['percent'];?>" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $summary['votes'][1]['percent'];?>%">
+                                <span class="sr-only"><?php echo $summary['votes'][1]['percent'];?>%</span>
+                            </div>
+                        </div>
+                        <div class="rating-num-total"><?php echo $summary['votes'][1]['qty'] ? $summary['votes'][1]['qty']:0 ;?></div>
+                    </div>
                 </div>
             <?php endif;?>
         <?php endforeach;?>
     </div>
     <div class="col-md-3">
-        <button type="button" class="rating-form btn btn-primary btn-sm"><?php echo $this->__('Write Review');?></button>
+        <div class="write-review-button">
+            <button type="button" class="rating-form btn btn-primary btn-sm"><?php echo $this->__('Write Review');?></button>
+        </div>
     </div>
 <?php endif;?>
 
