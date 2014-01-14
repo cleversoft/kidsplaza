@@ -95,12 +95,12 @@
 }
 .review-sum-total, .rating-summary-block {
     border-right: #dfdfdf solid 1px;
+    min-height: 150px;
 }
 .rating-summary-block .main-progress .rating-name {
     width: 100%;
     float: left;
-    border-bottom: #dfdfdf solid 1px;
-    margin-bottom: 15px;
+    margin-bottom: 3px;
     padding-bottom: 5px;
     font-weight: bold;
 }
@@ -119,8 +119,7 @@
 }
 .ratings-table .rating-item {
     text-align: center;
-    border-bottom: #dfdfdf solid 1px;
-    padding: 58.3px 0;
+    padding: 10px 0;
     margin-right: 12px;
 }
 .rating-item .rating-name, .rating-item .all-total {
@@ -132,9 +131,10 @@
 }
 .average-rating h3 {
     text-align: center;
-    border-bottom: #dfdfdf solid 1px;
     margin-right: 10px;
     padding-bottom: 2px;
+    margin-top: 0px;
+    font-size: 120%;
 }
 .review-sum-total p{
     padding-top: 10px;
@@ -146,7 +146,43 @@
 }
 .rating-item .rating-box {
     margin: 0 auto;
+    float: none;
 }
 .product-collateral .box-collateral {
     margin-top: 10px;
+}
+.mt-review-main {
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #fff;
+    border-width: 1px;
+    border-color: #ddd;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: none;
+    overflow: hidden;
+    position: relative;
+    padding: 14px 40px 20px;
+    border-style: solid;
+}
+.mt-review-main .form-add {
+    margin-top: 20px;
+}
+.mt-review-main .form-add .your-review {
+    border-bottom: #dfdfdf solid 1px;
+    font-size: 120%;
+    display: block;
+    font-weight: bold;
+}
+.mt-review-main .form-add h3 {
+    font-size: 100%;
+}
+.write-review-button {
+    text-align: center;
+    padding-top: 30px;
+}
+.product-view .box-reviews {
+    margin-top: 20px;
+}
+.main-progress .progress {
+    margin-bottom: 10px;
 }

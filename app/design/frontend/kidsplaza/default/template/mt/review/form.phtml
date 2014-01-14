@@ -13,8 +13,8 @@
  *
  */
 ?>
-<div class="form-add">
-    <h2><?php echo $this->__('Write Your Own Review') ?></h2>
+<div class="form-add row">
+    <span class="your-review"><?php echo $this->__('Write Your Own Review') ?></span>
     <?php if ($this->getAllowWriteReviewFlag()): ?>
     <form action="<?php echo $this->getAction() ?>" method="post" id="review-form">
         <?php echo $this->getBlockHtml('formkey'); ?>
@@ -22,7 +22,7 @@
             <?php echo $this->getChildHtml('form_fields_before')?>
             <h3><?php echo $this->__("You're reviewing:"); ?> <span><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></span></h3>
             <?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
-                <h4><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></h4>
+                <span class="how-do"><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></span>
                 <span id="input-message-box"></span>
                 <div id="product-review-table" class="review-rating">
                     <div class="rating-type-item"></div>

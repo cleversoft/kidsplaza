@@ -160,7 +160,7 @@ Product view
         <label>Catalog Product View (Any)</label>
         <!-- Mage_Catalog -->
         <reference name="root">
-            <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
         </reference>
         <reference name="head">
             <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
@@ -194,13 +194,34 @@ Product view
                 </block>
 
                 <block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
-
-                <block type="catalog/product_view_description" name="product.description" as="description" template="catalog/product/view/description.phtml">
-                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                <!--Add Tabs-->
+                <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
+                    <action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+                    <!--action method="addTab" translate="title" module="catalog"><alias>tabreviews</alias><title>Reviews</title><block>mtreview/product_view_list</block><template>mtreview/product/view/list.phtml</template></action-->
+                    <!--action method="addTab" translate="title" module="tag"><alias>product.tags</alias><title>Product Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action-->
+                    <action method="addTab" translate="title" module="catalog"><alias>additional</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
                 </block>
-
-                <block type="catalog/product_view_attributes" name="product.attributes" as="additional" template="catalog/product/view/attributes.phtml">
-                    <action method="addToParentGroup"><group>detailed_info</group></action>
+                <!-- end: Add tabs -->
+                <!--MT Review-->
+                <block type="core/template" name="product.info.other" as="other" template="mt/review/product/view/other.phtml"/>
+                <block type="page/html_pager" name="product_review_list.toolbar" />
+                <block type="mtreview/product_toolbar" name="mtreview_list_toolbar" template="catalog/product/list/toolbar.phtml">
+                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                </block>
+                <block type="mtreview/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="mt/review/product/view/list.phtml">
+                    <block type="mtreview/summary" name="summary_reviews" as="summary_reviews" template="mt/review/product/view/summary.phtml"/>
+                    <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
+                        <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
+                        <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
+                        <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/review/report.phtml" />
+                        <block type="mtreview/comments_list" name="mtreview.comments" as="mtreview_comments" template="mt/review/comments/list.phtml" />
+                    </block>
+                    <block type="mtreview/form" name="product.review.form" as="review_form">
+                        <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+                            <label>Review Form Fields Before</label>
+                            <action method="setMayBeInvisible"><value>1</value></action>
+                        </block>
+                    </block>
                 </block>
 
                 <block type="catalog/product_view" name="product.info.addto" as="addto" template="catalog/product/view/addto.phtml"/>
@@ -248,27 +269,7 @@ Product view
                 <action method="setTierPriceTemplate"><template>catalog/product/view/tierprices.phtml</template></action>
                 <action method="unsetCallChild"><child>container1</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
                 <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
-                <!--MT Review-->
-                <block type="core/template" name="product.info.other" as="other" template="mt/review/product/view/other.phtml"/>
-                <block type="page/html_pager" name="product_review_list.toolbar" />
-                <block type="mtreview/product_toolbar" name="mtreview_list_toolbar" template="catalog/product/list/toolbar.phtml">
-                    <block type="page/html_pager" name="product_list_toolbar_pager"/>
-                </block>
-                <block type="mtreview/product_view_list" name="product.info.product_additional_data" as="product_additional_data" template="mt/review/product/view/list.phtml">
-                    <block type="mtreview/summary" name="summary_reviews" as="summary_reviews" template="mt/review/product/view/summary.phtml"/>
-                    <block type="mtreview/footer" name="mtreview.footer" as="mtreview_footer" template="mt/review/footer.phtml">
-                        <block type="mtreview/helpfulness" name="mtreview.helpfulness" as="mtreview_helpfulness" template="mt/review/helpfulness.phtml" />
-                        <block type="mtreview/reply" name="mtreview.reply" as="mtreview_reply" template="mt/review/reply.phtml" />
-                        <block type="mtreview/report" name="mtreview.report" as="mtreview_report" template="mt/review/report.phtml" />
-                        <block type="mtreview/comments_list" name="mtreview.comments" as="mtreview_comments" template="mt/review/comments/list.phtml" />
-                    </block>
-                    <block type="mtreview/form" name="product.review.form" as="review_form">
-                        <block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
-                            <label>Review Form Fields Before</label>
-                            <action method="setMayBeInvisible"><value>1</value></action>
-                        </block>
-                    </block>
-                </block>
+
             </block>
         </reference>
         <reference name="right">
