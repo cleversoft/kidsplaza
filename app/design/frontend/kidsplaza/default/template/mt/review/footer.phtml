@@ -33,7 +33,7 @@
     </div>
     <?php if($this->showReply()){?>
     <div class="comment-box" id="commnet_field_<?php echo $this->getReviewId();?>" style="overflow: hidden; display: none;">
-        <textarea placeholder="<?php echo $this->__('Enter your answer in this content. Minimum 100 words, maximum 1500 words.');?>" maxlength="1500" id="comment_detail_<?php echo $this->getReviewId();?>" name="comment_detail_<?php echo $this->getReviewId();?>" class="required-entry ReviewTextArea"></textarea>
+        <textarea placeholder="<?php echo $this->__('Enter your answer in this content. Minimum 100 words, maximum 1500 words.');?>" maxlength="1500" id="comment_detail_<?php echo $this->getReviewId();?>" name="comment_detail_<?php echo $this->getReviewId();?>" class="required-entry ReviewTextArea form-control"></textarea>
         <div class="btt-submit-review">
             <span class="comment-loading"></span>
             <button class="button " onclick="commentReview(this,'<?php echo $this->getReviewId();?>');" type="button">

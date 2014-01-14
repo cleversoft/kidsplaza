@@ -129,13 +129,11 @@ jQuery(document).ready(function(){
     jQuery('#mt_product_tabs a').click(function (e) {
         e.preventDefault();
         if(jQuery(this).attr('href')=='#review-form'){
-            jQuery('.summary-review').scrollToMe();
+            jQuery('.mt-review-main').scrollToMe();
         }else{
             jQuery(this).tab('show');
         }
     })
-    /******* Sticky*/
-    jQuery("#mt_product_tabs").sticky({ topSpacing: 70 });
 });
 function getMoreViewsItemWidth(id, column, margin){
     var width = jQuery('#'+id).width();
