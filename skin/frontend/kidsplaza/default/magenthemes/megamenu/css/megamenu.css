@@ -38,7 +38,7 @@ header .mt-menu-top {
     margin: 8px 0;
 }
 #megamenu ul li.level-0 > a span {
-    color: #aaa;
+    color: #757575;
     background: url(../images/icon-menu-parent.png) no-repeat right center;
     padding-right: 15px;
 }
@@ -108,10 +108,10 @@ header .mt-menu-top {
     color: #fff;
     text-transform:uppercase;
     text-decoration:none;
-    font-size: 11px;
+    font-size: 12px;
     display:block;
     cursor:pointer;
-    padding: 0 5px 0 14px;
+    padding: 0 5px 0 12px;
 }
 #megamenu ul li a span {
 }
