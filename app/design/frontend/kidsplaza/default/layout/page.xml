@@ -111,40 +111,41 @@ Default layout, loads most of the pages
                     <action method="setBlockId"><block_id>right-ft-top</block_id></action>
                 </block>
 
-                <block type="cms/block" name="ft.tong.dai" as="ft.tong.dai">
-                    <action method="setBlockId"><block_id>ft-tong-dai</block_id></action>
+                <block type="core/text_list" name="ft.slot1" as="ft.slot1">
+                    <label>Page Footer Slot 1</label>
                 </block>
-                <block type="cms/block" name="ft.gioi.thieu" as="ft.gioi.thieu">
-                    <action method="setBlockId"><block_id>ft-gioi-thieu</block_id></action>
+                <block type="core/text_list" name="ft.slot2" as="ft.slot2">
+                    <label>Page Footer Slot 2</label>
                 </block>
-                <block type="cms/block" name="ft.huong.dan" as="ft.huong.dan">
-                    <action method="setBlockId"><block_id>ft-huong-dan</block_id></action>
+                <block type="core/text_list" name="ft.slot3" as="ft.slot3">
+                    <label>Page Footer Slot 3</label>
                 </block>
-                <block type="cms/block" name="ft.van.chuyen" as="ft.van.chuyen">
-                    <action method="setBlockId"><block_id>ft-van-chuyen</block_id></action>
+                <block type="core/text_list" name="ft.slot4" as="ft.slot4">
+                    <label>Page Footer Slot 4</label>
                 </block>
+                <block type="core/text_list" name="ft.slot5" as="ft.slot5">
+                    <label>Page Footer Slot 5</label>
+                </block>
+                <block type="core/text_list" name="ft.slot6" as="ft.slot6">
+                    <label>Page Footer Slot 6</label>
+                </block>
+                <block type="core/text_list" name="ft.slot7" as="ft.slot7">
+                    <label>Page Footer Slot 7</label>
+                </block>
+                <block type="core/text_list" name="ft.slot8" as="ft.slot8">
+                    <label>Page Footer Slot 8</label>
+                </block>
+
                 <block type="cms/block" name="ft.mail" as="ft.mail">
                     <action method="setBlockId"><block_id>ft-mail</block_id></action>
                 </block>
                 <block type="cms/block" name="top.social" as="top.social">
                     <action method="setBlockId"><block_id>social-links</block_id></action>
                 </block>
-
-                <block type="cms/block" name="ft.bottom" as="ft.bottom">
-                    <action method="setBlockId"><block_id>ft-bottom</block_id></action>
-                </block>
-
-                <block type="page/html_wrapper" name="bottom.container" as="bottomContainer" translate="label">
-                    <label>Page Footer</label>
-                    <action method="setElementClass"><value>bottom-container</value></action>
-                </block>
-                <block type="page/switch" name="store_switcher" as="store_switcher" template="page/switch/stores.phtml"/>
-                <block type="page/template_links" name="footer_links" as="footer_links" template="page/template/links.phtml"/>
             </block>
 
             <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
                 <label>Page Bottom</label>
-                <block type="page/html_cookieNotice" name="global_cookie_notice" as ="global_cookie_notice" template="page/html/cookienotice.phtml" before="-" />
             </block>
         </block>
 

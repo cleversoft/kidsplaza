@@ -4,7 +4,11 @@
  * @license PHP files are GNU/GPL
 *******************************************************/
 header .mt-menu-top {
-    background: url(../../megamenu/images/bgmenu.png) repeat-x left top;
+    height: 41px;
+    border: 1px solid #cfcfcf;
+    border-left: 0;
+    border-right: 0;
+    background: #fff;
 }
 #megamenu {
     margin: 0 auto;
@@ -25,21 +29,21 @@ header .mt-menu-top {
     position: relative;
 }
 #megamenu ul li.level-0 {
-    height:46px;
+    height: 41px;
 }
-#megamenu ul li.parent a{
-    border-right: 1px solid #fff;
-    height: 22px;
-    line-height: 22px;
-    margin-top: 12px;
+#megamenu ul li.level-0 > a{
+    border-right: 1px solid #cfcfcf;
+    height: 24px;
+    line-height: 24px;
+    margin: 8px 0;
 }
-#megamenu ul li.level-0.parent a span {
-    background: url(../../megamenu/images/icon-menu-parent.png) no-repeat right center transparent;
-    padding: 0 18px 0 0;
+#megamenu ul li.level-0 > a span {
+    color: #aaa;
+    background: url(../images/icon-menu-parent.png) no-repeat right center;
+    padding-right: 15px;
 }
-#megamenu ul li.level-0.active a span, #megamenu ul li.level-0.over a span {
-    background: url(../../megamenu/images/icon-menu-hover.png) no-repeat right center transparent;
-    padding: 0 18px 0 0;
+#megamenu ul li.level-0.over > a span {
+    color: #FF4E8F;
 }
 #megamenu ul li ul li.level-1 a span {
     background: none !important;
@@ -64,9 +68,7 @@ header .mt-menu-top {
     border: none !important;
 }
 #megamenu ul li.over {
-    background-color: #fff !important;
-    background-image: none !important;
-    border-top: #ff4b8c solid 3px;
+
 }
 #megamenu ul li.current {
     background: #fff !important;
@@ -142,10 +144,10 @@ header .mt-menu-top {
 }
 #megamenu li.root > div.childcontent {
     position:absolute;
-    top:46px;
+    top:40px;
     left:-10000px;
     background:#fff;
-    z-index:7;
+    z-index:9;
     text-align: left;
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
@@ -217,8 +219,20 @@ header .mt-menu-top {
     background:#FFFFFF;
     z-index:20;
 }
-#megamenu .level-0.aactive{
-    font-weight: 700;
+#megamenu li.level-0:last-child > a{
+    border-right: 0;
+}
+#megamenu li.level-0:first-child > a{
+    margin: 3px 0;
+    border-right: 0;
+    padding: 0;
+}
+#megamenu li.level-0:first-child span{
+    background: url(../../../images/bgIcons.png) no-repeat -33px -33px;
+    display: block;
+    width: 33px;
+    height: 33px;
+    text-indent: -9999px;
 }
 /*Drill menu*/
 .mt-drillmenu {
