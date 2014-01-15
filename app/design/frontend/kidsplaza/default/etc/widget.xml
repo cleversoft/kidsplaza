@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MT
+ * @package     KidsPlaza
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+-->
+<widgets>
+    <mtwidget>
+        <parameters>
+            <template translate="label">
+                <label>Template</label>
+                <visible>1</visible>
+                <type>select</type>
+                <values>
+                    <home_products translate="label">
+                        <value>mt/widget/home-products.phtml</value>
+                        <label>Home Products</label>
+                    </home_products>
+                </values>
+            </template>
+        </parameters>
+    </mtwidget>
+</widgets>

@@ -10,7 +10,7 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(http://themes.googleusercontent.com/static/fonts/opensans/v7/59ZRklaO5bWGqF5A9baEET8E0i7KZn-EPnyo3HZu7kw.woff) format('woff')}
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(http://themes.googleusercontent.com/static/fonts/opensans/v7/k3k702ZOKiLJc3WVjuplzHwUvq1pQaUIDqPgpae5ItU.woff) format('woff')}
 .ratings {margin:7px 0; line-height:1em;white-space:nowrap;}
-.rating-box { width:69px; height:13px; margin-right:5px; float:left; background:url(http://img.tiki.vn/skin/frontend/default/tiki/images/product_rating_blank_star.gif) repeat-x;}
+.rating-box { width:69px; height:13px; margin-right:5px; display: inline-block; background:url(http://img.tiki.vn/skin/frontend/default/tiki/images/product_rating_blank_star.gif) repeat-x;}
 .rating-box .rating {height:13px;background:url(http://img.tiki.vn/skin/frontend/default/tiki/images/product_rating_full_star.gif) repeat-x;}
 .ratings-list {float:left;}
 .ratings-list td {padding:3px 0;}
@@ -213,7 +213,7 @@ input,textarea{outline:0}
 .cart tfoot .btn{padding:2px 5px}
 .discount .btn{padding:3px 10px}
 .discount input{height:34px;border-radius:0}
-.block-subscribe{width:280px}
+.block-subscribe{width:300px;}
 .block-subscribe input{height:40px;border-radius:0}
 .fields{clear:both}
 .fields .field{width:50%;float:left}
@@ -339,3 +339,22 @@ p.back-link{float: left;}
 .cloud-zoom-gallery.active{border: 1px solid #01a1ed;}
 .cloud-zoom-gallery {border: 1px solid #fff;display: block;text-align: center;}
 .desc table .label{display: block;text-align: left;font-weight: normal;font-size: 100%;color: #333;padding: 7px;}
+.btn-disabled{background-color: #555; border: 1px dashed #aaa; outline: 3px solid #555;}
+.btn-disabled:focus,.btn-disabled:active{outline: 3px solid #555;}
+.cms-index-index .std{display: none;}
+.cms-index-index .slider-product-wrapper{margin-bottom: 40px;float: left;}
+.slider-product-wrapper .tab-content{float: left;}
+.slider-product-wrapper .nav-tabs li{padding:20px 10px;}
+.slider-product-wrapper .nav-tabs li.active a{border: 1px solid #fff;color: #ff4884;font-weight: 700;}
+.slider-product-wrapper .nav-tabs li a:hover{border: 1px solid #fff;}
+.bordered .tab-pane .products-grid{clear: both;}
+.bordered .tab-pane .slide{display: inline-block;vertical-align: top;}
+.bordered{border: 1px solid #ccc;float: left;}
+.bordered .tab-content{float: none;}
+.bordered .nav-tabs-wrapper{padding: 0 15px;float: left;margin-bottom: 10px;width: 100%;}
+.bordered .nav-tabs{float: left;width: 100%;}
+.nav-tabs li:first-child{padding-left: 0;}
+.nav-tabs li:last-child{padding-right: 0;}
+.btn-widget{margin: 0 0 3px 3px;font-weight: 700;}
+.col-rigth{padding-right: 0;}
+.rev_slider_wrapper{margin-bottom: 20px !important;}

@@ -58,10 +58,14 @@ var KidsPlazaSearch = Class.create(Varien.searchForm, {
     }
 });
 
+//init location
 var KPLocation = new KidsPlazaLocation();
-var KPCart = new KidsPlazaCart('cart-top');
+//init mini cart
+new KidsPlazaCart('cart-top');
+//init search
 var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
 KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
+//init newsletter
 new VarienForm('newsletter-validate-detail');
 //init sticky header
 jQuery('.mt-menu-top').sticky({topSpacing:-1});

@@ -15,8 +15,9 @@
 class MT_Review_Block_Helper extends Mage_Review_Block_Helper
 {
     protected $_availableTemplates = array(
-        'default' => 'mt/review/helper/summary.phtml',
-        'short'   => 'mt/review/helper/summary_short.phtml'
+        'default'   => 'mt/review/helper/summary.phtml',
+        'short'     => 'mt/review/helper/summary_short.phtml',
+        'mini'      => 'mt/review/helper/summary_mini.phtml'
     );
 
     public function getReviewsUrl()

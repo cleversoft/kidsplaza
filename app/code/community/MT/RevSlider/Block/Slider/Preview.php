@@ -51,7 +51,10 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
         $head = $this->getLayout()->getBlock('head');
         $head->addItem('js_css', 'mt/revslider/rs-plugin/css/settings.css');
         $head->addLinkRel('stylesheet', $this->getUrl('revslider/index/getCssCaptions'));
-        $head->addJs('mt/extensions/jquery/jquery-1.9.1.min.js');
+        $js = $this->getLayout()->getBlock('js_bottom');
+        $js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
+        $js->addJs('mt/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js');
+        $js->addJs('mt/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js');
         return parent::_prepareLayout();
     }
 
@@ -73,8 +76,8 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
             $html = '';
 
             $scripts = array();
-            $scripts[] = Mage::getBaseUrl('js').'mt/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js';
-            $scripts[] = Mage::getBaseUrl('js').'mt/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js';
+            //$scripts[] = Mage::getBaseUrl('js').'mt/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js';
+            //$scripts[] = Mage::getBaseUrl('js').'mt/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js';
             //$scripts[] = Mage::getBaseUrl('js').'mt/revslider/rs-plugin/js/jquery.themepunch.revolution.js';
 
             $styles = array();
@@ -829,8 +832,7 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
         $navigationVOffset = (int)$slider->getData("navigaion_offset_vert");
 
         return "<script type='text/javascript'>
-        jQuery(document).ready(function(){
-            jQuery('#{$this->sliderHtmlId}').show().revolution({
+            var {$this->sliderHtmlId} = {
                 dottedOverlay: '{$dottedOverlay}',
                 delay: {$delay},
                 startwidth: {$startwidth},
@@ -888,8 +890,7 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
                 startWithSlide: {$startWithSlide},
                 videoJsPath: '{$videoJsUrl}',
                 fullScreenOffsetContainer: '{$slider->getData("fullscreen_offset_container")}'
-            });
-        });
+            };
         </script>";
     }
 }

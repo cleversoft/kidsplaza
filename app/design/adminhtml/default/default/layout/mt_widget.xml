@@ -14,7 +14,7 @@
         <reference name="head">
             <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
             <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/plugins/jquery-ui/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
-            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.10.2.min.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/jquery-ui/jquery-ui-1.10.3.min.js</script></action>
             <action method="addJs"><script>mt/widget/widget.js</script></action>
@@ -24,7 +24,7 @@
         <reference name="head">
             <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
             <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
-            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.10.2.min.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/jquery-ui/jquery-ui-1.10.3.min.js</script></action>
             <action method="addJs"><script>mt/widget/widget.js</script></action>
@@ -34,7 +34,7 @@
         <reference name="head">
             <action method="addItem"><type>skin_css</type><css>mt/widget/style.css</css></action>
             <action method="addItem"><type>js_css</type><script>mt/extensions/jquery/plugins/jquery-ui/css/no-theme/jquery-ui-1.10.3.min.css</script></action>
-            <action method="addJs"><script>mt/extensions/jquery/jquery-1.9.1.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/jquery-1.10.2.min.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/jquery-ui/jquery-ui-1.10.3.min.js</script></action>
             <action method="addJs"><script>mt/widget/widget.js</script></action>

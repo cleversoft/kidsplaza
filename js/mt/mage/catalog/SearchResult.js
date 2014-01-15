@@ -8,5 +8,7 @@
  */
 'use strict';
 
-//init image lazy load
-jQuery('img.lazy').lazyload({event:'scroll|widgetnav',failure_limit:10});
+jQuery(function(){
+    //init image lazy load
+    jQuery('img.lazy').lazyload({event:'scroll|widgetnav',failure_limit:10});
+});

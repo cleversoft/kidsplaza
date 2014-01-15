@@ -7,10 +7,8 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_Widget_Block_Widget
-    extends Mage_Catalog_Block_Product_Abstract
-    implements Mage_Widget_Block_Interface {
-
+class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract implements Mage_Widget_Block_Interface {
+    protected $_categories;
     protected $_productCollection;
     protected $_customerGroupId;
 
@@ -226,53 +224,53 @@ class MT_Widget_Block_Widget
         }
     }
 
-    public function getLoadedProductCollection() {
-        if (!$this->_productCollection){
-            $mode = $this->_getData('mode');
-            $collection = null;
-            switch ($mode) {
-                case 'new':
-                    $collection = $this->getNewCollection();
-                    break;
-                case 'latest':
-                    $collection = $this->getLatestCollection();
-                    break;
-                case 'bestsell':
-                    $collection = $this->getBestSellerCollection();
-                    break;
-                case 'mostviewed':
-                    $collection = $this->getMostViewedCollection();
-                    break;
-                case 'featured':
-                    $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'featured');
-                    if($attribute->getId()) {
-                        $collection = $this->getFeaturedCollection();
-                    }
-                    break;
-                case 'random':
-                default:
-                    $collection = $this->getRandomCollection();
-                    break;
-                case 'specificed':
-                    $collection = $this->getSpecificedCollection();
-                    break;
-                case 'related':
-                    $collection = $this->getRelatedCollection();
-                    break;
-                case 'up':
-                    $collection = $this->getUpSellCollection();
-                    break;
-                case 'cross':
-                    $collection = $this->getCrossSellCollection();
-                    break;
-                case 'discount':
-                    $collection = $this->getDiscountCollection();
-            }
-            Mage::dispatchEvent('catalog_block_product_list_collection', array(
-                'collection' => $collection
-            ));
-            $this->_productCollection = $collection;
+    public function getLoadedProductCollection($filterCategory=true, $loadCache=true) {
+        if ($loadCache && $this->_productCollection) return $this->_productCollection;
+        $mode = $this->_getData('mode');
+        $collection = null;
+        switch ($mode) {
+            case 'new':
+                $collection = $this->getNewCollection();
+                break;
+            case 'latest':
+                $collection = $this->getLatestCollection($filterCategory);
+                break;
+            case 'bestsell':
+                $collection = $this->getBestSellerCollection();
+                break;
+            case 'mostviewed':
+                $collection = $this->getMostViewedCollection();
+                break;
+            case 'featured':
+                $attribute = Mage::getModel('eav/config')->getAttribute('catalog_product', 'featured');
+                if($attribute->getId()) {
+                    $collection = $this->getFeaturedCollection();
+                }
+                break;
+            case 'random':
+            default:
+                $collection = $this->getRandomCollection();
+                break;
+            case 'specificed':
+                $collection = $this->getSpecificedCollection();
+                break;
+            case 'related':
+                $collection = $this->getRelatedCollection();
+                break;
+            case 'up':
+                $collection = $this->getUpSellCollection();
+                break;
+            case 'cross':
+                $collection = $this->getCrossSellCollection();
+                break;
+            case 'discount':
+                $collection = $this->getDiscountCollection();
         }
+        Mage::dispatchEvent('catalog_block_product_list_collection', array(
+            'collection' => $collection
+        ));
+        $this->_productCollection = $collection;
+
         return $this->_productCollection;
     }
 
@@ -494,9 +492,9 @@ class MT_Widget_Block_Widget
         return $products;
     }
 
-    protected function getLatestCollection($fieldorder='updated_at', $order='desc') {
+    protected function getLatestCollection($filterCategory=true, $fieldorder='updated_at', $order='desc') {
         $catIds = $this->getCategoryIds();
-        if($catIds) {
+        if($catIds && $filterCategory) {
             $catIds = explode(',', $catIds);
             $proIds = $this->getProductIdsByCategories($catIds);
             $products = Mage::getResourceModel('catalog/product_collection')
@@ -629,10 +627,10 @@ class MT_Widget_Block_Widget
             ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
             ->addStoreFilter();
 
-        if($catId) {
-            $category = Mage::getModel('catalog/category')->load($catId);
-            if($category->getId()) {
-                $collection->addCategoryFilter($category);
+        if ($catId) {
+            $categories = $this->getCategories();
+            if (isset($categories[$catId])) {
+                $collection->addCategoryFilter($categories[$catId]);
             }
         }
         return $collection;
@@ -663,5 +661,58 @@ class MT_Widget_Block_Widget
             Mage::throwException($e->getMessage());
         }
         return $table;
+    }
+
+    /**
+     * Create reviews summary helper block once
+     *
+     * @return boolean
+     */
+    protected function _initReviewsHelperBlock() {
+        if (!$this->_reviewsHelperBlock) {
+            if (!Mage::helper('catalog')->isModuleEnabled('Mage_Review')) {
+                return false;
+            } else {
+                $this->_reviewsHelperBlock = $this->getLayout()->createBlock('mtreview/helper');
+            }
+        }
+        return true;
+    }
+
+    public function getCategories(){
+        if ($this->_categories) return $this->_categories;
+
+        $categories = explode(',', $this->getData('category_ids'));
+        if (!count($categories)) return array();
+
+        $collection = Mage::getModel('catalog/category')->getCollection()
+            ->addIdFilter($categories)
+            ->addAttributeToSelect('*');
+
+        foreach ($collection as $category){
+            $this->_categories[$category->getId()] = $category;
+        }
+
+        return $this->_categories;
+    }
+
+    public function getProductCollection($category){
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+            ->addMinimalPrice()
+            ->addFinalPrice()
+            ->addStoreFilter()
+            ->addUrlRewrite()
+            ->addTaxPercents()
+            ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+            ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
+            ->setOrder('updated_at', 'desc')
+            ->setPage(1, $this->getData('limit'));
+
+        if ($category instanceof Mage_Catalog_Model_Category){
+            $collection->addCategoryFilter($category);
+        }
+
+        return $collection;
     }
 }
