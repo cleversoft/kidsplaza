@@ -69,10 +69,16 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                     <tr>
                         <td colspan="50" class="a-right">
                             <?php if($this->getContinueShoppingUrl()): ?>
-                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn btn-kid" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>&nbsp;
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn btn-kid" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
+                                    <i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $this->__('Continue Shopping') ?>
+                                </button>&nbsp;
                             <?php endif; ?>
-                            <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>&nbsp;
-                            <button type="button" onclick="mtOneStepCheckout.updateCart('empty_cart');" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn btn-kid"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>
+                            <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid">
+                                <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
+                            </button>&nbsp;
+                            <button type="button" onclick="mtOneStepCheckout.updateCart('empty_cart');" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn btn-kid">
+                                <i class="glyphicon glyphicon-remove"></i> <?php echo $this->__('Clear Shopping Cart'); ?>
+                            </button>
                         </td>
                     </tr>
                 </tfoot>

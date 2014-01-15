@@ -148,9 +148,9 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 $html .= '<li '.$class;
             }
         }
-        if($this->_menu->hasChild(true)) {
+        if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if(!$this->_menu->isGroup() && $this->_level != 0) {
-                //$html .= ' onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);"';
+                $html .= ' onmouseover="megamenu.showSubMegamenu(this, 1);" onmouseout="megamenu.showSubMegamenu(this, 0);"';
             }
         }
         $html .= '>';
