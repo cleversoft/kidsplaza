@@ -114,8 +114,8 @@ header .mt-menu-top {
 #megamenu ul li a span {
 }
 #megamenu div.childcontent ul.last {
-
-    margin: 10px 0 0;
+    margin: 15px 0;
+    padding: 0 15px;
 }
 #megamenu div.childcontent ul.col1,
 #megamenu div.childcontent ul.col2 {
