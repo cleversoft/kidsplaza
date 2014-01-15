@@ -129,11 +129,12 @@ input,textarea{outline:0}
 .footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;z-index:2;float:left;width:100%}
 .footer-center-inner{padding:50px 0 20px 0;background-color:#0095d6}
 .footer-center ul{list-style:none}
-.footer-center ul li a{font-size:90%;font-weight:lighter}
+.footer-center ul li a{font-size:13px;}
 .footer-center a,.footer-center h2,.footer-center span{color:#fff;font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
 .footer-center h2{font-size:90%;font-weight:bold;margin:0 0 8px}
 .footer-center span{font-size:220%}
 .footer-center-inner .row{margin-bottom: 30px;}
+.footer-center-inner .items{padding-right: 0;}
 .footer-center .items .block em{background:url("../images/bgIcons.png") no-repeat 0 0;display:block;float:left;height:33px;margin:-8px 12px 0 0;width:33px}
 .footer-center .items .block.ft-tong-dai em{background-position:-66px -33px}
 .footer-center .items .block.block-gt em{background-position:-99px -33px}

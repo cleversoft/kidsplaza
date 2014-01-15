@@ -136,8 +136,8 @@ Default layout, loads most of the pages
                     <label>Page Footer Slot 8</label>
                 </block>
 
-                <block type="cms/block" name="ft.mail" as="ft.mail">
-                    <action method="setBlockId"><block_id>ft-mail</block_id></action>
+                <block type="cms/block" name="ft.email" as="ft.email">
+                    <action method="setBlockId"><block_id>ft-email</block_id></action>
                 </block>
                 <block type="cms/block" name="top.social" as="top.social">
                     <action method="setBlockId"><block_id>social-links</block_id></action>
