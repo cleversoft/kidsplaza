@@ -182,3 +182,17 @@ if (window.moreViewOptions){
 }
 //init table description
 jQuery('table', '#product_tabs_description_contents').addClass('table');
+//init zoom
+jQuery('img.img-zoom').imagezoomsl({
+    zoomrange: [1,3],
+    magnifierborder: '1px solid #ddd'
+});
+jQuery('.more-views img').click(function(){
+    var item = jQuery(this);
+    jQuery('img.img-zoom').fadeOut(100, function(){
+        jQuery(this)
+            .attr('src', item.attr('data-small'))
+            .attr('data-large', item.attr('data-large'))
+            .fadeIn(100);
+    });
+});

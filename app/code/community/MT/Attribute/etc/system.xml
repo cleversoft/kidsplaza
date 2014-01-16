@@ -96,7 +96,7 @@
                         </width3>
                     </fields>
                 </general>
-                <czoom translate="label">
+                <!--czoom translate="label">
                     <label>Cloud Zoom</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>1</sort_order>
@@ -200,7 +200,7 @@
                             </depends>
                         </margin>
                     </fields>
-                </czoom>
+                </czoom-->
             </groups>
         </mtattribute>
     </sections>

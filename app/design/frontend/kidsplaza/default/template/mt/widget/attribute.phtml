@@ -17,33 +17,37 @@ $title      = $this->getConfig('widget_title');
 ?>
 <?php if ($scroll == 1):?>
     <script type="text/javascript">
-
-        jQuery(document).ready(function(){
-            var itemsCount = getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'column');
-            jQuery('#<?php echo $id?>').flexslider({
+        <?php echo $id?> = {
+            responsive: <?php echo $this->getConfig('responsive')?>,
+            config: {
                 namespace: '<?php echo $this->getConfig('namespace')?>',
                 slideshow: <?php echo $this->getConfig('autoplay')?>,
                 slideshowSpeed: <?php echo $this->getConfig('speed')?>,
                 animationLoop: <?php echo $this->getConfig('loop')?>,
-                controlNav: <?php echo $this->getConfig('paging')?>,
-                animation: "slide",
-                itemWidth: getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'width'),
+                controlNav: false,
+                directionNav: false,
                 itemMargin: <?php echo $this->getConfig('margin')?>,
-                minItems: itemsCount,
-                maxItems: itemsCount,
-                selector: ".slides > .slide",
                 move: <?php echo $this->getConfig('move')?>,
-                onResize: function(slider){
-                    var itemsCount = getFlexSliderItemWidth('<?php echo $id?>', <?php echo $this->getConfig('responsive')?>, 'column');
-                    slider.vars.minItems = itemsCount;
-                    slider.vars.maxItems = itemsCount;
+                start: function(e){
+                    jQuery('.btn-prev', e).click(function(){
+                        e.flexAnimate(e.getTarget("prev"), true);
+                    });
+                    jQuery('.btn-next', e).click(function(){
+                        e.flexAnimate(e.getTarget("next"), true);
+                    });
                 }
-            });
-        });
+            }
+        };
     </script>
 <?php endif ?>
 <div class="slider-attribute-wrapper<?php echo $scroll==1 ? ' flexslider' : ''?>" id="<?php echo $id ?>">
-    <?php if ($title):?><h2><?php echo $title?></h2><?php endif ?>
+    <?php if ($title):?>
+        <button class="btn-widget btn btn-kid" type="button"><?php echo $title?></button>
+    <?php endif ?>
+    <div class="btn-group">
+        <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
     <ul class="slides">
         <?php foreach ($attributes as $attribute): ?>
             <li class="slide">
@@ -54,7 +58,3 @@ $title      = $this->getConfig('widget_title');
         <?php endforeach ?>
     </ul>
 </div>
-<style>
-    .attribute-slider-wrapper .slide {text-align: center}
-    .attribute-slider-wrapper .slide a {margin: 2px; display: inline-block}
-</style>
