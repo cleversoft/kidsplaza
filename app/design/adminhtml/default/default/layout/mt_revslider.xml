@@ -82,14 +82,17 @@
                 <if>lte IE 9</if>
             </action>
             <action method="addJs">
-                <file>mt/extensions/jquery/jquery-1.9.1.min.js</file>
+                <file>mt/extensions/jquery/jquery-1.10.2.min.js</file>
             </action>
             <action method="addJs">
-                <file>mt/extensions/jquery/jquery-ui-1.10.3.min.js</file>
+                <file>mt/extensions/jquery/compatibility.js</file>
+            </action>
+            <action method="addJs">
+                <file>mt/extensions/jquery/plugins/jquery-ui/jquery-ui-1.10.3.min.js</file>
             </action>
             <action method="addItem">
                 <type>js_css</type>
-                <file>mt/extensions/jquery/css/no-theme/jquery-ui-1.10.3.min.css</file>
+                <file>mt/extensions/jquery/plugins/jquery-ui/css/no-theme/jquery-ui-1.10.3.min.css</file>
             </action>
             <action method="addJs">
                 <file>mt/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js</file>
