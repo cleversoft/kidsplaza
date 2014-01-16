@@ -59,4 +59,171 @@
             </directory>
         </models>
     </global>
+
+    <default>
+        <url>
+            <convert>
+                <char001><from>á</from><to>a</to></char001>
+                <char002><from>à</from><to>a</to></char002>
+                <char003><from>ả</from><to>a</to></char003>
+                <char004><from>ã</from><to>a</to></char004>
+                <char005><from>ạ</from><to>a</to></char005>
+
+                <char006><from>ă</from><to>a</to></char006>
+                <char007><from>ắ</from><to>a</to></char007>
+                <char008><from>ặ</from><to>a</to></char008>
+                <char009><from>ằ</from><to>a</to></char009>
+                <char010><from>ẳ</from><to>a</to></char010>
+                <char011><from>ẵ</from><to>a</to></char011>
+
+                <char012><from>â</from><to>a</to></char012>
+                <char013><from>ấ</from><to>a</to></char013>
+                <char014><from>ầ</from><to>a</to></char014>
+                <char015><from>ẩ</from><to>a</to></char015>
+                <char016><from>ẫ</from><to>a</to></char016>
+                <char017><from>ậ</from><to>a</to></char017>
+
+                <char018><from>Á</from><to>A</to></char018>
+                <char019><from>À</from><to>A</to></char019>
+                <char020><from>Ả</from><to>A</to></char020>
+                <char021><from>Ã</from><to>A</to></char021>
+                <char022><from>Ạ</from><to>A</to></char022>
+
+                <char023><from>Ă</from><to>A</to></char023>
+                <char024><from>Ắ</from><to>A</to></char024>
+                <char025><from>Ằ</from><to>A</to></char025>
+                <char026><from>Ẳ</from><to>A</to></char026>
+                <char027><from>Ẵ</from><to>A</to></char027>
+                <char028><from>Ặ</from><to>A</to></char028>
+
+                <char029><from>Â</from><to>A</to></char029>
+                <char030><from>Ấ</from><to>A</to></char030>
+                <char031><from>Ầ</from><to>A</to></char031>
+                <char032><from>Ẩ</from><to>A</to></char032>
+                <char033><from>Ẫ</from><to>A</to></char033>
+                <char034><from>Ậ</from><to>A</to></char034>
+
+                <char035><from>đ</from><to>d</to></char035>
+                <char036><from>Đ</from><to>D</to></char036>
+
+                <char037><from>é</from><to>e</to></char037>
+                <char038><from>è</from><to>e</to></char038>
+                <char039><from>ẻ</from><to>e</to></char039>
+                <char040><from>ẽ</from><to>e</to></char040>
+                <char041><from>ẹ</from><to>e</to></char041>
+
+                <char042><from>ê</from><to>e</to></char042>
+                <char043><from>ế</from><to>e</to></char043>
+                <char044><from>ề</from><to>e</to></char044>
+                <char045><from>ể</from><to>e</to></char045>
+                <char046><from>ễ</from><to>e</to></char046>
+                <char047><from>ệ</from><to>e</to></char047>
+
+                <char048><from>É</from><to>E</to></char048>
+                <char049><from>È</from><to>E</to></char049>
+                <char050><from>Ẻ</from><to>E</to></char050>
+                <char051><from>Ẽ</from><to>E</to></char051>
+                <char052><from>Ẹ</from><to>E</to></char052>
+
+                <char053><from>Ê</from><to>E</to></char053>
+                <char054><from>Ế</from><to>E</to></char054>
+                <char055><from>Ề</from><to>E</to></char055>
+                <char056><from>Ể</from><to>E</to></char056>
+                <char057><from>Ễ</from><to>E</to></char057>
+                <char058><from>Ệ</from><to>E</to></char058>
+
+                <char059><from>í</from><to>i</to></char059>
+                <char060><from>ì</from><to>i</to></char060>
+                <char061><from>ỉ</from><to>i</to></char061>
+                <char062><from>ĩ</from><to>i</to></char062>
+                <char063><from>ị</from><to>i</to></char063>
+
+                <char064><from>Í</from><to>I</to></char064>
+                <char065><from>Ì</from><to>I</to></char065>
+                <char066><from>Ỉ</from><to>I</to></char066>
+                <char067><from>Ĩ</from><to>I</to></char067>
+                <char068><from>Ị</from><to>I</to></char068>
+
+                <char069><from>ó</from><to>o</to></char069>
+                <char070><from>ò</from><to>o</to></char070>
+                <char071><from>ỏ</from><to>o</to></char071>
+                <char072><from>õ</from><to>o</to></char072>
+                <char073><from>ọ</from><to>o</to></char073>
+
+                <char074><from>ô</from><to>o</to></char074>
+                <char075><from>ố</from><to>o</to></char075>
+                <char076><from>ồ</from><to>o</to></char076>
+                <char077><from>ổ</from><to>o</to></char077>
+                <char078><from>ỗ</from><to>o</to></char078>
+                <char079><from>ộ</from><to>o</to></char079>
+
+                <char080><from>ơ</from><to>o</to></char080>
+                <char081><from>ớ</from><to>o</to></char081>
+                <char082><from>ờ</from><to>o</to></char082>
+                <char083><from>ở</from><to>o</to></char083>
+                <char084><from>ỡ</from><to>o</to></char084>
+                <char085><from>ợ</from><to>o</to></char085>
+
+                <char086><from>Ó</from><to>O</to></char086>
+                <char087><from>Ò</from><to>O</to></char087>
+                <char088><from>Ỏ</from><to>O</to></char088>
+                <char089><from>Õ</from><to>O</to></char089>
+                <char090><from>Ọ</from><to>O</to></char090>
+
+                <char091><from>Ô</from><to>O</to></char091>
+                <char092><from>Ố</from><to>O</to></char092>
+                <char093><from>Ồ</from><to>O</to></char093>
+                <char094><from>Ổ</from><to>O</to></char094>
+                <char095><from>Ỗ</from><to>O</to></char095>
+                <char096><from>Ộ</from><to>O</to></char096>
+
+                <char097><from>Ơ</from><to>O</to></char097>
+                <char098><from>Ớ</from><to>O</to></char098>
+                <char099><from>Ờ</from><to>O</to></char099>
+                <char100><from>Ở</from><to>O</to></char100>
+                <char101><from>Ỡ</from><to>O</to></char101>
+                <char102><from>Ợ</from><to>O</to></char102>
+
+                <char103><from>ú</from><to>u</to></char103>
+                <char104><from>ù</from><to>u</to></char104>
+                <char105><from>ủ</from><to>u</to></char105>
+                <char106><from>ũ</from><to>u</to></char106>
+                <char107><from>ụ</from><to>u</to></char107>
+
+                <char108><from>ư</from><to>u</to></char108>
+                <char109><from>ứ</from><to>u</to></char109>
+                <char110><from>ừ</from><to>u</to></char110>
+                <char111><from>ử</from><to>u</to></char111>
+                <char112><from>ữ</from><to>u</to></char112>
+                <char113><from>ự</from><to>u</to></char113>
+
+                <char114><from>Ú</from><to>U</to></char114>
+                <char115><from>Ù</from><to>U</to></char115>
+                <char116><from>Ủ</from><to>U</to></char116>
+                <char117><from>Ũ</from><to>U</to></char117>
+                <char118><from>Ụ</from><to>U</to></char118>
+
+                <char119><from>Ư</from><to>U</to></char119>
+                <char120><from>Ứ</from><to>U</to></char120>
+                <char121><from>Ừ</from><to>U</to></char121>
+                <char122><from>Ử</from><to>U</to></char122>
+                <char123><from>Ữ</from><to>U</to></char123>
+                <char124><from>Ự</from><to>U</to></char124>
+
+                <char125><from>ý</from><to>y</to></char125>
+                <char126><from>ỳ</from><to>y</to></char126>
+                <char127><from>ỷ</from><to>y</to></char127>
+                <char128><from>ỹ</from><to>y</to></char128>
+                <char129><from>ỵ</from><to>y</to></char129>
+
+                <char130><from>Ý</from><to>Y</to></char130>
+                <char131><from>Ỳ</from><to>Y</to></char131>
+                <char132><from>Ỷ</from><to>Y</to></char132>
+                <char133><from>Ỹ</from><to>Y</to></char133>
+                <char134><from>Ỵ</from><to>Y</to></char134>
+
+                <char134><from>&quot;</from><to>"</to></char134>
+            </convert>
+        </url>
+    </default>
 </config>

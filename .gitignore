@@ -9,6 +9,8 @@ downloader/*
 errors/*
 includes/*
 media/catalog/*
+media/wysiwyg/news/*
+media/wysiwyg/.thumbs/*
 media/js/*
 media/css/*
 js/calendar/*
