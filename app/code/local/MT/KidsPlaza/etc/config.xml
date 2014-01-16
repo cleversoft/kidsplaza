@@ -222,7 +222,7 @@
                 <char133><from>Ỹ</from><to>Y</to></char133>
                 <char134><from>Ỵ</from><to>Y</to></char134>
 
-                <char134><from>&quot;</from><to>"</to></char134>
+                <char135><from>&quot;</from><to>"</to></char135>
             </convert>
         </url>
     </default>
