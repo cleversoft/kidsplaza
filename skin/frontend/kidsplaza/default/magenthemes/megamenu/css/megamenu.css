@@ -16,6 +16,7 @@ header .mt-menu-top {
     width: 100%;
     padding: 0;
     z-index: 99;
+
 }
 #megamenu ul {
     padding: 0;
@@ -30,6 +31,8 @@ header .mt-menu-top {
 }
 #megamenu ul li.level-0 {
     height: 41px;
+
+    transition: all 0.3s ease-in-out 0s;
 }
 #megamenu ul li.level-0 > a{
     border-right: 1px solid #cfcfcf;
