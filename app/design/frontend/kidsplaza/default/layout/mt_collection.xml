@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MT
+ * @package     MT_Collection
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+-->
+<layout>
+    <collection_lastest_index>
+        <reference name="root">
+            <action method="setTemplate"><file>page/2columns-left.phtml</file></action>
+        </reference>
+        <reference name="left">
+            <block type="mtcollection/layer_view" name="collection.layer" template="catalog/layer/view.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="collection.view" template="mt/collection/view.phtml">
+                <block type="mtcollection/product_list" name="collection.list" template="catalog/product/list.phtml">
+                    <block type="catalog/product_list_toolbar" name="collection.toolbar" template="catalog/product/list/toolbar.phtml">
+                        <block type="page/html_pager" name="product_list_toolbar_pager"/>
+                    </block>
+                    <action method="setData"><var>column</var><value>5</value></action>
+                    <action method="setToolbarBlockName"><name>collection.toolbar</name></action>
+                </block>
+            </block>
+        </reference>
+    </collection_lastest_index>
+</layout>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Widget
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+            <!--action method="addItem">
+                <type>js_css</type>
+                <name>mt/extensions/jquery/plugins/flexslider/flexslider.css</name>
+            </action-->
+			<!--action method="addJs">
+                <script>mt/extensions/jquery/jquery-1.9.1.min.js</script>
+            </action>
+			<action method="addJs">
+                <script>mt/extensions/jquery/plugins/jquery.easing.min.js</script>
+            </action>
+			<action method="addJs">
+                <script>mt/extensions/jquery/plugins/jquery.flexslider.js</script>
+            </action-->
+		</reference>
+    </default>
+</layout>

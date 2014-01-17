@@ -50,7 +50,7 @@
         <?php foreach ($_filters as $_filter): ?>
             <?php if ($_filter instanceof Mage_Catalog_Block_Layer_Filter_Category):?>
             <?php else: ?>
-                <?php if ($_category->hasChildren() && $_module == 'catalog') continue;?>
+                <?php if ($_category && $_category->hasChildren() && $_module == 'catalog') continue;?>
             <?php endif; ?>
             <?php if($_filter->getItemsCount()): ?>
                 <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false?>
