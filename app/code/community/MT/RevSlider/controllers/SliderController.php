@@ -106,8 +106,10 @@ class MT_RevSlider_SliderController extends Mage_Adminhtml_Controller_Action{
         Mage::register('revslide', $slide);
         $this->_initAction();
         Mage::helper('mtext')->loadJsLibs(array('jscolor', 'codemirror', 'browser'));
-        $this->getLayout()->getBlock('head')
-            ->addItem('link_rel', $this->getUrl('revslider/index/getCssCaptions'), 'type="text/css" rel="stylesheet"');
+        $this->getLayout()->getBlock('head')->addItem(
+            'link_rel',
+            Mage::helper('revslider')->getCssFromController('revslider/index/getCssCaptions'),
+            'type="text/css" rel="stylesheet"');
         $this->_title(Mage::helper('revslider')->__('Manage Slider'));
         if ($slide->getId()) $this->_title($slide->getTitle());
         else $this->_title(Mage::helper('revslider')->__('New Slide'));

@@ -14,7 +14,7 @@ class MT_RevSlider_Block_Adminhtml_Slider_Edit extends Mage_Adminhtml_Block_Widg
         $this->_form        = 'edit';
         parent::__construct();
         $slider = Mage::registry('revslider');
-        $previewUrl = $this->getUrl('revslider/index/preview', array(
+        $previewUrl = Mage::helper('revslider')->getCssFromController('revslider/index/preview', array(
             'id' => $slider->getId()
         ));
         if ($slider->getId()){
