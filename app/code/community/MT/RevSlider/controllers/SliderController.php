@@ -73,13 +73,16 @@ class MT_RevSlider_SliderController extends Mage_Adminhtml_Controller_Action{
         if (is_numeric($id)){
             $model = Mage::getModel('revslider/slider')->load($id);
             if ($model->getId()){
-               try{
-                   $model->delete();
-                   Mage::app()->getCache()->clean('matchingTag', array(MT_RevSlider_Model_Slider::CACHE_TAGS));
-                   $this->_getSession()->addSuccess(
-                       $this->__('"%s" deleted successfully', $model->getTitle())
-                   );
-               }catch (Exception $e){}
+                try{
+                    foreach ($model->getAllSlides() as $slide){
+                        $slide->delete();
+                    }
+                    $model->delete();
+                    Mage::app()->getCache()->clean('matchingTag', array(MT_RevSlider_Model_Slider::CACHE_TAGS));
+                    $this->_getSession()->addSuccess(
+                        $this->__('"%s" deleted successfully', $model->getTitle())
+                    );
+                }catch (Exception $e){}
             }
         }
         $this->_redirect('*/*/index');

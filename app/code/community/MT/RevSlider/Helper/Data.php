@@ -12,7 +12,7 @@ class MT_RevSlider_Helper_Data extends Mage_Core_Helper_Abstract{
         if ($data) return sprintf('http://fonts.googleapis.com/css?family=%s', $data);
     }
 
-    public function getCssFromController($path, $params){
+    public function getCssFromController($path, $params=array()){
         $stores = Mage::app()->getStores();
         foreach($stores as $store){
             $params = array_merge($params, array('_store' => $store->getId()));

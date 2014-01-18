@@ -18,8 +18,8 @@ class MT_RevSlider_IndexController extends Mage_Core_Controller_Front_Action{
     }
 
     public function getCssCaptionsAction(){
-        $this->getResponse()->setHeader('Content-Type', 'text/css');
-        $this->getResponse()->setHeader('X-Content-Type-Options', 'nosniff');
+        $this->getResponse()->setHeader('Content-Type', 'text/css', true);
+        $this->getResponse()->setHeader('X-Content-Type-Options', 'nosniff', true);
 
         $css = '';
         $collection = Mage::getModel('revslider/css')->getCollection();
