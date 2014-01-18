@@ -336,4 +336,4 @@ MTLayoutPreview.prototype = {
             this.CLASSES.set(value[0], value[2].strip());
         }, this);
     }
-}
+};

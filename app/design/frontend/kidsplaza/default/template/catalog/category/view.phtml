@@ -75,6 +75,7 @@
                 ->setData(array(
                     'cache' => 86400,
                     'widget_type' => 'product',
+                    'mode' => 'latest',
                     'category_ids' => $c->getId(),
                     'limit' => Mage::getStoreConfig('kidsplaza/catalog/limit') ? (int)Mage::getStoreConfig('kidsplaza/catalog/limit') : 10,
                     'widget_title' => $c->getName(),

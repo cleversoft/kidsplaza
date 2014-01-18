@@ -10,9 +10,15 @@
  */
 -->
 <layout>
-    <collection_lastest_index>
+    <collection_view>
+        <label>Custom Collection (All Pages)</label>
         <reference name="root">
             <action method="setTemplate"><file>page/2columns-left.phtml</file></action>
+        </reference>
+        <reference name="js_bottom">
+            <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.lazyload.js</file></action>
+            <action method="addJs"><file>mt/extensions/list/list.min.js</file></action>
+            <action method="addJs"><file>mt/mage/catalog/CategoryView.js</file></action>
         </reference>
         <reference name="left">
             <block type="mtcollection/layer_view" name="collection.layer" template="catalog/layer/view.phtml"/>
@@ -28,5 +34,10 @@
                 </block>
             </block>
         </reference>
-    </collection_lastest_index>
+    </collection_view>
+
+    <collection_view_lastest>
+        <label>Lastest Collection</label>
+        <update handle="collection_view"/>
+    </collection_view_lastest>
 </layout>
