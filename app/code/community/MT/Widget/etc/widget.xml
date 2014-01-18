@@ -19,6 +19,11 @@
                 <visible>1</visible>
                 <type>text</type>
             </widget_title>
+            <href translate="label">
+                <label>Widget Link</label>
+                <visible>1</visible>
+                <type>text</type>
+            </href>
             <cache translate="label description">
                 <label>Cache Lifetime</label>
                 <visible>1</visible>

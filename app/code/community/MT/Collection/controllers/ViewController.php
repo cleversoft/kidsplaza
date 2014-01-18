@@ -10,14 +10,20 @@
 class MT_Collection_ViewController extends Mage_Core_Controller_Front_Action{
     public function lastestAction(){
         $this->loadLayout();
-        $this->getLayout()->getBlock('head')->setTitle($this->__('Lastest Products'));
+        $layout = $this->getLayout();
+        $title = $this->__('Lastest Products');
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
         Mage::register('current_collection', 'lastest');
         $this->renderLayout();
     }
 
     public function bestsellerAction(){
         $this->loadLayout();
-        $this->getLayout()->getBlock('head')->setTitle($this->__('Bestseller Products'));
+        $layout = $this->getLayout();
+        $title = $this->__('Bestseller Products');
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
         Mage::register('current_collection', 'bestseller');
         $this->renderLayout();
     }

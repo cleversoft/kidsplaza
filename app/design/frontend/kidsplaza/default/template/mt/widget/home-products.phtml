@@ -33,6 +33,7 @@ $_column            = $this->getConfig('column');
 $_columnCount       = $_scroll==1 ? $this->getConfig('limit') : $_column;
 $_id                = $this->getConfig('id');
 $_title             = $this->getConfig('widget_title');
+$_href              = $this->getConfig('href');
 ?>
 <?php if ($_scroll == 1):?>
     <script type="text/javascript">
@@ -67,7 +68,7 @@ $_title             = $this->getConfig('widget_title');
 <?php endif ?>
 <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
     <?php if ($_title):?>
-        <button class="btn-widget btn btn-kid" type="button"><?php echo $_title?></button>
+        <button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="btn-widget btn btn-kid" type="button"><?php echo $_title?></button>
     <?php endif ?>
     <div class="bordered">
         <div class="nav-tabs-wrapper">

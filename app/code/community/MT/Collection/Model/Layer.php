@@ -19,9 +19,6 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
                     $collection = $this->_getLastestCollection();
                     break;
             }
-            Mage::dispatchEvent('catalog_block_product_list_collection', array(
-                'collection' => $collection
-            ));
             $this->_productCollections[0] = $collection;
         }
         return $this->_productCollections[0];
@@ -34,17 +31,17 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     protected function _getLastestCollection(){
         $resource = Mage::getSingleton('core/resource')->getConnection('core_read');
         $select = $resource->select()
-            ->from('catalog_product_entity', array('entity_id', 'updated_at'))
-            ->order('updated_at desc')
+            ->from('catalog_product_entity', array('eid' => 'entity_id', 'eua' => 'updated_at'))
+            ->order('eua desc')
             ->limit(100);
 
-        $result = $resource->query($select);
-        $ids = array();
-        while ($row = $result->fetch()){
-            $ids[] = $row['entity_id'];
-        }
-        $collection = Mage::getResourceModel('catalog/product_collection')
-            ->addIdFilter($ids);
+        $conditions = array('e2.eid = e.entity_id');
+        $collection = Mage::getResourceModel('catalog/product_collection');
+        $collection->getSelect()->join(
+            array('e2' => $select),
+            join(' AND ', $conditions),
+            array()
+        );
         $this->prepareProductCollection($collection);
         unset($select, $result);
         return $collection;
