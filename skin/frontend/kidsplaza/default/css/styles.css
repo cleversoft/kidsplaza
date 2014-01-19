@@ -166,7 +166,8 @@ input,textarea{outline:0}
 .footer-coppyright .footer-coppyright-inner a,.footer-coppyright .footer-coppyright-inner p{margin:0;color:#fff}
 .btn-subscribe{font-weight:700}
 .footer-coppyright-inner .social-links{float:right}
-.products-grid li{width:20%;float:left;text-align:center;position:relative;height:280px;margin-bottom:15px}
+.grid-5 li{width: 20%;}
+.products-grid li{float:left;text-align:center;position:relative;height:280px;margin-bottom:15px}
 .products-grid .product-name{font-weight:400;font-size:14px;padding:0 15px;max-height:46px;overflow:hidden;margin-bottom:5px}
 .products-grid .product-name a{color:#634f4f}
 .products-grid .product-image{display:block;text-align: center;}
@@ -342,14 +343,14 @@ p.back-link{float: left;}
 .btn-disabled{background-color: #555; border: 1px dashed #aaa; outline: 3px solid #555;}
 .btn-disabled:focus,.btn-disabled:active{outline: 3px solid #555;}
 .cms-index-index .std{display: none;}
-.cms-index-index .slider-product-wrapper{margin-bottom: 40px;float: left;}
+.cms-index-index .slider-product-wrapper{margin-bottom: 40px;float: left;width: 100%;}
 .slider-product-wrapper .tab-content{float: left;}
 .slider-product-wrapper .nav-tabs li{padding:20px 10px;}
 .slider-product-wrapper .nav-tabs li.active a{border: 1px solid #fff;color: #ff4884;font-weight: 700;}
 .slider-product-wrapper .nav-tabs li a:hover{border: 1px solid #fff;}
 .bordered .tab-pane .products-grid{clear: both;}
 .bordered .tab-pane .slide{display: inline-block;vertical-align: top;}
-.bordered{border: 1px solid #ccc;float: left;}
+.bordered{border: 1px solid #ccc;float: left;width: 100%;}
 .bordered .tab-content{float: none;}
 .bordered .nav-tabs-wrapper{padding: 0 15px;float: left;margin-bottom: 10px;width: 100%;}
 .bordered .nav-tabs{float: left;width: 100%;}

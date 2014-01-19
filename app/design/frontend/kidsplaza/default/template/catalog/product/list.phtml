@@ -28,7 +28,7 @@
 /**
  * Product list template
  *
- * @see Mage_Catalog_Block_Product_List
+ * @var $this Mage_Catalog_Block_Product_List
  */
 ?>
 <?php
@@ -90,7 +90,7 @@
     <?php $_columnCount = $this->getColumnCount(); ?>
     <?php $i=0; foreach ($_productCollection as $_product): ?>
         <?php if ($i++%$_columnCount==0): ?>
-        <ul class="products-grid">
+        <ul class="grid-<?php echo $_columnCount?> products-grid">
         <?php endif ?>
             <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">

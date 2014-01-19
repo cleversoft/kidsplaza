@@ -9,22 +9,32 @@
  */
 class MT_Collection_ViewController extends Mage_Core_Controller_Front_Action{
     public function lastestAction(){
+        Mage::register('current_collection', 'lastest');
         $this->loadLayout();
         $layout = $this->getLayout();
         $title = $this->__('Lastest Products');
         $layout->getBlock('head')->setTitle($title);
         $layout->getBlock('collection.view')->setTitle($title);
-        Mage::register('current_collection', 'lastest');
         $this->renderLayout();
     }
 
     public function bestsellerAction(){
+        Mage::register('current_collection', 'bestseller');
         $this->loadLayout();
         $layout = $this->getLayout();
         $title = $this->__('Bestseller Products');
         $layout->getBlock('head')->setTitle($title);
         $layout->getBlock('collection.view')->setTitle($title);
-        Mage::register('current_collection', 'bestseller');
+        $this->renderLayout();
+    }
+
+    public function mostviewedAction(){
+        Mage::register('current_collection', 'mostviewed');
+        $this->loadLayout();
+        $layout = $this->getLayout();
+        $title = $this->__('Most Viewed Products');
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
         $this->renderLayout();
     }
 }

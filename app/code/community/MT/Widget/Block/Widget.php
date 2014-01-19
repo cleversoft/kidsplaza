@@ -708,13 +708,64 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             ->addUrlRewrite()
             ->addTaxPercents()
             ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-            ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
-            ->setOrder('updated_at', 'desc')
-            ->setPage(1, $this->getData('limit'));
+            ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
+
+        switch ($this->getData('mode')){
+            case 'bestsell':
+                $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+
+                $select = $connection->select()
+                    ->from('sales_flat_order_item', array('product_id', 'count' => 'SUM(sales_flat_order_item.qty_ordered)'))
+                    ->join(
+                        'sales_flat_order',
+                        'sales_flat_order_item.order_id = sales_flat_order.entity_id',
+                        array())
+                    ->where('sales_flat_order.status = ?', 'complete')
+                    ->group('sales_flat_order_item.product_id')
+                    ->order('count DESC');
+
+                $collection->getSelect()->join(
+                    array('e2' => $select),
+                    join(' AND ', array('e2.product_id = e.entity_id')),
+                    array()
+                );
+                unset($connection, $select);
+                break;
+            case 'mostviewed':
+                $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+                $storeId = (int)Mage::app()->getStore()->getId();
+
+                $select = $connection->select()
+                    ->from('report_event', array('object_id', 'views' => 'COUNT(report_event.event_id)'))
+                    ->join('report_event_types', 'report_event.event_type_id = report_event_types.event_type_id', array())
+                    ->where('report_event_types.event_name = ?', 'catalog_product_view')
+                    ->where('report_event.store_id = ?', $storeId)
+                    ->group('report_event.object_id')
+                    ->order('views desc')
+                    ->having('views > ?', 0);
+
+                $collection->getSelect()->join(
+                    array('e2' => $select),
+                    join(' AND ', array('e2.object_id = e.entity_id')),
+                    array()
+                );
+                unset($connection, $select);
+                break;
+            case 'latest':
+            default:
+                $collection->setOrder('updated_at', 'desc');
+                break;
+        }
+
+        $collection->setPage(1, $this->getData('limit'));
 
         if ($category instanceof Mage_Catalog_Model_Category){
             $collection->addCategoryFilter($category);
         }
+
+        Mage::dispatchEvent('catalog_block_product_list_collection', array(
+            'collection' => $collection
+        ));
 
         return $collection;
     }

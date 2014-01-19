@@ -36,7 +36,7 @@ while ($row = mysql_fetch_assoc($rs)){
     }
     $tree[$row['id']] = array(
         'id' => $row['id'],
-        'name' => $row['name'],
+        'name' => trim($row['name']),
         'url_key' => $row['url'],
         'meta_title' => $row['meta_title'],
         'meta_keywords' => $row['meta_keyword'],
@@ -73,10 +73,10 @@ while ($row = mysql_fetch_assoc($rs)){
         $product->setData('attribute_set_id', $attributeSetId);
     }
     $product->setData('entity_id', $productId);
-    $product->setData('name', $row['proName']);
+    $product->setData('name', trim($row['proName']));
     $product->setData('short_description', $row['proSummary']);
     $product->setData('description', $row['description']);
-    $product->setData('sku', $sku);
+    $product->setData('sku', trim($sku));
     $product->setData('url_key', $row['url']);
     $product->setData('meta_title', $row['meta_title']);
     $product->setData('meta_keyword', $row['meta_keyword']);

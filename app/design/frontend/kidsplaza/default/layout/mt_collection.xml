@@ -29,7 +29,7 @@
                     <block type="catalog/product_list_toolbar" name="collection.toolbar" template="catalog/product/list/toolbar.phtml">
                         <block type="page/html_pager" name="product_list_toolbar_pager"/>
                     </block>
-                    <action method="setData"><var>column</var><value>5</value></action>
+                    <action method="setData"><var>column_count</var><value>5</value></action>
                     <action method="setToolbarBlockName"><name>collection.toolbar</name></action>
                 </block>
             </block>
@@ -40,4 +40,14 @@
         <label>Lastest Collection</label>
         <update handle="collection_view"/>
     </collection_view_lastest>
+
+    <collection_view_bestseller>
+        <label>Bestseller Collection</label>
+        <update handle="collection_view"/>
+    </collection_view_bestseller>
+
+    <collection_view_mostviewed>
+        <label>Most Viewed Collection</label>
+        <update handle="collection_view"/>
+    </collection_view_mostviewed>
 </layout>
