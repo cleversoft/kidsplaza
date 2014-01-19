@@ -25,7 +25,7 @@
  */
 
 /**
- * @see Mage_Checkout_Block_Cart_Totals
+ * @var $this Mage_Checkout_Block_Cart_Totals
  */
 ?>
 <?php if ($this->getTotals()): ?>
@@ -43,5 +43,23 @@
         </td>
     </tr>
     <?php endif?>
+    <?php if (Mage::helper('mtpoint')->isActive()):?>
+    <tr>
+        <?php if ($this->getCustomer()->getId()):?>
+        <td class="a-right" colspan="<?php echo $_colspan ?>">
+           <?php echo Mage::helper('mtpoint')->__('Point(s) earned')?>
+        </td>
+        <td class="a-right">
+            <?php echo Mage::helper('mtpoint')->__('%d',
+                Mage::helper('mtpoint')->getPointInCart($this->getQuote()))?>
+        </td>
+        <?php else: ?>
+        <td colspan="4">
+            <?php echo Mage::helper('mtpoint')->__('Login or Register to earn %d point(s)',
+                Mage::helper('mtpoint')->getPointInCart($this->getQuote()))?>
+        </td>
+        <?php endif ?>
+    </tr>
+    <?php endif ?>
 </tfoot>
 <?php endif; ?>

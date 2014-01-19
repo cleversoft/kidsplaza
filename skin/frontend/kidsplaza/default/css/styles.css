@@ -242,7 +242,7 @@ input.form-control,textarea.form-control{border-radius:0}
 .opc .panel-heading{padding:6px 15px}
 .checkout-login-loading{width:16px;height:16px;margin-left:5px}
 #co-shipping-form .fields label{margin-left:3px}
-.control{margin-bottom:7px;padding-top:7px}
+.control{margin-bottom:7px;padding-top:7px;clear: both;}
 .buttons-set{clear:both;margin:20px 0 0;padding:8px 0 0;text-align:right}
 .col2-set-left{float:left}
 .login-form .col2-set-right .required{color:#f1520b}
@@ -359,3 +359,4 @@ p.back-link{float: left;}
 .btn-widget{margin: 0 0 3px 3px;font-weight: 700;}
 .col-rigth{padding-right: 0;}
 .rev_slider_wrapper{margin-bottom: 20px !important;}
+.btn-checkout{font-weight: 700;}

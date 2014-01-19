@@ -33,4 +33,60 @@ class MT_Point_Model_Observer{
             $history->save();
         }
     }
+
+    public function salesOrderInvoicePay($observer){
+        /* @var $invoice Mage_Sales_Model_Order_Invoice */
+        $invoice = $observer->getEvent()->getInvoice();
+        /* @var $order Mage_Sales_Model_Order */
+        $order = $invoice->getOrder();
+        $customerId = $order->getCustomerId();
+        if (!$customerId) return;
+        $rate = Mage::helper('mtpoint')->getPointRate();
+        if (!$rate) return;
+        $delta = $invoice->getSubtotal() / $rate;
+        /* @var $balance MT_Point_Model_Point */
+        $balance = Mage::getModel('mtpoint/point');
+        $balance->loadByCustomer($customerId);
+        if (!$balance->getId()){
+            $balance->setCustomerId($customerId);
+        }
+        $balance->setBalance($balance->getBalance() + $delta);
+        $balance->save();
+        $history = Mage::getModel('mtpoint/history');
+        $history->setData(array(
+            'point_id'  => $balance->getId(),
+            'balance'   => $balance->getBalance(),
+            'delta'     => $delta,
+            'comment'   => Mage::helper('mtpoint')->__('From order #%s', $order->getIncrementId())
+        ));
+        $history->save();
+    }
+
+    public function salesOrderCreditmemoRefund($observer){
+        /* @var $creditmemo Mage_Sales_Model_Order_Creditmemo */
+        $creditmemo = $observer->getEvent()->getCreditmemo();
+        /* @var $order Mage_Sales_Model_Order */
+        $order = $creditmemo->getOrder();
+        $customerId = $order->getCustomerId();
+        if (!$customerId) return;
+        $rate = Mage::helper('mtpoint')->getPointRate();
+        if (!$rate) return;
+        $delta = $creditmemo->getSubtotal() / $rate;
+        /* @var $balance MT_Point_Model_Point */
+        $balance = Mage::getModel('mtpoint/point');
+        $balance->loadByCustomer($customerId);
+        if (!$balance->getId()){
+            $balance->setCustomerId($customerId);
+        }
+        $balance->setBalance($balance->getBalance() - $delta);
+        $balance->save();
+        $history = Mage::getModel('mtpoint/history');
+        $history->setData(array(
+            'point_id'  => $balance->getId(),
+            'balance'   => $balance->getBalance(),
+            'delta'     => -1*$delta,
+            'comment'   => Mage::helper('mtpoint')->__('From order #%s', $order->getIncrementId())
+        ));
+        $history->save();
+    }
 }

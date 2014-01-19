@@ -36,7 +36,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
            </div>
        </li>
     <?php endif ?>
-        <li id="shipping-new-address-form" style="<?php if ($address->getCustomerAddressId()):?>display:none<?php endif ?>">
+        <li id="shipping-new-address-form" style="<?php if ($this->customerHasAddresses()):?>display:none<?php endif ?>">
             <fieldset>
                 <input type="hidden" name="shipping[address_id]" value="<?php echo $this->getAddress()->getId() ?>" id="shipping:address_id" />
                 <ul>
@@ -157,7 +157,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                     <?php endif ?>
                     </li>
                 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
-                    <li class="control">
+                    <li class="fields">
                         <input type="checkbox" name="shipping[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="shipping:save_in_address_book" onchange="shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" /><label for="shipping:save_in_address_book"><?php echo $this->__('Save in address book') ?></label></li>
                 <?php else:?>
                     <li class="no-display"><input type="hidden" name="shipping[save_in_address_book]" value="1" /></li>
@@ -165,7 +165,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 </ul>
             </fieldset>
         </li>
-        <li class="fields control">
+        <li class="fields">
             <input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" <?php if ($address->getSameAsBilling()):?>checked="checked"<?php endif ?> title="<?php echo $this->__('Use Billing Address') ?>" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" /><label for="shipping:same_as_billing"><?php echo $this->__('Use Billing Address') ?></label>
         </li>
     </ul>
