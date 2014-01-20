@@ -37,4 +37,14 @@ class MT_Collection_ViewController extends Mage_Core_Controller_Front_Action{
         $layout->getBlock('collection.view')->setTitle($title);
         $this->renderLayout();
     }
+
+    public function promotionAction(){
+        Mage::register('current_collection', 'promotion');
+        $this->loadLayout();
+        $layout = $this->getLayout();
+        $title = $this->__('Promotion Products');
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
+        $this->renderLayout();
+    }
 }

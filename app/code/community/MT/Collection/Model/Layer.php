@@ -11,6 +11,9 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     public function getProductCollection(){
         if (!isset($this->_productCollections[0])){
             switch (Mage::registry('current_collection')){
+                case 'promotion':
+                    $collection = $this->_getPromotionCollection();
+                    break;
                 case 'bestseller':
                     $collection = $this->_getBestsellerCollection();
                     break;
@@ -25,6 +28,30 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             $this->_productCollections[0] = $collection;
         }
         return $this->_productCollections[0];
+    }
+
+    protected function _getPromotionCollection(){
+        $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+        $websiteId = (int)Mage::app()->getWebsite()->getId();
+        /* @var $session Mage_Customer_Model_Session */
+        $session = Mage::getSingleton('customer/session');
+        $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
+
+        $select = $connection->select()
+            ->from('catalog_product_index_price', array('entity_id'))
+            ->where('price > final_price')
+            ->where('website_id = ?', $websiteId)
+            ->where('customer_group_id = ?', $customerGroupId);
+
+        $collection = Mage::getResourceModel('catalog/product_collection');
+        $collection->getSelect()->join(
+            array('e2' => $select),
+            join(' AND ', array('e2.entity_id = e.entity_id')),
+            array()
+        );
+        $this->prepareProductCollection($collection);
+        unset($connection, $select);
+        return $collection;
     }
 
     protected function _getMostViewedCollection(){

@@ -50,4 +50,9 @@
         <label>Most Viewed Collection</label>
         <update handle="collection_view"/>
     </collection_view_mostviewed>
+
+    <collection_view_promotion>
+        <label>Promotion Collection</label>
+        <update handle="collection_view"/>
+    </collection_view_promotion>
 </layout>

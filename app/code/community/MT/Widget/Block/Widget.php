@@ -268,6 +268,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 break;
             case 'discount':
                 $collection = $this->getDiscountCollection();
+                break;
         }
         Mage::dispatchEvent('catalog_block_product_list_collection', array(
             'collection' => $collection
@@ -711,6 +712,26 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
 
         switch ($this->getData('mode')){
+            case 'discount':
+                $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+                $websiteId = (int)Mage::app()->getWebsite()->getId();
+                /* @var $session Mage_Customer_Model_Session */
+                $session = Mage::getSingleton('customer/session');
+                $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
+
+                $select = $connection->select()
+                    ->from('catalog_product_index_price', array('entity_id'))
+                    ->where('price > final_price')
+                    ->where('website_id = ?', $websiteId)
+                    ->where('customer_group_id = ?', $customerGroupId);
+
+                $collection->getSelect()->join(
+                    array('e2' => $select),
+                    join(' AND ', array('e2.entity_id = e.entity_id')),
+                    array()
+                );
+                unset($connection, $select);
+                break;
             case 'bestsell':
                 $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
 
