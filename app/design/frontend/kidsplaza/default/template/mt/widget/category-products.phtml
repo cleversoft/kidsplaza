@@ -107,7 +107,7 @@ $_title             = $this->getConfig('widget_title');
                 <?php echo $this->getPriceHtml($_product, true) ?>
                 <div class="actions">
                     <?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
+                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="onBuyBtnClick('<?php echo $this->getAddToCartUrl($_product) ?>')">
                             <i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $this->__('Add to Cart') ?>
                         </button>
                     <?php else: ?>

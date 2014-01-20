@@ -796,4 +796,26 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
         return $collection;
     }
+
+    /**
+     * Retrieve url for add product to cart
+     * Will return product view page URL if product has required options
+     *
+     * @param Mage_Catalog_Model_Product $product
+     * @param array $additional
+     * @return string
+     */
+    public function getAddToCartUrl($product, $additional = array()){
+        if (!$product->getTypeInstance(true)->hasRequiredOptions($product)) {
+            return $this->helper('mtwidget')->getAddUrl($product, $additional);
+        }
+        if (!isset($additional['_escape'])) {
+            $additional['_escape'] = true;
+        }
+        if (!isset($additional['_query'])) {
+            $additional['_query'] = array();
+        }
+        $additional['_query']['options'] = 'cart';
+        return $this->getProductUrl($product, $additional);
+    }
 }

@@ -58,6 +58,12 @@ var KidsPlazaSearch = Class.create(Varien.searchForm, {
     }
 });
 
+function onBuyBtnClick(url){
+    if (!url) return;
+    if (!Mage.FormKey) return;
+    window.location.href = url.indexOf('?') > 0 ? url + '&form_key=' + Mage.FormKey : url + 'form_key/' + Mage.FormKey;
+}
+
 //init location
 var KPLocation = new KidsPlazaLocation();
 //init mini cart
