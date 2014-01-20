@@ -35,8 +35,10 @@ ul li,ol li{list-style:none}
 body{font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
 header{background:url(../images/bgHeader.png) repeat-x}
 .social-links,.top-links{display:inline-block;height:25px;line-height:25px}
-.top-login{display:inline-block}
-.top-login li{display:inline-block;margin-top:-3px;margin-left:3px}
+.top-login{display:inline-block;}
+.top-login a{color: #fff;}
+.top-login a:hover,.top-login a:focus{text-decoration: none;}
+.top-login .not-login li{display:inline-block;margin-top:-3px;margin-left:3px}
 .top-links li{display:inline-block;color:#fff;padding:0 6px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
@@ -360,3 +362,4 @@ p.back-link{float: left;}
 .col-rigth{padding-right: 0;}
 .rev_slider_wrapper{margin-bottom: 20px !important;}
 .btn-checkout{font-weight: 700;}
+@media screen and (min-width: 768px){ .modal-dialog { margin: 60px auto;}}

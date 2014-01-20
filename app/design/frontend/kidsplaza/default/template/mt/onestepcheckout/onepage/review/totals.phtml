@@ -55,8 +55,11 @@
         </td>
         <?php else: ?>
         <td colspan="4">
-            <?php echo Mage::helper('mtpoint')->__('Login or Register to earn %d point(s)',
-                Mage::helper('mtpoint')->getPointInCart($this->getQuote()))?>
+            <?php echo Mage::helper('mtpoint')->__('<a href="%s">Login</a> or <a href="%s">Register</a> to earn %d point(s)',
+                $this->getUrl('customer/account/login'),
+                $this->getUrl('customer/account/create'),
+                Mage::helper('mtpoint')->getPointInCart($this->getQuote())
+            )?>
         </td>
         <?php endif ?>
     </tr>

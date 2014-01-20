@@ -1,4 +1,46 @@
-<ul class="top-login pull-right">
-    <li><a href="<?php echo $this->getUrl('customer/account/login')?>" class="btn btn-login" type="button"><?php echo $this->__('Login')?></a></li>
-    <li><a href="<?php echo $this->getUrl('customer/account/create')?>" class="btn btn-login" type="button"><?php echo $this->__('Sign up')?></a></li>
-</ul>
+<?php
+/**
+ * @category    MT
+ * @package     KidsPlaza
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php
+/* @var $session Mage_Customer_Model_Session */
+$session = Mage::getSingleton('customer/session');
+?>
+<div class="pull-right top-login">
+    <?php if ($session->isLoggedIn()):?>
+        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
+            <?php echo $this->__('Hi, %s', $session->getCustomer()->getName())?> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li>
+                <a href="<?php echo $this->getUrl('customer/account/index')?>">
+                    <i class="glyphicon glyphicon-cog"></i>&nbsp;<?php echo $this->__('Dashboard')?>
+                </a>
+            </li>
+            <li>
+                <a href="<?php echo $this->getUrl('customer/account/logout')?>">
+                    <i class="glyphicon glyphicon-log-out"></i>&nbsp;<?php echo $this->__('Logout')?>
+                </a>
+            </li>
+        </ul>
+    <?php else: ?>
+    <ul class="not-login">
+        <li>
+            <a href="<?php echo $this->getUrl('customer/account/login')?>" class="btn btn-login" type="button">
+                <?php echo $this->__('Login')?>
+            </a>
+        </li>
+        <li>
+            <a href="<?php echo $this->getUrl('customer/account/create')?>" class="btn btn-login" type="button">
+                <?php echo $this->__('Sign up')?>
+            </a>
+        </li>
+    </ul>
+    <?php endif ?>
+</div>
