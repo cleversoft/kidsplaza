@@ -150,8 +150,7 @@ class MT_OneStepCheckout_CartController extends Mage_Checkout_CartController {
                 if ($couponCode == $this->_getQuote()->getCouponCode()) {
                     $out = array(
                         'error' => 0,
-                        'msg' => $this->__('Coupon code "%s" was applied.', Mage::helper('core')->escapeHtml($couponCode)),
-                        'review' => $this->_getReviewHtml()
+                        'msg' => $this->__('Coupon code "%s" was applied.', Mage::helper('core')->escapeHtml($couponCode))
                     );
                 } else {
                     $out = array(
@@ -162,8 +161,7 @@ class MT_OneStepCheckout_CartController extends Mage_Checkout_CartController {
             } else {
                 $out = array(
                     'error' => 0,
-                    'msg' => $this->__('Coupon code was canceled.'),
-                    'review' => $this->_getReviewHtml()
+                    'msg' => $this->__('Coupon code was canceled.')
                 );
             }
 
@@ -179,6 +177,7 @@ class MT_OneStepCheckout_CartController extends Mage_Checkout_CartController {
             );
         }
 
+        $out['review'] = $this->_getReviewHtml();
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($out));
     }
 

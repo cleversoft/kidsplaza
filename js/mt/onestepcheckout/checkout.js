@@ -1066,6 +1066,7 @@ MT.Coupon.prototype = {
     initialize: function(form){
         this.form = new VarienForm(form);
         this.container = $(form);
+        this.input = this.container.down('#coupon_code');
         this.submitBtn = this.container.down('button#coupon-submit');
         this.cancelBtn = this.container.down('button#coupon-cancel');
         this.initActions();
@@ -1084,12 +1085,14 @@ MT.Coupon.prototype = {
                     onSuccess: function(transport){
                         try{
                             var response = transport.responseText.evalJSON();
-                            if (response.error) alert(response.msg);
-                            else{
-                                if (response.review) review.update(response.review);
+                            if (response.error){
+                                alert(response.msg);
+                                this.input.value = '';
+                                this.input.focus();
                             }
+                            if (response.review) review.update(response.review);
                         }catch (e){}
-                    }
+                    }.bind(this)
                 });
             }
         }.bind(this));

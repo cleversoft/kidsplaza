@@ -14,7 +14,6 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
     protected function _construct(){
         parent::_construct();
-        $this->setData('cache_tags', array('MT_WIDGET'));
         $session = Mage::getSingleton('customer/session');
         $this->_customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
     }
@@ -50,6 +49,16 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             $this->getData('speed'),
             $this->_customerGroupId
         );
+    }
+
+    public function getCacheTags(){
+        if (is_array($this->getData('cache_tags'))){
+            return array_merge($this->getData('cache_tags'), array('MT_WIDGET'));
+        }elseif(is_string($this->getData('cache_tags'))){
+            return array($this->getData('cache_tags'), 'MT_WIDGET');
+        }else{
+            return array('MT_WIDGET');
+        }
     }
 
     protected function _beforeToHtml(){

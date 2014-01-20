@@ -363,3 +363,4 @@ p.back-link{float: left;}
 .rev_slider_wrapper{margin-bottom: 20px !important;}
 .btn-checkout{font-weight: 700;}
 @media screen and (min-width: 768px){ .modal-dialog { margin: 60px auto;}}
+.review-items td{font-size: 12px;}

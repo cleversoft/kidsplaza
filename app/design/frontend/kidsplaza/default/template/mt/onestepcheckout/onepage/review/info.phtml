@@ -45,7 +45,7 @@
             <?php endif; ?>
         </thead>
         <?php echo $this->getChildHtml('totals'); ?>
-        <tbody>
+        <tbody class="review-items">
         <?php foreach($this->getItems() as $_item): ?>
             <?php echo $this->getItemHtml($_item)?>
         <?php endforeach ?>
