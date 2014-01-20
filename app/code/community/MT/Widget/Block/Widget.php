@@ -227,16 +227,16 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         }
     }
 
-    public function getLoadedProductCollection($filterCategory=true, $loadCache=true) {
-        if ($loadCache && $this->_productCollection) return $this->_productCollection;
+    public function getLoadedProductCollection() {
+        if ($this->_productCollection) return $this->_productCollection;
+
         $mode = $this->_getData('mode');
-        $collection = null;
         switch ($mode) {
             case 'new':
                 $collection = $this->getNewCollection();
                 break;
             case 'latest':
-                $collection = $this->getLatestCollection($filterCategory);
+                $collection = $this->getLatestCollection();
                 break;
             case 'bestsell':
                 $collection = $this->getBestSellerCollection();
@@ -496,11 +496,9 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         return $products;
     }
 
-    protected function getLatestCollection($filterCategory=true, $fieldorder='updated_at', $order='desc') {
+    protected function getLatestCollection($fieldorder='updated_at', $order='desc') {
         $catIds = $this->getCategoryIds();
-        if($catIds && $filterCategory) {
-            $catIds = explode(',', $catIds);
-            $proIds = $this->getProductIdsByCategories($catIds);
+        if($catIds) {
             $products = Mage::getResourceModel('catalog/product_collection')
                 ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
                 ->addMinimalPrice()
@@ -508,10 +506,18 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 ->addUrlRewrite()
                 ->addTaxPercents()
                 ->addStoreFilter()
-                ->addIdFilter($proIds)
                 ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
                 ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
                 ->setOrder($fieldorder, $order);
+
+            $catIds = explode(',', $catIds);
+            if (count($catIds) > 1){
+                $proIds = $this->getProductIdsByCategories($catIds);
+                $products->addIdFilter($proIds);
+            }else{
+                $category = Mage::getModel('catalog/category')->load($catIds[0]);
+                $products->addCategoryFilter($category);
+            }
         } else {
             $products = Mage::getResourceModel('catalog/product_collection')
                 ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
