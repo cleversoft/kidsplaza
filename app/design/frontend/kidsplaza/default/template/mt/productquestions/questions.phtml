@@ -1,0 +1,37 @@
+<?php
+$questions = $this->_collection;
+?>
+<div class="mt-questions-main">
+    <?php if ($questions->getSize()): ?>
+    <?php echo $this->getChildHtml('productquestions_pager'); ?>
+    <ul class="media-list">
+        <?php foreach($questions as $question){?>
+        <li class="media">
+            <span class="img pull-left">
+                 <img class="media-object" data-src="holder.js/64x64" alt="64x64" style="width: 64px; height: 64px;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAACsUlEQVR4Xu2Y24upYRTGl0PI0JSimHDjMIVETVMzpvzrziLSTIkiLpTcjJLzcfaziuz2Njufsb8La93o+3jX+65nHX55NZ+fnzu6YdOIAFIB0gIyA254BpIMQaGAUEAoIBQQCtywAoJBwaBgUDAoGLxhCMifIcGgYFAwKBgUDAoGb1iBizHYbDap3+/Tbrcjp9NJwWCQNBrNQdJflKF6vU5ms5lisdhv353S/Ro+T+11kQCNRoN6vR7p9Xr2v16vyev1kt/v52eIkkql+L3BYKBEIkFarfbberuGz+82VCzAZrOhdDrNGX17e6PVakXdbpesVis9PDzwnq1Wi9/BTCYTvb6+0mQyoff3d9LpdBSPx2k8HhOCNhqNFIlEKJvNnu3zuOLO7WbFAiyXSz7sdrvloOfzObdAIBDgM8xmM8rlcuTxeGg0GtF0OmWhcNhKpULD4ZBsNhuvw3eoGqxX6vPcwPe/VywAertarbIftADKHIYgQqEQB4nAk8kklUolWiwWBwGOxcOa+/t7enp6okt8/ncBkOF8Ps+l+/LywlksFovc6+FwmMW5u7sjt9tN7XabK8Xn8/EzrNPp8HvY8/MzV9GlPpWIoLgCkHHMAPQ2BNg/Q4DHx0eq1Wp/nAcDEBWB4ZjJZA5VY7fbKRqNHnwo8fmv4XpKHMUCIAhUALLmcrn4E33tcDi4AlDmMBysXC5zcMg0gvv4+KDBYEAWi4UrB9WBAYi1Sn0qyT7WKBYAizHACoUCgQgwtAN6GUEeG1oDAoACmAsQZE8PCAHuY47saXKuT1UocBwgUAZDRn/KruHzb2e7qAJ+Klg1/YgAciMkN0JyIyQ3QmpOYbX3FgoIBYQCQgGhgNqTWM39hQJCAaGAUEAooOYUVntvoYBQQCggFBAKqD2J1dxfKHDrFPgCDLCNn09hb34AAAAASUVORK5CYII=">
+            </span>
+            <div class="media-body">
+                <span class="title">
+                    <?php echo $this->__('From') ?> <b><?php echo $question->getQuestionAuthorName() ?></b> at <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span>
+                </span>
+                <p><?php echo $question->getQuestionText();?></p>
+                <div class="media">
+                    <span class="img pull-left">
+                         <?php echo $this->__('Reply: ');?>
+                    </span>
+                    <div class="media-body">
+                        <p><?php echo $question->getQuestionReplyText();?></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <?php }?>
+    </ul>
+    <?php else: ?>
+    <p><?php echo $this->__('No questions asked yet'); ?></p>
+    <?php endif; ?>
+    <div class="question-form-main pull-left">
+        <?php echo $this->getChildHtml('productquestions_form'); ?>
+        <a class="pull-left" href="<?php echo $this->getProduct()->getProductUrl(); ?>">  <?php echo $this->__('Back to the product page'); ?></a>
+    </div>
+</div>

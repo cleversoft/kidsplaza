@@ -1,0 +1,10 @@
+<?php
+$questionCount = $this->getQuestionCount();
+?>
+<div class="mt-questions">
+    <?php if($questionCount){?>
+        <a href="<?php echo $this->getQuestionsPageUrl();?>"><?php echo $this->__('Ask a question %s',$questionCount);?></a>
+    <?php }else{?>
+        <a href="<?php echo $this->getQuestionsPageUrl();?>"><?php echo $this->__('Be the first to ask about this product');?></a>
+    <?php }?>
+</div>
