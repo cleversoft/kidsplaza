@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Search
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+	<modules>
+		<MT_Search>
+			<version>1.0</version>
+		</MT_Search>
+	</modules>
+
+	<global>
+		<helpers>
+			<mtsearch>
+				<class>MT_Search_Helper</class>
+			</mtsearch>
+		</helpers>
+		<blocks>
+			<mtsearch>
+				<class>MT_Search_Block</class>
+			</mtsearch>
+			<adminhtml>
+				<rewrite>
+					<catalog_product_attribute_grid>MT_Search_Block_Adminhtml_Catalog_Product_Attribute_Grid</catalog_product_attribute_grid>
+				</rewrite>
+			</adminhtml>
+			<catalogsearch>
+				<rewrite>
+					<layer>MT_Search_Block_Layer</layer>
+				</rewrite>
+			</catalogsearch>
+		</blocks>
+		<models>
+			<mtsearch>
+				<class>MT_Search_Model</class>
+				<resourceModel>mtsearch_resource</resourceModel>
+			</mtsearch>
+			<mtsearch_resource>
+				<class>MT_Search_Model_Resource</class>
+			</mtsearch_resource>
+			<!-- catalog_resource>
+				<rewrite>
+					<layer_filter_attribute>MT_Search_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
+				</rewrite>
+			</catalog_resource>
+			<catalogsearch>
+				<rewrite>
+					<layer>MT_Search_Model_Layer</layer>
+				</rewrite>
+			</catalogsearch -->
+			<catalogsearch_resource>
+				<rewrite>
+					<fulltext>MT_Search_Model_Resource_Fulltext</fulltext>
+				</rewrite>
+			</catalogsearch_resource>
+		</models>
+		<resources>
+			<mtsearch_setup>
+				<setup>
+					<module>MT_Search</module>
+				</setup>
+			</mtsearch_setup>
+		</resources>
+	</global>
+
+	<frontend>
+		<routers>
+			<catalogsearch>
+				<args>
+					<modules>
+						<MT_Search before="Mage_CatalogSearch">MT_Search_Catalogsearch</MT_Search>
+					</modules>
+				</args>
+			</catalogsearch>
+		</routers>
+	</frontend>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<MT_Search before="Mage_Adminhtml">MT_Search_Adminhtml</MT_Search>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<events>
+			<adminhtml_catalog_product_attribute_edit_prepare_form>
+				<observers>
+					<mtsearch>
+                        <type>singleton</type>
+						<class>mtsearch/observer</class>
+						<method>adminhtmlCatalogProductAttributeEditPrepareForm</method>
+					</mtsearch>
+				</observers>
+			</adminhtml_catalog_product_attribute_edit_prepare_form>
+		</events>
+	</adminhtml>
+
+	<default>
+		<mtsearch>
+			<enable>
+				<solr>0</solr>
+			</enable>
+			<solr>
+				<host>localhost</host>
+				<port>8983</port>
+				<path>/solr</path>
+			</solr>
+			<utils>
+				<spell>1</spell>
+				<weight>1</weight>
+				<autocomplete>1</autocomplete>
+				<limit>10</limit>
+				<tpl><![CDATA[<li title="{{name}}"><a style="text-decoration:none" href="{{url}}"><img width="50" style="float:left;padding-right:5px" src="{{img}}"/>{{name}}</a></li>]]></tpl>
+				<img>50</img>
+			</utils>
+		</mtsearch>
+	</default>
+</config>

@@ -26,6 +26,7 @@ js/tiny_mce/*
 js/varien/*
 lib/*
 !lib/Diglin/
+!lib/Apache/
 pkginfo
 skin/install/*
 skin/frontend/base/*

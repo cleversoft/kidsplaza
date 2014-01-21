@@ -1,0 +1,55 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Search
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<script type="text/javascript">
+	function testConnection() {
+		var solr_params = {
+			host: $('mtsearch_solr_host').value,
+			port: $('mtsearch_solr_port').value,
+			path: $('mtsearch_solr_path').value
+		};
+
+        var resultText = $('testResult'),
+		    info = '<table>'+
+			'<tr><td><?php echo $this->__("Connection Status")?></td><td>{{status}}</td></tr>'+
+			'<tr><td><?php echo $this->__("Server Response")?></td><td>{{ping}}</td></tr>'+
+			'<tr><td><?php echo $this->__("Solr Version")?></td><td>{{solr}}</td></tr>'+
+			'<tr><td><?php echo $this->__("JVM")?></td><td>{{jvm}}</td></tr>'+
+			'<tr><td><?php echo $this->__("Host")?></td><td>{{host}}</td></tr>'+
+			'</table>';
+
+		new Ajax.Request('<?php echo $this->getUrl("adminhtml/solr/ping")?>', {
+			parameters: solr_params,
+			onSuccess: function(transport) {
+				try {
+					response = transport.responseText.evalJSON()
+					info = info.replace(/{{status}}/, response.status).
+						replace(/{{ping}}/, response.ping).
+						replace(/{{solr}}/, response.solr).
+						replace(/{{jvm}}/, response.jvm).
+						replace(/{{host}}/, response.host);
+				} catch (e) {
+					info = info.replace(/{{status}}/, '<?php echo $this->__("Failed")?>').
+						replace(/{{ping}}/, '').
+						replace(/{{solr}}/, '').
+						replace(/{{jvm}}/, '').
+						replace(/{{host}}/, '');
+				}
+				resultText.update(info);
+			}
+		});
+	}
+</script>
+<?php echo $this->getChildHtml('testConnectionBtn')?>
+<div id="testResult" style=""></div>
+<style type="text/css">
+	#testResult table tr td{ text-align: right; border-bottom: 1px solid #ddd; width: 50%}
+	#testResult table tr td:first-child{ text-align: left; font-weight: bold;}
+</style>
