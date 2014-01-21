@@ -58,6 +58,17 @@
                 </rewrite>
             </directory>
         </models>
+        <events>
+            <model_save_after>
+                <observers>
+                    <kidsplaza>
+                        <type>singleton</type>
+                        <class>kidsplaza/observer</class>
+                        <method>modelSaveAfter</method>
+                    </kidsplaza>
+                </observers>
+            </model_save_after>
+        </events>
     </global>
 
     <default>

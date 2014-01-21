@@ -89,6 +89,7 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
      */
     public function normalize($input){
         if (!$input) return '';
+
         $unicode = array(
             'a' => 'á|à|ả|ã|ạ|ă|ắ|ặ|ằ|ẳ|ẵ|â|ấ|ầ|ẩ|ẫ|ậ',
             'A'	=> 'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ằ|Ẳ|Ẵ|Ặ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ',
@@ -105,7 +106,29 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             'y' => 'ý|ỳ|ỷ|ỹ|ỵ',
             'Y'	=> 'Ý|Ỳ|Ỷ|Ỹ|Ỵ'
         );
-        foreach($unicode as $nonUnicode => $uni) $input = preg_replace("/($uni)/i", $nonUnicode, $input);
+        foreach($unicode as $nonUnicode => $uni){
+            $input = preg_replace("/($uni)/i", $nonUnicode, $input);
+        }
+
         return $input;
+    }
+
+    public function cleanCacheByObject($object){
+        if ($object instanceof Mage_Catalog_Model_Product){
+            /* @var $object Mage_Catalog_Model_Product */
+            foreach ($object->getCategoryCollection() as $category){
+                /* @var $category Mage_Catalog_Model_Category */
+                $tags = array();
+                foreach (explode('/', $category->getPath()) as $parentId){
+                    $tags[] = "KIDSPLAZA_CATEGORY_{$parentId}";
+                }
+                if (count($tags)){
+                    Mage::app()->cleanCache($tags);
+                }
+            }
+        }elseif ($object instanceof Mage_Catalog_Model_Category){
+            /* @var $object Mage_Catalog_Model_Category */
+            Mage::app()->cleanCache(array("KIDSPLAZA_CATEGORY_{$object->getId()}"));
+        }
     }
 }
