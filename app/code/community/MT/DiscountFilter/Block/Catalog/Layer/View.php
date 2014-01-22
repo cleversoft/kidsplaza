@@ -9,7 +9,7 @@
  */
 class MT_DiscountFilter_Block_Catalog_Layer_View extends Mage_Catalog_Block_Layer_View{
     protected function isEnable(){
-        return (bool)Mage::getStoreConfigFlag('discountfilter/general/enable');
+        return Mage::getStoreConfigFlag('discountfilter/general/enable');
     }
 
     protected function _prepareLayout(){

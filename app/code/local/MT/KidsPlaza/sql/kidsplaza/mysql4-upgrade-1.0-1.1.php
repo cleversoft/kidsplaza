@@ -23,6 +23,7 @@ $this->addAttribute('catalog_product', 'brand', array(
     'filterable' => true,
     'comparable' => true,
     'visible_in_advanced_search' => true,
+    'is_filterable_in_search' => true,
     'is_html_allowed_on_front' => true,
     'used_in_product_listing' => true,
     'used_for_sort_by' => false,

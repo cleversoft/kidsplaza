@@ -1,0 +1,161 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Search
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+	<sections>
+		<mtsearch translate="label">
+			<label>MT Search</label>
+			<tab>mtext</tab>
+			<sort_order>1</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<enable translate="label">
+					<label>Enable Solr</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<solr translate="label comment">
+							<label>Enable Solr Search</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<backend_model>mtsearch/system_config_solr</backend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment><![CDATA[
+								After enable Solr, you must reindex <b>Catalog Search Index</b> to apply.
+							]]></comment>
+						</solr>
+					</fields>
+				</enable>
+				<solr translate="label">
+					<label>Solr Server Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<host translate="label">
+							<label>Host</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Ex: 127.0.0.1 or localhost</comment>
+						</host>
+						<port translate="label">
+							<label>Port</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Ex: 8983</comment>
+						</port>
+						<path translate="label">
+							<label>Path</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Ex: /solr</comment>
+						</path>
+						<test>
+							<label></label>
+							<frontend_model>mtsearch/adminhtml_system_config_test</frontend_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</test>
+					</fields>
+				</solr>
+				<utils translate="label">
+					<label>Other Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>3</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<spell translate="label">
+							<label>Enable "Did you mean?"</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Add suggestions to result</comment>
+						</spell>
+						<weight translate="label">
+							<label>Enable Search Weight</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Will use search_weight field of attribute in search query</comment>
+						</weight>
+						<autocomplete translate="label">
+							<label>Enhanced Search Autocomplete</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>More info in dropdown result</comment>
+						</autocomplete>
+						<limit translate="label">
+							<label>Limit</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><autocomplete>1</autocomplete></depends>
+							<comment>Autocomplete search result limit</comment>
+						</limit>
+						<tpl translate="label">
+							<label>Template</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><autocomplete>1</autocomplete></depends>
+							<comment>Avaiable vars: {{url}}, {{img}} and {{ALL ATTRIBUTE CODE}}.</comment>
+						</tpl>
+						<img translate="label">
+							<label>Autocomplete Image Size</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<depends><autocomplete>1</autocomplete></depends>
+							<comment>Eg: 70 or 70x70</comment>
+						</img>
+					</fields>
+				</utils>
+			</groups>
+		</mtsearch>
+	</sections>
+</config>
