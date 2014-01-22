@@ -8,6 +8,11 @@
  * @email       support@magentothemes.net
  */
 class MT_Extensions_Helper_Cms_Wysiwyg_Images extends Mage_Cms_Helper_Wysiwyg_Images{
+    /**
+     * Check whether using static URLs is allowed
+     *
+     * @return boolean
+     */
     public function isUsingStaticUrlsAllowed(){
         if (Mage::getSingleton('adminhtml/session')->getStaticUrlsAllowed()){
             return true;
