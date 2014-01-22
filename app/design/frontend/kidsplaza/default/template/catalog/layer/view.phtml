@@ -31,7 +31,7 @@
  * @var $this Mage_Catalog_Block_Layer_View
  */
 ?>
-<?php if($this->canShowBlock()): ?>
+<?php if ($this->canShowBlock()): ?>
 <div class="block-layered-nav">
     <?php if ($this->getLayer()->getState()->getFilters()): ?>
         <div class="panel-danger panel">
@@ -43,24 +43,23 @@
             </div>
         </div>
     <?php endif; ?>
-    <?php if($this->canShowOptions()): ?>
+    <?php if ($this->canShowOptions()): ?>
         <?php $_category = Mage::registry('current_category') ?>
         <?php $_module = $this->getRequest()->getModuleName() ?>
         <?php $_filters = $this->getFilters() ?>
         <?php foreach ($_filters as $_filter): ?>
-            <?php if ($_filter instanceof Mage_Catalog_Block_Layer_Filter_Category):?>
-            <?php else: ?>
-                <?php if ($_category && $_category->hasChildren() && $_module == 'catalog') continue;?>
+            <?php if (!($_filter instanceof Mage_Catalog_Block_Layer_Filter_Category) && $_category && $_category->hasChildren() && $_module == 'catalog'): ?>
+                <?php continue; ?>
             <?php endif; ?>
-            <?php if($_filter->getItemsCount()): ?>
-                <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false?>
-                <div class="panel panel-info<?php echo $enableListJs ? ' list-js' : ''?>">
+            <?php if ($_filter->getItemsCount()): ?>
+                <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false ?>
+                <div class="panel panel-info<?php echo $enableListJs ? ' list-js' : '' ?>">
                     <div class="panel-heading">
                         <?php echo $this->__($_filter->getName()) ?>
-                        <?php if ($enableListJs):?>
-                            <input type="text" class="search" placeholder="<?php echo $this->__('Find brand')?>"/>
+                        <?php if ($enableListJs): ?>
+                            <input type="text" class="search" placeholder="<?php echo $this->__('Find brand') ?>"/>
                             <span class="search-icon glyphicon glyphicon-search"></span>
-                        <?php endif ?>
+                        <?php endif; ?>
                     </div>
                     <div class="panel-body"><?php echo $_filter->getHtml() ?></div>
                 </div>
