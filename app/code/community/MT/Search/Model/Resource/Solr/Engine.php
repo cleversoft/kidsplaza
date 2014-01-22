@@ -62,7 +62,7 @@ class MT_Search_Model_Resource_Solr_Engine {
 		foreach ($entityIndexes as $entityId => $index) {
 			$documents[] = $this->_prepareDocumentData($storeId, $entityId, $index);
 		}
-        #if ($storeId == 1) Mage::log($documents);
+
 		$this->getAdapter()->addDocuments($documents);
 		$this->getAdapter()->commit();
 		$this->getAdapter()->optimize();

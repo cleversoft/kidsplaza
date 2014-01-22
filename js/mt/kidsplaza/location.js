@@ -43,16 +43,50 @@ KidsPlazaCart.prototype = {
     }
 };
 
+var EnhancedAjaxAutocompleter = Class.create(Ajax.Autocompleter, {
+    updateChoices: function(choices) {
+        if(!this.changed && this.hasFocus) {
+            this.update.innerHTML = choices;
+            Element.cleanWhitespace(this.update);
+            Element.cleanWhitespace(this.update.down());
+
+            if(this.update.firstChild && this.update.down().childNodes) {
+                this.entryCount =
+                    this.update.down().childNodes.length;
+                for (var i = 0; i < this.entryCount; i++) {
+                    var entry = this.getEntry(i);
+                    entry.autocompleteIndex = i;
+                    this.addObservers(entry);
+                }
+            } else {
+                this.entryCount = 0;
+            }
+
+            this.stopIndicator();
+            this.index = -1; // should not auto select first result
+
+            if(this.entryCount==1 && this.options.autoSelect) {
+                this.selectEntry();
+                this.hide();
+            } else {
+                this.render();
+            }
+        }
+    }
+});
+
 var KidsPlazaSearch = Class.create(Varien.searchForm, {
     initAutocomplete : function(url, destinationElement){
-        new Ajax.Autocompleter(this.field, destinationElement, url, {
+        new EnhancedAjaxAutocompleter(this.field, destinationElement, url, {
+            frequency: 0.2,
             paramName: this.field.name,
             method: 'get',
             minChars: 2,
             updateElement: this._selectAutocompleteItem.bind(this),
             onShow: function(element, update){
                 update.style.width = element.getWidth() + 4 + 'px';
-                Effect.SlideDown(update, {duration:0.2});
+                update.style.opacity = 1;
+                Effect.SlideDown(update, {duration: 0.2});
             }
         });
     }
