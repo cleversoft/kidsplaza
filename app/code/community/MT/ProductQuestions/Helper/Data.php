@@ -242,7 +242,7 @@ Class MT_ProductQuestions_Helper_Data extends Mage_Core_Helper_Abstract
         $str_math_expretion = "";
         // First part of mathematical expression
         if ( 0 == $rand_input )
-            $str_math_expretion .= "<input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" required=\"required\" class=\"form-control\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
+            $str_math_expretion .= "<input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" class=\"form-control required-entry validate-number\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
         else if ( 0 == $rand_number_string || 0 == $this->confComplexityNumber() )
             $str_math_expretion .= $this->wordConverting( $number_string[ $array_math_expretion[0] ] );
         else
@@ -253,7 +253,7 @@ Class MT_ProductQuestions_Helper_Data extends Mage_Core_Helper_Abstract
 
         // Second part of mathematical expression
         if ( 1 == $rand_input )
-            $str_math_expretion .= " <input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" required=\"required\" class=\"form-control\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
+            $str_math_expretion .= " <input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" class=\"form-control required-entry validate-number\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
         else if ( 1 == $rand_number_string || 0 == $this->confComplexityNumber() )
             $str_math_expretion .= " " . $this->wordConverting( $number_string[ $array_math_expretion[1] ] );
         else
@@ -264,7 +264,7 @@ Class MT_ProductQuestions_Helper_Data extends Mage_Core_Helper_Abstract
 
         // Add result of mathematical expression
         if ( 2 == $rand_input ) {
-            $str_math_expretion .= " <input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" required=\"required\" class=\"form-control\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
+            $str_math_expretion .= " <input id=\"cptch_input\" type=\"text\" autocomplete=\"off\" name=\"cptch_number\" value=\"\" maxlength=\"2\" size=\"2\" aria-required=\"true\" class=\"form-control required-entry validate-number\" style=\"margin-bottom:0;display:inline;font-size: 12px;width: 40px;\" />";
         } else if ( 2 == $rand_number_string || 0 == $this->confComplexityNumber() ) {
             if ( $array_math_expretion[2] < 10 )
                 $str_math_expretion .= " " . $this->wordConverting( $number_string[ $array_math_expretion[2] ] );

@@ -51,7 +51,9 @@ class MT_ProductQuestions_indexController extends Mage_Core_Controller_Front_Act
     public function indexAction()
     {
         try
-        { $this->_initProduct(true)->loadLayout(); }
+        {
+            $this->_initProduct(true)->loadLayout();
+        }
         catch (Exception $ex)
         {
             Mage::getSingleton('core/session')->addError($ex->getMessage());
@@ -82,6 +84,11 @@ class MT_ProductQuestions_indexController extends Mage_Core_Controller_Front_Act
 
     public function postAction()
     {
+        $session = Mage::getSingleton('core/session');
+        if(!Mage::helper('productquestions')->confAllowOnlyLogged()){
+            $session->addSuccess($this->__('Please login and question'));
+            return $this->_redirect('customer/account/login/');
+        }
         try
         {
             $this->_initProduct();
@@ -89,7 +96,6 @@ class MT_ProductQuestions_indexController extends Mage_Core_Controller_Front_Act
         {
             Mage::getSingleton('core/session')->addError($ex->getMessage());
         }
-        $session = Mage::getSingleton('core/session');
         $data = $this->getRequest()->getPost();
         if(!empty($data))
         {
