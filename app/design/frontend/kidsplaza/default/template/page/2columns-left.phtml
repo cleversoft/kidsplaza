@@ -43,11 +43,13 @@
             <?php echo $this->getChildHtml('breadcrumbs') ?>
             <?php echo $this->getChildHtml('global_notices') ?>
             <?php echo $this->getChildHtml('global_messages') ?>
-            <div class="col-left sidebar col-lg-3">
-                <?php echo $this->getChildHtml('left') ?>
-            </div>
-            <div class="col-main col-lg-9">
-                <?php echo $this->getChildHtml('content') ?>
+            <div class="row">
+                <div class="col-left sidebar col-lg-3">
+                    <?php echo $this->getChildHtml('left') ?>
+                </div>
+                <div class="col-main col-lg-9">
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
             </div>
         </div>
         <?php echo $this->getChildHtml('footer') ?>

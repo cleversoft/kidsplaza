@@ -40,19 +40,16 @@
     <div class="wrapper">
         <?php echo $this->getChildHtml('header') ?>
         <div class="container col2-right-layout" id="content">
+            <?php echo $this->getChildHtml('breadcrumbs') ?>
             <?php echo $this->getChildHtml('global_notices') ?>
             <?php echo $this->getChildHtml('global_messages') ?>
-            <div class="col-main col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                <?php echo $this->getChildHtml('breadcrumbs') ?>
-                <?php echo $this->getChildHtml('content') ?>
-				<div class="row show-grid">
-					<div class="main_bottom_brand">
-						<?php echo $this->getChildHtml('main_bottom_brand') ?>
-					</div>
-				</div>
-            </div>
-            <div class="col-right sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                <?php echo $this->getChildHtml('right') ?>
+            <div class="row">
+                <div class="col-main col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
+                <div class="col-right sidebar col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <?php echo $this->getChildHtml('right') ?>
+                </div>
             </div>
         </div>
         <?php echo $this->getChildHtml('footer') ?>
