@@ -86,6 +86,16 @@
                 </productquestions>
             </updates>
         </layout>
+        <events>
+            <customer_login>
+                <observers>
+                    <productquestions>
+                        <class>productquestions/observer</class>
+                        <method>customerLogin</method>
+                    </productquestions>
+                </observers>
+            </customer_login>
+        </events>
     </frontend>
     <admin>
         <routers>

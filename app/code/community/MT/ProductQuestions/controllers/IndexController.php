@@ -3,7 +3,7 @@
  *
  * ------------------------------------------------------------------------------
  * @category     MT
- * @package      MT_PhpStorm
+ * @package      MT_ProductQuestions
  * ------------------------------------------------------------------------------
  * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
  * @license      GNU General Public License version 2 or later;
@@ -17,6 +17,19 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
     protected $_product = null;
 
     protected $_category = null;
+
+    public function preDispatch()
+    {
+        parent::preDispatch();
+
+        if (!Mage::helper('productquestions')->confAllowOnlyLogged() && !Mage::getSingleton('customer/session')->authenticate($this)) {
+            $this->setFlag('', 'no-dispatch', true);
+            if (!Mage::getSingleton('customer/session')->getBeforeQuestionUrl()) {
+                Mage::getSingleton('customer/session')->setBeforeQuestionUrl($this->_getRefererUrl());
+            }
+            Mage::getSingleton('customer/session')->setBeforeQuestionRequest($this->getRequest()->getParams());
+        }
+    }
 
     protected function _initProduct($registerObjects = false)
     {
@@ -85,10 +98,6 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
     public function postAction()
     {
         $session = Mage::getSingleton('core/session');
-        if(!Mage::helper('productquestions')->confAllowOnlyLogged()){
-            $session->addSuccess($this->__('Please login and question'));
-            return $this->_redirect('customer/account/login/');
-        }
         try
         {
             $this->_initProduct();
