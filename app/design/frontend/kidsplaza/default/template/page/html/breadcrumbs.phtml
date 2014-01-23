@@ -25,19 +25,21 @@
  */
 ?>
 <?php if($crumbs && is_array($crumbs)): ?>
-<div class="col-lg-12">
-<ol class="breadcrumb">
-    <?php foreach($crumbs as $_crumbName => $_crumbInfo): ?>
-        <li>
-        <?php if($_crumbInfo['link']): ?>
-            <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>">
-                <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
-            </a>
-        <?php else: ?>
-            <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
-        <?php endif; ?>
-        </li>
-    <?php endforeach; ?>
-</ol>
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <?php foreach($crumbs as $_crumbName => $_crumbInfo): ?>
+                <li>
+                <?php if($_crumbInfo['link']): ?>
+                    <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->escapeHtml($_crumbInfo['title']) ?>">
+                        <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+                    </a>
+                <?php else: ?>
+                    <?php echo $this->escapeHtml($_crumbInfo['label']) ?>
+                <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
 </div>
 <?php endif; ?>

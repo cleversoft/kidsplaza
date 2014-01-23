@@ -43,8 +43,10 @@
             <?php echo $this->getChildHtml('breadcrumbs') ?>
             <?php echo $this->getChildHtml('global_notices') ?>
             <?php echo $this->getChildHtml('global_messages') ?>
-            <div class="col-main col-lg-12">
-                <?php echo $this->getChildHtml('content') ?>
+            <div class="col-main row">
+                <div class="col-lg-12">
+                    <?php echo $this->getChildHtml('content') ?>
+                </div>
             </div>
         </div>
         <?php echo $this->getChildHtml('footer') ?>
