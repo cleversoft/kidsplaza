@@ -15,9 +15,10 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
-DROP TABLE IF EXISTS {$this->getTable('productquestions/productquestions')};
+--DROP TABLE IF EXISTS {$this->getTable('productquestions/productquestions')};
 CREATE TABLE {$this->getTable('productquestions/productquestions')} (
     `question_id` int(10) unsigned NOT NULL auto_increment,
+    `parent_question_id` int(10) unsigned NOT NULL default '0',
     `question_status` tinyint(2) NOT NULL default '1',
     `question_product_id` int(10) unsigned NULL default null,
     `question_store_id` int(11) NOT NULL COMMENT 'asked from',
@@ -28,6 +29,7 @@ CREATE TABLE {$this->getTable('productquestions/productquestions')} (
     `question_date` datetime NOT NULL,
     `question_text` text NOT NULL,
     `question_reply_text` text NOT NULL,
+    `hits` int(10) unsigned NOT NULL default '0',
     PRIMARY KEY (`question_id`),
     KEY `question_status` (`question_status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
