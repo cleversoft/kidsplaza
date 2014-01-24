@@ -55,6 +55,7 @@
             <catalog>
                 <rewrite>
                     <layer_filter_price>MT_Filter_Block_Catalog_Layer_Filter_Price</layer_filter_price>
+                    <layer_filter_attribute>MT_Filter_Block_Catalog_Layer_Filter_Attribute</layer_filter_attribute>
                 </rewrite>
             </catalog>
         </blocks>

@@ -33,16 +33,6 @@
 ?>
 <?php if ($this->canShowBlock()): ?>
 <div class="block-layered-nav">
-    <?php if ($this->getLayer()->getState()->getFilters()): ?>
-        <div class="panel-danger panel">
-            <?php echo $this->getStateHtml() ?>
-            <div class="panel-footer" style="text-align: right">
-                <a href="<?php echo $this->getClearUrl() ?>" title="<?php echo $this->__('Clear All') ?>">
-                    <i class="glyphicon glyphicon-trash"></i>
-                </a>
-            </div>
-        </div>
-    <?php endif; ?>
     <?php if ($this->canShowOptions()): ?>
         <?php $_category = Mage::registry('current_category') ?>
         <?php $_module = $this->getRequest()->getModuleName() ?>

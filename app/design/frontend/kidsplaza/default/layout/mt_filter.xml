@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Filter
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<layout>
+    <catalog_category_layered>
+        <reference name="head">
+            <action method="addItem" ifconfig="mtfilter/general/bar">
+                <type>js_css</type>
+                <css>mt/extensions/jquery/plugins/nprogress/nprogress.css</css>
+            </action>
+        </reference>
+        <reference name="js_bottom">
+            <action method="addJs" ifconfig="mtfilter/general/bar">
+                <script>mt/extensions/jquery/plugins/nprogress/nprogress.js</script>
+            </action>
+            <action method="addJs">
+                <script>mt/extensions/URI.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>mt/filter/filter.js</script>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="mt_filter_js" as="mt_filter_js">
+                <action method="setTemplate" ifconfig="mtfilter/catalog/enable">
+                    <file>mt/filter/js.phtml</file>
+                </action>
+            </block>
+        </reference>
+    </catalog_category_layered>
+
+    <catalogsearch_result_index>
+        <reference name="head">
+            <action method="addItem" ifconfig="mtfilter/general/bar">
+                <type>js_css</type>
+                <css>mt/extensions/jquery/plugins/nprogress/nprogress.css</css>
+            </action>
+        </reference>
+        <reference name="js_bottom">
+            <action method="addJs" ifconfig="mtfilter/general/bar">
+                <script>mt/extensions/jquery/plugins/nprogress/nprogress.js</script>
+            </action>
+            <action method="addJs">
+                <script>mt/extensions/URI.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>mt/filter/filter.js</script>
+            </action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="mt_filter_js" as="mt_filter_js">
+                <action method="setTemplate" ifconfig="mtfilter/catalogsearch/enable">
+                    <file>mt/filter/js.phtml</file>
+                </action>
+            </block>
+        </reference>
+    </catalogsearch_result_index>
+</layout>

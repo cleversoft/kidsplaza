@@ -15,7 +15,7 @@ class MagenThemes_Megamenu_Block_Navigation_Top extends Mage_Core_Block_Template
         ));
     }
 
-    public function getType($type){
+    public function getType($type=null){
         return $this->getLayout()->getBlock('megamenu.nav')->getType($type);
     }
     

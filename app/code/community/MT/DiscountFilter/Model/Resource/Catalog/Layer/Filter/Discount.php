@@ -18,27 +18,8 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
      * @return $this
      */
     public function applyFilterToCollection($filter, $value){
-        /* @var $session Mage_Customer_Model_Session */
-        $session    = Mage::getSingleton('customer/session');
-        $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
-        $websiteId = Mage::app()->getWebsite()->getId();
-        $collection = $filter->getLayer()->getProductCollection();
-        $tableAlias = 'catalog_product_price_idx';
-        $connection = $this->_getReadAdapter();
-
-        $subSelect  = $connection->select()->distinct()
-            ->from($this->getMainTable(), array('entity_id'))
-            ->where('price > final_price')
-            ->where("customer_group_id = ?", $customerGroupId)
-            ->where("website_id = ?", $websiteId);
-
-        $conditions = array("{$tableAlias}.entity_id = e.entity_id");
-
-        $collection->getSelect()->join(
-            array($tableAlias => $subSelect),
-            join(' AND ', $conditions),
-            array()
-        );
+        $select = $filter->getLayer()->getProductCollection()->getSelect();
+        $select->where('price_index.price > price_index.final_price');
 
         return $this;
     }
@@ -48,12 +29,7 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
      * @return array
      */
     public function getCount($filter){
-        /* @var $session Mage_Customer_Model_Session */
-        $session    = Mage::getSingleton('customer/session');
-        $customerGroupId = $session->isLoggedIn() ? $session->getCustomer()->getGroupId() : 0;
-        $websiteId = Mage::app()->getWebsite()->getId();
         $connection = $this->_getReadAdapter();
-        $tableAlias = 'catalog_product_price_idx';
 
         /* @var $select Varien_Db_Select */
         $select = clone $filter->getLayer()->getProductCollection()->getSelect();
@@ -62,18 +38,14 @@ class MT_DiscountFilter_Model_Resource_Catalog_Layer_Filter_Discount extends Mag
         $select->reset(Zend_Db_Select::LIMIT_COUNT);
         $select->reset(Zend_Db_Select::LIMIT_OFFSET);
 
-        $conditions = array(
-            "{$tableAlias}.entity_id = e.entity_id",
-            $connection->quoteInto("{$tableAlias}.customer_group_id = ?", $customerGroupId),
-            $connection->quoteInto("{$tableAlias}.website_id = ?", $websiteId),
-            "{$tableAlias}.price > {$tableAlias}.final_price"
-        );
-
-        $select->join(
-            array($tableAlias => $this->getMainTable()),
-            join(' AND ', $conditions),
-            array('count' => new Zend_Db_Expr("COUNT({$tableAlias}.entity_id)"))
-        );
+        $fromPart = $select->getPart('from');
+        foreach ($fromPart as $alias => $from){
+            if ($from['tableName'] == 'catalog_product_index_price'){
+                $fromPart[$alias]['joinCondition'] = join(' AND ', array($from['joinCondition'], "{$alias}.price > {$alias}.final_price"));
+            }
+        }
+        $select->setPart('from', $fromPart);
+        $select->columns(array('count' => new Zend_Db_Expr("COUNT(price_index.entity_id)")));
 
         return $connection->fetchRow($select);
     }

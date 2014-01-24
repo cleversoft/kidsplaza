@@ -18,8 +18,8 @@ class MT_Filter_Block_Catalog_Layer_Filter_Price extends Mage_Catalog_Block_Laye
         if (Mage::helper('mtfilter')->isPriceEnable()){
             $this->setTemplate('mt/filter/price.phtml');
             $this->_hash = Mage::helper('core')->uniqHash('slider-');
-            $this->_filterModelName = 'mtfilter/layer_filter_price';
         }
+        $this->_filterModelName = 'mtfilter/layer_filter_price';
     }
 
     public function getHash($suffix=null){

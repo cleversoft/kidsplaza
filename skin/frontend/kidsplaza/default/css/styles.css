@@ -203,6 +203,8 @@ input,textarea{outline:0}
 .filter-item{overflow:hidden;position:relative}
 .filter-item .badge{position:absolute;right:0;background-color:#aaa;top:0;z-index:1}
 .filter-item a{display:block;width:100%}
+.filter-item.selected{font-weight: 700;}
+.filter-item.selected .badge{background-color: #428bca;}
 .panel-heading .search{position:absolute;top:2px;right:0;height:26px;font-size:13px;width:150px;background:#fff;border:1px solid #ccc;padding:0 25px 0 5px;margin-right:2px}
 .panel-heading .search-icon{float:right;margin-top:2px}
 .special-price .price,.regular-price .price{color:#db2827;font-weight:700;font-size:16px}

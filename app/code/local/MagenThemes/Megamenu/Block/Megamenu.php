@@ -38,7 +38,7 @@ class MagenThemes_Megamenu_Block_Megamenu extends Mage_Core_Block_Template
         return false;
 	}
 	
-	public function getType($type) {
+	public function getType($type=null) {
 		if(isset($this->_types[$type])) {
 			return $this->_types[$type];
 		}
