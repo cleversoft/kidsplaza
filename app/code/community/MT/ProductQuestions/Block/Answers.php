@@ -12,7 +12,7 @@
  * ------------------------------------------------------------------------------
  *
  */
-Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
+Class MT_ProductQuestions_Block_Answers extends Mage_Core_Block_Template
 {
     protected $_collection = null;
 
@@ -21,7 +21,7 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('mt/productquestions/questions.phtml');
+        $this->setTemplate('mt/productquestions/answers.phtml');
     }
 
     protected function _prepareCollection()
@@ -30,11 +30,10 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         if(!($product instanceof Mage_Catalog_Model_Product)) return false;
         $productId = $product->getId();
         $this->setProduct($product);
-
         $this->_collection = Mage::getResourceModel('productquestions/productquestions_collection')
             ->addProductFilter($productId)
             ->addVisibilityFilter()
-            ->addQuestionFilter(0)
+            ->addQuestionFilter($this->getRequest()->getParam('qid'))
             ->addStoreFilter()
             ->setDateOrder();
         return $this;
@@ -52,12 +51,4 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         return parent::_toHtml();
     }
 
-    public function getQuestionUrl($id)
-    {
-        $product = Mage::helper('productquestions')->getCurrentProduct(true);
-        $productId = $product->getId();
-        $params = array('id' => $productId);
-        $params['qid'] = $id;
-        return Mage::getUrl('*/*/view', $params);
-    }
 }

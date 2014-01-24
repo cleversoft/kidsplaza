@@ -14,16 +14,12 @@ $questions = $this->_collection;
                 <span class="title">
                     <?php echo $this->__('From') ?> <b><?php echo $question->getQuestionAuthorName() ?></b> at <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span>
                 </span>
-                <p><a href=<?php echo $this->getQuestionUrl($question->getQuestionId());?>><?php echo $question->getQuestionText();?></a></p>
+                <p><?php echo $question->getQuestionText();?></p>
             </div>
         </li>
         <?php }?>
     </ul>
     <?php else: ?>
-    <p><?php echo $this->__('No questions asked yet'); ?></p>
+    <p><?php echo $this->__('No answer'); ?></p>
     <?php endif; ?>
-    <div class="question-form-main pull-left">
-        <?php echo $this->getChildHtml('productquestions_form'); ?>
-        <a class="pull-left" href="<?php echo $this->getProduct()->getProductUrl(); ?>">  <?php echo $this->__('Back to the product page'); ?></a>
-    </div>
 </div>

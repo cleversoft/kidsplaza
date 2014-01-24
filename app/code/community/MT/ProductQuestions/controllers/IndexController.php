@@ -95,6 +95,40 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
         $this->renderLayout();
     }
 
+    protected function _loadQuestion($questionId)
+    {
+        if (!$questionId) {
+            return false;
+        }
+        $model = Mage::getModel('productquestions/productquestions')->load($questionId);
+        if (!$model->getQuestionId()) {
+            return false;
+        }
+        Mage::register('current_question', $model);
+
+        return $model;
+    }
+
+    protected function _loadProduct($productId)
+    {
+        if (!$productId) {
+            return false;
+        }
+
+        $product = Mage::getModel('catalog/product')
+            ->setStoreId(Mage::app()->getStore()->getId())
+            ->load($productId);
+        /* @var $product Mage_Catalog_Model_Product */
+        if (!$product->getId() || !$product->isVisibleInCatalog() || !$product->isVisibleInSiteVisibility()) {
+            return false;
+        }
+
+        Mage::register('current_product', $product);
+        Mage::register('product', $product);
+
+        return $product;
+    }
+
     public function postAction()
     {
         $session = Mage::getSingleton('core/session');
@@ -130,11 +164,18 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
                         return $this->_redirectReferer();
                     }
                 }
+                if($data['parent_question_id']){
+                    $parent_id = $data['parent_question_id'];
+                }else{
+                    $parent_id = 0;
+                }
                 $questions->setQuestionProductId($this->_product->getId())
+                          ->setQuestionParentId($parent_id)
                           ->setQuestionAuthorName($data['question_author_name'])
                           ->setQuestionAuthorEmail($data['question_author_email'])
                           ->setQuestionProductName($this->_product->getName())
                           ->setQuestionText($data['question_text'])
+                          ->setQuestionStatus(MT_ProductQuestions_Model_Source_Question_Status::STATUS_PRIVATE)
                           ->setQuestionDate(now())
                           ->setQuestionStoreId($storeId)
                           ->setQuestionStoreIds($storeId)
@@ -153,4 +194,28 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
         }
         $this->_redirectReferer();
     }
+
+    /**
+     * Show details of one question
+     *
+     */
+    public function viewAction()
+    {
+        $question = $this->_loadQuestion((int) $this->getRequest()->getParam('qid'));
+        if (!$question) {
+            $this->_forward('noroute');
+            return;
+        }
+
+        $product = $this->_loadProduct($question->getQuestionProductId());
+        if (!$product) {
+            $this->_forward('noroute');
+            return;
+        }
+
+        $this->loadLayout();
+        $this->_initLayoutMessages('catalog/session');
+        $this->renderLayout();
+    }
+
 }

@@ -74,6 +74,13 @@ class MT_ProductQuestions_Model_Mysql4_Productquestions_Collection extends Mage_
         return $this;
     }
 
+    public function addQuestionFilter($questionId)
+    {
+        $this->getSelect()->where('main_table.parent_question_id=?', $questionId);
+
+        return $this;
+    }
+
     public function addAnsweredFilter($answered = true)
     {
         if($answered)
