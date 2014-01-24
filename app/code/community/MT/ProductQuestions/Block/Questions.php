@@ -34,7 +34,6 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         $this->_collection = Mage::getResourceModel('productquestions/productquestions_collection')
             ->addProductFilter($productId)
             ->addVisibilityFilter()
-            ->addQuestionFilter(0)
             ->addStoreFilter()
             ->setDateOrder();
         return $this;
@@ -45,11 +44,18 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         $this->setShowPager('productquestions' == $this->getRequest()->getModuleName());
         $this->_prepareCollection();
         $pager = $this->getLayout()->getBlock($this->_pagerName);
-
+        $this->_collection->addQuestionFilter(0);
         $this->_collection = $pager
             ->setCollection($this->_collection)
             ->getCollection(); 
         return parent::_toHtml();
+    }
+
+    public function countAnswers($qid)
+    {
+        $this->_prepareCollection();
+        $this->_collection->addQuestionFilter($qid);
+        return count($this->_collection);
     }
 
     public function getQuestionUrl($id)

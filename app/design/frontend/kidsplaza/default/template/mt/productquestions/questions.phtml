@@ -12,9 +12,20 @@ $questions = $this->_collection;
             </span>
             <div class="media-body">
                 <span class="title">
-                    <?php echo $this->__('From') ?> <b><?php echo $question->getQuestionAuthorName() ?></b> at <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span>
+                    <?php echo $this->__('From') ?> <b><?php echo $question->getQuestionAuthorName() ?></b> at
+                    <span class="date">
+                        <?php echo $this->formatDate($question->getQuestionDate()) ?>
+                        <?php echo $this->formatTime($question->getQuestionDate()) ?>
+                    </span>
+                    <span class="viewed">| <?php echo $this->__('View (%s)', $question->getHits());?></span>
+                    <span class="answer">| <?php echo $this->__('Answers: (%s)', $this->countAnswers($question->getQuestionId()));?></span>
                 </span>
-                <p><a href=<?php echo $this->getQuestionUrl($question->getQuestionId());?>><?php echo $question->getQuestionText();?></a></p>
+                <p>
+                    <?php echo $question->getQuestionText();?></br>
+                    <a href=<?php echo $this->getQuestionUrl($question->getQuestionId());?>>
+                        <?php echo $this->__('Answer this question');?>
+                    </a>
+                </p>
             </div>
         </li>
         <?php }?>

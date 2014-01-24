@@ -206,7 +206,12 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
             $this->_forward('noroute');
             return;
         }
-
+        if($this->getRequest()->getParam('qid')){
+            $model = Mage::getModel('productquestions/productquestions');
+            $model->load($this->getRequest()->getParam('qid'));
+            $model->setHits($model->getHits()+1)
+                  ->save();
+        }
         $product = $this->_loadProduct($question->getQuestionProductId());
         if (!$product) {
             $this->_forward('noroute');
