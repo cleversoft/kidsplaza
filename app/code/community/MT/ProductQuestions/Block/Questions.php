@@ -62,7 +62,12 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
     {
         $product = Mage::helper('productquestions')->getCurrentProduct(true);
         $productId = $product->getId();
+        $category = Mage::registry('current_category');
+        if($category instanceof Mage_Catalog_Model_Category)
+            $categoryId = $category->getId();
+        else $categoryId = false;
         $params = array('id' => $productId);
+        if($categoryId) $params['category'] = $categoryId;
         $params['qid'] = $id;
         return Mage::getUrl('*/*/view', $params);
     }

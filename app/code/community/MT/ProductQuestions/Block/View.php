@@ -28,7 +28,9 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
         if ($breadcrumbs) {
             $title = $this->__('Answer Question');
             $data = Mage::registry('current_question');
+            $categoryId = (int) $this->getRequest()->getParam('category', false);
             $params = array('id' => $data->getQuestionProductId());
+            if($categoryId) $params['category'] = $categoryId;
             $truncate = Mage::helper('core/string')->truncate($data->getQuestionText(), $length = 50, $etc = '...', $remainder = '', $breakWords = true);
             $breadcrumbs->addCrumb('home', array(
                 'label' => $this->__('Home'),
@@ -73,7 +75,10 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
      */
     public function getBackUrl()
     {
-        return Mage::getUrl('*/*/index', array('id' => $this->getProductData()->getId()));
+        $categoryId = (int) $this->getRequest()->getParam('category', false);
+        $params = array('id' => $this->getProductData()->getId());
+        if($categoryId) $params['category'] = $categoryId;
+        return Mage::getUrl('*/*/index', $params);
     }
 
     /**
