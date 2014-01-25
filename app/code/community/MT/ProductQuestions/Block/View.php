@@ -21,6 +21,31 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
         $this->setTemplate('mt/productquestions/view.phtml');
     }
 
+    public function _prepareLayout()
+    {
+        parent::_prepareLayout();
+        $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
+        if ($breadcrumbs) {
+            $title = $this->__('Answer Question');
+            $data = Mage::registry('current_question');
+            $params = array('id' => $data->getQuestionProductId());
+            $truncate = Mage::helper('core/string')->truncate($data->getQuestionText(), $length = 50, $etc = '...', $remainder = '', $breakWords = true);
+            $breadcrumbs->addCrumb('home', array(
+                'label' => $this->__('Home'),
+                'title' => $this->__('Go to Home Page'),
+                'link' => Mage::getBaseUrl()
+            ))->addCrumb('qid', array(
+                'label'=>$truncate,
+                'title'=>$truncate,
+                'link'=>Mage::getUrl('productquestions/index/index/', $params)
+            ))->addCrumb('answer', array(
+                'label' => $title,
+                'title' => $title,
+            ));
+        }
+        return $this;
+    }
+
     /**
      * Retrieve current question model from registry
      *
