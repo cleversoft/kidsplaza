@@ -95,14 +95,14 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Edit_Form extends Mage_Admin
             'values'    => MT_ProductQuestions_Model_Source_Question_Status::toOptionArray(),
         ));
 
-        $fieldset->addField('question_reply_text', 'editor', array(
+        /*$fieldset->addField('question_reply_text', 'editor', array(
             'name'      => 'question_reply_text',
             'label'     => $this->__('Your reply'),
             'title'     => $this->__('Your reply'),
             'style'     => 'width:700px; height:500px;',
             'wysiwyg'   => false,
             'required'  => true,
-        ));
+        ));*/
         $form->setUseContainer(true);
         $form->setValues($data);
         $this->setForm($form);

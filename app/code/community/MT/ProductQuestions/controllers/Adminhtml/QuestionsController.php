@@ -183,4 +183,32 @@ class MT_ProductQuestions_Adminhtml_QuestionsController extends Mage_Adminhtml_C
         $this->_redirect('*/*/index');
     }
 
+    /**
+     * Mass Status action
+     */
+    public function massStatusAction()
+    {
+        $questionIds = $this->getRequest()->getParam('productquestions');
+        if(!is_array($questionIds)) {
+            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('adminhtml')->__('Please select item(s)'));
+        } else {
+            try {
+                foreach ($questionIds as $questionId) {
+                    $model = Mage::getSingleton('productquestions/productquestions');
+                    $model->load($questionId)
+                          ->setQuestionStatus($this->getRequest()->getParam('question_status'))
+                          ->setIsMassupdate(true)
+                          ->save();
+                }
+                $this->_getSession()->addSuccess(
+                    $this->__('Total of %d record(s) were successfully updated', count($questionIds))
+                );
+            } catch (Exception $e) {
+                // display error message
+                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+            }
+        }
+        // go to grid
+        $this->_redirect('*/*/index');
+    }
 }

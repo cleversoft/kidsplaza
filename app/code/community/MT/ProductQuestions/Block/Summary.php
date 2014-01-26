@@ -34,7 +34,7 @@ class MT_ProductQuestions_Block_Summary extends Mage_Core_Block_Template
         $questionCount = Mage::getResourceModel('productquestions/productquestions_collection')
             ->addProductFilter($productId)
             ->addVisibilityFilter()
-            ->addAnsweredFilter()
+            ->addQuestionFilter(0)
             ->addStoreFilter()
             ->getSize();
 

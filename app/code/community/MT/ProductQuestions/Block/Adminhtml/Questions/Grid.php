@@ -31,7 +31,7 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
     protected function _prepareCollection(){
         $collection = Mage::getModel('productquestions/productquestions')->getCollection();
         $collection->getSelect()
-            ->columns(array('question_replied' => new Zend_Db_Expr('if(LENGTH(question_reply_text)>0,1,0)')));
+            ->columns(array('question_replied' => new Zend_Db_Expr('if(parent_question_id>0,1,0)')));
         $id = $this->getRequest()->getParam('id');
         if ($id) {
             $collection->addFieldToFilter('question_product_id', $id);
@@ -55,8 +55,8 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
             'header' => $this->__('Replied'),
             'type' => 'options',
             'options' => array(
-                1 => $this->__('Yes'),
-                0 => $this->__('No')
+                0 => $this->__('Questions'),
+                1 => $this->__('Answer')
             ),
             'filter_condition_callback' => array($this, '_filterReplied'),
         ));
@@ -169,7 +169,9 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
     }
 
     protected function _filterReplied($collection, $column) {
-        return $collection->getSelect()->having('question_replied=?', $column->getFilter()->getValue());
+        if($column->getFilter()->getValue()>0)
+            return $collection->getSelect()->having('parent_question_id!=?', 0);
+        else return $collection->getSelect()->having('parent_question_id=?', $column->getFilter()->getValue());
     }
 
 }

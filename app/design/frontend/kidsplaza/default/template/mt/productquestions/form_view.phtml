@@ -1,0 +1,29 @@
+<?php
+$session = Mage::getSingleton('core/session');
+$helper = Mage::helper('productquestions');
+$helper->generateCaptchaKey();
+?>
+<div class="form-question">
+    <h3><?php echo $this->__('Answer Form');?></h3>
+    <form action="<?php echo $this->getAction();?>" id="mt-question-form" method="post">
+        <input type="hidden" name="parent_question_id" value="<?php echo $this->getRequest()->getParam('qid');?>" />
+        <div class="form-field form-group">
+            <label for="question_author_name_field" class="required"><?php echo $this->__('Name (will be displayed on site)') ?><em>*</em></label><br />
+            <input class="form-control required-entry" name="question_author_name" id="question_author_name_field" type="text" value="<?php echo $this->htmlEscape($this->getQuestionAuthorName()) ?>" placeholder="<?php echo $this->__('Enter name');?>"/>
+        </div>
+        <div class="form-field form-group">
+            <label for="question_author_email_field" class="required"><?php echo $this->__('Email (will NOT be displayed on site)') ?><em>*</em></label><br />
+            <input class="form-control required-entry validate-email" name="question_author_email" id="question_author_email_field" type="text" value="<?php echo $this->htmlEscape($this->getQuestionAuthorEmail()) ?>" placeholder="<?php echo $this->__('Enter email');?>" />
+        </div>
+        <div class="form-field form-group">
+            <?php echo $helper->displayCaptcha();?>
+        </div>
+        <div class="form-field form-group">
+            <label for="question_text_field" class="required"><?php echo $this->__('Question') ?><em>*</em></label><br />
+            <textarea class="form-control required-entry" name="question_text" id="question_text_field" cols="53" rows="10" placeholder="<?php echo $this->__('Enter your questions');?>"><?php echo $this->htmlEscape($this->getQuestionText()) ?></textarea>
+        </div>
+        <div class="button-set form-group">
+            <button class="button btn-kid pull-right" type="submit"><span><?php echo $this->__('Submit question') ?></span></button>
+        </div>
+    </form>
+</div>

@@ -12,7 +12,7 @@
  * ------------------------------------------------------------------------------
  *
  */
-Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
+Class MT_ProductQuestions_Block_Answers extends Mage_Core_Block_Template
 {
     protected $_collection = null;
 
@@ -21,7 +21,7 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('mt/productquestions/questions.phtml');
+        $this->setTemplate('mt/productquestions/answers.phtml');
     }
 
     protected function _prepareCollection()
@@ -30,10 +30,10 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         if(!($product instanceof Mage_Catalog_Model_Product)) return false;
         $productId = $product->getId();
         $this->setProduct($product);
-
         $this->_collection = Mage::getResourceModel('productquestions/productquestions_collection')
             ->addProductFilter($productId)
             ->addVisibilityFilter()
+            ->addQuestionFilter($this->getRequest()->getParam('qid'))
             ->addStoreFilter()
             ->setDateOrder();
         return $this;
@@ -44,31 +44,11 @@ Class MT_ProductQuestions_Block_Questions extends Mage_Core_Block_Template
         $this->setShowPager('productquestions' == $this->getRequest()->getModuleName());
         $this->_prepareCollection();
         $pager = $this->getLayout()->getBlock($this->_pagerName);
-        $this->_collection->addQuestionFilter(0);
+
         $this->_collection = $pager
             ->setCollection($this->_collection)
             ->getCollection(); 
         return parent::_toHtml();
     }
 
-    public function countAnswers($qid)
-    {
-        $this->_prepareCollection();
-        $this->_collection->addQuestionFilter($qid);
-        return count($this->_collection);
-    }
-
-    public function getQuestionUrl($id)
-    {
-        $product = Mage::helper('productquestions')->getCurrentProduct(true);
-        $productId = $product->getId();
-        $category = Mage::registry('current_category');
-        if($category instanceof Mage_Catalog_Model_Category)
-            $categoryId = $category->getId();
-        else $categoryId = false;
-        $params = array('id' => $productId);
-        if($categoryId) $params['category'] = $categoryId;
-        $params['qid'] = $id;
-        return Mage::getUrl('*/*/view', $params);
-    }
 }
