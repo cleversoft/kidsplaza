@@ -36,7 +36,7 @@
     <?php /* @var $_item MT_Filter_Model_Layer_Filter_Item */ ?>
     <li class="filter-item<?php echo $_item->isActive() ? ' selected' : '' ?>">
         <?php if ($_item->getCount() > 0): ?>
-        <a class="filter-item-name"
+        <a class="filter-item-name <?php echo $_item->getClasses()?>"
            href="<?php echo $_item->isActive() ? $_item->getRemoveUrl() : $this->urlEscape($_item->getUrl()) ?>">
             <?php echo $_item->getLabel() ?>
         </a>

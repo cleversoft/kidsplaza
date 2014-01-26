@@ -66,6 +66,19 @@ MTFilter.prototype = {
 
         return innerH - rect.bottom > 150;
     },
+    moreCallbacks: function(){
+        this.container.select('img.lazy').each(function(img){
+            jQuery.fn.lazyload && jQuery(img).lazyload({
+                event: 'scroll|widgetnav',
+                failure_limit: 10
+            });
+        });
+        this.layer.select('div.list-js').each(function(list){
+            window.List && new List(list, {
+                valueNames: ['filter-item-name', 'filter-item-name-normalize']
+            });
+        });
+    },
     injectLoadMore: function(){
         var container = this.getDOM(this.config.loadDOM || '.toolbar .pages', true);
         this.loadMoreUrl = this.getLoadMoreUrl(container);
@@ -140,9 +153,10 @@ MTFilter.prototype = {
                     var a = Event.findElement(ev, 'a'),
                         URL = new URI(a.href);
 
-                    if (URL.hasQuery('p') || URL.hasQuery('order') || URL.hasQuery('mode')){
+                    if (URL.hasQuery('p') || URL.hasQuery('order') || URL.hasQuery('mode') || URL.hasQuery('limit')){
                         Event.stop(ev);
-                        this.sendRequest(a.href, function(response){
+                        URL.addQuery('toolbar', 1);
+                        this.sendRequest(URL.toString(), function(response){
                             this.updateHtml(response, true);
                         }.bind(this));
                     }
@@ -153,9 +167,13 @@ MTFilter.prototype = {
         if (this.layer){
             this.layer.select('a').each(function(a){
                 $(a).observe('click', function(ev){
-                    var a = Event.findElement(ev, 'a');
+                    if ($(ev.target).hasClassName('skip-ajax')) return;
                     Event.stop(ev);
-                    this.sendRequest(a.href, function(response){
+                    var a = Event.findElement(ev, 'a'),
+                        URL = new URI(a.href);
+
+                    if (URL.hasQuery('toolbar')) URL.removeQuery('toolbar');
+                    this.sendRequest(URL.toString(), function(response){
                         this.updateHtml(response, true);
                     }.bind(this));
                 }.bind(this));
@@ -290,12 +308,15 @@ MTFilter.prototype = {
                 }
             }
         }
-        if (layer && this.layer) this.layer.replace(layer);
+        if (layer && this.layer){
+            this.layer.replace(layer);
+        }
 
         setTimeout(function(){
             this.collect();
             replace && this.goTop(function(){
                 this.injectLoadMore();
+                this.moreCallbacks();
             }.bind(this));
         }.bind(this));
     },

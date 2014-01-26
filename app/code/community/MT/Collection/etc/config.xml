@@ -52,4 +52,15 @@
             </updates>
         </layout>
     </frontend>
+
+    <default>
+        <mtfilter>
+            <collection>
+                <price>1</price>
+                <enable>1</enable>
+                <main_selector>.col-main</main_selector>
+                <layer_selector>.block-layered-nav</layer_selector>
+            </collection>
+        </mtfilter>
+    </default>
 </config>

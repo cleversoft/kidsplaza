@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Filter_Category{
+class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends MT_Filter_Model_Layer_Filter_Category{
     /**
      * Get data array for building category filter items
      *
@@ -19,12 +19,11 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends Mage_Catalog_Mode
 
         if ($data === null) {
             $module = Mage::app()->getFrontController()->getRequest()->getModuleName();
-            $categoty   = $this->getCategory();
+            $category = $this->getCategory();
             /** @var $categoty Mage_Catalog_Model_Category */
-            $categories = $categoty->getChildrenCategories();
+            $categories = $category->getChildrenCategories();
 
-            $this->getLayer()->getProductCollection()
-                ->addCountToCategories($categories);
+            $this->getLayer()->getProductCollection()->addCountToCategories($categories);
 
             $data = array();
             foreach ($categories as $category) {

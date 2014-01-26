@@ -21,4 +21,8 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Item extends MT_Filter_Model_Layer
         );
         return Mage::getUrl('*/*/*', array('_current'=>true, '_use_rewrite'=>true, '_query'=>$query));
     }
+
+    public function getClasses(){
+        return 'skip-ajax';
+    }
 }

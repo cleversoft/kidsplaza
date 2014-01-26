@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Collection
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+    <sections>
+        <mtfilter>
+            <groups>
+                <collection translate="label">
+                    <label>Collection</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>40</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <price translate="label comment">
+                            <label>Enable Price Slider</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>0</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace price filter by a slider</comment>
+                        </price>
+                        <load translate="label comment">
+                            <label>Enable Load More</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>5</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Show more product on same page</comment>
+                        </load>
+                        <load_auto translate="label comment">
+                            <label>Autoload</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>6</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Load automatically when scroll to end of list</comment>
+                            <depends>
+                                <load>1</load>
+                            </depends>
+                        </load_auto>
+                        <load_container translate="label comment">
+                            <label>DOM Container</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>DOM element contain Load More button. Ex: .toolbar .pages</comment>
+                            <depends>
+                                <load>1</load>
+                                <load_auto>0</load_auto>
+                            </depends>
+                        </load_container>
+                        <load_text translate="label comment">
+                            <label>Label</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Label for button. Ex: Load More</comment>
+                            <depends>
+                                <load>1</load>
+                                <load_auto>0</load_auto>
+                            </depends>
+                        </load_text>
+                        <enable translate="label comment">
+                            <label>Enable Ajax Filter</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>10</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Replace all filters with AJAX request</comment>
+                        </enable>
+                        <main_selector translate="label comment">
+                            <label>Main DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .col-main</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </main_selector>
+                        <layer_selector translate="label comment">
+                            <label>Layer DOM Selector</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Ex: .block-layered-nav</comment>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </layer_selector>
+                    </fields>
+                </collection>
+            </groups>
+        </mtfilter>
+    </sections>
+</config>
