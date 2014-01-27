@@ -15,7 +15,6 @@
 $installer = $this;
 $installer->startSetup();
 $installer->run("
---DROP TABLE IF EXISTS {$this->getTable('productquestions/productquestions')};
 CREATE TABLE {$this->getTable('productquestions/productquestions')} (
     `question_id` int(10) unsigned NOT NULL auto_increment,
     `question_status` tinyint(2) NOT NULL default '1',
