@@ -1,0 +1,59 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_CatalogSlider
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<tr>
+    <td class="label"><?php echo $this->getElement()->getLabel() ?></td>
+    <td class="grid" style="">
+        <table cellspacing="0" class="data border" id="<?php echo $this->getElement()->getHtmlId() ?>">
+            <colgroup>
+                <col width="400"/>
+                <col width="1"/>
+            </colgroup>
+            <thead>
+                <tr class="headings">
+                    <th><?php echo Mage::helper('mtcatalogslider')->__('Image Url')?></th>
+                    <th><?php echo Mage::helper('mtcatalogslider')->__('Action')?></th>
+                </tr>
+            </thead>
+            <tbody id="<?php echo $this->getElement()->getHtmlId() ?>_container"></tbody>
+            <tfoot>
+                <td colspan="2" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+            </tfoot>
+        </table>
+        <?php if ($note = $this->getElement()->getNote()):?>
+        <p class="note" id="note_delay">
+            <span><?php echo $note?></span>
+        </p>
+        <?php endif?>
+    </td>
+</tr>
+<script type="text/javascript">
+    var imageRowTemplate = '<tr id="slider_image_{{id}}">'+
+        '<td><?php echo $this->getBrowserFieldHtml()?></td>'+
+        '<td><?php echo $this->getDeleteButtonHtml()?></td>'+
+        '</tr>';
+
+    window.catalogSlider = {
+        template: new Template(imageRowTemplate, new RegExp('(^|.|\\r|\\n)({{\\s*(\\w+)\\s*}})', "")),
+        itemsCount: 0,
+        container: $('<?php echo $this->getElement()->getHtmlId() ?>_container'),
+        add: function(image){
+            var data = {
+                image: image || '',
+                id: ++this.itemsCount
+            };
+            this.container.insert({bottom: this.template.evaluate(data)});
+        },
+        remove: function(id){
+            var tr = this.container.down('tr#slider_image_' + id);
+            if (tr) tr.remove();
+        }
+    };
+</script>

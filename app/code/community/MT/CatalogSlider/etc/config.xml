@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    MT
+ * @package     MT_CatalogSlider
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+-->
+<config>
+    <modules>
+        <MT_CatalogSlider>
+            <version>1.1</version>
+        </MT_CatalogSlider>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtcatalogslider>
+                <class>MT_CatalogSlider_Block</class>
+            </mtcatalogslider>
+        </blocks>
+        <helpers>
+            <mtcatalogslider>
+                <class>MT_CatalogSlider_Helper</class>
+            </mtcatalogslider>
+        </helpers>
+        <resources>
+            <mtcatalogslider>
+                <setup>
+                    <module>MT_CatalogSlider</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mtcatalogslider>
+        </resources>
+        <events>
+            <adminhtml_catalog_category_tabs>
+                <observers>
+                    <mtcatalogslider>
+                        <type>singleton</type>
+                        <class>MT_CatalogSlider_Model_Observer</class>
+                        <method>adminhtmlCatalogCategoryTabs</method>
+                    </mtcatalogslider>
+                </observers>
+            </adminhtml_catalog_category_tabs>
+        </events>
+    </global>
+</config>
