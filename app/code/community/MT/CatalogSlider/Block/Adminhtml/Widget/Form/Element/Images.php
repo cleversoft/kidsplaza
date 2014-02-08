@@ -56,9 +56,6 @@ class MT_CatalogSlider_Block_Adminhtml_Widget_Form_Element_Images extends Mage_A
         ));
         $this->setChild('delBtn', $delBtn);
 
-        $browser = $this->getLayout()->createBlock('mtcatalogslider/adminhtml_widget_form_element_browser');
-        $this->setChild('browser', $browser);
-
         parent::_prepareLayout();
     }
 

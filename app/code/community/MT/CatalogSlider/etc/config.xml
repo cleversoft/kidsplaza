@@ -50,4 +50,14 @@
             </adminhtml_catalog_category_tabs>
         </events>
     </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtcatalogslider>
+                    <file>mt_catalogslider.xml</file>
+                </mtcatalogslider>
+            </updates>
+        </layout>
+    </adminhtml>
 </config>
