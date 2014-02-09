@@ -3,14 +3,14 @@
 /**
  * @category     MT
  * @package      MT_CatalogSlider
- * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @copyright    Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
  * @license      GNU General Public License version 2 or later;
  * @author       MagentoThemes.net
  * @email        support@magentothemes.net
  */
 -->
 <layout>
-    <adminhtml_catalog_category_index>
+    <adminhtml_catalog_category_edit>
         <reference name="head">
             <action method="addJs"><js>lib/flex.js</js></action>
             <action method="addJs"><js>lib/FABridge.js</js></action>
@@ -20,5 +20,5 @@
             <action method="addItem"><type>js_css</type><js>prototype/windows/themes/default.css</js></action>
             <action method="addItem"><type>skin_css</type><js>lib/prototype/windows/themes/magento.css</js></action>
         </reference>
-    </adminhtml_catalog_category_index>
+    </adminhtml_catalog_category_edit>
 </layout>

@@ -3,7 +3,7 @@
 /**
  * @category    MT
  * @package     MT_CatalogSlider
- * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @copyright   Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
  * @license     GNU General Public License version 2 or later
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
@@ -39,6 +39,15 @@
             </mtcatalogslider>
         </resources>
         <events>
+            <catalog_category_prepare_save>
+                <observers>
+                    <mtcatalogslider>
+                        <type>singleton</type>
+                        <class>MT_CatalogSlider_Model_Observer</class>
+                        <method>catalogCategoryPrepareSave</method>
+                    </mtcatalogslider>
+                </observers>
+            </catalog_category_prepare_save>
             <adminhtml_catalog_category_tabs>
                 <observers>
                     <mtcatalogslider>

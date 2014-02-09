@@ -2,7 +2,7 @@
 /**
  * @category    MT
  * @package     MT_CatalogSlider
- * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @copyright   Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
  * @license     GNU General Public License version 2 or later
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
@@ -59,8 +59,15 @@ class MT_CatalogSlider_Block_Adminhtml_Widget_Form_Element_Images extends Mage_A
         parent::_prepareLayout();
     }
 
-    public function getImages(){
-        $images = array();
-        return $images;
+    public function getItems(){
+        $items = array();
+        $category = $this->getData('category');
+        if (!$category) return $items;
+        $object = Mage::helper('core')->jsonDecode($category->getData('slider_params'));
+        if (!is_array($object)) return $items;
+        foreach ($object as $item){
+            $items[]['url'] = $item['uri'];
+        }
+        return $items;
     }
 }

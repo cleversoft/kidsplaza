@@ -2,7 +2,7 @@
 /**
  * @category    MT
  * @package     MT_CatalogSlider
- * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @copyright   Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
  * @license     GNU General Public License version 2 or later
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
@@ -13,12 +13,14 @@
     <td class="grid" style="">
         <table cellspacing="0" class="data border" id="<?php echo $this->getElement()->getHtmlId() ?>">
             <colgroup>
+                <col width="100"/>
                 <col width="400"/>
                 <col width="1"/>
                 <col width="1"/>
             </colgroup>
             <thead>
                 <tr class="headings">
+                    <th><?php echo Mage::helper('mtcatalogslider')->__('Preview')?></th>
                     <th><?php echo Mage::helper('mtcatalogslider')->__('Image Url')?></th>
                     <th><?php echo Mage::helper('mtcatalogslider')->__('Browse')?></th>
                     <th><?php echo Mage::helper('mtcatalogslider')->__('Delete')?></th>
@@ -26,19 +28,15 @@
             </thead>
             <tbody id="<?php echo $this->getElement()->getHtmlId() ?>_container"></tbody>
             <tfoot>
-                <td colspan="3" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
+                <td colspan="4" class="a-right"><?php echo $this->getAddButtonHtml() ?></td>
             </tfoot>
         </table>
-        <?php if ($note = $this->getElement()->getNote()):?>
-        <p class="note" id="note_delay">
-            <span><?php echo $note?></span>
-        </p>
-        <?php endif?>
     </td>
 </tr>
 <script type="text/javascript">
     var imageRowTemplate = '<tr id="sliderImage_{{id}}">'+
-        '<td><input type="text" class="input-text" name="slider_images[]" style="width:98%;" id="slider_image_{{id}}"/></td>'+
+        '<td>{{preview}}</td>'+
+        '<td><input type="text" class="input-text" name="slider_images[]" style="width:98%;" id="slider_image_{{id}}" value="{{value}}"/></td>'+
         '<td class="a-center"><button class="button" type="button" onclick="MT.MediabrowserUtility.openDialog(\'<?php echo Mage::getSingleton('adminhtml/url')->getUrl('adminhtml/cms_wysiwyg_images/index')?>static_urls_allowed/1/target_element_id/slider_image_{{id}}\')"><span><?php echo $this->__('Select')?></span></button></td>'+
         '<td class="a-center"><?php echo $this->getDeleteButtonHtml()?></td>'+
         '</tr>';
@@ -49,14 +47,19 @@
         container: $('<?php echo $this->getElement()->getHtmlId() ?>_container'),
         add: function(image){
             var data = {
-                image: image || '',
+                preview: image ? '<img width="100px" src="<?php echo Mage::getBaseUrl('media')?>'+image+'"/>' : '',
+                value: image || '',
                 id: ++this.itemsCount
             };
             this.container.insert({bottom: this.template.evaluate(data)});
         },
         remove: function(id){
-            var tr = this.container.down('tr#slider_image_' + id);
+            var tr = this.container.down('tr#sliderImage_' + id);
             if (tr) tr.remove();
         }
     };
+
+    <?php foreach ($this->getItems() as $item):?>
+    window.catalogSlider.add('<?php echo $item['url']?>');
+    <?php endforeach ?>
 </script>
