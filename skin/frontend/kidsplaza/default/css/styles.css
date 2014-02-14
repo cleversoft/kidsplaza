@@ -10,8 +10,8 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:400;src:local('Open Sans'),local('OpenSans'),url(http://themes.googleusercontent.com/static/fonts/opensans/v7/59ZRklaO5bWGqF5A9baEET8E0i7KZn-EPnyo3HZu7kw.woff) format('woff')}
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:700;src:local('Open Sans Bold'),local('OpenSans-Bold'),url(http://themes.googleusercontent.com/static/fonts/opensans/v7/k3k702ZOKiLJc3WVjuplzHwUvq1pQaUIDqPgpae5ItU.woff) format('woff')}
 .ratings {margin:7px 0; line-height:1em;white-space:nowrap;}
-.rating-box { width:69px; height:13px; margin-right:5px; display: inline-block; background:url(http://img.tiki.vn/skin/frontend/default/tiki/images/product_rating_blank_star.gif) repeat-x;}
-.rating-box .rating {height:13px;background:url(http://img.tiki.vn/skin/frontend/default/tiki/images/product_rating_full_star.gif) repeat-x;}
+.rating-box { width:69px; height:13px; margin-right:5px; display: inline-block; background:url(../images/product_rating_blank_star.gif) repeat-x;}
+.rating-box .rating {height:13px;background:url(../images/product_rating_full_star.gif) repeat-x;}
 .ratings-list {float:left;}
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
