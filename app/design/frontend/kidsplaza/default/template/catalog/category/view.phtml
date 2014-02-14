@@ -34,11 +34,7 @@
 <?php
     $_helper    = $this->helper('catalog/output');
     $_category  = $this->getCurrentCategory();
-    $_imgHtml   = '';
-    if ($_imgUrl = $_category->getImageUrl()) {
-        $_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->escapeHtml($_category->getName()).'" title="'.$this->escapeHtml($_category->getName()).'" /></p>';
-        $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
-    }
+    $_images    = Mage::helper('core')->jsonDecode($_category->getData('slider_params'));
 ?>
 <div class="category-title page-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
@@ -49,8 +45,14 @@
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
-<?php if($_imgUrl): ?>
-    <?php //echo $_imgHtml ?>
+<?php if (is_array($_images)): ?>
+    <div class="owl-carousel">
+    <?php foreach ($_images as $_image):?>
+        <div>
+            <img src="<?php echo Mage::getBaseUrl('media').$_image['uri'] ?>"/>
+        </div>
+    <?php endforeach ?>
+    </div>
 <?php endif; ?>
 
 <?php if($_description=$this->getCurrentCategory()->getDescription()): ?>

@@ -13,4 +13,6 @@ jQuery(function(){
     jQuery('.list-js').each(function(i,list){new List(list,{valueNames:['filter-item-name','filter-item-name-normalize']});});
     //init image lazy load
     jQuery('img.lazy').lazyload({event:'scroll|widgetnav',failure_limit:10});
+    //init category banner
+    jQuery('.owl-carousel').owlCarousel({items:1,autoPlay:true,navigation:false,pagination:false,transitionStyle:'fadeUp'});
 });

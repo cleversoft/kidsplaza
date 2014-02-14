@@ -104,10 +104,10 @@ Category layered navigation layout
     <catalog_category_layered translate="label">
         <label>Catalog Category (Anchor)</label>
         <reference name="head">
-            <action method="addItem">
-                <type>js_css</type>
-                <name>mt/extensions/jquery/plugins/flexslider/flexslider.css</name>
-            </action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/flexslider/flexslider.css</name></action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.carousel.css</name></action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.transitions.css</name></action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.theme.css</name></action>
         </reference>
         <reference name="root">
             <action method="setTemplate"><file>page/2columns-left.phtml</file></action>
@@ -117,6 +117,7 @@ Category layered navigation layout
             <action method="addJs"><js>varien/js.js</js></action>
             <action method="addJs"><js>mt/extensions/list/list.min.js</js></action>
             <action method="addJs"><js>mt/extensions/jquery/plugins/jquery.lazyload.js</js></action>
+            <action method="addJs"><js>mt/extensions/jquery/plugins/owl-carousel/owl.carousel.min.js</js></action>
             <action method="addJs"><js>mt/mage/catalog/CategoryView.js</js></action>
         </reference>
         <reference name="left">
