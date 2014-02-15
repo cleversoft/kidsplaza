@@ -102,6 +102,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
         if (($data = $this->getRequest()->getPost()) && ($reviewId = $this->getRequest()->getParam('id'))) {
             $review = Mage::getModel('mtreview/review')->load($reviewId);
             $session = Mage::getSingleton('adminhtml/session');
+
             if (! $review->getId()) {
                 $session->addError(Mage::helper('catalog')->__('The review was removed by another user or does not exist.'));
             } else {
@@ -138,7 +139,9 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                     $session->addException($e, Mage::helper('catalog')->__('An error occurred while saving this review.'));
                 }
             }
-
+            if($this->getRequest()->getParam('status_id')==1){
+                Mage::dispatchEvent('mt_review_event_handle', array('mtreview'=>$review));
+            }
             return $this->getResponse()->setRedirect($this->getUrl($this->getRequest()->getParam('ret') == 'pending' ? '*/*/pending' : '*/*/'));
         }
         $this->_redirect('*/*/');

@@ -24,9 +24,9 @@ $product = $this->getProduct();
         <?php
         $i=0;
         foreach($summarys as $summary):?>
-            <?php if($i==0):?>
+            <?php if($summary['votes_qty']>0):?>
             <p><?php echo $this->__('(Total: %s Reviews)', $summary['votes_qty']);?></p>
-            <?php endif;?>
+                <?php endif;?>
         <?php $i++;
         endforeach;?>
     </div>
