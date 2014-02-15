@@ -2,8 +2,8 @@
 <!--
 /**
 * @category    MT
-* @package     MT_DiscountFilter
-* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @package     MT_RatingFilter
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
 * @license     GNU General Public License version 2 or later
 * @author      MagentoThemes.net
 * @email       support@magentothemes.net
@@ -11,12 +11,12 @@
 -->
 <config>
     <modules>
-        <MT_DiscountFilter>
+        <MT_RatingFilter>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
-                <MT_Filter/>
+                <MT_DiscountFilter/>
             </depends>
-        </MT_DiscountFilter>
+        </MT_RatingFilter>
     </modules>
 </config>

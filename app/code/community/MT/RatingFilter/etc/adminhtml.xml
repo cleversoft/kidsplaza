@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_RatingFilter
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <ratingfilter translate="title">
+                                        <title>MT Rating Filter</title>
+                                    </ratingfilter>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

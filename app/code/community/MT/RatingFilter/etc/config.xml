@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_RatingFilter
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_RatingFilter>
+            <version>1.0</version>
+        </MT_RatingFilter>
+    </modules>
+
+    <global>
+        <models>
+            <ratingfilter>
+                <class>MT_RatingFilter_Model</class>
+                <resourceModel>ratingfilter_resource</resourceModel>
+            </ratingfilter>
+            <ratingfilter_resource>
+                <class>MT_RatingFilter_Model_Resource</class>
+            </ratingfilter_resource>
+        </models>
+        <helpers>
+            <ratingfilter>
+                <class>MT_RatingFilter_Helper</class>
+            </ratingfilter>
+        </helpers>
+        <blocks>
+            <ratingfilter>
+                <class>MT_RatingFilter_Block</class>
+            </ratingfilter>
+            <catalog>
+                <rewrite>
+                    <layer_view>MT_RatingFilter_Block_Catalog_Layer_View</layer_view>
+                </rewrite>
+            </catalog>
+        </blocks>
+    </global>
+
+    <default>
+        <ratingfilter>
+            <general>
+                <enable>1</enable>
+                <result>0</result>
+            </general>
+        </ratingfilter>
+    </default>
+</config>
