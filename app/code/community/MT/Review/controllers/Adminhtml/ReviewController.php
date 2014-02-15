@@ -108,7 +108,9 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
             } else {
                 try {
                     $review->addData($data)->save();
-
+                    if($this->getRequest()->getParam('status_id')==1){
+                        Mage::dispatchEvent('mt_review_approved', array('mtreview'=>$review));
+                    }
                     $arrRatingId = $this->getRequest()->getParam('ratings', array());
                     $votes = Mage::getModel('rating/rating_option_vote')
                         ->getResourceCollection()
@@ -139,9 +141,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                     $session->addException($e, Mage::helper('catalog')->__('An error occurred while saving this review.'));
                 }
             }
-            if($this->getRequest()->getParam('status_id')==1){
-                Mage::dispatchEvent('mt_review_event_handle', array('mtreview'=>$review));
-            }
+
             return $this->getResponse()->setRedirect($this->getUrl($this->getRequest()->getParam('ret') == 'pending' ? '*/*/pending' : '*/*/'));
         }
         $this->_redirect('*/*/');
