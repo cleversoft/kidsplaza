@@ -194,6 +194,7 @@ input,textarea{outline:0}
 .product-image:hover img{border:1px solid #0095d6}
 .sidebar .panel-heading,.sidebar .panel-footer{padding:5px 10px;position:relative}
 .sidebar .panel-body{padding:10px}
+.sidebar .has-scroll{padding: 10px 0 10px 10px;}
 .panel,.panel-heading{border-radius:0}
 .filter-remove i{font-size:12px;color:#d9534f}
 .state-item{text-align:right}

@@ -73,10 +73,8 @@ MTFilter.prototype = {
                 failure_limit: 10
             });
         });
-        this.layer.select('div.list-js').each(function(list){
-            window.List && new List(list, {
-                valueNames: ['filter-item-name', 'filter-item-name-normalize']
-            });
+        this.layer.select('div.panel-body').each(function(container){
+            initLayerFilterWithScrollAndList(container);
         });
     },
     injectLoadMore: function(){
