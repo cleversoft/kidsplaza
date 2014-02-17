@@ -31,11 +31,11 @@
                     <messages>MT_KidsPlaza_Block_Core_Messages</messages>
                 </rewrite>
             </core>
-            <catalog>
+            <mtfilter>
                 <rewrite>
-                    <layer_filter_category>MT_KidsPlaza_Block_Catalog_Layer_Filter_Category</layer_filter_category>
+                    <catalog_layer_filter_category>MT_KidsPlaza_Block_Catalog_Layer_Filter_Category</catalog_layer_filter_category>
                 </rewrite>
-            </catalog>
+            </mtfilter>
         </blocks>
         <resources>
             <kidsplaza>

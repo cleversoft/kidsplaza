@@ -15,7 +15,7 @@
             <active>true</active>
             <codePool>community</codePool>
             <depends>
-                <MT_DiscountFilter/>
+                <MT_Filter/>
             </depends>
         </MT_RatingFilter>
     </modules>
