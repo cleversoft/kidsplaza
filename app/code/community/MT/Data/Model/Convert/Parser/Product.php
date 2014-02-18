@@ -19,6 +19,7 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
         $destPath = Mage::getBaseDir('var').DS.'export'.DS.'images';
 
         foreach ($entityIds as $i => $entityId) {
+            if ($i++ > 10) break;
             $product = $this->getProductModel()
                 ->setStoreId($this->getStoreId())
                 ->load($entityId);

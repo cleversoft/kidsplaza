@@ -9,6 +9,49 @@
  */
 class MT_Data_Model_Convert_Adapter_Product extends Mage_Catalog_Model_Convert_Adapter_Product{
     /**
+     * Load product collection id(s)
+     */
+    public function load(){
+        $group = $this->getVar('group');
+        if (is_numeric($group)){
+            $ids = array();
+            $groupModel = Mage::app()->getGroup($group);
+            if ($groupModel->getId()){
+                $rootCategoryId = $groupModel->getRootCategoryId();
+                /* @var $rootCategoryModel Mage_Catalog_Model_Category */
+                $rootCategoryModel = Mage::getModel('catalog/category')->load($rootCategoryId);
+                if ($rootCategoryModel->getId()){
+                    $ids = $this->_getProductByCategory($rootCategoryModel);
+                }
+            }
+            $this->setData($ids);
+            $message = Mage::helper('eav')->__("Loaded %d records", count($ids));
+            $this->addException($message);
+            return $this;
+        }else{
+            return parent::load();
+        }
+    }
+
+    /**
+     * Get product ids from category model
+     * @param $category Mage_Catalog_Model_Category
+     * @return array
+     */
+    protected function _getProductByCategory($category){
+        $ids = array();
+        if ($category instanceof Mage_Catalog_Model_Category && $category->getId()){
+            $ids = array_merge($ids, $category->getProductCollection()->getAllIds());
+            if ($category->hasChildren()){
+                foreach ($category->getChildrenCategories() as $child){
+                    $ids = array_merge($ids, $this->_getProductByCategory($child));
+                }
+            }
+        }
+        return $ids;
+    }
+
+    /**
      * Process category path from import
      */
     public function parse(){
