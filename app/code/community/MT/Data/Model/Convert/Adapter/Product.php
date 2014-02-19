@@ -86,7 +86,7 @@ class MT_Data_Model_Convert_Adapter_Product extends Mage_Catalog_Model_Convert_A
             $category_ids = array();
             foreach ($paths as $path){
                 $categories = explode($categoryPath, $path);
-                $currentPath = [1];
+                $currentPath = array(0);
                 foreach ($categories as $category){
                     if (!$category) continue;
 
@@ -322,7 +322,7 @@ class MT_Data_Model_Convert_Adapter_Product extends Mage_Catalog_Model_Convert_A
         $addedFilesCorrespondence = $mediaGalleryBackendModel->addImagesWithDifferentMediaAttributes(
             $product,
             $arrayToMassAdd,
-            $media ? $media : Mage::getBaseDir('media') . DS . 'import',
+            $media ? $media : Mage::getBaseDir('var') . DS . 'export' . DS . 'images',
             false,
             false
         );

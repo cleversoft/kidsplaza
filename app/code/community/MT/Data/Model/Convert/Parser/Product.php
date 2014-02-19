@@ -48,7 +48,7 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
                 }
 
                 $path = explode('/', $categoryModel->getPath());
-                array_shift($path);
+                //array_shift($path);
                 $categories = array();
                 foreach ($path as $category){
                     if (!isset($this->_categories[$category])){
