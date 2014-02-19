@@ -19,7 +19,7 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
         $destPath = Mage::getBaseDir('var').DS.'export'.DS.'images';
 
         foreach ($entityIds as $i => $entityId) {
-            if ($i++ > 10) break;
+            //if ($i++ > 1) break;
             $product = $this->getProductModel()
                 ->setStoreId($this->getStoreId())
                 ->load($entityId);
@@ -48,6 +48,7 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
                 }
 
                 $path = explode('/', $categoryModel->getPath());
+                array_shift($path);
                 $categories = array();
                 foreach ($path as $category){
                     if (!isset($this->_categories[$category])){
