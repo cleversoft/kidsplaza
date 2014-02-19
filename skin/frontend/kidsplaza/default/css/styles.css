@@ -190,7 +190,7 @@ input,textarea{outline:0}
 .toolbar .dropdown-menu{text-align:left}
 .category-products li .btn-kid{padding:2px 5px}
 #content{padding-top:10px}
-.product-image img{padding:3px;border:1px solid #ddd}
+.product-image img{padding:3px;border:1px solid #fff}
 .product-image:hover img{border:1px solid #0095d6}
 .sidebar .panel-heading,.sidebar .panel-footer{padding:5px 10px;position:relative}
 .sidebar .panel-body{padding:10px}

@@ -131,4 +131,63 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             Mage::app()->cleanCache(array("KIDSPLAZA_CATEGORY_{$object->getId()}"));
         }
     }
+
+    public function resize($imageUrl, $width, $height=null){
+        if (!is_numeric($width)) return;
+        if (!$height) $height = $width;
+        $base = Mage::getBaseDir('media').DS;
+        $dir = 'catalog'.DS.'category'.DS.'resize'.DS.$width.'x'.$height.DS;
+        if (!is_dir($base.$dir)){
+            @mkdir($base.$dir, 0777, true);
+        }
+        if (!is_file($imageUrl)){
+            // check if placeholder defined in config
+            $baseDir = Mage::getSingleton('catalog/product_media_config')->getBaseMediaPath();
+            $isConfigPlaceholder = Mage::getStoreConfig("catalog/placeholder/image_placeholder");
+            $configPlaceholder = '/placeholder/' . $isConfigPlaceholder;
+            if ($isConfigPlaceholder && $this->_fileExists($baseDir . $configPlaceholder)) {
+                $file = $configPlaceholder;
+            } else {
+                // replace file with skin or default skin placeholder
+                $skinBaseDir = Mage::getDesign()->getSkinBaseDir();
+                $skinPlaceholder = "/images/catalog/product/placeholder/image.jpg";
+                $file = $skinPlaceholder;
+                if (file_exists($skinBaseDir . $file)) {
+                    $baseDir = $skinBaseDir;
+                } else {
+                    $baseDir = Mage::getDesign()->getSkinBaseDir(array('_theme' => 'default'));
+                    if (!file_exists($baseDir . $file)) {
+                        $baseDir = Mage::getDesign()->getSkinBaseDir(array('_theme' => 'default', '_package' => 'base'));
+                    }
+                }
+            }
+            $imageUrl = $baseDir.$file;
+        }
+        $imageResized = $base.$dir.basename($imageUrl);
+        if (!is_file($imageResized)){
+            $imageObj = new Varien_Image($imageUrl);
+            $imageObj->constrainOnly(true);
+            $imageObj->keepAspectRatio(true);
+            $imageObj->keepFrame(true);
+            $imageObj->backgroundColor(array(255, 255, 255));
+            $imageObj->resize($width, $height);
+            $imageObj->save($imageResized);
+        }
+        return Mage::getBaseUrl('media').$dir.basename($imageResized);
+    }
+
+    /**
+     * First check this file on FS
+     * If it doesn't exist - try to download it from DB
+     *
+     * @param string $filename
+     * @return bool
+     */
+    protected function _fileExists($filename) {
+        if (file_exists($filename)) {
+            return true;
+        } else {
+            return Mage::helper('core/file_storage_database')->saveFileToFilesystem($filename);
+        }
+    }
 }
