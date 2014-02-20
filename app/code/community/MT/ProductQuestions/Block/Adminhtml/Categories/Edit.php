@@ -12,18 +12,18 @@
  * ------------------------------------------------------------------------------
  *
  */
-Class MT_ProductQuestions_Block_Adminhtml_Questions_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
+Class MT_ProductQuestions_Block_Adminhtml_Categories_Edit extends Mage_Adminhtml_Block_Widget_Form_Container
 {
 
     public function __construct()
     {
-        $this->_objectId = 'question_id';
+        $this->_objectId = 'cat_id';
         $this->_blockGroup = 'productquestions';
-        $this->_controller = 'adminhtml_questions';
+        $this->_controller = 'adminhtml_categories';
 
         parent::__construct();
-        $this->_updateButton('save', 'label', Mage::helper('productquestions')->__('Save Question'));
-        $this->_updateButton('delete', 'label', Mage::helper('productquestions')->__('Delete Question'));
+        $this->_updateButton('save', 'label', Mage::helper('productquestions')->__('Save Categories'));
+        $this->_updateButton('delete', 'label', Mage::helper('productquestions')->__('Delete Categories'));
 
         $this->_addButton('saveandcontinue', array(
             'label'     => Mage::helper('adminhtml')->__('Save and Continue Edit'),
@@ -53,11 +53,11 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Edit extends Mage_Adminhtml_
      */
     public function getHeaderText()
     {
-        if (Mage::registry('productquestions_questions')->getId()) {
-            return Mage::helper('productquestions')->__("Edit/Reply question '%s'", $this->escapeHtml(Mage::registry('productquestions_questions')->getQuestionProductName()));
+        if (Mage::registry('productquestions_categories')->getId()) {
+            return Mage::helper('productquestions')->__("Edit '%s'", $this->escapeHtml(Mage::registry('productquestions_categories')->getQuestionProductName()));
         }
         else {
-            return Mage::helper('productquestions')->__('Edit/Reply question');
+            return Mage::helper('productquestions')->__('Edit');
         }
     }
 
