@@ -71,4 +71,20 @@ class MT_Filter_Model_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Fil
         }
         return $data;
     }
+
+    /**
+     * Create filter item object
+     *
+     * @param   string $label
+     * @param   mixed $value
+     * @param   int $count
+     * @return  Mage_Catalog_Model_Layer_Filter_Item
+     */
+    protected function _createItem($label, $value, $count=0){
+        return Mage::getModel('mtfilter/layer_filter_item')
+            ->setFilter($this)
+            ->setLabel($label)
+            ->setValue($value)
+            ->setCount($count);
+    }
 }

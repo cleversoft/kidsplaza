@@ -35,12 +35,18 @@
             <discountfilter>
                 <class>MT_DiscountFilter_Block</class>
             </discountfilter>
-            <catalog>
-                <rewrite>
-                    <layer_view>MT_DiscountFilter_Block_Catalog_Layer_View</layer_view>
-                </rewrite>
-            </catalog>
         </blocks>
+        <events>
+            <mtfilter_prepare_layout>
+                <observers>
+                    <discountfilter>
+                        <type>singleton</type>
+                        <class>discountfilter/observer</class>
+                        <method>mtfilterPrepareLayout</method>
+                    </discountfilter>
+                </observers>
+            </mtfilter_prepare_layout>
+        </events>
     </global>
 
     <default>

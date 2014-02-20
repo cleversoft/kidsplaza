@@ -35,12 +35,18 @@
             <ratingfilter>
                 <class>MT_RatingFilter_Block</class>
             </ratingfilter>
-            <catalog>
-                <rewrite>
-                    <layer_view>MT_RatingFilter_Block_Catalog_Layer_View</layer_view>
-                </rewrite>
-            </catalog>
         </blocks>
+        <events>
+            <mtfilter_prepare_layout>
+                <observers>
+                    <ratingfilter>
+                        <type>singleton</type>
+                        <class>ratingfilter/observer</class>
+                        <method>mtfilterPrepareLayout</method>
+                    </ratingfilter>
+                </observers>
+            </mtfilter_prepare_layout>
+        </events>
     </global>
 
     <default>

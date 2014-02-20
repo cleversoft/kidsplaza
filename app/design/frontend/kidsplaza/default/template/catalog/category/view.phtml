@@ -67,29 +67,8 @@
     <?php echo $this->getCmsBlockHtml() ?>
     <?php echo $this->getProductListHtml() ?>
 <?php else: ?>
-    <?php if ($_category->hasChildren()):?>
-        <?php $categories = $_category->getChildrenCategories() ?>
-        <?php $this->getChild('product_list')->getLoadedProductCollection()->addCountToCategories($categories)?>
-        <?php foreach ($categories as $c):?>
-            <?php /**@var $c Mage_Catalog_Model_Category */ ?>
-            <?php echo $this->getLayout()->createBlock('mtwidget/widget')
-                ->setTemplate('mt/widget/category-products.phtml')
-                ->setData(array(
-                    'cache_tags' => "KIDSPLAZA_CATEGORY_{$c->getId()}",
-                    'cache' => 86400,
-                    'widget_type' => 'product',
-                    'mode' => 'latest',
-                    'category_ids' => $c->getId(),
-                    'limit' => Mage::getStoreConfig('kidsplaza/catalog/limit') ? (int)Mage::getStoreConfig('kidsplaza/catalog/limit') : 10,
-                    'widget_title' => $c->getName(),
-                    'scroll' => 1,
-                    'responsive' => 'width',
-                    'responsive_width' => Mage::getStoreConfig('kidsplaza/catalog/width') ? (int)Mage::getStoreConfig('kidsplaza/catalog/width') : 165,
-                    'move' => Mage::getStoreConfig('kidsplaza/catalog/move') ? (int)Mage::getStoreConfig('kidsplaza/catalog/move') : 5,
-                    'href' => $c->getUrl(),
-                    'product_count' => $c->getProductCount()
-                ))->toHtml()?>
-        <?php endforeach?>
+    <?php if ($_category->hasChildren()): ?>
+        <?php echo $this->getLayout()->createBlock('kidsplaza/catalog_view')->setCategory($_category)->toHtml() ?>
     <?php else: ?>
         <?php echo $this->getProductListHtml() ?>
     <?php endif ?>

@@ -14,6 +14,9 @@
         <MT_Collection>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+                <MT_Filter/>
+            </depends>
         </MT_Collection>
     </modules>
 </config>

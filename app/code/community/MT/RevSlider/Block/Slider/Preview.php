@@ -52,7 +52,7 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
         $head->addItem('js_css', 'mt/revslider/rs-plugin/css/settings.css');
         $head->addLinkRel('stylesheet', $this->getUrl('revslider/index/getCssCaptions'));
         $js = $this->getLayout()->getBlock('js_bottom');
-        $js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
+        //$js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
         $js->addJs('mt/revslider/rs-plugin/js/jquery.themepunch.plugins.min.js');
         $js->addJs('mt/revslider/rs-plugin/js/jquery.themepunch.revolution.min.js');
         return parent::_prepareLayout();

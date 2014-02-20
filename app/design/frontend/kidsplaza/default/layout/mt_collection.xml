@@ -13,10 +13,8 @@
     <collection_view>
         <label>Custom Collection (All Pages)</label>
         <reference name="head">
-            <action method="addItem" ifconfig="mtfilter/general/bar">
-                <type>js_css</type>
-                <css>mt/extensions/jquery/plugins/nprogress/nprogress.css</css>
-            </action>
+            <action method="addItem" ifconfig="mtfilter/general/bar"><type>js_css</type><css>mt/extensions/jquery/plugins/nprogress/nprogress.css</css></action>
+            <action method="addItem"><type>js_css</type><css>mt/extensions/jquery/plugins/m-custom-scrollbar/jquery.mCustomScrollbar.css</css></action>
         </reference>
         <reference name="root">
             <action method="setTemplate"><file>page/2columns-left.phtml</file></action>
@@ -27,6 +25,8 @@
             </action>
             <action method="addJs"><file>mt/extensions/URI.min.js</file></action>
             <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.lazyload.js</file></action>
+            <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.mousewheel.min.js</file></action>
+            <action method="addJs"><file>mt/extensions/jquery/plugins/m-custom-scrollbar/jquery.mCustomScrollbar.js</file></action>
             <action method="addJs"><file>mt/extensions/list/list.min.js</file></action>
             <action method="addJs"><file>mt/filter/filter.js</file></action>
             <action method="addJs"><file>mt/mage/catalog/CategoryView.js</file></action>

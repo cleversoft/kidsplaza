@@ -15,8 +15,11 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
      */
     public function unparse(){
         $entityIds = $this->getData();
+        $sourcePath = Mage::getBaseDir('media').DS.'catalog'.DS.'product';
+        $destPath = Mage::getBaseDir('var').DS.'export'.DS.'images';
 
         foreach ($entityIds as $i => $entityId) {
+            //if ($i++ > 1) break;
             $product = $this->getProductModel()
                 ->setStoreId($this->getStoreId())
                 ->load($entityId);
@@ -45,6 +48,7 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
                 }
 
                 $path = explode('/', $categoryModel->getPath());
+                //array_shift($path);
                 $categories = array();
                 foreach ($path as $category){
                     if (!isset($this->_categories[$category])){
@@ -124,7 +128,9 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
             $images = array();
             $gallery = $product->getData('media_gallery');
             foreach ($gallery['images'] as $image){
-                $images[] = $image['file'];
+                if ($this->_copyImage($image['file'], $sourcePath, $destPath)){
+                    $images[] = $image['file'];
+                }
             }
             $row['images'] = implode(';', $images);
 
@@ -139,5 +145,17 @@ class MT_Data_Model_Convert_Parser_Product extends Mage_Catalog_Model_Convert_Pa
         }
 
         return $this;
+    }
+
+    protected function _copyImage($image, $sourcePath, $destPath){
+        $filePath = $sourcePath.$image;
+        $dest = $destPath.$image;
+        $dir = dirname($dest);
+        if (!is_dir($dir)){
+            @mkdir($dir, 0777, true);
+        }
+        if (file_exists($filePath)){
+            return @copy($filePath, $dest);
+        }
     }
 }

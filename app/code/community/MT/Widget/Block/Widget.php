@@ -20,7 +20,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
     protected function _prepareLayout(){
         $js = $this->getLayout()->getBlock('js_bottom');
-        $js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
+        //$js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
         $js->addJs('mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js');
         $js->addJs('mt/widget/frontend.js');
         $css = $this->getLayout()->getBlock('head');
