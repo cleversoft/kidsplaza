@@ -35,6 +35,7 @@ jQuery(function(){
 function initLayerFilterWithScrollAndList(container){
     if (jQuery(container).find('.filter-item').length > 15){
         jQuery(container).addClass('has-scroll').mCustomScrollbar({
+            scrollInertia: 0,
             theme: 'dark-thin',
             set_height: 388,
             mouseWheel: true,
