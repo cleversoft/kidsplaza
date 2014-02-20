@@ -20,7 +20,7 @@ $_category = $this->getCategory();
             <ul class="grid-5 products-grid">
         <?php endif ?>
         <li class="item">
-            <a class="product-image">
+            <a class="product-image" href="<?php echo $c->getUrl() ?>">
                 <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.'catalog'.DS.'category'.DS.$c->getImage(), 135) ?>"/>
             </a>
             <h2 class="product-name">
