@@ -9,3 +9,9 @@
 
 new VarienForm('login-form', true);
 new VarienForm('form-validate', true);
+
+jQuery(document).ready(function(){
+    jQuery(".btn-regisform").click(function(){
+        jQuery(".form_register").toggle();
+    });
+});

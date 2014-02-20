@@ -3,7 +3,7 @@
  *
  * ------------------------------------------------------------------------------
  * @category     MT
- * @package      MT_Review
+ * @package      MT_ProductQuestions
  * ------------------------------------------------------------------------------
  * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
  * @license      GNU General Public License version 2 or later;
@@ -12,16 +12,14 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_Review_Block_Helper extends Mage_Review_Block_Helper
-{
-    protected $_availableTemplates = array(
-        'default'   => 'mt/review/helper/summary.phtml',
-        'short'     => 'mt/review/helper/summary_short.phtml',
-        'mini'      => 'mt/review/helper/summary_mini.phtml'
-    );
+Class MT_ProductQuestions_Block_Adminhtml_Categories extends Mage_Adminhtml_Block_Widget_Grid_Container {
 
-    public function getReviewsUrl()
+    public function __construct()
     {
-        return $this->getProduct()->getProductUrl().'#customer-reviews';
+        $this->_controller = 'adminhtml_categories';
+        $this->_blockGroup = 'productquestions';
+        $this->_headerText = $this->__('Manager Categories');
+        parent::__construct();
     }
+
 }

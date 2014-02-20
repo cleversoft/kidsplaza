@@ -21,9 +21,14 @@
                 <productquestions translate="title" module="productquestions">
                     <title>MT Product Questions</title>
                     <children>
+                        <categories translate="title" module="productquestions">
+                            <title>Categories</title>
+                            <sort_order>1</sort_order>
+                            <action>productquestions/adminhtml_categories/</action>
+                        </categories>
                         <questions translate="title" module="productquestions">
                             <title>Questions</title>
-                            <sort_order>1</sort_order>
+                            <sort_order>2</sort_order>
                             <action>productquestions/adminhtml_questions/</action>
                         </questions>
                         <productquestions_config translate="title" module="productquestions">
