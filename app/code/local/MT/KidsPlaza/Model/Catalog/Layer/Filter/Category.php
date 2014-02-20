@@ -20,19 +20,45 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends MT_Filter_Model_L
         if ($data === null) {
             $module = Mage::app()->getFrontController()->getRequest()->getModuleName();
             $category = $this->getCategory();
-            /** @var $categoty Mage_Catalog_Model_Category */
-            $categories = $category->getChildrenCategories();
-
-            $this->getLayer()->getProductCollection()->addCountToCategories($categories);
+            /** @var $category Mage_Catalog_Model_Category */
+            if ($category->hasChildren()){
+                $categories = $category->getChildrenCategories();
+                $this->getLayer()->getProductCollection()->addCountToCategories($categories);
+            }else{
+                $parent = $category->getParentCategory();
+                $categories = $parent->getChildrenCategories();
+                $collection = clone $this->getLayer()->getProductCollection();
+                $select = $collection->getSelect();
+                $fromPart = $select->getPart('from');
+                foreach ($fromPart as $key => $part){
+                    if ($key === 'cat_index'){
+                        $conditions = explode('AND', $part['joinCondition']);
+                        $newConditions = array();
+                        foreach ($conditions as $condition){
+                            if (strpos($condition, 'cat_index.category_id') > -1){
+                                list($k, $v) = explode('=', $condition);
+                                $newConditions[] = sprintf("%s=%d", trim($k), $parent->getId());
+                            }else{
+                                $newConditions[] = trim($condition);
+                            }
+                        }
+                        $fromPart[$key]['joinCondition'] = join(' AND ', $newConditions);
+                    }
+                }
+                $select->setPart('from', $fromPart);
+                $collection->addCountToCategories($categories);
+                unset($parent, $collection, $select, $fromPart);
+            }
 
             $data = array();
-            foreach ($categories as $category) {
-                if ($category->getIsActive() && $category->getProductCount()) {
+            foreach ($categories as $cat) {
+                if ($cat->getIsActive() && $cat->getProductCount()) {
                     $data[] = array(
-                        'label' => Mage::helper('core')->escapeHtml($category->getName()),
-                        'value' => $category->getId(),
-                        'count' => $category->getProductCount(),
-                        'href'  => $module == 'catalog' ? $category->getUrl() : ''
+                        'label' => Mage::helper('core')->escapeHtml($cat->getName()),
+                        'value' => $cat->getId(),
+                        'count' => $cat->getProductCount(),
+                        'href'  => $module == 'catalog' ? $cat->getUrl() : '',
+                        'isActive' => $cat->getId() == $category->getId()
                     );
                 }
             }
@@ -55,7 +81,8 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends MT_Filter_Model_L
                 $itemData['label'],
                 $itemData['value'],
                 $itemData['count'],
-                $itemData['href']
+                $itemData['href'],
+                $itemData['isActive']
             );
         }
         $this->_items = $items;
@@ -69,14 +96,16 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Category extends MT_Filter_Model_L
      * @param   mixed $value
      * @param   int $count
      * @param   string $href
+     * @param   bool $isActive
      * @return  Mage_Catalog_Model_Layer_Filter_Item
      */
-    protected function _createItem($label, $value, $count=0, $href='') {
+    protected function _createItem($label, $value, $count=0, $href='', $isActive=false) {
         return Mage::getModel('kidsplaza/catalog_layer_filter_item')
             ->setFilter($this)
             ->setLabel($label)
             ->setValue($value)
             ->setCount($count)
-            ->setHref($href);
+            ->setHref($href)
+            ->setIsActive($isActive);
     }
 }

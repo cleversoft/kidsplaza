@@ -25,4 +25,8 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Item extends MT_Filter_Model_Layer
     public function getClasses(){
         return 'skip-ajax';
     }
+
+    public function isActive(){
+        return $this->getIsActive();
+    }
 }
