@@ -16,6 +16,11 @@
 
 	<global>
 		<helpers>
+            <catalogsearch>
+                <rewrite>
+                    <data>MT_Search_Helper_Data</data>
+                </rewrite>
+            </catalogsearch>
 			<mtsearch>
 				<class>MT_Search_Helper</class>
 			</mtsearch>
@@ -43,16 +48,6 @@
 			<mtsearch_resource>
 				<class>MT_Search_Model_Resource</class>
 			</mtsearch_resource>
-			<!-- catalog_resource>
-				<rewrite>
-					<layer_filter_attribute>MT_Search_Model_Resource_Layer_Filter_Attribute</layer_filter_attribute>
-				</rewrite>
-			</catalog_resource>
-			<catalogsearch>
-				<rewrite>
-					<layer>MT_Search_Model_Layer</layer>
-				</rewrite>
-			</catalogsearch -->
 			<catalogsearch_resource>
 				<rewrite>
 					<fulltext>MT_Search_Model_Resource_Fulltext</fulltext>

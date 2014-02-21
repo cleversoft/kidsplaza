@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_Search_Helper_Data extends Mage_Core_Helper_Abstract {
+class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 	/**
 	 * Format duggestions html
 	 *
@@ -42,9 +42,15 @@ class MT_Search_Helper_Data extends Mage_Core_Helper_Abstract {
 	 * @return array
 	 */
 	public function getCurrentFilters() {
-		$filters = array();
+		$filters = array(
+            'store_id' => Mage::app()->getStore()->getStoreId()
+        );
+        if (!Mage::getStoreConfigFlag('cataloginventory/options/show_out_of_stock')){
+            $filters['in_stock'] = 1;
+        }
 		$order = 'score';
 		$dir = 'desc';
+        $q = '';
 		foreach (Mage::app()->getRequest()->getParams() as $key => $value){
 			switch ($key){
 				case 'cat':
@@ -53,8 +59,11 @@ class MT_Search_Helper_Data extends Mage_Core_Helper_Abstract {
 				case 'q':
 					$q = $value;
 					break;
-				case 'limit': break;
-				case 'p': break;
+                case 'isAjax':
+                case 'toolbar':
+                case '___SID':
+				case 'limit':
+				case 'p':
 				case 'mode': break;
 				case 'order':
 					if ($value == 'name') $order = $value;
@@ -88,4 +97,41 @@ class MT_Search_Helper_Data extends Mage_Core_Helper_Abstract {
 
 		return sprintf('price_%d_%d_f', $websiteId, $customerGroupId);
 	}
+
+    /**
+     * Retrieve search query text
+     *
+     * @return string
+     */
+    public function getQueryText() {
+        if (!isset($this->_queryText)) {
+            $this->_queryText = $this->_getRequest()->getParam($this->getQueryParamName());
+            if ($this->_queryText === null) {
+                $this->_queryText = '';
+            } else {
+                /* @var $stringHelper Mage_Core_Helper_String */
+                $stringHelper = Mage::helper('core/string');
+                $this->_queryText = is_array($this->_queryText) ? '' : trim($this->_queryText);
+                $maxQueryLength = $this->getMaxQueryLength();
+                if ($maxQueryLength !== '' && $stringHelper->strlen($this->_queryText) > $maxQueryLength) {
+                    $this->_queryText = $stringHelper->substr($this->_queryText, 0, $maxQueryLength);
+                    $this->_isMaxLength = true;
+                }
+            }
+        }
+        return $this->_queryText;
+    }
+
+    /**
+     * Retrieve query model object
+     *
+     * @return Mage_CatalogSearch_Model_Query
+     */
+    public function getQuery() {
+        if (!$this->_query) {
+            $this->_query = Mage::getModel('catalogsearch/query')->loadByQuery($this->getQueryText());
+            $this->_query->setQueryText($this->getQueryText());
+        }
+        return $this->_query;
+    }
 }

@@ -24,7 +24,7 @@ class MT_Search_Model_Resource_Layer_Filter_Attribute extends Mage_Catalog_Model
 			'facet.field' => $attrField
 		);
 		list($q, $filters) = Mage::helper('mtsearch')->getCurrentFilters();
-		$filters['store_id'] = Mage::app()->getStore()->getStoreId();
+        if (isset($filters[$attrField])) unset($filters[$attrField]);
 
 		try{
 			$result = Mage::getModel('mtsearch/service')->query($q, $filters, null, 0, 0, $params);
@@ -40,6 +40,7 @@ class MT_Search_Model_Resource_Layer_Filter_Attribute extends Mage_Catalog_Model
 				}
 			}
 		}catch(Exception $e){
+            Mage::logException($e);
 			return array();
 		}
 	}

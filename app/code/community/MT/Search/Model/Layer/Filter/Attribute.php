@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_Search_Model_Layer_Filter_Attribute extends Mage_CatalogSearch_Model_Layer_Filter_Attribute {
+class MT_Search_Model_Layer_Filter_Attribute extends MT_Filter_Model_Layer_Filter_Attribute {
 	/**
 	 * Retrieve resource instance
 	 *
@@ -20,24 +20,13 @@ class MT_Search_Model_Layer_Filter_Attribute extends Mage_CatalogSearch_Model_La
 		return $this->_resource;
 	}
 
-	/**
-	 * Apply attribute option filter to product collection
-	 *
-	 * @param   Zend_Controller_Request_Abstract $request
-	 * @param   Varien_Object $filterBlock
-	 * @return  $this
-	 */
-	public function apply(Zend_Controller_Request_Abstract $request, $filterBlock) {
-		$filter = $request->getParam($this->_requestVar);
-		if (is_array($filter)) {
-			return $this;
-		}
-		$text = $this->_getOptionText($filter);
-		if (!is_null($filter) && strlen($text)) {
-			$this->_getResource()->applyFilterToCollection($this, $filter);
-			$this->getLayer()->getState()->addFilter($this->_createItem($text, $filter));
-			$this->_items = array();
-		}
-		return $this;
-	}
+    /**
+     * Check whether specified attribute can be used in LN
+     *
+     * @param Mage_Catalog_Model_Resource_Eav_Attribute  $attribute
+     * @return bool
+     */
+    protected function _getIsFilterableAttribute($attribute) {
+        return $attribute->getIsFilterableInSearch();
+    }
 }

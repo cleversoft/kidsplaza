@@ -27,7 +27,8 @@ class MT_Search_Model_Resource_Layer_Filter_Price extends Mage_Catalog_Model_Res
 
 		$params = array(
 			'facet' => 'on',
-			'facet.limit' => -1);
+			'facet.limit' => -1
+        );
 
 		for($i = 0; $i <= $lastIndex; $i++){
 			if ($i == $lastIndex) $params['facet.query'][] = sprintf('%s:[%d TO *]', $attrField, $range * $i, $range * ($i + 1));
@@ -35,7 +36,8 @@ class MT_Search_Model_Resource_Layer_Filter_Price extends Mage_Catalog_Model_Res
 		}
 
 		list($q, $filters) = Mage::helper('mtsearch')->getCurrentFilters();
-		$filters['store_id'] = Mage::app()->getStore()->getStoreId();
+        $priceName = Mage::helper('mtsearch')->getCurrentPriceName();
+        if (isset($filters[$priceName])) unset($filters[$priceName]);
 
 		try{
 			$result = Mage::getModel('mtsearch/service')->query($q, $filters, null, 0, 0, $params);
@@ -51,6 +53,7 @@ class MT_Search_Model_Resource_Layer_Filter_Price extends Mage_Catalog_Model_Res
 			}
 			return $out;
 		}catch(Exception $e){
+            Mage::logException($e);
 			return array();
 		}
 	}

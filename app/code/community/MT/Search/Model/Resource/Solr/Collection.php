@@ -23,7 +23,6 @@ class MT_Search_Model_Resource_Solr_Collection extends Mage_CatalogSearch_Model_
 		$offset = $limit * ($page - 1);
 
 		list($q, $filters, $order) = Mage::helper('mtsearch')->getCurrentFilters();
-		$filters['store_id'] = Mage::app()->getStore()->getStoreId();
 
 		try{
 			$result = Mage::getModel('mtsearch/service')->query(
@@ -48,6 +47,7 @@ class MT_Search_Model_Resource_Solr_Collection extends Mage_CatalogSearch_Model_
 			$this->getSelect()->where('e.entity_id IN (?)', $this->_ids);
 			$this->getSelect()->reset(Zend_Db_Select::LIMIT_OFFSET);
 		}catch(Exception $e){
+            Mage::logException($e);
 			$this->getSelect()->where('e.entity_id IN (0)');
 		}
 

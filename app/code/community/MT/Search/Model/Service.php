@@ -29,7 +29,6 @@ class MT_Search_Model_Service extends Apache_Solr_Service {
 		$params['sort'] = isset($params['sort']) ? $params['sort'] : 'score desc';
 
 		if (is_array($filters)){
-			if (Mage::getStoreConfig('cataloginventory/options/show_out_of_stock') == 0) $filters['in_stock'] = 1;
 			$tmpFilters = array();
 			foreach ($filters as $attr => $val){
 				if (is_array($val)){
@@ -40,7 +39,7 @@ class MT_Search_Model_Service extends Apache_Solr_Service {
 					$tmpFilters[] = '(' . implode(' OR ', $tmpFilter) . ')';
 				}else $tmpFilters[] = $attr . ':' . $val;
 			}
-			$params['fq'] = implode(' AND ', $tmpFilters);
+			$params['fq'] = $tmpFilters;
 		}
 
 		// search weight

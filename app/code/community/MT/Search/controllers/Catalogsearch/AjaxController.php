@@ -12,7 +12,6 @@ class  MT_Search_Catalogsearch_AjaxController extends Mage_CatalogSearch_AjaxCon
 	/**
 	 * Suggestions ajax request handler
 	 */
-
 	public function suggestAction() {
 		if (!$this->getRequest()->getParam('q', false)) {
 			$this->getResponse()->setRedirect(Mage::getSingleton('core/url')->getBaseUrl());

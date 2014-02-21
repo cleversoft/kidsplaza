@@ -7,10 +7,9 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_Search_Model_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Filter_Category {
+class MT_Search_Model_Layer_Filter_Category extends MT_Filter_Model_Layer_Filter_Category {
 	/**
 	 * Get data array for building category filter items
-	 * TODO: speed improvement
 	 *
 	 * @return array
 	 */
@@ -22,15 +21,21 @@ class MT_Search_Model_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Fil
 			'facet.field' => $attrField
 		);
 		list($q, $filters) = Mage::helper('mtsearch')->getCurrentFilters();
-		$filters['store_id'] = Mage::app()->getStore()->getStoreId();
+        if (isset($filters['category_ids'])) unset($filters['category_ids']);
 
 		try{
 			$result = Mage::getModel('mtsearch/service')->query($q, $filters, null, 0, 0, $params);
 
 			$childs = array();
-			foreach($this->getCategory()->getChildrenCategories() as $child){
-				$childs[$child->getId()] = $child;
-			}
+            if ($this->getCategory()->getLevel() == 1){
+                foreach ($this->getCategory()->getChildrenCategories() as $child){
+                    $childs[$child->getId()] = $child;
+                }
+            }else{
+                foreach ($this->getCategory()->getParentCategory()->getChildrenCategories() as $child){
+                    $childs[$child->getId()] = $child;
+                }
+            }
 
 			$data = $result->getFacetCounts();
 			if ($data){
@@ -52,6 +57,7 @@ class MT_Search_Model_Layer_Filter_Category extends Mage_Catalog_Model_Layer_Fil
 				}
 			}
 		}catch(Exception $e){
+            Mage::logException($e);
 			return array();
 		}
 	}
