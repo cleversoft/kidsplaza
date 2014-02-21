@@ -165,7 +165,7 @@ class MT_Review_Block_Adminhtml_Review_Grid extends Mage_Adminhtml_Block_Widget_
                     array(
                         'caption' => Mage::helper('adminhtml')->__('Edit'),
                         'url'     => array(
-                            'base'=>'*/adminhtml_review/edit',
+                            'base'=>'mtreview/adminhtml_review/edit',
                             'params'=> array(
                                 'productId' => $this->getProductId(),
                                 'customerId' => $this->getCustomerId(),

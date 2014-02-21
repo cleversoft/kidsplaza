@@ -16,13 +16,33 @@
                 <name>custom</name>
                 <block>mtreview/adminhtml_catalog_product_edit_tab</block>
             </action>
+            <action method="removeTab">
+                <name>reviews</name>
+            </action>
         </reference>
     </adminhtml_catalog_product_edit>
 
     <adminhtml_catalog_product_mtreview>
         <block type="core/text_list" name="root" output="toHtml">
             <block type="mtreview/adminhtml_catalog_product_edit_tab_reviews" name="catalog.product.edit.tab.mtreview"/>
-
         </block>
     </adminhtml_catalog_product_mtreview>
+
+    <adminhtml_customer_edit>
+        <reference name="customer_edit_tabs">
+            <action method="addTab">
+                <name>mtreviews</name>
+                <block>mtreview/adminhtml_customer_edit_tab</block>
+            </action>
+            <action method="removeTab">
+                <name>reviews</name>
+            </action>
+        </reference>
+    </adminhtml_customer_edit>
+
+    <adminhtml_customer_mtreview>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="mtreview/adminhtml_customer_edit_tab_reviews" name="customer.edit.tab.reviews"/>
+        </block>
+    </adminhtml_customer_mtreview>
 </layout>
