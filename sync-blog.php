@@ -79,7 +79,7 @@ while ($row = mysql_fetch_assoc($rs)){
     );
 }
 $query = '
-    select b.url,b.catId,b.title,b.thumnail,b.summary,b.meta_keywords,b.meta_description,bc.content
+    select b.url,b.catId,b.title,b.thumnail,b.summary,b.meta_keywords,b.meta_description,b.createDate,b.lastUpdate,bc.content
     from idv_seller_news as b
     inner join idv_seller_news_content as bc on bc.id=b.id';
 $rs = query($query);
@@ -105,7 +105,9 @@ while ($row = mysql_fetch_assoc($rs)){
         'post_content' => $row['content'],
         'meta_keywords' => $row['meta_keywords'],
         'meta_description' => $row['meta_description'],
-        'cats' => process_category($row['catId'])
+        'cats' => process_category($row['catId']),
+        'created_time' => $row['createDate'],
+        'update_time' => $row['lastUpdate']
     ));
     try{
         $blog->save();

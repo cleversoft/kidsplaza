@@ -28,11 +28,11 @@ $date       = Mage::getModel('core/date');
             <a>
                 <?php echo $blog->getTitle() ?>
             </a>
-            <?php if ($blog->getCreatedTime()): ?>
+            <?php //if ($blog->getCreatedTime()): ?>
                 <span>
                     <?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?>
                 </span>
-            <?php endif ?>
+            <?php //endif ?>
         </li>
     <?php endforeach ?>
 </ul>
