@@ -21,6 +21,10 @@
                         <value>mt/widget/home-products.phtml</value>
                         <label>Home Products</label>
                     </home_products>
+                    <sidebar_blogs translate="label">
+                        <value>mt/widget/sider-blogs.phtml</value>
+                        <label>Sidebar Blogs</label>
+                    </sidebar_blogs>
                 </values>
             </template>
         </parameters>

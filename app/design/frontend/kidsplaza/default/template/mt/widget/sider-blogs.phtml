@@ -1,0 +1,38 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php
+/* @var $this MT_Widget_Block_Widget */
+$blogs      = $this->getBlogs();
+$id         = $this->getConfig('id');
+$title      = $this->getConfig('widget_title');
+/* @var $date $date Mage_Core_Model_Date */
+$date       = Mage::getModel('core/date');
+?>
+<?php if ($title):?>
+<h2><?php echo $title ?></h2>
+<?php endif ?>
+<ul>
+    <?php foreach ($blogs as $blog):?>
+        <li>
+            <a>
+                <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.$blog->getThumb(), 50) ?>"/>
+            </a>
+            <a>
+                <?php echo $blog->getTitle() ?>
+            </a>
+            <?php if ($blog->getCreatedTime()): ?>
+                <span>
+                    <?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?>
+                </span>
+            <?php endif ?>
+        </li>
+    <?php endforeach ?>
+</ul>

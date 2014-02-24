@@ -16,6 +16,10 @@ class MT_Widget_Model_Widget_Source_Type{
         if ($mt_attribute == '1'){
             $types[] = array('value'=>'attribute', 'label'=>Mage::helper('mtwidget')->__('Attribute'));
         }
+        $aw_blog = Mage::helper('mtext')->getExtensionInfo('AW_Blog');
+        if ($aw_blog == '1'){
+            $types[] = array('value'=>'blog', 'label'=>Mage::helper('mtwidget')->__('Blog'));
+        }
         return $types;
     }
 }

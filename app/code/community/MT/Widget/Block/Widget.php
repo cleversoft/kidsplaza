@@ -85,6 +85,16 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         return parent::_beforeToHtml();
     }
 
+    public function getBlogs(){
+        $collection = Mage::getModel('blog/post')->getCollection()
+            ->addStoreFilter()
+            ->addStatusFilter(array(AW_Blog_Model_Status::STATUS_ENABLED))
+            ->setPageSize($this->getConfig('limit'))
+            ->setCurPage(1);
+
+        return $collection;
+    }
+
     public function getBlocks(){
         $blocks = array();
         $layout = $this->getLayout();

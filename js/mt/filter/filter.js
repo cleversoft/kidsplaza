@@ -15,6 +15,7 @@ MTFilter.prototype = {
     name: null,
     loadMoreUrl: null,
     isLoading: false,
+    reInitLayer: false,
     initialize: function(name, config){
         this.name = name;
         this.config = config;
@@ -73,7 +74,7 @@ MTFilter.prototype = {
                 failure_limit: 10
             });
         });
-        this.layer.select('div.panel-body').each(function(container){
+        this.reInitLayer && this.layer.select('div.panel-body').each(function(container){
             initLayerFilterWithScrollAndList(container);
         });
     },
@@ -308,7 +309,8 @@ MTFilter.prototype = {
         }
         if (layer && this.layer){
             this.layer.replace(layer);
-        }
+            this.reInitLayer = true;
+        }else this.reInitLayer = false;
 
         setTimeout(function(){
             this.collect();

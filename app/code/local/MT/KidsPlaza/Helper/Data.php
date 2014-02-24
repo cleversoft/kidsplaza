@@ -132,11 +132,15 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         }
     }
 
-    public function resize($imageUrl, $width, $height=null){
-        if (!is_numeric($width)) return;
+    public function resize($imageUrl, $width, $height=null, $dir=null){
+        if (!$imageUrl) return '';
+        if (!is_numeric($width)) return '';
         if (!$height) $height = $width;
         $base = Mage::getBaseDir('media').DS;
-        $dir = 'catalog'.DS.'category'.DS.'resize'.DS.$width.'x'.$height.DS;
+        if (!$dir){
+            $dir = str_replace($base, '', dirname($imageUrl));
+            $dir .= DS.$width.'x'.$height.DS;
+        }
         if (!is_dir($base.$dir)){
             @mkdir($base.$dir, 0777, true);
         }

@@ -421,7 +421,8 @@ MT.OneStepCheckout.prototype = {
         else container = new Element('ul', {'class':'messages'});
 
         if (messages){
-            var html = '<li class="'+type+'-msg"><ul>';
+            if (type == 'error') var html = '<li class="alert alert-danger"><ul>';
+            else var html = '<li class="alert alert-success"><ul>';
             if (typeof messages !== 'string'){
                 messages.each(function(message){
                     html += '<li><span>'+message+'</span></li>';

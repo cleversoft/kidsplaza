@@ -87,6 +87,18 @@
                 </depends>
                 <description>The product collection</description>
             </mode>
+            <blog_collection translate="label description">
+                <label>Blog Collection</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>mtwidget/widget_source_blog_collection</source_model>
+                <depends>
+                    <widget_type>
+                        <value>blog</value>
+                    </widget_type>
+                </depends>
+                <description>The blog collection</description>
+            </blog_collection>
             <attribute translate="label description">
                 <label>Attribute</label>
                 <visible>1</visible>
@@ -233,7 +245,10 @@
                 <required>1</required>
                 <depends>
                     <widget_type>
-                        <value>product</value>
+                        <values>
+                            <product>product</product>
+                            <blog>blog</blog>
+                        </values>
                     </widget_type>
                 </depends>
                 <description>Limit number of products show on widget</description>
