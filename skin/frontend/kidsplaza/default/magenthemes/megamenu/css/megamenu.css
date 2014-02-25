@@ -4,11 +4,15 @@
  * @license PHP files are GNU/GPL
 *******************************************************/
 header .mt-menu-top {
-    height: 41px;
+    height: 52px;
+    background: #fff;
+}
+header .menu-top {
     border: 1px solid #cfcfcf;
     border-left: 0;
     border-right: 0;
     background: #fff;
+    height: 52px;
 }
 #megamenu {
     margin: 0 auto;
@@ -16,7 +20,6 @@ header .mt-menu-top {
     width: 100%;
     padding: 0;
     z-index: 99;
-
 }
 #megamenu ul {
     padding: 0;
@@ -30,19 +33,29 @@ header .mt-menu-top {
     position: relative;
 }
 #megamenu ul li.level-0 {
-    height: 41px;
-
+    height: 52px;
     transition: all 0.3s ease-in-out 0s;
 }
-#megamenu ul li.level-0 > a{
+#megamenu ul li.level-0:hover , #megamenu ul li.level-0.active {
+    border-top: 4px solid #ff4b8c ;
+    border-bottom: 4px solid #fff ;
     border-right: 1px solid #cfcfcf;
-    height: 24px;
-    line-height: 24px;
-    margin: 8px 0;
+    border-left: 1px solid #cfcfcf;
+}
+#megamenu ul li.level-0 > a{
+    line-height: 52px;
+    background: url("../images/tick-menu.png") no-repeat scroll 100% 50%  ;
+}
+#megamenu ul li.level-0 > a:hover {
+   line-height: 45px;
+}
+#megamenu ul li.level-0:hover > a span ,#megamenu ul li.level-0 > a:hover span ,#megamenu ul li.level-0 > a span:hover {
+   line-height: 45px;
+   background: url(../images/icon-menu-parent.png) no-repeat 100% -36px ;
 }
 #megamenu ul li.level-0 > a span {
     color: #757575;
-    background: url(../images/icon-menu-parent.png) no-repeat right center;
+    background: url(../images/icon-menu-parent.png) no-repeat 100% 3px ;
     padding-right: 15px;
 }
 #megamenu ul li.level-0.over > a span {
@@ -70,7 +83,7 @@ header .mt-menu-top {
     background: none !important;
     border: none !important;
 }
-#megamenu ul li.over {
+#megamenu ul li:hover {
 
 }
 #megamenu ul li.current {
@@ -129,7 +142,11 @@ header .mt-menu-top {
     border-right: #e5e5e5 solid 1px;
 }
 #megamenu ul li.over > a {
+
+}
+#megamenu ul li:hover  > a {
     color:#ff4b8c;
+    background: none ;
 }
 #megamenu ul li.current > a {
     color:#ff4b8c;
@@ -147,7 +164,7 @@ header .mt-menu-top {
 }
 #megamenu li.root > div.childcontent {
     position:absolute;
-    top:40px;
+    top:51px;
     left:-10000px;
     background:#fff;
     z-index:9;
@@ -226,16 +243,21 @@ header .mt-menu-top {
     border-right: 0;
 }
 #megamenu li.level-0:first-child > a{
-    margin: 3px 0;
+    margin: 4px 0;
     border-right: 0;
     padding: 0;
+    background: 0;
 }
 #megamenu li.level-0:first-child span{
-    background: url(../../../images/bgIcons.png) no-repeat -33px -33px;
+    background: url(../../../images/bgIcons2.png) no-repeat -230px -2px;
     display: block;
-    width: 33px;
-    height: 33px;
+    width: 40px;
+    height: 40px;
     text-indent: -9999px;
+}
+#megamenu li.level-0:last-child a {
+
+    background: 0;
 }
 /*Drill menu*/
 .mt-drillmenu {
@@ -283,7 +305,7 @@ ul.nav-accordion li a {
     display: block;
     font-size: 110%;
     font-weight: bold;
-    height: 41px;
+    height: 40px;
     line-height: 41px;
     margin: 0;
     padding: 0 26px 0 30px;
@@ -373,7 +395,8 @@ ul.nav-accordion li span.collapse {
 
 ul.detail-parent {
     margin: 0px;
-    padding: 0 0 0 17px; }
+    padding: 0 0 0 17px;
+}
 
 .navbar .btn-navbar {
     background-image: none !important;
