@@ -19,20 +19,24 @@ $date       = Mage::getModel('core/date');
 <?php if ($title):?>
 <h2><?php echo $title ?></h2>
 <?php endif ?>
-<ul>
+<ul class="block-blogs">
     <?php foreach ($blogs as $blog):?>
         <li>
-            <a>
+            <a class="img">
                 <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.$blog->getThumb(), 50) ?>"/>
             </a>
-            <a>
-                <?php echo $blog->getTitle() ?>
-            </a>
-            <?php //if ($blog->getCreatedTime()): ?>
-                <span>
-                    <?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?>
-                </span>
-            <?php //endif ?>
+           <div class="right-blogs">
+                   <a>
+                            <?php echo $blog->getTitle() ?>
+
+                    </a>
+                    <?php //if ($blog->getCreatedTime()): ?>
+                            <i class="glyphicon glyphicon-calendar"></i>
+                            <span>
+                                <?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?>
+                            </span>
+                    <?php //endif ?>
+            </div>
         </li>
     <?php endforeach ?>
 </ul>
