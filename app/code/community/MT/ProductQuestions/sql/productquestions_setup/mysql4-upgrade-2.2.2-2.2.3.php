@@ -1,5 +1,5 @@
 <?php
- /**
+/**
  *
  * ------------------------------------------------------------------------------
  * @category     MT
@@ -12,19 +12,13 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_ProductQuestions_Model_Mysql4_Categories_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
-{
+$installer = $this;
 
-    public function _construct()
-    {
-        $this->_init('productquestions/categories');
-    }
+$installer->startSetup();
 
-    public function addVisibilityFilter($visibility = MT_ProductQuestions_Model_Source_Question_Status::STATUS_PUBLIC)
-    {
-        $this->getSelect()->where('main_table.status=?', $visibility);
+$installer->run("
+ALTER TABLE {$this->getTable('productquestions/productquestions')}
+ADD `category_id` int(10) unsigned NULL default null AFTER `parent_question_id`;
+    ");
 
-        return $this;
-    }
-
-}
+$installer->endSetup();

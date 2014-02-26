@@ -15,9 +15,6 @@
 ?>
 <?php if($this->getQuestionData()->getQuestionId()): ?>
 <div class="product-question">
-    <div class="page-title">
-        <h3><?php echo $this->__('Questions Details') ?></h3>
-    </div>
     <div class="main row">
         <div class="col-lg-12 media">
             <span class="img pull-left">
@@ -31,13 +28,13 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->__('Back to Product Questions') ?></a></p>
-        </div>
-        <div class="col-lg-12 form">
-            <?php echo $this->getChildHtml('productquestions_form'); ?>
-        </div>
-        <div class="col-lg-12">
-            <?php echo $this->getChildHtml('answers'); ?>
+            <div class="numb-answer">
+                <?php echo $this->__('Answers: (%s)', $this->getCountAnswers());?>
+            </div>
+            <div class="form-answer">
+                <?php echo $this->getChildHtml('answers_form'); ?>
+            </div>
+            <?php echo $this->getChildHtml('mainanswers'); ?>
         </div>
     </div>
 </div>

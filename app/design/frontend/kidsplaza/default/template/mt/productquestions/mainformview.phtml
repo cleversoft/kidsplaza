@@ -6,9 +6,11 @@ $helper->generateCaptchaKey();
 <div class="main-form-question">
     <form action="<?php echo $this->getAction();?>" id="mt-question-form" method="post">
         <input type="hidden" name="parent_question_id" value="<?php echo $this->getQuestionData()->getQuestionId();?>" />
+        <input type="hidden" name="category_id" value="<?php echo $this->getQuestionData()->getCategoryId();?>" />
+        <input type="hidden" name="answer_view" value="1" />
         <div class="form-field form-group">
             <span class="author-img"><img src="<?php echo $this->getSkinUrl().'images/comment-default-avatar.jpg'?>"/> </span>
-            <textarea class="form-control required-entry" name="question_text" id="question_text_field" cols="" rows="" placeholder="<?php echo $this->__('Enter your questions');?>"><?php echo $this->htmlEscape($this->getQuestionText()) ?></textarea>
+            <textarea class="form-control required-entry" name="question_text" id="question_text_field" cols="" rows="" placeholder="<?php echo $this->__('Enter your questions');?>"><?php echo $this->escapeHtml($this->getQuestionText()) ?></textarea>
             <div class="form-field form-group row">
                 <div class="col-lg-2 editor-html">
                     <button id="li-b" class="li-format li-b">&nbsp;</button>
@@ -16,8 +18,8 @@ $helper->generateCaptchaKey();
                     <button id="li-dot" class="li-format li-dot"></button>
                 </div>
                 <div class="col-lg-10 author_info">
-                    <span class="author_name"><input class="form-control required-entry" name="question_author_name" id="question_author_name_field" type="text" value="<?php echo $this->htmlEscape($this->getQuestionAuthorName()) ?>" placeholder="<?php echo $this->__('Enter name');?>"/></span>
-                    <span class="autor_email"> <input class="form-control required-entry validate-email" name="question_author_email" id="question_author_email_field" type="text" value="<?php echo $this->htmlEscape($this->getQuestionAuthorEmail()) ?>" placeholder="<?php echo $this->__('Enter email');?>" /></span>
+                    <span class="author_name"><input class="form-control required-entry" name="question_author_name" id="question_author_name_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorName()) ?>" placeholder="<?php echo $this->__('Enter name');?>"/></span>
+                    <span class="autor_email"> <input class="form-control required-entry validate-email" name="question_author_email" id="question_author_email_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorEmail()) ?>" placeholder="<?php echo $this->__('Enter email');?>" /></span>
                     <span class="captcha"><?php echo $helper->displayCaptcha();?></span>
                     <span class="button_submit"><button class="button btn-kid pull-right" type="submit"><span><?php echo $this->__('Submit question') ?></span></button></span>
                 </div>

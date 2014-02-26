@@ -1,0 +1,29 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_ProductQuestions
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<?php
+$categories = $this->_collection;
+?>
+<div class="main-categories">
+    <div class="title">
+        <span class="name"><?php echo $this->__('All Categories');?></span>
+        <span class="num"><?php echo $this->__(' %s Questions',$this->getCountQuestions());?></span>
+    </div>
+    <ul class="category-list">
+        <?php foreach($categories as $category){?>
+            <li><a href="<?php echo $this->getCategoryUrl($category->getCatId());?>"><?php echo $category->getName();?></a><span class="num"><?php echo $this->getNumQuestionsByCat($category->getCatId());?> </span></li>
+        <?php }?>
+    </ul>
+</div>
