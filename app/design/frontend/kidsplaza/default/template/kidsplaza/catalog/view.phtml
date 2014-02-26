@@ -20,12 +20,23 @@ $_category = $this->getCategory();
             <ul class="grid-5 products-grid">
         <?php endif ?>
         <li class="item">
+            <h2 class="product-name">
+                <a href="<?php echo $c->getUrl() ?>"><?php echo $this->escapeHtml($c->getName()) ?></a>
+            </h2>
             <a class="product-image" href="<?php echo $c->getUrl() ?>">
                 <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.'catalog'.DS.'category'.DS.$c->getImage(), 135) ?>"/>
             </a>
-            <h2 class="product-name">
-                <a href="<?php echo $c->getUrl() ?>"><?php echo $c->getName() ?></a>
-            </h2>
+            <?php if ($c->hasChildren()): ?>
+            <ul>
+                <?php foreach ($c->getChildrenCategories() as $cc): ?>
+                    <li>
+                        <a href="<?php echo $cc->getUrl() ?>">
+                            <?php echo $this->escapeHtml($cc->getName()) ?>
+                        </a>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+            <?php endif ?>
         </li>
         <?php if ($i % $column === 0 || $i == count($categories)): ?>
             </ul>
