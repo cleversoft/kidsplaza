@@ -43,6 +43,20 @@ KidsPlazaCart.prototype = {
     }
 };
 
+var KidsPlazaLoginHeader = Class.create();
+KidsPlazaLoginHeader.prototype = {
+    initialize: function(id){
+        jQuery('#' + id).find('a.btn-login').popover({
+            placement: 'bottom',
+            html: true,
+            trigger: 'click',
+            content: function(){
+                return jQuery('.login-content', '#' + id).html()
+            }
+        });
+    }
+};
+
 var EnhancedAjaxAutocompleter = Class.create(Ajax.Autocompleter, {
     updateChoices: function(choices) {
         if(!this.changed && this.hasFocus) {
@@ -98,6 +112,9 @@ function onBuyBtnClick(url){
     window.location.href = url.indexOf('?') > 0 ? url + '&form_key=' + Mage.FormKey : url + 'form_key/' + Mage.FormKey;
 }
 
+
+//init login header
+new KidsPlazaLoginHeader('topLogin');
 //init location
 var KPLocation = new KidsPlazaLocation();
 //init mini cart

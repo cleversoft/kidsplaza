@@ -37,7 +37,7 @@ function initLayerFilterWithScrollAndList(container){
         jQuery(container).addClass('has-scroll').mCustomScrollbar({
             scrollInertia: 0,
             theme: 'dark-thin',
-            set_height: 388,
+            set_height: 300,
             mouseWheel: true,
             callbacks: {
                 onScrollReady: function(elm){

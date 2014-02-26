@@ -12,35 +12,41 @@
 /* @var $session Mage_Customer_Model_Session */
 $session = Mage::getSingleton('customer/session');
 ?>
-<div class="pull-right top-login">
-    <?php if ($session->isLoggedIn()):?>
-        <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-            <?php echo $this->__('Hi, %s', $session->getCustomer()->getName())?> <span class="caret"></span>
+<div class="pull-right top-login" id="topLogin">
+        <a class="btn btn-login" href="javascript:void(0)">
+            <i class="glyphicon glyphicon-user"></i>
+            <?php if ($session->isLoggedIn()): ?>
+                <?php echo $session->getCustomer()->getName() ?>
+            <?php else: ?>
+                <?php echo $this->__('Login') ?>
+                <!--span class=""><?php echo $this->__('Account and Orders') ?></span-->
+            <?php endif ?>
         </a>
-        <ul class="dropdown-menu" role="menu">
-            <li>
-                <a href="<?php echo $this->getUrl('customer/account/index')?>">
-                    <i class="glyphicon glyphicon-cog"></i>&nbsp;<?php echo $this->__('Dashboard')?>
-                </a>
-            </li>
-            <li>
-                <a href="<?php echo $this->getUrl('customer/account/logout')?>">
-                    <i class="glyphicon glyphicon-log-out"></i>&nbsp;<?php echo $this->__('Logout')?>
-                </a>
-            </li>
-        </ul>
-    <?php else: ?>
-    <ul class="not-login">
-        <li>
-            <a href="<?php echo $this->getUrl('customer/account/login')?>" class="btn btn-login" type="button">
-                <?php echo $this->__('Login')?>
-            </a>
-        </li>
-        <li>
-            <a href="<?php echo $this->getUrl('customer/account/create')?>" class="btn btn-login" type="button">
-                <?php echo $this->__('Sign up')?>
-            </a>
-        </li>
-    </ul>
-    <?php endif ?>
+        <div class="login-content" style="display: none">
+            <?php if (!$session->isLoggedIn()): ?>
+                <button onclick="setLocation('<?php echo $this->getUrl('customer/account/login') ?>')" class="btn btn-login btn-signin">
+                    <?php echo $this->__('Login') ?>
+                </button>
+                <p>
+                    <span><?php echo $this->__('New customer?') ?></span>
+                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Create new account') ?></a>
+                </p>
+            <?php endif ?>
+            <ul>
+                <li>
+                    <i class="glyphicon glyphicon-user"></i>
+                    <a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('My account') ?></a>
+                </li>
+                <li>
+                    <i class="glyphicon glyphicon-list-alt"></i>
+                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('My Orders') ?></a>
+                </li>
+                <?php if ($session->isLoggedIn()): ?>
+                <li>
+                    <i class="glyphicon glyphicon-log-out"></i>
+                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Logout') ?></a>
+                </li>
+                <?php endif ?>
+            </ul>
+        </div>
 </div>

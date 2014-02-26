@@ -38,8 +38,12 @@
         <?php $_module = $this->getRequest()->getModuleName() ?>
         <?php $_filters = $this->getFilters() ?>
         <?php foreach ($_filters as $_filter): ?>
-            <?php if (!($_filter instanceof Mage_Catalog_Block_Layer_Filter_Category) && $_category && $_category->hasChildren() && $_module == 'catalog'): ?>
-                <?php continue; ?>
+            <?php if (!($_filter instanceof Mage_Catalog_Block_Layer_Filter_Category) && $_category && $_category->hasChildren()): ?>
+                <?php if (!($_filter instanceof Mage_Catalog_Block_Layer_Filter_Attribute)): ?>
+                    <?php continue; ?>
+                <?php elseif ($_filter->getAttributeModel()->getAttributeCode() != 'brand'): ?>
+                    <?php continue; ?>
+                <?php endif; ?>
             <?php endif; ?>
             <?php if ($_filter->getItemsCount()): ?>
                 <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false ?>
