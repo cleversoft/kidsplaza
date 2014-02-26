@@ -31,6 +31,11 @@
                             <sort_order>2</sort_order>
                             <action>productquestions/adminhtml_questions/</action>
                         </questions>
+                        <answers translate="title" module="productquestions">
+                            <title>Answers</title>
+                            <sort_order>3</sort_order>
+                            <action>productquestions/adminhtml_answers/</action>
+                        </answers>
                         <productquestions_config translate="title" module="productquestions">
                             <title>Setting</title>
                             <sort_order>5</sort_order>

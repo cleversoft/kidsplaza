@@ -12,6 +12,7 @@ $questions = $this->_collection;
             <div class="media-body">
                 <span class="title">
                     <?php echo $this->__('From') ?> <b><?php echo $this->escapeHtml($question->getQuestionAuthorName()) ?></b>
+                    <?php if($question->getQuestionAuthorType() == 'admin'){?><?php echo $this->__('By Admin');?><?php }?>
                 </span>
                 <p><?php echo $this->escapeHtml($question->getQuestionText()) ?></p>
                 <p> <?php echo $this->__('At');?> <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span></p>

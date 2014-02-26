@@ -12,14 +12,14 @@
  * ------------------------------------------------------------------------------
  *
  */
-Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_Block_Widget_Grid
+Class MT_ProductQuestions_Block_Adminhtml_Answers_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
 
     public function __construct()
     {
         parent::__construct();
         $session = Mage::getSingleton('adminhtml/session');
-        $this->setId('questionsGrid');
+        $this->setId('answersGrid');
         $this->setDefaultSort('question_id');
         $this->setDefaultSort('question_date')
              ->setDefaultDir('DESC');
@@ -28,7 +28,7 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
 
     protected function _prepareCollection(){
         $collection = Mage::getModel('productquestions/productquestions')->getCollection();
-        $collection->getSelect()->having('parent_question_id=?', 0);
+        $collection->getSelect()->having('parent_question_id!=?', 0);
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
@@ -83,30 +83,6 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
             ));
         }
 
-        $this->addColumn('action', array(
-            'header' => $this->__('Action'),
-            'width' => '100',
-            'type' => 'action',
-            'getter' => 'getId',
-            'actions' => array(
-                array(
-                    'caption' => $this->__('Answer'),
-                    'url' => array('base' => '*/adminhtml_answers/answer'),
-                    'field' => 'qid'
-                ),
-                array(
-                    'caption' => $this->__('Delete'),
-                    'url' => array('base' => '*/*/delete'),
-                    'field' => 'id',
-                    'confirm' => Mage::helper('productquestions')->__('Are you sure?')
-                )
-            ),
-            'filter' => false,
-            'sortable' => false,
-            'index' => '`main_table`.`question_id`',
-            'is_system' => true,
-        ));
-
 
         return parent::_prepareColumns();
     }
@@ -145,7 +121,7 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Grid extends Mage_Adminhtml_
 
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/adminhtml_questions/edit', array(
+        return $this->getUrl('*/adminhtml_answers/edit', array(
             'id' => $row->getQuestionId()
         ));
     }

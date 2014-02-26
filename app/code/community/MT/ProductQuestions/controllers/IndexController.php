@@ -132,6 +132,9 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
     public function postAction()
     {
         $session = Mage::getSingleton('core/session');
+        if($customer = Mage::getSingleton('customer/session')->isLoggedIn()) {
+            $customerId = Mage::getSingleton('customer/session')->getId();
+        }
         try
         {
             $this->_initProduct();
@@ -175,11 +178,16 @@ class MT_ProductQuestions_IndexController extends Mage_Core_Controller_Front_Act
                           ->setQuestionAuthorEmail($data['question_author_email'])
                           ->setQuestionProductName($this->_product->getName())
                           ->setQuestionText($data['question_text'])
-                          ->setQuestionStatus(MT_ProductQuestions_Model_Source_Question_Status::STATUS_PRIVATE)
+                          ->setQuestionStatus(MT_ProductQuestions_Model_Source_Question_Status::STATUS_PUBLIC)
                           ->setQuestionDate(now())
                           ->setQuestionStoreId($storeId)
                           ->setQuestionStoreIds($storeId)
-                          ->save();
+                          ;
+                if($customerId){
+                    $questions->setQuestionAuthorId($customerId);
+                    $questions->setQuestionAuthorType('customer');
+                }
+                $questions->save();
 
                 $session->addSuccess($this->__('Your question has been accepted for moderation'));
                 $session->setProductquestionsData(false);
