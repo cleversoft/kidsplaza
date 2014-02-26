@@ -1,9 +1,9 @@
 <?php
- /**
+/**
  *
  * ------------------------------------------------------------------------------
  * @category     MT
- * @package      MT_ProductQuestions
+ * @package      MT_Review
  * ------------------------------------------------------------------------------
  * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
  * @license      GNU General Public License version 2 or later;
@@ -12,19 +12,10 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_ProductQuestions_Model_Mysql4_Categories_Collection extends Mage_Core_Model_Mysql4_Collection_Abstract
+class MT_ProductQuestions_Model_Session extends Mage_Core_Model_Session_Abstract
 {
-
-    public function _construct()
+    public function __construct()
     {
-        $this->_init('productquestions/categories');
+        $this->init('productquestions');
     }
-
-    public function addVisibilityFilter($visibility = MT_ProductQuestions_Model_Source_Question_Status::STATUS_PUBLIC)
-    {
-        $this->getSelect()->where('main_table.status=?', $visibility);
-
-        return $this;
-    }
-
 }

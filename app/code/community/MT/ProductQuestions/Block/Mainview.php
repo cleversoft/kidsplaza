@@ -13,12 +13,12 @@
  *
  */
 
-class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
+class MT_ProductQuestions_Block_Mainview extends Mage_Core_Block_Template
 {
     public function __construct()
     {
         parent::__construct();
-        $this->setTemplate('mt/productquestions/view.phtml');
+        $this->setTemplate('mt/productquestions/mainview.phtml');
     }
 
     public function _prepareLayout()
@@ -26,23 +26,21 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
         parent::_prepareLayout();
         $breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
         if ($breadcrumbs) {
-            $title = $this->__('Answer Question');
+            $title = $this->__('Questions');
             $data = Mage::registry('current_question');
-            $categoryId = (int) $this->getRequest()->getParam('category', false);
-            $params = array('id' => $data->getQuestionProductId());
-            if($categoryId) $params['category'] = $categoryId;
-            $truncate = Mage::helper('core/string')->truncate($this->escapeHtml($data->getQuestionText()), $length = 100);
+            $truncate = Mage::helper('core/string')->truncate($this->escapeHtml($data->getQuestionText()), 100);
+
             $breadcrumbs->addCrumb('home', array(
                 'label' => $this->__('Home'),
                 'title' => $this->__('Go to Home Page'),
                 'link' => Mage::getBaseUrl()
-            ))->addCrumb('qid', array(
+            ))->addCrumb('questions', array(
+                'label'=>$title,
+                'title'=>$title,
+                'link'=>Mage::getUrl('productquestions/questions/index/')
+            ))->addCrumb('id', array(
                 'label'=>$truncate,
                 'title'=>$truncate,
-                'link'=>Mage::getUrl('productquestions/index/index/', $params)
-            ))->addCrumb('answer', array(
-                'label' => $title,
-                'title' => $title,
             ));
         }
         return $this;
@@ -58,14 +56,17 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
         return Mage::registry('current_question');
     }
 
-    /**
-     * Retrieve current product model from registry
-     *
-     * @return Mage_Catalog_Model_Product
-     */
-    public function getProductData()
+    public function getCountAnswers()
     {
-        return Mage::registry('current_product');
+        $data = $this->getQuestionData();
+        $questionId = $data->getId();
+        $collection = Mage::getResourceModel('productquestions/productquestions_collection')
+            ->addProductFilter(0)
+            ->addVisibilityFilter()
+            ->addQuestionFilter($questionId)
+            ->addStoreFilter()
+            ->setDateOrder();
+        return count($collection);
     }
 
     /**
@@ -75,10 +76,7 @@ class MT_ProductQuestions_Block_View extends Mage_Core_Block_Template
      */
     public function getBackUrl()
     {
-        $categoryId = (int) $this->getRequest()->getParam('category', false);
-        $params = array('id' => $this->getProductData()->getId());
-        if($categoryId) $params['category'] = $categoryId;
-        return Mage::getUrl('*/*/index', $params);
+        return Mage::getUrl('*/*/index');
     }
 
     /**

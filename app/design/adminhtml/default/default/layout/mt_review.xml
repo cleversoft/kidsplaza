@@ -34,9 +34,6 @@
                 <name>mtreviews</name>
                 <block>mtreview/adminhtml_customer_edit_tab</block>
             </action>
-            <action method="removeTab">
-                <name>reviews</name>
-            </action>
         </reference>
     </adminhtml_customer_edit>
 

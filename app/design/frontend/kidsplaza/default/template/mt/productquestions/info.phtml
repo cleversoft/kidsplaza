@@ -1,0 +1,24 @@
+<?php
+/**
+ *
+ * ------------------------------------------------------------------------------
+ * @category     MT
+ * @package      MT_ProductQuestions
+ * ------------------------------------------------------------------------------
+ * @copyright    Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license      GNU General Public License version 2 or later;
+ * @author       MagentoThemes.net
+ * @email        support@magentothemes.net
+ * ------------------------------------------------------------------------------
+ *
+ */
+?>
+<?php if($this->getQuestionData()->getQuestionId()): ?>
+<div class="qdetail">
+    <span class="time pull-left">
+         <?php echo $this->__('Question Created: ');?> <span class="date"><?php echo $this->formatDate($this->getQuestionData()->getQuestionDate()) ?> <?php echo $this->formatTime($this->getQuestionData()->getQuestionDate()) ?></span>
+    </span>
+    <span class="view pull-left"><?php echo $this->__('View:');?> <b><?php echo $this->getQuestionData()->getHits()?></b></span>
+    <span class="total pull-left"> <?php echo $this->__('Answers: (%s)', $this->getCountAnswers());?></span>
+</div>
+<?php endif; ?>

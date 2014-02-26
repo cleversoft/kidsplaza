@@ -91,6 +91,12 @@ class MT_ProductQuestions_Model_Mysql4_Productquestions_Collection extends Mage_
         return $this;
     }
 
+    public function addCategoryFilter($catId)
+    {
+        $this->getSelect()->where('main_table.category_id=?', $catId);
+        return $this;
+    }
+
     public function addStoreFilter($storeId = null)
     {
         if(is_null($storeId))
