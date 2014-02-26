@@ -62,5 +62,11 @@ function initLayerFilterWithScrollAndList(container){
                 }
             }
         });
+    }else{
+        jQuery('div.list-js').each(function(i, list){
+            new List(list, {
+                valueNames: ['filter-item-name', 'filter-item-name-normalize']
+            });
+        });
     }
 }
