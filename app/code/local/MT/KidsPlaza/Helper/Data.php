@@ -177,7 +177,7 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             $imageObj->resize($width, $height);
             $imageObj->save($imageResized);
         }
-        return Mage::getBaseUrl('media').$dir.basename($imageResized);
+        return str_replace('\\', '/', Mage::getBaseUrl('media').$dir.basename($imageResized));
     }
 
     /**

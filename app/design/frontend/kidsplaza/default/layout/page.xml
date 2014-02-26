@@ -134,6 +134,12 @@ Default layout, loads most of the pages
                 <block type="core/text_list" name="ft.slot8" as="ft.slot8">
                     <label>Page Footer Slot 8</label>
                 </block>
+                <block type="core/text_list" name="ft.slot9" as="ft.slot9">
+                    <label>Page Footer Slot 9</label>
+                </block>
+                <block type="core/text_list" name="ft.slot10" as="ft.slot10">
+                    <label>Page Footer Slot 10</label>
+                </block>
 
                 <block type="cms/block" name="ft.email" as="ft.email">
                     <action method="setBlockId"><block_id>ft-email</block_id></action>

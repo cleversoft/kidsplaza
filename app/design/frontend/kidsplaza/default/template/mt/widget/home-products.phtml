@@ -67,19 +67,29 @@ $_href              = $this->getConfig('href');
     </script>
 <?php endif ?>
 <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
-    <?php if ($_title):?>
-        <button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="btn-widget btn btn-kid" type="button"><?php echo $_title?></button>
-    <?php endif ?>
+   <div class="bordered-tab">
+           <div class="title col-lg-4 col-md-4  col-sm-4  col-xs-12 ">
+                    <?php if ($_title):?>
+                        <button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="btn-widget btn btn-kid" type="button"><?php echo $_title?></button>
+                    <?php endif ?>
+                    <?php if ($_title):?>
+                        <button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="btn-widget btn btn-view" type="button"><?php echo $this->__('View All')?></button>
+                    <?php endif ?>
+           </div>
+            <div class="tabs col-lg-8 col-md-8  col-sm-8  col-xs-12">
+                    <div class="nav-tabs-wrapper">
+                        <ul class="nav-tabs">
+                            <?php $i=0; foreach ($this->getCategories() as $cat):?>
+                                <li class="<?php echo $i++ == 0 ? 'active' : ''?>">
+                                    <a href="#<?php echo $_id.'_'.$cat->getId()?>" data-toggle="tab"><?php echo $cat->getName()?></a>
+                                </li>
+                            <?php endforeach ?>
+                        </ul>
+                    </div>
+            </div>
+   </div>
     <div class="bordered">
-        <div class="nav-tabs-wrapper">
-        <ul class="nav-tabs">
-        <?php $i=0; foreach ($this->getCategories() as $cat):?>
-            <li class="<?php echo $i++ == 0 ? 'active' : ''?>">
-                <a href="#<?php echo $_id.'_'.$cat->getId()?>" data-toggle="tab"><?php echo $cat->getName()?></a>
-            </li>
-        <?php endforeach ?>
-        </ul>
-        </div>
+
     <!--div class="btn-group">
         <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
         <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -104,6 +114,17 @@ $_href              = $this->getConfig('href');
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <img class="lazy" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
+                <div class="actions">
+                    <?php if($_product->isSaleable()): ?>
+                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="onBuyBtnClick('<?php echo $this->getAddToCartUrl($_product) ?>')">
+                            <!--<i class="glyphicon glyphicon-shopping-cart"></i>--> <?php echo $this->__('Add to Cart') ?>
+                        </button>
+                    <?php else: ?>
+                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-disabled" disabled="disabled">
+                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->__('Out of stock') ?>
+                        </button>
+                    <?php endif; ?>
+                </div>
                 <h2 class="product-name">
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
                         <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
@@ -113,17 +134,7 @@ $_href              = $this->getConfig('href');
                     <?php echo $this->getReviewsSummaryHtml($_product, 'mini') ?>
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
-                <div class="actions">
-                    <?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="onBuyBtnClick('<?php echo $this->getAddToCartUrl($_product) ?>')">
-                            <i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $this->__('Add to Cart') ?>
-                        </button>
-                    <?php else: ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-disabled" disabled="disabled">
-                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->__('Out of stock') ?>
-                        </button>
-                    <?php endif; ?>
-                </div>
+
             </li>
             <?php if ($i%$_columnCount==0 || $i==$_collectionSize || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
             </ul>
