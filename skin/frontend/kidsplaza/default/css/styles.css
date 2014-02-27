@@ -163,6 +163,7 @@ input,textarea{outline:0}
 
 .footer-bottom{float:left;width:100%}
 .footer-bottom .footer-bottom-inner{padding: 0 0 50px}
+.footer-bottom .footer-bottom-inner .items{padding-left: 0;}
 .footer-bottom .footer-bottom-inner .row{margin: 0 ;}
 .footer-bottom h2{display:inline-block;float:left;font-size:90%;font-weight:bold;margin:0 0 8px;color:#fff;font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
 .footer-bottom p{display:inline-block;font-size:85%;font-weight:lighter;color:#fff;font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -174,9 +175,9 @@ input,textarea{outline:0}
 .footer-bottom .kidshcm .kids{float:left;display:block}
 .footer-bottom .kidplaza .kids{margin:0 45px 0 10px}
 .footer-bottom .kidplaza.kidshcm .kids.first{padding:0 20px 0 0}
-.footer-bottom .block h2{background:url("../images/tick-kids.png") 100% 50% no-repeat;padding:0 53px 0 0;margin:0 ; line-height: 35px;}
+.footer-bottom .block h2{background:url("../images/tick-kids.png") 100% 50% no-repeat;padding:0 53px 0 0;margin:0 ; line-height: 35px;width: 180px;}
 .footer-bottom .last { padding: 10px 15px 0;}
-.footer-bottom .last .block h2{padding:0 23px 0 0;width: 180px;}
+.footer-bottom .last .block h2{padding:0 23px 0 0;}
 .footer-bottom .last .block ul {}
 .footer-coppyright{float:left;width:100%}
 .footer-coppyright .footer-coppyright-inner{background:#4d4d4d;padding:15px 0;font-size:13px}
