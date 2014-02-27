@@ -170,6 +170,7 @@ header .menu-top {
     background:#fff;
     z-index:9;
     text-align: left;
+    width: 100%;
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;

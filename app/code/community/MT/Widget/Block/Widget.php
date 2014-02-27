@@ -725,7 +725,11 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         return $this->_categories;
     }
 
-    public function getProductCollection($category){
+    /**
+     * @param Mage_Catalog_Model_Category|null $category
+     * @return Mage_Catalog_Model_Resource_Product_Collection
+     */
+    public function getProductCollection($category=null){
         $collection = Mage::getResourceModel('catalog/product_collection')
             ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
             ->addMinimalPrice()
@@ -737,6 +741,9 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
 
         switch ($this->getData('mode')){
+            case 'groupon':
+                $collection->addAttributeToFilter('groupon_enable', array('eq' => 1));
+                break;
             case 'discount':
                 $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
                 $websiteId = (int)Mage::app()->getWebsite()->getId();

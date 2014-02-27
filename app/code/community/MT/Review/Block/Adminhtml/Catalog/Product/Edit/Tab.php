@@ -23,7 +23,7 @@ class MT_Review_Block_Adminhtml_Catalog_Product_Edit_Tab
 
     public function getTabLabel()
     {
-        return $this->__('MT Product Review');
+        return $this->__('Reviews');
     }
 
     public function getTabTitle()

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Groupon
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>mt_groupon</name>
+                <block>mtgroupon/adminhtml_catalog_product_edit_tab</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <mtgroupon_admin_adminhtml_catalog_product_groupontab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="mtgroupon/adminhtml_catalog_product_edit_tab_groupon" name="mtgroupon.adminhtml.catalog.product.edit.tab.groupon"/>
+        </block>
+    </mtgroupon_admin_adminhtml_catalog_product_groupontab>
+</layout>

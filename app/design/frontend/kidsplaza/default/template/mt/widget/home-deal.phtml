@@ -1,0 +1,52 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2014 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+/* @var $this MT_Widget_Block_Widget */
+$_id = $this->getConfig('id');
+?>
+<script type="text/javascript">
+    <?php echo $_id ?> = {
+        responsive: <?php echo $this->getConfig('responsive')?>,
+        config: {
+            namespace: '<?php echo $this->getConfig('namespace')?>',
+            slideshow: <?php echo $this->getConfig('autoplay')?>,
+            slideshowSpeed: <?php echo $this->getConfig('speed')?>,
+            animationLoop: <?php echo $this->getConfig('loop')?>,
+            controlNav: <?php echo $this->getConfig('paging')?>,
+            directionNav: false,
+            itemMargin: <?php echo $this->getConfig('margin')?>,
+            move: <?php echo $this->getConfig('move')?>,
+            selector: 'ul > li'
+        }
+    };
+</script>
+<div class="deals-wrapper flexslider" id="<?php echo $_id ?>">
+    <ul>
+    <?php foreach ($this->getProductCollection() as $product): ?>
+        <li class="deal-item">
+            <div class="deal-item-percent">
+                <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
+            </div>
+            <div class="deal-item-price">
+                <span class="old-price"><?php echo $product->getPrice() ?></span>
+                <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
+            </div>
+            <div class="deal-item-image">
+                <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+                    <img
+                        src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200) ?>"
+                        width="200"
+                        height="200"
+                        alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
+                </a>
+            </div>
+        </li>
+    <?php endforeach ?>
+    </ul>
+</div>

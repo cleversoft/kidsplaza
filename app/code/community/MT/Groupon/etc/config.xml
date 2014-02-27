@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Groupon
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_Groupon>
+            <version>1.0</version>
+        </MT_Groupon>
+    </modules>
+
+    <global>
+        <models>
+            <mtgroupon>
+                <class>MT_Groupon_Model</class>
+            </mtgroupon>
+        </models>
+        <helpers>
+            <mtgroupon>
+                <class>MT_Groupon_Helper</class>
+            </mtgroupon>
+        </helpers>
+        <blocks>
+            <mtgroupon>
+                <class>MT_Groupon_Block</class>
+            </mtgroupon>
+        </blocks>
+        <resources>
+            <mtgroupon_setup>
+                <setup>
+                    <module>MT_Groupon</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mtgroupon_setup>
+        </resources>
+        <events>
+            <catalog_product_prepare_save>
+                <observers>
+                    <mtgroupon>
+                        <type>singleton</type>
+                        <class>mtgroupon/observer</class>
+                        <method>catalogProductPrepareSave</method>
+                    </mtgroupon>
+                </observers>
+            </catalog_product_prepare_save>
+        </events>
+    </global>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtgroupon>
+                    <file>mt_groupon.xml</file>
+                </mtgroupon>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <mtgroupon_admin>
+                <use>admin</use>
+                <args>
+                    <module>MT_Groupon</module>
+                    <frontName>mtgroupon_admin</frontName>
+                </args>
+            </mtgroupon_admin>
+        </routers>
+    </admin>
+</config>

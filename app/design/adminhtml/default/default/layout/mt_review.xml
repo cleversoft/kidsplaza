@@ -13,7 +13,7 @@
     <adminhtml_catalog_product_edit>
         <reference name="product_tabs">
             <action method="addTab">
-                <name>custom</name>
+                <name>mt_review</name>
                 <block>mtreview/adminhtml_catalog_product_edit_tab</block>
             </action>
             <action method="removeTab">

@@ -25,6 +25,10 @@
                         <value>mt/widget/sider-blogs.phtml</value>
                         <label>Sidebar Blogs</label>
                     </sidebar_blogs>
+                    <home_deal translate="label">
+                        <value>mt/widget/home-deal.phtml</value>
+                        <label>Home Deal</label>
+                    </home_deal>
                 </values>
             </template>
         </parameters>

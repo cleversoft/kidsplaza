@@ -124,13 +124,13 @@ jQuery('.tab-content .tab-pane').each(function(){
     var heightBefore = jQuery(this).height();
     var mainPane = jQuery(this);
     var showMore = jQuery('<div/>')
-                    .addClass('show-more')
-                    .css('display','none')
-                    .html('<a class="btn btn-primary">Show More</a>');
+        .addClass('show-more')
+        .css('display','none')
+        .html('<a class="btn btn-kid">Show More</a>');
     var showLess = jQuery('<div/>')
-                    .addClass('show-less')
-                    .css('display','none')
-                    .html('<a class="btn btn-primary">Show Less</a>');
+        .addClass('show-less')
+        .css('display','none')
+        .html('<a class="btn btn-kid">Show Less</a>');
     showMore.appendTo(mainPane);
     showLess.appendTo(mainPane);
     var heightAfter = mainPane.height();

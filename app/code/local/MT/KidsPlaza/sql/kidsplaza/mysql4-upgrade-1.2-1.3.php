@@ -13,7 +13,7 @@ $this->addAttribute('catalog_product', 'video', array(
     'input'     => 'text',
     'type'      => 'text',
     'label'     => 'Video Url',
-    'note'      => 'Video Review Url(s)',
+    'note'      => 'Video Review Url',
     'backend'   => '',
     'frontend'  => '',
     'visible'   => true,

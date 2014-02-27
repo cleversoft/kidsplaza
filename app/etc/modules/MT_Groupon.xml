@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Groupon
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_Groupon>
+            <active>true</active>
+            <codePool>community</codePool>
+        </MT_Groupon>
+    </modules>
+</config>
