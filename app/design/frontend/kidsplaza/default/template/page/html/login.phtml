@@ -13,23 +13,25 @@
 $session = Mage::getSingleton('customer/session');
 ?>
 <div class="pull-right top-login" id="topLogin">
-        <a class="btn btn-login" href="javascript:void(0)">
-            <i class="glyphicon glyphicon-user"></i>
-            <?php if ($session->isLoggedIn()): ?>
-                <?php echo $session->getCustomer()->getName() ?>
-            <?php else: ?>
-                <?php echo $this->__('Login') ?>
-                <!--span class=""><?php echo $this->__('Account and Orders') ?></span-->
-            <?php endif ?>
-        </a>
+        <div  class="toplogin" href="javascript:void(0)">
+            <div class="font"><i class="glyphicon glyphicon-user"></i></div>
+            <div class="right-login">
+                    <?php if ($session->isLoggedIn()): ?>
+                    <?php echo $session->getCustomer()->getName() ?>
+                    <?php else: ?>
+                        <p><?php echo $this->__('Đăng Nhập') ?></p>
+                        <span><?php echo $this->__('Tài khoản và Đơn hàng') ?></span>
+                    <?php endif ?>
+            </div>
+        </div>
         <div class="login-content" style="display: none">
             <?php if (!$session->isLoggedIn()): ?>
                 <button onclick="setLocation('<?php echo $this->getUrl('customer/account/login') ?>')" class="btn btn-login btn-signin">
-                    <?php echo $this->__('Login') ?>
+                    <?php echo $this->__('Đăng Nhập') ?>
                 </button>
                 <p>
-                    <span><?php echo $this->__('New customer?') ?></span>
-                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Create new account') ?></a>
+                    <span><?php echo $this->__('Khách hàng mới?') ?></span>
+                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Tạo tài khoản') ?></a>
                 </p>
             <?php endif ?>
             <ul>
@@ -44,7 +46,7 @@ $session = Mage::getSingleton('customer/session');
                 <?php if ($session->isLoggedIn()): ?>
                 <li>
                     <i class="glyphicon glyphicon-log-out"></i>
-                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Logout') ?></a>
+                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Đăng Xuất ') ?></a>
                 </li>
                 <?php endif ?>
             </ul>

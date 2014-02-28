@@ -35,9 +35,9 @@
 <div class="account-create">
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" class="form-horizontal">
         <?php echo $this->getBlockHtml('formkey') ?>
-        <div class="form_register fieldset">
+        <div class="form_register fieldset form-group">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <ul class="form-list">
@@ -45,27 +45,32 @@
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 </li>
                 <li>
-                    <label for="telephone"><?php echo $this->__('Telephone') ?></label>
-                    <div class="input-box">
-                        <input type="text" name="phone_number" id="phone_number" value="<?php echo $this->escapeHtml($this->getFormData()->getPhoneNumber()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text form-control<?php echo $this->helper('customer/address')->getAttributeValidationClass('phone_number') ?>" />
-                    </div>
+				    <div class="field name-firstname"> 
+					        <div class="input-box col-sm-10">
+								<input type="text" name="phone_number" id="phone_number" value="<?php echo $this->escapeHtml($this->getFormData()->getPhoneNumber()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text form-control<?php echo $this->helper('customer/address')->getAttributeValidationClass('phone_number') ?>" />
+							</div> 
+							<label class="col-sm-2 control-label" for="telephone"><?php echo $this->__('Telephone') ?></label>
+							
+					</div>
                 </li>
                 <li>
-                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
-                    <div class="input-box">
-                        <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text form-control validate-email required-entry" />
-                    </div>
+				    <div class="field name-firstname"> 
+							<label for="email_address" class="required col-sm-2 control-label"><em>*</em><?php echo $this->__('Email Address') ?></label>
+							<div class="input-box col-sm-10">
+								<input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text form-control validate-email required-entry" />
+							</div>
+					</div>
                 </li>
                 <li class="fields">
                     <div class="field">
-                        <label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
-                        <div class="input-box">
+                        <label for="password" class="required col-sm-2 control-label"><em>*</em><?php echo $this->__('Password') ?></label>
+                        <div class="input-box col-sm-10">
                             <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text form-control required-entry validate-password" />
                         </div>
                     </div>
                     <div class="field">
-                        <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
-                        <div class="input-box">
+                        <label for="confirmation" class="required col-sm-2 control-label"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                        <div class="input-box col-sm-10">
                             <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text form-control required-entry validate-cpassword" />
                         </div>
                     </div>
@@ -74,27 +79,30 @@
                 </li>
                 <?php if ($this->isNewsletterEnabled()): ?>
                 <li class="control">
-                    <div class="input-box">
-                        <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-                    </div>
-                    <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+				    <div class="field name-firstname">
+					        <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+							<div class="input-box">
+								<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+							</div>
+							
+					</div>
                 </li>
                 <?php endif ?>
-            <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
-            <?php if ($_dob->isEnabled()): ?>
-                <li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
-            <?php endif ?>
-            <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
-            <?php if ($_taxvat->isEnabled()): ?>
-                <li><?php echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml() ?></li>
-            <?php endif ?>
-            <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-            <?php if ($_gender->isEnabled()): ?>
-                <li><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
-            <?php endif ?>
+				<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+				<?php if ($_dob->isEnabled()): ?>
+					<li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
+				<?php endif ?>
+				<?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+				<?php if ($_taxvat->isEnabled()): ?>
+					<li><?php echo $_taxvat->setTaxvat($this->getFormData()->getTaxvat())->toHtml() ?></li>
+				<?php endif ?>
+				<?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+				<?php if ($_gender->isEnabled()): ?>
+					<li><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
+				<?php endif ?>
                 <li>
                     <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-                    <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button btn-kid btn pull-right"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                    <button type="submit" title="<?php echo $this->__('Gửi') ?>" class="button btn-kid btn btn-login pull-right"><span><span><?php echo $this->__('Gửi') ?></span></span></button>
                 </li>
             </ul>
             <?php if (Mage::helper('checkout')->isContextCheckout()): ?>

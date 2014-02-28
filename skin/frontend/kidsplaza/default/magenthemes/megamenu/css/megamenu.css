@@ -41,9 +41,11 @@ header .menu-top {
     border-right: 1px solid #cfcfcf;
     border-left: 1px solid #cfcfcf;
 }
+#megamenu li.level-0:first-child:hover { border: none ; }
 #megamenu ul li.level-0 > a{
     line-height: 52px;
     background: url("../images/tick-menu.png") no-repeat scroll 100% 50%  ;
+    outline: none ;
 }
 #megamenu ul li.level-0 > a:hover {
    line-height: 45px;
@@ -250,7 +252,7 @@ header .menu-top {
     padding: 0;
     background: 0;
 }
-#megamenu li.level-0:first-child span{
+#megamenu li.level-0:first-child span , #megamenu li.level-0:first-child span:hover{
     background: url(../../../images/bgIcons2.png) no-repeat -230px -2px;
     display: block;
     width: 40px;

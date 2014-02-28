@@ -105,7 +105,7 @@
                 <button id="onepage-guest-register-button" type="button" class="button" onclick="window.location='<?php echo $this->helper('checkout/url')->getRegistrationUrl();?>'"><span><span><?php echo $this->__('Register') ?></span></span></button>
             <?php else: ?>
                 <form action="<?php echo $this->getUrl('persistent/index/saveMethod'); ?>">
-                    <button id="onepage-guest-register-button" type="submit" class="button btn-kid btn"><span><span><?php echo $this->__('Register') ?></span></span></button>
+                    <button id="onepage-guest-register-button" type="submit" class="button btn-kid btn btn-login"><span><span><?php echo $this->__('Register') ?></span></span></button>
                 </form>
             <?php endif; ?>
         </div>
@@ -114,7 +114,7 @@
         <div class="buttons-set">
             <p class="required"><?php echo $this->__('* Required Fields') ?></p>
             <a href="<?php echo $this->getUrl('customer/account/forgotpassword') ?>" class="f-left"><?php echo $this->__('Forgot your password?') ?></a>
-            <button type="submit" class="button btn-kid btn" onclick="onepageLogin(this)"><span><span><?php echo $this->__('Login') ?></span></span></button>
+            <button type="submit" class="button btn-kid btn btn-login" onclick="onepageLogin(this)"><span><span><?php echo $this->__('Login') ?></span></span></button>
         </div>
     </div>
 </div>
