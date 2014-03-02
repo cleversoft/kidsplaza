@@ -92,6 +92,10 @@ class MT_ProductQuestions_Adminhtml_QuestionsController extends Mage_Adminhtml_C
             try {
                 $data['question_store_ids'] = implode(',', $data['question_store_ids']);
                 $locale = Mage::app()->getLocale();
+                $urlKey = $data['identifier'] ?
+                    Mage::getSingleton('catalog/product/url')->formatUrlKey($data['identifier']) :
+                    Mage::getSingleton('catalog/product/url')->formatUrlKey($data['question_text']) ;
+
                 $model = Mage::getModel('productquestions/productquestions')
                     ->setData($data)
                     ->setQuestionDate($locale->date(
@@ -100,6 +104,7 @@ class MT_ProductQuestions_Adminhtml_QuestionsController extends Mage_Adminhtml_C
                             ->addTime(substr($data['question_datetime'], 10))
                             ->toString(Varien_Date::DATETIME_INTERNAL_FORMAT)
                     )
+                    ->setIdentifier($urlKey)
                     ->setId($questionId)
                     ->save();
                 // display success message
@@ -167,6 +172,10 @@ class MT_ProductQuestions_Adminhtml_QuestionsController extends Mage_Adminhtml_C
                     // init model and delete
                     $model = Mage::getModel('productquestions/productquestions')->load($questionId);
                     $model->delete();
+                    $urlQuestionParam = MT_ProductQuestions_Helper_Data::QUESTIONS_URI_PARAM;
+                    $id_path = "{$urlQuestionParam}/{$questionId}";
+                    $rewrite = Mage::getModel('core/url_rewrite')->loadByIdPath($id_path);
+                    $rewrite->delete();
                 }
                 // display success message
                 Mage::getSingleton('adminhtml/session')->addSuccess(

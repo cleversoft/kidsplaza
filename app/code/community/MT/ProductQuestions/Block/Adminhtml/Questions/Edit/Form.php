@@ -86,6 +86,13 @@ Class MT_ProductQuestions_Block_Adminhtml_Questions_Edit_Form extends Mage_Admin
             'style'     => 'width:700px;',
         ));
 
+        $fieldset->addField('identifier', 'text', array(
+            'name'      => 'identifier',
+            'label'     => $this->__('URL Key'),
+            'required'  => false,
+            'style'     => 'width:700px;',
+        ));
+
         $fieldset->addField('question_text', 'editor', array(
             'name'      => 'question_text',
             'label'     => $this->__('Question'),

@@ -77,13 +77,15 @@ Class MT_ProductQuestions_Block_Main extends Mage_Core_Block_Template
 
     public function getQuestionUrl($id)
     {
-        $params['id'] = $id;
-        return Mage::getUrl('*/*/view', $params);
+        $helper = Mage::helper('productquestions');
+        $url = $helper->renderLinkRewriteUrl($id,$type='view');
+        return $url;
     }
 
     public function getCategoryUrl($id)
     {
-        $params['category'] = $id;
-        return Mage::getUrl('*/*/index', $params);
+        $helper = Mage::helper('productquestions');
+        $url = $helper->renderLinkRewriteUrl($id,$type='cat');
+        return $url;
     }
 }

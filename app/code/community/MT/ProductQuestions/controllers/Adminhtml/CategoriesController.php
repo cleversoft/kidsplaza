@@ -90,8 +90,13 @@ class MT_ProductQuestions_Adminhtml_CategoriesController extends Mage_Adminhtml_
         if ($data) {
             // try to save it
             try {
+                $data['stores'] = implode(',', $data['stores']);
+                $urlKey = $data['identifier'] ?
+                    Mage::getSingleton('catalog/product/url')->formatUrlKey($data['identifier']) :
+                    Mage::getSingleton('catalog/product/url')->formatUrlKey($data['name']) ;
                 $model = Mage::getModel('productquestions/categories')
                     ->setData($data)
+                    ->setIdentifier($urlKey)
                     ->setId($this->getRequest()->getParam('id'))
                     ->save();
                 // display success message
@@ -159,6 +164,14 @@ class MT_ProductQuestions_Adminhtml_CategoriesController extends Mage_Adminhtml_
                     // init model and delete
                     $model = Mage::getModel('productquestions/categories')->load($catId);
                     $model->delete();
+                    $urlCatParam = MT_ProductQuestions_Helper_Data::CATEGORY_URI_PARAM;
+                    $id_path = "{$urlCatParam}/{$catId}";
+                    $Collections = Mage::getModel('core/url_rewrite')->getCollection()
+                        ->addFilter('id_path', $id_path);
+                    foreach($Collections as $Collection){
+                        $mainUrlRewrite = Mage::getModel('core/url_rewrite')->loadByIdPath($Collection->getIdPath());
+                        $mainUrlRewrite->delete();
+                    }
                 }
                 // display success message
                 Mage::getSingleton('adminhtml/session')->addSuccess(

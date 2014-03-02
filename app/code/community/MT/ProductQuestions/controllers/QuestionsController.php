@@ -132,6 +132,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
             {
                 $store = Mage::app()->getStore();
                 $storeId = $store->getId();
+                $urlKey = Mage::getSingleton('catalog/product/url')->formatUrlKey($data['question_text']) ;
                 if(Mage::helper('productquestions')->confDisplayCaptcha()>0){
                     $str_key = $session->getCptchStrKey();
                     $cptch_result = $this->getRequest()->getParam('cptch_result');
@@ -158,6 +159,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                     ->setCategoryId($data['category_id'])
                     ->setQuestionAuthorName($data['question_author_name'])
                     ->setQuestionAuthorEmail($data['question_author_email'])
+                    ->setIdentifier($urlKey)
                     ->setQuestionText($data['question_text'])
                     ->setQuestionStatus(MT_ProductQuestions_Model_Source_Question_Status::STATUS_PUBLIC)
                     ->setQuestionDate(now())
@@ -169,6 +171,21 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                 }
                 $questions->save();
                 $questionId = $questions->getQuestionId();
+                //Save url rewrite
+
+                $urlQuestionsParam = MT_ProductQuestions_Helper_Data::QUESTIONS_URI_PARAM;
+                $urlRewriteKey = preg_replace('/\s+?(\S+)?$/', '', substr($questions->getIdentifier(), 0, 80));
+                $urlRewriteSub = substr($urlRewriteKey, 0, -1);
+                $id_path = "{$urlQuestionsParam}/{$questionId}";
+                $request_path = "{$urlQuestionsParam}/{$urlRewriteSub}.html";
+                $target_path = "productquestions/questions/view/id/{$questionId}";
+                $rewrite = Mage::getModel('core/url_rewrite');
+                $rewrite->setStoreId($storeId)
+                    ->setIdPath($id_path)
+                    ->setRequestPath($request_path)
+                    ->setTargetPath($target_path)
+                    ->setIsSystem(false)
+                    ->save();
                 $session->addSuccess($this->__('Your question has been accepted for moderation'));
                 $session->setProductquestionsData(false);
             }else{
@@ -178,8 +195,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
         if($data['answer_view']){
             $this->_redirectReferer();
         }else{
-            $params['id'] = $questionId;
-            $url =  Mage::getUrl('*/*/view', $params);
+            $url =  substr(Mage::getUrl($request_path), 0, -1);
             $this->_redirectUrl($url);
         }
 

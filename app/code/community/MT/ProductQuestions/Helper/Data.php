@@ -14,6 +14,10 @@
  */
 Class MT_ProductQuestions_Helper_Data extends Mage_Core_Helper_Abstract
 {
+    /* url constants */
+    const CATEGORY_URI_PARAM = 'cat';
+    const QUESTIONS_URI_PARAM = 'questions';
+
     public function confAllowOnlyLogged()
     {
         return Mage::getStoreConfig('productquestions/access_options/allow_only_logged');
@@ -325,6 +329,25 @@ Class MT_ProductQuestions_Helper_Data extends Mage_Core_Helper_Abstract
             return false;
         else
             return $DecodedString;
+    }
+
+    public function renderLinkRewriteUrl($id,$type=null)
+    {
+        $urlCatParam = MT_ProductQuestions_Helper_Data::CATEGORY_URI_PARAM;
+        $urlQuestionParam = MT_ProductQuestions_Helper_Data::QUESTIONS_URI_PARAM;
+        $collections = Mage::getModel('core/url_rewrite')->getCollection();
+
+        if($type=='cat'){
+            $id_path = "{$urlCatParam}/{$id}";
+        }else
+        if($type=='view'){
+            $id_path = "{$urlQuestionParam}/{$id}";
+        }
+        $collections->addFilter('id_path', $id_path);
+        $collections->addFilter('store_id', Mage::app()->getStore()->getId());
+        foreach($collections as $collection){
+            return Mage::getBaseUrl().$collection->getRequestPath();
+        }
     }
 
 }
