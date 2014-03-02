@@ -61,7 +61,8 @@ Class MT_ProductQuestions_Block_Categories extends Mage_Core_Block_Template
 
     public function getCategoryUrl($id)
     {
-        $params['category'] = $id;
-        return Mage::getUrl('*/*/index', $params);
+        $helper = Mage::helper('productquestions');
+        $url = $helper->renderLinkRewriteUrl($id,$type='cat');
+        return $url;
     }
 }

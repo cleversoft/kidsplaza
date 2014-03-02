@@ -31,6 +31,26 @@ Class MT_ProductQuestions_Block_Adminhtml_Categories_Edit_Form extends Mage_Admi
             'style'     => 'width:700px;',
         ));
 
+        $fieldset->addField('identifier', 'text', array(
+            'name'      => 'identifier',
+            'label'     => $this->__('URL Key'),
+            'required'  => false,
+            'style'     => 'width:700px;',
+        ));
+
+        if(Mage::app()->isSingleStoreMode())
+            $fieldset->addField('stores', 'hidden', array(
+                'name'      => 'stores[]',
+                'value'     => Mage::app()->getStore()->getId(),
+            ));
+        else
+            $fieldset->addField('stores', 'multiselect', array(
+                'name'      => 'stores[]',
+                'label'     => $this->__('Show in stores'),
+                'required'  => true,
+                'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
+            ));
+
         $fieldset->addField('text', 'editor', array(
             'name'      => 'text',
             'label'     => $this->__('Text'),
