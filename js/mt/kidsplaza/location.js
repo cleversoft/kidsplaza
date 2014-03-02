@@ -18,7 +18,9 @@ KidsPlazaLocation.prototype = {
         }
     },
     showLocationSelect: function(){
-
+        jQuery(function(){
+            triggerLocationOverlay();
+        });
     },
     setLocation: function(location){
         var expire = new Date();
@@ -112,6 +114,16 @@ function onBuyBtnClick(url){
     window.location.href = url.indexOf('?') > 0 ? url + '&form_key=' + Mage.FormKey : url + 'form_key/' + Mage.FormKey;
 }
 
+function triggerLocationOverlay(){
+    var overlay = jQuery('div.overlay');
+    if (!overlay.length) return;
+    if (overlay.hasClass('open')){
+        overlay.removeClass('open');
+        overlay.addClass('close');
+    }else if (!overlay.hasClass('close')){
+        overlay.addClass('open');
+    }
+}
 
 //init login header
 new KidsPlazaLoginHeader('topLogin');

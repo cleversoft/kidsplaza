@@ -17,6 +17,10 @@
                 <visible>1</visible>
                 <type>select</type>
                 <values>
+                    <upsell_products translate="label">
+                        <value>mt/widget/upsell-products.phtml</value>
+                        <label>Upsell Products</label>
+                    </upsell_products>
                     <home_products translate="label">
                         <value>mt/widget/home-products.phtml</value>
                         <label>Home Products</label>

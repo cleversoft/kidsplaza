@@ -28,14 +28,14 @@
 <?php $_product = $this->getProduct() ?>
 
 <?php if ($this->displayProductStockStatus()): ?>
-    <div class="btn-group availability">
+    <!--div class="btn-group availability">
         <a class="btn btn-default" href="javascript:void(0)"><?php echo $this->__('Availability') ?></a>
     <?php if ($_product->isAvailable()): ?>
             <a class="btn btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
     <?php else: ?>
         <a class="btn btn-danger" href="javascript:void(0)"><?php echo $this->__('Out of stock') ?></a>
     <?php endif; ?>
-    </div>
+    </div-->
 <?php endif; ?>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
 <?php echo $this->getPriceHtml($_product) ?>

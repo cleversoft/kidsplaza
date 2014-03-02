@@ -47,7 +47,8 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             $this->getData('column'),
             $this->getData('namespace'),
             $this->getData('speed'),
-            $this->_customerGroupId
+            $this->_customerGroupId,
+            Mage::registry('product') ? Mage::registry('product')->getId() : ''
         );
     }
 

@@ -41,21 +41,15 @@
     <div class="product-essential row show-grid">
     <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
         <?php echo $this->getBlockHtml('formkey') ?>
-        <div class="no-display">
-            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-products-field" value="" />
-        </div>
-        <div class="product-img-box col-md-5">
+        <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+        <input type="hidden" name="related_product" id="related-products-field" value="" />
+        <div class="product-img-box col-md-6 col-lg-6">
             <?php echo $this->getChildHtml('media') ?>
         </div>
-        <div class="product-shop col-md-7">
+        <div class="product-shop col-md-6 col-lg-6">
             <div class="page-title">
                 <h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
             </div>
-
-            <?php if ($this->canEmailToFriend()): ?>
-                <p class="email-friend"><a href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
-            <?php endif; ?>
 
             <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
             <?php echo $this->getChildHtml('productquestion_summary') ?>
@@ -64,30 +58,23 @@
             <?php echo $this->getTierPriceHtml() ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
-            <div class="add-to-box">
-            <?php if (!$this->hasOptions()):?>
-                <?php if($_product->isSaleable()): ?>
-                    <?php echo $this->getChildHtml('addtocart') ?>
-                <?php endif; ?>
-                <?php echo $this->getChildHtml('addto') ?>
-                <?php echo $this->getChildHtml('extra_buttons') ?>
-            <?php elseif (!$_product->isSaleable()): ?>
-                <?php echo $this->getChildHtml('addto') ?>
-            <?php endif; ?>
-            </div>
-
-            <?php if ($_product->getShortDescription()):?>
-                <div class="short-description panel panel-info">
-                    <div class="panel-heading">
-                        <?php echo $this->__('Quick Overview') ?>
-                    </div>
-                    <div class="panel-body">
-                        <div class="std">
-                            <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                    <p class="desc-more">
+                        <a href="javascript:void(0)" onclick="jQuery('#product-description').scrollToMe()"><?php echo $this->__('See more') ?> &raquo;</a>
+                    </p>
                 </div>
-            <?php endif;?>
+                <div class="col-lg-6">
+                    <?php if (!$this->hasOptions()):?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php //echo $this->getChildHtml('addto') ?>
+                        <?php echo $this->getChildHtml('extra_buttons') ?>
+                    <?php elseif (!$_product->isSaleable()): ?>
+                        <?php //echo $this->getChildHtml('addto') ?>
+                    <?php endif; ?>
+                </div>
+            </div>
 
             <?php //echo $this->getChildHtml('other');?>
 
@@ -100,8 +87,15 @@
         <?php endif;?>
     </form>
     </div>
-    <div class="row">
-        <?php echo $this->getChildHtml('info_tabs') ?>
+    <div id="product-related">
+        <?php echo $this->getChildHtml('product_related') ?>
+    </div>
+    <div id="product-description">
+        <h2><?php echo $this->__('Description') ?></h2>
+        <?php echo $this->getChildHtml('product_description') ?>
+    </div>
+    <div id="product-upsell">
+        <?php echo $this->getChildHtml('product_upsell') ?>
     </div>
     <div class="row product-collateral">
         <?php foreach ($this->getChildGroup('detailed_info', 'getChildHtml') as $alias => $html):?>
@@ -112,7 +106,6 @@
                 <?php echo $html; ?>
             </div>
         <?php endforeach;?>
-        <?php echo $this->getChildHtml('upsell_products') ?>
     </div>
     <div class="row">
         <?php echo $this->getChildHtml('product_additional_data') ?>

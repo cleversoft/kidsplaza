@@ -33,45 +33,42 @@
 <?php $_product = $this->getProduct() ?>
 <?php $_helper = $this->helper('catalog/output') ?>
 <?php $_imgHelper = $this->helper('catalog/image') ?>
-
-<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<div class="more-views">
+    <a class="more-views-prev more-views-nav" href="javascript:void(0)" id="move-view-up">
+        <i class="glyphicon glyphicon-chevron-up"></i>
+    </a>
+    <div class="cycle-slideshow vertical"
+         data-cycle-fx="carousel"
+         data-cycle-timeout=0
+         data-cycle-next="#move-view-down"
+         data-cycle-prev="#move-view-up"
+         data-cycle-carousel-visible="4"
+         data-cycle-carousel-vertical="true">
+        <?php foreach ($this->getGalleryImages() as $_image): ?>
+            <img class="<?php echo $_image->getFile() == $_product->getImage() ? 'active' : '' ?>"
+                width="85" height="85"
+                data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
+                data-large="<?php echo $_image->getUrl()?>"
+                src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"
+                alt="<?php echo $this->htmlEscape($_image->getLabel())?>"/>
+        <?php endforeach; ?>
+    </div>
+    <a class="more-views-next more-views-nav" href="javascript:void(0)" id="move-view-down">
+        <i class="glyphicon glyphicon-chevron-down"></i>
+    </a>
+</div>
 <p class="product-image">
+<?php if ($_product->getPrice() > $_product->getFinalPrice()):?>
+    <span><?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%</span>
+<?php endif ?>
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
     <img class="img-responsive img-main img-zoom"
         src="<?php echo $_imgHelper->init($_product, 'image')->resize(430)?>"
         data-large="<?php echo $_imgHelper->init($_product, 'image')?>"/>
 </p>
 <?php else: ?>
-<p class="product-image">
     <img src="<?php echo $_imgHelper->init($_product, 'image')->resize(430) ?>"
         alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"
         title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"/>
 </p>
 <?php endif; ?>
-
-<div class="more-views" id="moreViews">
-    <ul class="slides">
-    <?php foreach ($this->getGalleryImages() as $_image): ?>
-        <li>
-            <a href="javascript:void(0)" title="<?php echo $this->htmlEscape($_image->getLabel())?>">
-                <img width="85" height="85"
-                    data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
-                    data-large="<?php echo $_image->getUrl()?>"
-                    src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"
-                    alt="<?php echo $this->htmlEscape($_image->getLabel())?>" />
-            </a>
-        </li>
-    <?php endforeach; ?>
-    </ul>
-    <a class="more-views-prev more-views-nav" href="javascript:void(0)">
-        <i class="glyphicon glyphicon-chevron-left"></i>
-    </a>
-    <a class="more-views-next more-views-nav" href="javascript:void(0)">
-        <i class="glyphicon glyphicon-chevron-right"></i>
-    </a>
-</div>
-
-<script type="text/javascript">
-    moreViewOptions = {};
-    moreViewOptions.count = 3;
-    moreViewOptions.itemMargin = 1;
-</script>

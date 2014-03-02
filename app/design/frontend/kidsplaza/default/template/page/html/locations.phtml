@@ -1,0 +1,20 @@
+<?php
+/**
+ * @category    MT
+ * @package     KidsPlaza
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<div class="overlay overlay-scale">
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-map-marker"></i> <?php echo $this->__('Choose your location') ?>:</a></li>
+            <?php foreach ($this->getWebsites() as $website): ?>
+            <li class="li"><a href="#" onclick="return KPLocation.setLocation('<?php echo $website['code'] ?>')"><?php echo $website['label'] ?></a></li>
+            <?php endforeach; ?>
+        </ul>
+    </nav>
+</div>

@@ -151,6 +151,7 @@ Default layout, loads most of the pages
 
             <block type="core/text_list" name="before_body_end" as="before_body_end" translate="label">
                 <label>Page Bottom</label>
+                <block type="kidsplaza/websites" template="page/html/locations.phtml"/>
             </block>
         </block>
 

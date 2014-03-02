@@ -186,8 +186,9 @@ Product view
             <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.zoomsl.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.cycle2.min.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.cycle2.carousel.js</script></action>
             <action method="addJs"><script>mt/mage/catalog/ProductView.js</script></action>
-
             <!--action method="addItem"><type>js</type><name>calendar/calendar.js</name></action-->
             <!--action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action-->
         </reference>
@@ -199,20 +200,13 @@ Product view
                     <label>Alert Urls</label>
                 </block>
 
-                <block type="catalog/product_list_upsell" name="product.info.upsell" as="upsell_products" template="catalog/product/list/upsell.phtml">
-                    <action method="setColumnCount"><columns>4</columns></action>
-                    <action method="setItemLimit"><type>upsell</type><limit>4</limit></action>
+                <block type="core/text_list" name="product.upsell" as="product_upsell">
+                    <label>Upsell Product</label>
                 </block>
-
                 <block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
-                <!--Add Tabs-->
-                <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
-                    <action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
-                    <!--action method="addTab" translate="title" module="catalog"><alias>tabreviews</alias><title>Reviews</title><block>mtreview/product_view_list</block><template>mtreview/product/view/list.phtml</template></action-->
-                    <!--action method="addTab" translate="title" module="tag"><alias>product.tags</alias><title>Product Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action-->
-                    <action method="addTab" translate="title" module="catalog"><alias>additional</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
-                </block>
-                <!-- end: Add tabs -->
+                <block type="catalog/product_view_description" name="product.description" as="product_description" template="catalog/product/view/description.phtml"/>
+                <block type="catalog/product_list_related" name="product.related" as="product_related" template="catalog/product/list/related.phtml"/>
+
                 <!--MT Review-->
                 <block type="core/template" name="product.info.other" as="other" template="mt/review/product/view/other.phtml"/>
                 <block type="page/html_pager" name="product_review_list.toolbar" />
@@ -282,9 +276,6 @@ Product view
                 <action method="unsetCallChild"><child>container2</child><call>ifEquals</call><if>0</if><key>alias_in_layout</key><key>options_container</key></action>
 
             </block>
-        </reference>
-        <reference name="right">
-            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
         </reference>
     </catalog_product_view>
 
