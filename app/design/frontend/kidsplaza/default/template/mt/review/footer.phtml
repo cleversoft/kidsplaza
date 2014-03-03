@@ -14,22 +14,19 @@
  */
 ?>
 <div class="mt-review-footer">
-    <?php
-        if($this->showHelpfulness()){
-            echo $this->getChild('mtreview_helpfulness')->setReviewId($this->getReviewId())->toHtml();
-        }
-    ?>
     <div class="mt-inappropriate">
         <div class="mt-inside">
             <?php
             if($this->showReply()){
                 echo $this->getChild('mtreview_reply')->setReviewId($this->getReviewId())->toHtml();
             }
-            if($this->showReport()){
-                echo $this->getChild('mtreview_report')->setReviewId($this->getReviewId())->toHtml();
-            }
             ?>
         </div>
+        <?php
+        if($this->showHelpfulness()){
+            echo $this->getChild('mtreview_helpfulness')->setReviewId($this->getReviewId())->toHtml();
+        }
+        ?>
     </div>
     <?php if($this->showReply()){?>
     <div class="comment-box" id="commnet_field_<?php echo $this->getReviewId();?>" style="overflow: hidden; display: none;">

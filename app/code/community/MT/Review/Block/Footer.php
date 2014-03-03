@@ -27,20 +27,6 @@ class MT_Review_Block_Footer extends Mage_Core_Block_Template
         return $this->_reviewId;
     }
 
-    public function showReport()
-    {
-        $helper = Mage::helper('mtreview');
-        if( $helper->confAllowOnlyLoggedToReport() )
-        {
-            return ($helper->confShowReport() );
-        }
-        else
-        {
-            return ($helper->isUserLogged()
-                && $helper->confShowReport() );
-        }
-    }
-
     public function showReply()
     {
         $helper = Mage::helper('mtreview');

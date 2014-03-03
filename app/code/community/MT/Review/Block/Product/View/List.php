@@ -44,6 +44,28 @@ class MT_Review_Block_Product_View_List extends MT_Review_Block_Product_View
         return parent::_beforeToHtml();
     }
 
+    public function getTotalComments($reviewId)
+    {
+        $comments = Mage::getModel('mtreview/comment')->getCollection()
+            ->addReviewFilter($reviewId)
+            ->addStoreFilter(Mage::app()->getStore()->getId());
+        return count($comments);
+    }
+
+    public function showReport()
+    {
+        $helper = Mage::helper('mtreview');
+        if( $helper->confAllowOnlyLoggedToReport() )
+        {
+            return ($helper->confShowReport() );
+        }
+        else
+        {
+            return ($helper->isUserLogged()
+                && $helper->confShowReport() );
+        }
+    }
+
     public function getReviewUrl($id)
     {
         return Mage::getUrl('*/*/view', array('id' => $id));

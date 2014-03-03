@@ -142,7 +142,7 @@ function reportReview(e){
 function commentReview(event,reviewId){
     var content = jQuery("#comment_detail_"+reviewId).val();
     var url = Comment.link+'reviewId/'+reviewId;
-    var main = jQuery(event).parents('.mt-review-footer').find('.main-comments');
+    var main = jQuery(event).parents('.mt-review-footer').find('.comments-list');
     if(content){
         jQuery(event).prev().show();
         data = 'content='+content+'&isAjax=1';
@@ -157,9 +157,15 @@ function commentReview(event,reviewId){
                         jQuery("#commnet_field_"+reviewId).hide();
                         jQuery("#comment_detail_"+reviewId).val('');
                         jQuery(event).prev().hide();
-                        item = jQuery("<div/>").html('<strong>'+data.customer+'</strong><p>'+data.content+'</p>')
-                                        .addClass(".item-comment");
-                        jQuery(main).prepend(jQuery(item));
+                        var li = jQuery("<li/>").addClass('media');
+                        jQuery("<span/>").addClass('img pull-left').html('<img src="'+dataComment.pathUrl+'"/>').appendTo(jQuery(li));
+                        var mediaBody = jQuery("<div/>").addClass('media-body').appendTo(jQuery(li));
+                        var spanMainReview = jQuery("<span/>").addClass("main-review").appendTo(jQuery(mediaBody));
+                        jQuery("<span/>").addClass("created_by")
+                                            .html('<span class="created">'+data.customer+'</span><small class="date"> (Posted on '+data.date+')</small>')
+                                            .appendTo(jQuery(spanMainReview));
+                        jQuery("<span/>").addClass("review-detail").html(data.content).appendTo(jQuery(mediaBody));
+                        jQuery(main).prepend(jQuery(li));
                     }
                 }
             });

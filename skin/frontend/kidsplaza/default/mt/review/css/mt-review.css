@@ -6,26 +6,27 @@
 .mt-review-footer .mt-helpful, .mt-review-footer .mt-inappropriate {
     position: relative;
     right: 0;
-    width: 50%;
     float: left;
+    font-weight: bold;
 }
 .mt-review-footer .mt-inappropriate {
     text-align: right;
     float: right;
 }
 .mt-review-footer .mt-inappropriate .mt-inside {
-    width: 30%;
     display: block;
     overflow: hidden;
-    float: right;
+    float: left;
+    width: 50px;
 }
 .mt-review-footer .mt-inappropriate .mt-reply {
     float: left;
-    width: 50%;
+    font-weight: bold;
 }
 .mt-review-footer .mt-inappropriate .mt-report {
     float: left;
     width: 50%;
+    font-weight: bold;
 }
 .mt-review-footer .comment-box {
     width: 100%;
@@ -68,15 +69,11 @@
 .mt-review-footer .mt-comments-list {
     float: left;
     width: 100%;
-    margin: 10px 0 0 0;
+    padding: 10px 0 0 0;
     border-top: #dfdfdf solid 1px;
 }
 .mt-review-footer .mt-comments-list .mt-title {
     font-weight: bold;
-    padding: 10px 0 0 15px;
-}
-.mt-review-footer .mt-comments-list .main-comments {
-    padding: 10px 0 10px 15px;
 }
 .mt-review-footer .mt-comments-list .main-comments .item-comment {
     border-bottom: #dfdfdf solid 1px;
@@ -192,4 +189,38 @@ em.required{
 }
 .main-progress .progress {
     margin-bottom: 10px;
+}
+
+.box-reviews span.img img {
+    width: 70px;
+    height: 70px;
+}
+.box-reviews .main-review {
+    display: block;
+}
+.box-reviews .main-review .rating-summary{
+    display: block;
+}
+.box-reviews .main-review .rating-summary .summary {
+    color: #0095d6;
+    font-weight: bold;
+    border-right: #a9a9a9 solid 1px;
+    padding-right: 7px;
+}
+.box-reviews .main-review .rating-summary .total-comment {
+    border-right: #a9a9a9 solid 1px;
+    color: #a9a9a9;
+    padding-right: 7px;
+}
+.box-reviews .main-review .rating-summary .report a {
+    color: #ff000a;
+}
+.box-reviews .main-review .created_by .created {
+    font-weight: bold;
+    color: #0095d6;
+    border-right: #a9a9a9 solid 1px;
+    padding-right: 7px;
+}
+.box-reviews .main-review .created_by .date {
+    color: #a9a9a9;
 }
