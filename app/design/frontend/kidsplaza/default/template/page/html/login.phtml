@@ -13,15 +13,15 @@
 $session = Mage::getSingleton('customer/session');
 ?>
 <div class="pull-right top-login" id="topLogin">
-        <div  class="toplogin" href="javascript:void(0)">
+        <div  class="toplogin" onclick="">
             <div class="font"><i class="glyphicon glyphicon-user"></i></div>
             <div class="right-login">
-                    <?php if ($session->isLoggedIn()): ?>
-                    <?php echo $session->getCustomer()->getName() ?>
-                    <?php else: ?>
-                        <p><?php echo $this->__('Đăng Nhập') ?></p>
-                        <span><?php echo $this->__('Tài khoản và Đơn hàng') ?></span>
-                    <?php endif ?>
+                <?php if ($session->isLoggedIn()): ?>
+                <?php echo $session->getCustomer()->getName() ?>
+                <?php else: ?>
+                    <p><?php echo $this->__('Đăng Nhập') ?></p>
+                    <span><?php echo $this->__('Tài khoản và Đơn hàng') ?></span>
+                <?php endif ?>
             </div>
         </div>
         <div class="login-content" style="display: none">

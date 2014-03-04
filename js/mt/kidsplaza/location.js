@@ -48,7 +48,7 @@ KidsPlazaCart.prototype = {
 var KidsPlazaLoginHeader = Class.create();
 KidsPlazaLoginHeader.prototype = {
     initialize: function(id){
-        jQuery('#' + id).find('a.btn-login').popover({
+        jQuery('#' + id).popover({
             placement: 'bottom',
             html: true,
             trigger: 'click',
