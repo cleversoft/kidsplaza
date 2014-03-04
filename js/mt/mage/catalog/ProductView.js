@@ -16,10 +16,13 @@ jQuery('.product-view').each(function(i, product){
     var id = jQuery(product).data('product');
     if (!id) return;
 
-    window.optionsPrice = new Product.OptionsPrice(window['price' + id]);
-    window.relatedPrice = new RelatedPrice(window['related' + id]);
-    addRelatedToProduct();
-    window.relatedProductsCheckFlag = false;
+    if (window['price' + id]) window.optionsPrice = new Product.OptionsPrice(window['price' + id]);
+    if (window['related' + id]){
+        window.relatedPrice = new RelatedPrice(window['related' + id]);
+        addRelatedToProduct();
+        window.relatedProductsCheckFlag = false;
+    }
+
     window.productAddToCartForm = new VarienForm('product_addtocart_form');
 
     productAddToCartForm.submit = function(button, url){
