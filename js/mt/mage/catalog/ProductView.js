@@ -7,53 +7,73 @@
  * @email       support@magentothemes.net
  */
 'use strict';
-
+var RelatedPrice = Class.create(Product.OptionsPrice, {
+    initPrices: function(){
+        this.containers[0] = 'related-price';
+    }
+});
 jQuery('.product-view').each(function(i, product){
     var id = jQuery(product).data('product');
     if (!id) return;
 
     window.optionsPrice = new Product.OptionsPrice(window['price' + id]);
+    window.relatedPrice = new RelatedPrice(window['related' + id]);
+    addRelatedToProduct();
     window.relatedProductsCheckFlag = false;
     window.productAddToCartForm = new VarienForm('product_addtocart_form');
 
-    productAddToCartForm.submit = function(button, url) {
-        if (this.validator.validate()) {
+    productAddToCartForm.submit = function(button, url){
+        if (this.validator.validate()){
             var form = this.form;
             var oldUrl = form.action;
 
-            if (url) {
+            if (url){
                 form.action = url;
             }
             var e = null;
             try {
                 this.form.submit();
-            } catch (e) {
-            }
+            } catch (e) {}
             this.form.action = oldUrl;
-            if (e) {
+            if (e){
                 throw e;
             }
-
-            if (button && button != 'undefined') {
+            if (button && button != 'undefined'){
                 button.disabled = true;
             }
         }
     }.bind(productAddToCartForm);
 
+    productAddToCartForm.submitRelated = function(button, url){
+        if (this.validator.validate()){
+            var hasChecked = false;
+            $$('.related-checkbox').each(function(cb){
+                if (cb.checked) hasChecked = true;
+            });
+            if (!hasChecked) alert(Translator.translate('You must select a product!'));
+            else{
+                if (url) this.form.action = url;
+                this.form.submit();
+                button.disabled = true;
+                button.addClassName('disabled');
+            }
+        }
+    }.bind(productAddToCartForm);
+
     productAddToCartForm.submitLight = function(button, url){
-        if(this.validator) {
+        if (this.validator) {
             var nv = Validation.methods;
             delete Validation.methods['required-entry'];
             delete Validation.methods['validate-one-required'];
             delete Validation.methods['validate-one-required-by-name'];
             // Remove custom datetime validators
-            for (var methodName in Validation.methods) {
-                if (methodName.match(/^validate-datetime-.*/i)) {
+            for (var methodName in Validation.methods){
+                if (methodName.match(/^validate-datetime-.*/i)){
                     delete Validation.methods[methodName];
                 }
             }
 
-            if (this.validator.validate()) {
+            if (this.validator.validate()){
                 if (url) {
                     this.form.action = url;
                 }
@@ -67,30 +87,15 @@ jQuery('.product-view').each(function(i, product){
         Event.observe(elem, 'click', addRelatedToProduct)
     });
 });
-function selectAllRelated(txt){
-    if (relatedProductsCheckFlag == false) {
-        $$('.related-checkbox').each(function(elem){
-            elem.checked = true;
-        });
-        window.relatedProductsCheckFlag = true;
-        txt.innerHTML="unselect all";
-    } else {
-        $$('.related-checkbox').each(function(elem){
-            elem.checked = false;
-        });
-        window.relatedProductsCheckFlag = false;
-        txt.innerHTML="select all";
-    }
-    addRelatedToProduct();
-}
 function addRelatedToProduct(){
     var checkboxes = $$('.related-checkbox'),
-        values = [], prices = [];
+        values = [],
+        prices = [];
 
-    for(var i=0; i<checkboxes.length; i++){
+    for (var i=0; i<checkboxes.length; i++){
         var product = checkboxes[i].value;
 
-        if(checkboxes[i].checked){
+        if (checkboxes[i].checked){
             var price = checkboxes[i].readAttribute('price'),
                 includeTax = checkboxes[i].readAttribute('price1'),
                 excludeTax = checkboxes[i].readAttribute('price2');
@@ -101,17 +106,17 @@ function addRelatedToProduct(){
             prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
         }
     }
-    if($('related-products-field')){
+    if ($('related-products-field')){
         $('related-products-field').value = values.join(',');
     }
-    for(var i=0; i<prices.length; i++){
-        optionsPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
+    for (var i=0; i<prices.length; i++){
+        relatedPrice && relatedPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
     }
-    optionsPrice.reload();
+    relatedPrice && relatedPrice.reload();
 }
 jQuery(function(){
     //init show more
-    var content_height_limit = 800,
+    var content_height_limit = 500,
         mainPane = jQuery('#product-description'),
         height = mainPane.height(),
         showMore = jQuery('<div/>')

@@ -81,6 +81,10 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             }
         }
 
+        //Vietnamese format
+        $config['priceFormat']['precision'] = 0;
+        $config['priceFormat']['requiredPrecision'] = 0;
+
         return Mage::helper('core')->jsonEncode($config);
     }
 

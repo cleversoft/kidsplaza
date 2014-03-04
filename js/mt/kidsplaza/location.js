@@ -19,7 +19,7 @@ KidsPlazaLocation.prototype = {
     },
     showLocationSelect: function(){
         jQuery(function(){
-            triggerLocationOverlay();
+            //triggerLocationOverlay();
         });
     },
     setLocation: function(location){

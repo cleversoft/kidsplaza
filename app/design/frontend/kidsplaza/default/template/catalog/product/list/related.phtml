@@ -24,36 +24,64 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 $size = $this->getItems()->getSize();
+$product = Mage::registry('product');
 ?>
 <?php if ($size): ?>
 <h2><?php echo $this->__('Frequently Bought Together') ?></h2>
-<div class="">
-    <ol class="">
-    <?php $i=0; foreach($this->getItems() as $_item): ?>
-        <li class="<?php echo $i++==0?'first':($i==$size?'last':'') ?>" style="display: inline-block">
+<script type="text/javascript">
+    window['related<?php echo $product->getId() ?>'] = window['price<?php echo $product->getId() ?>'];
+</script>
+<div class="related-wrapper">
+    <ol class="related-img">
+        <li class="related-img-item first" style="display: inline-block">
+            <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="">
+                <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+            </a>
+        </li>
+    <?php $i=1; foreach($this->getItems() as $_item): ?>
+        <li class="related-img-item <?php echo $i++==$size?'last':'' ?>" style="display: inline-block">
             <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
             </a>
         </li>
     <?php endforeach ?>
     </ol>
-    <ol class="">
+    <ol class="related-name">
+        <li class="related-name-item">
+            <span class=""><?php echo $this->__('Current item') ?>:</span>
+            <?php if ($product->isSaleable()): ?>
+                <?php $_price = $product->getFinalPrice() ?>
+                <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
+                <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
+                <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
+            <?php else: ?>
+                <script type="text/javascript">
+                    window['related<?php echo $product->getId() ?>'].priceExclTax=0;
+                    window['related<?php echo $product->getId() ?>'].productPrice=0;
+                </script>
+            <?php endif ?>
+            <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
+            <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
+        </li>
     <?php foreach($this->getItems() as $_item): ?>
-        <li class="">
-            <div class="">
+        <li class="related-name-item">
             <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
                 <?php if (!$_item->getRequiredOptions()): ?>
                     <?php $_price = $_item->getFinalPrice() ?>
                     <?php $_priceIncTax = Mage::helper('tax')->getPrice($_item, $_price, true) ?>
                     <?php $_priceExcTax = Mage::helper('tax')->getPrice($_item, $_price) ?>
-                    <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price?>" price1="<?php echo $_priceIncTax?>" price2="<?php echo $_priceExcTax?>"/>
+                    <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
                 <?php endif; ?>
             <?php endif; ?>
             <a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a>
             <?php echo Mage::helper('core')->formatPrice($_item->getFinalPrice()) ?>
-            </div>
         </li>
     <?php endforeach ?>
     </ol>
+    <div class="related-action">
+        <span class="price-label"><?php echo $this->__('Total') ?></span>
+        <span class="price" id="related-price"></span>
+        <button class="btn btn-kid btn-cart" type="button" onclick="window.productAddToCartForm.submitRelated(this)"><?php echo $this->__('Buy All') ?></button>
+    </div>
 </div>
 <?php endif ?>
