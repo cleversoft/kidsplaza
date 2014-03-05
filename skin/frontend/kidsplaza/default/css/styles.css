@@ -111,8 +111,9 @@ a.logo{margin-top:20px;display:block}
 .top-cart .cart-content{display:inline-block;line-height:16px;color:#634f4f}
 .top-cart .cart-content:hover,.top-cart .cart-content:focus{text-decoration:none;outline:0}
 .btn-login:focus{outline:0}
+.popover{background: #f9f9f9;border: 1px solid #e1e1e1;}
 .top-cart .popover-content{padding:10px;width:220px}
-.top-login .popover{background: #f9f9f9 ; border: 1px solid #e1e1e1 ; border-radius:3px 3px  0 0  ;  -webkit-border-radius: 3px 3px 0 0 ; -moz-border-radius: 3px 3px 0 0;}
+.top-login .popover{}
 .top-login .popover-content{width:200px;padding:10px;  }
 .top-login .popover-content p  {color: #686868 ; margin: 10px 0;}
 .top-login .popover-content p span {font-size: 10px; }
@@ -306,6 +307,9 @@ input.form-control,textarea.form-control{border-radius:0 ; font-size: 11px;}
 .account-login .col2-set-right  .content h3{ margin: 0 0 15px;}
 .color-red{color: red;}
 a.link-wishlist{font-size: 17px;}
+.category-products .price-box .price-label,
+.category-products .price-box .price-save{display: none;}
+.price-box p{margin-bottom: 0;}
 span.separator{vertical-align: top;}
 .account-login .buttons-set a.f-right { font-size: 12px;padding: 8px 0; background: url("../images/tick-login.png") no-repeat scroll 0 50% ; padding: 0 0 0 10px;width: 100px;}
 .account-login .form_register.fieldset  { float: none ; width: 70% ; padding: 0 ; text-align: right ; background: none ; border: none ; margin: 0 auto ; }

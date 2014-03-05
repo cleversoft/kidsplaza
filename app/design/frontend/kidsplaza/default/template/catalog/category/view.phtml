@@ -45,19 +45,13 @@
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
-<?php if (is_array($_images)): ?>
+<?php if (is_array($_images) && count($_images)): ?>
     <div class="owl-carousel">
     <?php foreach ($_images as $_image):?>
         <div>
             <img src="<?php echo Mage::getBaseUrl('media').$_image['uri'] ?>"/>
         </div>
     <?php endforeach ?>
-    </div>
-<?php endif; ?>
-
-<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
-    <div class="category-description well well-sm">
-        <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
     </div>
 <?php endif; ?>
 
