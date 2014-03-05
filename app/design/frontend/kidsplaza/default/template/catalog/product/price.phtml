@@ -50,7 +50,7 @@ $_minimalPriceValue = $_product->getMinimalPrice();
 $_minimalPriceValue = $_store->roundPrice($_store->convertPrice($_minimalPriceValue));
 $_minimalPrice = $_taxHelper->getPrice($_product, $_minimalPriceValue, $_simplePricesTax);
 $_convertedFinalPrice = $_store->roundPrice($_store->convertPrice($_product->getFinalPrice()));
-$_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStoreLabel();
+$_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute('special_price')->getStoreLabel();
 ?>
 
 <?php if (!$_product->isGrouped()): ?>
@@ -204,6 +204,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     <?php echo $_coreHelper->currency($_price + $weeeAmountToDisplay, true, true) ?>
                 </span>
             <?php else: ?>
+                <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
                 <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php if ($_finalPrice == $_price): ?>
                         <?php echo $_coreHelper->formatPrice($_price, true) ?>
