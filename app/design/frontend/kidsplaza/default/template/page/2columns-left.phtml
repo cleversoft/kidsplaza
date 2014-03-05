@@ -44,7 +44,9 @@
             <?php echo $this->getChildHtml('global_messages') ?>
             <div class="row">
                 <div class="col-left sidebar col-lg-3">
-                    <?php echo $this->getChildHtml('left') ?>
+				    <div class="col-left-top">&nbsp;</div>
+				    <div class="col-left-center"> <?php echo $this->getChildHtml('left') ?></div>
+					<div class="col-left-bottom">&nbsp;</div>
                 </div>
                 <div class="col-main col-lg-9">
                     <?php echo $this->getChildHtml('breadcrumbs') ?>
