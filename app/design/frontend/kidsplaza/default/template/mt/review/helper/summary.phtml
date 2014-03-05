@@ -14,21 +14,11 @@
  */
 $_product = $this->getProduct();
 ?>
-<?php if ($this->getReviewsCount()): ?>
-    <div class="ratings">
-        <?php if ($this->getRatingSummary()):?>
-            <div class="rating-box">
-                <div class="rating" style="width:<?php echo $this->getRatingSummary() ?>%"></div>
-            </div>
-            <a class="rating-reviews" href="<?php echo $this->getReviewsUrl() ?>">
-                <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
-            </a>
-            <span class="separator">|</span>
-            <a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist" title="<?php echo $this->__('Add to Wishlist') ?>">
-                <i class="glyphicon glyphicon-heart color-red"></i>
-            </a>
-        <?php endif;?>
+<div class="ratings">
+    <div class="rating-box">
+        <div class="rating" style="width:<?php echo $this->getRatingSummary()?$this->getRatingSummary():0 ?>%"></div>
     </div>
-<?php elseif ($this->getDisplayIfEmpty()): ?>
-    <p class="no-rating"><a href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Be the first to review this product') ?></a></p>
-<?php endif; ?>
+    <a class="rating-reviews" href="javascript:void(0)" onclick="jQuery('#product-review').scrollToMe()">
+        <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
+    </a>
+</div>
