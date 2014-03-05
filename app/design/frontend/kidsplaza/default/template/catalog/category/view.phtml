@@ -36,12 +36,6 @@
     $_category  = $this->getCurrentCategory();
     $_images    = Mage::helper('core')->jsonDecode($_category->getData('slider_params'));
 ?>
-<div class="category-title page-title">
-    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
-        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
-    <?php endif; ?>
-    <h2><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h2>
-</div>
 
 <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
 
@@ -54,6 +48,13 @@
     <?php endforeach ?>
     </div>
 <?php endif; ?>
+
+<div class="category-title page-title">
+    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
+        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
+    <?php endif; ?>
+    <h2><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h2>
+</div>
 
 <?php if($this->isContentMode()): ?>
     <?php echo $this->getCmsBlockHtml() ?>
