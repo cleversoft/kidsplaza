@@ -53,7 +53,7 @@ KidsPlazaLoginHeader.prototype = {
             html: true,
             trigger: 'click',
             content: function(){
-                return jQuery('.login-content', '#' + id).html()
+                return jQuery('#' + id).parent().find('.login-content').html()
             }
         });
     }
