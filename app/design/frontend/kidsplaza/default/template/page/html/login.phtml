@@ -17,11 +17,11 @@ $session = Mage::getSingleton('customer/session');
             <div class="font"><i class="glyphicon glyphicon-user"></i></div>
             <div class="right-login">
                 <?php if ($session->isLoggedIn()): ?>
-                <?php echo $session->getCustomer()->getName() ?>
+                    <p><?php echo $session->getCustomer()->getName() ?></p>
                 <?php else: ?>
                     <p><?php echo $this->__('Login') ?></p>
-                    <span><?php echo $this->__('Account and Orders') ?></span>
                 <?php endif ?>
+                <span><?php echo $this->__('Account and Orders') ?></span>
             </div>
         </div>
         <div class="login-content" style="display: none">

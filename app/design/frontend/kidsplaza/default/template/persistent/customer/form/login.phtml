@@ -45,9 +45,11 @@
                         <h3><?php echo $this->__('New Customers') ?></h3>
                         <p><?php echo $this->__('By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.') ?></p>
                         <div class="button_creat">
-                            <button type="button" title="<?php echo $this->__('Create an Account') ?>" class="button btn-kid btn btn-regisform btn-login"><span><span><?php echo $this->__('Tạo tài khoản') ?></span></span></button>
+                            <button type="button" title="<?php echo $this->__('Create an Account') ?>" class="button btn-kid btn btn-regisform btn-login">
+                                <span><span><?php echo $this->__('Create account') ?></span></span>
+                            </button>
                         </div>
-                        <div class="form_register"><?php echo $this->getChildHtml('form_register');?></div>
+                        <div class="form_register" style="display: none;"><?php echo $this->getChildHtml('form_register');?></div>
                     </div>
                 </div>
             </div>
@@ -79,8 +81,8 @@
                         </div>
 
                         <div class="buttons-set">
-                            <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-right"><?php echo $this->__('Quên mật khẩu?') ?></a>
-                            <button type="submit" class="button btn-kid btn btn-login" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Đăng nhập') ?></span></span></button>
+                            <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-right"><?php echo $this->__('Forgot password?') ?></a>
+                            <button type="submit" class="button btn-kid btn btn-login" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
                         </div>
                     </div>
                     <?php if (Mage::helper('checkout')->isContextCheckout()): ?>

@@ -37,7 +37,7 @@
     <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" class="form-horizontal">
         <?php echo $this->getBlockHtml('formkey') ?>
-        <div class="form_register fieldset form-group">
+        <div class="fieldset form-group">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <ul class="form-list">
@@ -77,17 +77,6 @@
                     <?php echo $this->getChildHtml('form.additional.info'); ?>
                     <?php echo $this->getChildHtml('persistent.remember.me'); ?>
                 </li>
-                <?php if ($this->isNewsletterEnabled()): ?>
-                <li class="control">
-				    <div class="field name-firstname">
-					        <label for="is_subscribed"><?php echo $this->__('Sign Up for Newsletter') ?></label>
-							<div class="input-box">
-								<input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
-							</div>
-							
-					</div>
-                </li>
-                <?php endif ?>
 				<?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
 				<?php if ($_dob->isEnabled()): ?>
 					<li><?php echo $_dob->setDate($this->getFormData()->getDob())->toHtml() ?></li>
@@ -100,9 +89,25 @@
 				<?php if ($_gender->isEnabled()): ?>
 					<li><?php echo $_gender->setGender($this->getFormData()->getGender())->toHtml() ?></li>
 				<?php endif ?>
+                <?php if ($this->isNewsletterEnabled()): ?>
+                    <li class="">
+                        <div class="field">
+                            <label for="is_subscribed" class="control-label col-sm-2"><?php echo $this->__('Sign Up for Newsletter') ?></label>
+                            <div class="input-box col-sm-10">
+                                <input type="checkbox" name="is_subscribed" title="<?php echo $this->__('Sign Up for Newsletter') ?>" value="1" id="is_subscribed"<?php if($this->getFormData()->getIsSubscribed()): ?> checked="checked"<?php endif; ?> class="checkbox" />
+                            </div>
+                        </div>
+                    </li>
+                <?php endif ?>
                 <li>
-                    <p class="required"><?php echo $this->__('* Required Fields') ?></p>
-                    <button type="submit" title="<?php echo $this->__('Gửi') ?>" class="button btn-kid btn btn-login pull-right"><span><span><?php echo $this->__('Gửi') ?></span></span></button>
+                    <div class="field">
+                        <label class="control-label col-sm-2"></label>
+                        <div class="input-box col-sm-10">
+                            <button type="submit" title="<?php echo $this->__('Send') ?>" class="button btn-kid btn btn-login pull-left">
+                                <span><span><?php echo $this->__('Send') ?></span></span>
+                            </button>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <?php if (Mage::helper('checkout')->isContextCheckout()): ?>
