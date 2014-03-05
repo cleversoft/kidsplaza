@@ -198,4 +198,22 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             return Mage::helper('core/file_storage_database')->saveFileToFilesystem($filename);
         }
     }
+
+    /**
+     * Check if product already in wishlist
+     */
+    public function inWishlist($product){
+        if (!$product || !($product instanceof Mage_Catalog_Model_Product)) return false;
+        /* @var $customer Mage_Customer_Model_Customer */
+        $customer = Mage::getSingleton('customer/session')->getCustomer();
+        if (!$customer->getId()) return false;
+        /* @var $wishlist Mage_Wishlist_Model_Wishlist */
+        $wishlist = Mage::getModel('wishlist/wishlist')->loadByCustomer($customer);
+        if (!$wishlist->getId()) return false;
+        foreach ($wishlist->getItemCollection() as $item){
+            if ($item->getProductId()==$product->getId()) return true;
+        }
+        unset($customer, $wishlist);
+        return false;
+    }
 }

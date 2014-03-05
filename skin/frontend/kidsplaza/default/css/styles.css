@@ -8,7 +8,7 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,vietnamese);
-.ratings {margin:7px 0; line-height:1em;white-space:nowrap;}
+.ratings {margin:0; line-height:1em;white-space:nowrap;display: inline-block;}
 .rating-box { width:69px; height:13px; margin-right:5px; display: inline-block; background:url(../images/product_rating_blank_star.gif) repeat-x;}
 .rating-box .rating {height:13px;background:url(../images/product_rating_full_star.gif) repeat-x;}
 .ratings-list {float:left;}
@@ -320,7 +320,8 @@ input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px;}
 .account-login .buttons-set{margin:0;padding:20px 25px 42px;background:#f9f9f9;border:1px solid #dfdfdf ; border-top : 0 ;text-align:right;}
 .account-login .col2-set-right  .content { border-bottom: 0 ; }
 .account-login .col2-set-right  .content h3{ margin: 0 0 15px;}
-.color-red{color: red;}
+.color-red{color: #ff0000;}
+.color-grey{color: #808080;}
 a.link-wishlist{font-size: 17px;}
 .category-products .price-box .price-label,
 .category-products .price-box .price-save{display: none;}

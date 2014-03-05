@@ -52,6 +52,8 @@
             </div>
 
             <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+            <span class="separator">|</span>
+            <?php echo $this->getChildHtml('addto') ?>
             <?php //echo $this->getChildHtml('productquestion_summary') ?>
             <?php echo $this->getChildHtml('alert_urls') ?>
             <?php echo $this->getChildHtml('product_type_data') ?>
@@ -60,7 +62,7 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?>
+                    <?php echo $_helper->productAttribute($_product, nl2br($this->stripTags($_product->getShortDescription(), '<ul><li>')), 'short_description') ?>
                     <p class="desc-more">
                         <a href="javascript:void(0)" onclick="jQuery('#product-description').scrollToMe()"><?php echo $this->__('See more') ?> &raquo;</a>
                     </p>
@@ -107,7 +109,7 @@
             </div>
         <?php endforeach;?>
     </div>
-    <div class="row">
+    <div class="row" id="product-review">
         <?php echo $this->getChildHtml('product_additional_data') ?>
     </div>
 </div>
