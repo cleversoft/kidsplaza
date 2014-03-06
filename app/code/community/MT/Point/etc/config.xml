@@ -56,6 +56,24 @@
             </mtpoint_setup>
         </resources>
         <events>
+            <mt_review_approved>
+                <observers>
+                    <mtpoint>
+                        <type>singleton</type>
+                        <class>mtpoint/observer</class>
+                        <method>onReviewSubmited</method>
+                    </mtpoint>
+                </observers>
+            </mt_review_approved>
+            <mt_review_removed>
+                <observers>
+                    <mtpoint>
+                        <type>singleton</type>
+                        <class>mtpoint/observer</class>
+                        <method>onReviewRemoved</method>
+                    </mtpoint>
+                </observers>
+            </mt_review_removed>
             <sales_order_creditmemo_refund>
                 <observers>
                     <mtpoint>

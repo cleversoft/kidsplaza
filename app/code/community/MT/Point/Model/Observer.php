@@ -21,16 +21,18 @@ class MT_Point_Model_Observer{
                 $point->setData('customer_id', $request['customer_id']);
                 $point->setData('balance', $balance < 0 ? 0 : $balance);
             }
-            $point->save();
-            $history = Mage::getModel('mtpoint/history');
-            $history->setData(array(
-                'point_id'  => $point->getId(),
-                'balance'   => $point->getBalance(),
-                'delta'     => $request['point']['delta'],
-                'comment'   => $request['point']['comment'] ? $request['point']['comment'] : Mage::helper('mtpoint')->__('N/A'),
-                'by'        => Mage::getSingleton('admin/session')->getUser()->getId()
-            ));
-            $history->save();
+            try{
+                $point->save();
+                $history = Mage::getModel('mtpoint/history');
+                $history->setData(array(
+                    'point_id'  => $point->getId(),
+                    'balance'   => $point->getBalance(),
+                    'delta'     => $request['point']['delta'],
+                    'comment'   => Mage::helper('mtpoint')->__('[Admin] %s', $request['point']['comment']),
+                    'by'        => Mage::getSingleton('admin/session')->getUser()->getId()
+                ));
+                $history->save();
+            }catch (Exception $e){}
         }
     }
 
@@ -51,15 +53,17 @@ class MT_Point_Model_Observer{
             $balance->setCustomerId($customerId);
         }
         $balance->setBalance($balance->getBalance() + $delta);
-        $balance->save();
-        $history = Mage::getModel('mtpoint/history');
-        $history->setData(array(
-            'point_id'  => $balance->getId(),
-            'balance'   => $balance->getBalance(),
-            'delta'     => $delta,
-            'comment'   => Mage::helper('mtpoint')->__('From order #%s', $order->getIncrementId())
-        ));
-        $history->save();
+        try{
+            $balance->save();
+            $history = Mage::getModel('mtpoint/history');
+            $history->setData(array(
+                'point_id'  => $balance->getId(),
+                'balance'   => $balance->getBalance(),
+                'delta'     => $delta,
+                'comment'   => Mage::helper('mtpoint')->__('[Order] From order #%s (Invoice)', $order->getIncrementId())
+            ));
+            $history->save();
+        }catch (Exception $e){}
     }
 
     public function salesOrderCreditmemoRefund($observer){
@@ -79,14 +83,85 @@ class MT_Point_Model_Observer{
             $balance->setCustomerId($customerId);
         }
         $balance->setBalance($balance->getBalance() - $delta);
-        $balance->save();
-        $history = Mage::getModel('mtpoint/history');
-        $history->setData(array(
-            'point_id'  => $balance->getId(),
-            'balance'   => $balance->getBalance(),
-            'delta'     => -1*$delta,
-            'comment'   => Mage::helper('mtpoint')->__('From order #%s', $order->getIncrementId())
-        ));
-        $history->save();
+        try{
+            $balance->save();
+            $history = Mage::getModel('mtpoint/history');
+            $history->setData(array(
+                'point_id'  => $balance->getId(),
+                'balance'   => $balance->getBalance(),
+                'delta'     => -1*$delta,
+                'comment'   => Mage::helper('mtpoint')->__('[Order] From order #%s (Refund)', $order->getIncrementId())
+            ));
+            $history->save();
+        }catch (Exception $e){}
+    }
+
+    public function onReviewSubmited($observer){
+        $review = $observer->getEvent()->getReview();
+        $customerId = $review->getCustomerId();
+        if (!$customerId) return;
+        $status = $review->getStatusId();
+        $origin = $review->getOrigData();
+        $delta = null;
+        if ($status == 1){
+            if ($origin['status_id'] != 1){
+                $delta = (int)Mage::getStoreConfig('mtpoint/general/review');
+            }
+        }else{
+            if ($origin['status_id'] == 1){
+                $delta = -1*(int)Mage::getStoreConfig('mtpoint/general/review');
+            }
+        }
+        if (is_null($delta)) return;
+        /* @var $balance MT_Point_Model_Point */
+        $balance = Mage::getModel('mtpoint/point');
+        $balance->loadByCustomer($customerId);
+        if (!$balance->getId()){
+            $balance->setCustomerId($customerId);
+        }
+        $balance->setBalance($balance->getBalance() + $delta);
+        try{
+            $balance->save();
+            $history = Mage::getModel('mtpoint/history');
+            $history->setData(array(
+                'point_id'  => $balance->getId(),
+                'balance'   => $balance->getBalance(),
+                'delta'     => $delta,
+                'comment'   => Mage::helper('mtpoint')->__('[Review] From reviewing (Submit <a href="%s" target="_blank">#%d</a>)',
+                        Mage::getUrl('mtreview/adminhtml_review/edit', array('id'=>$review->getReviewId())),
+                        $review->getReviewId())
+            ));
+            $history->save();
+        }catch (Exception $e){}
+    }
+
+    public function onReviewRemoved($observer){
+        $review = $observer->getEvent()->getReview();
+        $customerId = $review->getCustomerId();
+        if (!$customerId) return;
+        $status = $review->getStatusId();
+        if ($status == 1){
+            $delta = -1*(int)Mage::getStoreConfig('mtpoint/general/review');
+            /* @var $balance MT_Point_Model_Point */
+            $balance = Mage::getModel('mtpoint/point');
+            $balance->loadByCustomer($customerId);
+            if (!$balance->getId()){
+                $balance->setCustomerId($customerId);
+            }
+            $balance->setBalance($balance->getBalance() + $delta);
+            try{
+                $balance->save();
+                $history = Mage::getModel('mtpoint/history');
+                $history->setData(array(
+                    'point_id'  => $balance->getId(),
+                    'balance'   => $balance->getBalance(),
+                    'delta'     => $delta,
+                    'comment'   => Mage::helper('mtpoint')->__('[Review] From reviewing (Delete)',
+                            Mage::getUrl('mtreview/adminhtml_review/edit', array('id'=>$review->getReviewId())),
+                            $review->getReviewId())
+                ));
+                $history->save();
+            }catch (Exception $e){}
+        }
     }
 }

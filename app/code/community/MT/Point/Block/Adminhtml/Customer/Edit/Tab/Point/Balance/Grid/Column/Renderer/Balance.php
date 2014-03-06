@@ -9,7 +9,7 @@
  */
 class MT_Point_Block_Adminhtml_Customer_Edit_Tab_Point_Balance_Grid_Column_Renderer_Balance extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract{
     public function _getValue(Varien_Object $row){
-        return sprintf('<b>%d</b>', $row->getBalance());
+        return sprintf('<b style="font-size: 20px;">%d</b>', $row->getBalance());
     }
 
     public function renderCss(){

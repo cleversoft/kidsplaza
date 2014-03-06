@@ -64,6 +64,14 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
 
     public function editAction()
     {
+        $id = $this->getRequest()->getParam('id');
+        $review = Mage::getModel('mtreview/review')->load($id);
+        if (!$review->getId()){
+            $this->_getSession()->addError(Mage::helper('mtpoint')->__('Review not avaiable!'));
+            $this->_redirect('*/*/index');
+            return;
+        }
+
         $this->_title($this->__('Catalog'))
              ->_title($this->__('Reviews and Ratings'))
              ->_title($this->__('Customer Reviews'));
@@ -108,9 +116,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
             } else {
                 try {
                     $review->addData($data)->save();
-                    if($this->getRequest()->getParam('status_id')==1){
-                        Mage::dispatchEvent('mt_review_approved', array('mtreview'=>$review));
-                    }
+                    Mage::dispatchEvent('mt_review_approved', array('review'=>$review));
                     $arrRatingId = $this->getRequest()->getParam('ratings', array());
                     $votes = Mage::getModel('rating/rating_option_vote')
                         ->getResourceCollection()
@@ -153,11 +159,12 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
         $session    = Mage::getSingleton('adminhtml/session');
 
         try {
-            Mage::getModel('mtreview/review')->setId($reviewId)
-                ->aggregate()
-                ->delete();
-
-            $session->addSuccess(Mage::helper('catalog')->__('The review has been deleted'));
+            $review = Mage::getModel('mtreview/review')->setId($reviewId)->aggregate();
+            if ($review->getId()){
+                $review->delete();
+                Mage::dispatchEvent('mt_review_removed', array('review'=>$review));
+                $session->addSuccess(Mage::helper('catalog')->__('The review has been deleted'));
+            }
             if( $this->getRequest()->getParam('ret') == 'pending' ) {
                 $this->getResponse()->setRedirect($this->getUrl('*/*/pending'));
             } else {
@@ -185,6 +192,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                 foreach ($reviewsIds as $reviewId) {
                     $model = Mage::getModel('mtreview/review')->load($reviewId);
                     $model->delete();
+                    Mage::dispatchEvent('mt_review_removed', array('review'=>$model));
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__('Total of %d record(s) have been deleted.', count($reviewsIds))
@@ -215,6 +223,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                     $model->setStatusId($status)
                         ->save()
                         ->aggregate();
+                    Mage::dispatchEvent('mt_review_approved', array('review'=>$model));
                 }
                 $session->addSuccess(
                     Mage::helper('adminhtml')->__('Total of %d record(s) have been updated.', count($reviewsIds))

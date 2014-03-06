@@ -186,11 +186,15 @@ class MT_Review_ProductController extends Mage_Core_Controller_Front_Action
                     }
 
                     $review->aggregate();
-                    $session->addSuccess($this->__('Your review has been accepted for moderation.'));
+                    if ( Mage::getSingleton('customer/session')->isLoggedIn() && Mage::helper('mtreview')->confAllowCustomerApproved()){
+                        $session->addSuccess($this->__('Thank you for reviewing'));
+                    }else{
+                        $session->addSuccess($this->__('Your review has been accepted for moderation'));
+                    }
                 }
                 catch (Exception $e) {
                     $session->setFormData($data);
-                    $session->addError($this->__('Unable to post the review.'));
+                    $session->addError($this->__('Unable to post the review'));
                 }
             }
             else {
