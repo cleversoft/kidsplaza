@@ -156,19 +156,26 @@ class MT_Review_ProductController extends Mage_Core_Controller_Front_Action
             /* @var $session Mage_Core_Model_Session */
             $review     = Mage::getModel('mtreview/review')->setData($data);
             /* @var $review Mage_Review_Model_Review */
-
             $validate = $review->validate();
 
             if ($validate === true) {
                 try {
                     $review->setEntityId($review->getEntityIdByCode(MT_Review_Model_Review::ENTITY_PRODUCT_CODE))
-                        ->setEntityPkValue($product->getId())
-                        ->setStatusId(MT_Review_Model_Review::STATUS_PENDING)
-                        ->setCustomerId(Mage::getSingleton('customer/session')->getCustomerId())
+                        ->setEntityPkValue($product->getId());
+                    if ( Mage::getSingleton('customer/session')->isLoggedIn() )
+                    {
+                        $review->setStatusId(MT_Review_Model_Review::STATUS_APPROVED);
+                    }else{
+                        $review->setStatusId(MT_Review_Model_Review::STATUS_PENDING);
+                    }
+                    $review->setCustomerId(Mage::getSingleton('customer/session')->getCustomerId())
                         ->setStoreId(Mage::app()->getStore()->getId())
                         ->setStores(array(Mage::app()->getStore()->getId()))
                         ->save();
-
+                    if ( Mage::getSingleton('customer/session')->isLoggedIn() )
+                    {
+                        Mage::dispatchEvent('mt_review_approved', array('mtreview'=>$review));
+                    }
                     foreach ($rating as $ratingId => $optionId) {
                         Mage::getModel('rating/rating')
                         ->setRatingId($ratingId)

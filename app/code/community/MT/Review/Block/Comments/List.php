@@ -35,4 +35,15 @@ class MT_Review_Block_Comments_List extends MT_Review_Block_Product_View
                     ->setDateOrder('DESC');
         return $collection;
     }
+
+    public function getTimeFormat($createdDate)
+    {
+        $helper = Mage::helper('mtreview');
+        return $helper->renderFormatTime($createdDate);
+    }
+
+    public function getFormatDate($date)
+    {
+        return Mage::getModel('core/date')->date('d/m/Y', strtotime($date));
+    }
 }

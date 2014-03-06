@@ -307,6 +307,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function replyReview($reviewId, $comment,$customerId = null)
     {
+        $date = Mage::getModel('core/date')->date();
         if ($customerId === null)
         {
             $customerName = $this->__('Guest');
@@ -320,7 +321,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
             ->setCustomerId($customerId)
             ->setComments($comment)
             ->setStoreId( Mage::helper('core')->getStoreId()  )
-            ->setCreatedAt(now())
+            ->setCreatedAt($date)
             ->save();
 
         return $reply;
@@ -328,6 +329,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function addReport($reviewId, $customerId = null)
     {
+        $date = Mage::getModel('core/date')->date();
         if ($customerId === null)
         {
             $customerName = $this->__('Guest');
@@ -340,7 +342,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
         $report->setReviewId($reviewId)->setCustomerName($customerName)
             ->setCustomerId($customerId)
             ->setStoreId( Mage::helper('core')->getStoreId()  )
-            ->setReportAt(now())
+            ->setReportAt($date)
             ->save();
 
         return $this;
@@ -400,6 +402,35 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
             ->setValue(0)
             ->save();
         return $this;
+    }
+
+    public function renderFormatTime($date)
+    {
+        $currentdate = Mage::getModel('core/date')->timestamp(time());
+        $etime = $currentdate - strtotime($date);
+
+        if ($etime < 1)
+        {
+            return '0 seconds';
+        }
+
+        $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',
+            30 * 24 * 60 * 60       =>  'month',
+            24 * 60 * 60            =>  'day',
+            60 * 60                 =>  'hour',
+            60                      =>  'minute',
+            1                       =>  'second'
+        );
+
+        foreach ($a as $secs => $str)
+        {
+            $d = $etime / $secs;
+            if ($d >= 1)
+            {
+                $r = round($d);
+                return $r . ' ' . $str . ($r > 1 ? 's' : '') . '';
+            }
+        }
     }
 
 }

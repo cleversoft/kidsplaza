@@ -78,6 +78,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
      * Reply action
      */
     public function replyAction(){
+        $storeName = Mage::app()->getStore()->getName();
         if ($reviewId = $this->getRequest()->getParam('reviewId'))
         {
             $content = $this->getRequest()->getParam('content');
@@ -90,13 +91,19 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             {
                 $reply = Mage::helper('mtreview')->replyReview($reviewId, $content);
             }
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','date'=>$this->formatDate($reply->getCreatedAt()),'customer'=>$reply->getCustomerName(),'content'=>$reply->getComments(),'message'=>$this->__('Thank you for reply.'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','date'=>$storeName.', '.$this->getFormatDate($reply->getCreatedAt()).' - '.$this->__('About %s ago', $this->getTimeFormat($reply->getCreatedAt())),'customer'=>$reply->getCustomerName(),'content'=>$reply->getComments(),'message'=>$this->__('Thank you for reply.'))));
         }
     }
 
-    public function formatDate($date = null, $format = Mage_Core_Model_Locale::FORMAT_TYPE_SHORT, $showTime = false)
+    public function getTimeFormat($createdDate)
     {
-        return Mage::helper('core')->formatDate($date, $format, $showTime);
+        $helper = Mage::helper('mtreview');
+        return $helper->renderFormatTime($createdDate);
+    }
+
+    public function getFormatDate($date)
+    {
+        return Mage::getModel('core/date')->date('d/m/Y', strtotime($date));
     }
 
 }

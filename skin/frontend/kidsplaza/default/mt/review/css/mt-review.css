@@ -185,7 +185,10 @@ em.required{
     padding-top: 30px;
 }
 .product-view .box-reviews {
-    margin-top: 20px;
+    margin: 20px 0;
+}
+.product-view .box-reviews ul {
+    padding: 0 0 10px 0;
 }
 .main-progress .progress {
     margin-bottom: 10px;
@@ -223,4 +226,37 @@ em.required{
 }
 .box-reviews .main-review .created_by .date {
     color: #a9a9a9;
+}
+.product-view .box-reviews .load-more-review{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.product-view .box-reviews .load-more-review .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+.box-reviews .toolbar .toolbar-limit, .box-reviews .toolbar .toolbar-pages {
+    display: none;
+}
+.mt-review-main .form-field {
+    width: 100%;
+    float: left;
+    display: none;
+}
+.mt-review-main .form-field .input-box {
+    clear: inherit;
+    float: left;
+    width: auto;
+    padding-right: 15px;
+}
+.mt-review-main .form-field .buttons-set {
+    clear: inherit;
+    margin: 0;
+}
+.mt-review-main .media-body textarea {
+    height: 4em;
 }

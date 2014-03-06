@@ -14,14 +14,14 @@
  */
 ?>
 <div class="mt-helpful">
-    <?php if($this->getYesCount()){?>
-    <span class="total-helpfull"><?php echo $this->__('Have %s Like', $this->getYesCount());?></span>
-    <?php }?>
     <?php if(!Mage::helper('mtreview')->confAllowOnlyLoggedToVote() && !Mage::getSingleton('customer/session')->isLoggedIn()){?>
         <a href="<?php echo $this->getBaseUrl(); ?>customer/account/login/"><?php echo $this->__('Like');?></a>
     <?php }else{?>
         <?php if($this->canShowHelpfulnessLink()):?>
             <a onclick="return voteReview(this)" href="<?php echo $this->getLinkHelpfulness('Yes');?>"><?php echo $this->__('Like');?></a>
         <?php endif;?>
+    <?php }?>
+    <?php if($this->getYesCount()){?>
+        <span class="total-helpfull"><?php echo $this->__('(%s) Like', $this->getYesCount());?></span>
     <?php }?>
 </div>

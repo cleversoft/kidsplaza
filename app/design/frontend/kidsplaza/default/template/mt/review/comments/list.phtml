@@ -12,12 +12,14 @@
  * ------------------------------------------------------------------------------
  *
  */
+$storeName = Mage::app()->getStore()->getName();
 ?>
 <?php $_items = $this->getCommentsCollection(); ?>
 <?php if(count($_items)):?>
 <div class="main-comments">
     <ul class="comments-list">
-    <?php foreach($_items as $_item){?>
+    <?php $i= 0; foreach($_items as $_item){?>
+        <?php if($i<=3){?>
         <li class="media">
             <span class="img pull-left">
                  <img src="<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>"/>
@@ -26,13 +28,17 @@
                 <span class="main-review">
                     <span class="created_by">
                         <?php echo $this->__('<span class="created">%s</span>', $this->escapeHtml($_item->getCustomerName())) ?>
-                        <small class="date"><?php echo $this->__('(Posted on %s)', $this->formatDate($_item->getCreatedAt()), 'long') ?></small>
+                        <small class="date"><?php echo $storeName;?>, <?php echo $this->getFormatDate($_item->getCreatedAt());?> - <?php echo $this->__('About %s ago',$this->getTimeFormat($_item->getCreatedAt()));?></small>
                     </span>
                 </span>
                 <span class="review-detail"><?php echo nl2br($this->escapeHtml($_item->getComments())) ?></span>
             </div>
         </li>
-    <?php }?>
+        <?php }?>
+    <?php $i++; }?>
+        <?php if(count($_items)>4):?>
+        <li class="comments-list"><a onclick="return showMoreComments(this);"> <?php echo $this->__('Show more comments');?></a></li>
+        <?php endif;?>
     </ul>
 </div>
 <script type="text/javascript">
