@@ -160,6 +160,7 @@
                 <allow_only_logged_vote>0</allow_only_logged_vote>
                 <allow_only_logged_reply>0</allow_only_logged_reply>
                 <allow_only_logged_report>0</allow_only_logged_report>
+                <allow_customer_approved>1</allow_customer_approved>
             </access_options>
             <ordering_options>
                 <items_per_page>5,10</items_per_page>

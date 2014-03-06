@@ -162,7 +162,8 @@ class MT_Review_ProductController extends Mage_Core_Controller_Front_Action
                 try {
                     $review->setEntityId($review->getEntityIdByCode(MT_Review_Model_Review::ENTITY_PRODUCT_CODE))
                         ->setEntityPkValue($product->getId());
-                    if ( Mage::getSingleton('customer/session')->isLoggedIn() )
+                    if ( Mage::getSingleton('customer/session')->isLoggedIn()
+                        && Mage::helper('mtreview')->confAllowCustomerApproved())
                     {
                         $review->setStatusId(MT_Review_Model_Review::STATUS_APPROVED);
                     }else{

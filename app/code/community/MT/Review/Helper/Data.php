@@ -57,6 +57,16 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     /**
+     * Get config allow customer approved
+     *
+     * @return tring
+     */
+    public function confAllowCustomerApproved()
+    {
+        return Mage::getStoreConfig('mtreview/access_options/allow_customer_approved');
+    }
+
+    /**
      * Get config allow to show ordering
      *
      * @return tring
