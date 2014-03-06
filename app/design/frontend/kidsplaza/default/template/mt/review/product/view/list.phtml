@@ -45,8 +45,14 @@ $storeName = Mage::app()->getStore()->getName();
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <span class="summary"><?php echo $this->escapeHtml($_review->getTitle()) ?></span>
-                            <span class="total-comment"><i><?php echo $this->__('%s Comment',$this->getTotalComments($_review->getId()));?></i></span>
+                            <span class="summary">
+                                <?php if($_review->getTitle()){?>
+                                    <?php echo $this->escapeHtml($_review->getTitle()) ?>
+                                <?php }else{?>
+                                    <?php echo $truncate = Mage::helper('core/string')->truncate($this->escapeHtml($_review->getDetail()), 100); ?>
+                                <?php }?>
+                            </span>
+                            <span class="total-comment">&nbsp;<i><?php echo $this->__('%s Comment',$this->getTotalComments($_review->getId()));?></i></span>
                             <span class="report">
                                 <?php
                                     if($this->showReport()){

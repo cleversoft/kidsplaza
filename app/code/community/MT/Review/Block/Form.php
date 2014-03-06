@@ -27,7 +27,7 @@ class MT_Review_Block_Form extends Mage_Core_Block_Template
         if (!$data->getNickname()) {
             $customer = $customerSession->getCustomer();
             if ($customer && $customer->getId()) {
-                $data->setNickname($customer->getFirstname());
+                $data->setNickname($customer->getName());
             }
         }
 

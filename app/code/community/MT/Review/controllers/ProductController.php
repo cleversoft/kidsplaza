@@ -174,7 +174,7 @@ class MT_Review_ProductController extends Mage_Core_Controller_Front_Action
                         ->save();
                     if ( Mage::getSingleton('customer/session')->isLoggedIn() )
                     {
-                        Mage::dispatchEvent('mt_review_approved', array('mtreview'=>$review));
+                        Mage::dispatchEvent('mt_review_approved', array('review'=>$review));
                     }
                     foreach ($rating as $ratingId => $optionId) {
                         Mage::getModel('rating/rating')
