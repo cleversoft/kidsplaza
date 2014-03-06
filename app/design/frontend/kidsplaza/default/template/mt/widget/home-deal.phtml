@@ -30,21 +30,23 @@ $_id = $this->getConfig('id');
     <ul>
     <?php foreach ($this->getProductCollection() as $product): ?>
         <li class="deal-item">
-            <div class="deal-item-percent">
-                <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
-            </div>
-            <div class="deal-item-price">
-                <span class="old-price"><?php echo $product->getPrice() ?></span>
-                <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
-            </div>
-            <div class="deal-item-image">
-                <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
-                    <img
-                        src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(260) ?>"
-                        width="260"
-                        height="260"
-                        alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
-                </a>
+            <div class="deal-item-inner">
+                    <div class="deal-item-percent">
+                         <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
+                    </div>
+                    <div class="deal-item-price">
+                        <span class="old-price"><?php echo $product->getPrice() ?></span>
+                        <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
+                    </div>
+                    <div class="deal-item-image">
+                        <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+                            <img
+                                src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(250) ?>"
+                                width="250"
+                                height="250"
+                                alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
+                        </a>
+                    </div>
             </div>
         </li>
     <?php endforeach ?>

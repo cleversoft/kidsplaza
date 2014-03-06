@@ -275,6 +275,20 @@ input,textarea{outline:0}
 .flexslider .btn-group .btn{color:#888}
 .flexslider h3{height:34px;border-bottom:1px solid #ccc;margin-top: 0;}
 .flexslider h3 .badge{vertical-align:top;background-color:#f0ad4e;color:#fff}
+
+.slider-attribute-wrapper .title {left: 0; position: absolute; text-align: center; top: -4px;width: 100%;}
+.slider-attribute-wrapper h2 {text-align: center ; font-weight: bold ; background:  #FFFFFF;color: #070707;display: inline-block;font-size: 210%; font-weight: 600; line-height: 25px; margin: 0; padding: 0 10px; text-transform: uppercase; color: #ff498b ;}
+.slider-attribute-wrapper  .bg-title-inner { height: 0.909em;overflow: hidden; width: 100%; z-index: 9;border-bottom: 1px solid #ebebeb ;}
+.slider-attribute-wrapper .slides img {  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\' filterRes=\'800\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 10+ */ filter: gray; /* IE6-9 */ -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */-webkit-transition: all .6s ease; /* Fade to color for Chrome and Safari */ -webkit-backface-visibility: hidden; /* Fix for transition flickering */}
+.slider-attribute-wrapper .slides img:hover {   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\' filterRes=\'800\'><feColorMatrix type=\'matrix\' values=\'1 0 0 0 0, 0 1 0 0 0, 0 0 1 0 0, 0 0 0 1 0\'/></filter></svg>#grayscale");-webkit-filter: grayscale(0%);}
+.slider-attribute-wrapper .btn-prev { left: 0 ; }
+.slider-attribute-wrapper .btn-next  { right: 0 ; }
+.slider-attribute-wrapper .flex-direction-nav { width: 100% ; margin: 40px 0 ;}
+.slider-attribute-wrapper .flex-direction-nav  a { position: absolute ; opacity: 1; margin: 0; background: #eaebeb ;  }
+.slider-attribute-wrapper .flex-direction-nav  a:before {font-size: 0;  }
+.slider-attribute-wrapper .flex-direction-nav  a i.glyphicon { color: #fff; font-size: 100% ; top: 12px; position: absolute ;left: 12px;  }
+.slider-attribute-wrapper .flex-viewport { width: 90% ; margin: 0 auto ;  }
+
 .a-right{text-align:right}
 .a-center{text-align:center}
 .cart tfoot .btn{padding:2px 5px}
@@ -468,7 +482,14 @@ p.back-link{float: left;}
 .block-layered-nav {padding: 0 10px;}
 
 
-.flex-viewport ul li.deal-item {padding: 30px 0 ;}
+.deals-wrapper .flex-viewport ul li.deal-item { background: #ECECEC ;}
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner{padding: 3px 5px  ;border: 1px solid #ECECEC ;  display: inline-block; }
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner .deal-item-percent{padding: 27px 0 20px; font-size: 58px; text-align: center ;  }
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner .deal-item-image{padding: 0 0 47px; }
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner .deal-item-price { float: left;font-size: 15px;padding: 0 25px; position: absolute; }
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner .deal-item-price .old-price {float: left ; width: 100% ; text-decoration: line-through; }
+.deals-wrapper .flex-viewport ul li.deal-item .deal-item-inner .deal-item-price .new-price {float: left ; width: 100% ;  }
+.deals-wrapper .flex-control-paging {bottom: 0 ;}
 /* Overlay style */
 .overlay {
     position: fixed;

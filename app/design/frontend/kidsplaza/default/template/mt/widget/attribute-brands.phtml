@@ -41,11 +41,14 @@ $title      = $this->getConfig('widget_title');
     </script>
 <?php endif ?>
 <div class="slider-attribute-wrapper<?php echo $scroll==1 ? ' flexslider' : ''?>" id="<?php echo $id ?>">
+    <div class="bg-title-inner">&nbsp;</div>
     <?php if ($title):?>
-        <h2 class="" type="button"><?php echo $title?></h2>
+        <div class="title"><h2 class="" type="button"><?php echo $title?></h2></div>
     <?php endif ?>
-    <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-    <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    <div class="flex-direction-nav">
+            <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+            <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+    </div>
     <ul class="slides">
         <?php foreach ($attributes as $attribute): ?>
             <li class="slide">
