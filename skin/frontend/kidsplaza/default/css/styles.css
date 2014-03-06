@@ -14,9 +14,10 @@
 .ratings-list {float:left;}
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
-.product-view .more-views-nav{ display: block; font-size: 20px; color: #888; width: 100%;text-align: center;padding: 10px 0;}
+.product-view .more-views-nav{  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
+.product-view .more-views-nav .glyphicon { color: #eeeeee ; font-size: 60%;top: -5px;}
 .product-view .more-views {float: left; margin:0 auto; position:relative;}
-.product-view .more-views .active {border: 2px solid #0000ff;}
+.product-view .more-views .active {border: 2px solid #007d9e;}
 .product-view .more-views img {border: 2px solid #fff;}
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price {font-size: 30px;}
@@ -29,6 +30,7 @@
 .table .value{background: #fff !important;}
 .product-view .desc{padding: 10px;}
 .show-more,.show-less{text-align: center;}
+
 ul,ol{margin:0;padding:0}
 ul li,ol li{list-style:none}
 body{font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
@@ -212,6 +214,9 @@ input,textarea{outline:0}
 .products-grid  .item { border: 1px solid #ffffff;}
 .products-grid  .item:hover { border: 1px solid #d5d5d5 ;box-shadow: 0 0 5px #d5d5d5 ;}
 .products-grid  .item:hover .actions { opacity: 1;}
+.products-grid  .item .price-discount {transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 35px; width: 35px; line-height: 35px; color: #fff ; font-weight: bold ; font-size: 80% ; background: url("../images/bgLable.png" ) no-repeat -70px 0;}
+
+.product-img-box .price-discount { transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 83px; width: 83px; line-height: 83px; color: #fff ; font-weight: bold ; font-size: 150% ; background: url("../images/bgLable.png" ) no-repeat 0px -35px;}
 .price-box .old-price .price{text-decoration:line-through}
 .price-box .old-price{margin:0}
 .toolbar .btn{padding:2px 10px}
@@ -236,7 +241,6 @@ input,textarea{outline:0}
 .sidebar .panel-info .panel-heading { border-top:1px solid #ededed  ; padding: 10px 0 ; box-shadow: none ;}
 .sidebar .panel-info:first-child .panel-heading { border-top:none ;}
 .sidebar .panel-body{padding:10px 0 ;}
-.sidebar .has-scroll{padding: 10px 0 10px 10px;}
 .panel,.panel-heading{border-radius:0}
 .filter-remove i{font-size:12px;color:#d9534f}
 .state-item{text-align:right}
@@ -457,10 +461,14 @@ p.back-link{float: left;}
 .col-right .block-blogs li .glyphicon{ color: #969696 ; float: left ;display: block ; margin: 0 3px 0 0; }
 
 .catalog-category-view .col-left  { background: url("../images/bgLeft.png") no-repeat scroll right center ; }
-.catalog-category-view .breadcrumb {background:  none ; border-radius :0 ; padding:  0 ;  }
-.catalog-category-view .breadcrumb li a{ color: #686868 ; font-size: 13px ; }
-.catalog-category-view .breadcrumb li { color: #f74d89 ; font-size: 13px ; }
+.breadcrumb {background:  none ; border-radius :0 ; padding:  0 ;  }
+.breadcrumb li a{ color: #686868 ; font-size: 13px ; }
+.breadcrumb li { color: #f74d89 ; font-size: 13px ; }
+.breadcrumb > li + li:before {color: #CCCCCC;content: "> ";padding: 0 5px;}
 .block-layered-nav {padding: 0 10px;}
+
+
+.flex-viewport ul li.deal-item {padding: 30px 0 ;}
 /* Overlay style */
 .overlay {
     position: fixed;
@@ -477,7 +485,7 @@ p.back-link{float: left;}
     position: relative;
     top: 50%;
     height: 60%;
-    -webkit-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%)
     transform: translateY(-50%);
 }
 .overlay ul {

@@ -40,9 +40,9 @@ $_id = $this->getConfig('id');
             <div class="deal-item-image">
                 <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
                     <img
-                        src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(200) ?>"
-                        width="200"
-                        height="200"
+                        src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(260) ?>"
+                        width="260"
+                        height="260"
                         alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
                 </a>
             </div>

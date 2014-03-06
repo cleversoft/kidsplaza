@@ -30,7 +30,7 @@
 	margin:20px 0;
 }
 .mCSB_scrollTools .mCSB_draggerRail{
-	width:2px;
+	width:7px;
 	height:100%;
 	margin:0 auto;
 	-webkit-border-radius:10px;
@@ -441,9 +441,8 @@
 	background:rgba(0,0,0,0.15);
 }
 .mCS-dark-thin>.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{
-	width:2px;
-	background:#000; /* rgba fallback */
-	background:rgba(0,0,0,0.75);
+	width:7px;
+	background: #0098cd; /* rgba fallback */
 }
 .mCS-dark-thin.mCSB_horizontal>.mCSB_scrollTools .mCSB_draggerRail{
 	width:100%;
