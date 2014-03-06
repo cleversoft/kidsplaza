@@ -5,31 +5,6 @@ jQuery(document).ready(function($){
             $('html,body').animate({scrollTop: x}, 500);
         }
     });
-    var state = false,
-        showComment = function (e) {
-            $(e).addClass("active");
-            var main = $(e).attr('data-form');
-            $('#'+main).show();
-        },
-        hideComment = function(e) {
-            $(e).removeClass("active");
-            var main = $(e).attr('data-form');
-            $('#'+main).hide();
-        };
-
-    $(".btn-reply").click(function(e){
-        e.preventDefault();
-        if(!state){
-            showComment(this);
-        } else {
-            hideComment(this);
-        }
-        state = !state;
-    });
-    $(".cancel-reply").click(function(){
-        $(this).parents('.comment-box').hide();
-        state = false;
-    });
 
     $('.rating-links a.rating-reviews').click(function(){
         $('#customer-reviews').scrollToMe();
@@ -52,7 +27,57 @@ jQuery(document).ready(function($){
         var inputs = $(this).parents('.rating-type-item').find('input');
         inputs.attr("checked", false);
     });
+    $('#customer-reviews button.btn-load-more').on('click',function(e){
+        callbackFunc($(this));
+    });
+    $('#review_field').on('click',function(){
+        $(this).next().show();
+    });
 });
+function showComment(e) {
+    jQuery(e).addClass("active");
+    var main = jQuery(e).attr('data-form');
+    jQuery('#'+main).show();
+}
+function hideComment(e) {
+    jQuery(e).removeClass("active");
+    var main = jQuery(e).attr('data-form');
+    console.log(main);
+    jQuery('#'+main).hide();
+}
+function sendLoadMoreRequest(url)
+{
+    jQuery.ajax( {
+        url : url,
+        success : function(data) {
+            var items = jQuery(data).find('#customer-reviews li.item');
+            var mainReview = jQuery('#customer-reviews ul.item_reviews');
+            items.each(function(i,el){
+                jQuery(el).appendTo(jQuery(mainReview));
+            });
+            jQuery('#customer-reviews .loading').css('visibility','hidden');
+            if(!jQuery(data).find('.next.i-next')[0]){
+                jQuery('#customer-reviews button.btn-load-more').hide();
+            }else{
+                jQuery('#customer-reviews button.btn-load-more').show();
+                jQuery('.next.i-next').attr('href', jQuery(data).find('.next.i-next').attr('href'));
+            }
+        }
+    });
+}
+
+function callbackFunc(e)
+{
+    if(jQuery('.next.i-next')[0]){
+        var nextPageUrl = jQuery('.next.i-next').attr("href");
+        jQuery('#customer-reviews button.btn-load-more').hide();
+        jQuery('#customer-reviews .loading').css('visibility','visible');
+        sendLoadMoreRequest(nextPageUrl);
+    }
+    else{
+        jQuery('#customer-reviews button.btn-load-more').hide();
+    }
+}
 
 if(jQuery('#review-form').length){
     var dataForm = new VarienForm('review-form');
@@ -143,9 +168,11 @@ function commentReview(event,reviewId){
     var content = jQuery("#comment_detail_"+reviewId).val();
     var url = Comment.link+'reviewId/'+reviewId;
     var main = jQuery(event).parents('.mt-review-footer').find('.comments-list');
+    var commentlist = jQuery(event).parents('.mt-review-footer').find('.mt-comments-list')
     if(content){
         jQuery(event).prev().show();
         data = 'content='+content+'&isAjax=1';
+
         try {
             jQuery.ajax( {
                 url : url,
@@ -157,15 +184,23 @@ function commentReview(event,reviewId){
                         jQuery("#commnet_field_"+reviewId).hide();
                         jQuery("#comment_detail_"+reviewId).val('');
                         jQuery(event).prev().hide();
+
                         var li = jQuery("<li/>").addClass('media');
                         jQuery("<span/>").addClass('img pull-left').html('<img src="'+dataComment.pathUrl+'"/>').appendTo(jQuery(li));
                         var mediaBody = jQuery("<div/>").addClass('media-body').appendTo(jQuery(li));
                         var spanMainReview = jQuery("<span/>").addClass("main-review").appendTo(jQuery(mediaBody));
                         jQuery("<span/>").addClass("created_by")
-                                            .html('<span class="created">'+data.customer+'</span><small class="date"> (Posted on '+data.date+')</small>')
+                                            .html('<span class="created">'+data.customer+'</span><small class="date"> '+data.date+'</small>')
                                             .appendTo(jQuery(spanMainReview));
                         jQuery("<span/>").addClass("review-detail").html(data.content).appendTo(jQuery(mediaBody));
-                        jQuery(main).prepend(jQuery(li));
+                        if(jQuery(main).length){
+                            jQuery(main).prepend(jQuery(li));
+                        }else{
+                            var div = jQuery("<div/>").addClass('main-comments').appendTo(jQuery(commentlist));
+                            var ul = jQuery("<ul/>").addClass('comments-list').appendTo(jQuery(div));
+                            jQuery(li).appendTo(jQuery(ul));
+                        }
+
                     }
                 }
             });

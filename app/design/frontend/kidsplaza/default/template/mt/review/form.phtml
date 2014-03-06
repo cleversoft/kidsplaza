@@ -37,30 +37,26 @@
                 </div>
                 <input type="hidden" name="validate_rating" class="validate-rating" value="" />
             <?php endif; ?>
-                <ul class="form-list">
-                    <li>
-                        <label for="nickname_field" class="required"><em>*</em><?php echo $this->__('Nickname') ?></label>
-                        <div class="input-box">
-                            <input type="text" name="nickname" id="nickname_field" class="input-text required-entry form-control" value="<?php echo $this->escapeHtml($data->getNickname()) ?>" />
+                <div class="form-list media">
+                    <span class="author-img img pull-left"><img src="<?php echo $this->getSkinUrl().'images/comment-default-avatar.jpg'?>"/> </span>
+                    <div class="media-body">
+                        <textarea name="detail" id="review_field" cols="5" rows="3" class="required-entry form-control" placeholder="<?php echo $this->__('Enter your review');?>"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
+                        <div class="form-field">
+                            <div class="input-box">
+                                <label for="summary_field"><?php echo $this->__('Summary of Your Review') ?></label>
+                                <input type="text" name="title" id="summary_field" class="input-text form-control" value="<?php echo $this->escapeHtml($data->getTitle()) ?>" />
+                            </div>
+                            <div class="input-box">
+                                <label for="nickname_field" class="required"><em>*</em><?php echo $this->__('Nickname') ?></label>
+                                <input type="text" name="nickname" id="nickname_field" class="input-text required-entry form-control" value="<?php echo $this->escapeHtml($data->getNickname()) ?>" />
+                            </div>
+                            <div class="buttons-set">
+                                <button type="submit" title="<?php echo $this->__('Submit Review') ?>" class="button btn-kid btn"><span><span><?php echo $this->__('Submit Review') ?></span></span></button>
+                            </div>
                         </div>
-                    </li>
-                    <li>
-                        <label for="summary_field" class="required"><em>*</em><?php echo $this->__('Summary of Your Review') ?></label>
-                        <div class="input-box">
-                            <input type="text" name="title" id="summary_field" class="input-text required-entry form-control" value="<?php echo $this->escapeHtml($data->getTitle()) ?>" />
-                        </div>
-                    </li>
-                    <li>
-                        <label for="review_field" class="required"><em>*</em><?php echo $this->__('Review') ?></label>
-                        <div class="input-box">
-                            <textarea name="detail" id="review_field" cols="5" rows="3" class="required-entry form-control"><?php echo $this->escapeHtml($data->getDetail()) ?></textarea>
-                        </div>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </fieldset>
-            <div class="buttons-set">
-                <button type="submit" title="<?php echo $this->__('Submit Review') ?>" class="button btn-kid btn"><span><span><?php echo $this->__('Submit Review') ?></span></span></button>
-            </div>
     </form>
     <script type="text/javascript">
         //<![CDATA[

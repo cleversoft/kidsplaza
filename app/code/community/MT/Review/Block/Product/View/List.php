@@ -66,6 +66,17 @@ class MT_Review_Block_Product_View_List extends MT_Review_Block_Product_View
         }
     }
 
+    public function getTimeFormat($createdDate)
+    {
+        $helper = Mage::helper('mtreview');
+        return $helper->renderFormatTime($createdDate);
+    }
+
+    public function getFormatDate($date)
+    {
+        return Mage::getModel('core/date')->date('d/m/Y', strtotime($date));
+    }
+
     public function getReviewUrl($id)
     {
         return Mage::getUrl('*/*/view', array('id' => $id));
