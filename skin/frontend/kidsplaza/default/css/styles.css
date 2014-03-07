@@ -580,6 +580,9 @@ p.back-link{float: left;}
 .product-view .product-image{
     float: right;
 }
-.product-view .more-views{
-
+.root-category .item{
+    margin-top: 10px;
+}
+.root-category .products-grid .product-name{
+    height: 40px;
 }

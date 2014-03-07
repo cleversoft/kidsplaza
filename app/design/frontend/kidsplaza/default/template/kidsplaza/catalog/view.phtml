@@ -13,7 +13,7 @@ $_category = $this->getCategory();
 <div class="category-products root-category">
     <?php $column = 5 ?>
     <?php $categories = $_category->getChildrenCategories() ?>
-    <?php $i=0;foreach ($categories as $c): ?>
+    <?php $i=0; foreach ($categories as $c): ?>
         <?php /** @var $c Mage_Catalog_Model_Category */ ?>
         <?php $c->load($c->getId(), array('image')) ?>
         <?php if ($i++ % $column === 0): ?>
@@ -28,7 +28,8 @@ $_category = $this->getCategory();
             </a>
             <?php if ($c->hasChildren()): ?>
             <ul>
-                <?php foreach ($c->getChildrenCategories() as $cc): ?>
+                <?php $j=1; foreach ($c->getChildrenCategories() as $cc): ?>
+                    <?php if ($j++ > 4) break ?>
                     <li>
                         <a href="<?php echo $cc->getUrl() ?>">
                             <?php echo $this->escapeHtml($cc->getName()) ?>
