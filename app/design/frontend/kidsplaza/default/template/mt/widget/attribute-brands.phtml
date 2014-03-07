@@ -32,7 +32,7 @@ $title      = $this->getConfig('widget_title');
         };
     </script>
 <?php endif ?>
-<div class="attribute-carousel-wrapper">
+<div class="attribute-carousel-wrapper ">
     <?php if ($title): ?>
         <div class="bg-title-inner">&nbsp;</div>
         <div class="title"><h2 class=""><?php echo $title ?></h2></div>
@@ -41,7 +41,7 @@ $title      = $this->getConfig('widget_title');
             <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
             <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
-    <div class="<?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
+    <div class="slider-attribute-wrapper <?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
         <?php foreach ($attributes as $attribute): ?>
             <div>
                 <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
