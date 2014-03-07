@@ -61,13 +61,13 @@
             <?php echo $this->getChildHtml('extrahint') ?>
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6 desc">
                     <?php echo $_helper->productAttribute($_product, nl2br($this->stripTags($_product->getShortDescription(), '<ul><li>')), 'short_description') ?>
                     <p class="desc-more">
                         <a href="javascript:void(0)" onclick="jQuery('#product-description').scrollToMe()"><?php echo $this->__('See more') ?> &raquo;</a>
                     </p>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 right-desc">
                     <?php if (!$this->hasOptions()):?>
                         <?php echo $this->getChildHtml('addtocart') ?>
                         <?php //echo $this->getChildHtml('addto') ?>
@@ -95,7 +95,8 @@
     <div id="product-description">
         <h2><?php echo $this->__('Description') ?></h2>
         <?php echo $this->getChildHtml('product_description') ?>
-    </div>
+    </div>        <?php echo $this->getChildHtml('product_description') ?>
+
     <div id="product-upsell">
         <?php echo $this->getChildHtml('product_upsell') ?>
     </div>
