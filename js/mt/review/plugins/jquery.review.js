@@ -168,11 +168,9 @@ function commentReview(event,reviewId){
     var content = jQuery("#comment_detail_"+reviewId).val();
     var url = Comment.link+'reviewId/'+reviewId;
     var main = jQuery(event).parents('.mt-review-footer').find('.comments-list');
-    var commentlist = jQuery(event).parents('.mt-review-footer').find('.mt-comments-list')
     if(content){
         jQuery(event).prev().show();
         data = 'content='+content+'&isAjax=1';
-
         try {
             jQuery.ajax( {
                 url : url,
@@ -193,18 +191,43 @@ function commentReview(event,reviewId){
                                             .html('<span class="created">'+data.customer+'</span><small class="date"> '+data.date+'</small>')
                                             .appendTo(jQuery(spanMainReview));
                         jQuery("<span/>").addClass("review-detail").html(data.content).appendTo(jQuery(mediaBody));
-                        if(jQuery(main).length){
-                            jQuery(main).prepend(jQuery(li));
-                        }else{
-                            var div = jQuery("<div/>").addClass('main-comments').appendTo(jQuery(commentlist));
-                            var ul = jQuery("<ul/>").addClass('comments-list').appendTo(jQuery(div));
-                            jQuery(li).appendTo(jQuery(ul));
-                        }
-
+                        jQuery(main).prepend(jQuery(li));
                     }
                 }
             });
         } catch (e) {
         }
+    }
+}
+function showMoreComments(el,reviewId)
+{
+    var url = dataComment.moreUrl+'review/'+reviewId;
+    var main = jQuery(el).parents('.mt-review-footer').find('.comments-list');
+    var page = jQuery('#curent_page_review_'+reviewId);
+    var pagesize = jQuery(main).find('li.media').length;
+    var more = jQuery(el).parent();
+    jQuery(el).hide();
+    jQuery(el).prev().css('visibility','visible');
+    data = '&pagesize='+pagesize+'&isAjax=1';
+    try {
+        jQuery.ajax( {
+            url : url,
+            dataType : 'json',
+            data: data,
+            type: 'post',
+            success : function(data) {
+                if(data.page){
+                    jQuery(page).val(data.page)
+                    jQuery(el).prev().css('visibility','hidden');
+                    jQuery(el).show()
+                    jQuery(data.output).not('.comments-more').each(function(){
+                        jQuery(more).before(jQuery(this));
+                    });
+                }else{
+                    jQuery(more).hide();
+                }
+            }
+        });
+    } catch (e) {
     }
 }

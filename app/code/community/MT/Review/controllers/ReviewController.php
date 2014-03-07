@@ -95,6 +95,34 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
         }
     }
 
+    public function moreAction()
+    {
+        $params = $this->getRequest()->getParams();
+        if($params['isAjax'] == 1 && $params['review']){
+            $response = array();
+            try {
+                $start = $params['pagesize'];
+                $end = $start+4;
+                $collection = Mage::getModel('mtreview/comment')->getCollection()
+                    ->addReviewFilter($params['review'])
+                    ->addStoreFilter(Mage::app()->getStore()->getId())
+                    ->setDateOrder('DESC');
+                $collection->getSelect()->limit($end, $start);
+                $commentsHtml  = $this->getLayout()->createBlock('mtreview/comments_list')
+                                 ->setTemplate('mt/review/comments/list.phtml')->setCollection($collection)
+                                 ->toHTML();
+                $this->getResponse()->setBody($commentsHtml);
+                count($collection)>0? $response['page'] = $params['curpage']+1 : $response['page'] = null;
+                $response['status'] = 'SUCCESS';
+                $response['output'] = $commentsHtml;
+            } catch (Exception $e) {
+                Mage::logException($e);
+            }
+            $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($response));
+        }
+
+    }
+
     public function getTimeFormat($createdDate)
     {
         $helper = Mage::helper('mtreview');

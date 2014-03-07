@@ -12,7 +12,7 @@
  * ------------------------------------------------------------------------------
  *
  */
-class MT_Review_Block_Comments_List extends MT_Review_Block_Product_View
+class MT_Review_Block_Comments_List extends Mage_Core_Block_Template
 {
     protected $_reviewId;
 

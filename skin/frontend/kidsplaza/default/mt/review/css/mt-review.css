@@ -260,3 +260,18 @@ em.required{
 .mt-review-main .media-body textarea {
     height: 4em;
 }
+.mt-comments-list .comments-list .comments-more {
+    position: relative;
+}
+.mt-comments-list .comments-list .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+.mt-comments-list .comments-list a {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+}

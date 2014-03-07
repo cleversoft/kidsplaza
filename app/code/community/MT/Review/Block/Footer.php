@@ -42,4 +42,17 @@ class MT_Review_Block_Footer extends Mage_Core_Block_Template
         $helper = Mage::helper('mtreview');
         return $helper->confShowHelpfulness();
     }
+
+    public function getShowMoreUrl()
+    {
+        if ( $this->_reviewId )
+        {
+            return Mage::getUrl('mtreview/review/more/');
+        }
+        else
+        {
+            return '#';
+        }
+    }
+
 }

@@ -41,6 +41,15 @@
     </div>
     <?php }?>
     <div class="mt-comments-list">
-        <?php echo $this->getChild('mtreview_comments')->setReviewId($this->getReviewId())->toHtml();?>
+        <div class="main-comments">
+            <ul class="comments-list">
+                <?php echo $this->getChild('mtreview_comments')->setReviewId($this->getReviewId())->toHtml();?>
+            </ul>
+            <script type="text/javascript">
+                dataComment = {};
+                dataComment.pathUrl = '<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>';
+                dataComment.moreUrl = '<?php echo $this->getShowMoreUrl();?>';
+            </script>
+        </div>
     </div>
 </div>

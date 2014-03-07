@@ -14,10 +14,14 @@
  */
 $storeName = Mage::app()->getStore()->getName();
 ?>
-<?php $_items = $this->getCommentsCollection(); ?>
+<?php
+if($this->getCollection()){
+    $_items = $this->getCollection();
+}else{
+    $_items = $this->getCommentsCollection();
+}
+?>
 <?php if(count($_items)):?>
-<div class="main-comments">
-    <ul class="comments-list">
     <?php $i= 0; foreach($_items as $_item){?>
         <?php if($i<=3){?>
         <li class="media">
@@ -37,13 +41,10 @@ $storeName = Mage::app()->getStore()->getName();
         <?php }?>
     <?php $i++; }?>
         <?php if(count($_items)>4):?>
-        <li class="comments-list"><a onclick="return showMoreComments(this);"> <?php echo $this->__('Show more comments');?></a></li>
+        <li class="comments-more">
+            <span class="loading"><?php echo $this->__('Loading...');?></span>
+            <a onclick="return showMoreComments(this,'<?php echo $this->getReviewId();?>');"> <?php echo $this->__('Show more comments');?></a>
+        </li>
         <?php endif;?>
-    </ul>
-</div>
-<script type="text/javascript">
-    dataComment = {};
-    dataComment.pathUrl = '<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>';
-</script>
 <?php endif;?>
 
