@@ -15,18 +15,18 @@
             <reference name="head">
                 <!--action method="addItem" ifconfig="mtattribute/czoom/enable">
                     <type>js_css</type><file>mt/extensions/jquery/plugins/cloudzoom/cloud-zoom.css</file>
-                </action-->
+                </action>
                 <action method="addItem">
                     <type>js_css</type><file>mt/extensions/jquery/plugins/flexslider/flexslider.css</file>
-                </action>
+                </action-->
             </reference>
             <reference name="js_bottom">
                 <!--action method="addItem" ifconfig="mtattribute/czoom/enable">
                     <type>js</type><file>mt/extensions/jquery/plugins/cloudzoom/cloud-zoom.1.0.3.js</file>
-                </action-->
+                </action>
                 <action method="addItem">
                     <type>js</type><file>mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js</file>
-                </action>
+                </action-->
             </reference>
             <!--action method="setTemplate" ifconfig="mtattribute/czoom/enable">
                 <file>mt/attribute/catalog/product/view/media.phtml</file>

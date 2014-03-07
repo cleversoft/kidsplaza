@@ -27,4 +27,10 @@ jQuery(function(){
         if (!window[id]) return;
         jQuery('#'+id).show().revolution(window[id]);
     });
+    //init carousel
+    jQuery('.owl-carousel').each(function(i, slider){
+        var id = jQuery(slider).attr('id');
+        if (!id || !window[id]) return;
+        jQuery(slider).owlCarousel(window[id]);
+    });
 });

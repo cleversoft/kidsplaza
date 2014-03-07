@@ -29,67 +29,40 @@
 $_productCollection = $this->getLoadedProductCollection();
 $_helper            = $this->helper('catalog/output');
 $_collectionSize    = $_productCollection ? $_productCollection->count() : 0;
-$_rowCount          = $this->getConfig('row');
-$_scroll            = $this->getConfig('scroll');
-$_column            = $this->getConfig('column');
-$_columnCount       = $_scroll==1 ? $this->getConfig('limit') : $_column;
 $_id                = $this->getConfig('id');
 $_title             = $this->getConfig('widget_title');
 ?>
 <?php if($_collectionSize): ?>
-    <?php if ($_scroll == 1):?>
-        <script type="text/javascript">
-            <?php echo $_id?> = {
-                responsive: <?php echo $this->getConfig('responsive')?>,
-                config: {
-                    namespace: '<?php echo $this->getConfig('namespace')?>',
-                    slideshow: <?php echo $this->getConfig('autoplay')?>,
-                    slideshowSpeed: <?php echo $this->getConfig('speed')?>,
-                    animationLoop: <?php echo $this->getConfig('loop')?>,
-                    controlNav: false,
-                    directionNav: false,
-                    itemMargin: <?php echo $this->getConfig('margin')?>,
-                    move: <?php echo $this->getConfig('move')?>,
-                    start: function(e){
-                        jQuery('.btn-prev', e).click(function(){
-                            e.flexAnimate(e.getTarget("prev"), true);
-                            setTimeout(function(){
-                                e.find('img.lazy').trigger('widgetnav');
-                            }, e.vars.animationSpeed);
-                        });
-                        jQuery('.btn-next', e).click(function(){
-                            e.flexAnimate(e.getTarget("next"), true);
-                            setTimeout(function(){
-                                e.find('img.lazy').trigger('widgetnav');
-                            }, e.vars.animationSpeed);
-                        });
-                    }
-                }
-            };
-        </script>
-    <?php endif ?>
-    <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
+    <script type="text/javascript">
+        <?php echo $_id ?> = {
+            items: <?php echo $this->getConfig('items') ?>,
+            autoPlay: <?php echo $this->getConfig('autoplay') ?>,
+            pagination: <?php echo $this->getConfig('paging') ?>,
+            afterInit: function(slider){
+                var parent = jQuery(slider).parent();
+                jQuery('.btn-prev', parent).click(function(){
+                    jQuery(slider).data('owlCarousel').prev();
+                });
+                jQuery('.btn-next', parent).click(function(){
+                    jQuery(slider).data('owlCarousel').next();
+                });
+            }
+        };
+    </script>
+    <div class="upsell-carousel-wrapper category-products">
         <?php if ($_title):?>
             <h3>
-                <a href="<?php echo $this->getConfig('href')?>"><?php echo $_title?></a>
-                <span class="badge"><?php echo $this->getData('product_count')?></span>
+                <a href="<?php echo $this->getConfig('href')?>"><?php echo $_title ?></a>
+                <span class="badge"><?php echo $this->getData('product_count') ?></span>
             </h3>
         <?php endif ?>
         <div class="btn-group">
             <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
             <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
         </div>
+        <div class="products-grid owl-carousel" id="<?php echo $_id ?>">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
-            <?php if ($_scroll==1 && $_rowCount>1 && $i==0):?>
-                <div class="slides">
-            <?php endif ?>
-            <?php if ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0):?>
-                <!--start slide--><div class="slide">
-            <?php endif ?>
-            <?php if ($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
-                <ul class="products-grid<?php echo $_scroll==1 && $_rowCount==1 ? ' slides' : ''?>">
-            <?php endif ?>
-            <li class="slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1)): ?> first<?php elseif($i+1==$_collectionSize): ?> last<?php endif; ?>">
+            <div class="item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
@@ -114,16 +87,8 @@ $_title             = $this->getConfig('widget_title');
                         </button>
                     <?php endif; ?>
                 </div>
-            </li>
-            <?php if ($i%$_columnCount==0 || $i==$_collectionSize || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
-                </ul>
-            <?php endif ?>
-            <?php if ($_scroll==1 && $_rowCount>1 && ($i%$_rowCount==0 || $i==$_collectionSize)):?>
-                </div><!--end slide-->
-            <?php endif ?>
-            <?php if ($_scroll==1 && $_rowCount>1 && $i==$_collectionSize):?>
-                </div>
-            <?php endif ?>
+            </div>
         <?php endforeach ?>
+        </div>
     </div>
 <?php endif; ?>

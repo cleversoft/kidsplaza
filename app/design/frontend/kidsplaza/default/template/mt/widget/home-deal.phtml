@@ -12,43 +12,33 @@ $_id = $this->getConfig('id');
 ?>
 <script type="text/javascript">
     <?php echo $_id ?> = {
-        responsive: <?php echo $this->getConfig('responsive')?>,
-        config: {
-            namespace: '<?php echo $this->getConfig('namespace')?>',
-            slideshow: <?php echo $this->getConfig('autoplay')?>,
-            slideshowSpeed: <?php echo $this->getConfig('speed')?>,
-            animationLoop: <?php echo $this->getConfig('loop')?>,
-            controlNav: <?php echo $this->getConfig('paging')?>,
-            directionNav: false,
-            itemMargin: <?php echo $this->getConfig('margin')?>,
-            move: <?php echo $this->getConfig('move')?>,
-            selector: 'ul > li'
-        }
+        items: <?php echo $this->getConfig('items') ?>,
+        autoPlay: <?php echo $this->getConfig('autoplay') ?>,
+        pagination: <?php echo $this->getConfig('paging') ?>,
+        singleItem: true
     };
 </script>
-<div class="deals-wrapper flexslider" id="<?php echo $_id ?>">
-    <ul>
+<div class="deals-wrapper owl-carousel" id="<?php echo $_id ?>">
     <?php foreach ($this->getProductCollection() as $product): ?>
         <li class="deal-item">
             <div class="deal-item-inner">
-                    <div class="deal-item-percent">
-                         <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
-                    </div>
-                    <div class="deal-item-price">
-                        <span class="old-price"><?php echo $product->getPrice() ?></span>
-                        <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
-                    </div>
-                    <div class="deal-item-image">
-                        <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
-                            <img
-                                src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(250) ?>"
-                                width="250"
-                                height="250"
-                                alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
-                        </a>
-                    </div>
+                <div class="deal-item-percent">
+                     <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
+                </div>
+                <div class="deal-item-price">
+                    <span class="old-price"><?php echo $product->getPrice() ?></span>
+                    <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
+                </div>
+                <div class="deal-item-image">
+                    <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">
+                        <img
+                            src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(250) ?>"
+                            width="250"
+                            height="250"
+                            alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
+                    </a>
+                </div>
             </div>
         </li>
     <?php endforeach ?>
-    </ul>
 </div>

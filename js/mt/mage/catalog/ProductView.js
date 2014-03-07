@@ -163,4 +163,10 @@ jQuery(function(){
             jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
         });
     });
+    //init carousel
+    jQuery('.owl-carousel').each(function(i, slider){
+        var id = jQuery(slider).attr('id');
+        if (!id || !window[id]) return;
+        jQuery(slider).owlCarousel(window[id]);
+    });
 });

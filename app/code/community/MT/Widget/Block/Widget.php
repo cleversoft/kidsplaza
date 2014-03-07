@@ -21,10 +21,14 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     protected function _prepareLayout(){
         $js = $this->getLayout()->getBlock('js_bottom');
         //$js->addJs('mt/extensions/jquery/jquery-1.10.2.min.js');
-        $js->addJs('mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js');
-        $js->addJs('mt/widget/frontend.js');
+        //$js->addJs('mt/extensions/jquery/plugins/flexslider/jquery.flexslider.js');
+        $js->addJs('mt/extensions/jquery/plugins/owl-carousel/owl.carousel.js');
+        //$js->addJs('mt/widget/frontend.js');
         $css = $this->getLayout()->getBlock('head');
-        $css->addItem('js_css', 'mt/extensions/jquery/plugins/flexslider/flexslider.css');
+        //$css->addItem('js_css', 'mt/extensions/jquery/plugins/flexslider/flexslider.css');
+        $css->addItem('js_css', 'mt/extensions/jquery/plugins/owl-carousel/owl.carousel.css');
+        $css->addItem('js_css', 'mt/extensions/jquery/plugins/owl-carousel/owl.theme.css');
+        $css->addItem('js_css', 'mt/extensions/jquery/plugins/owl-carousel/owl.transitions.css');
         return parent::_prepareLayout();
     }
 
@@ -172,8 +176,11 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         return $options;
     }
 
-    public function getConfig($name){
+    public function getConfig($name, $param=null){
         switch ($name){
+            case 'items':
+                return $this->getData('maxitems') ? (int)$this->getData('maxitems') : 5;
+                break;
             case 'href':
                 $href = $this->getData('href');
                 return $href ? (strpos($href, 'http') === 0 ? $href : $this->getUrl($href)) : '';
@@ -218,13 +225,15 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 return is_numeric($this->getData('speed')) ? $this->getData('speed') : 5000;
                 break;
             case 'autoplay':
-                return $this->getData('autoplay') ? 'true' : 'false';
+                $value = (int)$this->getData('autoplay');
+                if (!$value) return 'false';
+                return $value;
                 break;
             case 'namespace':
-                return $this->getData('namespace') ? $this->getData('namespace') : 'flex-';
+                return $this->getData('namespace') ? $this->getData('namespace') : 'owl-theme';
                 break;
             case 'id':
-                return Mage::helper('core')->uniqHash('flexslider_');
+                return Mage::helper('core')->uniqHash($param ? $param : 'carousel_');
                 break;
             case 'column':
                 return is_numeric($this->getData('column')) ? $this->getData('column') : 4;
@@ -242,7 +251,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 return is_numeric($this->getData('limit')) ? $this->getData('limit') : 1;
                 break;
             default:
-                return '';
+                return $this->getData($name);
                 break;
         }
     }

@@ -8,25 +8,27 @@
  */
 'use strict';
 
-jQuery('.flexslider').each(function(i, slider){
-    var id = slider.id;
-    if (!id && !window[id]) return;
+jQuery(function(){
+    jQuery('.flexslider').each(function(i, slider){
+        var id = slider.id;
+        if (!id && !window[id]) return;
 
-    var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column'),
-        config = {
-            minItems: itemsCount,
-            maxItems: itemsCount,
-            animation: 'slide',
-            selector: '.slides > .slide',
-            itemWidth: getFlexSliderItemWidth(id, window[id].responsive, 'width'),
-            onResize: function(slider){
-                var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column');
-                slider.vars.minItems = itemsCount;
-                slider.vars.maxItems = itemsCount;
-            }
-        };
+        var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column'),
+            config = {
+                minItems: itemsCount,
+                maxItems: itemsCount,
+                animation: 'slide',
+                selector: '.slides > .slide',
+                itemWidth: getFlexSliderItemWidth(id, window[id].responsive, 'width'),
+                onResize: function(slider){
+                    var itemsCount = getFlexSliderItemWidth(id, window[id].responsive, 'column');
+                    slider.vars.minItems = itemsCount;
+                    slider.vars.maxItems = itemsCount;
+                }
+            };
 
-    jQuery('#' + id).flexslider(jQuery.extend(config, window[id].config));
+        jQuery('#' + id).flexslider(jQuery.extend(config, window[id].config));
+    });
 });
 
 function getFlexSliderItemWidth(id, data, returnType){
@@ -35,8 +37,8 @@ function getFlexSliderItemWidth(id, data, returnType){
         if (!containerW) return;
         switch (data.type){
             case 'width':
-                if (returnType === 'width') return data.data;
-                else if (returnType === 'column'){
+                if (returnType == 'width') return data.data;
+                else if (returnType == 'column'){
                     return Math.floor(containerW / (data.data + data.margin * 2)) || 1;
                 }
                 break;
