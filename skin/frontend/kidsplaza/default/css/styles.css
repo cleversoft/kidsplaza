@@ -285,7 +285,7 @@ input,textarea{outline:0}
 .flexslider h3{height:34px;border-bottom:1px solid #ccc;margin-top: 0;}
 .flexslider h3 .badge{vertical-align:top;background-color:#f0ad4e;color:#fff}
 
-.attribute-carousel-wrapper {float: left ; width:  100% ; }
+.attribute-carousel-wrapper {float: left ; width:  100% ; position: relative ; }
 .attribute-carousel-wrapper .title {left: 0; position: absolute; text-align: center; top: -4px;width: 100%;}
 .attribute-carousel-wrapper  h2 {text-align: center ; font-weight: bold ; background:  #FFFFFF;color: #070707;display: inline-block;font-size: 210%; font-weight: 600; line-height: 25px; margin: 0; padding: 0 10px; text-transform: uppercase; color: #ff498b ;}
 .attribute-carousel-wrapper .bg-title-inner { height: 0.909em;overflow: hidden; width: 100%; z-index: 9;border-bottom: 1px solid #ebebeb ;}
