@@ -29,7 +29,7 @@ $_category = $this->getCategory();
             <?php if ($c->hasChildren()): ?>
             <ul>
                 <?php $j=1; foreach ($c->getChildrenCategories() as $cc): ?>
-                    <?php if ($j++ > 4) break ?>
+                    <?php if ($j++ > 3) break ?>
                     <li>
                         <a href="<?php echo $cc->getUrl() ?>">
                             <?php echo $this->escapeHtml($cc->getName()) ?>

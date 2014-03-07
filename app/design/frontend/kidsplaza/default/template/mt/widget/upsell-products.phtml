@@ -51,10 +51,7 @@ $_title             = $this->getConfig('widget_title');
     </script>
     <div class="upsell-carousel-wrapper category-products">
         <?php if ($_title):?>
-            <h3>
-                <a href="<?php echo $this->getConfig('href')?>"><?php echo $_title ?></a>
-                <span class="badge"><?php echo $this->getData('product_count') ?></span>
-            </h3>
+            <h3><?php echo $_title ?></h3>
         <?php endif ?>
         <div class="btn-group">
             <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>

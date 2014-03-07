@@ -18,19 +18,30 @@ jQuery(function(){
     }
     //init category banner
     if (jQuery.fn.owlCarousel){
-        jQuery('.owl-carousel').owlCarousel({
+        jQuery('.catalog-root-banner').owlCarousel({
             items: 1,
             autoPlay: true,
             navigation: false,
             pagination: false,
             transitionStyle: 'fadeUp'
         });
+        jQuery('.owl-carousel').each(function(i, slider){
+            var id = jQuery(slider).attr('id');
+            if (!id || !window[id]) return;
+            jQuery(slider).owlCarousel(window[id]);
+        });
     }
     //init filter scroller && list
     jQuery('.block-layered-nav .panel-body').each(function(i, container){
         initLayerFilterWithScrollAndList(container);
     });
+    //init equal height
+    ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
 });
+
+function ensureEqualHeight(select){
+    jQuery(select).equalHeights();
+}
 
 function initLayerFilterWithScrollAndList(container){
     if (jQuery(container).find('.filter-item').length > 15){

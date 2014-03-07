@@ -154,6 +154,8 @@ a.logo{margin-top:20px;display:block}
 .validation-advice{color:red;font-size:13px}
 input,textarea{outline:0}
 .form-solo .validation-advice{position:absolute;padding:5px 10px;font-size:13px;color:#a94442;background-color:#f2dede;border-color:#ebccd1;z-index:3}
+.block-subscribe .validation-advice{top: 40px;}
+#discount-coupon-form .validation-advice{top: 34px;}
 .footer-top{background:#f8f8f8;float:left;width:100%;margin-top:50px}
 .footer-top .footer-top-inner{float:left;padding:15px 0;width:100%}
 .footer-top .left-ft-top{background:#f8f8f8;position:relative}

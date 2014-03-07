@@ -77,6 +77,7 @@ MTFilter.prototype = {
         this.reInitLayer && this.layer.select('div.panel-body').each(function(container){
             initLayerFilterWithScrollAndList(container);
         });
+        ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
     },
     injectLoadMore: function(){
         var container = this.getDOM(this.config.loadDOM || '.toolbar .pages', true);
