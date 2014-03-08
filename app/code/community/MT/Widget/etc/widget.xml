@@ -64,6 +64,21 @@
             <block_xs>
                 <type>hidden</type>
             </block_xs>
+            <current_category translate="label description">
+                <label>Current Category</label>
+                <visible>1</visible>
+                <type>select</type>
+                <source_model>adminhtml/system_config_source_yesno</source_model>
+                <depends>
+                    <widget_type>
+                        <values>
+                            <product>product</product>
+                            <attribute>attribute</attribute>
+                        </values>
+                    </widget_type>
+                </depends>
+                <description>Collection filtered by current category</description>
+            </current_category>
             <category_ids translate="label description">
                 <label>Categories</label>
                 <visible>1</visible>
@@ -72,6 +87,9 @@
                     <widget_type>
                         <value>product</value>
                     </widget_type>
+                    <current_category>
+                        <value>0</value>
+                    </current_category>
                 </depends>
                 <description>If category is selected, the product collection will be filtered by this categories</description>
             </category_ids>

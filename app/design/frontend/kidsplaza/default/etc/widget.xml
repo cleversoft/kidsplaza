@@ -17,6 +17,10 @@
                 <visible>1</visible>
                 <type>select</type>
                 <values>
+                    <category_products translate="label">
+                        <value>mt/widget/category-products.phtml</value>
+                        <label>Category Products</label>
+                    </category_products>
                     <attribute_brand translate="label">
                         <value>mt/widget/attribute-brands.phtml</value>
                         <label>Attribute Brands</label>

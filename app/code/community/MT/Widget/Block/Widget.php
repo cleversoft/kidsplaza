@@ -52,7 +52,8 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             $this->getData('namespace'),
             $this->getData('speed'),
             $this->_customerGroupId,
-            Mage::registry('product') ? Mage::registry('product')->getId() : ''
+            Mage::registry('product') ? Mage::registry('product')->getId() : '',
+            Mage::registry('current_category') ? Mage::registry('current_category')->getId() : ''
         );
     }
 
@@ -594,22 +595,67 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     protected function getMostViewedCollection() {
-        $ids = Mage::getResourceModel('reports/product_collection')->addViewsCount()->load()->getLoadedIds();
-        $catIds = $this->getCategoryIds();
-        if($catIds) {
-            $catIds = explode(',', $catIds);
-            $arr_productids = array_intersect($ids, $this->getProductIdsByCategories($catIds));
-            $products = Mage::getResourceModel('catalog/product_collection')
-                ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
-                ->addMinimalPrice()
-                ->addFinalPrice()
-                ->addUrlRewrite()
-                ->addTaxPercents()
-                ->addStoreFilter()
-                ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
-                ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
-                ->addIdFilter($arr_productids);
-            $products->getSelect()->order(sprintf('FIELD(e.entity_id, %s)', implode(',', $arr_productids)));
+        if ($this->getCurrentCategory()){
+            $catIds = Mage::registry('current_category') ? array(Mage::registry('current_category')) : array();
+        }else{
+            $catIds = explode(',', $this->getCategoryIds());
+        }
+
+        if (count($catIds)){
+            if (count($catIds) == 1){
+                $products = Mage::getResourceModel('catalog/product_collection')
+                    ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+                    ->addMinimalPrice()
+                    ->addFinalPrice()
+                    ->addStoreFilter()
+                    ->addUrlRewrite()
+                    ->addTaxPercents()
+                    ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+                    ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
+
+                $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+                $storeId = (int)Mage::app()->getStore()->getId();
+
+                $select = $connection->select()
+                    ->from('report_event', array('object_id', 'views' => 'COUNT(report_event.event_id)'))
+                    ->join('report_event_types', 'report_event.event_type_id = report_event_types.event_type_id', array())
+                    ->where('report_event_types.event_name = ?', 'catalog_product_view')
+                    ->where('report_event.store_id = ?', $storeId)
+                    ->group('report_event.object_id')
+                    ->order('views desc')
+                    ->having('views > ?', 0);
+
+                $products->getSelect()->join(
+                    array('e2' => $select),
+                    join(' AND ', array('e2.object_id = e.entity_id')),
+                    array()
+                );
+
+                if ($catIds[0] instanceof Mage_Catalog_Model_Category){
+                    $products->addCategoryFilter($catIds[0]);
+                }elseif (is_numeric($catIds[0])){
+                    $category = Mage::getModel('catalog/category')->load($catIds[0]);
+                    $products->addCategoryFilter($category);
+                    unset($category);
+                }
+
+                unset($connection, $select);
+            }else{
+                $ids = Mage::getResourceModel('reports/product_collection')->addViewsCount()->load()->getLoadedIds();
+                $catIds = explode(',', $catIds);
+                $arr_productids = array_intersect($ids, $this->getProductIdsByCategories($catIds));
+                $products = Mage::getResourceModel('catalog/product_collection')
+                    ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+                    ->addMinimalPrice()
+                    ->addFinalPrice()
+                    ->addUrlRewrite()
+                    ->addTaxPercents()
+                    ->addStoreFilter()
+                    ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+                    ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
+                    ->addIdFilter($arr_productids);
+                $products->getSelect()->order(sprintf('FIELD(e.entity_id, %s)', implode(',', $arr_productids)));
+            }
         } else {
             $products = Mage::getResourceModel('catalog/product_collection')
                 ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
