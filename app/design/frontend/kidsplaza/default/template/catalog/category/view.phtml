@@ -64,21 +64,7 @@
 <?php else: ?>
     <?php if ($_category->hasChildren() && !$this->getRequest()->isXmlHttpRequest()): ?>
         <?php echo $this->getLayout()->createBlock('kidsplaza/catalog_view')->setCategory($_category)->toHtml() ?>
-        <?php echo $this->getLayout()->createBlock('mtwidget/widget')
-            ->setTemplate('mt/widget/upsell-products.phtml')
-            ->setData(array(
-                'widget_title'  => 'Sản phẩm nổi bật',
-                'cache'         => 86400,
-                'widget_type'   => 'product',
-                'category_ids'  => $_category->getId(),
-                'mode'          => 'mostviewed',
-                'scroll'        => 1,
-                'maxitems'      => 5,
-                'autoplay'      => 5000,
-                'paging'        => 0,
-                'limit'         => 10
-            ))
-            ->toHtml() ?>
+        <?php //echo $this->getChildHtml('category.product.mostviewed') ?>
     <?php else: ?>
         <?php echo $this->getProductListHtml() ?>
     <?php endif ?>
