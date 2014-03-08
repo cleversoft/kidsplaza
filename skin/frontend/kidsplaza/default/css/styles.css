@@ -16,7 +16,9 @@
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
 .product-view .more-views-nav{  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
 .product-view .more-views-nav .glyphicon { color: #eeeeee ; font-size: 60%;top: -5px;}
-.product-view .more-views {float: left; margin:0 auto; position:relative;}
+.product-view .more-views {float: left; margin:0 auto; position:relative; width: 85px; overflow: hidden;}
+.product-view .more-views .media-list {width: 85px; height: 340px; overflow: hidden;}
+.product-view .more-views div#thumbs {position: relative;}
 .product-view .more-views .active {border: 2px solid #007d9e;}
 .product-view .more-views img {border: 2px solid #fff;}
 .product-view .price-box{padding: 20px 0;}
@@ -591,3 +593,21 @@ p.back-link{float: left;}
 .root-category .products-grid .product-name{
     height: 40px;
 }
+/*Social link share*/
+.mt-social-links {
+    width: 100%;
+    float: left;
+}
+.mt-social-links .so-social-share {
+    float: left;
+}
+.mt-social-links .so-facebook, .mt-social-links .so-linkedin {
+    margin-right: 9px;
+}
+.mt-social-links .so-twitter iframe {
+    width: 85px !important;
+}
+.mt-social-links .so-plusone iframe, .mt-social-links .so-plusone>div {
+    width: 67px !important;
+}
+

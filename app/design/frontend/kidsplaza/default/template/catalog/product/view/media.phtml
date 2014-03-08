@@ -34,26 +34,22 @@
 <?php $_helper = $this->helper('catalog/output') ?>
 <?php $_imgHelper = $this->helper('catalog/image') ?>
 <div class="more-views">
-    <a class="more-views-prev more-views-nav" href="javascript:void(0)" id="move-view-up">
+    <a class="more-views-prev more-views-nav" href="javascript:void(0)" id="carousel-up">
         <i class="glyphicon glyphicon-chevron-up"></i>
     </a>
-    <div class="cycle-slideshow vertical"
-         data-cycle-fx="carousel"
-         data-cycle-timeout=0
-         data-cycle-next="#move-view-down"
-         data-cycle-prev="#move-view-up"
-         data-cycle-carousel-visible="4"
-         data-cycle-carousel-vertical="true">
-        <?php foreach ($this->getGalleryImages() as $_image): ?>
-            <img class="<?php echo $_image->getFile() == $_product->getImage() ? 'active' : '' ?>"
-                width="85" height="85"
-                data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
-                data-large="<?php echo $_image->getUrl()?>"
-                src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"
-                alt="<?php echo $this->htmlEscape($_image->getLabel())?>"/>
-        <?php endforeach; ?>
+    <div class="media-list">
+        <div id="thumbs" class="cycle-slideshow vertical">
+            <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <a><img class="<?php echo $_image->getFile() == $_product->getImage() ? 'active' : '' ?>"
+                        width="85" height="85"
+                        data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
+                        data-large="<?php echo $_image->getUrl()?>"
+                        src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"
+                        alt="<?php echo $this->htmlEscape($_image->getLabel())?>"/></a>
+            <?php endforeach; ?>
+        </div>
     </div>
-    <a class="more-views-next more-views-nav" href="javascript:void(0)" id="move-view-down">
+    <a class="more-views-next more-views-nav" href="javascript:void(0)" id="carousel-down">
         <i class="glyphicon glyphicon-chevron-down"></i>
     </a>
 </div>

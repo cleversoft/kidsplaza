@@ -156,7 +156,7 @@ jQuery(function(){
         magnifierborder: '1px solid #ddd'
     });
     //init more views
-    jQuery('.more-views img').click(function(){
+    jQuery('.more-views img').on('click',function(){
         jQuery('.more-views img').removeClass('active');
         var item = jQuery(this).addClass('active');
         jQuery('img.img-zoom').fadeOut(100, function(){
@@ -168,5 +168,41 @@ jQuery(function(){
         var id = jQuery(slider).attr('id');
         if (!id || !window[id]) return;
         jQuery(slider).owlCarousel(window[id]);
+    });
+    //init media verticle slider
+    jQuery("a#carousel-up").on("click", function() {
+        if (!jQuery("div#thumbs").is(':animated')) {
+            var bottom = jQuery("div#thumbs > a:last-child");
+            var clone = jQuery("div#thumbs > a:last-child").clone();
+            clone.prependTo("div#thumbs");
+            jQuery("div#thumbs").animate({"top" : "-=85"}, 0).stop().animate({"top" : '+=85'}, 500, function() {
+                bottom.remove();
+            });
+            jQuery('.more-views img').bind('click',function(){
+                jQuery('.more-views img').removeClass('active');
+                var item = jQuery(this).addClass('active');
+                jQuery('img.img-zoom').fadeOut(100, function(){
+                    jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
+                });
+            });
+        }
+    });
+    jQuery("a#carousel-down").on("click", function() {
+        if (!jQuery("div#thumbs").is(':animated')) {
+            var top = jQuery("div#thumbs > a:first-child");
+            var clone = jQuery("div#thumbs > a:first-child").clone();
+            clone.appendTo("div#thumbs");
+            jQuery("div#thumbs").animate({"top" : '-=85'}, 500, function() {
+                top.remove();
+                jQuery("div#thumbs").animate({"top" : "+=85"}, 0);
+            });
+            jQuery('.more-views img').bind('click',function(){
+                jQuery('.more-views img').removeClass('active');
+                var item = jQuery(this).addClass('active');
+                jQuery('img.img-zoom').fadeOut(100, function(){
+                    jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
+                });
+            });
+        }
     });
 });
