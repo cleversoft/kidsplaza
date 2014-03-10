@@ -171,7 +171,7 @@ jQuery(function(){
     });
     //init media verticle slider
     var carCount = jQuery('.media-list #thumbs').find('a').length;
-    if(carCount<4){
+    if(carCount<=4){
         jQuery('.product-img-box .more-views .more-views-nav').hide();
     }
     jQuery("a#carousel-up").on("click", function() {
