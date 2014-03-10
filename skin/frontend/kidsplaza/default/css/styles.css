@@ -295,7 +295,7 @@ input,textarea{outline:0}
 
 .attribute-carousel-wrapper .flex-direction-nav { width: 100% ; margin: 40px 0 ;}
 .attribute-carousel-wrapper .flex-direction-nav  a { z-index: 9; width: 34px ; height: 34px;  position: absolute ; opacity: 1; margin: 0; background: #eaebeb ;  }
-.attribute-carousel-wrapper .flex-direction-nav  a.btn-next { right: 15px; }
+.attribute-carousel-wrapper .flex-direction-nav  a.btn-next { right: 0; }
 .attribute-carousel-wrapper .flex-direction-nav  a:before {font-size: 0;  }
 .attribute-carousel-wrapper .flex-direction-nav  a i.glyphicon { color: #fff; font-size: 100% ; top: 9px; position: absolute ;left: 10px;  }
 
