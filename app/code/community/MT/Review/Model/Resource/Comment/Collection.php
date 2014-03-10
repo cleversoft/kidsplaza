@@ -57,7 +57,7 @@ class MT_Review_Model_Resource_Comment_Collection extends Mage_Core_Model_Resour
         $this->getSelect()
             ->join(array('rdt' => $this->_reviewDetailTable),
                 'rdt.review_id = main_table.review_id',
-                array('rdt.title','rdt.nickname', 'rdt.detail', 'rdt.customer_id', 'rdt.store_id'));
+                array('rdt.title','rdt.nickname', 'rdt.detail', 'rdt.customer_id'));
         return $this;
     }
 

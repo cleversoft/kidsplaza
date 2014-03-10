@@ -33,7 +33,7 @@ class MT_Review_Block_Summary extends Mage_Core_Block_Template
                 ->join(array('review_store'=>Mage::getSingleton('core/resource')->getTableName('mtreview/review_store')),'main_table.review_id = review_store.review_id',array('store_id'))
                 ->where('main_table.entity_pk_value = ?',$productId)
                 ->where('value > 0')
-                ->where('store_id = ?',Mage::app()->getStore()->getId())
+                ///->where('store_id = ?',Mage::app()->getStore()->getId())
                 ->where('rating_id = ?',$parametr->getId())
                 ->where('review.status_id = 1')
                 ->group('value')
@@ -77,7 +77,7 @@ class MT_Review_Block_Summary extends Mage_Core_Block_Template
     {
         if (null === $this->_reviewsCollection) {
             $this->_reviewsCollection = Mage::getModel('review/review')->getCollection()
-                ->addStoreFilter(Mage::app()->getStore()->getId())
+                //->addStoreFilter(Mage::app()->getStore()->getId())
                 ->addStatusFilter(Mage_Review_Model_Review::STATUS_APPROVED)
                 ->addEntityFilter('product', $this->getProduct()->getId())
                 ->setDateOrder();

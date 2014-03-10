@@ -170,12 +170,16 @@ jQuery(function(){
         jQuery(slider).owlCarousel(window[id]);
     });
     //init media verticle slider
+    var carCount = jQuery('.media-list #thumbs').find('a').length;
+    if(carCount<4){
+        jQuery('.product-img-box .more-views .more-views-nav').hide();
+    }
     jQuery("a#carousel-up").on("click", function() {
         if (!jQuery("div#thumbs").is(':animated')) {
             var bottom = jQuery("div#thumbs > a:last-child");
             var clone = jQuery("div#thumbs > a:last-child").clone();
             clone.prependTo("div#thumbs");
-            jQuery("div#thumbs").animate({"top" : "-=85"}, 0).stop().animate({"top" : '+=85'}, 500, function() {
+            jQuery("div#thumbs").animate({"top" : "-=85"}, 0).stop().animate({"top" : '+=85'}, 250, function() {
                 bottom.remove();
             });
             jQuery('.more-views img').bind('click',function(){
@@ -192,7 +196,7 @@ jQuery(function(){
             var top = jQuery("div#thumbs > a:first-child");
             var clone = jQuery("div#thumbs > a:first-child").clone();
             clone.appendTo("div#thumbs");
-            jQuery("div#thumbs").animate({"top" : '-=85'}, 500, function() {
+            jQuery("div#thumbs").animate({"top" : '-=85'}, 250, function() {
                 top.remove();
                 jQuery("div#thumbs").animate({"top" : "+=85"}, 0);
             });

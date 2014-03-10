@@ -97,7 +97,7 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
         $this->getSelect()
             ->join(array('d' => $this->_reviewDetailTable),
                 'main_table.review_id = d.review_id',
-                array('detail_id', 'title', 'detail', 'nickname', 'customer_id','like','notlike'));
+                array('detail_id', 'title', 'store_id', 'detail', 'nickname', 'customer_id','like','notlike'));
         return $this;
     }
 
@@ -265,7 +265,7 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
             $votesCollection = Mage::getModel('rating/rating_option_vote')
                 ->getResourceCollection()
                 ->setReviewFilter($item->getId())
-                ->setStoreFilter(Mage::app()->getStore()->getId())
+                //->setStoreFilter(Mage::app()->getStore()->getId())
                 ->addRatingInfo(Mage::app()->getStore()->getId())
                 ->load();
             $item->setRatingVotes($votesCollection);

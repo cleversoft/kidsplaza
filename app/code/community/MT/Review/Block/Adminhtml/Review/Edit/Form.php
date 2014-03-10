@@ -99,7 +99,7 @@ class MT_Review_Block_Adminhtml_Review_Edit_Form extends Mage_Adminhtml_Block_Wi
 
         $fieldset->addField('title', 'text', array(
             'label'     => Mage::helper('review')->__('Summary of Review'),
-            'required'  => true,
+            'required'  => false,
             'name'      => 'title',
         ));
 

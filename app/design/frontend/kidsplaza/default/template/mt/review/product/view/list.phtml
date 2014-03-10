@@ -12,7 +12,6 @@
  * ------------------------------------------------------------------------------
  *
  */
-$storeName = Mage::app()->getStore()->getName();
 ?>
 <h2><?php echo $this->__('Customer Reviews') ?></h2>
 <div class="mt-review-main">
@@ -63,7 +62,7 @@ $storeName = Mage::app()->getStore()->getName();
                         </span>
                         <span class="created_by">
                             <?php echo $this->__('<span class="created">%s</span>', $this->escapeHtml($_review->getNickname())) ?>
-                            <small class="date"><?php echo $storeName;?>, <?php echo $this->getFormatDate($_review->getCreatedAt());?> - <?php echo $this->__('About %s ago',$this->getTimeFormat($_review->getCreatedAt()));?></small>
+                            <small class="date"><?php echo Mage::getModel('core/store')->load($_review->getStoreId())->getName();?>, <?php echo $this->getFormatDate($_review->getCreatedAt());?> - <?php echo $this->__('About %s ago',$this->getTimeFormat($_review->getCreatedAt()));?></small>
                         </span>
                     </span>
                     <span class="review-detail"><?php echo nl2br($this->escapeHtml($_review->getDetail())) ?></span>

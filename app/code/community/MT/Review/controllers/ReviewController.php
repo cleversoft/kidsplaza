@@ -78,7 +78,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
      * Reply action
      */
     public function replyAction(){
-        $storeName = Mage::app()->getStore()->getName();
+
         if ($reviewId = $this->getRequest()->getParam('reviewId'))
         {
             $content = $this->getRequest()->getParam('content');
@@ -91,6 +91,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             {
                 $reply = Mage::helper('mtreview')->replyReview($reviewId, $content);
             }
+            $storeName = Mage::getModel('core/store')->load($reply->getStoreId())->getName();
             return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','date'=>$storeName.', '.$this->getFormatDate($reply->getCreatedAt()).' - '.$this->__('About %s ago', $this->getTimeFormat($reply->getCreatedAt())),'customer'=>$reply->getCustomerName(),'content'=>$reply->getComments(),'message'=>$this->__('Thank you for reply.'))));
         }
     }
@@ -105,7 +106,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
                 $end = $start+4;
                 $collection = Mage::getModel('mtreview/comment')->getCollection()
                     ->addReviewFilter($params['review'])
-                    ->addStoreFilter(Mage::app()->getStore()->getId())
+                    //->addStoreFilter(Mage::app()->getStore()->getId())
                     ->setDateOrder('DESC');
                 $collection->getSelect()->limit($end, $start);
                 $commentsHtml  = $this->getLayout()->createBlock('mtreview/comments_list')

@@ -330,7 +330,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
         $reply->setReviewId($reviewId)->setCustomerName($customerName)
             ->setCustomerId($customerId)
             ->setComments($comment)
-            ->setStoreId( Mage::helper('core')->getStoreId()  )
+            ->setStoreId(Mage::app()->getStore()->getId())
             ->setCreatedAt($date)
             ->save();
 
@@ -351,7 +351,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
         $report = Mage::getModel('mtreview/report');
         $report->setReviewId($reviewId)->setCustomerName($customerName)
             ->setCustomerId($customerId)
-            ->setStoreId( Mage::helper('core')->getStoreId()  )
+            ->setStoreId( Mage::app()->getStore()->getId()  )
             ->setReportAt($date)
             ->save();
 
