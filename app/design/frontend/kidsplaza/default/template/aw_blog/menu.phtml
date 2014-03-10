@@ -23,12 +23,14 @@
  * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
  * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
  */
-?><div class="block block-blog">
-    <div class="block-title">
+?>
+<div class="block block-blog">
+    <?php /*?><div class="block-title">
         <strong><span><?php echo Mage::getStoreConfig('blog/blog/title'); ?></span></strong>
     </div>
+ <?php */?>
     <div class="block-content">
-        <?php if ($posts = $this->getRecent()): ?>
+        <?php /*if ($posts = $this->getRecent()): ?>
             <div class="menu-recent">
                 <h5><?php echo Mage::helper('blog')->__('Recent Posts'); ?></h5>
                 <ul>
@@ -37,11 +39,11 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-        <?php endif; ?>
+        <?php endif; */?>
 
         <?php if ($this->getCategories()->count() && Mage::getStoreConfig('blog/menu/category')): ?>
             <div class="menu-categories">
-                <h5><?php echo Mage::helper('blog')->__('Categories'); ?></h5>
+                <span class="post-cat"><?php echo Mage::helper('blog')->__('Categories'); ?></span>
                 <ul>
                     <?php $cats = $this->getCategories(); ?>
                     <?php foreach ($cats as $cat): ?>
@@ -51,6 +53,6 @@
             </div>
         <?php endif; ?>
 
-        <?php echo $this->getChildHtml('blog_tags'); ?>
+        <?php //echo $this->getChildHtml('blog_tags'); ?>
     </div>
 </div>

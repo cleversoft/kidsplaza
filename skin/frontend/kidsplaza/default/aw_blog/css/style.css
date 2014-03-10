@@ -3,18 +3,42 @@
     clear: both;
 }
 
-.postTitle {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #DDDDDD;
-    margin-bottom: 15px;
+.postTitle span.title {
+    display:block;
+    font-weight: bold;
 }
 
-.postTitle h2 {
+.postTitle span.created {
+    font-size: 12px;
+    background:url(../images/icon-calenda.png) no-repeat left 2px;
+    padding-left: 16px;
+}
+.postTitle span.comment-count {
+    background:url(../images/icon-comment.png) no-repeat left 4px;
+    padding-left: 16px;
+    margin-left: 20px;
+    font-size: 12px;
+}
+.postTitle span.comment-count a{
+    color: #575757;
+}
+.postTitle span.title a {
+    color: #009fe6;
+}
+
+.postTitle span.title a:hover {
+    text-decoration: none;
+}
+
+.postTitle .post-comment-list {
     font-size: 20px;
     font-weight: normal;
     margin: 0px;
     padding: 0px;
+    display: block;
+    border-bottom: #dfdfdf solid 1px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .postTitle h3 {
@@ -99,8 +123,17 @@
     margin-left: 10px;
 }
 
+.block-blog .menu-categories span.post-cat {
+    color: #f74d89;
+    font-size: 120%;
+    font-weight: bold;
+    border-bottom: #dfdfdf solid 1px;
+    display: block;
+    margin-bottom: 10px;
+}
 .block-blog .menu-categories UL LI {
-    margin-left: 10px;
+    border-bottom: 1px dotted #dfdfdf;
+    line-height: 25px;
 }
 
 .block-blog .menu-recent UL LI {
@@ -108,7 +141,9 @@
 }
 
 .block-blog .menu-recent UL LI a, .block-blog .menu-categories UL LI a, .block-blog .menu-tags UL LI a {
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #009fe6;
 }
 
 .tagcloud {
@@ -187,4 +222,68 @@
 A.awblog_current_comment {
     text-decoration: none !important;
     font-weight: bold !important;
+}
+.blog-grid .blog-item {
+    padding: 24px 0;
+}
+
+.main-post .load-more-posts{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.main-post .load-more-posts .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+
+.post-view-comments .load-more-comments{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.post-view-comments .load-more-comments .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+.post-view-comments .toolbar .toolbar-limit, .post-view-comments .toolbar .toolbar-pages {
+    display: none;
+}
+.main-post .toolbar .toolbar-limit, .main-post .toolbar .toolbar-pages {
+    display: none;
+}
+.form-list-post .button-set p.required {
+    float: left;
+}
+.form-list-post .button-set button {
+    float: right;
+}
+#postComment .aw-blog-comment-area textarea, #postComment .aw-blog-comment-area {
+    width: 100% !important;
+    height: auto;
+}
+#postComment .main-input-box {
+    display: none;
+}
+#postComment .input-box {
+    display: inline-block;
+    clear: none;
+    width: auto;
+    float: left;
+}
+#postComment .input-box input {
+    width: 83%;
+}
+#postComment .button-set {
+    display: inline-block;
+    clear: none;
+    width: auto;
+    float: right;
+    margin-top: 5px;
 }

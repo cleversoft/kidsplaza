@@ -6,7 +6,7 @@
                 <action method="setTemplate" ifconfig="blog/menu/right" ifvalue="1">
                     <template>aw_blog/menu.phtml</template>
                 </action>
-                <block type="blog/tags" name="blog_tags" />
+                <!--<block type="blog/tags" name="blog_tags" />-->
             </block>
         </reference>
         <reference name="left">
@@ -14,7 +14,7 @@
                 <action method="setTemplate" ifconfig="blog/menu/left">
                     <template>aw_blog/menu.phtml</template>
                 </action>
-                <block type="blog/tags" name="blog_tags" />
+                <!--<block type="blog/tags" name="blog_tags" />-->
             </block>
         </reference>
         <!--reference name="top.links">
@@ -37,6 +37,9 @@
     </blog_index_index>
 
     <blog_index_list>
+        <reference name="js_bottom">
+            <action method="addJs"><script>aw_all/aw_all.js</script></action>
+        </reference>
         <reference name="content">
             <block type="blog/blog" name="blog" template="aw_blog/blog.phtml">
                 <action method="setData"><var>column_count</var><value>3</value></action>
@@ -48,6 +51,9 @@
     </blog_index_list>
 
     <blog_post_view>
+        <reference name="js_bottom">
+            <action method="addJs"><script>aw_all/aw_all.js</script></action>
+        </reference>
         <reference name="content">
             <block type="blog/post" name="post" template="aw_blog/post.phtml">
                 <block type="blog/product_toolbar" name="aw_blog_list_toolbar" template="catalog/product/list/toolbar.phtml">
@@ -58,6 +64,9 @@
     </blog_post_view>
 
     <blog_cat_view>
+        <reference name="js_bottom">
+            <action method="addJs"><script>aw_all/aw_all.js</script></action>
+        </reference>
         <reference name="content">
             <block type="blog/cat" name="cat" template="aw_blog/cat.phtml">
                 <action method="setData"><var>column_count</var><value>3</value></action>
