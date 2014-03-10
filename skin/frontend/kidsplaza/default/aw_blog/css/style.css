@@ -287,3 +287,24 @@ A.awblog_current_comment {
     float: right;
     margin-top: 5px;
 }
+.post-view-comments .comments-list .item-list {
+    padding: 7px 0;
+}
+.post-view-comments .comments-list .created_by .created {
+    font-weight: bold;
+    color: #0095d6;
+    border-right: #a9a9a9 solid 1px;
+    padding-right: 7px;
+}
+.post-view-comments .comments-list .created_by .date {
+    color: #a9a9a9;
+    font-size: 12px;
+}
+.post-more-cat {
+    border-top: #dfdfdf solid 1px;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+.post-more-cat .postlists .post-title {
+    display: block;
+}

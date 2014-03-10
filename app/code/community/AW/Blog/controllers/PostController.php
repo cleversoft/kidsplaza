@@ -25,7 +25,7 @@
  */
 
 
-require_once 'recaptcha/recaptchalib-aw.php';
+//require_once 'recaptcha/recaptchalib-aw.php';
 
 class AW_Blog_PostController extends Mage_Core_Controller_Front_Action
 {
@@ -131,7 +131,7 @@ class AW_Blog_PostController extends Mage_Core_Controller_Front_Action
                 if ($session->getData('blog_post_model')) {
                     $session->unsetData('blog_post_model');
                 }
-                $model->setCreatedTime(now());
+                $model->setCreatedTime(Mage::getModel('core/date')->date());
                 $model->setComment(htmlspecialchars($model->getComment(), ENT_QUOTES));
                 if (Mage::getStoreConfig('blog/comments/approval')) {
                     $model->setStatus(2);

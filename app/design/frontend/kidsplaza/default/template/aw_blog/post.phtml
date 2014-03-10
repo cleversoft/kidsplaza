@@ -45,6 +45,29 @@
             <?php echo Mage::helper('blog')->__('Posted'); ?>
         <?php endif; ?><?php echo $this->__("By"); ?> <h4 class="poster"><?php echo $post->getUser(); ?></h4>
     </div>
+    <?php $morePosts = $this->getMorePostByCat($post->getCatId(),$post->getPostId());?>
+    <?php if(count($morePosts)>0){?>
+    <div class="post-more-cat">
+        <ul class="postlists">
+            <?php foreach ($morePosts as $item){ ?>
+            <li class="media">
+                <span class="img pull-left">
+                     <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir().'/media/'.$item->getThumb(), 50); ?>" alt="<?php echo $item->getTitle(); ?>" />
+                </span>
+                <div class="media-body">
+                    <div class="postTitle">
+                        <span class="title"><a href="<?php echo $item->getAddress(); ?>" ><?php echo $item->getTitle(); ?></a></span>
+                        <span class="created"><?php echo $item->getCreatedTime(); ?></span>
+                        <span class="comment-count">
+                            <?php echo $item->getCommentCount() ? $item->getCommentCount() : 0; ?> <a href="<?php echo $item->getAddress(); ?>#commentBox" >Comments</a>
+                        </span>
+                    </div>
+                </div>
+            </li>
+            <?php }?>
+        </ul>
+    </div>
+    <?php }?>
 </div>
 
 <!-- Comment Section -->
@@ -142,9 +165,12 @@
                          <img src="<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>"/>
                     </span>
                     <div class="media-body">
-                        <div class="commentDetails">
-                            <h4 class="username"><?php echo $comment->getUser(); ?></h4>
-                            <?php echo $this->__("posted on") ?> <?php echo $this->formatDate($comment->getCreatedTime(), Mage::getStoreConfig('blog/blog/dateformat'), true); ?>
+                        <div class="created_by">
+                            <span class="created"><?php echo $comment->getUser(); ?></span>
+                            <span class="date">
+                                <?php echo $this->formatDate($comment->getCreatedTime(), Mage::getStoreConfig('blog/blog/dateformat'), false); ?>
+                                - <?php echo $this->__('About %s ago',Mage::helper('mtreview')->renderFormatTime($comment->getCreatedTime()));?>
+                            </span>
                         </div>
                         <div class="commentContent">
                             <?php echo nl2br($comment->getComment()); ?>

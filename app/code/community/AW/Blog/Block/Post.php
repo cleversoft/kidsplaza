@@ -60,6 +60,13 @@ class AW_Blog_Block_Post extends AW_Blog_Block_Abstract
         return $this->getData('post');
     }
 
+    public function getMorePostByCat($catId,$postId){
+        $collection = parent::_prepareCollection()->addCatFilter($catId)->addExcludePost($postId);
+        $collection->setPageSize(4);
+        parent::_processCollection($collection);
+        return $collection;
+    }
+
     public function getBookmarkHtml($post)
     {
         if ($this->_helper()->isBookmarksPost()) {

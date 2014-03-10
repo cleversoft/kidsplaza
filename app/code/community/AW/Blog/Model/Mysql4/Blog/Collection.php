@@ -58,6 +58,16 @@ class AW_Blog_Model_Mysql4_Blog_Collection extends Mage_Core_Model_Mysql4_Collec
         return $this;
     }
 
+    public function addExcludePost($postId)
+    {
+        $this
+            ->getSelect()
+            ->where('main_table.post_id  != ?', $postId)
+        ;
+
+        return $this;
+    }
+
     public function addCatsFilter($catIds)
     {
         $this
