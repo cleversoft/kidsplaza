@@ -25,6 +25,7 @@
  */
 ?>
 <?php if(count($this->getItemCollection()->getItems())): ?>
+<div id="product-upsell">
 <div class="box-collateral box-up-sell">
     <h2><?php echo $this->__('You may also be interested in the following product(s)') ?></h2>
     <table class="products-grid" id="upsell-product-table">
@@ -47,5 +48,6 @@
         </tr>
     <?php endfor; ?>
     </table>
+</div>
 </div>
 <?php endif ?>

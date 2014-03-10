@@ -12,4 +12,12 @@ class MT_KidsPlaza_Model_Observer{
         $object = $observer->getEvent()->getObject();
         Mage::helper('kidsplaza')->cleanCacheByObject($object);
     }
+
+    public function catalogProductPrepareSave($observer){
+        $product = $observer->getEvent()->getProduct();
+        $request = $observer->getEvent()->getRequest();
+
+        $videos = $request->getParam('videos', array());
+        $product->setData('video', Mage::helper('core')->jsonEncode($videos));
+    }
 }

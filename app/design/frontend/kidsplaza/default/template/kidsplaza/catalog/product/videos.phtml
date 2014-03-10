@@ -1,0 +1,97 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_KidsPlaza
+ * @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php /* @var $this MT_KidsPlaza_Block_Catalog_Product_Videos */ ?>
+<?php $videos = $this->getVideos() ?>
+<?php if (count($videos)): ?>
+<div id="product-videos">
+    <script type="text/javascript">
+        (function(){
+            var script = document.createElement('script');
+            script.src = 'https://www.youtube.com/iframe_api';
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+        })();
+        var YTPlayer;
+        function onYouTubeIframeAPIReady(){
+            YTPlayer = new YT.Player('player', {
+                height: 390,
+                width: 640,
+                videoId: '<?php echo current($videos) ?>',
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+        function onPlayerReady(){
+
+        }
+        function getYoutubeVideoInfo(videoId){
+            var firstScriptTag = document.getElementsByTagName('script')[0],
+                script = document.createElement('script'),
+                urlAPI = 'https://gdata.youtube.com/feeds/api/videos/' + videoId +
+                '?v=2&alt=json-in-script&callback=onYoutubeVideoInfoCallback';
+
+            script.src = urlAPI;
+            firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
+        }
+        function onYoutubeVideoInfoCallback(data){
+            try{
+                var thumb = data['entry']['media$group']['media$thumbnail'][0]['url'],
+                    title = data['entry']['title']['$t'],
+                    desc = data['entry']['media$group']['media$description']['$t'],
+                    user = data['entry']['author'][0]['name']['$t'],
+                    itemElm = document.createElement('div'),
+                    imgElm = document.createElement('img'),
+                    infoElm = document.createElement('div'),
+                    titleElm = document.createElement('div'),
+                    descElm = document.createElement('div'),
+                    userElm = document.createElement('div'),
+                    listElm = document.getElementById('video-list');
+
+                itemElm.className = 'video-item';
+                infoElm.className = 'video-item-info';
+                titleElm.className = 'video-item-title';
+                descElm.className = 'video-item-desc';
+                userElm.className = 'video-item-user';
+
+                titleElm.innerHTML = title;
+                descElm.innerHTML = desc;
+                userElm.innerHTML = user;
+                imgElm.src = thumb;
+
+                var videoId = data['entry']['id']['$t'].split(':')[3];
+                imgElm.onclick = onYoutubeVideoClick.bind(this, videoId);
+
+                infoElm.appendChild(titleElm);
+                infoElm.appendChild(descElm);
+                infoElm.appendChild(userElm);
+                itemElm.appendChild(imgElm);
+                itemElm.appendChild(infoElm);
+                listElm.appendChild(itemElm);
+            }catch (e){}
+        }
+        function onYoutubeVideoClick(videoId){
+            if (!YTPlayer) return;
+            YTPlayer.loadVideoById(videoId);
+        }
+        <?php foreach ($videos as $video): ?>
+        getYoutubeVideoInfo('<?php echo $video ?>');
+        <?php endforeach ?>
+    </script>
+    <h2><?php echo $this->__('Product Videos') ?></h2>
+    <div class="videos-wrapper">
+        <div class="video-content">
+            <div id="player"></div>
+        </div>
+        <div class="video-list" id="video-list"></div>
+    </div>
+</div>
+<?php endif ?>

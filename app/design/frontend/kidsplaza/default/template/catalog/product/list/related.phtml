@@ -27,6 +27,7 @@ $size = $this->getItems()->getSize();
 $product = Mage::registry('product');
 ?>
 <?php if ($size): ?>
+<div id="product-related">
 <h2><?php echo $this->__('Frequently Bought Together') ?></h2>
 <script type="text/javascript">
     window['related<?php echo $product->getId() ?>'] = window['price<?php echo $product->getId() ?>'];
@@ -83,5 +84,6 @@ $product = Mage::registry('product');
         <span class="price" id="related-price"></span>
         <button class="btn btn-kid btn-cart btn-login " type="button" onclick="window.productAddToCartForm.submitRelated(this)"><?php echo $this->__('Buy All') ?></button>
     </div>
+</div>
 </div>
 <?php endif ?>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_KidsPlaza
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <adminhtml_catalog_product_edit>
+        <reference name="product_tabs">
+            <action method="addTab">
+                <name>video</name>
+                <block>kidsplaza/adminhtml_catalog_product_edit_tab</block>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_edit>
+
+    <kidsplaza_admin_adminhtml_catalog_product_videotab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_video" name="catalog.product.edit.tab.video"/>
+        </block>
+    </kidsplaza_admin_adminhtml_catalog_product_videotab>
+</layout>
