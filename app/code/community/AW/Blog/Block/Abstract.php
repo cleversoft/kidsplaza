@@ -82,7 +82,7 @@ abstract class AW_Blog_Block_Abstract extends Mage_Core_Block_Template
             /* prepare short content fields */
             if ($shortContent) {
                 if ($item->getShortContent()) {
-                    $item->setPostContent($item->getShortContent() . $this->_getReadMoreLink($item));
+                    $item->setPostContent($item->getShortContent());
                 }
             } elseif ($readMoreCount) {
                 $strManager = new AW_Blog_Helper_Substring(
@@ -289,7 +289,7 @@ abstract class AW_Blog_Block_Abstract extends Mage_Core_Block_Template
                 ->addPresentFilter()
                 ->addEnableFilter(AW_Blog_Model_Status::STATUS_ENABLED)
                 ->addStoreFilter()
-                //->joinComments()
+                ->joinComments()
                 ->setOrder('created_time', 'desc');
 
             $collection->setPageSize((int)self::$_helper->postsPerPage());
