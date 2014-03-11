@@ -487,8 +487,8 @@ span.separator{vertical-align: top;}
 .cart  .btn-remove { color: #333333 ;border: 1px dashed #989898 ; padding: 2px 5px; }
 .cart .btn-remove:focus,
 .cart .btn-remove:active{}
-.cart  .cart-price {  line-height: 70px ; }
-.cart  .cart-price .price{ color: #ff4884 ;  }
+.cart .cart-price {  line-height: 70px ; }
+.cart .cart-price .price{ color: #ff4884 ;  }
 .cart .form-control { margin: 15px 0 0 ;}
 .cart tfoot .btn.btn-update i.glyphicon-refresh { color:  #f74d89 ; padding: 0 5px 0 0;}
 .cart tfoot .btn.btn-update {padding: 0 18px; color: #333; font-weight: bold ;}
