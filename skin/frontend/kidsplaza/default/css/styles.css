@@ -423,7 +423,8 @@ span.separator{vertical-align: top;}
 
 
 .block-account  .block-title strong { margin: 0 0 20px ; display: block ; background: none ; border: none;color: #20A4F0;font-size: 18px; }
-.block-account  .block-content strong , .block-account  .block-content a:hover { color: #FF3D70 ; text-decoration: none; }
+.block-account  .block-content .active a , .block-account  .block-content a:hover { color: #FF3D70 ; text-decoration: none; }
+.block-account .nav li a{padding: 5px 10px 5px 5px;}
 .block-account  .block-content a { color: #333; line-height: 30px ;}
 .col2-set .col-1 {float: left; width: 48.5%;}
 .col2-set .col-2 {float: right;width: 48.5%;}
@@ -460,7 +461,9 @@ span.separator{vertical-align: top;}
     padding:10px 0 0 15px;
 }
 .pager .limiter select { width:35%; }
-
+.sales-order-history .pager .limiter select {width: auto;display: inline-block;}
+.sales-order-history .pager .limiter {float: right;}
+.sales-order-history .pager .limiter label {display: none;}
 #wishlist-table input.input-text {
     padding:5px;
     margin:0 0 10px;
@@ -498,7 +501,7 @@ span.separator{vertical-align: top;}
 .form-list .name-middlename input.input-text{width:49px}
 .form-list .input-box{display:block;clear:both;width:100%}
 .form-list .input-box input.input-text ,
-.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; box-shadow: 3px 3px 3px -1px #CCCCCC inset; height: 25px ; border: 1px solid #ccc ;}
+.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; box-shadow: 3px 3px 3px -1px #CCCCCC inset; height: 30px ; border: 1px solid #ccc ;}
 .form-list .customer-dob input.input-text{display:block;width:74px}
 .form-list .customer-dob label{font-size:80%;font-weight:normal;color:#888}
 .form-list .customer-dob .dob-year{float:left;width:85px;width:140px}

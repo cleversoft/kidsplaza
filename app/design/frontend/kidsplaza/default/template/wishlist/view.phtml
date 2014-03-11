@@ -41,7 +41,7 @@
             <table class="table table-bordered table-responsive" id="wishlist-table">
             <col width="1" />
             <col />
-            <col width="1" />
+            <col width="100" />
             <col width="1" />
             <col width="1" />
                 <thead class="hidden-xs hidden-phone">
@@ -67,7 +67,7 @@
                             <?php echo $this->getDetailsHtml($item) ?>
                         </td>
                         <td>
-                            <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" onfocus="focusComment(this)" onblur="focusComment(this)" title="<?php echo $this->__('Comment') ?>"><?php echo $this->getCommentValue($item); ?></textarea>
+                            <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" class="form-control" title="<?php echo $this->__('Comment') ?>"><?php echo $this->getCommentValue($item); ?></textarea>
                         </td>
                         <td>
                             <span class="nobr"><?php echo $this->getFormatedDate($item->getAddedAt()) ?></span>
@@ -88,13 +88,14 @@
                             <?php endif ?>
                         </td>
                         <td>
-                            <a href="<?php echo $this->getItemRemoveUrl($item) ?>" title="<?php echo $this->__('Remove Item') ?>" onclick="return confirmRemoveWishlistItem();" class="btn-remove btn-remove2"><?php echo $this->__('Remove item')?></a>
+                            <a href="<?php echo $this->getItemRemoveUrl($item) ?>" title="<?php echo $this->__('Remove Item') ?>" onclick="return confirmRemoveWishlistItem();" class="btn-remove btn-remove2">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach ?>
                 </tbody>
             </table>
-            <script type="text/javascript">decorateTable('wishlist-table')</script>
             <div class="buttons-set buttons-set2">
                 <button type="submit" onclick="this.name='save_and_share'" title="<?php echo $this->__('Share Wishlist') ?>" class="button btn-kid btn btn-share"><span><span><?php echo $this->__('Share Wishlist') ?></span></span></button>
                 <?php if($this->isSaleable()):?>

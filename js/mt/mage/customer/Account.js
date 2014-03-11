@@ -10,8 +10,18 @@
 new VarienForm('login-form', true);
 new VarienForm('form-validate', true);
 
+$$('select').each(function(select){
+    select.addClassName('form-control input-sm');
+});
+
 jQuery(document).ready(function(){
     jQuery(".btn-regisform").click(function(){
         jQuery(".form_register").toggle();
     });
 });
+
+if (typeof isSetPasswordForm != 'undefined') setPasswordForm(true);
+if (typeof regionData != 'undefined' && regionData.length == 7){
+    $('region_id').setAttribute('defaultValue', regionData[0]);
+    new RegionUpdater(regionData[1], regionData[2], regionData[3], regionData[4], regionData[5], regionData[6]);
+}

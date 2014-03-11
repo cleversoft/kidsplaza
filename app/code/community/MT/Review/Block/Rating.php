@@ -46,7 +46,7 @@ class MT_Review_Block_Rating extends Mage_Core_Block_Template
         if ($entityId) {
             //filter store ratting
             //$ratingCollection->addEntitySummaryToItem($entityId, Mage::app()->getStore()->getId());
-            $ratingCollection->addEntitySummaryToItem($entityId);
+            $ratingCollection->addEntitySummaryToItem($entityId, 0);
         }
 
         $this->assign('collection', $ratingCollection);

@@ -64,6 +64,9 @@ Customer account pages, rendered for all tabs in dashboard
                 </block>
             </block>
         </reference>
+        <reference name="js_bottom">
+            <action method="addJs"><js>mt/mage/customer/Account.js</js></action>
+        </reference>
     </newsletter_manage_index>
 
 </layout>

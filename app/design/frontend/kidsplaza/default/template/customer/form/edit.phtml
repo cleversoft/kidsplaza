@@ -72,7 +72,7 @@
                 <label for="current_password" class="required"><em>*</em><?php echo $this->__('Current Password') ?></label>
                 <div class="input-box">
                     <!-- This is a dummy hidden field to trick firefox from auto filling the password -->
-                    <input type="text" class="input-text no-display" name="dummy" id="dummy" />
+                    <!--input type="text" class="input-text no-display" name="dummy" id="dummy" /-->
                     <input type="password" title="<?php echo $this->__('Current Password') ?>" class="input-text" name="current_password" id="current_password" />
                 </div>
             </li>
@@ -99,8 +99,6 @@
     </div>
 </form>
 <script type="text/javascript">
-//<![CDATA[
-    var dataForm = new VarienForm('form-validate', true);
     function setPasswordForm(arg){
         if(arg){
             $('current_password').up(3).show();
@@ -115,9 +113,7 @@
             $('confirmation').removeClassName('required-entry');
         }
     }
-
     <?php if($this->getCustomer()->getChangePassword()): ?>
-        setPasswordForm(true);
+        var isSetPasswordForm = true;
     <?php endif; ?>
-//]]>
 </script>

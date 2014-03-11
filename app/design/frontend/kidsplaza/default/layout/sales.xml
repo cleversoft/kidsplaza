@@ -82,6 +82,9 @@ Customer account home dashboard layout
             </block>
             <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
         </reference>
+        <reference name="js_bottom">
+            <action method="addJs"><js>mt/mage/customer/Account.js</js></action>
+        </reference>
     </sales_order_history>
 
 
