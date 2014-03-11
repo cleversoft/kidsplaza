@@ -50,6 +50,9 @@ header .menu-top {
 #megamenu ul li.level-0 > a:hover {
    line-height: 45px;
 }
+#megamenu ul li.level-0.over > a {
+   line-height: 45px;
+}
 #megamenu ul li.level-0:hover > a span ,
 #megamenu ul li.level-0 > a:hover span ,
 #megamenu ul li.level-0 > a span:hover {

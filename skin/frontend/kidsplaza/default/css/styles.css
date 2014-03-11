@@ -152,7 +152,7 @@ header .input-search-bg{color:#a5a5a5;position:absolute;height:40px;display:bloc
 .products-grid .btn-kid.btn-disabled .glyphicon {display: none ;}
 .btn-disabled:focus,
 .btn-disabled:active{outline: 3px solid #555;}
-
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group { margin-left:  3px !important ;}
 .header-mid .btn-group.open .dropdown-toggle{box-shadow:none}
 a.logo{margin-top:20px;display:block}
 #search_mini_form{margin-top:30px;position:relative}
@@ -296,7 +296,7 @@ input,textarea{outline:0}
 .btn-default:focus,.btn-default:active{color:#333}
 .toolbar .dropdown-menu{text-align:left}
 .category-products li .btn-kid{padding:2px 5px}
-.category-products li .btn-kid.btn-cart{background-color: #7fb92a;border: 1px solid #477700; outline: none ; border-radius: 4px ;-webkit-border-radius: 4px;-moz-border-radius: 4px;-o-border-radius: 4px; padding: 8px 20px; text-transform: uppercase ;}
+.category-products li .btn-kid.btn-cart{background-color: #7fb92a;border: 1px solid #477700; outline: none !important ; border-radius: 4px ;-webkit-border-radius: 4px;-moz-border-radius: 4px;-o-border-radius: 4px; padding: 8px 20px; text-transform: uppercase ;}
 #content{padding-top:10px}
 .product-image img{padding:3px;border:1px solid #fff}
 .product-image:hover img{/*border:1px solid #0095d6*/}
@@ -362,7 +362,11 @@ input,textarea{outline:0}
 
 .a-right{text-align:right}
 .a-center{text-align:center}
-.cart tfoot .btn{padding:2px 5px}
+.cart tfoot .btn{padding:0 ; height: 39px ; outline: none !important ; border: 0 ; background: none; }
+.cart tfoot .btn span{ line-height: 39px; float: left ; display: block ; background: url("../images/btn-cart.png") 0 0 no-repeat ; padding: 0  0 0 30px; height: 39px ;  }
+.cart tfoot .btn span span{ height:40px ;line-height: 39px; background: url("../images/btn-cart.png") 100% 100% no-repeat ;  padding: 0 28px 0 0; }
+
+.cart #shopping-cart-table tfoot td { background:  #f7f7f7 ;}
 .discount .btn{padding:3px 10px}
 .discount input{height:34px;border-radius:0}
 .block-subscribe{width:300px;}
@@ -380,7 +384,9 @@ input,textarea{outline:0}
 .btn-checkout{margin-top:20px}
 .review-table th{font-weight:400}
 .sp-methods{margin-bottom:0}
-.cart .input-group input.qty{width:50px;padding:6px 2px}
+.cart .input-group {margin: 15px 0 0 ; width: 80% ;}
+.cart .input-group .form-control {margin: 0 ;}
+.cart .input-group input.qty{width:50px;padding:6px 2px ; margin:0 1px 0 5px ;}
 .cart .btn-qty{font-weight:700}
 .col-main{min-height:300px}
 .catalog-product-view .col-main{clear: both;}
@@ -424,8 +430,7 @@ span.separator{vertical-align: top;}
 
 
 .block-account  .block-title strong { margin: 0 0 20px ; display: block ; background: none ; border: none;color: #20A4F0;font-size: 18px; }
-.block-account  .block-content .active a , .block-account  .block-content a:hover { color: #FF3D70 ; text-decoration: none; }
-.block-account .nav li a{padding: 5px 10px 5px 5px;}
+.block-account  .block-content strong , .block-account  .block-content a:hover { color: #FF3D70 ; text-decoration: none; }
 .block-account  .block-content a { color: #333; line-height: 30px ;}
 .col2-set .col-1 {float: left; width: 48.5%;}
 .col2-set .col-2 {float: right;width: 48.5%;}
@@ -462,9 +467,7 @@ span.separator{vertical-align: top;}
     padding:10px 0 0 15px;
 }
 .pager .limiter select { width:35%; }
-.sales-order-history .pager .limiter select {width: auto;display: inline-block;}
-.sales-order-history .pager .limiter {float: right;}
-.sales-order-history .pager .limiter label {display: none;}
+
 #wishlist-table input.input-text {
     padding:5px;
     margin:0 0 10px;
@@ -479,15 +482,29 @@ span.separator{vertical-align: top;}
 
 .cart .page-title { background: #0098cd ; }
 .cart .page-title h2 { border: none ; font-size: 18px ; color: #fff;  margin: 35px 0 0; padding: 15px 20px;}
-.cart  .product-name { color: #333333 ; font-size: 16px ; line-height: 70px ; }
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {background: none !important ;}
+.cart  a {line-height: 70px ; }
+.cart  .product-name a{ color: #333333 ; font-size: 16px ; line-height: 70px ; }
+.cart  .btn-remove { color: #333333 ;border: 1px dashed #989898 ; padding: 2px 5px; }
+.cart .btn-remove:focus,
+.cart .btn-remove:active{}
+.cart  .cart-price {  line-height: 70px ; }
+.cart  .cart-price .price{ color: #ff4884 ;  }
+.cart .form-control { margin: 15px 0 0 ;}
+.cart tfoot .btn.btn-update i.glyphicon-refresh { color:  #f74d89 ; padding: 0 5px 0 0;}
+.cart tfoot .btn.btn-update {padding: 0 18px; color: #333; font-weight: bold ;}
+.cart tfoot .btn.btn-update span {background: none ; color: #333;}
+.cart tfoot .btn.btn-update span span {background: none ;}
+.cart tfoot .btn.btn-clear { padding: 0 50px;}
+
+.table-striped > tbody > tr:nth-child(2n+1) > td,
+.table-striped > tbody > tr:nth-child(2n+1) > th {background: none !important ;}
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
 .table-bordered > tfoot > tr > th,
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td { border: none !important; border-bottom: 1px dashed #d7d7d7 !important ;  }
-
+.table-striped > tbody > tr td .glyphicon-pencil {color: #333;}
 .col1-layout .fieldset{background:#fff}
 .col1-layout .col-main{float:none;width:auto}
 .fieldset{border:1px solid #e4e4e4;margin:28px 0;padding:22px 25px 12px 33px;float:left;width:100%}
@@ -502,7 +519,7 @@ span.separator{vertical-align: top;}
 .form-list .name-middlename input.input-text{width:49px}
 .form-list .input-box{display:block;clear:both;width:100%}
 .form-list .input-box input.input-text ,
-.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; box-shadow: 3px 3px 3px -1px #CCCCCC inset; height: 30px ; border: 1px solid #ccc ;}
+.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; box-shadow: 3px 3px 3px -1px #CCCCCC inset; height: 25px ; border: 1px solid #ccc ;}
 .form-list .customer-dob input.input-text{display:block;width:74px}
 .form-list .customer-dob label{font-size:80%;font-weight:normal;color:#888}
 .form-list .customer-dob .dob-year{float:left;width:85px;width:140px}
