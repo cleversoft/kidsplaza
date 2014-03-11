@@ -222,9 +222,9 @@ abstract class AW_Blog_Block_Abstract extends Mage_Core_Block_Template
 
     protected function _prepareDates($item)
     {
-        $dateFormat = self::$_helper->getDateFormat();
-        $item->setCreatedTime($this->formatTime($item->getCreatedTime(), $dateFormat, true));
-        $item->setUpdateTime($this->formatTime($item->getUpdateTime(), $dateFormat, true));
+        //$dateFormat = self::$_helper->getDateFormat();
+        //$item->setCreatedTime($this->formatTime($item->getCreatedTime(), $dateFormat, true));
+        //$item->setUpdateTime($this->formatTime($item->getUpdateTime(), $dateFormat, true));
 
         return $this;
     }

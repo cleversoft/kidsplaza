@@ -282,9 +282,13 @@ A.awblog_current_comment {
     clear: none;
     width: auto;
     float: left;
+    padding-right: 5px;
+}
+#postComment label{
+    font-weight: normal;
 }
 #postComment .input-box input {
-    width: 83%;
+    width: 100%;
 }
 #postComment .button-set {
     display: inline-block;

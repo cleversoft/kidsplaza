@@ -23,7 +23,9 @@
  * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
  * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
  */
-?><?php $posts = $this->getPosts(); ?>
+?>
+<?php $posts = $this->getPosts(); ?>
+<?php $date = Mage::getModel('core/date') ?>
 <div id="messages_product_view">
     <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
     <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
@@ -40,12 +42,12 @@
                     <div class="media-body">
                         <div class="postTitle">
                             <span class="title"><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></span>
-                            <span class="created"><?php echo date('d/m/Y - g:i a',strtotime($post->getCreatedTime())); ?></span>
-                            <span class="comment-count">
-                                <?php if ($this->getCommentsEnabled()): ?>
-                                    <?php echo $post->getCommentCount() ? $post->getCommentCount() : 0; ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a>
-                                <?php endif; ?>
-                            </span>
+                            <span class="created"><?php echo $date->date('d/m/Y - g:i a', strtotime($post->getCreatedTime())); ?></span>
+                            <?php if ($this->getCommentsEnabled()): ?>
+                                <span class="comment-count">
+                                <?php echo $post->getCommentCount() ? $post->getCommentCount() : 0; ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a>
+                                </span>
+                            <?php endif; ?>
                         </div>
                         <div class="postContent"><?php echo $post->getPostContent(); ?></div>
                     </div>
@@ -67,12 +69,12 @@
                         <div class="media-body">
                             <div class="postTitle">
                                 <span class="title"><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></span>
-                                <span class="created"><?php echo date('d/m/Y - g:i a',strtotime($post->getCreatedTime())); ?></span>
-                                <span class="comment-count">
-                                    <?php if ($this->getCommentsEnabled()): ?>
-                                        <?php echo $post->getCommentCount() ? $post->getCommentCount() : 0; ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a>
-                                    <?php endif; ?>
-                                </span>
+                                <span class="created"><?php echo $date->date('d/m/Y - g:i a', strtotime($post->getCreatedTime())); ?></span>
+                                <?php if ($this->getCommentsEnabled()): ?>
+                                    <span class="comment-count">
+                                    <?php echo $post->getCommentCount() ? $post->getCommentCount() : 0; ?> <a href="<?php echo $post->getAddress(); ?>#commentBox" >Comments</a>
+                                    </span>
+                                <?php endif; ?>
                             </div>
                             <div class="postContent"><?php echo $post->getPostContent(); ?></div>
                         </div>
