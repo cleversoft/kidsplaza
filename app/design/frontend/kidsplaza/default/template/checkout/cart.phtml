@@ -42,7 +42,7 @@
         <table id="shopping-cart-table" class="table cart-table table-striped table-bordered">
         <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
             <thead>
-                <tr>
+                <!--<tr>
                     <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
                     <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
                     <th rowspan="<?php echo $mergedCells; ?>"></th>
@@ -53,7 +53,7 @@
                     <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
                     <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
                     <th rowspan="<?php echo $mergedCells; ?>" class="a-center">&nbsp;</th>
-                </tr>
+                </tr>-->
                 <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
                 <tr>
                     <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>

@@ -52,12 +52,12 @@
                     <h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
                 </div>
                 <div class="row">
-                    <div class="review col-lg-4">
+                    <div class="review col-lg-6">
                         <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
                         <span class="separator">|</span>
                         <?php echo $this->getChildHtml('addto') ?>
                     </div>
-                    <div class="mt-social-links col-lg-8">
+                    <div class="mt-social-links col-lg-6">
                         <div class="so-facebook so-social-share">
                             <div id="fb-root"></div>
                             <div class="fb-like" data-href="<?php echo $_product->getProductUrl();?>" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false"></div>

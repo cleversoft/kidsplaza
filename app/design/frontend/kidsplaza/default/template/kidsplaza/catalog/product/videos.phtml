@@ -88,10 +88,16 @@
     </script>
     <h2><?php echo $this->__('Product Videos') ?></h2>
     <div class="videos-wrapper">
-        <div class="video-content">
-            <div id="player"></div>
+        <div class="videos-wrapper-inner">
+                <div class="video-inner">
+                        <div class="row">
+                                <div class="video-content col-lg-7">
+                                    <div id="player"></div>
+                                </div>
+                                <div class="video-list col-lg-5" id="video-list"></div>
+                        </div>
+                </div>
         </div>
-        <div class="video-list" id="video-list"></div>
     </div>
 </div>
 <?php endif ?>
