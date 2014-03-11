@@ -171,7 +171,7 @@ jQuery(function(){
     });
     //init media verticle slider
     var carCount = jQuery('.media-list #thumbs').find('a').length;
-    if(carCount<=4){
+    if (carCount <= 4){
         jQuery('.product-img-box .more-views .more-views-nav').hide();
     }
     jQuery("a#carousel-up").on("click", function() {
@@ -209,4 +209,11 @@ jQuery(function(){
             });
         }
     });
+    //init video scroll
+    jQuery('#product-videos .video-list').mCustomScrollbar({
+        scrollInertia: 0,
+        theme: 'dark-thin',
+        set_height: 390,
+        mouseWheel: true
+    })
 });

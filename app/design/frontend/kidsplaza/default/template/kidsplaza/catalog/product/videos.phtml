@@ -51,7 +51,7 @@
                     itemElm = document.createElement('div'),
                     imgElm = document.createElement('img'),
                     infoElm = document.createElement('div'),
-                    titleElm = document.createElement('div'),
+                    titleElm = document.createElement('a'),
                     descElm = document.createElement('div'),
                     userElm = document.createElement('div'),
                     listElm = document.getElementById('video-list');
@@ -59,16 +59,18 @@
                 itemElm.className = 'video-item';
                 infoElm.className = 'video-item-info';
                 titleElm.className = 'video-item-title';
+                titleElm.href = 'javascript:void(0)';
                 descElm.className = 'video-item-desc';
                 userElm.className = 'video-item-user';
 
                 titleElm.innerHTML = title;
-                descElm.innerHTML = desc;
-                userElm.innerHTML = user;
+                descElm.innerHTML = jsTruncate(desc, 100);
+                userElm.innerHTML = '<i class="glyphicon glyphicon-user"></i> ' + user;
                 imgElm.src = thumb;
 
                 var videoId = data['entry']['id']['$t'].split(':')[3];
                 imgElm.onclick = onYoutubeVideoClick.bind(this, videoId);
+                titleElm.onclick = onYoutubeVideoClick.bind(this, videoId);
 
                 infoElm.appendChild(titleElm);
                 infoElm.appendChild(descElm);
@@ -82,6 +84,11 @@
             if (!YTPlayer) return;
             YTPlayer.loadVideoById(videoId);
         }
+        function jsTruncate(input, length){
+            if (!input || !length) return input;
+            var output = input.substr(0, length);
+            return output.substr(0, Math.min(output.length, output.lastIndexOf(' ')))+'...';
+        }
         <?php foreach ($videos as $video): ?>
         getYoutubeVideoInfo('<?php echo $video ?>');
         <?php endforeach ?>
@@ -89,14 +96,14 @@
     <h2><?php echo $this->__('Product Videos') ?></h2>
     <div class="videos-wrapper">
         <div class="videos-wrapper-inner">
-                <div class="video-inner">
-                        <div class="row">
-                                <div class="video-content col-lg-7">
-                                    <div id="player"></div>
-                                </div>
-                                <div class="video-list col-lg-5" id="video-list"></div>
-                        </div>
+            <div class="video-inner">
+                <div class="row">
+                    <div class="video-content col-lg-7">
+                        <div id="player"></div>
+                    </div>
+                    <div class="video-list col-lg-5" id="video-list"></div>
                 </div>
+            </div>
         </div>
     </div>
 </div>

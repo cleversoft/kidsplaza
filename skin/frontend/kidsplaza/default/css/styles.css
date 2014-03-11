@@ -74,13 +74,14 @@
 .product-view #product-related .related-name li a{color: #333 ; font-weight: normal; font-size: 13px;}
 
 .product-view #product-videos h2 {background:url("../images/logo-view.png") 98% 50% no-repeat ; border: 1px solid #dbd8d7 ; border-bottom: none ; margin: 0; padding: 15px; color: #333; font-size: 18px;}
-.product-view #product-videos .video-item-title  { color: #0098cd; font-weight:bold ; font-size: 16px;}
+.product-view #product-videos .video-item-title  { color: #0098cd; font-weight:bold;line-height: 100%;}
 .product-view #product-videos .videos-wrapper  .videos-wrapper-inner{ padding: 18px 16px; border: 1px solid #dbd8d7 ;}
 .product-view #product-videos .videos-wrapper  .videos-wrapper-inner .video-inner{ padding: 10px; border: 1px solid #dbd8d7 ;}
-.product-view .video-item-info{height: 65px ; overflow: hidden ; margin: 0 0 0 10px; float: left ; width: 60% ;}
-.product-view .video-item ,
-.product-view .video-item img{float: left ;}
+.product-view .video-item-info{margin: 0 0 0 10px; float: left ; width: 60% ;}
+.product-view .video-item img {float: left ;cursor: pointer;}
 .product-view .video-item {margin: 0 0 10px; padding: 0 10px 0 20px;}
+.product-view .video-item-user i{color: #aaa;}
+.product-view .video-item-user {color: #0098cd;}
 .product-shop{padding-left: 0;}
 .table .value{background: #fff !important;}
 .product-view .desc{padding: 15px;}
