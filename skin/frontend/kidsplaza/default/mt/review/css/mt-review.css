@@ -7,7 +7,6 @@
     position: relative;
     right: 0;
     float: left;
-    font-weight: bold;
 }
 .mt-review-footer .mt-inappropriate {
     text-align: right;
@@ -17,11 +16,10 @@
     display: block;
     overflow: hidden;
     float: left;
-    width: 50px;
+    margin-right: 10px;
 }
 .mt-review-footer .mt-inappropriate .mt-reply {
     float: left;
-    font-weight: bold;
 }
 .mt-review-footer .mt-inappropriate .mt-report {
     float: left;
@@ -195,8 +193,8 @@ em.required{
 }
 
 .box-reviews span.img img {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
 }
 .box-reviews .main-review {
     display: block;
@@ -249,6 +247,7 @@ em.required{
     width: 100%;
     float: left;
     display: none;
+    margin-top: 5px;
 }
 .mt-review-main .form-field .input-box {
     clear: inherit;

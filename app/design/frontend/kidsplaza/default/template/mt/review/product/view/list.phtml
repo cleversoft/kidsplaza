@@ -31,7 +31,8 @@
         <?php foreach ($_items as $_review):?>
             <li class="item media">
                 <span class="img pull-left">
-                     <img src="<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>"/>
+                     <!--img src="<?php echo $this->getSkinUrl().'images/list_avatar_question.png'?>"/-->
+                    <img src="<?php echo Mage::helper('kidsplaza')->avatar($_review->getNickname()) ?>"/>
                 </span>
                 <div class="media-body">
                     <span class="main-review">

@@ -113,7 +113,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
                                  ->setTemplate('mt/review/comments/list.phtml')->setCollection($collection)
                                  ->toHTML();
                 $this->getResponse()->setBody($commentsHtml);
-                count($collection)>0? $response['page'] = $params['curpage']+1 : $response['page'] = null;
+                $response['page'] = count($collection) > 0 ? (isset($params['curpage']) ? $params['curpage'] + 1 : 1) : null;
                 $response['status'] = 'SUCCESS';
                 $response['output'] = $commentsHtml;
             } catch (Exception $e) {

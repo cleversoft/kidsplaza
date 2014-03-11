@@ -14,14 +14,21 @@
  */
 ?>
 <div class="mt-helpful">
-    <?php if(!Mage::helper('mtreview')->confAllowOnlyLoggedToVote() && !Mage::getSingleton('customer/session')->isLoggedIn()){?>
-        <a href="<?php echo $this->getBaseUrl(); ?>customer/account/login/"><?php echo $this->__('Like');?></a>
-    <?php }else{?>
-        <?php if($this->canShowHelpfulnessLink()):?>
-            <a onclick="return voteReview(this)" href="<?php echo $this->getLinkHelpfulness('Yes');?>"><?php echo $this->__('Like');?></a>
-        <?php endif;?>
-    <?php }?>
-    <?php if($this->getYesCount()){?>
-        <span class="total-helpfull"><?php echo $this->__('(%s) Like', $this->getYesCount());?></span>
-    <?php }?>
+    <?php if (!Mage::helper('mtreview')->confAllowOnlyLoggedToVote() && !Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+        <a href="<?php echo $this->getBaseUrl() ?>customer/account/login/">
+            <i class="glyphicon glyphicon-thumbs-up"></i>
+            <?php echo $this->__('Like');?>
+            <?php if ($this->getYesCount()): ?><span class="badge"><?php echo $this->getYesCount() ?></span><?php endif ?>
+        </a>
+    <?php else: ?>
+        <?php if ($this->canShowHelpfulnessLink()): ?>
+            <a onclick="return voteReview(this)" href="<?php echo $this->getLinkHelpfulness('Yes') ?>">
+                <i class="glyphicon glyphicon-thumbs-up"></i>
+                <?php echo $this->__('Like');?>
+                <?php if ($this->getYesCount()): ?><span class="badge"><?php echo $this->getYesCount() ?></span><?php endif ?>
+            </a>
+        <?php else: ?>
+            <span class="total-helpfull"><?php echo $this->__('Like <span class="badge">%s</span>', $this->getYesCount());?></span>
+        <?php endif ?>
+    <?php endif ?>
 </div>

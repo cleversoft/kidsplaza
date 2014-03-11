@@ -188,7 +188,7 @@ function commentReview(event,reviewId){
                         jQuery(event).prev().hide();
 
                         var li = jQuery("<li/>").addClass('media');
-                        jQuery("<span/>").addClass('img pull-left').html('<img src="'+dataComment.pathUrl+'"/>').appendTo(jQuery(li));
+                        jQuery("<span/>").addClass('img pull-left').html('<img src="'+dataComment.pathUrl+data.customer+'"/>').appendTo(jQuery(li));
                         var mediaBody = jQuery("<div/>").addClass('media-body').appendTo(jQuery(li));
                         var spanMainReview = jQuery("<span/>").addClass("main-review").appendTo(jQuery(mediaBody));
                         jQuery("<span/>").addClass("created_by")

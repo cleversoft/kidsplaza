@@ -530,6 +530,7 @@ span.separator{vertical-align: top;}
 .form-list li.wide textarea{width:99%}
 #contactForm textarea{width: 100%;}
 #contactForm .input-box:last-child{padding-right: 0;}
+#review-form label{font-weight: normal;}
 .form-list li.wide select{width:99%}
 .form-list .customer-name-prefix-middlename .input-box{width:auto}
 .form-list .customer-name-prefix-middlename .name-firstname{width:140px}

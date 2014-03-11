@@ -216,4 +216,9 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         unset($customer, $wishlist);
         return false;
     }
+
+    public function avatar($str=null){
+        if (!$str) $str = microtime();
+        return Mage::getBaseUrl().'identicon.php?size=60&hash='.md5($str);
+    }
 }
