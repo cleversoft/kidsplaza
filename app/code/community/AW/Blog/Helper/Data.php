@@ -33,6 +33,7 @@ class AW_Blog_Helper_Data extends Mage_Core_Helper_Abstract
     const XML_COMMENTS_PER_PAGE = 'blog/comments/page_count';
     const XML_COMMENTS_ENABLED = 'blog/comments/enabled';
     const XML_POSTS_PER_PAGE = 'blog/blog/perpage';
+    const XML_POSTS_GRID_PER_PAGE = 'blog/blog/grid_per_page_values';
     const XML_BOOKMARKS = 'blog/blog/bookmarkslist';
     const XML_PATH_BOOKMARKS_POST = 'blog/blog/bookmarkspost';
     const XML_ROOT = 'blog/blog/route';
@@ -102,6 +103,13 @@ class AW_Blog_Helper_Data extends Mage_Core_Helper_Abstract
     public function useShortContent($store = null)
     {
         return $this->conf(self::XML_BLOG_USESHORTCONTENT, $store);
+    }
+
+    public function isPostGridPerPage($store = null)
+    {
+        $conf = $this->conf(self::XML_POSTS_GRID_PER_PAGE, $store);
+        $countArr = explode(',',$conf);
+        return $countArr[0];
     }
 
     public function readMoreCount($store = null)

@@ -83,7 +83,9 @@
         <?php endforeach ?>
         </div>
     <?php endif ?>
+    <?php if(count($posts) == Mage::helper('blog')->isPostGridPerPage()){?>
     <div class="load-more-posts">
         <span class="loading"><?php echo $this->__('Loading...');?></span><button class="btn btn-load-more"><?php echo $this->__('See More ');?></button>
     </div>
+    <?php }?>
 </div>

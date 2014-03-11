@@ -57,7 +57,7 @@
                 <div class="media-body">
                     <div class="postTitle">
                         <span class="title"><a href="<?php echo $item->getAddress(); ?>" ><?php echo $item->getTitle(); ?></a></span>
-                        <span class="created"><?php echo $item->getCreatedTime(); ?></span>
+                        <span class="created"><?php echo date('d/m/Y - g:i a',strtotime($item->getCreatedTime())); ?></span>
                         <span class="comment-count">
                             <?php echo $item->getCommentCount() ? $item->getCommentCount() : 0; ?> <a href="<?php echo $item->getAddress(); ?>#commentBox" >Comments</a>
                         </span>
@@ -179,8 +179,11 @@
                 </li>
             <?php endforeach; ?>
         </ul>
+        <?php
+        if(count($comments) == Mage::helper('blog')->isPostGridPerPage()){?>
         <div class="load-more-comments">
             <span class="loading"><?php echo $this->__('Loading...');?></span><button class="btn btn-load-more"><?php echo $this->__('See More ');?></button>
         </div>
+        <?php }?>
     </div>
 <?php endif; ?>
