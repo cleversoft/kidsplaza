@@ -1,14 +1,3 @@
-function initAwall(){
-    if(_section == 'awall'){
-        $('awall_extensions').update($('awall_extensions_table').innerHTML)
-    }
-    if(_section == 'awstore'){
-       $('awstore_extensions').update($('awall_store_response').innerHTML)
-    }
-}
-Event.observe(window, 'load', function() {
-   initAwall();
-});
 var contactForm = new VarienForm('postComment', false);
 jQuery(document).ready(function(){
     jQuery('.main-post button.btn-load-more').on('click',function(e){
@@ -20,6 +9,14 @@ jQuery(document).ready(function(){
     jQuery('textarea#comment').on('click',function(e){
         jQuery('.main-input-box').show();
     });
+    var checkShowMoreBlog = jQuery('.main-post .toolbar-pages').find('a.i-next').length;
+    if(checkShowMoreBlog > 0){
+        jQuery('.main-post button.btn-load-more').show();
+    }
+    var checkShowMorePost = jQuery('.post-view-comments .toolbar-pages').find('a.i-next').length;
+    if(checkShowMorePost > 0){
+        jQuery('.post-view-comments button.btn-load-more').show();
+    }
 });
 function sendLoadMorePosts(url)
 {

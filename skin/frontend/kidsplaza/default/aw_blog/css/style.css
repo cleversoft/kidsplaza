@@ -227,6 +227,9 @@ A.awblog_current_comment {
     padding: 24px 0;
 }
 
+.main-post .load-more-posts .btn-load-more{
+    display: none;
+}
 .main-post .load-more-posts{
     width: 100%;
     text-align: center;
@@ -240,6 +243,9 @@ A.awblog_current_comment {
     visibility: hidden;
 }
 
+.post-view-comments .load-more-comments .btn-load-more {
+    display: none;
+}
 .post-view-comments .load-more-comments{
     width: 100%;
     text-align: center;

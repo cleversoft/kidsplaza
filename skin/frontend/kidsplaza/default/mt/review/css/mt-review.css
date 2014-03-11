@@ -227,6 +227,9 @@ em.required{
 .box-reviews .main-review .created_by .date {
     color: #a9a9a9;
 }
+.product-view .box-reviews .load-more-review .btn-load-more{
+    display: none;
+}
 .product-view .box-reviews .load-more-review{
     width: 100%;
     text-align: center;

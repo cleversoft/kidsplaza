@@ -33,6 +33,10 @@ jQuery(document).ready(function($){
     $('#review_field').on('click',function(){
         $(this).next().show();
     });
+    var checkShowMore = $('#customer-reviews .toolbar-pages').find('.next.i-next').length;
+    if(checkShowMore>0){
+        jQuery('#customer-reviews button.btn-load-more').show();
+    }
 });
 function showComment(e) {
     jQuery(e).addClass("active");
