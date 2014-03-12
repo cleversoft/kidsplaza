@@ -14,15 +14,15 @@
  */
 ?>
 <div class="form-add row">
-    <span class="your-review"><?php echo $this->__('Write Your Own Review') ?></span>
+    <span class="your-review"><?php echo Mage::helper('mtreview')->__('Write Your Own Review') ?></span>
     <?php if ($this->getAllowWriteReviewFlag()): ?>
     <form action="<?php echo $this->getAction() ?>" method="post" id="review-form">
         <?php echo $this->getBlockHtml('formkey'); ?>
         <fieldset>
             <?php echo $this->getChildHtml('form_fields_before')?>
-            <h3><?php echo $this->__("You're reviewing:"); ?> <span><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></span></h3>
+            <h3><?php echo Mage::helper('mtreview')->__("You're reviewing:"); ?> <span><?php echo $this->escapeHtml($this->getProductInfo()->getName()) ?></span></h3>
             <?php if( $this->getRatings() && $this->getRatings()->getSize()): ?>
-                <span class="how-do"><?php echo $this->__('How do you rate this product?') ?> <em class="required">*</em></span>
+                <span class="how-do"><?php echo Mage::helper('mtreview')->__('How do you rate this product?') ?> <em class="required">*</em></span>
                 <span id="input-message-box"></span>
                 <div id="product-review-table" class="review-rating">
                     <div class="rating-type-item"></div>
@@ -51,7 +51,7 @@
                                 <input type="text" name="nickname" id="nickname_field" class="input-text required-entry form-control" value="<?php echo $this->escapeHtml($data->getNickname()) ?>" />
                             </div>
                             <div class="buttons-set">
-                                <button type="submit" title="<?php echo $this->__('Submit Review') ?>" class="button btn-kid btn"><span><span><?php echo $this->__('Submit Review') ?></span></span></button>
+                                <button type="submit" title="<?php echo Mage::helper('mtreview')->__('Submit Review') ?>" class="button btn-kid btn"><span><span><?php echo Mage::helper('mtreview')->__('Submit Review');?></span></span></button>
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
     </script>
     <?php else: ?>
     <p class="review-nologged" id="review-form">
-        <?php echo $this->__('Only registered users can write reviews. Please, <a href="%s">log in</a> or <a href="%s">register</a>', $this->getLoginLink(), Mage::helper('customer')->getRegisterUrl()) ?>
+        <?php echo Mage::helper('mtreview')->__('Only registered users can write reviews. Please, <a href="%s">log in</a> or <a href="%s">register</a>', $this->getLoginLink(), Mage::helper('customer')->getRegisterUrl()) ?>
     </p>
     <?php endif ?>
 </div>
