@@ -59,7 +59,7 @@
                         <span class="title"><a href="<?php echo $item->getAddress(); ?>" ><?php echo $item->getTitle(); ?></a></span>
                         <span class="created"><?php echo date('d/m/Y - g:i a',strtotime($item->getCreatedTime())); ?></span>
                         <span class="comment-count">
-                            <?php echo $item->getCommentCount() ? $item->getCommentCount() : 0; ?> <a href="<?php echo $item->getAddress(); ?>#commentBox" >Comments</a>
+                            <?php echo $item->getCommentCount() ? $item->getCommentCount() : 0; ?> <a href="<?php echo $item->getAddress(); ?>#commentBox" ><?php echo Mage::helper('blog')->__('Comments');?></a>
                         </span>
                     </div>
                 </div>
