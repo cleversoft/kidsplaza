@@ -34,9 +34,9 @@
         <div class="btt-submit-review">
             <span class="comment-loading"></span>
             <button class="button " onclick="commentReview(this,'<?php echo $this->getReviewId();?>');" type="button">
-                <span><?php echo $this->__('Send')?></span>
+                <span><?php echo Mage::helper('mtreview')->__('Send')?></span>
             </button>
-            <button onclick="return hideComment(this)" data-form="commnet_field_<?php echo $this->getReviewId();?>" class="button cancel-reply" type="button"><span><?php echo $this->__('Cancel');?></span></button>
+            <button onclick="return hideComment(this)" data-form="commnet_field_<?php echo $this->getReviewId();?>" class="button cancel-reply" type="button"><span><?php echo Mage::helper('mtreview')->__('Cancel');?></span></button>
         </div>
     </div>
     <?php }?>

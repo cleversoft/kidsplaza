@@ -13,7 +13,7 @@
  *
  */
 ?>
-<h2><?php echo $this->__('Customer Reviews') ?></h2>
+<h2><?php echo Mage::helper('mtreview')->__('Customer Reviews') ?></h2>
 <div class="mt-review-main">
     <?php if(count($this->getReviewsCollection()->getItems())>0){?>
         <div class="summary-review row show-grid">
@@ -75,7 +75,7 @@
         <?php endforeach; ?>
         </ul>
         <div class="load-more-review">
-            <span class="loading"><?php echo $this->__('Loading...');?></span><button class="btn btn-load-more"><?php echo $this->__('See More ');?></button>
+            <span class="loading"><?php echo $this->__('Loading...');?></span><button class="btn btn-load-more"><?php echo Mage::helper('mtreview')->__('See More');?></button>
         </div>
         <?php echo $this->getBlockHtml('formkey'); ?>
         <?php echo $this->getChildHtml('review_ordering') ?>

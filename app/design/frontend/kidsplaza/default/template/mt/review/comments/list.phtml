@@ -43,7 +43,7 @@ if($this->getCollection()){
         <?php if(count($_items)>4):?>
         <li class="comments-more">
             <span class="loading"><?php echo $this->__('Loading...');?></span>
-            <a onclick="return showMoreComments(this,'<?php echo $this->getReviewId();?>');"> <?php echo $this->__('Show more comments');?></a>
+            <a onclick="return showMoreComments(this,'<?php echo $this->getReviewId();?>');"> <?php echo Mage::helper('mtreview')->__('Show more comments');?></a>
         </li>
         <?php endif;?>
 <?php endif;?>

@@ -15,7 +15,7 @@
 ?>
 <div class="sorter">
     <div class="sort-by">
-        <label><?php echo $this->__('Sort By') ?></label>
+        <label><?php echo Mage::helper('mtreview')->__('Sort By') ?></label>
         <select onchange="setLocation(this.value)">
             <?php foreach($this->getAvailableOrders() as $item): ?>
                 <option value="<?php echo $this->getOrderUrl($item['value'], 'asc') ?>"<?php if($this->isOrderCurrent($item['value'])): ?> selected="selected"<?php endif; ?>>
@@ -29,4 +29,5 @@
             <a href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>"><img src="<?php echo $this->getSkinUrl('images/i_asc_arrow.gif') ?>" alt="<?php echo $this->__('Set Descending Direction') ?>" class="v-middle" /></a>
         <?php endif; ?>
     </div>
+    <?php echo $this->getChildHtml('toolbar_pager'); ?>
 </div>
