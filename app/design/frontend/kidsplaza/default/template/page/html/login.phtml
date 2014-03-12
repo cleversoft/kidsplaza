@@ -19,9 +19,9 @@ $session = Mage::getSingleton('customer/session');
                 <?php if ($session->isLoggedIn()): ?>
                     <p><?php echo $session->getCustomer()->getName() ?></p>
                 <?php else: ?>
-                    <p><?php echo $this->__('Login') ?></p>
+                    <p><?php echo Mage::helper('kidsplaza')->__('Login') ?></p>
                 <?php endif ?>
-                <span><?php echo $this->__('Account and Orders') ?></span>
+                <span><?php echo Mage::helper('kidsplaza')->__('Account and Orders') ?></span>
             </div>
         </div>
         <div class="login-content" style="display: none">
@@ -30,23 +30,27 @@ $session = Mage::getSingleton('customer/session');
                     <?php echo $this->__('Login') ?>
                 </button>
                 <p>
-                    <span><?php echo $this->__('New customer?') ?></span>
-                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo $this->__('Create account') ?></a>
+                    <span><?php echo Mage::helper('kidsplaza')->__('New customer?') ?></span>
+                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo Mage::helper('kidsplaza')->__('Create account') ?></a>
                 </p>
             <?php endif ?>
             <ul>
                 <li>
                     <i class="glyphicon glyphicon-user"></i>
-                    <a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo $this->__('My account') ?></a>
+                    <a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo Mage::helper('kidsplaza')->__('My account') ?></a>
                 </li>
                 <li>
                     <i class="glyphicon glyphicon-list-alt"></i>
-                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('My Orders') ?></a>
+                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo Mage::helper('kidsplaza')->__('My Orders') ?></a>
+                </li>
+                <li>
+                    <i class="glyphicon glyphicon-heart"></i>
+                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
                 </li>
                 <?php if ($session->isLoggedIn()): ?>
                 <li>
                     <i class="glyphicon glyphicon-log-out"></i>
-                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo $this->__('Log out ') ?></a>
+                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo Mage::helper('kidsplaza')->__('Log out ') ?></a>
                 </li>
                 <?php endif ?>
             </ul>

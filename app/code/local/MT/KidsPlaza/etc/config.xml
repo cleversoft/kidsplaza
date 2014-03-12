@@ -107,6 +107,18 @@
         </routers>
     </admin>
 
+    <frontend>
+        <translate>
+            <modules>
+                <MT_KidsPlaza>
+                    <files>
+                        <default>MT_KidsPlaza.csv</default>
+                    </files>
+                </MT_KidsPlaza>
+            </modules>
+        </translate>
+    </frontend>
+
     <default>
         <url>
             <convert>
