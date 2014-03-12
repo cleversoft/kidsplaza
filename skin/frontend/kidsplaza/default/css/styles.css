@@ -386,7 +386,7 @@ input,textarea{outline:0}
 .review-table th{font-weight:400}
 .sp-methods{margin-bottom:0}
 .cart .input-group {margin: 15px 0 0 ; width: 80px ;}
-.cart .input-group .form-control {margin: 0 ;}
+.cart .input-group .form-control {margin: 0 ; width: 200px;}
 .cart .input-group input.qty{width:50px;padding:6px 2px ; margin:0 1px 0 5px ;}
 .cart .btn-qty{font-weight:700}
 .col-main{min-height:300px}
