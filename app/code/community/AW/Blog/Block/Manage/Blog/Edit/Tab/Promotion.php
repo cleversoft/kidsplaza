@@ -14,7 +14,17 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Promotion extends Mage_Adminhtml_Block_
         $this->setForm($form);
         $fieldset = $form->addFieldset('promotion_form', array('legend' => Mage::helper('blog')->__('General Infomation')));
 
-        $fieldset->addField('promotion_start', 'date', array(
+        $f = $fieldset->addField('promotion_enable', 'select', array(
+            'name'      => 'promotion_enable',
+            'label'     => Mage::helper('blog')->__('Enable Promotion'),
+            'title'     => Mage::helper('blog')->__('Using this post for promotion'),
+            'values'    => array(
+                array('value' => 0, 'label' => Mage::helper('blog')->__('Disable')),
+                array('value' => 1, 'label' => Mage::helper('blog')->__('Enable'))
+            )
+        ));
+
+        $f1 = $fieldset->addField('promotion_start', 'date', array(
             'name'      => 'promotion_start',
             'label'     => Mage::helper('blog')->__('From Date'),
             'title'     => Mage::helper('blog')->__('From Date'),
@@ -24,7 +34,7 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Promotion extends Mage_Adminhtml_Block_
             )
         ));
 
-        $fieldset->addField('promotion_end', 'date', array(
+        $f2 = $fieldset->addField('promotion_end', 'date', array(
             'name'      => 'promotion_end',
             'label'     => Mage::helper('blog')->__('Until Date'),
             'title'     => Mage::helper('blog')->__('Until Date'),
@@ -54,6 +64,14 @@ class AW_Blog_Block_Manage_Blog_Edit_Tab_Promotion extends Mage_Adminhtml_Block_
                 );
             }
         }
+
+        $this->setChild('form_after', $this->getLayout()->createBlock('adminhtml/widget_form_element_dependence')
+            ->addFieldMap($f->getHtmlId(), $f->getName())
+            ->addFieldMap($f1->getHtmlId(), $f1->getName())
+            ->addFieldMap($f2->getHtmlId(), $f2->getName())
+            ->addFieldDependence($f1->getName(), $f->getName(), 1)
+            ->addFieldDependence($f2->getName(), $f->getName(), 1)
+        );
 
         return parent::_prepareForm();
     }
