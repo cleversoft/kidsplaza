@@ -19,6 +19,6 @@ $_product = $this->getProduct();
         <div class="rating" style="width:<?php echo $this->getRatingSummary()?$this->getRatingSummary():0 ?>%"></div>
     </div>
     <a class="rating-reviews" href="javascript:void(0)" onclick="jQuery('#product-review').scrollToMe()">
-        <?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?>
+        <?php echo Mage::helper('mtreview')->__('%d Review(s)', $this->getReviewsCount()) ?>
     </a>
 </div>
