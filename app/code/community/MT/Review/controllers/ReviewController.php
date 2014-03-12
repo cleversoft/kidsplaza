@@ -31,11 +31,11 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
         if (!Mage::helper('mtreview')->confAllowOnlyLoggedToVote()
             && !Mage::helper('mtreview')->isUserLogged() )
         {
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>$this->__('You need log in to vote review'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>Mage::helper('mtreview')->__('You need log in to vote review'))));
         }
         elseif (Mage::helper('mtreview')->isHelpfulnessLogged($reviewId))
         {
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>$this->__('You can vote only once for the same review'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'error','message'=>Mage::helper('mtreview')->__('You can vote only once for the same review'))));
         }
         if($val>0){
             $helpful = Mage::helper('mtreview')->yesHelpfulness( $reviewId, $customerId );
@@ -46,11 +46,11 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
             }else{
                 $this->_totalHelpful = 0;
             }
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success', 'total' => $this->_totalHelpful,'message'=>$this->__('Thank you for your vote.'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success', 'total' => $this->_totalHelpful,'message'=>Mage::helper('mtreview')->__('Thank you for your vote.'))));
         }else{
             Mage::helper('mtreview')->noHelpfulness( $reviewId,$customerId );
             Mage::helper('mtreview')->loggedHelpfulness( $reviewId );
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Thank you for your vote.'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>Mage::helper('mtreview')->__('Thank you for your vote.'))));
         }
     }
 
@@ -70,7 +70,7 @@ class MT_Review_ReviewController extends Mage_Core_Controller_Front_Action
                 Mage::helper('mtreview')->addReport($reviewId);
                 Mage::helper('mtreview')->markReport($reviewId);
             }
-            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>$this->__('Reported.'))));
+            return $this->getResponse()->setBody(Zend_Json::encode(array('status'=>'success','message'=>Mage::helper('mtreview')->__('Reported'))));
         }
     }
 

@@ -421,15 +421,15 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
 
         if ($etime < 1)
         {
-            return '0 seconds';
+            return Mage::helper('mtreview')->__('0 seconds');
         }
 
-        $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',
-            30 * 24 * 60 * 60       =>  'month',
-            24 * 60 * 60            =>  'day',
-            60 * 60                 =>  'hour',
-            60                      =>  'minute',
-            1                       =>  'second'
+        $a = array( 12 * 30 * 24 * 60 * 60  =>  Mage::helper('mtreview')->__('year'),
+            30 * 24 * 60 * 60       =>  Mage::helper('mtreview')->__('month'),
+            24 * 60 * 60            =>  Mage::helper('mtreview')->__('day'),
+            60 * 60                 =>  Mage::helper('mtreview')->__('hours'),
+            60                      =>  Mage::helper('mtreview')->__('minute'),
+            1                       =>  Mage::helper('mtreview')->__('second')
         );
 
         foreach ($a as $secs => $str)

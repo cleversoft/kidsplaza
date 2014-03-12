@@ -118,6 +118,15 @@
                 </mtreview>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <mtreview>
+                    <files>
+                        <default>MT_Review.csv</default>
+                    </files>
+                </mtreview>
+            </modules>
+        </translate>
     </frontend>
     <admin>
         <routers>
@@ -145,6 +154,15 @@
                 </mtreview>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <mtreview>
+                    <files>
+                        <default>MT_Review.csv</default>
+                    </files>
+                </mtreview>
+            </modules>
+        </translate>
     </adminhtml>
     <default>
         <mtreview>
