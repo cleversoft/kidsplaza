@@ -347,4 +347,24 @@ class AW_Blog_Helper_Data extends Mage_Core_Helper_Abstract
             && @class_exists('AW_Mobile_Block_Catalog_Product_List_Toolbar')
         ;
     }
+
+    public function getBlogUrl($route = null, $params = array())
+    {
+        $blogRoute = $this->getRoute();
+        if (is_array($route)) {
+            foreach ($route as $item) {
+                $item = urlencode($item);
+                $blogRoute .= "/{$item}";
+            }
+        } else {
+            $blogRoute .= "/{$route}";
+        }
+
+        foreach ($params as $key => $value) {
+            $value = urlencode($value);
+            $blogRoute .= "{$key}/{$value}/";
+        }
+
+        return Mage::getUrl($blogRoute);
+    }
 }

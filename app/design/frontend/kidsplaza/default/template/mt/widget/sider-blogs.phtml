@@ -27,7 +27,7 @@ $date       = Mage::getModel('core/date');
                 <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.$blog->getThumb(), 50) ?>"/>
             </a>
             <div class="right-blogs">
-               <a><?php echo $blog->getTitle() ?></a>
+               <a href="<?php echo Mage::helper('blog')->getBlogUrl($blog->getIdentifier()) ?>"><?php echo $blog->getTitle() ?></a>
                 <?php if ($blog->getCreatedTime()): ?>
                     <i class="glyphicon glyphicon-calendar"></i>
                     <span><?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?></span>
