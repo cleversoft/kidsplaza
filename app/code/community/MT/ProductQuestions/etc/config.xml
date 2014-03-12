@@ -99,6 +99,15 @@
                 </observers>
             </customer_login>
         </events>
+        <translate>
+            <modules>
+                <productquestions>
+                    <files>
+                        <default>MT_ProductQuestions.csv</default>
+                    </files>
+                </productquestions>
+            </modules>
+        </translate>
     </frontend>
     <admin>
         <routers>
@@ -126,6 +135,15 @@
                 </productquestions>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <productquestions>
+                    <files>
+                        <default>MT_ProductQuestions.csv</default>
+                    </files>
+                </productquestions>
+            </modules>
+        </translate>
     </adminhtml>
     <default>
         <productquestions>

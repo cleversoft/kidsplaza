@@ -186,10 +186,10 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                     ->setTargetPath($target_path)
                     ->setIsSystem(false)
                     ->save();
-                $session->addSuccess($this->__('Your question has been accepted for moderation'));
+                $session->addSuccess(Mage::helper('productquestions')->__('Your question has been accepted for moderation'));
                 $session->setProductquestionsData(false);
             }else{
-                $session->addError($this->__('Unable to post question. Please, try again later.'));
+                $session->addError(Mage::helper('productquestions')->__('Unable to post question. Please, try again later.'));
             }
         }
         if($data['answer_view']){

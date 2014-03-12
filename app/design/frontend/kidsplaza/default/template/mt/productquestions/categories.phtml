@@ -18,8 +18,8 @@ $categories = $this->_collection;
 ?>
 <div class="main-categories">
     <div class="title">
-        <span class="name"><?php echo $this->__('All Categories');?></span>
-        <span class="num"><?php echo $this->__(' %s Questions',$this->getCountQuestions());?></span>
+        <span class="name"><?php echo Mage::helper('productquestions')->__('All Categories');?></span>
+        <span class="num"><?php echo Mage::helper('productquestions')->__('%s Questions',$this->getCountQuestions());?></span>
     </div>
     <ul class="category-list">
         <?php foreach($categories as $category){?>

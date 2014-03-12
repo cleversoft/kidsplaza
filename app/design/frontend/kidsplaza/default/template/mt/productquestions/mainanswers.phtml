@@ -11,17 +11,17 @@ $questions = $this->_collection;
             </span>
             <div class="media-body">
                 <span class="title">
-                    <?php echo $this->__('From') ?> <b><?php echo $this->escapeHtml($question->getQuestionAuthorName()) ?></b>
-                    <?php if($question->getQuestionAuthorType() == 'admin'){?><?php echo $this->__('By Admin');?><?php }?>
+                    <?php echo Mage::helper('productquestions')->__('From') ?> <b><?php echo $this->escapeHtml($question->getQuestionAuthorName()) ?></b>
+                    <?php if($question->getQuestionAuthorType() == 'admin'){?><?php echo Mage::helper('productquestions')->__('By Admin');?><?php }?>
                 </span>
                 <p><?php echo $this->escapeHtml($question->getQuestionText()) ?></p>
-                <p> <?php echo $this->__('At');?> <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span></p>
+                <p> <?php echo Mage::helper('productquestions')->__('At');?> <span class="date"><?php echo $this->formatDate($question->getQuestionDate()) ?> <?php echo $this->formatTime($question->getQuestionDate()) ?></span></p>
             </div>
         </li>
         <?php }?>
     </ul>
     <?php echo $this->getChildHtml('productquestions_pager'); ?>
     <?php else: ?>
-    <p><?php echo $this->__('No answer'); ?></p>
+    <p><?php echo Mage::helper('productquestions')->__('No answer'); ?></p>
     <?php endif; ?>
 </div>

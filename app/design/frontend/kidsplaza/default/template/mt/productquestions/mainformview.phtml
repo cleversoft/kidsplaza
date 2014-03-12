@@ -11,13 +11,13 @@ $helper->generateCaptchaKey();
         <div class="form-field form-group media">
             <span class="author-img"><img src="<?php echo $this->getSkinUrl().'images/comment-default-avatar.jpg'?>"/> </span>
             <div class="media-body">
-                <textarea class="form-control required-entry" name="question_text" id="question_text_field" cols="" rows="" placeholder="<?php echo $this->__('Enter your questions');?>"><?php echo $this->escapeHtml($this->getQuestionText()) ?></textarea>
+                <textarea class="form-control required-entry" name="question_text" id="question_text_field" cols="" rows="" placeholder="<?php echo Mage::helper('productquestions')->__('Enter your answer');?>"><?php echo $this->escapeHtml($this->getQuestionText()) ?></textarea>
                 <div class="form-field form-group row">
                     <div class="col-lg-12 author_info">
-                        <span class="author_name"><input class="form-control required-entry" name="question_author_name" id="question_author_name_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorName()) ?>" placeholder="<?php echo $this->__('Enter name');?>"/></span>
-                        <span class="autor_email"> <input class="form-control required-entry validate-email" name="question_author_email" id="question_author_email_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorEmail()) ?>" placeholder="<?php echo $this->__('Enter email');?>" /></span>
+                        <span class="author_name"><input class="form-control required-entry" name="question_author_name" id="question_author_name_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorName()) ?>" placeholder="<?php echo Mage::helper('productquestions')->__('Enter name');?>"/></span>
+                        <span class="autor_email"> <input class="form-control required-entry validate-email" name="question_author_email" id="question_author_email_field" type="text" value="<?php echo $this->escapeHtml($this->getQuestionAuthorEmail()) ?>" placeholder="<?php echo Mage::helper('productquestions')->__('Enter email');?>" /></span>
                         <span class="captcha"><?php echo $helper->displayCaptcha();?></span>
-                        <span class="button_submit"><button class="button btn-kid pull-right" type="submit"><span><?php echo $this->__('Submit question') ?></span></button></span>
+                        <span class="button_submit"><button class="button btn-kid pull-right" type="submit"><span><?php echo Mage::helper('productquestions')->__('Submit Answer') ?></span></button></span>
                     </div>
                 </div>
             </div>
