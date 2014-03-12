@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_KidsPlaza
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<jstranslator>
+    <show-more translate="message" module="kidsplaza">
+        <message>Show More</message>
+    </show-more>
+    <show-less translate="message" module="kidsplaza">
+        <message>Show Less</message>
+    </show-less>
+</jstranslator>

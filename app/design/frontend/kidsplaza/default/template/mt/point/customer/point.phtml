@@ -13,5 +13,5 @@ $point = $this->getPoint();
     <div class="page-title">
         <h1><?php echo $this->getTitle(); ?></h1>
     </div>
-    <p class="point-balance"><span><?php echo $this->__('Balance')?>: <?php echo (int)$point->getBalance() ?></span></p>
+    <p class="point-balance"><span><?php echo $this->__('Balance')?>: <strong><?php echo (int)$point->getBalance() ?></strong></span></p>
 </div>

@@ -45,7 +45,7 @@ $session = Mage::getSingleton('customer/session');
                 </li>
                 <li>
                     <i class="glyphicon glyphicon-heart"></i>
-                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
+                    <a href="<?php echo $this->getUrl('wishlist') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
                 </li>
                 <?php if ($session->isLoggedIn()): ?>
                 <li>

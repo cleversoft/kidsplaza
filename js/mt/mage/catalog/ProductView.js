@@ -125,11 +125,11 @@ jQuery(function(){
         showMore = jQuery('<div/>')
             .addClass('show-more')
             .css('display','none')
-            .html('<a class="btn  btn-login">Show More</a>'),
+            .html('<a class="btn  btn-login">'+Translator.translate('Show More')+'</a>'),
         showLess = jQuery('<div/>')
             .addClass('show-less')
             .css('display','none')
-            .html('<a class="btn  btn-login">Show Less</a>');
+            .html('<a class="btn  btn-login">'+Translator.translate('Show Less')+'</a>');
 
     if (height > content_height_limit){
         mainPane.after(showMore);

@@ -15,6 +15,7 @@
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
 .product-view .more-views-nav{  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
+.product-view .btn-cart{font-weight: 700; font-size: 20px;}
 .product-view .more-views-nav .glyphicon { color: #eeeeee ; font-size: 60%;top: -5px;}
 .product-view .more-views {float: left; margin:0 auto; position:relative; width: 85px; overflow: hidden;}
 .product-view .more-views .media-list {width: 85px; height: 340px; overflow: hidden;}
@@ -24,7 +25,7 @@
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price ,.product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 500;}
 .product-view .add-to-cart span{ float:  left ; margin: 0 5px 0 0; line-height: 36px;}
-.product-view .add-to-cart .qty{height: 36px;width: 60px; color: #5ec215 ; font-weight: bold ;}
+.product-view .add-to-cart .qty{height: 36px;width: 60px; color: #5ec215 ; font-size: 16px;}
 .product-view .add-to-cart .add-bt{float: left ; width: 100% ; margin: 25px 0 0  ;}
 .product-view .add-to-links{padding: 20px 0;}
 .product-view .add-to-links li{display: inline-block;}
@@ -319,8 +320,8 @@ input,textarea{outline:0}
 .filter-item.selected{font-weight: 700;}
 .filter-item.selected a{color: #01a1ed;}
 .filter-item.selected .badge{background-color: #428bca;}
-.panel-heading .search{position:absolute;top:10px;right:0;height:26px;font-size:13px;width:150px;background:#fff;border:1px solid #ccc;padding:0 25px 0 5px;margin-right: 0 ;}
-.panel-heading .search-icon{float:right;margin-top:2px; margin-right: 5px ;}
+.panel-heading .search{position:absolute;top:10px;right:0;height:26px;font-size:13px;width:110px;background:#fff;border:1px solid #ccc;padding:0 25px 0 5px;margin-right: 0 ;}
+.panel-heading .search-icon{float:right;margin-top:5px; margin-right: 5px ;font-size:14px;}
 
 .special-price .price,.regular-price .price{color:#ff4e8f;font-weight:300;font-size:14px}
 .page-title h2{border-bottom:1px solid #ccc;padding-bottom:10px;margin-top:0}
@@ -468,6 +469,10 @@ span.separator{vertical-align: bottom; }
     padding:10px 0 0 15px;
 }
 .pager .limiter select { width:35%; }
+.my-account .pager .limiter select{width: auto;display: inline-block;}
+.my-account .pager .limiter {float: right;}
+.my-account .pager .limiter label {display: none;}
+.my-account .pager .amount strong {font-weight: 400;}
 
 #wishlist-table input.input-text {
     padding:5px;

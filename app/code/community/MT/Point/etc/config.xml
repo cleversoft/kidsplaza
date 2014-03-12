@@ -121,6 +121,15 @@
                 </mtpoint>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <MT_Point>
+                    <files>
+                        <default>MT_Point.csv</default>
+                    </files>
+                </MT_Point>
+            </modules>
+        </translate>
     </frontend>
 
     <admin>

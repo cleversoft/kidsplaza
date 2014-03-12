@@ -83,7 +83,7 @@
         <div class="btn-group toolbar-sort">
             <span class="btn-group">
                 <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <?php echo $this->__('Sort by') ?>&nbsp;<?php echo ucfirst($this->getCurrentOrder()) ?>&nbsp;<span class="caret"></span>
+                    <?php echo $this->__('Sort by') ?>&nbsp;<?php echo Mage::helper('catalog')->__(ucfirst($this->getCurrentOrder())) ?>&nbsp;<span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
                 <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
