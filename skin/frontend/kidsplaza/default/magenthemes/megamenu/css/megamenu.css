@@ -34,6 +34,7 @@ header .menu-top {
 }
 #megamenu ul li.level-0 {
     height: 52px;
+    border-top: 4px solid #fff;
 }
 #megamenu ul li.level-0:hover , #megamenu ul li.level-0.active {
     border-top: 4px solid #ff4b8c ;
@@ -43,7 +44,7 @@ header .menu-top {
 }
 #megamenu li.level-0:first-child:hover { border: none ; }
 #megamenu ul li.level-0 > a{
-    line-height: 52px;
+    line-height: 45px;
     background: url("../images/tick-menu.png") no-repeat scroll 100% 50%  ;
     outline: none ;
 }
@@ -58,6 +59,7 @@ header .menu-top {
 #megamenu ul li.level-0 > a span:hover {
    line-height: 45px;
    background: url(../images/icon-menu-parent.png) no-repeat 100% -36px ;
+    color: #FF4E8F;
 }
 #megamenu ul li.level-0 > a span {
     color: #757575;

@@ -68,19 +68,19 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 <tfoot>
                     <tr>
                         <td colspan="50" class="a-right">
-						
+
 						    <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
-                                <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?> 
+                                <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
                             </button>&nbsp;
-						
+
                             <?php if($this->getContinueShoppingUrl()): ?>
-                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn btn-kid btn-con" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-ribbon  btn-con" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
                                    <span> <span><?php echo $this->__('Continue Shopping') ?> </span> </span>
                                 </button>&nbsp;
                             <?php endif; ?>
-                           
-                            <button type="button" onclick="mtOneStepCheckout.updateCart('empty_cart');" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn btn-kid btn-clear">
-                                <span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span> 
+
+                            <button type="button" onclick="mtOneStepCheckout.updateCart('empty_cart');" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn-ribbon btn-clear">
+                                <span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span>
                             </button>
                         </td>
                     </tr>

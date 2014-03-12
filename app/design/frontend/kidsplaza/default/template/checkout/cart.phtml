@@ -69,9 +69,9 @@
 					    <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid btn-update pull-left"><i class="glyphicon glyphicon-refresh"></i><?php echo $this->__('Update Shopping Cart'); ?></button>&nbsp;
 
                         <?php if($this->getContinueShoppingUrl()): ?>
-                            <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn btn-kid btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>&nbsp;
+                            <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-ribbon btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>&nbsp;
                         <?php endif; ?>
-                        <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn btn-kid btn-empty btn-clear" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>&nbsp;
+                        <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="btn-ribbon btn-clear" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>&nbsp;
                     </td>
                 </tr>
             </tfoot>
