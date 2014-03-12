@@ -43,7 +43,7 @@
             <?php endforeach; ?>
         <?php else: ?>
             <?php echo Mage::helper('blog')->__('Posted'); ?>
-        <?php endif; ?><?php echo $this->__("By"); ?> <h4 class="poster"><?php echo $post->getUser(); ?></h4>
+        <?php endif; ?><!--<?php echo $this->__("By"); ?> <h4 class="poster"><?php echo $post->getUser(); ?></h4>-->
     </div>
     <?php $morePosts = $this->getMorePostByCat($post->getCatId(),$post->getPostId());?>
     <?php if(count($morePosts)>0){?>
