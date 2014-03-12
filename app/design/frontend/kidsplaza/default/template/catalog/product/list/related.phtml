@@ -49,7 +49,7 @@ $product = Mage::registry('product');
     </ol>
     <ol class="related-name">
         <li class="related-name-item">
-            <span class=""><?php echo $this->__('Current item') ?>:</span>
+            <strong><?php echo $this->__('Current item') ?>:</strong>
             <?php if ($product->isSaleable()): ?>
                 <?php $_price = $product->getFinalPrice() ?>
                 <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
@@ -74,13 +74,13 @@ $product = Mage::registry('product');
                     <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
                 <?php endif; ?>
             <?php endif; ?>
-            <a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->escapeHtml($_item->getName()) ?></a>
+            <a href="<?php echo $_item->getProductUrl() ?>"><strong><?php echo $this->escapeHtml($_item->getName()) ?></strong></a>
             <?php echo Mage::helper('core')->formatPrice($_item->getFinalPrice()) ?>
         </li>
     <?php endforeach ?>
     </ol>
     <div class="related-action">
-        <span class="price-label"><?php echo $this->__('Total') ?></span>
+        <span class="price-label"><?php echo $this->__('Total') ?>:</span>
         <span class="price" id="related-price"></span>
         <button class="btn btn-kid btn-cart btn-login " type="button" onclick="window.productAddToCartForm.submitRelated(this)"><?php echo $this->__('Buy All') ?></button>
     </div>
