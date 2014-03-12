@@ -78,6 +78,10 @@
                 itemElm.appendChild(imgElm);
                 itemElm.appendChild(infoElm);
                 listElm.appendChild(itemElm);
+
+                if (window.jQuery && window.jQuery.fn.mCustomScrollbar){
+                    jQuery(listElm).mCustomScrollbar('update');
+                }
             }catch (e){}
         }
         function onYoutubeVideoClick(videoId){

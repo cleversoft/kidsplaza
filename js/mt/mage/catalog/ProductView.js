@@ -215,5 +215,5 @@ jQuery(function(){
         theme: 'dark-thin',
         set_height: 390,
         mouseWheel: true
-    })
+    });
 });
