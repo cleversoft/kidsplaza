@@ -26,8 +26,8 @@ $_id = $this->getConfig('id');
                      <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
                 </div>
                 <div class="deal-item-price">
-                    <span class="old-price"><?php echo $product->getPrice() ?></span>
-                    <span class="new-price"><?php echo $product->getFinalPrice() ?></span>
+                    <span class="old-price"><?php echo Mage::helper('core')->formatPrice($product->getPrice()) ?></span>
+                    <span class="new-price"><?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?></span>
                 </div>
                 <div class="deal-item-image">
                     <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>">

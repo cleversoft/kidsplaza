@@ -167,10 +167,7 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
                 }
             }
 
-            $model
-                ->setData($data)
-                ->setId($this->getRequest()->getParam('id'))
-            ;
+            $model->setData($data)->setId($this->getRequest()->getParam('id'));
 
             try {
                 $format = Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM);
@@ -182,14 +179,16 @@ class AW_Blog_Manage_BlogController extends Mage_Adminhtml_Controller_Action
                     $model->setCreatedTime(Mage::getModel('core/date')->gmtDate());
                 }
 
-                $dateFormat = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
-                if (isset($data['promotion_start']) && $data['promotion_start']){
-                    $promotionFrom = Mage::app()->getLocale()->date($data['promotion_start'], $dateFormat);
-                    $model->setData('promotion_start', Mage::getModel('core/date')->date(null, $promotionFrom->getTimestamp()));
-                }
-                if (isset($data['promotion_end']) && $data['promotion_end']){
-                    $promotionTo = Mage::app()->getLocale()->date($data['promotion_end'], $dateFormat);
-                    $model->setData('promotion_end', Mage::getModel('core/date')->date(null, $promotionTo->getTimestamp()));
+                if (isset($data['promotion_enable']) && $data['promotion_enable'] == 1){
+                    $dateFormat = Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT);
+                    if (isset($data['promotion_start']) && $data['promotion_start']){
+                        $promotionFrom = Mage::app()->getLocale()->date($data['promotion_start'], $dateFormat);
+                        $model->setData('promotion_start', Mage::getModel('core/date')->date(null, $promotionFrom->getTimestamp()));
+                    }
+                    if (isset($data['promotion_end']) && $data['promotion_end']){
+                        $promotionTo = Mage::app()->getLocale()->date($data['promotion_end'], $dateFormat);
+                        $model->setData('promotion_end', Mage::getModel('core/date')->date(null, $promotionTo->getTimestamp()));
+                    }
                 }
 
                 if ($this->getRequest()->getParam('user') == null) {
