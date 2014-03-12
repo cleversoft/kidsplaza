@@ -15,7 +15,7 @@
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
 .product-view .more-views-nav{  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
-.product-view .btn-cart{font-weight: 700; font-size: 20px;}
+.product-view .btn-cart{font-weight: 700; font-size: 16px;}
 .product-view .more-views-nav .glyphicon { color: #eeeeee ; font-size: 60%;top: -5px;}
 .product-view .more-views {float: left; margin:0 auto; position:relative; width: 85px; overflow: hidden;}
 .product-view .more-views .media-list {width: 85px; height: 340px; overflow: hidden;}
@@ -47,7 +47,7 @@
 .product-view #product-description h2{  font-size: 18px; margin: 0 0 30px; color: #ff3d70 ; }
 .product-view .upsell-carousel-wrapper { margin: 50px 0;}
 .product-view .upsell-carousel-wrapper .btn-group {display: inline-block; position: absolute;  vertical-align: middle; width: 100%;z-index: 9; }
-.product-view .upsell-carousel-wrapper .btn-group a { opacity:0.65 ;background: none repeat scroll 0 0 #EAEBEB;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 105px ;}
+.product-view .upsell-carousel-wrapper .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #EAEBEB;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 105px ;}
 .product-view .upsell-carousel-wrapper .btn-group a i.glyphicon{color: #fff;left: -1px;top: 3px; }
 .product-view .upsell-carousel-wrapper .btn-group a.btn-next { right : 0;}
 .product-view .upsell-carousel-wrapper .btn-group a.btn-prev { left: 0;}
@@ -66,8 +66,8 @@
 
 .product-view #product-related h2  { font-weight: normal ; font-size: 18px ; color: #ff3d70 ;}
 .product-view #product-related .related-img { margin: 30px 0;}
-.product-view #product-related .related-name .related-checkbox{float: left ; margin: 4px 5px 0 0;}
-.product-view #product-related .related-name li{margin: 10px 0 ;}
+.product-view #product-related .related-name .related-checkbox{float: left ; margin: 4px 5px 0 -20px;}
+.product-view #product-related .related-name li{margin: 10px 0 ;padding-left: 10px;}
 .product-view #product-related .related-name li span {color: #333 ; font-weight: bold ; font-size: 13px;}
 .product-view #product-related .related-name li span.price ,
 .product-view #product-related .related-action span.price{color: #ff3d70 ; font-weight: normal; font-size: 16px;}
@@ -149,7 +149,7 @@ header .input-search-bg{color:#a5a5a5;position:absolute;height:40px;display:bloc
 .btn-widget.btn-view { margin: 0 0 3px 2px ;}
 .category-products li .btn-kid.btn-disabled{ background-color: #555; border: 1px solid #000; border-radius: 4px;outline: medium none; padding: 8px 20px;text-transform: uppercase;}
 .category-products li .glyphicon {display: none ;}
-.products-grid .btn-kid.btn-disabled{ background-color: #555; border: 1px solid #000; border-radius: 4px;outline: medium none; padding: 8px 20px;text-transform: uppercase;}
+.products-grid .btn-kid.btn-disabled{ background-color: #555; border: 1px solid #000; border-radius: 4px;outline: medium none; padding: 8px 20px;text-transform: uppercase;font-size: 16px;font-weight: 700;}
 .products-grid .btn-kid.btn-disabled .glyphicon {display: none ;}
 .btn-disabled:focus,
 .btn-disabled:active{outline: 3px solid #555;}
@@ -473,6 +473,7 @@ span.separator{vertical-align: bottom; }
 .my-account .pager .limiter {float: right;}
 .my-account .pager .limiter label {display: none;}
 .my-account .pager .amount strong {font-weight: 400;}
+.related-action .price-label{font-size: 16px;color: #333;}
 
 #wishlist-table input.input-text {
     padding:5px;
