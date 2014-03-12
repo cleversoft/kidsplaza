@@ -168,7 +168,7 @@ a.logo{margin-top:20px;display:block}
 .current-location:hover,.current-location:focus{text-decoration:none}
 .top-banner li{list-style:none;text-align:center;height: 70px;}
 .top-banner li a{display:inline-block;width:120px;padding:14px 0;vertical-align:top;color:#515151;text-align:left}
-.top-banner em{display:inline-block;width:45px;height:45px;background:url(../images/bgIcons2.png) no-repeat;margin:14px 10px 18px 0}
+.top-banner em{display:inline-block;width:45px;height:45px;background:url(../images/bgIcons2.png) no-repeat;margin:11px 10px 18px 0}
 .top-banner .checkout em{background-position:0 0}
 .top-banner .shipping em{background-position:-45px 0}
 .top-banner .return em{background-position:-90px 0}
@@ -491,9 +491,9 @@ span.separator{vertical-align: bottom; }
 
 .cart .page-title { background: #0098cd ; }
 .cart .page-title h2 { border: none ; font-size: 18px ; color: #fff;  margin: 35px 0 0; padding: 15px 20px;}
-.cart  a {line-height: 70px ; }
-.cart  .product-name a{ color: #333333 ; font-size: 16px ; line-height: 70px ; }
-.cart  .btn-remove { color: #333333 ;border: 1px dashed #989898 ; padding: 2px 5px; }
+.cart  .product-name a{ color: #333333 ; font-size: 16px ;  }
+.cart  .btn-remove,
+.cart  .btn-edit{ color: #333333 ;border: 1px dashed #989898 ; padding: 2px 5px; line-height: 70px;}
 .cart .btn-remove:focus,
 .cart .btn-remove:active{}
 .cart .cart-price {  line-height: 70px ; }
