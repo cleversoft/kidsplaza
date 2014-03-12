@@ -91,7 +91,7 @@
 
 ul,ol{margin:0;padding:0}
 ul li,ol li{list-style:none}
-body{font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
+body{font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;font-size: 13px;}
 header .header-top{}
 .social-links {margin : 10px 0 0; }
 .social-links,.top-links{display:inline-block;height:25px;line-height:45px}
