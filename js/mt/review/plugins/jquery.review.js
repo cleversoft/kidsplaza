@@ -59,7 +59,7 @@ function sendLoadMoreRequest(url)
             items.each(function(i,el){
                 jQuery(el).appendTo(jQuery(mainReview));
             });
-            jQuery('#customer-reviews .loading').css('visibility','hidden');
+            jQuery('#customer-reviews .load-more-review .loading').css('visibility','hidden');
             if(!jQuery(data).find('.next.i-next')[0]){
                 jQuery('#customer-reviews button.btn-load-more').hide();
             }else{
@@ -75,7 +75,7 @@ function callbackFunc(e)
     if(jQuery('.next.i-next')[0]){
         var nextPageUrl = jQuery('.next.i-next').attr("href");
         jQuery('#customer-reviews button.btn-load-more').hide();
-        jQuery('#customer-reviews .loading').css('visibility','visible');
+        jQuery('#customer-reviews .load-more-review .loading').css('visibility','visible');
         sendLoadMoreRequest(nextPageUrl);
     }
     else{

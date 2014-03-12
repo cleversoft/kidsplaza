@@ -4,7 +4,7 @@
 .product-question .numb-answer {border-bottom: #dfdfdf solid 1px; margin-bottom: 20px;padding: 10px 0; font-size: 150%  ;}
 .main-form-question .form-control { width: auto;}
 .main-form-question .form-field { margin: 0px; overflow: hidden;}
-.main-form-question .form-field .row { border-left: #ccc solid 1px;border-right: #ccc solid 1px;border-bottom: #ccc solid 1px;float: left;width: 91%;}
+.main-form-question .form-field .row { border-right: #ccc solid 1px;border-bottom: #ccc solid 1px;float: left;width: 91%;}
 .main-form-question .form-field .author-img { float: left; height: 80px; margin-right: 15px;}
 .main-form-question .form-field .author-img img{border-radius: 5px;}
 .main-form-question .form-field textarea {width: 91%; height: 45px;}
