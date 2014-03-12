@@ -438,7 +438,7 @@ Class MT_Review_Helper_Data extends Mage_Core_Helper_Abstract {
             if ($d >= 1)
             {
                 $r = round($d);
-                return $r . ' ' . $str . ($r > 1 ? 's' : '') . '';
+                return $r . ' ' . $str . ($r > 1 ? '' : '') . '';
             }
         }
     }
