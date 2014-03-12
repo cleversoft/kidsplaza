@@ -114,7 +114,7 @@
 }
 .ratings-table .rating-item {
     text-align: center;
-    padding: 10px 0;
+    padding: 0 0;
     margin-right: 12px;
 }
 .rating-item .rating-name, .rating-item .all-total {
@@ -134,10 +134,11 @@
 .review-sum-total p{
     padding-top: 10px;
     font-weight: bold;
+    color: #0095d6;
 }
 .rating-item .all-total {
     font-size: 30px;
-    color: red;
+    color: #ff3d70;
 }
 .rating-item .rating-box {
     margin: 0 auto;
@@ -174,6 +175,7 @@ em.required{
     font-size: 120%;
     display: block;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 .mt-review-main .form-add h3 {
     font-size: 100%;
@@ -276,4 +278,7 @@ em.required{
     position: absolute;
     left: 0px;
     top: 10px;
+}
+.ratings-table .rating-name, .main-progress .rating-name {
+    display: none;
 }

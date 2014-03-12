@@ -1,5 +1,5 @@
 .mt-questions-main .quick-question .createquestion {background: #f6f6f6;border: 1px solid #e7e7e7;padding: 30px 20px;margin-bottom: 30px;}
-.mt-questions-main .quick-question .createquestion input#question_text {width: 88%; height: 40px;position: relative;top: 1px;}
+.mt-questions-main .quick-question .createquestion input#question_text {width: 85%; height: 40px;position: relative;top: 1px;}
 .product-question img {width: 45px; height: 45px;}
 .product-question .numb-answer {border-bottom: #dfdfdf solid 1px; margin-bottom: 20px;padding: 10px 0; font-size: 150%  ;}
 .main-form-question .form-control { width: auto;}

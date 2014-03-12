@@ -6,8 +6,8 @@ $questions = $this->_collection;
         <div class="createquestion">
             <form id="mt-question-form" action="<?php echo $this->getAction();?>" method="post">
                 <div class="inputwrapper">
-                    <input type="text" name="question_text" id="question_text" value="<?php echo $this->escapeHtml($this->getQuestionText()) ?>" placeholder="<?php echo $this->__('what is your question?');?>">
-                    <input class="btn-kid btn" type="submit" value="<?php echo $this->__('Question');?>" name="submitquestion" id="submitquestion">
+                    <input type="text" name="question_text" id="question_text" value="<?php echo $this->escapeHtml($this->getQuestionText()) ?>" placeholder="<?php echo Mage::helper('productquestions')->__('what is your question?');?>">
+                    <input class="btn-kid btn" type="submit" value="<?php echo Mage::helper('productquestions')->__('Question');?>" name="submitquestion" id="submitquestion">
                 </div>
             </form>
         </div>
@@ -26,9 +26,9 @@ $questions = $this->_collection;
                         <a href=<?php echo $this->getQuestionUrl($question->getQuestionId());?>><?php echo $this->escapeHtml($question->getQuestionText()) ?></a>
                     </p>
                     <span class="title">
-                        <?php echo $this->__('From') ?> <b><?php echo $this->escapeHtml($question->getQuestionAuthorName()) ?></b>
+                        <?php echo Mage::helper('productquestions')->__('From') ?> <b><?php echo $this->escapeHtml($question->getQuestionAuthorName()) ?></b>
                         <span class="category">
-                            <?php echo $this->__('Question by ');?>
+                            <?php echo Mage::helper('productquestions')->__('Question by');?>
                             <a href="<?php echo $this->getCategoryUrl($question->getCategoryId());?>"> <?php echo $this->questionByCategory($question->getCategoryId())->getName();?></a>
                         </span>
                         <span class="date">
@@ -38,11 +38,11 @@ $questions = $this->_collection;
                     </span>
                 </div>
                 <div class="col-lg-2">
-                    <span class="answer pull-left"><?php echo $this->__('Answers: (%s)', $this->countAnswers($question->getQuestionId()));?></span>
-                    <span class="viewed pull-left"><?php echo $this->__('View (%s)', $question->getHits());?></span>
+                    <span class="answer pull-left"><?php echo Mage::helper('productquestions')->__('Answers: (%s)', $this->countAnswers($question->getQuestionId()));?></span>
+                    <span class="viewed pull-left"><?php echo Mage::helper('productquestions')->__('View (%s)', $question->getHits());?></span>
                     <span class="link-answer pull-left">
                         <a href=<?php echo $this->getQuestionUrl($question->getQuestionId());?>>
-                            <?php echo $this->__('Answer this question');?>
+                            <?php echo Mage::helper('productquestions')->__('Answer this question');?>
                         </a>
                     </span>
                 </div>
@@ -51,6 +51,6 @@ $questions = $this->_collection;
         <?php }?>
     </ul>
     <?php else: ?>
-    <p><?php echo $this->__('No questions asked yet'); ?></p>
+    <p><?php echo Mage::helper('productquestions')->__('No questions asked yet'); ?></p>
     <?php endif; ?>
 </div>
