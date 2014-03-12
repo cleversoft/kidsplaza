@@ -39,12 +39,16 @@ $product = Mage::registry('product');
                 <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
             </a>
         </li>
+        <li class="related-separator">+</li>
     <?php $i=1; foreach($this->getItems() as $_item): ?>
-        <li class="related-img-item <?php echo $i++==$size?'last':'' ?>" style="display: inline-block">
+        <li class="related-img-item <?php echo $i == $size ? 'last' : '' ?>" style="display: inline-block">
             <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
             </a>
         </li>
+        <?php if ($i++ < $size): ?>
+            <li class="related-separator">+</li>
+        <?php endif ?>
     <?php endforeach ?>
     </ol>
     <ol class="related-name">
