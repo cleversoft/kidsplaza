@@ -51,7 +51,8 @@ KidsPlazaLoginHeader.prototype = {
         jQuery('#' + id).popover({
             placement: 'bottom',
             html: true,
-            trigger: 'click',
+            trigger: 'hover',
+            container: '#' + id,
             content: function(){
                 return jQuery('#' + id).parent().find('.login-content').html()
             }

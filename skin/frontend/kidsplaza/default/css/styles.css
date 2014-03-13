@@ -8,7 +8,7 @@
  */
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700&subset=latin,vietnamese);
-.ratings {margin:0; line-height:1em;white-space:nowrap;display: inline-block;}
+.ratings {margin:0; line-height:1em;white-space:nowrap;display: inline-block;vertical-align: top;}
 .rating-box { width:69px; height:13px; margin-right:5px; display: inline-block; background:url(../images/product_rating_blank_star.gif) repeat-x;}
 .rating-box .rating {height:13px;background:url(../images/product_rating_full_star.gif) repeat-x;}
 .ratings-list {float:left;}
@@ -105,6 +105,7 @@ header .header-top{}
 .top-login .toplogin p { float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 15px ; font-weight: bold; }
 .top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 11px; }
 .top-login .popover a{color: #515151;}
+.top-login .popover span{color: #515151;float: none;font-weight: normal;}
 
 .form_register .fieldset {background: #f9f9f9 !important; border: none;}
 .top-login a:hover,.top-login a:focus{text-decoration: none;}
@@ -192,7 +193,8 @@ a.logo{margin-top:20px;display:block}
 .top-login .popover-content ul {margin: 0;}
 .top-login .popover-content ul li a{ line-height: 30px; font-size: 13px;}
 .top-login .btn-signin{width: 100%; font-weight: bold;}
-.top-login .toplogin {float: left;width: 100%;}
+.top-login .toplogin {float: left;width: 100%;height: 100%;}
+.top-login .popover .arrow {width: 100%;padding-left: 50%;left: 0;border-color: transparent;}
 .mini-products-list li{list-style:none;margin-top:5px;border-bottom:1px dashed #ccc}
 .mini-products-list li:first-child{margin-top:0}
 .mini-products-list a.product-image{float:left}
@@ -421,11 +423,11 @@ input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px;}
 .account-login .col2-set-right  .content h3{ margin: 0 0 15px;}
 .color-red{color: #ff0000;}
 .color-grey{color: #808080;}
-a.link-wishlist{font-size: 17px;}
+a.link-wishlist{font-size: 16px;}
 .category-products .price-box .price-label,
 .category-products .price-box .price-save{display: none;}
 .price-box p{margin-bottom: 0;}
-span.separator{vertical-align: bottom; }
+span.separator{vertical-align: top; }
 .account-login .buttons-set a.f-right { font-size: 12px;padding: 8px 0;text-align: left ; line-height: 30px;  background: url("../images/tick-login.png") no-repeat scroll 0 50% ; padding: 0 0 0 10px;width: 110px; color: #636363 ;}
 .account-login .form_register.fieldset  { float: none ; width: 70% ; padding: 0 ; text-align: right ; background: none ; border: none ; margin: 0 auto ; }
 .account-login .account-create .form-list .input-box{ width: 60% ; display: inline-block; float: right;}
