@@ -32,19 +32,22 @@ header .menu-top {
 #megamenu ul li ul li {
     position: relative;
 }
+#megamenu .level-0 > a{
+    border-top: 4px solid #fff ;
+    margin: 0 -1px;
+}
 #megamenu ul li.level-0 {
     height: 52px;
-    border-top: 4px solid #fff;
 }
-#megamenu ul li.level-0:hover , #megamenu ul li.level-0.active {
+#megamenu .root.parent:hover > a, #megamenu .root.parent.active > a{
     border-top: 4px solid #ff4b8c ;
+}
+#megamenu .root.parent:hover , #megamenu .root.parent.active {
     border-bottom: 4px solid #fff ;
     border-right: 1px solid #cfcfcf;
     border-left: 1px solid #cfcfcf;
 }
 #megamenu li.level-0:first-child { height: 45px;}
-#megamenu li.level-0:first-child:hover { border-top: 4px solid #fff  ; border-left: none ; border-right: none ;}
-#megamenu li.level-0:first-child:hover span { background: none ;}
 #megamenu ul li.level-0 > a{
     line-height: 45px;
     background: url("../images/tick-menu.png") no-repeat scroll 100% 50%  ;
