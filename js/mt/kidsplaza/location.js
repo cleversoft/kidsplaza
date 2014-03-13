@@ -101,7 +101,7 @@ var KidsPlazaSearch = Class.create(Varien.searchForm, {
             minChars: 2,
             updateElement: this._selectAutocompleteItem.bind(this),
             onShow: function(element, update){
-                update.style.width = element.getWidth() + 8 + 'px';
+                update.style.width = element.getWidth() + 7 + 'px';
                 update.style.height = 'auto';
                 update.style.opacity = 1;
                 Effect.SlideDown(update, {duration: 0.2});

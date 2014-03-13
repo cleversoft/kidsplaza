@@ -41,19 +41,17 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             'MT_WIDGET',
             Mage::app()->getStore()->getId(),
             $this->getData('widget_type'),
+            $this->getData('current_category'),
             $this->getData('category_ids'),
+            $this->getData('mode'),
             $this->getData('product_ids'),
             $this->getData('attribute'),
-            $this->getData('attribute_mode'),
             $this->getData('block_ids'),
-            $this->getData('mode'),
             $this->getData('scroll'),
-            $this->getData('column'),
-            $this->getData('namespace'),
-            $this->getData('speed'),
             $this->_customerGroupId,
             Mage::registry('product') ? Mage::registry('product')->getId() : '',
-            Mage::registry('current_category') ? Mage::registry('current_category')->getId() : ''
+            Mage::registry('current_category') ? Mage::registry('current_category')->getId() : '',
+            $this->getTemplateFile()
         );
     }
 
@@ -596,7 +594,12 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
     protected function getMostViewedCollection() {
         if ($this->getCurrentCategory()){
-            $catIds = Mage::registry('current_category') ? array(Mage::registry('current_category')) : array();
+            /* @var $current_category Mage_Catalog_Model_Category */
+            $current_category = Mage::registry('current_category');
+            $catIds =  $current_category ? array($current_category) : array();
+            if (!$current_category->hasChildren()){
+                return null;
+            }
         }else{
             $catIds = explode(',', $this->getCategoryIds());
         }
@@ -657,6 +660,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 $products->getSelect()->order(sprintf('FIELD(e.entity_id, %s)', implode(',', $arr_productids)));
             }
         } else {
+            $ids = Mage::getResourceModel('reports/product_collection')->addViewsCount()->load()->getLoadedIds();
             $products = Mage::getResourceModel('catalog/product_collection')
                 ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
                 ->addMinimalPrice()

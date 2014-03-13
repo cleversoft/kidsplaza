@@ -17,18 +17,10 @@
                 <visible>1</visible>
                 <type>select</type>
                 <values>
-                    <category_products translate="label">
-                        <value>mt/widget/category-products.phtml</value>
-                        <label>Category Products</label>
-                    </category_products>
-                    <attribute_brand translate="label">
-                        <value>mt/widget/attribute-brands.phtml</value>
-                        <label>Attribute Brands</label>
-                    </attribute_brand>
-                    <upsell_products translate="label">
-                        <value>mt/widget/upsell-products.phtml</value>
-                        <label>Upsell Products</label>
-                    </upsell_products>
+                    <home_combo translate="label">
+                        <value>mt/widget/home-combo.phtml</value>
+                        <label>Home Combo</label>
+                    </home_combo>
                     <home_products translate="label">
                         <value>mt/widget/home-products.phtml</value>
                         <label>Home Products</label>
@@ -41,6 +33,18 @@
                         <value>mt/widget/home-deal.phtml</value>
                         <label>Home Deal</label>
                     </home_deal>
+                    <category_products translate="label">
+                        <value>mt/widget/category-products.phtml</value>
+                        <label>Category Products</label>
+                    </category_products>
+                    <attribute_brand translate="label">
+                        <value>mt/widget/attribute-brands.phtml</value>
+                        <label>Attribute Brands</label>
+                    </attribute_brand>
+                    <upsell_products translate="label">
+                        <value>mt/widget/upsell-products.phtml</value>
+                        <label>Upsell Products</label>
+                    </upsell_products>
                 </values>
             </template>
         </parameters>
