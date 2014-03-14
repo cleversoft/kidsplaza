@@ -68,11 +68,44 @@ class MT_Review_Model_Review extends Mage_Core_Model_Abstract {
     public function getEntitySummary($product, $storeId=0)
     {
         $summaryData = Mage::getModel('review/review_summary')
-            ->setStoreId($storeId)
+            //->setStoreId($storeId)
             ->load($product->getId());
         $summary = new Varien_Object();
         $summary->setData($summaryData->getData());
         $product->setRatingSummary($summary);
+    }
+
+    /**
+     * Append review summary to product collection
+     *
+     * @param Mage_Catalog_Model_Resource_Eav_Mysql4_Product_Collection $collection
+     * @return Mage_Review_Model_Review
+     */
+    public function appendSummary($collection)
+    {
+        $entityIds = array();
+        foreach ($collection->getItems() as $_itemId => $_item) {
+            $entityIds[] = $_item->getEntityId();
+        }
+
+        if (sizeof($entityIds) == 0) {
+            return $this;
+        }
+
+        $summaryData = Mage::getResourceModel('review/review_summary_collection')
+            ->addEntityFilter($entityIds)
+            //->addStoreFilter(Mage::app()->getStore()->getId())
+            ->load();
+
+        foreach ($collection->getItems() as $_item ) {
+            foreach ($summaryData as $_summary) {
+                if ($_summary->getEntityPkValue() == $_item->getEntityId()) {
+                    $_item->setRatingSummary($_summary);
+                }
+            }
+        }
+
+        return $this;
     }
 
     public function getPendingStatus()

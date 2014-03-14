@@ -24,4 +24,23 @@ class MT_Review_Block_Helper extends Mage_Review_Block_Helper
     {
         return $this->getProduct()->getProductUrl().'#customer-reviews';
     }
+
+    public function getSummaryHtml($product, $templateType, $displayIfNoReviews)
+    {
+        // pick template among available
+        if (empty($this->_availableTemplates[$templateType])) {
+            $templateType = 'default';
+        }
+        $this->setTemplate($this->_availableTemplates[$templateType]);
+
+        $this->setDisplayIfEmpty($displayIfNoReviews);
+
+        if (!$product->getRatingSummary()) {
+            Mage::getModel('mtreview/review')
+                ->getEntitySummary($product, 0);
+        }
+        $this->setProduct($product);
+
+        return $this->toHtml();
+    }
 }
