@@ -34,6 +34,7 @@ $_columnCount       = $_scroll==1 ? $this->getConfig('limit') : $_column;
 $_id                = $this->getConfig('id');
 $_title             = $this->getConfig('widget_title');
 $_href              = $this->getConfig('href');
+$_core              = $this->helper('core/string');
 ?>
 <?php if ($_scroll == 1):?>
     <script type="text/javascript">
@@ -133,7 +134,7 @@ $_href              = $this->getConfig('href');
                 <?php endif; ?>
                 <h2 class="product-name">
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
-                        <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                        <?php echo $_core->truncate($_helper->productAttribute($_product, $_product->getName(), 'name'),40) ?>
                     </a>
                 </h2>
                 <?php echo $this->getPriceHtml($_product, true) ?>

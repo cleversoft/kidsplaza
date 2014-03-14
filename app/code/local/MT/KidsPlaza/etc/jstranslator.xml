@@ -16,4 +16,7 @@
     <show-less translate="message" module="kidsplaza">
         <message>Show Less</message>
     </show-less>
+    <related-no-select translate="message" module="kidsplaza">
+        <message>You must select a product!</message>
+    </related-no-select>
 </jstranslator>
