@@ -49,7 +49,10 @@
 .product-view #product-upsell{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-description{  padding: 50px 0 ; }
 .product-view #product-description h2{  font-size: 18px; margin: 0 0 30px; color: #ff3d70 ; }
-.product-view .category-products { margin: 50px 0;}
+.product-view .category-products {
+    padding: 50px 0;
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;}
 .category-products > .btn-group {display: inline-block; position: absolute;  vertical-align: middle; width: 100%;z-index: 9; }
 .category-products > .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #EAEBEB;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 60px ;}
 .category-products > .btn-group a i.glyphicon{color: #fff;left: -1px;top: 3px; }
@@ -104,7 +107,7 @@
 .table .value{background: #fff !important;}
 .product-view .desc{padding: 15px;}
 .product-view #product-description .desc{padding: 0;}
-.show-more,.show-less{text-align: center;}
+.show-more,.show-less{text-align: center;margin-bottom: 10px;}
 
 ul,ol{margin:0;padding:0}
 ul li,ol li{list-style:none}

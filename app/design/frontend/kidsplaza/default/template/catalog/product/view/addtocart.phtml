@@ -39,14 +39,14 @@
             <input type="text" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
         <?php endif ?>
         <div class="add-bt">
-                <button type="button" class="btn btn-kid btn-cart btn-login" title="<?php echo $buttonTitle ?>" onclick="window.productAddToCartForm.submit(this)">
-                    <?php echo $buttonTitle ?>
-                </button>
+            <button type="button" class="btn btn-kid btn-cart btn-login" title="<?php echo $buttonTitle ?>" onclick="window.productAddToCartForm.submit(this)">
+                <?php echo $buttonTitle ?>
+            </button>
         </div>
         <?php echo $this->getChildHtml('', true, true) ?>
     </div>
 <?php else: ?>
-    <button class="btn btn-cart btn-kid " type="button">
+    <!--button class="btn btn-cart btn-kid " type="button">
         Notify Me
-    </button>
+    </button-->
 <?php endif ?>
