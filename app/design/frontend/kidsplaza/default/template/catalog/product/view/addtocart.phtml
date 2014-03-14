@@ -27,9 +27,9 @@
 <?php $_product = $this->getProduct() ?>
 <?php $buttonTitle = $this->__('Add to Cart') ?>
 <?php if ($_product->isAvailable()): ?>
-    <a class=" btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
+    <a class="btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
 <?php else: ?>
-    <a class=" btn-danger" href="javascript:void(0)"><?php echo $this->__('Out of stock') ?></a>
+    <a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Out of stock') ?></a>
 <?php endif ?>
 <p class="shipping-note"><?php echo $this->__('Shipping within <span>6 - 12hrs</span>') ?></p>
 <?php if ($_product->isSaleable()): ?>

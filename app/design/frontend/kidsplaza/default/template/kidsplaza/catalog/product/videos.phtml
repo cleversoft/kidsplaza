@@ -24,6 +24,7 @@
             YTPlayer = new YT.Player('player', {
                 height: 390,
                 width: 640,
+                playerVars: {wmode: 'transparent'},
                 videoId: '<?php echo current($videos) ?>',
                 events: {
                     'onReady': onPlayerReady

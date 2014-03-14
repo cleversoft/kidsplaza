@@ -128,16 +128,15 @@ $_href              = $this->getConfig('href');
                         </button>
                     <?php endif; ?>
                 </div>
+                <?php if($_product->getRatingSummary()): ?>
+                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                <?php endif; ?>
                 <h2 class="product-name">
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
                         <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                     </a>
                 </h2>
-                <?php if($_product->getRatingSummary()): ?>
-                    <?php echo $this->getReviewsSummaryHtml($_product, 'mini') ?>
-                <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
-
             </li>
             <?php if ($i%$_columnCount==0 || $i==$_collectionSize || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
             </ul>

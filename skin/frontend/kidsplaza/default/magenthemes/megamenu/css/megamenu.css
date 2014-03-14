@@ -19,7 +19,6 @@ header .menu-top {
     position: relative;
     width: 100%;
     padding: 0;
-    z-index: 99;
 }
 #megamenu ul {
     padding: 0;
@@ -180,7 +179,7 @@ header .menu-top {
     top:51px;
     left:-10000px;
     background:#fff;
-    z-index:9;
+    z-index:200;
     text-align: left;
     width: 100%;
     border-left: #dfdfdf solid 1px;

@@ -220,7 +220,7 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
 
         <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)): // including ?>
             <p class="old-price">
-                <span class="price-label"><?php echo $this->__('Market Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Market Price') ?></span>
                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->formatPrice($_regularPrice + $_originalWeeeTaxAmount, false) ?>
                 </span>
@@ -254,7 +254,7 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
 
         <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 1)): // incl. + weee ?>
             <p class="old-price">
-                <span class="price-label"><?php echo $this->__('Market Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Market Price') ?></span>
                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->formatPrice($_regularPrice + $_originalWeeeTaxAmount, false) ?>
                 </span>
@@ -302,7 +302,7 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
             </p>
         <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 4)): // incl. + weee ?>
             <p class="old-price">
-                <span class="price-label"><?php echo $this->__('Market Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Market Price') ?></span>
                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->formatPrice($_regularPrice + $_originalWeeeTaxAmount, false) ?>
                 </span>
@@ -332,7 +332,7 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
             </p>
         <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)): // excl. + weee + final ?>
             <p class="old-price">
-                <span class="price-label"><?php echo $this->__('Market Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Market Price') ?></span>
                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->formatPrice($_regularPrice, false) ?>
                 </span>
@@ -388,11 +388,11 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
             <?php endif; ?>
 
             <p class="old-price">
-                <span class="price-label"><?php echo $this->__('Market Price:') ?></span>
+                <span class="price-label"><?php echo $this->__('Market Price') ?></span>
                 <span class="price" id="old-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
                     <?php echo $_coreHelper->formatPrice($_regularPrice, false) ?>
                 </span>
-                <span class="price-label price-label-save"><?php echo $this->__('Saved') ?></span>
+                <span class="price-label price-label-save">-&nbsp;<?php echo $this->__('Saved') ?></span>
                 <span class="price price-save">
                     <?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%
                 </span>

@@ -99,19 +99,19 @@
                     <?php endif ?>
                     <img class="lazy" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
-                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
                 <?php if($_product->getRatingSummary()): ?>
-                <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
+                    <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php endif; ?>
+                <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>
                 <?php echo $this->getPriceHtml($_product, true) ?>
                 <div class="actions">
                     <?php if($_product->isSaleable()): ?>
                         <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')">
-                            <!--<i class="glyphicon glyphicon-shopping-cart"></i> --><?php echo $this->__('Add to Cart') ?>
+                            <?php echo $this->__('Add to Cart') ?>
                         </button>
                     <?php else: ?>
                         <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-disabled " disabled="disabled">
-                            <i class="glyphicon glyphicon-remove"></i> <?php echo $this->__('Out of stock') ?>
+                            <?php echo $this->__('Out of stock') ?>
                         </button>
                     <?php endif; ?>
                 </div>
