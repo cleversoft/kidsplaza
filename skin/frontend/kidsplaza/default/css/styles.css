@@ -130,8 +130,8 @@ header .header-top{}
 .btn:active,.btn:focus{color:#fff}
 .btn-login{color:#fff;background-color:#ff4884;border-color:#ff4884;border-radius:0;}
 .btn-login:hover{color:#fff;background-color:#f2004f;border-color:#f2004f}
-.header-top{height:96px;padding:0 ;background-image: url(../images/bgHeader.png); background-repeat:  repeat-x ; background-position: 0 100% ; background-color: #009fe6;}
-.header-top .header-top-inner{ padding: 10px 0  ; }
+.header-top { position : relative ; z-index: 2  ; padding:0 0 29px; background-image: url(../images/bgHeader.png); background-repeat:  repeat-x ; background-position: 0 100% ;}
+.header-top .header-top-inner{ padding: 10px 0  ; background-color: #009fe6;  }
 .header-mid{height:120px}
 .header-bot{height:100px}
 .top-search{border:4px solid #01a1ed}
@@ -294,7 +294,7 @@ input,textarea{outline:0}
 .products-grid  .item { border: 1px solid #ffffff;}
 .products-grid  .item:hover { border: 1px solid #d5d5d5 ;box-shadow: 0 0 5px #d5d5d5 ;}
 .products-grid  .item:hover .actions { opacity: 1;}
-.products-grid  .item .price-discount {transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 35px; width: 35px; line-height: 35px; color: #fff ; font-weight: bold ; font-size: 80% ; background: url("../images/bgLable.png" ) no-repeat -70px 0;}
+.products-grid  .item .price-discount {transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 35px; width: 35px; line-height: 35px; color: #fff ; font-weight: bold ; font-size: 80% ; background: url("../images/bgLable.png" ) no-repeat -74px 0;}
 
 .product-img-box .price-discount { transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 83px; width: 83px; line-height: 83px; color: #fff ; font-weight: bold ; font-size: 150% ; background: url("../images/bgLable.png" ) no-repeat 0px -35px;}
 .price-box .old-price .price{text-decoration:line-through}
@@ -387,7 +387,7 @@ input,textarea{outline:0}
 .discount .btn{padding:3px 10px}
 .discount input{height:34px;border-radius:0}
 .block-subscribe{width:300px;}
-.block-subscribe input{height:40px; border-radius:0 ; border: none ; background:url("../images/bgSubscribe.png") 0 50% no-repeat;}
+.block-subscribe input{height:40px; line-height: 40px; border-radius:0 ; border: none ; background:url("../images/bgSubscribe.png") 0 50% no-repeat;}
 .fields{clear:both}
 .fields .field{width:50%;float:left}
 .fields .input-box{padding:5px 5px 5px 0}
@@ -445,7 +445,6 @@ span.separator{vertical-align: top; }
 .account-login .account-create .form-list label{ float:none ; display: inline; margin-right: 20px; padding-right: 0 ;}
 .account-login .account-create .form-list .control{ float: left ; width: 100% ;}
 
-
 .block-account  .block-title strong { margin: 0 0 20px ; display: block ; background: none ; border: none;color: #20A4F0;font-size: 18px; }
 .block-account  .block-content strong , .block-account  .block-content a:hover { color: #FF3D70 ; text-decoration: none; }
 .block-account  .block-content a { color: #333; line-height: 30px ;}
@@ -471,18 +470,9 @@ span.separator{vertical-align: top; }
 .my-account .addresses-list address { margin:0 0 3px; }
 .my-account .addresses-list li.item { background: #ffffff; border:1px solid #cccccc; margin:0 0 10px; padding:10px 13px;}
 
-.pager .amount {
-    float:left;
-    line-height:40px;
-}
-.pager .amount strong {
-    float:left;
-    padding:0 10px;
-}
-.pager .limiter label {
-    float:left;
-    padding:10px 0 0 15px;
-}
+.pager .amount { float:left; line-height:40px;}
+.pager .amount strong { float:left;padding:0 10px;}
+.pager .limiter label {float:left;  padding:10px 0 0 15px;}
 .pager .limiter select { width:35%; }
 .my-account .pager .limiter select{width: auto;display: inline-block;}
 .my-account .pager .limiter {float: right;}
@@ -490,17 +480,10 @@ span.separator{vertical-align: top; }
 .my-account .pager .amount strong {font-weight: 400;}
 .related-action .price-label{font-size: 16px;color: #333;}
 
-#wishlist-table input.input-text {
-    padding:5px;
-    margin:0 0 10px;
-    text-align:center;
-    width:35%;
-}
+#wishlist-table input.input-text { padding:5px;margin:0 0 10px;text-align:center;width:35%;}
 #wishlist-table .button { margin: 0 0 10px;}
 .my-wishlist  .buttons-set .button {margin: 0 5px;}
-.my-wishlist h3 {
-    font-size: 100%;
-}
+.my-wishlist h3 {font-size: 100%;}
 
 .cart .page-title { background: #0098cd ; }
 .cart .page-title h2 { border: none ; font-size: 18px ; color: #fff;  margin: 35px 0 0; padding: 15px 20px;}
@@ -520,8 +503,6 @@ span.separator{vertical-align: top; }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td,
 .table-striped > tbody > tr:nth-child(2n+1) > th {background: none !important ;}
-
-
 
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -772,9 +753,17 @@ p.back-link{float: left;}
 .mt-social-links .so-plusone iframe, .mt-social-links .so-plusone>div {
     width: 67px !important;
 }
-
+/************ Fix CHROME **************/
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .table-striped > tbody > tr td.text { width: 30% ;}
     .table-bordered > tbody > tr > td.right {border-right: 1px solid #d7d7d7 !important ;}
-
 }
+
+/************ Fix IE8 **************/
+.ie8 .slider-product-wrapper .bordered-tab .title {padding: 15px 0 0 ;}
+.ie8 .slider-product-wrapper .bordered-tab .title .btn-widget { font-size: 90% ; }
+.ie8 .slider-product-wrapper .nav-tabs li { padding: 0 8px 6px ;}
+.ie8 .deals-wrapper .owl-pagination { bottom: 20px;}
+.ie8 .products-grid .actions { display: none ; }
+.ie8 .products-grid .item:hover .actions {display: block ;}
+.ie8 .block-subscribe input{line-height: 30px;}
