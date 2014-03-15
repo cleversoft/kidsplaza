@@ -34,8 +34,6 @@ class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends Mage_Adminhtml_B
 
     public function setCollection($collection)
     {
-        /* @var $collection Mage_Catalog_Model_Resource_Product_Collection */
-
         $store = $this->_getStore();
         $priceChange = $this->getRequest()->getParam('price_change');
         if ($priceChange) {
@@ -44,11 +42,15 @@ class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends Mage_Adminhtml_B
             $dateCheck = Mage::getModel('core/date')->date('Y-m-d H:i:s',strtotime($today) -  $maxTime);
             $collection->addAttributeToFilter('price_date', array('lteq' => $dateCheck));
             $fromPart = $collection->getSelect()->getPart('from');
-            $fromPart['at_price_date']['joinCondition'] = str_replace(' AND (`at_price_date`.`store_id` = 0)',
-                ' AND (`at_price_date`.`store_id` = '.$store->getId().')',
-                $fromPart['at_price_date']['joinCondition']);
+            if($store->getId()){
+                $fromPart['at_price_date']['joinCondition'] = str_replace(' AND (`at_price_date`.`store_id` = 0)',
+                    ' AND (`at_price_date`.`store_id` = '.$store->getId().')',
+                    $fromPart['at_price_date']['joinCondition']);
+            }else{
+                $fromPart['at_price_date']['joinCondition'] = str_replace(' AND (`at_price_date`.`store_id` = 0)','',
+                    $fromPart['at_price_date']['joinCondition']);
+            }
             $collection->getSelect()->setPart('from', $fromPart);
-            Mage::log($collection->getSelect()->assemble());
         }
         parent::setCollection($collection);
     }
