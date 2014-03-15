@@ -12,7 +12,7 @@
 <config>
     <modules>
         <MT_KidsPlaza>
-            <version>1.4</version>
+            <version>1.5</version>
         </MT_KidsPlaza>
     </modules>
 
@@ -26,6 +26,12 @@
             <kidsplaza>
                 <class>MT_KidsPlaza_Block</class>
             </kidsplaza>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product>MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Product</catalog_product>
+                    <catalog_product_grid>MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml>
             <core>
                 <rewrite>
                     <messages>MT_KidsPlaza_Block_Core_Messages</messages>
@@ -93,6 +99,17 @@
                 </kidsplaza>
             </updates>
         </layout>
+        <events>
+            <catalog_product_save_before>
+                <observers>
+                    <kidsplaza_save_product_data>
+                        <type>singleton</type>
+                        <class>kidsplaza/observer</class>
+                        <method>saveAfterProduct</method>
+                    </kidsplaza_save_product_data>
+                </observers>
+            </catalog_product_save_before>
+        </events>
     </adminhtml>
 
     <admin>
