@@ -433,7 +433,7 @@ input,textarea{outline:0}
 .discount .btn{padding:3px 10px}
 .discount input{height:34px;border-radius:0}
 .block-subscribe{width:300px;}
-.block-subscribe input{height:40px; line-height: 40px; border-radius:0 ; border: none ; background:url("../images/bgSubscribe.png") 0 50% no-repeat;}
+.block-subscribe input{height:40px; border-radius:0 ; border: none ; background:url("../images/bgSubscribe.png") 0 50% no-repeat;}
 .fields{clear:both}
 .fields .field{width:50%;float:left}
 .fields .input-box{padding:5px 5px 5px 0}

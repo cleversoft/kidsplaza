@@ -33,20 +33,25 @@ header .menu-top {
 }
 #megamenu .level-0 > a{
     border-top: 4px solid #fff ;
-    margin: 0 -1px;
 }
-#megamenu ul li.level-0 {
-    height: 52px;
+#megamenu .root {
+    border-right: 1px solid #fff;
+    border-left: 1px solid #fff;
 }
-#megamenu .root.parent:hover > a, #megamenu .root.parent.active > a{
+#megamenu .root.over > a,
+#megamenu .root.parent.active > a{
     border-top: 4px solid #ff4b8c ;
 }
-#megamenu .root.parent:hover , #megamenu .root.parent.active {
+#megamenu .root.over,
+#megamenu .root.parent.active {
     border-bottom: 4px solid #fff ;
     border-right: 1px solid #cfcfcf;
     border-left: 1px solid #cfcfcf;
 }
 #megamenu li.level-0:first-child { height: 45px;}
+#megamenu .parent.bgnone > a{
+    background: none;
+}
 #megamenu ul li.level-0 > a{
     line-height: 45px;
     background: url("../images/tick-menu.png") no-repeat scroll 100% 50%  ;
@@ -58,15 +63,13 @@ header .menu-top {
 #megamenu ul li.level-0.over > a {
    line-height: 45px;
 }
-#megamenu ul li.level-0:hover > a span ,
-#megamenu ul li.level-0 > a:hover span ,
-#megamenu ul li.level-0 > a span:hover {
+#megamenu ul li.level-0.over > a span{
    line-height: 45px;
    background: url(../images/icon-menu-parent.png) no-repeat 100% -36px ;
-    color: #FF4E8F;
+   color: #FF4E8F;
 }
 #megamenu ul li.level-0 > a span {
-    color: #757575;
+    color: #515151;
     background: url(../images/icon-menu-parent.png) no-repeat 100% 3px ;
     padding-right: 15px;
 }
@@ -156,7 +159,7 @@ header .menu-top {
 #megamenu ul li.over > a {
 
 }
-#megamenu ul li:hover  > a {
+#megamenu ul li.over  > a {
     color:#ff4b8c;
     background: none ;
 }
@@ -178,18 +181,18 @@ header .menu-top {
     position:absolute;
     top:51px;
     left:-10000px;
-    background:#fff;
     z-index:200;
     text-align: left;
     width: 100%;
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;
-    background-image: url("../images/bgmenu.png ");
+    background-color: #fff;
     background-repeat: no-repeat;
     background-position: 100% 100%;
     display: block !important;
-    padding: 40px 20px 20px;
+    padding: 20px 10px;
+    min-height: 260px;
 }
 #megamenu .megamenu-title > img {
     float:left;
