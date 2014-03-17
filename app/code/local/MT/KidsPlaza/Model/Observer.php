@@ -20,4 +20,14 @@ class MT_KidsPlaza_Model_Observer{
         $videos = $request->getParam('videos', array());
         $product->setData('video', Mage::helper('core')->jsonEncode($videos));
     }
+
+    public function saveAfterProduct($observer){
+        $product = $observer->getProduct();
+        $origPrice = $product->getOrigData('price');
+        if($product->getPrice() != $origPrice){
+            $date = Mage::getModel('core/date')->date();
+            $product->setPriceDate($date);
+            $product->getResource()->saveAttribute($product, 'price_date');
+        }
+    }
 }

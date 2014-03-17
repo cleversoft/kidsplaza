@@ -1,0 +1,22 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-products"><?php echo Mage::helper('catalog')->__('Manage Products') ?></h3></td>
+            <td class="a-right">
+                <?php echo $this->getButtonsHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="switcher" style="overflow: hidden; height: 40px;">
+    <span class="store_switcher" style="float: left;">
+        <?php if( !$this->isSingleStoreMode() ): ?>
+            <?php echo $this->getChildHtml('store_switcher');?>
+        <?php endif;?>
+    </span>
+    <?php echo $this->getChildHtml('price_switcher');?>
+</div>
+
+<div>
+    <?php echo $this->getGridHtml() ?>
+</div>

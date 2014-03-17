@@ -1,0 +1,18 @@
+<span class="switcher" style="float: left; margin-left: 10px;">
+    <label for="store_switcher"><?php echo $this->__('Choose Price No Change View:') ?></label>
+    <select name="store_switcher" id="store_switcher" onchange="return switchPrice(this);">
+    <?php if ($this->hasDefaultOption()): ?>
+        <option value=""><?php echo $this->getDefaultStoreName() ?></option>
+    <?php endif; ?>
+        <option value="1" <?php if($this->getPriceSelected()){?>selected="selected" <?php }?>><?php echo $this->__('Yes');?></option>
+    </select>
+</span>
+<script type="text/javascript">
+    function switchPrice(obj) {
+        var priceParam = obj.value ? 'price_change/' + obj.value + '/' : '';
+        if (obj.switchParams) {
+            priceParam += obj.switchParams;
+        }
+        setLocation('<?php echo $this->getSwitchUrl() ?>' + priceParam);
+    }
+</script>

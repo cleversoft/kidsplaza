@@ -24,4 +24,10 @@
             <block type="kidsplaza/adminhtml_catalog_product_edit_tab_video" name="catalog.product.edit.tab.video"/>
         </block>
     </kidsplaza_admin_adminhtml_catalog_product_videotab>
+
+    <adminhtml_catalog_product_index>
+        <reference name="products_list">
+            <block type="kidsplaza/adminhtml_catalog_product_price_switcher" name="price_switcher" as="price_switcher"/>
+        </reference>
+    </adminhtml_catalog_product_index>
 </layout>
