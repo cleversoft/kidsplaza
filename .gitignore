@@ -9,10 +9,10 @@ downloader/*
 errors/*
 includes/*
 media/catalog/*
-media/wysiwyg/news/*
-media/wysiwyg/.thumbs/*
+media/wysiwyg/*
 media/js/*
 media/css/*
+media/tmp/*
 js/calendar/*
 js/extjs/*
 js/flash/*
