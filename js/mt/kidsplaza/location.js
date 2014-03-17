@@ -127,6 +127,8 @@ function triggerLocationOverlay(){
     }
 }
 
+//init cufont
+Cufon.replace('.utm-cookies');
 //init login header
 new KidsPlazaLoginHeader('topLogin');
 //init location

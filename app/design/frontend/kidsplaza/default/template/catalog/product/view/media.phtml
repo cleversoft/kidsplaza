@@ -55,7 +55,7 @@
 </div>
 <p class="product-image">
 <?php if ($_product->getPrice() > $_product->getFinalPrice()):?>
-    <span class="price-discount"><?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%</span>
+    <span class="price-discount utm-cookies"><?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%</span>
 <?php endif ?>
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
     <img class="img-responsive img-main img-zoom"
