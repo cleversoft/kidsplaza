@@ -19,20 +19,14 @@
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(script, firstScriptTag);
         })();
-        var YTPlayer;
+        var YTPlayer, YTVideoCount=0, YTVideoTotal=0;
         function onYouTubeIframeAPIReady(){
             YTPlayer = new YT.Player('player', {
                 height: 390,
                 width: 640,
                 playerVars: {wmode: 'transparent'},
-                videoId: '<?php echo current($videos) ?>',
-                events: {
-                    'onReady': onPlayerReady
-                }
+                videoId: '<?php echo current($videos) ?>'
             });
-        }
-        function onPlayerReady(){
-
         }
         function getYoutubeVideoInfo(videoId){
             var firstScriptTag = document.getElementsByTagName('script')[0],
@@ -80,8 +74,15 @@
                 itemElm.appendChild(infoElm);
                 listElm.appendChild(itemElm);
 
-                if (window.jQuery && window.jQuery.fn.mCustomScrollbar){
-                    jQuery(listElm).mCustomScrollbar('update');
+                YTVideoCount++;
+
+                if (YTVideoCount == YTVideoTotal && window.jQuery && window.jQuery.fn.mCustomScrollbar){
+                    jQuery(listElm).mCustomScrollbar({
+                        scrollInertia: 0,
+                        theme: 'dark-thin',
+                        set_height: 390,
+                        mouseWheel: true
+                    });
                 }
             }catch (e){}
         }
@@ -94,6 +95,7 @@
             var output = input.substr(0, length);
             return output.substr(0, Math.min(output.length, output.lastIndexOf(' ')))+'...';
         }
+        YTVideoTotal = <?php echo count($videos) ?>;
         <?php foreach ($videos as $video): ?>
         getYoutubeVideoInfo('<?php echo $video ?>');
         <?php endforeach ?>

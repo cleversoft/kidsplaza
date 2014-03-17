@@ -24,8 +24,9 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php $_product = $this->getProduct() ?>
-<?php $buttonTitle = $this->__('Add to Cart') ?>
+
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Update Cart'); ?>
 <?php if ($_product->isAvailable()): ?>
     <a class="btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
 <?php else: ?>
@@ -35,9 +36,9 @@
 <?php if ($_product->isSaleable()): ?>
     <div class="add-to-cart">
         <?php if (!$_product->isGrouped()): ?>
-            <label for="qty"><?php echo $this->__('Quantity') ?></label>
-            <input type="text" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
-        <?php endif ?>
+        <label for="qty"><?php echo $this->__('Quantity') ?></label>
+        <input type="text" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
+        <?php endif; ?>
         <div class="add-bt">
             <button type="button" class="btn btn-kid btn-cart btn-login" title="<?php echo $buttonTitle ?>" onclick="window.productAddToCartForm.submit(this)">
                 <?php echo $buttonTitle ?>
@@ -45,8 +46,4 @@
         </div>
         <?php echo $this->getChildHtml('', true, true) ?>
     </div>
-<?php else: ?>
-    <!--button class="btn btn-cart btn-kid " type="button">
-        Notify Me
-    </button-->
-<?php endif ?>
+<?php endif; ?>

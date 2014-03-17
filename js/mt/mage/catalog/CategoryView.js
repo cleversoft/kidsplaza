@@ -36,11 +36,11 @@ jQuery(function(){
         initLayerFilterWithScrollAndList(container);
     });
     //init equal height
-    ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
+    ensureEqualHeight();
 });
 
-function ensureEqualHeight(select){
-    jQuery(select).equalHeights();
+function ensureEqualHeight(){
+    jQuery.fn.equalHeights('.col-main', '.col-left-bottom');
 }
 
 function initLayerFilterWithScrollAndList(container){

@@ -30,10 +30,11 @@
  */
 ?>
 <!DOCTYPE html>
-<html lang="<?php echo $this->getLang() ?>">
-<!--[if IE 8 ]><html class="ie8"<![endif]-->
-<!--[if IE 9 ]><html class="ie9"<![endif]-->
+<!--[if IE 8]><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" class="ie ie8"><![endif]-->
+<!--[if IE 9]><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>" class="ie ie9"><![endif]-->
+<!--[if !IE]>-->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<!--<![endif]-->
 <head>
 <?php echo $this->getChildHtml('head') ?>
 </head>

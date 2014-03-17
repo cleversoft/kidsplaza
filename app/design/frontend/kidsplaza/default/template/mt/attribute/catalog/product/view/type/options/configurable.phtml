@@ -55,16 +55,9 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
     </dl>
     <script type="text/javascript">
         <?php if (Mage::getStoreConfig('mtattribute/general/show')):?>
-        var spConfig = new Product.EnhancedConfig(<?php echo $this->getJsonConfig() ?>);
-        var msgNoImageSelection = '<?php echo Mage::helper('mtattribute')->__('This is a required selection.')?>';
+        var spConfigDataEnhanced = <?php echo $this->getJsonConfig() ?>;
         <?php else:?>
-        var spConfig = new Product.Config(<?php echo $this->getJsonConfig() ?>);
+        var spConfigData = <?php echo $this->getJsonConfig() ?>;
         <?php endif ?>
     </script>
 <?php endif; ?>
-<style>
-    .attribute-option-image a{margin-right: 3px}
-    .attribute-option-image img.active{border: 2px solid #dc6809}
-    .attribute-option-image img{border: 2px solid #ccc}
-    .product-view .product-img-box .more-views li a.active{border: 2px solid #dc6809}
-</style>

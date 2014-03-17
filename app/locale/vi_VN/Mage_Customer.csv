@@ -1,4 +1,8 @@
 "* Required Fields","* Required Fields"
+"Log out","Đăng xuất"
+"You are now logged out","Bạn đã đăng xuất thành công"
+"You have logged out and will be redirected to our homepage in 5 seconds.","Hệ thống sẽ tự động chuyển hướng trong 5 giây."
+"If there is an account associated with %s you will receive an email with a link to reset your password.","Hệ thống sẽ gửi một e-mail kèm theo liên kết để bạn thay đổi mật khẩu nếu có một tài khoản sử dụng e-mail <span>%s</span>."
 "A new password was sent","A new password was sent"
 "Account Dashboard","Thông tin chung"
 "Account Information","Account Information"

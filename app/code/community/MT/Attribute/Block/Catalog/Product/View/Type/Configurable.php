@@ -67,8 +67,8 @@ class MT_Attribute_Block_Catalog_Product_View_Type_Configurable extends Mage_Cat
 
             foreach($product->getMediaGalleryImages() as $item){
                 $origins[$product->getId()][$item->getId()] = $item->getUrl();
-                $images[$product->getId()][$item->getId()]  = (string)Mage::helper('catalog/image')->init($product, 'image', $item->getFile())->resize(265);
-                $thumbs[$product->getId()][$item->getId()]  = (string)Mage::helper('catalog/image')->init($product, 'thumbnail', $item->getFile())->resize(56);
+                $images[$product->getId()][$item->getId()]  = (string)Mage::helper('catalog/image')->init($product, 'image', $item->getFile())->resize(430);
+                $thumbs[$product->getId()][$item->getId()]  = (string)Mage::helper('catalog/image')->init($product, 'thumbnail', $item->getFile())->resize(84);
             }
 
             foreach ($this->getAllowAttributes() as $attribute) {
@@ -137,7 +137,9 @@ class MT_Attribute_Block_Catalog_Product_View_Type_Configurable extends Mage_Cat
                         'price'     => $configurablePrice,
                         'oldPrice'  => $this->_prepareOldPrice($value['pricing_value'], $value['is_percent']),
                         'products'  => $productsIndex,
-                        'image'     => isset($optionImages[$value['value_index']]) ? $optionImages[$value['value_index']] : null // PATCH
+                        'image'     => isset($optionImages[$value['value_index']]) ?
+                                Mage::getBaseUrl('media').$optionImages[$value['value_index']] :
+                                null
                     );
                     $optionPrices[] = $configurablePrice;
                 }
@@ -206,8 +208,9 @@ class MT_Attribute_Block_Catalog_Product_View_Type_Configurable extends Mage_Cat
                 'images'    => $images,
                 'thumbs'    => $thumbs,
                 'show'      => Mage::getStoreConfig('mtattribute/general/show'),
-                'imgWidth'  => is_numeric(Mage::getStoreConfig('mtattribute/general/width'))?Mage::getStoreConfig('mtattribute/general/width'):50,
-                'czoomRel' => Mage::helper('mtattribute')->getCloudZoomConfig(true)
+                'imgWidth'  => is_numeric(Mage::getStoreConfig('mtattribute/general/width')) ?
+                        Mage::getStoreConfig('mtattribute/general/width') :
+                        50
             ),
             $this->_getAdditionalConfig()
         );

@@ -120,13 +120,13 @@ Wishlist pages
     <wishlist_index_configure translate="label">
         <label>Configure Wishlist Item</label>
         <update handle="catalog_product_view" />
-        <reference name="product.info">
+        <!--reference name="product.info">
             <block type="wishlist/item_configure" name="product.info.addto" as="addto" template="wishlist/item/configure/addto.phtml" />
-        </reference>
-        <reference name="product.info.options.wrapper.bottom">
+        </reference-->
+        <!--reference name="product.info.options.wrapper.bottom">
             <action method="unsetChild"><name>product.info.addto</name></action>
             <action method="append"><block>product.info.addto</block></action>
-        </reference>
+        </reference-->
     </wishlist_index_configure>
 
     <wishlist_shared_index translate="label">

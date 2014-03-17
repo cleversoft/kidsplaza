@@ -28,6 +28,7 @@
             <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.mousewheel.min.js</file></action>
             <action method="addJs"><file>mt/extensions/jquery/plugins/m-custom-scrollbar/jquery.mCustomScrollbar.js</file></action>
             <action method="addJs"><file>mt/extensions/list/list.min.js</file></action>
+            <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.equalHeights.js</file></action>
             <action method="addJs"><file>mt/filter/filter.js</file></action>
             <action method="addJs"><file>mt/mage/catalog/CategoryView.js</file></action>
         </reference>

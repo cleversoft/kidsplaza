@@ -7,11 +7,21 @@
  * @email       support@magentothemes.net
  */
 'use strict';
+
 var RelatedPrice = Class.create(Product.OptionsPrice, {
     initPrices: function(){
         this.containers[0] = 'related-price';
     }
 });
+
+document.on('dom:loaded', function(){
+    if (window.spConfigDataEnhanced){
+        window.spConfig = new Product.EnhancedConfig(window.spConfigDataEnhanced);
+    }else if (window.spConfigData){
+        window.spConfig = new Product.Config(window.spConfigData);
+    }
+});
+
 jQuery('.product-view').each(function(i, product){
     var id = jQuery(product).data('product');
     if (!id) return;
@@ -90,6 +100,7 @@ jQuery('.product-view').each(function(i, product){
         Event.observe(elem, 'click', addRelatedToProduct)
     });
 });
+
 function addRelatedToProduct(){
     var checkboxes = $$('.related-checkbox'),
         values = [],
@@ -117,8 +128,9 @@ function addRelatedToProduct(){
     }
     relatedPrice && relatedPrice.reload();
 }
+
 jQuery(function(){
-    //init show more
+    //init show more/less
     var content_height_limit = 500,
         mainPane = jQuery('#product-description'),
         height = mainPane.height(),
@@ -148,13 +160,16 @@ jQuery(function(){
             jQuery('#product-description').scrollToMe();
         });
     }
+
     //init table description
     jQuery('table', '#product_tabs_description_contents').addClass('table');
+
     //init zoom
     jQuery('img.img-zoom').imagezoomsl({
         zoomrange: [1,3],
         magnifierborder: '1px solid #ddd'
     });
+
     //init more views
     jQuery('.more-views img').on('click',function(){
         jQuery('.more-views img').removeClass('active');
@@ -163,57 +178,52 @@ jQuery(function(){
             jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
         });
     });
+
     //init carousel
     jQuery('.owl-carousel').each(function(i, slider){
         var id = jQuery(slider).attr('id');
         if (!id || !window[id]) return;
         jQuery(slider).owlCarousel(window[id]);
     });
+
     //init media verticle slider
-    var carCount = jQuery('.media-list #thumbs').find('a').length;
+    var carCount = jQuery('.product-img-box #thumbs').find('a').length;
     if (carCount <= 4){
-        jQuery('.product-img-box .more-views .more-views-nav').hide();
+        jQuery('.product-img-box .more-views-nav').hide();
     }
-    jQuery("a#carousel-up").on("click", function() {
-        if (!jQuery("div#thumbs").is(':animated')) {
-            var bottom = jQuery("div#thumbs > a:last-child");
-            var clone = jQuery("div#thumbs > a:last-child").clone();
-            clone.prependTo("div#thumbs");
-            jQuery("div#thumbs").animate({"top" : "-=85"}, 0).stop().animate({"top" : '+=85'}, 250, function() {
+    jQuery(".product-img-box #carousel-up").on("click", function() {
+        if (!jQuery(".product-img-box #thumbs").is(':animated')) {
+            var bottom = jQuery(".product-img-box #thumbs > a:last-child");
+            var clone = jQuery(".product-img-box #thumbs > a:last-child").clone();
+            clone.prependTo(".product-img-box #thumbs");
+            jQuery(".product-img-box #thumbs").animate({"top" : "-=85"}, 0).stop().animate({"top" : '+=85'}, 250, function() {
                 bottom.remove();
             });
-            jQuery('.more-views img').bind('click',function(){
-                jQuery('.more-views img').removeClass('active');
+            jQuery('.product-img-box .more-views img').bind('click',function(){
+                jQuery('.product-img-box .more-views img').removeClass('active');
                 var item = jQuery(this).addClass('active');
-                jQuery('img.img-zoom').fadeOut(100, function(){
+                jQuery('.product-img-box img.img-zoom').fadeOut(100, function(){
                     jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
                 });
             });
         }
     });
-    jQuery("a#carousel-down").on("click", function() {
-        if (!jQuery("div#thumbs").is(':animated')) {
-            var top = jQuery("div#thumbs > a:first-child");
-            var clone = jQuery("div#thumbs > a:first-child").clone();
-            clone.appendTo("div#thumbs");
-            jQuery("div#thumbs").animate({"top" : '-=85'}, 250, function() {
+    jQuery(".product-img-box #carousel-down").on("click", function() {
+        if (!jQuery(".product-img-box #thumbs").is(':animated')) {
+            var top = jQuery(".product-img-box #thumbs > a:first-child");
+            var clone = jQuery(".product-img-box #thumbs > a:first-child").clone();
+            clone.appendTo(".product-img-box #thumbs");
+            jQuery(".product-img-box #thumbs").animate({"top" : '-=85'}, 250, function() {
                 top.remove();
-                jQuery("div#thumbs").animate({"top" : "+=85"}, 0);
+                jQuery(".product-img-box #thumbs").animate({"top" : "+=85"}, 0);
             });
-            jQuery('.more-views img').bind('click',function(){
-                jQuery('.more-views img').removeClass('active');
+            jQuery('.product-img-box .more-views img').bind('click',function(){
+                jQuery('.product-img-box .more-views img').removeClass('active');
                 var item = jQuery(this).addClass('active');
-                jQuery('img.img-zoom').fadeOut(100, function(){
+                jQuery('.product-img-box img.img-zoom').fadeOut(100, function(){
                     jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
                 });
             });
         }
-    });
-    //init video scroll
-    jQuery('#product-videos .video-list').mCustomScrollbar({
-        scrollInertia: 0,
-        theme: 'dark-thin',
-        set_height: 390,
-        mouseWheel: true
     });
 });

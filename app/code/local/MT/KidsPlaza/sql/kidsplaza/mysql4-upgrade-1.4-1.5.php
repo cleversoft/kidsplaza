@@ -8,6 +8,7 @@
  * @email       support@magentothemes.net
  */
 $this->startSetup();
+
 $this->removeAttribute('catalog_product', 'price_date');
 $this->addAttribute('catalog_product', 'price_date', array(
     'group'     => 'General',
@@ -31,4 +32,5 @@ $this->addAttribute('catalog_product', 'price_date', array(
     'used_for_sort_by' => false,
     'global'    => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_WEBSITE
 ));
+
 $this->endSetup();

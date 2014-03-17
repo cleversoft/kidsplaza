@@ -50,7 +50,7 @@ $session = Mage::getSingleton('customer/session');
                 <?php if ($session->isLoggedIn()): ?>
                 <li>
                     <i class="glyphicon glyphicon-log-out"></i>
-                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo Mage::helper('kidsplaza')->__('Log out ') ?></a>
+                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo Mage::helper('kidsplaza')->__('Log out') ?></a>
                 </li>
                 <?php endif ?>
             </ul>

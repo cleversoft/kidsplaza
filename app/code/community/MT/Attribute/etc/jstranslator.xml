@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<jstranslator>
+    <select-none translate="message" module="kidsplaza">
+        <message>This is a required selection.</message>
+    </select-none>
+</jstranslator>

@@ -101,10 +101,10 @@ if (typeof Product !== 'undefined'){
             }
 
             // Set values to inputs
-            document.observe("dom:loaded", this.configureForValues.bind(this));
+            this.configureForValues();
         },
 
-        configureForValues: function () {
+        configureForValues: function(){
             if (this.values) {
                 this.settings.each(function(element){
                     var attributeId = element.attributeId;
@@ -113,9 +113,9 @@ if (typeof Product !== 'undefined'){
                         element.disabled = false;
                         this.configureElement(element);
                     }else{
-                        element.select('img').each(function(img){
-                            if (img.readAttribute('option') == this.values[attributeId]){
-                                this.handleImageSelectionClick(img);
+                        element.select('a').each(function(a){
+                            if (a.readAttribute('option') == this.values[attributeId]){
+                                this.handleImageSelectionClick(a);
                             }
                         }.bind(this));
                     }
@@ -129,9 +129,9 @@ if (typeof Product !== 'undefined'){
                             element.options[1].selected = true;
                             this.configureElement(element);
                         }else{
-                            var img = element.down('img');
-                            img.addClassName('active');
-                            this.handleImageSelectionClick(img);
+                            var a = element.down('a');
+                            a.addClassName('active');
+                            this.handleImageSelectionClick(a);
                         }
                     }
                 }.bind(this));
@@ -189,7 +189,8 @@ if (typeof Product !== 'undefined'){
 
         imageSelectionClick: function(event){
             event.stop();
-            var element = Event.element(event);
+            //find a tag, not img tag
+            var element = Event.findElement(event, 'a');
             this.handleImageSelectionClick(element);
         },
 
@@ -199,8 +200,8 @@ if (typeof Product !== 'undefined'){
             if (optionId){
                 var attributeId = element.readAttribute('attribute');
                 // reset all selected
-                $('attribute-image-' + attributeId).select('img').each(function(img){
-                    img.removeClassName('active');
+                $('attribute-image-' + attributeId).select('a').each(function(a){
+                    a.removeClassName('active');
                 });
                 // mark it selected
                 element.addClassName('active');
@@ -255,77 +256,56 @@ if (typeof Product !== 'undefined'){
                     this.container = $('product_addtocart_form').down('.product-img-box');
                 }
                 if (this.container && options){
-                    var main = this.container.down('img');
-                    if (main){
+                    var mainElm = this.container.down('.product-image img');
+                    if (mainElm){
                         options.each(function(option){
                             if (option.id == optionId && option.products){
                                 var target;
+
+                                //find any product match option value
                                 option.allowedProducts.each(function(product){
                                     if (!target && this.config.images[product]){
                                         target = product;
                                     }
                                 }.bind(this));
-                                if (target){
-                                    var parentElm = main.up();
-                                    if (parentElm.tagName != 'A'){
-                                        var parent = main.up(1);
-                                        var aWrap = new Element('a', {'class':'cloud-zoom', id:'zoomID'});
-                                        aWrap.insert(main);
-                                        parent.update(aWrap);
-                                        parentElm = aWrap;
-                                    }else{
-                                        parentElm.id = 'zoomID';
-                                        parentElm.addClassName('cloud-zoom');
-                                    }
-                                    parentElm.writeAttribute('rel', this.config.czoomRel);
-                                    var origins= $H(this.config.origins[target]);
-                                    var images = $H(this.config.images[target]);
-                                    var thumbs = $H(this.config.thumbs[target]);
-                                    var images_keys = images.keys();
-                                    var thumbs_keys = thumbs.keys();
-                                    var image_first = images_keys.first();
-                                    main.src = images.get(image_first);
-                                    parentElm.writeAttribute('href', origins.get(image_first));
-                                    if (thumbs_keys.length > 1){
-                                        var ulElm = new Element('ul', {'class':'slides'});
-                                        var first = false;
-                                        thumbs_keys.each(function(thumb){
-                                            var liElm = new Element('li');
-                                            if (!first){
-                                                var aElm = new Element('a', {'class':'active'});
-                                                first = true;
-                                            }else{
-                                                var aElm = new Element('a');
-                                            }
-                                            aElm.addClassName('cloud-zoom-gallery');
-                                            aElm.writeAttribute('rel', "useZoom:'zoomID',smallImage:'"+images.get(thumb)+"'");
-                                            aElm.href = origins.get(thumb);
-                                            Event.observe(aElm, 'click', this.clickThumb.bind(this));
-                                            var imgElm = new Element('img', {src: thumbs.get(thumb)});
-                                            ulElm.insert(liElm.insert(aElm.insert(imgElm)));
-                                        }.bind(this));
-                                        var moreElm = this.container.down('.more-views');
-                                        if (!moreElm){
-                                            moreElm = new Element('div', {'class':'more-views', id:'moreViews'});
-                                            moreElm.insert(new Element('h2').update('More Views'));
-                                            moreElm.insert(ulElm);
-                                            this.container.insert(moreElm);
-                                        }else{
-                                            if (moreElm.down('div.more-views-viewport')) moreElm.down('div.more-views-viewport').replace(ulElm);
-                                            if (moreElm.down('ul.more-views-direction-nav')) moreElm.down('ul.more-views-direction-nav').remove();
-                                        }
-                                        if (bindMoreViewsFlexSlider){
-                                            jQuery('#moreViews').data('flexslider', null);
-                                            bindMoreViewsFlexSlider();
-                                        }
-                                    }else{
-                                        var moreElm = this.container.down('.more-views');
-                                        if (moreElm){
-                                            moreElm.remove();
-                                        }
-                                    }
-                                    jQuery('#zoomID, .cloud-zoom-gallery').CloudZoom();
-                                }
+
+                                if (!target) return;
+
+                                var origins= $H(this.config.origins[target]),
+                                    images = $H(this.config.images[target]),
+                                    thumbs = $H(this.config.thumbs[target]),
+                                    images_keys = images.keys(),
+                                    thumbs_keys = thumbs.keys(),
+                                    image_first = images_keys.first();
+
+                                mainElm.src = images.get(image_first);
+                                mainElm.writeAttribute('data-large', origins.get(image_first));
+
+                                if (!thumbs_keys.length) return;
+
+                                var moreElm = this.container.down('#thumbs');
+                                if (!moreElm) return;
+                                moreElm.innerHTML = '';
+
+                                var defaultImg = image_first; //select default image
+                                //generate more views
+                                thumbs_keys.each(function(thumb){
+                                    var aElm = new Element('a', {'class':'mv-thumb', href:'javascript:void(0)'}),
+                                        imgElm = new Element('img');
+
+                                    if (defaultImg == thumb) imgElm.addClassName('active');
+                                    imgElm.writeAttribute('data-small', images.get(thumb));
+                                    imgElm.writeAttribute('data-large', origins.get(thumb));
+                                    imgElm.writeAttribute('width', 85);
+                                    imgElm.writeAttribute('height', 85);
+                                    imgElm.src = thumbs.get(thumb);
+
+                                    aElm.insert(imgElm);
+                                    moreElm.insert(aElm);
+
+                                    //bind thumb click event
+                                    Event.observe(imgElm, 'click', this.clickThumb.bind(this));
+                                }.bind(this));
                             }
                         }.bind(this));
                     }
@@ -335,14 +315,15 @@ if (typeof Product !== 'undefined'){
 
         clickThumb: function(event){
             event.stop();
-            var elm = Event.element(event);
-            elm.up('div').select('a').each(function(a){
+            var elm = Event.findElement(event, 'img');
+            this.container.select('a.mv-thumb img').each(function(a){
                 a.removeClassName('active');
             });
-            var parent = elm.up('a');
-            if (parent){
-                parent.addClassName('active');
-            }
+            elm.addClassName('active');
+            var mainElm = this.container.down('.product-image img');
+            if (!mainElm) return;
+            mainElm.src = elm.readAttribute('data-small');
+            mainElm.writeAttribute('data-large', elm.readAttribute('data-large'));
         },
 
         reloadOptionLabels: function(element){
@@ -382,20 +363,20 @@ if (typeof Product !== 'undefined'){
             if (element.options) element.options[0] = new Option(this.config.chooseText, '');
 
             var prevConfig = false;
-            if(element.prevSetting){
+            if (element.prevSetting){
                 if (element.prevSetting.options){
                     prevConfig = element.prevSetting.options[element.prevSetting.selectedIndex];
                 }else{
-                    prevConfig = element.prevSetting.down('img.active');
+                    prevConfig = element.prevSetting.down('a.active');
                 }
             }
-            if(options) {
+            if (options) {
                 var index = 1;
                 var imageSelection = $('attribute-image-' + attributeId);
-                for(var i=0; i<options.length; i++){
+                for (var i=0; i<options.length; i++){
                     var allowedProducts = [];
-                    if(prevConfig) {
-                        for(var j=0; j<options[i].products.length; j++){
+                    if (prevConfig) {
+                        for (var j=0; j<options[i].products.length; j++){
                             if(prevConfig.config.allowedProducts && prevConfig.config.allowedProducts.indexOf(options[i].products[j]) > -1){
                                 allowedProducts.push(options[i].products[j]);
                             }
@@ -403,7 +384,7 @@ if (typeof Product !== 'undefined'){
                     } else {
                         allowedProducts = options[i].products.clone();
                     }
-                    if(allowedProducts.size() > 0){
+                    if (allowedProducts.size() > 0){
                         options[i].allowedProducts = allowedProducts;
                         if (element.options){
                             element.options[index] = new Option(this.getOptionLabel(options[i], options[i].price), options[i].id);
@@ -413,20 +394,31 @@ if (typeof Product !== 'undefined'){
                             element.options[index].config = options[i];
                             index++;
                         }
-                        if(options[i].image && this.config.show != 1){
-                            var link = new Element('a', {href: '#'});
-                            var image = new Element('img', {
-                                src: options[i].image,
-                                width: this.config.imgWidth ? this.config.imgWidth :50,
+                        if (this.config.show != 1){
+                            //create new link
+                            var link = new Element('a', {
+                                href: '#',
                                 option: options[i].id,
                                 price: options[i].price,
                                 attribute: attributeId,
-                                title: options[i].label
+                                title: options[i].label,
+                                'class': 'attr-img attr-' + attributeId + '-' + options[i].id
                             });
-                            link.insert(image);
+                            if (options[i].image){ //if this option has image thumb, use it
+                                var image = new Element('img', {
+                                    src: options[i].image,
+                                    width: this.config.imgWidth ? this.config.imgWidth : 50
+                                });
+                                link.insert(image);
+                            }else{ //or echo label for custom style
+                                link.innerHTML = options[i].label;
+                            }
+                            //bind event for click
                             Event.observe(link, 'click', this.imageSelectionClick.bind(this));
+                            //show link
                             imageSelection.insert(link);
-                            image.config = options[i];
+                            //zip data for later use
+                            link.config = options[i];
                         }
                     }
                 }
@@ -446,19 +438,20 @@ if (typeof Product !== 'undefined'){
             if (this.config.disablePriceReload) {
                 return;
             }
+
             var price    = 0;
             var oldPrice = 0;
 
-            for(var i=this.settings.length-1; i>=0; i--){
+            for (var i=this.settings.length-1; i>=0; i--){
                 if (this.settings[i].options){
                     var selected = this.settings[i].options[this.settings[i].selectedIndex];
-                    if(selected.config){
+                    if (selected.config){
                         price    += parseFloat(selected.config.price);
                         oldPrice += parseFloat(selected.config.oldPrice);
                     }
                 }else{
                     if (this.settings[i].innerHTML){
-                        var image = this.settings[i].down('img.active');
+                        var image = this.settings[i].down('.attr-img.active');
                         if (image){
                             price += parseFloat(image.readAttribute('price'));
                         }
@@ -470,11 +463,6 @@ if (typeof Product !== 'undefined'){
             optionsPrice.reload();
 
             return price;
-
-            if($('product-price-'+this.config.productId)){
-                $('product-price-'+this.config.productId).innerHTML = price;
-            }
-            this.reloadOldPrice();
         }
     });
 }
@@ -503,7 +491,13 @@ function moreValidate(form){
             if (id && !container.down('#hidden' + id)){
                 container.type = 'div';
                 var advice = Validation.getAdvice('custom', container);
-                if (!advice) advice = Validation.createAdvice('custom', container, false, msgNoImageSelection);
+                if (!advice)
+                    advice = Validation.createAdvice(
+                    'custom',
+                    container,
+                    false,
+                    Translator.translate('This is a required selection.')
+                );
                 Validation.showAdvice(container, advice);
                 result = false;
             }else{

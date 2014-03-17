@@ -18,33 +18,18 @@
 --------------------------------------------------------------------*/
 
 (function($){
-    $.fn.equalHeights = function(px) {
-        $(this).each(function(){
-            var currentTallest = 0;
-            $(this).children().each(function(i){
-                $(this).css({'min-height': 'auto'});
-                if ($(this).height() > currentTallest) { currentTallest = $(this).height(); }
-            });
-            if (!px && Number.prototype.pxToEm) currentTallest = currentTallest.pxToEm(); //use ems unless px is specified
-            // for ie6, set height since min-height isn't supported
-            //if ($.browser.msie && $.browser.version == 6.0) { $(this).children().css({'height': currentTallest}); }
-            $(this).find('.col-left-bottom').css({'min-height': currentTallest});
-            $(this).children().css({'min-height': currentTallest});
+    $.fn.equalHeights = function() {
+        if (!arguments.length) return;
+        var currentTallest = 0;
+        var targets = [];
+        $.each(arguments, function(i, selector){
+            var target = $(selector);
+            targets.push(target);
+            target.css({'min-height': 'auto'});
+            if (target.height() > currentTallest) currentTallest = target.height();
         });
-        return this;
-    };
-
-    // just in case you need it...
-    $.fn.equalWidths = function(px) {
-        $(this).each(function(){
-            var currentWidest = 0;
-            $(this).children().each(function(i){
-                if($(this).width() > currentWidest) { currentWidest = $(this).width(); }
-            });
-            if(!px && Number.prototype.pxToEm) currentWidest = currentWidest.pxToEm(); //use ems unless px is specified
-            // for ie6, set width since min-width isn't supported
-            //if ($.browser.msie && $.browser.version == 6.0) { $(this).children().css({'width': currentWidest}); }
-            $(this).children().css({'min-width': currentWidest});
+        $.each(targets, function(i, target){
+            target.css({'min-height': currentTallest});
         });
         return this;
     };
