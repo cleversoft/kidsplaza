@@ -18,7 +18,7 @@ class MT_Review_Block_Summary extends Mage_Core_Block_Template
 
     public function getSummaryBlock(){
 
-        $productId = (int)$this->getRequest()->getParam('id');
+        $productId = (int)$this->getProduct()->getId();
 
         $parametrs = Mage::getModel('rating/rating')->getCollection();
 
@@ -30,7 +30,7 @@ class MT_Review_Block_Summary extends Mage_Core_Block_Template
             $votes->getSelect()
                 ->from($this->_name,array('COUNT(*) as qty','value as mark'))
                 ->join(array('review'=>Mage::getSingleton('core/resource')->getTableName('mtreview/review')),'main_table.review_id = review.review_id',array('status_id'))
-                ->join(array('review_store'=>Mage::getSingleton('core/resource')->getTableName('mtreview/review_store')),'main_table.review_id = review_store.review_id',array('store_id'))
+                //->join(array('review_store'=>Mage::getSingleton('core/resource')->getTableName('mtreview/review_store')),'main_table.review_id = review_store.review_id',array('store_id'))
                 ->where('main_table.entity_pk_value = ?',$productId)
                 ->where('value > 0')
                 ///->where('store_id = ?',Mage::app()->getStore()->getId())
@@ -58,12 +58,7 @@ class MT_Review_Block_Summary extends Mage_Core_Block_Template
 
     public function getProduct()
     {
-        $productId = (int)$this->getRequest()->getParam('id');
-        if (!Mage::registry('product')) {
-            $product = Mage::getModel('catalog/product')->load($productId);
-            Mage::register('product', $product);
-        }
-        return Mage::registry('product');
+        return Mage::registry('current_product');
     }
 
     public function getReviewsSummaryHtml()

@@ -50,14 +50,12 @@ class MT_Review_Block_Form extends Mage_Core_Block_Template
 
     public function getProductInfo()
     {
-        $product = Mage::getModel('catalog/product');
-        return $product->load($this->getRequest()->getParam('id'));
+        return Mage::registry('current_product');
     }
 
     public function getAction()
     {
-        $productId = Mage::app()->getRequest()->getParam('id', false);
-        return Mage::getUrl('mtreview/product/post', array('id' => $productId));
+        return Mage::getUrl('mtreview/product/post', array('id' => $this->getProductInfo()->getId()));
     }
 
     public function getRatings()

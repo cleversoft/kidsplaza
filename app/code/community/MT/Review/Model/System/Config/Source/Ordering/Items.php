@@ -14,12 +14,17 @@
  */
 class MT_Review_Model_System_Config_Source_Ordering_Items
 {
-    public function toOptionArray()
+
+    const CREATED_AT = 'created_at';
+    const RATING = 'rating';
+    const HELPFULNESS = 'helpfulness';
+
+    public static function toShortOptionArray()
     {
         return array(
-            array('value'=>'created_at','label'=>'Date'),
-            array('value'=>'rating','label'=>'Average rating'),
-            array('value'=>'helpfulness','label'=>'Helpfulness')
+            self::CREATED_AT    => Mage::helper('mtreview')->__('Date'),
+            self::RATING   => Mage::helper('mtreview')->__('Average rating'),
+            self::HELPFULNESS   => Mage::helper('mtreview')->__('Helpfulness')
         );
     }
 }

@@ -214,10 +214,11 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
     public function sortHelpfulnessReview($attribute, $dir = 'DESC')
     {
         $this->getSelect()
-            ->joinLeft( array( 'h' => $this->_reviewHelpfulnessTable ),
-                'h.review_id = main_table.review_id',
-                array( $attribute => 'SUM(h.value)' ))->group('main_table.review_id');
-        $this->getSelect()->order($attribute.' '.$dir);
+            ->columns(array('helpfulness' => 'SUM(value)'))
+            ->joinLeft(
+                array("h" => $this->_reviewHelpfulnessTable), 'main_table.review_id = h.review_id', array()
+            )
+            ->order(array('helpfulness '.$dir))->group('main_table.review_id');
         return $this;
     }
 
@@ -232,10 +233,12 @@ class MT_Review_Model_Resource_Review_Collection extends Mage_Core_Model_Resourc
      */
     public function sortRatingReview($attribute, $dir = 'DESC')
     {
-        $this->getSelect()->joinLeft(array('v' => $this->_ratingTableName),
-            '(v.review_id = main_table.review_id)',
-            array($attribute => 'AVG(percent)'))->group('main_table.review_id');
-        $this->getSelect()->order($attribute.' '.$dir);
+        $this->getSelect()
+            ->columns(array($attribute => 'AVG(percent)'))
+            ->joinLeft(
+                array("v" => $this->_ratingTableName), 'main_table.review_id = v.review_id', array()
+            )
+            ->order(array($attribute.' '.$dir, $attribute))->group('main_table.review_id');
         return $this;
     }
 

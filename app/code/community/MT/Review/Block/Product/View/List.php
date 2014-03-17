@@ -33,7 +33,7 @@ class MT_Review_Block_Product_View_List extends MT_Review_Block_Product_View
         Mage::helper('mtreview/toolbar')->create(
             $this,
             array(
-                'orders'        => array('created_at' => $this->__('Created At'), 'helpfulness' => $this->__('Helpfulness'), 'rating' => $this->__('Average rating')),
+                'orders'        => MT_Review_Model_System_Config_Source_Ordering_Items::toShortOptionArray(),
                 'default_order' => 'created_at',
                 'dir'           => 'desc',
                 'limits'        => $helper->confItemsReviewPageCount(),
