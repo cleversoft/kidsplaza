@@ -29,7 +29,7 @@ function sendLoadMorePosts(url)
                 jQuery(el).appendTo(jQuery(mainPosts));
             });
             jQuery('.main-post .loading').css('visibility','hidden');
-            if(!jQuery(data).find('.next.i-next')[0]){
+            if(jQuery(data).find('.next.disable.i-next')[0]){
                 jQuery('.main-post button.btn-load-more').hide();
             }else{
                 jQuery('.main-post button.btn-load-more').show();
@@ -64,7 +64,7 @@ function sendLoadMoreComments(url)
                 jQuery(el).appendTo(jQuery(mainComments));
             });
             jQuery('.post-view-comments .loading').css('visibility','hidden');
-            if(!jQuery(data).find('.next.i-next')[0]){
+            if(jQuery(data).find('.next.disable.i-next')[0]){
                 jQuery('.post-view-comments button.btn-load-more').hide();
             }else{
                 jQuery('.post-view-comments button.btn-load-more').show();

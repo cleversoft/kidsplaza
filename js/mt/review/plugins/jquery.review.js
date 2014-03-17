@@ -60,7 +60,7 @@ function sendLoadMoreRequest(url)
                 jQuery(el).appendTo(jQuery(mainReview));
             });
             jQuery('#customer-reviews .load-more-review .loading').css('visibility','hidden');
-            if(!jQuery(data).find('.next.i-next')[0]){
+            if(jQuery(data).find('.next.disable.i-next')[0]){
                 jQuery('#customer-reviews button.btn-load-more').hide();
             }else{
                 jQuery('#customer-reviews button.btn-load-more').show();
