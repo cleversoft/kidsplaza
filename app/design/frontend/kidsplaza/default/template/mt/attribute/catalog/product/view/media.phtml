@@ -46,7 +46,7 @@
         rel="<?php echo Mage::helper('mtattribute')->getCloudZoomConfig(true)?>"
         href="<?php echo $this->helper('catalog/image')->init($_product, 'image')?>">
 
-        <img class="img-responsive"
+        <img alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="img-responsive"
              src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image')->resize(430)?>"/>
     </a>
 </p>

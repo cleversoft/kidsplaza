@@ -49,7 +49,7 @@
                 <?php $enableListJs = $_filter->getAttributeModel() ? $_filter->getAttributeModel()->getAttributeCode() == 'brand' : false ?>
                 <div class="panel panel-info<?php echo $enableListJs ? ' list-js' : '' ?>">
                     <div class="panel-heading">
-                        <?php echo $this->__($_filter->getName()) ?>
+                        <h3><?php echo $this->__($_filter->getName()) ?></h3>
                         <?php if ($enableListJs): ?>
                             <input type="text" class="search" placeholder="<?php echo $this->__('Find brand') ?>"/>
                             <span class="search-icon glyphicon glyphicon-search"></span>

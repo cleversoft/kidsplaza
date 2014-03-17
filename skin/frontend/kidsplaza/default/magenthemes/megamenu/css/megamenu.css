@@ -185,6 +185,11 @@ header .menu-top {
     border-left: #dfdfdf solid 1px;
     border-right: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;
+    background-image: url("../images/bgmenu.png ");
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    display: block !important;
+    padding: 40px 20px 20px;
 }
 #megamenu .megamenu-title > img {
     float:left;

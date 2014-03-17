@@ -49,7 +49,7 @@
             </div>
             <div class="product-shop col-md-6 col-lg-6">
                 <div class="page-title">
-                    <h2><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h2>
+                    <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                 </div>
                 <div class="row">
                     <div class="review col-lg-6">
@@ -141,7 +141,7 @@
     <?php echo $this->getChildHtml('product_related') ?>
 
     <div id="product-description">
-        <h2><?php echo $this->__('Description') ?></h2>
+        <h3><?php echo $this->__('Description') ?></h3>
         <?php echo $this->getChildHtml('product_description') ?>
     </div>
 
