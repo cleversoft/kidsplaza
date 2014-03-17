@@ -6,6 +6,8 @@
 header .mt-menu-top {
     height: 52px;
     background: #fff;
+    float: left;
+    width: 100%;
 }
 header .menu-top {
     border: 1px solid #cfcfcf;
@@ -33,6 +35,7 @@ header .menu-top {
 }
 #megamenu .level-0 > a{
     border-top: 4px solid #fff ;
+    margin: 0 -1px;
 }
 #megamenu .root {
     border-right: 1px solid #fff;
@@ -67,10 +70,14 @@ header .menu-top {
    line-height: 45px;
    background: url(../images/icon-menu-parent.png) no-repeat 100% -36px ;
    color: #FF4E8F;
+   background: url(../images/icon-menu-parent.png) no-repeat 100% -39px ;
+    color: #FF4E8F;
 }
 #megamenu ul li.level-0 > a span {
     color: #515151;
     background: url(../images/icon-menu-parent.png) no-repeat 100% 3px ;
+    color: #757575;
+    background: url(../images/icon-menu-parent.png) no-repeat 100% 6px ;
     padding-right: 15px;
 }
 #megamenu ul li.level-0.over > a span {
