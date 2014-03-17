@@ -54,9 +54,11 @@
 })(jQuery);
 jQuery('#mt_megamenu li.root.parent').hoverIntent(
     function(){
+        jQuery(this).prev().addClass('bgnone');
         jQuery(this).addClass('over');
     },
     function(){
+        jQuery(this).prev().removeClass('bgnone');
         jQuery(this).removeClass('over');
     }
 );

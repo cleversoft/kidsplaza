@@ -110,7 +110,7 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         if (!$modelType) return '';
 
         if($modelType == 'catalog/category'){
-            $model = Mage::getModel($modelType)->load($this->_menu->getArticle(), array('summary'));
+            $model = Mage::getModel($modelType)->load($this->_menu->getArticle(), array('summary', 'thumbnail'));
         }else{
             $model = Mage::getModel($modelType)->load($this->_menu->getArticle());
         }
@@ -204,16 +204,20 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         }
         if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if($this->_level != 0 && !$this->_menu->isGroup()) {
-                $html .= '<div class="sub-megamenu" ';
+                $html .= '<div class="sub-megamenu" style="';
             } else {
-                $html .= '<div class="childcontent" ';
+                $html .= '<div class="childcontent" style="';
             }
 
             if($this->_menu->getWidth()) {
-                $html .= 'style="width:'.$this->_menu->getWidth().'px;"';
+                $html .= sprintf('width:%dpx;', $this->_menu->getWidth());
             }
 
-            $html .= '>';
+            if ($model->getThumbnail()){
+                $html .= sprintf('background-image:url(%s);', Mage::getBaseUrl('media').'catalog/category/'.$model->getThumbnail());
+            }
+
+            $html .= '">';
 
             $colPositions = array();
             if($this->_menu->getSubitemWidth()) {
