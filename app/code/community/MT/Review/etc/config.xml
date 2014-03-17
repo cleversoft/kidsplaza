@@ -188,7 +188,6 @@
             <ordering_options>
                 <items_per_page>5,10</items_per_page>
                 <default_sorter>desc</default_sorter>
-                <ordering_items>created_at,rating,helpfulness</ordering_items>
             </ordering_options>
         </mtreview>
     </default>

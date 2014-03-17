@@ -22,7 +22,7 @@ class MT_Review_Block_Rating extends Mage_Core_Block_Template
 
     protected function _toHtml()
     {
-        $entityId = Mage::app()->getRequest()->getParam('id');
+        $entityId = $this->getProduct()->getId();
         if (intval($entityId) <= 0) {
             return '';
         }
@@ -51,5 +51,10 @@ class MT_Review_Block_Rating extends Mage_Core_Block_Template
 
         $this->assign('collection', $ratingCollection);
         return parent::_toHtml();
+    }
+
+    public function getProduct()
+    {
+        return Mage::registry('current_product');
     }
 }

@@ -49,18 +49,35 @@ class MT_Review_Block_Product_Toolbar extends Mage_Catalog_Block_Product_List_To
 
     public function getCurrentMode()
     {
-        return null;
+        $mode = $this->_getData('_current_grid_mode');
+        if ($mode) {
+            return $mode;
+        }
+        $mode = 'list';
+        $this->setData('_current_grid_mode', $mode);
+        return $mode;
     }
 
-    public function getAvailableLimit()
+    protected function _getAvailableLimit($mode)
     {
-        return $this->getReviews()->getAvailLimits();
+        if (isset($this->_availableLimit[$mode])) {
+            return $this->_availableLimit[$mode];
+        }
+        $perPageConfigKey = 'mtreview/ordering_options/items_per_page';
+        $perPageValues = (string)Mage::getStoreConfig($perPageConfigKey);
+        $perPageValues = explode(',', $perPageValues);
+        $perPageValues = array_combine($perPageValues, $perPageValues);
+        return $perPageValues;
+    }
+
+    public function isEnabledViewSwitcher()
+    {
+        return true;
     }
 
     public function getCurrentDirection()
     {
         $dir = $this->getRequest()->getParam($this->getDirectionVarName());
-
         if (in_array($dir, array('asc', 'desc'))) {
             return $dir;
         }
@@ -73,8 +90,8 @@ class MT_Review_Block_Product_Toolbar extends Mage_Catalog_Block_Product_List_To
         $this->_orderField = $field;
     }
 
-    public function getLimit()
+    public function getDefaultPerPageValue()
     {
-        return $this->getRequest()->getParam($this->getLimitVarName());
+        return null;
     }
 }
