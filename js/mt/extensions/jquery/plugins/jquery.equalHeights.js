@@ -28,6 +28,7 @@
             if (!px && Number.prototype.pxToEm) currentTallest = currentTallest.pxToEm(); //use ems unless px is specified
             // for ie6, set height since min-height isn't supported
             //if ($.browser.msie && $.browser.version == 6.0) { $(this).children().css({'height': currentTallest}); }
+            $(this).find('.col-left-bottom').css({'min-height': currentTallest});
             $(this).children().css({'min-height': currentTallest});
         });
         return this;
