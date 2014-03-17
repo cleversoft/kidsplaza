@@ -44,8 +44,8 @@
                         width="85" height="85"
                         data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
                         data-large="<?php echo $_image->getUrl()?>"
-                        src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"
-                        alt="<?php echo $this->htmlEscape($_image->getLabel())?>"/></a>
+                        src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"/>
+                </a>
             <?php endforeach; ?>
         </div>
     </div>
@@ -60,11 +60,13 @@
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
     <img class="img-responsive img-main img-zoom"
         src="<?php echo $_imgHelper->init($_product, 'image')->resize(430)?>"
-        data-large="<?php echo $_imgHelper->init($_product, 'image')?>"/>
+        data-large="<?php echo $_imgHelper->init($_product, 'image')?>"
+        alt="<?php echo $this->htmlEscape($_product->getName())?>"/>
 </p>
 <?php else: ?>
     <img src="<?php echo $_imgHelper->init($_product, 'image')->resize(430) ?>"
         alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"
-        title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"/>
+        title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>"
+        alt="<?php echo $this->htmlEscape($_product->getName())?>"/>
 </p>
 <?php endif; ?>
