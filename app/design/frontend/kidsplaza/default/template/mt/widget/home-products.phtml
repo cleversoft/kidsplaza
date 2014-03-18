@@ -69,7 +69,7 @@ $_core              = $this->helper('core/string');
 <?php endif ?>
 <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
    <div class="bordered-tab">
-       <div class="title col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
+       <div class="title col-lg-4 col-md-5 col-sm-5 col-xs-12 ">
             <?php if ($_title):?>
                 <h3>
                     <a onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-kid" type="button">
@@ -81,7 +81,7 @@ $_core              = $this->helper('core/string');
                 </h3>
             <?php endif ?>
        </div>
-        <div class="tabs col-lg-8 col-md-8 col-sm-8 col-xs-12">
+        <div class="tabs col-lg-8 col-md-7 col-sm-7 col-xs-12">
             <div class="nav-tabs-wrapper">
                 <ul class="nav-tabs">
                     <?php $i=0; foreach ($this->getCategories() as $cat):?>
