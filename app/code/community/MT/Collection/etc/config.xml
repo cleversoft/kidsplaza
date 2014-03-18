@@ -51,6 +51,15 @@
                 </mtcollection>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <MT_Collection>
+                    <files>
+                        <default>MT_Collection.csv</default>
+                    </files>
+                </MT_Collection>
+            </modules>
+        </translate>
     </frontend>
 
     <default>

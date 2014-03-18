@@ -11,6 +11,9 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     public function getProductCollection(){
         if (!isset($this->_productCollections[0])){
             switch (Mage::registry('current_collection')){
+                case 'daily':
+                    $collection = $this->_getDailyCollection();
+                    break;
                 case 'promotion':
                     $collection = $this->_getPromotionCollection();
                     break;
@@ -28,6 +31,22 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             $this->_productCollections[0] = $collection;
         }
         return $this->_productCollections[0];
+    }
+
+    protected function _getDailyCollection(){
+        /* @var $date Mage_Core_Model_Date */
+        $date = Mage::getModel('core/date');
+        $today = $date->date('Y-m-d');
+        $collection = Mage::getResourceModel('catalog/product_collection');
+        $collection->addAttributeToSelect('groupon_enable');
+        $collection->addAttributeToFilter('groupon_enable', array('eq' => 1));
+        $collection->addAttributeToSelect('groupon_to');
+        $collection->addAttributeToFilter('groupon_to', array(
+            'from'  => sprintf('%s 00:00:00', $today),
+            'to'    => sprintf('%s 23:59:59', $today)
+        ));
+        $this->prepareProductCollection($collection);
+        return $collection;
     }
 
     protected function _getPromotionCollection(){

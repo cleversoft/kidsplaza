@@ -53,7 +53,8 @@ class MT_Filter_Model_Resource_Layer_Filter_Price extends Mage_Catalog_Model_Res
         $select->setPart(Zend_Db_Select::WHERE, array());
         foreach ($wherePart as $condition){
             if (strpos($condition, '.min_price') > -1) continue;
-            $condition = trim(str_replace('AND', '', $condition));
+            $condition = trim($condition);
+            if (strpos($condition, 'AND') == 0) $condition = preg_replace('/AND/', '', $condition, 1);
             $select->where($this->_replaceTableAlias($condition));
         }
         $excludeJoinPart = Mage_Catalog_Model_Resource_Product_Collection::MAIN_TABLE_ALIAS . '.entity_id';

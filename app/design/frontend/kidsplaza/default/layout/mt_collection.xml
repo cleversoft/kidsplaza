@@ -74,4 +74,9 @@
         <label>Promotion Collection</label>
         <update handle="collection_view"/>
     </collection_view_promotion>
+
+    <collection_view_daily>
+        <label>Daily Deal Products</label>
+        <update handle="collection_view"/>
+    </collection_view_daily>
 </layout>

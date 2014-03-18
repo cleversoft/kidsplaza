@@ -69,15 +69,19 @@ $_core              = $this->helper('core/string');
 <?php endif ?>
 <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
    <div class="bordered-tab">
-       <div class="title col-lg-3 col-md-3  col-sm-3  col-xs-12 ">
+       <div class="title col-lg-4 col-md-4 col-sm-4 col-xs-12 ">
             <?php if ($_title):?>
-                <h3><button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-kid" type="button"><?php echo $_title?></button></h3>
-            <?php endif ?>
-            <?php if ($_title):?>
-                <button onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-view" type="button"><?php echo $this->__('VIEW ALL')?></button>
+                <h3>
+                    <a onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-kid" type="button">
+                        <?php echo $_title?>
+                    </a>
+                    <a onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-view" type="button">
+                        <?php echo $this->__('VIEW ALL')?>
+                    </a>
+                </h3>
             <?php endif ?>
        </div>
-        <div class="tabs col-lg-9 col-md-9  col-sm-9  col-xs-12">
+        <div class="tabs col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="nav-tabs-wrapper">
                 <ul class="nav-tabs">
                     <?php $i=0; foreach ($this->getCategories() as $cat):?>

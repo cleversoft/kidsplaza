@@ -28,7 +28,7 @@ $product = Mage::registry('product');
 ?>
 <?php if ($size): ?>
 <div id="product-related">
-<h2><?php echo $this->__('Frequently Bought Together') ?></h2>
+<h3><?php echo $this->__('Frequently Bought Together') ?></h3>
 <script type="text/javascript">
     window['related<?php echo $product->getId() ?>'] = window['price<?php echo $product->getId() ?>'];
 </script>

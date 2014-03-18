@@ -62,4 +62,14 @@ class MT_Collection_ViewController extends Mage_Core_Controller_Front_Action{
         $layout->getBlock('collection.view')->setTitle($title);
         $this->processRequest();
     }
+
+    public function dailyAction(){
+        Mage::register('current_collection', 'daily');
+        $this->loadLayout();
+        $layout = $this->getLayout();
+        $title = $this->__('Daily Deal Products');
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
+        $this->processRequest();
+    }
 }
