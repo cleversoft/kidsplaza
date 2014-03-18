@@ -19,11 +19,13 @@ $_id = $this->getConfig('id');
     };
 </script>
 <div class="deals-wrapper owl-carousel" id="<?php echo $_id ?>">
+    
     <?php foreach ($this->getProductCollection() as $product): ?>
+
         <li class="deal-item">
-		    
+		    <div class="label-deal">&nbsp;</div>
             <div class="deal-item-inner">
-			    <div class="label-deal">&nbsp;</div>
+
                 <div class="deal-item-percent">
                      <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
                 </div>

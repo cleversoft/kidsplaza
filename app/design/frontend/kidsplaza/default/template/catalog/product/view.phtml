@@ -52,12 +52,12 @@
                     <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
                 </div>
                 <div class="row">
-                    <div class="review col-lg-6">
+                    <div class="review col-lg-6 col-md-6 col-sm-6  col-xs-12">
                         <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
                         <span class="separator">|</span>
                         <?php echo $this->getChildHtml('addto') ?>
                     </div>
-                    <div class="mt-social-links col-lg-6">
+                    <div class="mt-social-links col-lg-6 col-md-6 col-sm-6  col-xs-12">
                         <div class="so-facebook so-social-share">
                             <div id="fb-root"></div>
                             <div class="fb-like" data-href="<?php echo $_product->getProductUrl();?>" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false"></div>
@@ -108,7 +108,7 @@
                 <?php echo $this->getChildHtml('extrahint') ?>
 
                 <div class="row">
-                    <div class="col-lg-6 desc">
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 desc">
                         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                             <?php echo $this->getChildChildHtml('container2', 'product.info.options.wrapper', true, true) ?>
                         <?php endif;?>
@@ -117,7 +117,7 @@
                             <a href="javascript:void(0)" onclick="jQuery('#product-description').scrollToMe()"><?php echo $this->__('See more') ?> &raquo;</a>
                         </p>
                     </div>
-                    <div class="col-lg-6 right-desc">
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 right-desc">
                         <?php if (!$this->hasOptions()):?>
                             <?php echo $this->getChildHtml('addtocart') ?>
                             <?php //echo $this->getChildHtml('addto') ?>
