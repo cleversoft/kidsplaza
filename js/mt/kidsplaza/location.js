@@ -145,3 +145,5 @@ jQuery('.mt-menu-top').sticky({topSpacing:-1});
 //init to-top button
 jQuery('.toTop').on('click',function(){jQuery('html,body').animate({scrollTop:0},500);});
 jQuery(window).scroll(function(){var elm=jQuery('.toTop');if(!elm.length)return;if(jQuery(window).scrollTop()>=330){if(!elm.data('show')){elm.data('show',true);elm.slideDown('fast');}}else{if(elm.data('show')){elm.data('show',false);elm.fadeOut();}}});
+//init style select
+$$('select').each(function(select){ select.addClassName('form-control input-sm');});

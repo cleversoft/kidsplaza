@@ -10,10 +10,6 @@
 new VarienForm('login-form', true);
 new VarienForm('form-validate', true);
 
-$$('select').each(function(select){
-    select.addClassName('form-control input-sm');
-});
-
 jQuery(document).ready(function(){
     jQuery(".btn-regisform").click(function(){
         jQuery(".form_register").toggle();
