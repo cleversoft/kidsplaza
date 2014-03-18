@@ -182,7 +182,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 break;
             case 'href':
                 $href = $this->getData('href');
-                return $href ? (strpos($href, 'http') === 0 ? $href : $this->getUrl($href)) : '';
+                return $href ? (strpos($href, 'http') === 0 ? $href : $this->getUrl().$href) : '';
                 break;
             case 'move':
                 return (int)$this->getData('move');
