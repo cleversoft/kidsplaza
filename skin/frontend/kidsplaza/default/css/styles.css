@@ -150,7 +150,7 @@ header .social-links {margin : 10px 0 0; }
 .form_register .fieldset {background: #f9f9f9 !important; border: none;}
 .top-login a:hover,.top-login a:focus{text-decoration: none;}
 .top-login .not-login li{display:inline-block;margin-top:-3px;margin-left:3px}
-.top-links li{display:inline-block;color:#fff;padding:0 6px;border-right:1px solid #fff;line-height:12px}
+.top-links li{display:inline-block;color:#fff;padding:0 4px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
 .social-links li{background:url(../images/bgSocial.png) no-repeat 0 0;display:inline-block;width:25px;height:26px;margin:0 1px}
@@ -218,12 +218,12 @@ a.logo{margin-top:20px;display:block}
 .top-banner .promo em{background-position:-135px 0 ; width: 46px;}
 .top-banner .promo a{padding:25px 0}
 .dropdown-menu{border-radius:0}
-.top-cart{position:absolute;top:-15px;right:0;}
+.top-cart{width: 75px; overflow: hidden;float:left; padding-left: 10px;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
 .top-cart .cart-icon{height:45px;background:url(../images/bgIcons2.png) no-repeat -182px 0;width:46px;display:inline-block;margin-left:5px}
-.top-cart .cart-summary{display:block;font-weight:700;text-align:center;font-size:15px;color:#ff427a}
-.top-cart .cart-content{display:inline-block;line-height:16px;color:#634f4f}
+.top-cart .cart-summary{display:block;font-weight:700;text-align:center;font-size:15px;color:#fff}
+.top-cart .cart-content{display:inline-block;line-height:16px;color:#fff}
 .top-cart .cart-content:hover,
 .top-cart .cart-content:focus{text-decoration:none;outline:0}
 .toolbar-pages a{font-size: 15px;font-weight: 700;padding: 0 3px;text-decoration: none;}
