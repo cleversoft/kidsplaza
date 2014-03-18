@@ -816,3 +816,11 @@ p.back-link{float: left;}
 .ie8 .products-grid .actions { display: none ; }
 .ie8 .products-grid .item:hover .actions {display: block ;}
 .ie8 .block-subscribe input{line-height: 30px;}
+
+/*Page sitemap*/
+.page-sitemap .page-title h1 {color:#20a4f0;border-bottom: none;}
+.page-sitemap .pager .amount strong {
+    background: #01a1ed;
+    color: #fff;
+    line-height: 30px;
+}
