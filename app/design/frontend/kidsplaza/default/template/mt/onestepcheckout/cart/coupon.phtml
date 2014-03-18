@@ -29,7 +29,7 @@
     <div class="discount">
         <!--h3><?php echo $this->__('Discount Codes') ?></h3-->
         <span><?php echo $this->__('Enter your coupon code if you have one.') ?></span>
-        <div class="input-group">
+        <div class="input-group" style="margin-top: 5px;">
             <input autocomplete="off" class="input-sm form-control required-entry" id="coupon_code" name="coupon_code" value="<?php echo $this->htmlEscape($this->getCouponCode()) ?>" />
             <div class="input-group-btn">
                 <button type="button" title="<?php echo $this->__('Apply Coupon') ?>" class="btn btn-kid" id="coupon-submit" value="<?php echo $this->__('Apply Coupon') ?>">

@@ -218,12 +218,12 @@ a.logo{margin-top:20px;display:block}
 .top-banner .promo em{background-position:-135px 0 ; width: 46px;}
 .top-banner .promo a{padding:25px 0}
 .dropdown-menu{border-radius:0}
-.top-cart{width: 75px; overflow: hidden;float:left; padding-left: 10px;}
+.top-cart{width: 75px; overflow: hidden;float:left; text-align: center;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
-.top-cart .cart-icon{height:45px;background:url(../images/bgIcons2.png) no-repeat -182px 0;width:46px;display:inline-block;margin-left:5px}
+.top-cart .cart-icon{height:45px;background:url(../images/bgIcons2.png) no-repeat -182px 0;width:46px;display:inline-block;}
 .top-cart .cart-summary{display:block;font-weight:700;text-align:center;font-size:15px;color:#fff}
-.top-cart .cart-content{display:inline-block;line-height:16px;color:#fff}
+.top-cart .cart-content{display:block;line-height:16px;color:#fff}
 .top-cart .cart-content:hover,
 .top-cart .cart-content:focus{text-decoration:none;outline:0}
 .toolbar-pages a{font-size: 15px;font-weight: 700;padding: 0 3px;text-decoration: none;}
@@ -242,7 +242,7 @@ a.logo{margin-top:20px;display:block}
 .top-cart .product-name{margin: 0;}
 .top-cart .cart-control{text-align: right;}
 .alert-success span{color:orange;}
-.top-login .popover{z-index: 3;}
+
 .top-login .popover-content{width:200px;padding:10px;  }
 .top-login .popover-content p  {color: #686868 ; margin: 10px 0;}
 .top-login .popover-content p span {font-size: 10px; }
@@ -251,7 +251,8 @@ a.logo{margin-top:20px;display:block}
 .top-login .popover-content ul li a{ line-height: 30px; font-size: 13px;}
 .top-login .btn-signin{width: 100%; font-weight: bold;}
 .top-login .toplogin {float: left;width: 100%;height: 100%;}
-.top-login .popover .arrow {width: 100%;padding-left: 50%;left: 0;border-color: transparent;}
+.top-cart .popover .arrow,
+.top-login .popover .arrow{width: 100%;padding-left: 50%;left: 0;border-color: transparent;}
 .mini-products-list li{list-style:none;margin-top:5px;border-bottom:1px dashed #ccc}
 .mini-products-list li:first-child{margin-top:0}
 .mini-products-list a.product-image{float:left}

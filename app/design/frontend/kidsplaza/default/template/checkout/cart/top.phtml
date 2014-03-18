@@ -10,10 +10,9 @@
  * @var $this Mage_Checkout_Block_Cart_Sidebar
  */
 ?>
-<div class="top-cart" id="cart-top">
-    <span class="cart-icon"></span>
-    <a class="cart-content" href="javascript:void(0)" data-title="<?php echo Mage::helper('kidsplaza')->__('Recently added item(s)')?>">
-        <span class="caret"></span>&nbsp;<?php echo Mage::helper('kidsplaza')->__('My Cart')?>
+<div class="top-cart" id="cart-top" data-title="<?php echo Mage::helper('kidsplaza')->__('Recently added item(s)')?>">
+    <a class="cart-content" href="javascript:void(0)">
+        <span class="cart-icon"></span>
         <span class="cart-summary"><?php echo (int)$this->getSummaryCount()?></span>
     </a>
     <div class="cart-items" style="display: none">

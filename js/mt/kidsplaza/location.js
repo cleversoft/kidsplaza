@@ -34,10 +34,11 @@ KidsPlazaLocation.prototype = {
 var KidsPlazaCart = Class.create();
 KidsPlazaCart.prototype = {
     initialize: function(id){
-        jQuery('#' + id).find('a.cart-content').popover({
+        jQuery('#' + id).popover({
             placement: 'bottom',
             html: true,
-            trigger: 'click',
+            trigger: 'hover',
+            container: '#' + id,
             content: function(){
                 return jQuery('.cart-items', '#' + id).html()
             }
