@@ -1,8 +1,8 @@
 <span class="switcher" style="float: left; margin-left: 10px;">
-    <label for="store_switcher"><?php echo $this->__('Choose Price No Change View:') ?></label>
+    <label for="store_switcher"><?php echo $this->__('Show Price Not Change Last 60 Days') ?>:</label>
     <select name="store_switcher" id="store_switcher" onchange="return switchPrice(this);">
     <?php if ($this->hasDefaultOption()): ?>
-        <option value=""><?php echo $this->getDefaultStoreName() ?></option>
+        <option value=""><?php echo $this->__('No') ?></option>
     <?php endif; ?>
         <option value="1" <?php if($this->getPriceSelected()){?>selected="selected" <?php }?>><?php echo $this->__('Yes');?></option>
     </select>
