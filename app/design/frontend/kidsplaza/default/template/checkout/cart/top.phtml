@@ -11,8 +11,8 @@
  */
 ?>
 
-<div class="top-cart hidden-xs" id="cart-top">
-    <a class="cart-content" href="javascript:void(0)" data-title="<?php echo Mage::helper('kidsplaza')->__('Recently added item(s)')?>">
+<div class="top-cart hidden-xs" id="cart-top" data-title="<?php echo Mage::helper('kidsplaza')->__('Recently added item(s)')?>">
+    <a class="cart-content" href="javascript:void(0)">
         <span class="caret"></span>&nbsp;<?php echo Mage::helper('kidsplaza')->__('My Cart')?>
         <span class="cart-summary"><?php echo (int)$this->getSummaryCount()?></span>
     </a>

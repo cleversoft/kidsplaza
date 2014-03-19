@@ -25,9 +25,9 @@
  */
 ?>
 <div class="field">
-    <label for="<?php echo $this->getFieldId('gender')?>" class="col-sm-2 control-label<?php if ($this->isRequired()) echo ' required' ?>"><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Gender') ?></label>
+    <label for="<?php echo $this->getFieldId('gender')?>" class="control-label<?php if ($this->isRequired()) echo ' required' ?>"><?php if ($this->isRequired()) echo '<em>*</em>' ?><?php echo $this->__('Gender') ?></label>
     <div class="input-box">
-        <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo $this->__('Gender') ?>" class="form-control input-sm col-sm-10<?php echo $this->isRequired() ? ' validate-select' : '' ?>" <?php echo $this->getFieldParams() ?>>
+        <select id="<?php echo $this->getFieldId('gender')?>" name="<?php echo $this->getFieldName('gender')?>" title="<?php echo $this->__('Gender') ?>" class="form-control input-sm<?php echo $this->isRequired() ? ' validate-select' : '' ?>" <?php echo $this->getFieldParams() ?>>
             <?php $options = Mage::getResourceSingleton('customer/customer')->getAttribute('gender')->getSource()->getAllOptions();?>
             <?php $value = $this->getGender();?>
             <?php foreach ($options as $option):?>
