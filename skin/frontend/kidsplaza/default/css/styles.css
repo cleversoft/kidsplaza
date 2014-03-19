@@ -464,6 +464,8 @@ input,textarea{outline:0}
 .sp-methods label,.control label{font-weight:400}
 .opc li:first-child{padding-left:0}
 .opc li:last-child{padding-right:0}
+#billing-new-address-form li.fields .customer-name .control-label {width: 18% ; padding: 0;}
+#shipping-new-address-form li.fields .customer-name .control-label {width: 18% ; padding: 0;}
 .btn-checkout{margin-top:20px}
 .review-table th{font-weight:400}
 .sp-methods{margin-bottom:0}
@@ -471,6 +473,7 @@ input,textarea{outline:0}
 .cart .input-group .form-control {margin: 0 ; width: 200px;}
 .cart .input-group input.qty{width:50px;padding:6px 2px ; margin:0;}
 .cart .btn-qty{font-weight:700}
+#shopping-cart-table a.link-wishlist{line-height: 70px;}
 .col-main{min-height:300px}
 .catalog-product-view .col-main{clear: both;}
 .catalog-product-view .product-image img{padding: 0; width: 100% ;}
