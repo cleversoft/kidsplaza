@@ -675,6 +675,9 @@ p.back-link{float: left;}
 
 .cms-index-index .std{display: none;}
 .cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
+.cms-index-index .category-products .btn-group  .btn-default{opacity: 0; }
+.cms-index-index .category-products:hover .btn-group  .btn-default{opacity: 1; }
+
 .slider-product-wrapper .bordered-tab { border-bottom: 1px solid #ebebeb ; float: left ; width: 100% ; }
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0; padding-right: 4px;}
 .slider-product-wrapper .bordered-tab .title { padding: 6px 0 0 0 ; }
