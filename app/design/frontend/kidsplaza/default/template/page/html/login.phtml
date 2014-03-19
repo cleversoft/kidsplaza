@@ -12,10 +12,10 @@
 /* @var $session Mage_Customer_Model_Session */
 $session = Mage::getSingleton('customer/session');
 ?>
-<div class="top-login pull-right hidden-xs">
+<div class="top-login pull-left hidden-xs">
         <div class="toplogin" id="topLogin">
             <div class="font"><i class="glyphicon glyphicon-user"></i></div>
-            <div class="right-login">
+            <div class="right-login hidden-sm hidden-md  hidden-xs">
                 <?php if ($session->isLoggedIn()): ?>
                     <p><?php echo $session->getCustomer()->getName() ?></p>
                 <?php else: ?>

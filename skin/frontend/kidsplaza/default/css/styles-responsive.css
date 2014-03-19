@@ -8,6 +8,7 @@
     .social-links li { margin: 0;   height: 25px;width: 23px;}
     .top-location .btn-group { float: right ; }
     .top-location i {left: 120px; }
+    .top-cart { right: 10%;}
 
     .sticky-wrapper .mt-menu-top {margin: 0 0 20px;}
     #megamenu ul li a {font-size: 70% !important;  padding: 0 5px 0 7px !important;}
@@ -22,8 +23,8 @@
     .deals-wrapper li.deal-item .deal-item-inner .deal-item-percent {font-size: 30px ;}
     .deals-wrapper li.deal-item .deal-item-inner img  {width: 100% ;}
 
-    .slider-product-wrapper .bordered-tab .title .btn-kid {font-size: 65% ; padding: 5px;}
-    .slider-product-wrapper .bordered-tab .title .btn-view {font-size: 90% ; padding: 5px;}
+    .slider-product-wrapper .bordered-tab .title .btn-kid {font-size: 65% ;}
+    .slider-product-wrapper .bordered-tab .title .btn-view {font-size: 90% ;}
     .slider-product-wrapper .nav-tabs li { padding: 0 5px 7px;}
 
     .sidebar .panel-heading h3 {font-size: 100% ;}
@@ -36,6 +37,7 @@
 
     .btn-login {font-size: 11px;}
 
+
     .footer-center .items .block em {margin: -8px 8px 0 0 ;}
     .footer-coppyright .footer-coppyright-inner address {font-size: 85% ;}
     .footer-coppyright-inner .social-links {margin: 0;}
@@ -46,7 +48,7 @@
     .top-banner li {text-align: left ; padding: 0;}
     .sticky-wrapper { float: none; display: inline; }
 
-    .slider-product-wrapper .bordered-tab .title .utm-cookies {font-size: 70% ; padding: 2px 5px; margin: 4px 2px 0px 0 !important; }
+    .slider-product-wrapper .bordered-tab .title .utm-cookies {font-size: 70% ;  margin: 4px 2px 0px 0 !important; }
     .slider-product-wrapper .nav-tabs li { padding: 0 5px 7px;}
     .slider-product-wrapper .nav-tabs li a {font-size: 80%}
 
@@ -108,6 +110,7 @@
     .deals-wrapper li.deal-item .deal-item-inner img  {width: 100% ;}
 
     .grid-5 li {width: 32%;}
+    .tabs {padding: 0;}
 
     .col-right .block-blogs li {padding: 10px 0;}
 
@@ -125,6 +128,7 @@
     .account-login .account-create .form-list label { width: 30%;  }
     .account-login .buttons-set a.f-right {width: 75px; font-size: 65% ;}
     .col2-set-right .btn-login {padding: 4px;}
+    #content {float: left; width :100% ;}
 
     .footer-coppyright-inner .social-links {float: left;}
     .footer-top .block-subscribe {margin: 20px 0 10px;float: left !important;   }
@@ -138,7 +142,8 @@
 
     .product-view .product-shop {padding: 0 20px;}
     .login-form .col2-set-left {padding: 0 0 20px; }
-
+    .tabs {padding: 0;}
+    .slider-product-wrapper .bordered-tab .utm-cookies {height: 32px;}
     #wishlist-table .buttons-set { text-align: center ;}
 
     table#checkout-review-table {
