@@ -35,12 +35,18 @@ class MT_Review_Block_Helper extends Mage_Review_Block_Helper
 
         $this->setDisplayIfEmpty($displayIfNoReviews);
 
-        if (!$product->getRatingSummary()) {
+        //if (!$product->getRatingSummary()) {
             Mage::getModel('mtreview/review')
-                ->getEntitySummary($product, 0);
-        }
+                ->getEntitySummary($product, Mage::app()->getStore()->getId());
+        //}
         $this->setProduct($product);
 
         return $this->toHtml();
     }
+
+    public function getReviewsCount()
+    {
+        return $this->getProduct()->getRatingSummary()->getReviewsCount();
+    }
+
 }
