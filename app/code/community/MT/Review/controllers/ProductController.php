@@ -187,9 +187,6 @@ class MT_Review_ProductController extends Mage_Core_Controller_Front_Action
 
                     $review->aggregate();
 
-                    /*Clean Cache Product*/
-                    Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
-
                     if ( Mage::getSingleton('customer/session')->isLoggedIn() && Mage::helper('mtreview')->confAllowCustomerApproved()){
                         $session->addSuccess($this->__('Thank you for reviewing'));
                     }else{

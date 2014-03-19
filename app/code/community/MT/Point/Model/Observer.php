@@ -132,6 +132,8 @@ class MT_Point_Model_Observer{
                         $review->getReviewId())
             ));
             $history->save();
+            /*Clean Cache Product*/
+            Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
         }catch (Exception $e){}
     }
 
@@ -161,6 +163,8 @@ class MT_Point_Model_Observer{
                             $review->getReviewId())
                 ));
                 $history->save();
+                /*Clean Cache Product*/
+                Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
             }catch (Exception $e){}
         }
     }

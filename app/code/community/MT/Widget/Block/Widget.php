@@ -56,12 +56,16 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getCacheTags(){
+        $tags = array('MT_WIDGET');
+        if ($this->getData('widget_type') == 'product'){
+            $tags[] = Mage_Catalog_Model_Product::CACHE_TAG;
+        }
         if (is_array($this->getData('cache_tags'))){
-            return array_merge($this->getData('cache_tags'), array('MT_WIDGET'));
+            return array_merge($this->getData('cache_tags'), $tags);
         }elseif(is_string($this->getData('cache_tags'))){
-            return array($this->getData('cache_tags'), 'MT_WIDGET');
+            return $tags[] = $this->getData('cache_tags');
         }else{
-            return array('MT_WIDGET');
+            return $tags;
         }
     }
 

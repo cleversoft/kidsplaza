@@ -95,7 +95,7 @@
             </resources>
         </acl>
         <events>
-            <controller_action_predispatch>
+            <!--controller_action_predispatch>
                 <observers>
                     <awall_exts>
                         <type>singleton</type>
@@ -113,7 +113,7 @@
                         <method>check</method>
                     </awall_upds>
                 </observers>
-            </controller_action_predispatch>
+            </controller_action_predispatch-->
             <adminhtml_block_html_before>
                 <observers>
                     <awall_tabs_sorting>
