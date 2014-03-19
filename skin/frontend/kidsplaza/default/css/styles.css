@@ -138,7 +138,7 @@ header .header-top{}
 header .social-links {margin : 10px 0 0; }
 .social-links,.top-links{display:inline-block;height:25px;line-height:45px}
 
-.top-login{ border-right: 1px solid #FFFFFF; cursor: pointer;display: inline-block; margin: 2px 0;width: 150px;}
+.top-login{ cursor: pointer;display: inline-block; margin: 2px 0;width: 150px;}
 .top-login .font { float: left ; width: 23% ; padding: 0 7px; }
 .top-login .font .glyphicon {color: #fff; font-size: 170% ; line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
@@ -221,14 +221,23 @@ a.logo{margin-top:20px;display:block}
 .top-banner .promo em{background-position:-135px 0 ; width: 46px;}
 .top-banner .promo a{padding:25px 0}
 .dropdown-menu{border-radius:0}
-.top-cart{right: 0;position: absolute;top: 0;}
-.top-cart{float:left; text-align: center; padding:0 10px 0 0 ; }
+.header-top-right .vr{
+    height: 70%;
+    display: inline-block;
+    border-left: 1px solid #fff;
+    float: left;
+    margin: 7px 0;
+    opacity: .7;
+    filter: alpha(opacity=70);
+}
+.top-cart{position: relative;}
+.top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%;  margin-left: 5px;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
 .top-cart .cart-icon{ float: left ;height:40px;background:url(../images/bgIcons2.png) no-repeat -188px 0;width:40px;display:inline-block;margin-right:0}
-.top-cart .cart-summary{display:block;font-weight:700;text-align:center;font-size:15px;color:#fff;}
-.top-cart .cart-content{float: left ;display:inline-block;line-height:24px;color:#fff ;  font-size: 110%;font-weight: bold; margin: 3px 0 0;}
-.top-cart .cart-content span {float: left; font-size: 80%;font-weight: normal; line-height: 10px; width: 100%; }
+.top-cart .cart-summary{display:block;font-weight:700;font-size:15px;color:#fff;}
+.top-cart .cart-content{float: left ;display:inline-block;text-align:left;line-height:24px;color:#fff ;  font-size: 110%;font-weight: bold; margin: 3px 0 0;}
+.top-cart .cart-content span { font-size: 80%;font-weight: normal; line-height: 10px; width: 100%; }
 
 .top-cart .cart-content:hover,
 .top-cart .cart-content:focus{text-decoration:none;outline:0}
@@ -242,7 +251,7 @@ a.logo{margin-top:20px;display:block}
 .toolbar-sort .dropdown-menu{border-color: #01a1ed; margin: -1px 0 0 0;}
 .toolbar-sort .sort-dir{background: #01a1ed;color: #fff;}
 .btn-login:focus{outline:0 !important ;}
-.popover{background: #f9f9f9;border: 1px solid #e1e1e1;}
+.popover{background: #f9f9f9;border: 1px solid #e1e1e1;padding: 0px;}
 .top-cart .popover-content{padding:10px;width:220px}
 .top-cart dl{margin: 0;}
 .top-cart .product-name{margin: 0;}
