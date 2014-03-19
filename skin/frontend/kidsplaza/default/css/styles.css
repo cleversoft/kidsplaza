@@ -72,7 +72,7 @@
 .products-grid .owl-wrapper-outer .owl-item .item .btn-kid.btn-cart { background-color: #7FB92A;border: 1px solid #477700; border-radius: 4px; outline: medium none; padding: 8px 20px;text-transform: uppercase;}
 .products-grid .owl-wrapper-outer .owl-item .item .btn-kid.btn-cart .glyphicon { display: none ;}
 
-.home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 13px;}
+.home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 12px;}
 .owl-carousel  { margin: 0 auto ;}
 .product-view  #product-review {padding: 50px 0 ;}
 a.btn-kid:hover{outline: 3px solid #01a1ed;}
@@ -138,16 +138,17 @@ header .header-top{}
 header .social-links {margin : 10px 0 0; }
 .social-links,.top-links{display:inline-block;height:25px;line-height:45px}
 
-.top-login{ display:inline-block; cursor: pointer ;width: 150px; margin: 0;}
+.top-login{ border-right: 1px solid #FFFFFF; cursor: pointer;display: inline-block; margin: 2px 0;width: 150px;}
 .top-login .font { float: left ; width: 23% ; padding: 0 7px; }
 .top-login .font .glyphicon {color: #fff; font-size: 170% ; line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
-.top-login { background: #F74D88; border: none;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: inline-block ;}
+.header-top-right { background: #F74D88; border: none;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: block ;}
 .top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 15px ;  }
 .top-login .toplogin p { float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 14px ; font-weight: bold; }
 .top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 10px; }
 .top-login .popover a{color: #515151;}
 .top-login .popover span{color: #515151;float: none;font-weight: normal;}
+
 
 .form_register .fieldset {background: #f9f9f9 !important; border: none;}
 .top-login a:hover,.top-login a:focus{text-decoration: none;}
@@ -221,12 +222,13 @@ a.logo{margin-top:20px;display:block}
 .top-banner .promo a{padding:25px 0}
 .dropdown-menu{border-radius:0}
 .top-cart{right: 0;position: absolute;top: 0;}
-.top-cart{float:left; text-align: center;}
+.top-cart{float:left; text-align: center; padding:0 10px 0 0 ; }
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
-.top-cart .cart-icon{height:45px;background:url(../images/bgIcons2.png) no-repeat -182px 0;width:46px;display:inline-block;margin-left:5px}
+.top-cart .cart-icon{ float: left ;height:40px;background:url(../images/bgIcons2.png) no-repeat -188px 0;width:40px;display:inline-block;margin-right:0}
 .top-cart .cart-summary{display:block;font-weight:700;text-align:center;font-size:15px;color:#fff;}
-.top-cart .cart-content{display:inline-block;line-height:16px;color:#fff}
+.top-cart .cart-content{float: left ;display:inline-block;line-height:24px;color:#fff ;  font-size: 110%;font-weight: bold; margin: 3px 0 0;}
+.top-cart .cart-content span {float: left; font-size: 80%;font-weight: normal; line-height: 10px; width: 100%; }
 
 .top-cart .cart-content:hover,
 .top-cart .cart-content:focus{text-decoration:none;outline:0}
@@ -332,7 +334,7 @@ input,textarea{outline:0}
 .footer-bottom .block h3{background:url("../images/tick-kids.png") 100% 12px no-repeat;padding:0 53px 0 0;margin:0 ; line-height: 35px;width: 210px;}
 .footer-bottom .last { padding: 10px 15px 0;}
 .footer-bottom .last .block h2{padding:0 23px 0 0;}
-.footer-coppyright{float:left;width:100%}
+.footer-coppyright{float:left;width:100% ; overflow: hidden ;}
 .footer-coppyright .footer-coppyright-inner{background:#4d4d4d;padding:15px 0;font-size:13px}
 .footer-coppyright .footer-coppyright-inner address{margin:0;color:#fff}
 .footer-coppyright .footer-coppyright-inner a,.footer-coppyright .footer-coppyright-inner p{margin:0;color:#fff}
@@ -354,7 +356,7 @@ input,textarea{outline:0}
 .price-box .old-price .price{text-decoration:line-through}
 .price-box .old-price{margin:0}
 .toolbar .btn{padding:2px 10px}
-.toolbar{margin:0 0 10px 0;height:42px ; background-color:  #d3eff6 ; padding: 9px 12px ;}
+.toolbar{margin:0 0 10px 0;height:42px ; float: left ; width: 100% ; background-color:  #d3eff6 ; padding: 9px 12px ;}
 .toolbar .toolbar-pages{padding-left: 10px;display: inline-block;vertical-align: top;border-left: 1px solid #999;}
 .toolbar .toolbar-limit{display: inline-block;vertical-align: top;font-size: 15px;padding-right: 10px;}
 .toolbar .toolbar-view{float:right}
@@ -400,7 +402,6 @@ input,textarea{outline:0}
 .catalog-product-view .category-products h2{font-size: 24px;color: #20a4f0;}
 .collection-view h1,
 .catalog-category-view h1{padding-bottom:10px;margin-top:20px;font-size: 24px;color: #20a4f0;}
-.catalog-category-view h3{font-size: 24px;color: #20a4f0;margin:0 0 40px 0;}
 .panel,.breadcrumb{margin-bottom:10px}
 .category-products{clear:both;position:relative}
 .category-products .price-box .special-price {margin : 0 ;}
@@ -465,8 +466,8 @@ input,textarea{outline:0}
 .sp-methods label,.control label{font-weight:400}
 .opc li:first-child{padding-left:0}
 .opc li:last-child{padding-right:0}
-#billing-new-address-form li.fields .customer-name .control-label {width: 18% ; padding: 0;}
-#shipping-new-address-form li.fields .customer-name .control-label {width: 18% ; padding: 0;}
+#billing-new-address-form li.fields .customer-name .control-label { padding: 0;}
+#shipping-new-address-form li.fields .customer-name .control-label { padding: 0;}
 .btn-checkout{margin-top:20px}
 .review-table th{font-weight:400}
 .sp-methods{margin-bottom:0}
@@ -683,7 +684,7 @@ p.back-link{float: left;}
 .slider-product-wrapper .bordered-tab .title { padding: 3px 0 ; }
 .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { border: none ; float: right ;}
 .slider-product-wrapper .tab-content{float: left;}
-.slider-product-wrapper .nav-tabs li{padding:0 8px 5px;}
+.slider-product-wrapper .nav-tabs li{padding:0 8px 6px;}
 .slider-product-wrapper .nav-tabs li.active{background: url("../images/bgTab.png") no-repeat 50% 100% ; }
 .slider-product-wrapper .nav-tabs li a {line-height: 35px; color: #494949 ; font-weight: normal;}
 .slider-product-wrapper .nav-tabs li.active a{border: 1px solid #fff;color: #fe4b8c;font-weight: normal;}
