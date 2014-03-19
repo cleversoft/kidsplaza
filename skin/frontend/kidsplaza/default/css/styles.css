@@ -138,14 +138,14 @@ header .header-top{}
 header .social-links {margin : 10px 0 0; }
 .social-links,.top-links{display:inline-block;height:25px;line-height:45px}
 
-.top-login{ display:inline-block; cursor: pointer ;width: 170px; margin: 0;}
-.top-login .font { float: left ; width: 23% ; padding: 0 10px; }
-.top-login .font .glyphicon {color: #fff; font-size: 200% ; line-height: 43px; }
+.top-login{ display:inline-block; cursor: pointer ;width: 150px; margin: 0;}
+.top-login .font { float: left ; width: 23% ; padding: 0 7px; }
+.top-login .font .glyphicon {color: #fff; font-size: 170% ; line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
 .top-login { background: #F74D88; border: none;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: inline-block ;}
 .top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 15px ;  }
-.top-login .toplogin p { float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 15px ; font-weight: bold; }
-.top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 11px; }
+.top-login .toplogin p { float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 14px ; font-weight: bold; }
+.top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 10px; }
 .top-login .popover a{color: #515151;}
 .top-login .popover span{color: #515151;float: none;font-weight: normal;}
 
@@ -220,7 +220,7 @@ a.logo{margin-top:20px;display:block}
 .top-banner .promo em{background-position:-135px 0 ; width: 46px;}
 .top-banner .promo a{padding:25px 0}
 .dropdown-menu{border-radius:0}
-.top-cart{ left: 0;position: absolute;top: 0;}
+.top-cart{right: 0;position: absolute;top: 0;}
 .top-cart{float:left; text-align: center;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
@@ -563,6 +563,7 @@ span.separator{vertical-align: top; }
 .cart tfoot .btn.btn-update span span {background: none ;}
 .cart tfoot .btn.btn-clear { padding: 0 50px;}
 
+
 .table-striped > tbody > tr:nth-child(2n+1) > td,
 .table-striped > tbody > tr:nth-child(2n+1) > th {background: none !important ;}
 
@@ -669,8 +670,8 @@ p.back-link{float: left;}
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0; padding-right: 4px;}
 .slider-product-wrapper .bordered-tab .title { padding: 6px 0 0 0 ; }
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0 ; line-height: 27px; }
-.slider-product-wrapper .bordered-tab h3 .utm-cookies.btn-kid{   margin:0 2px 0 0 ; }
-.slider-product-wrapper .bordered-tab .utm-cookies { font-size: 16px ; padding: 4px 5px ; margin: 0; height: 33px; text-transform: uppercase ; }
+.slider-product-wrapper .bordered-tab h3 .utm-cookies{   margin:4px 2px 0 0 ; }
+.slider-product-wrapper .bordered-tab .utm-cookies { line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
 .slider-product-wrapper .bordered-tab .title { padding: 3px 0 ; }
 .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { border: none ; float: right ;}
 .slider-product-wrapper .tab-content{float: left;}
