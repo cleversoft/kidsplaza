@@ -37,3 +37,5 @@ tests/*
 !tests/functional
 !tests/unit
 codeception.yml
+wp/wp-content/themes/twentythirteen/*
+wp/wp-content/themes/twentytwelve/*
