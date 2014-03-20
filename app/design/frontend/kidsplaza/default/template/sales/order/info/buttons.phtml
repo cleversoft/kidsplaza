@@ -24,20 +24,19 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="block block-account">
-    <div class="block-content tabbable tabs-left">
-        <ul class="nav nav-tabs">
-            <?php $_links = $this->getLinks(); ?>
-            <?php $_index = 1; ?>
-            <?php $_count = count($_links); ?>
-            <?php foreach ($_links as $_link): ?>
-                <?php $_last = ($_index++ >= $_count); ?>
-                <?php if ($this->isActive($_link)): ?>
-                    <li class="active<?php echo ($_last ? ' last' : '') ?>"><a href="javascript:void(0)"><?php echo $_link->getLabel() ?></a></li>
-                <?php else: ?>
-                    <li<?php echo ($_last ? ' class="last"' : '') ?>><a href="<?php echo $_link->getUrl() ?>"><?php echo $_link->getLabel() ?></a></li>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </ul>
-    </div>
-</div>
+
+<?php  $_order = $this->getOrder() ?>
+<?php if($this->helper('rss/order')->isStatusNotificationAllow()): ?>
+    <a href="<?php echo $this->helper('rss/order')->getStatusHistoryRssUrl($_order) ?>" class="link-rss f-none"><?php echo $this->__('Subscribe to Order Status') ?></a>
+    <span class="separator">|</span>
+<?php endif; ?>
+<?php if ($this->helper('sales/reorder')->canReorder($_order)) : ?>
+    <a href="<?php echo $this->getReorderUrl($_order) ?>" class="link-reorder">
+        <i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $this->__('Đặt hàng lại') ?>
+    </a>
+    <span class="separator">|</span>
+<?php endif ?>
+<a href="<?php echo $this->getPrintUrl($_order) ?>" class="link-print" onclick="this.target='_blank';">
+    <i class="glyphicon glyphicon-print"></i> <?php echo $this->__('In đơn hàng') ?>
+</a>
+<?php echo $this->getChildHtml(); ?>

@@ -30,14 +30,8 @@
     <h1><?php echo $this->__('My Orders') ?></h1>
 </div>
 <?php echo $this->getPagerHtml(); ?>
-<?php if($_orders->getSize()): ?>
+<?php if ($_orders->getSize()): ?>
 <table class="table table-bordered table-responsive" id="my-orders-table">
-    <col width="1" />
-    <col width="1" />
-    <col />
-    <col width="1" />
-    <col width="1" />
-    <col width="1" />
     <thead>
         <tr>
             <th><?php echo $this->__('Order #') ?></th>
