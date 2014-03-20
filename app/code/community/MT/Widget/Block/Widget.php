@@ -33,7 +33,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getCacheLifetime(){
-        //return $this->getData('cache') ? (int)$this->getData('cache') : null;
+        return $this->getData('cache') ? (int)$this->getData('cache') : null;
     }
 
     public function getCacheKeyInfo(){
