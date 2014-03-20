@@ -20,12 +20,43 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<?php  $_order = $this->getOrder() ?>
-<table class="table" id="my-orders-table" summary="<?php echo $this->__('Items Ordered') ?>">
+<?php $_order = $this->getOrder() ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h1><?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?></h1>
+        <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+    </div>
+</div>
+<div class="row">
+    <?php if (!$_order->getIsVirtual()): ?>
+    <div class="col-lg-6">
+        <div class="col-1">
+            <h2><?php echo $this->__('Shipping Address') ?></h2>
+            <address><?php echo $_order->getShippingAddress()->format('html') ?></address>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <?php else: ?>
+    <div class="col-lg-12">
+        <?php endif ?>
+        <div class="col-2">
+            <div class="col-1">
+                <h2><?php echo $this->__('Billing Address') ?></h2>
+                <address><?php echo $_order->getBillingAddress()->format('html') ?></address>
+            </div>
+        </div>
+        <div class="col-2">
+            <h2><?php echo $this->__('Payment Method') ?></h2>
+            <?php echo $this->getPaymentInfoHtml() ?>
+        </div>
+    </div>
+</div>
+<h2><?php echo $this->__('Items Ordered') ?></h2>
+<table class="table" id="my-orders-table">
     <thead>
         <tr>
             <th><?php echo $this->__('Product Name') ?></th>
@@ -38,26 +69,13 @@
     <tfoot>
         <?php echo $this->getChildHtml('order_totals') ?>
     </tfoot>
-    <tbody>
     <?php $_items = $_order->getItemsCollection(); ?>
-    <?php $_index = 0; ?>
     <?php $_count = $_items->count(); ?>
     <?php foreach ($_items as $_item): ?>
     <?php if ($_item->getParentItem()) continue; ?>
+    <tbody>
         <?php echo $this->getItemHtml($_item) ?>
-        <?php if($this->helper('giftmessage/message')->getIsMessagesAvailable('order_item', $_item) && $_item->getGiftMessageId()): ?>
-        <tr class="border<?php echo ($_index++ > $_count ?' last':'') ?>" id="order-item-gift-message-<?php echo $_item->getId() ?>" style="display:none;">
-            <?php $_giftMessage=$this->helper('giftmessage/message')->getGiftMessageForEntity($_item); ?>
-            <td class="gift-message-row" colspan="7">
-                <a href="#" title="<?php echo $this->__('Close') ?>" onclick="return giftMessageToogle('<?php echo $_item->getId() ?>');" class="btn-close"><?php echo $this->__('Close') ?></a>
-                <dl class="gift-message">
-                    <dt><strong><?php echo $this->__('From:') ?></strong> <?php echo $this->htmlEscape($_giftMessage->getRecipient()) ?></dt>
-                    <dt><strong><?php echo $this->__('To:') ?></strong> <?php echo $this->htmlEscape($_giftMessage->getSender()) ?></dt>
-                    <dd><?php echo $this->helper('giftmessage/message')->getEscapedGiftMessage($_item) ?></dd>
-                </dl>
-            </td>
-        </tr>
-        <?php endif ?>
-    <?php endforeach; ?>
     </tbody>
+        <?php endforeach; ?>
 </table>
+<script type="text/javascript">window.print();</script>

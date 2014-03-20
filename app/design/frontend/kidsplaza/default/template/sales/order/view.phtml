@@ -24,7 +24,7 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-<div class="order-items order-details">
+
     <?php if ($this->helper('giftmessage/message')->getIsMessagesAvailable('items', $this->getOrder())): ?>
     <script type="text/javascript">
     //<![CDATA[
@@ -55,11 +55,6 @@
     </script>
     <?php endif; ?>
     <?php $_order = $this->getOrder() ?>
-    <h2 class="table-caption"><?php echo $this->__('Items Ordered') ?>
-        <?php if ($_order->getTracksCollection()->count()) : ?>
-            <span class="separator">|</span> <a href="#" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','top=0,left=0,width=800,height=600,resizable=yes,scrollbars=yes'); return false;" title="<?php echo $this->__('Track your order') ?>"><?php echo $this->__('Track your order') ?></a>
-        <?php endif; ?>
-    </h2>
 
     <?php echo $this->getChildHtml('order_items') ?>
 
@@ -86,7 +81,4 @@
         </dl>
     </div>
     <?php endif; ?>
-    <div class="buttons-set">
-        <p class="back-link"><a href="<?php echo $this->getBackUrl() ?>"><small>&laquo; </small><?php echo $this->getBackTitle() ?></a></p>
-    </div>
 </div>

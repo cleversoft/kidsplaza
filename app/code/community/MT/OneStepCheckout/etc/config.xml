@@ -72,6 +72,15 @@
                 </mtonestepcheckout>
             </updates>
         </layout>
+        <translate>
+            <modules>
+                <MT_OneStepCheckout>
+                    <files>
+                        <default>MT_OneStepCheckout.csv</default>
+                    </files>
+                </MT_OneStepCheckout>
+            </modules>
+        </translate>
     </frontend>
 
     <adminhtml>

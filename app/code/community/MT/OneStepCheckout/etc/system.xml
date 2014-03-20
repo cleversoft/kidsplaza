@@ -227,6 +227,14 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                         </shipping>
+                        <shipping_url translate="label comment">
+                            <label>Shipping Method Page</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </shipping_url>
                         <payment translate="label comment">
                             <label>Default Payment Method</label>
                             <frontend_type>select</frontend_type>
