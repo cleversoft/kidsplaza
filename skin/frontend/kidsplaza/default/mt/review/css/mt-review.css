@@ -189,6 +189,8 @@ em.required{
 }
 .product-view .box-reviews ul {
     padding: 0 0 10px 0;
+    width: 100%;
+    float: left;
 }
 .main-progress .progress {
     margin-bottom: 10px;
@@ -223,6 +225,11 @@ em.required{
     color: #0095d6;
     border-right: #a9a9a9 solid 1px;
     padding-right: 7px;
+    margin-right: 7px;
+}
+.box-reviews .main-review .created_by .created i{
+    color: #eebc49;
+    font-weight: normal;
 }
 .box-reviews .main-review .created_by .date {
     color: #a9a9a9;

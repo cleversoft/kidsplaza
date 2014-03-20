@@ -121,4 +121,11 @@ class MT_Review_Block_Adminhtml_Comments_Grid extends Mage_Adminhtml_Block_Widge
         $this->getCollection()->addStoreFilter($value);
     }
 
+    public function getRowUrl($row)
+    {
+        return $this->getUrl('*/adminhtml_comments/edit', array(
+            'id' => $row->getId()
+        ));
+    }
+
 }

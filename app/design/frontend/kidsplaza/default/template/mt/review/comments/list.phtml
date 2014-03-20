@@ -31,7 +31,12 @@ if($this->getCollection()){
             <div class="media-body">
                 <span class="main-review">
                     <span class="created_by">
-                        <?php echo $this->__('<span class="created">%s</span>', $this->escapeHtml($_item->getCustomerName())) ?>
+                        <span class="created">
+                            <?php echo $this->escapeHtml($_item->getCustomerName()); ?>
+                            <?php if($_item->getAuthorType() == 'admin'){?>
+                                <i>(<?php echo Mage::helper('mtreview')->__('By admin');?>)</i>
+                            <?php }?>
+                        </span>
                         <small class="date"><?php echo Mage::getModel('core/store')->load($_item->getStoreId())->getName();?>, <?php echo $this->getFormatDate($_item->getCreatedAt());?> - <?php echo $this->__('About %s ago',$this->getTimeFormat($_item->getCreatedAt()));?></small>
                     </span>
                 </span>

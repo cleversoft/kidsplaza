@@ -173,6 +173,11 @@ class MT_Review_Block_Adminhtml_Review_Grid extends Mage_Adminhtml_Block_Widget_
                             )
                          ),
                          'field'   => 'id'
+                    ),
+                    array(
+                        'caption' => $this->__('Answer'),
+                        'url' => array('base' => 'mtreview/adminhtml_comments/answer'),
+                        'field' => 'rid'
                     )
                 ),
                 'filter'    => false,
