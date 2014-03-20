@@ -439,7 +439,8 @@ input,textarea{outline:0}
 .attribute-carousel-wrapper .bg-title-inner { height: 0.909em;overflow: hidden; width: 100%; z-index: 9;border-bottom: 1px solid #ebebeb ;}
 
 .attribute-carousel-wrapper .flex-direction-nav { width: 100% ; margin: 40px 0 ;}
-.attribute-carousel-wrapper .flex-direction-nav  a {border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; z-index: 9; width: 34px ; height: 34px;  position: absolute ;  opacity: 0.65;; margin: 0; background: #eaebeb ; border : none ;  }
+.attribute-carousel-wrapper .flex-direction-nav  a {border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; z-index: 9; width: 34px ; height: 34px;  position: absolute ;  opacity: 0.65; margin: 0; background: #D6D6D7 ; border : none ;  }
+.attribute-carousel-wrapper .flex-direction-nav  a:hover { background: #01A1ED;}
 .attribute-carousel-wrapper .flex-direction-nav  a.btn-next { right: 0; }
 .attribute-carousel-wrapper .flex-direction-nav  a:before {font-size: 0;  }
 .attribute-carousel-wrapper .flex-direction-nav  a i.glyphicon { color: #fff; font-size: 100% ; top: 9px; position: absolute ;left: 10px;  }
@@ -595,6 +596,7 @@ span.separator{vertical-align: top; }
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {border: none !important;  border-bottom: 1px dashed #d7d7d7 !important ;  }
+.table-striped > tbody > tr td .glyphicon {display: inline ;}
 .table-striped > tbody > tr td .glyphicon-pencil {color: #333;}
 .col1-layout .fieldset{background:#fff}
 .col1-layout .col-main{float:none;width:auto}
@@ -689,7 +691,8 @@ p.back-link{float: left;}
 .cms-index-index .std{display: none;}
 .cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
 .cms-index-index .category-products .btn-group  .btn-default{opacity: 0; }
-.cms-index-index .category-products:hover .btn-group  .btn-default{opacity: 1; }
+.cms-index-index .category-products:hover .btn-group  .btn-default{opacity: 0.65; }
+.cms-index-index .category-products .btn-group  .btn-default:hover { background: #01A1ED;}
 
 .slider-product-wrapper .bordered-tab { border-bottom: 1px solid #ebebeb ; float: left ; width: 100% ; }
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0; padding-right: 4px;}
