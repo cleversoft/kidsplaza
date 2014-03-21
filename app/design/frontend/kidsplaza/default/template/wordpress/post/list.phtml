@@ -10,7 +10,7 @@
 <?php if (count($posts) > 0): ?>
 	<div class="post-list main-post">
 		<ul id="post-list">
-			<?php $i==0;
+			<?php $i=0;
             foreach($posts as $post): ?>
 				<li class="item<?php if ($post->isSticky()): ?> featured is-sticky<?php endif; ?> i<?php echo $i%2;?>">
 					<?php echo $this->getPostRenderer($post)->toHtml() ?>
