@@ -13,8 +13,6 @@
 $blogs      = $this->getBlogs();
 $id         = $this->getConfig('id');
 $title      = $this->getConfig('widget_title');
-/* @var $date $date Mage_Core_Model_Date */
-$date       = Mage::getModel('core/date');
 ?>
 <div class="widget widget-blogs">
 <?php if ($title):?>
@@ -22,15 +20,16 @@ $date       = Mage::getModel('core/date');
 <?php endif ?>
 <ul class="block-blogs">
     <?php foreach ($blogs as $blog):?>
+        <?php /* @var $blog Fishpig_Wordpress_Model_Post */ ?>
         <li>
-            <a class="img">
-                <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.$blog->getThumb(), 50) ?>"/>
+            <a class="img" href="<?php echo $blog->getUrl() ?>">
+                <img src="<?php echo $blog->getFeaturedImage() ? $blog->getFeaturedImage()->getThumbnailImage() : Mage::helper('kidsplaza')->resize('tmp/nofile', 50) ?>" width="50"/>
             </a>
             <div class="right-blogs">
-               <a href="<?php echo Mage::helper('blog')->getBlogUrl($blog->getIdentifier()) ?>"><?php echo $blog->getTitle() ?></a>
-                <?php if ($blog->getCreatedTime()): ?>
+               <a href="<?php echo $blog->getUrl() ?>"><?php echo $blog->getPostTitle() ?></a>
+                <?php if ($blog->getPostTime()): ?>
                     <i class="glyphicon glyphicon-calendar"></i>
-                    <span><?php echo $date->date('d F, Y', $blog->getCreatedTime()) ?></span>
+                    <span><?php echo $blog->getPostTime() ?></span>
                 <?php endif ?>
             </div>
         </li>

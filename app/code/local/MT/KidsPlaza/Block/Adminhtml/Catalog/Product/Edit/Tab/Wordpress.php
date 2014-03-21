@@ -16,8 +16,9 @@ class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Edit_Tab_Wordpress extends Ma
     }
 
     protected function _prepareCollection(){
-        $collection = Mage::getModel('wordpress/post')->getCollection();
-        //foreach ($collection as $item) Mage::log($item);
+        $collection = Mage::getModel('wordpress/post')->getCollection()
+            ->addIsPublishedFilter();
+
         $this->setCollection($collection);
         return parent::_prepareCollection();
     }
