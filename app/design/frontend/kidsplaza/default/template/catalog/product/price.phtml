@@ -394,7 +394,7 @@ $_specialPriceStoreLabel = $this->__('Price Sell');//$this->getProductAttribute(
                 </span>
                 <span class="price-label price-label-save">-&nbsp;<?php echo $this->__('Saved') ?></span>
                 <span class="price price-save">
-                    <?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%
+                    <?php echo floor(($_product->getPrice()-$_product->getFinalPrice())*100/$_product->getPrice()) ?>%
                 </span>
             </p>
         <?php endif; ?>
