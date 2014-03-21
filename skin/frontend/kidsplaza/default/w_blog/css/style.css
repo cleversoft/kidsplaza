@@ -127,10 +127,7 @@ A.awblog_current_comment {
     display: inline-block;
     visibility: hidden;
 }
-.post-view-comments .toolbar .toolbar-limit, .post-view-comments .toolbar .toolbar-pages {
-    display: none;
-}
-.main-post .toolbar .toolbar-limit, .main-post .toolbar .toolbar-pages {
+.main-post .pager {
     display: none;
 }
 .form-list-post .button-set p.required {
