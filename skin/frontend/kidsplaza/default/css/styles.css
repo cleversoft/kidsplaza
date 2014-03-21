@@ -351,7 +351,7 @@ input,textarea{outline:0}
 .footer-coppyright-inner .social-links{float:right}
 .grid-5 li{width: 20%;}
 .products-grid li{float:left;text-align:center;position:relative;height:270px;margin-bottom:15px ;margin-top: 40px;}
-.products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;overflow:hidden;margin:5px 0;}
+.products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;margin:5px 0;}
 .products-grid .product-name a{color:#634f4f}
 .products-grid .product-image{display:block;text-align: center;padding: 10px 0 0;}
 .products-grid .product-image img{display: inline-block;width: 135px;}
