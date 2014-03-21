@@ -94,7 +94,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .product-options .attr-img.active{
     border: 1px solid #007d9e;
 }
-.product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 50%; background-repeat: no-repeat ; padding: 0 20px; }
+.product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 20px; }
 .category-products .products-grid .product-name{font-size: 16px;font-family: 'Open Sans',arial, sans-serif;}
 .product-view h2,
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
