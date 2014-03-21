@@ -7,7 +7,10 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Edit_Tab extends Mage_Adminhtml_Block_Widget implements Mage_Adminhtml_Block_Widget_Tab_Interface {
+class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Edit_Video
+    extends Mage_Adminhtml_Block_Widget
+    implements Mage_Adminhtml_Block_Widget_Tab_Interface {
+
     public function canShowTab(){
         return true;
     }

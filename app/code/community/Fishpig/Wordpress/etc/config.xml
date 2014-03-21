@@ -195,13 +195,13 @@
 				<path>wp</path>
 			</integration>
 			<toplink>
-				<enabled>1</enabled>
-				<label>Blog</label>
-				<position>100</position>
+				<enabled>0</enabled>
 			</toplink>
 			<misc>
-				<include_css>1</include_css>
-				<autop>1</autop>
+                <sidebar_left_empty>0</sidebar_left_empty>
+                <sidebar_right_empty>0</sidebar_right_empty>
+				<include_css>0</include_css>
+				<autop>0</autop>
 			</misc>
 		</wordpress>
 		<web>

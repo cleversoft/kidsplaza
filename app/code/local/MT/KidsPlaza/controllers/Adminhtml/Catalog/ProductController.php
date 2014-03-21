@@ -14,4 +14,18 @@ class MT_KidsPlaza_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
         $this->loadLayout();
         $this->renderLayout();
     }
+
+    public function wpTabAction(){
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    public function wpGridAction(){
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->getLayout()->getBlock('catalog.product.edit.tab.wordpress')
+            ->setRelatedWordpress($this->getRequest()->getPost('wordpress', null));
+        $this->renderLayout();
+    }
 }

@@ -14,7 +14,11 @@
         <reference name="product_tabs">
             <action method="addTab">
                 <name>video</name>
-                <block>kidsplaza/adminhtml_catalog_product_edit_tab</block>
+                <block>kidsplaza/adminhtml_catalog_product_edit_video</block>
+            </action>
+            <action method="addTab">
+                <name>blog</name>
+                <block>kidsplaza/adminhtml_catalog_product_edit_wordpress</block>
             </action>
         </reference>
     </adminhtml_catalog_product_edit>
@@ -24,6 +28,28 @@
             <block type="kidsplaza/adminhtml_catalog_product_edit_tab_video" name="catalog.product.edit.tab.video"/>
         </block>
     </kidsplaza_admin_adminhtml_catalog_product_videotab>
+
+    <kidsplaza_admin_adminhtml_catalog_product_wptab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_wordpress" name="catalog.product.edit.tab.wordpress"/>
+            <block type="adminhtml/widget_grid_serializer" name="wordpress_grid_serializer">
+                <reference name="wordpress_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>catalog.product.edit.tab.wordpress</grid_block_name>
+                        <data_callback>getSelectedWordpress</data_callback>
+                        <hidden_input_name>links[wordpress]</hidden_input_name>
+                        <reload_param_name>wordpress</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </kidsplaza_admin_adminhtml_catalog_product_wptab>
+
+    <kidsplaza_admin_adminhtml_catalog_product_wpgrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_wordpress" name="catalog.product.edit.tab.wordpress"/>
+        </block>
+    </kidsplaza_admin_adminhtml_catalog_product_wpgrid>
 
     <adminhtml_catalog_product_index>
         <reference name="products_list">

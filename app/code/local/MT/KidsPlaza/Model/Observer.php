@@ -19,12 +19,21 @@ class MT_KidsPlaza_Model_Observer{
 
         $videos = $request->getParam('videos', array());
         $product->setData('video', Mage::helper('core')->jsonEncode($videos));
+
+        $links = $request->getParam('links', array());
+        if (isset($links['wordpress'])){
+            $wordpress = explode('&', $links['wordpress']);
+            foreach ($wordpress as $index => $wp){
+                if (!is_numeric($wp)) unset($wordpress[$index]);
+            }
+            $product->setData('related_wordpress', implode(',', $wordpress));
+        }
     }
 
     public function saveAfterProduct($observer){
         $product = $observer->getProduct();
         $origPrice = $product->getOrigData('price');
-        if($product->getPrice() != $origPrice){
+        if ($product->getPrice() != $origPrice){
             $date = Mage::getModel('core/date')->date();
             $product->setPriceDate($date);
             $product->getResource()->saveAttribute($product, 'price_date');
