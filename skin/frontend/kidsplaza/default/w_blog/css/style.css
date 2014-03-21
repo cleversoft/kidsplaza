@@ -1,0 +1,209 @@
+.postWrapper {
+    padding-bottom: 25px;
+    clear: both;
+}
+
+.postTitle span.title {
+    display:block;
+    font-weight: bold;
+}
+
+.postTitle span.created {
+    font-size: 12px;
+    background:url(../images/icon-calenda.png) no-repeat left 2px;
+    padding-left: 16px;
+}
+.postTitle span.comment-count {
+    background:url(../images/icon-comment.png) no-repeat left 4px;
+    padding-left: 16px;
+    margin-left: 20px;
+    font-size: 12px;
+}
+.postTitle span.comment-count a{
+    color: #575757;
+}
+.postTitle span.title a {
+    color: #009fe6;
+}
+
+.postTitle span.title a:hover {
+    text-decoration: none;
+}
+
+.postTitle .post-comment-list {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+    border-bottom: #dfdfdf solid 1px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.postTitle h3 {
+    font-size: 10px;
+    margin: 0px;
+    padding-top: 2px;
+    padding-right: 0px;
+    padding-bottom: 2px;
+    padding-left: 0px;
+}
+.wp-sidebar .block-blog-categories .block-title{
+    color: #f74d89;
+    font-size: 120%;
+    border-bottom: #dfdfdf solid 1px;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+#wp-category-list li.item a {
+    color: #009fe6;
+    font-size: 100%;
+    font-weight: bold;
+    display: block;
+}
+#wp-category-list li.item {
+    border-bottom: 1px dotted #dfdfdf;
+    line-height: 25px;
+}
+.block-blog .head h4 {
+    padding-left: 20px;
+}
+
+.postWrapper .poster {
+    display: inline;
+}
+
+.input-box.aw-blog-comment-area {
+    width: 100%;
+}
+
+.widget-latest li {
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.block-blog .menu-categories {
+    margin: 0;
+    padding: 5px 9px;
+}
+
+A.awblog_current_comment {
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+.blog-grid .blog-item {
+    padding: 24px 0;
+}
+
+.main-post .load-more-posts .btn-load-more{
+    display: none;
+}
+.main-post .load-more-posts{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.main-post .load-more-posts .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+
+.post-view-comments .load-more-comments .btn-load-more {
+    display: none;
+}
+.post-view-comments .load-more-comments{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.post-view-comments .load-more-comments .loading {
+    background: url(../images/loading.gif) no-repeat left center;
+    padding: 9px 19px;
+    text-indent: -999em;
+    display: inline-block;
+    visibility: hidden;
+}
+.post-view-comments .toolbar .toolbar-limit, .post-view-comments .toolbar .toolbar-pages {
+    display: none;
+}
+.main-post .toolbar .toolbar-limit, .main-post .toolbar .toolbar-pages {
+    display: none;
+}
+.form-list-post .button-set p.required {
+    float: left;
+}
+.form-list-post .button-set button {
+    float: right;
+}
+#postComment .aw-blog-comment-area textarea, #postComment .aw-blog-comment-area {
+    width: 100% !important;
+    height: auto;
+}
+#postComment .main-input-box {
+    display: none;
+}
+#postComment .input-box {
+    display: inline-block;
+    clear: none;
+    width: auto;
+    float: left;
+    padding-right: 5px;
+}
+#postComment label{
+    font-weight: normal;
+}
+#postComment .input-box input {
+    width: 100%;
+}
+#postComment .button-set {
+    display: inline-block;
+    clear: none;
+    width: auto;
+    float: right;
+    margin-top: 5px;
+}
+.post-view-comments .comments-list .item-list {
+    padding: 7px 0;
+}
+.post-view-comments .comments-list .created_by .created {
+    font-weight: bold;
+    color: #0095d6;
+    border-right: #a9a9a9 solid 1px;
+    padding-right: 7px;
+}
+.post-view-comments .comments-list .created_by .date {
+    color: #a9a9a9;
+    font-size: 12px;
+}
+.post-more-cat {
+    border-top: #dfdfdf solid 1px;
+    margin-top: 30px;
+    padding-top: 10px;
+}
+.post-more-cat .postlists .post-title {
+    display: block;
+}
+/* Blog */
+#post-list li.item {
+    padding: 24px 0 27px 10px;
+    margin-bottom: 0;
+}
+#post-list li.i1 {
+    background: #fafafa;
+}
+#post-list li.item .media-body h3 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+#post-list li.item .post-entry, #post-list li.item .post-entry p {
+    margin: 0;
+    font-size: 100%;
+}
+#post-list h3 a {
+    color: #009fe6;
+}
