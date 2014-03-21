@@ -696,8 +696,10 @@ p.back-link{float: left;}
 .cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
 .category-products .btn-group  .btn-default{opacity: 0; }
 .category-products .toolbar-view .btn-group .btn-default{opacity: 1; }
-.category-products .toolbar-view .btn-group .btn-default:hover{background: none ; }
+.category-products .toolbar-view .btn-group .btn-default:hover{background: none ; opacity: 1;  }
+.category-products .toolbar-view .btn-group .sort-dir.btn-default:hover{background: #01A1ED ; opacity: 1;  }
 .category-products:hover .btn-group  .btn-default{opacity: 0.65; }
+.category-products:hover .toolbar-view .btn-group  .btn-default{ opacity:1; }
 .category-products .btn-group  .btn-default:hover { background: #01A1ED;}
 
 .slider-product-wrapper .bordered-tab { border-bottom: 1px solid #ebebeb ; float: left ; width: 100% ; }
