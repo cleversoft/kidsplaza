@@ -318,3 +318,23 @@ A.awblog_current_comment {
 .post-more-cat .postlists .post-title {
     display: block;
 }
+/* Blog */
+#post-list li.item {
+    padding: 24px 0 27px 10px;
+    margin-bottom: 0;
+}
+#post-list li.i1 {
+    background: #fafafa;
+}
+#post-list li.item .media-body h3 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+#post-list li.item .post-entry, #post-list li.item .post-entry p {
+    margin: 0;
+    font-size: 100%;
+}
+#post-list h3 a {
+    color: #009fe6;
+}

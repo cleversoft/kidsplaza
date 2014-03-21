@@ -8,15 +8,19 @@
 ?>
 <?php $posts = $this->getPosts() ?>
 <?php if (count($posts) > 0): ?>
-	<div class="post-list">
+	<div class="post-list main-post">
 		<ul id="post-list">
-			<?php foreach($posts as $post): ?>
-				<li class="item<?php if ($post->isSticky()): ?> featured is-sticky<?php endif; ?>">
+			<?php $i==0;
+            foreach($posts as $post): ?>
+				<li class="item<?php if ($post->isSticky()): ?> featured is-sticky<?php endif; ?> i<?php echo $i%2;?>">
 					<?php echo $this->getPostRenderer($post)->toHtml() ?>
 				</li>
-			<?php endforeach; ?>
+			<?php $i++;endforeach; ?>
 		</ul>
 		<script type="text/javascript">decorateList($('post-list'));</script>
+        <div class="load-more-posts">
+            <span class="loading"><?php echo Mage::helper('blog')->__('Loading...');?></span><button class="btn btn-load-more"><?php echo Mage::helper('blog')->__('See More');?></button>
+        </div>
 		<?php echo $this->getPagerHtml() ?>
 	</div>
 <?php endif; ?>

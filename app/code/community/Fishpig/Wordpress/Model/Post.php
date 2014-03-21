@@ -178,7 +178,7 @@ class Fishpig_Wordpress_Model_Post extends Fishpig_Wordpress_Model_Post_Abstract
 	protected function _getTeaserAnchor()
 	{
 		// Allows translation
-		return stripslashes(Mage::helper('wordpress')->__('Continue reading <span class=\"meta-nav\">&rarr;</span>'));
+		//return stripslashes(Mage::helper('wordpress')->__('Continue reading <span class=\"meta-nav\">&rarr;</span>'));
 	}
 	
 	/**
