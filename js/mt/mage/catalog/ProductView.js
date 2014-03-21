@@ -167,6 +167,7 @@ jQuery(function(){
     //init zoom
     jQuery('img.img-zoom').imagezoomsl({
         zoomrange: [1,3],
+        magnifiersize: [570, 430],
         magnifierborder: '1px solid #ddd'
     });
 

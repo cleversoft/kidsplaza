@@ -25,10 +25,10 @@
 .product-view .category-products .btn-cart{font-weight: 400;}
 .product-view .more-views-nav .glyphicon { color: #eeeeee ; font-size: 60%;top: -5px;}
 .product-view .more-views {float: left; margin:0 auto; position:relative; width: 85px; overflow: hidden;}
-.product-view .more-views .media-list {width: 85px; height: 340px; overflow: hidden;}
+.product-view .more-views .media-list {width: 85px; height: 359px; overflow: hidden;}
 .product-view .more-views div#thumbs {position: relative;}
 .product-view .more-views .active {border: 2px solid #007d9e;}
-.product-view .more-views img {border: 2px solid #fff;}
+.product-view .more-views img {border: 2px solid #dfdfdf;}
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price ,.product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 500;}
 .product-view .add-to-cart span{ float:  left ; margin: 0 5px 0 0; line-height: 36px;}
@@ -566,8 +566,8 @@ span.separator{vertical-align: top; }
 .my-account .pager .limiter label {display: none;}
 .my-account .pager .amount strong {font-weight: 400;}
 .related-action .price-label{font-size: 16px;color: #333;}
-
-#wishlist-table input.input-text  { padding:5px;margin:0 0 10px;text-align:center;width:100%;}
+#thumbs a{display: block;margin-bottom: 5px;}
+#wishlist-table input.input-text  { padding:5px;margin:0 0 10px;text-align:center;width:50px;}
 #wishlist-table .button { margin: 0 0 10px;}
 .my-wishlist  .buttons-set .button {margin: 0 5px;}
 .my-wishlist h3 {font-size: 100%;}
