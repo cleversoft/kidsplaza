@@ -124,10 +124,10 @@
 <title><![CDATA[Top - Banner]]></title>
 <identifier><![CDATA[top-banner]]></identifier>
 <content><![CDATA[<ul class="top-banner row">
-<li class="checkout col-lg-3"><em></em><a href="#">THANH TO&Aacute;N KHI NHẬN H&Agrave;NG</a></li>
-<li class="shipping col-lg-3"><em></em><a href="#">GIAO H&Agrave;NG TO&Agrave;N QUỐC</a></li>
-<li class="return col-lg-3"><em></em><a href="#">TRẢ H&Agrave;NG TRONG 30 NG&Agrave;Y</a></li>
-<li class="promo col-lg-3"><em></em><a href="#">PROMOTIONS</a></li>
+<li class="checkout col-lg-3 col-md-3 col-sm-6  col-xs-12"><em></em><a href="#">THANH TO&Aacute;N KHI NHẬN H&Agrave;NG</a></li>
+<li class="shipping col-lg-3 col-md-3 col-sm-6  col-xs-12"><em></em><a href="#">GIAO H&Agrave;NG TO&Agrave;N QUỐC</a></li>
+<li class="return col-lg-3 col-md-3 col-sm-6  col-xs-12"><em></em><a href="#">TRẢ H&Agrave;NG TRONG 30 NG&Agrave;Y</a></li>
+<li class="promo col-lg-3 col-md-3 col-sm-6  col-xs-12"><em></em><a href="#">PROMOTIONS</a></li>
 </ul>]]></content>
 <is_active>1</is_active>
 <stores><item>0</item></stores>

@@ -108,11 +108,11 @@
                 <?php echo $this->getChildHtml('extrahint') ?>
 
                 <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 desc">
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 desc short-desc">
                         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                             <?php echo $this->getChildChildHtml('container2', 'product.info.options.wrapper', true, true) ?>
                         <?php endif;?>
-                        <?php echo $_helper->productAttribute($_product, nl2br($this->stripTags($_product->getShortDescription(), '<ul><li>')), 'short_description') ?>
+                        <?php echo $_helper->productAttribute($_product, $this->stripTags($_product->getShortDescription(), '<ul><li>'), 'short_description') ?>
                         <p class="desc-more">
                             <a href="javascript:void(0)" onclick="jQuery('#product-description').scrollToMe()"><?php echo $this->__('See more') ?> &raquo;</a>
                         </p>
