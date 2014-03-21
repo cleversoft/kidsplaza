@@ -18,7 +18,7 @@
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
 .product-view .more-views-nav{  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
-.product-view .btn-cart{font-weight: 700; font-size: 16px;padding-left: 30px; padding-right: 30px;}
+.product-view .btn-cart{font-weight: 700; font-size: 22px;padding: 2px 30px;}
 #wishlist-table .old-price .price-label,
 #wishlist-table .old-price .price-save{display: none;}
 .product-view .category-products .btn-cart{font-weight: 400;}
@@ -105,7 +105,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 }
 #product-related h3,
 #product-description h3,
-.upsell-carousel-wrapper h3{font-family: 'Roboto Slab','Open Sans','Arial';color: #ff3d70;font-size: 19px;}
+.upsell-carousel-wrapper h3{font-family: 'Roboto Slab','Open Sans','Arial';color: #ff3d70;font-size: 17px;font-weight: bold;}
 .product-view #product-related h2  { font-weight: normal ; font-size: 18px ; color: #ff3d70 ;}
 .product-view #product-related .related-img { margin: 30px 0;}
 .product-view #product-related .related-name .related-checkbox{float: left ; margin: 4px 5px 0 -20px;}
@@ -120,8 +120,9 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view #product-videos .video-item-title  { color: #0098cd; font-weight:bold;line-height: 100%;}
 .product-view #product-videos .videos-wrapper  .videos-wrapper-inner{ padding: 18px 16px; border: 1px solid #dbd8d7 ;}
 .product-view #product-videos .videos-wrapper  .videos-wrapper-inner .video-inner{ padding: 10px; border: 1px solid #dbd8d7 ;}
-.product-view .video-item-info{margin: 0 0 0 10px; float: left ; width: 60% ;}
-.product-view .video-item img {float: left ;cursor: pointer;}
+.product-view .video-item-info{margin: 0 0 10px 10px; float: left ; width: 60% ;}
+.product-view .video-item img {float: left ;cursor: pointer;margin-top: 5px;}
+#product-videos h3{text-transform: uppercase;font-family: 'roboto slab',arial, sans-serif;font-size: 18px;color: #333;}
 .product-view .video-item {margin: 0 0 10px; padding: 0 10px 0 20px;}
 .product-view .video-item-user i{color: #aaa;}
 .product-view .video-item-user {color: #0098cd;}
