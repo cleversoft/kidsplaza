@@ -70,7 +70,7 @@ $_core              = $this->helper('core/string');
                     <?php endif; ?>
                     <h2 class="product-name">
                         <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
-                            <?php echo $_core->truncate($_helper->productAttribute($_product, $_product->getName(), 'name'),40) ?>
+                            <?php echo $_core->truncate($_helper->productAttribute($_product, $_product->getName(), 'name'), 30) ?>
                         </a>
                     </h2>
                     <?php echo $this->getPriceHtml($_product, true) ?>
