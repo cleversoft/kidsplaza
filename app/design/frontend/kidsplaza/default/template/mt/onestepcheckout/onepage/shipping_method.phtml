@@ -34,11 +34,12 @@
     <script type="text/javascript">
     //<![CDATA[
         var shippingMethodConfig = {
+            noMethod: true,
             id: 'co-shipping-method-form',
             saveUrl: '<?php echo $this->getUrl('mtonestepcheckout/order/saveShippingMethod') ?>'
         };
         if (window.mtOneStepCheckout){
-            shippingMethod = new MT.ShippingMethod(shippingMethodConfig.id, shippingMethodConfig.saveUrl);
+            shippingMethod = new MT.ShippingMethod(shippingMethodConfig.id, shippingMethodConfig.saveUrl, shippingMethodConfig.noMethod);
             window.mtOneStepCheckout.setConfig({shippingMethod: shippingMethod});
         }
     //]]>

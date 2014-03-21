@@ -39,7 +39,7 @@ if (window.shippingRegionUpdaterConfig){
     );
 }
 if (window.shippingMethodConfig){
-    shippingMethod = new MT.ShippingMethod(shippingMethodConfig.id, shippingMethodConfig.saveUrl);
+    shippingMethod = new MT.ShippingMethod(shippingMethodConfig.id, shippingMethodConfig.saveUrl, shippingMethodConfig.noMethod);
 }
 if (window.paymentConfig){
     payment = new MT.Payment(paymentConfig.id, paymentConfig.saveUrl);

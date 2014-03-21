@@ -736,12 +736,13 @@ MT.Shipping.prototype = {
 
 MT.ShippingMethod = Class.create();
 MT.ShippingMethod.prototype = {
-    initialize: function(form, saveUrl){
+    initialize: function(form, saveUrl, noMethod){
         this.beforeSend = function(){};
         this.afterSend = function(){};
         this.getLoadIndicator = function(){};
         this.form = form;
         this.main = $(this.form);
+        this.noMethod = noMethod;
         this.container = this.main.up();
         this.f = new VarienForm(form);
         if ($(this.form)) {
@@ -753,6 +754,10 @@ MT.ShippingMethod.prototype = {
         this.saveUrl = saveUrl;
         this.isBusy = false;
         this.initActions();
+    },
+
+    setNoMethod: function(flag){
+        this.noMethod = flag;
     },
 
     busy: function(flag){
@@ -789,13 +794,15 @@ MT.ShippingMethod.prototype = {
     },
 
     validate: function() {
+        if (this.noMethod) return true;
+
         var methods = document.getElementsByName('shipping_method');
         if (methods.length==0) {
             alert(Translator.translate('Your order cannot be completed at this time as there is no shipping methods available for it. Please make necessary changes in your shipping address.').stripTags());
             return false;
         }
 
-        if(!this.f.validator.validate()) {
+        if (!this.f.validator.validate()) {
             return false;
         }
 
