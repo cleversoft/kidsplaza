@@ -176,30 +176,32 @@ MT.OneStepCheckout.prototype = {
     },
 
     renderCartQtyButtons: function(input){
-        if (input){
-            $(input).wrap('div', {'class':'input-group'});
-            var minusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
-            minusBtn.update('-');
-            minusBtn.observe('click', function(ev){
-                ev.stop();
-                var button = Event.findElement(ev, 'button'),
-                    inputElm = button.up('td').down('input.qty');
-                this.handleCartQty(inputElm, '-');
-            }.bind(this));
+        if (!input) return;
 
-            var plusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
-            plusBtn.update('+');
-            plusBtn.observe('click', function(ev){
-                ev.stop();
-                var button = Event.findElement(ev, 'button'),
-                    inputElm = button.up('td').down('input.qty');
-                this.handleCartQty(inputElm, '+');
-            }.bind(this));
+        if ($(input).up().select('button.btn').length) return;
 
-            $(input).insert({before: minusBtn.wrap('span',{'class':'input-group-btn'})});
-            $(input).insert({after: plusBtn.wrap('span',{'class':'input-group-btn'})});
-            $(input).addClassName('a-center');
-        }
+        $(input).wrap('div', {'class':'input-group'});
+        var minusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
+        minusBtn.update('-');
+        minusBtn.observe('click', function(ev){
+            ev.stop();
+            var button = Event.findElement(ev, 'button'),
+                inputElm = button.up('td').down('input.qty');
+            this.handleCartQty(inputElm, '-');
+        }.bind(this));
+
+        var plusBtn = new Element('button', {'class':'btn btn-info btn-qty', type:'button'});
+        plusBtn.update('+');
+        plusBtn.observe('click', function(ev){
+            ev.stop();
+            var button = Event.findElement(ev, 'button'),
+                inputElm = button.up('td').down('input.qty');
+            this.handleCartQty(inputElm, '+');
+        }.bind(this));
+
+        $(input).insert({before: minusBtn.wrap('span',{'class':'input-group-btn'})});
+        $(input).insert({after: plusBtn.wrap('span',{'class':'input-group-btn'})});
+        $(input).addClassName('a-center');
     },
 
     handleCartQty: function(inputElm, action){
