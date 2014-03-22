@@ -204,3 +204,35 @@ A.awblog_current_comment {
 #post-list h3 a {
     color: #009fe6;
 }
+.comments-wrapper .title {
+    color: #009fe6;
+    font-size: 150%;
+    border-bottom: #dfdfdf solid 1px;
+    /* font-weight: bold; */
+    margin-bottom: 20px;
+    padding-bottom: 7px;
+
+}
+.comments-wrapper .form-list li .input-box-comment textarea {
+    width: 100%;
+    height: auto;
+}
+.comments-wrapper .form-list li .input-box-author, .form-list li .input-box-email, .form-list li .input-box-website {
+    float: left;
+    margin: 0 7px 0 0;
+}
+.comments-wrapper .form-list li label {
+    display: flex;
+    margin: 0;
+    font-weight: normal;
+    float: left;
+}
+.comments-wrapper .form-list li .buttons-set {
+    float: right;
+    margin: 10px 0 0 0;
+    padding: 0;
+    clear: none;
+}
+.comments-wrapper .comment-list {
+    padding-top: 20px;
+}

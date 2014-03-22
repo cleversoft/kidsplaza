@@ -9,9 +9,9 @@
 <?php $post = $this->getPost() ?>
 <?php $comments = $this->getComments() ?>
 <div id="comments" class="comments-wrapper">
+    <?php echo $this->getFormHtml() ?>
 	<?php if ($comments->count() > 0): ?>
 		<?php echo $this->getCommentsHtml() ?>
 		<?php echo $this->getPagerHtml() ?>
 	<?php endif; ?>
-	<?php echo $this->getFormHtml() ?>
 </div>

@@ -53,6 +53,7 @@
 	-->
 	<wordpress_default>
         <reference name="js_bottom">
+            <action method="addJs"><script>fishpig/wordpress/comments.js</script></action>
             <action method="addJs"><script>wordpress/wordpress.js</script></action>
         </reference>
 		<reference name="root">
@@ -115,6 +116,9 @@
 	 */
 	-->
 	<wordpress_post_view>
+        <reference name="js_bottom">
+            <action method="addJs"><script>wordpress/form_comments.js</script></action>
+        </reference>
 		<reference name="content">
 			<block type="wordpress/post_view" name="wp.post.view" template="wordpress/post/view.phtml">
 				<block type="core/text_list" name="post.content.before" as="before_post_content" />

@@ -1,4 +1,5 @@
-var contactForm = new VarienForm('postComment', false);
+decorateList('wp-category-list');
+decorateList($('post-list'));
 jQuery(document).ready(function(){
     jQuery('.main-post button.btn-load-more').on('click',function(e){
         callMoreFunc(jQuery(this));
