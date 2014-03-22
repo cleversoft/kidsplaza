@@ -17,7 +17,7 @@
 .ratings-list {float:left;}
 .ratings-list td {padding:3px 0;}
 .ratings-list td.label {padding-right:8px;padding-top:5px;font-size:.95em;font-weight:bold;line-height:1em;}
-.product-view .more-views-nav{ opacity: 0.65 ;  margin: auto ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
+.product-view .more-views-nav{ opacity: 0.65 ;  margin: 0 auto 4px ;display: block; font-size: 20px; color: #888; width: 20px ; height:20px; background: #a1a2a3 ;text-align: center;padding: 0;}
 .product-view .more-views-nav:hover { background: #01A1ED ;}
 .product-view .btn-cart{font-weight: 700; font-size: 22px;padding: 2px 30px; border-radius: 10px ; -moz-border-radius: 10px ; -webkit-border-radius: 10px ; border: 1px solid #c1c1c1 ; line-height: 35px;}
 .product-view .btn-cart:hover{border: 1px solid #c1c1c1 ;}
@@ -358,7 +358,7 @@ input,textarea{outline:0}
 .products-grid .product-image img{display: inline-block;width: 135px;}
 .products-grid .actions{position:absolute;top:55px;width:100% ; opacity: 0 ;}
 .products-grid  .item { border: 1px solid #ffffff; }
-.products-grid .owl-item .item { border: 1px solid #ffffff; width: 95% ;}
+.products-grid .owl-item .item { border: 1px solid #ffffff; width: 98% ;}
 .products-grid  .item:hover { border: 1px solid #d5d5d5 ;box-shadow: 0 0 5px #d5d5d5 ;}
 .products-grid  .item:hover .actions { opacity: 1;}
 .products-grid  .item .price-discount {transform:rotate(-20deg);-ms-transform:rotate(-20deg); /* IE 9 */ -webkit-transform:rotate(-20deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 35px; width: 35px; line-height: 35px; color: #fff ; font-weight: bold ; font-size: 80% ; background: url("../images/bgLable.png" ) no-repeat -74px 0;}
@@ -874,7 +874,14 @@ p.back-link{float: left;}
 .ie8 .products-grid .actions { display: none ; }
 .ie8 .products-grid .item:hover .actions {display: block ;}
 .ie8 .block-subscribe input{line-height: 30px;}
-
+.ie8 .slider-product-wrapper .bordered-tab .title { padding: 2px 0 0;}
+.ie8 .slider-product-wrapper .bordered-tab h3 {font-size: 150%}
+.ie8 .block-subscribe .input-group-btn .glyphicon { top: 2px ;line-height: 18px;font-size: 90%;}
+.ie8 .block-subscribe  .btn-subscribe {line-height: 20px; margin-left: 4px ; text-transform: uppercase ; }
+.ie8 .category-products .btn-group .btn-default ,
+.ie8 .attribute-carousel-wrapper .flex-direction-nav a{ display: none ; }
+.ie8 .category-products:hover .btn-group .btn-default,
+.ie8 .attribute-carousel-wrapper:hover .flex-direction-nav a{ display: block ; }
 /*Page sitemap*/
 .page-sitemap .page-title h1 {color:#20a4f0;border-bottom: none;}
 .page-sitemap .pager .amount strong {
