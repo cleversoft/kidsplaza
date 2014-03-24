@@ -748,6 +748,29 @@ p.back-link{float: left;}
 
 
 .widget-static-block img {width:100% ;}
+.page-404 {
+    padding: 10% 0;
+
+}
+.page-404 .tick {
+    display: inline-block;
+    float: left;
+    height: 330px;
+    background-image: url("../images/tick-404.png");
+    background-repeat: no-repeat;
+    background-position: 0 50%;
+}
+.page-404 p {
+    line-height: 25px;
+    padding: 25% 0 0 0 ;
+    color: #141414;
+    font-size: 120%;
+}
+.page-404 p a {
+    color: #f74d88 ;
+    font-style: italic;
+    font-weight: bold;
+}
 /* Overlay style */
 .overlay {
     position: fixed;
