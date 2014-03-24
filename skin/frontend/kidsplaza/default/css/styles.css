@@ -378,16 +378,18 @@ input,textarea{outline:0}
 .state-item .label{font-size:11px;display:inline-block;max-width:150px;padding:4px 5px}
 .filter-item{overflow:hidden;position:relative}
 .filter-item .badge{position:absolute;right:0;background-color:#aaa;top:0;z-index:1}
-.filter-item a{display:block;width:100%}
+.filter-item a{display:block;width:100%;padding-right: 40px;}
 .filter-item a.filter-item-name {color: #919191 ; font-size: 13px;padding-right: 38px;}
 .kidsplaza_catalog_layer_filter_category a.filter-item-name{text-transform: uppercase;color: #333;}
 .kidsplaza_catalog_layer_filter_category .filter-item{margin-bottom: 10px;}
 .filter-item.selected{}
 .filter-item .list-child{margin-left: 15px;}
-.filter-item .list-child .list-child-item{margin:7px 0;}
+.filter-item .list-child .list-child-item{margin:7px 0 0 0;position: relative;}
 .filter-item.selected a{color: #f74d89;}
 .list-child-item.selected a{font-weight: 700;}
-.filter-item.selected .badge{background-color: #428bca;}
+.filter-item.selected .badge{background-color: #f74d89;}
+.filter-item.selected .list-child-item .badge{background-color: #aaa;}
+.filter-item.selected .list-child-item.selected .badge{background-color: #f74d89;}
 .panel-heading .search{position:absolute;top:8px;right:0;height:26px;font-size:13px;width:110px;background:#fff;border:1px solid #ccc;padding:0 25px 0 5px;margin-right: 0 ;}
 .panel-heading .search-icon{float:right;margin-top:3px; margin-right: 5px ;font-size:14px;}
 

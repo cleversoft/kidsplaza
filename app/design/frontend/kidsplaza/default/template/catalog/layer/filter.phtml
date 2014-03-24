@@ -28,16 +28,17 @@
 /**
  * Template for filter items block
  *
- * @see Mage_Catalog_Block_Layer_Filter
+ * @var $this Mage_Catalog_Block_Layer_Filter_Abstract
  */
 ?>
-<ol class="list">
+<ol class="list <?php echo str_replace('/', '_', $this->_filterModelName) ?>">
 <?php foreach ($this->getItems() as $_item): ?>
     <?php /* @var $_item MT_Filter_Model_Layer_Filter_Item */ ?>
     <li class="filter-item<?php echo $_item->isActive() ? ' selected' : '' ?>">
         <?php if ($_item->getCount() > 0): ?>
         <a class="filter-item-name <?php echo $_item->getClasses()?>"
-           href="<?php echo $_item->isActive() ? $_item->getRemoveUrl() : $this->urlEscape($_item->getUrl()) ?>">
+            href="<?php echo $_item->isActive() ? $_item->getRemoveUrl() : $this->urlEscape($_item->getUrl()) ?>"
+            title="<?php echo $this->stripTags($_item->getLabel()) ?>">
             <?php echo $_item->getLabel() ?>
         </a>
         <span class="filter-item-name-normalize" style="display: none"><?php echo $this->helper('kidsplaza')->normalize($_item->getLabel())?></span>
@@ -46,6 +47,21 @@
         <?php if ($this->shouldDisplayProductCount()): ?>
         <span class="badge pull-right"><?php echo $_item->getCount() ?></span>
         <?php endif; ?>
+        <?php $childs = $_item->getData('child') ?>
+        <?php if (count($childs)): ?>
+            <ol class="list-child">
+                <?php foreach ($childs as $child): ?>
+                    <li class="list-child-item<?php echo $child->getIsActive() ? ' selected' : '' ?>">
+                        <a class="list-child-name <?php echo $child->getClasses() ?>" href="<?php echo $child->getUrl() ?>" title="<?php echo $this->stripTags($child->getLabel()) ?>">
+                            <?php echo $child->getLabel() ?>
+                        </a>
+                        <?php if ($this->shouldDisplayProductCount()): ?>
+                            <span class="badge pull-right"><?php echo $child->getCount() ?></span>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach ?>
+            </ol>
+        <?php endif ?>
     </li>
 <?php endforeach ?>
 </ol>
