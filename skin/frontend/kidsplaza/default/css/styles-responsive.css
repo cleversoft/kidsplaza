@@ -33,7 +33,7 @@
     .product-view .video-item ,
     .product-view .video-list { padding:0 ;}
     .product-view .video-item img { width: 30%;}
-
+    .product-view .tracker {width: 367px !important; z-index: 999}
 
     .btn-login {font-size: 11px;}
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
@@ -42,7 +42,12 @@
     .footer-coppyright .footer-coppyright-inner address {font-size: 85% ;}
     .footer-coppyright-inner .social-links {margin: 0;}
 
+    .popover {left:-105px !important;}
+    .popover .arrow {left: 15px;}
+    .toplogin .popover  { left: -105px !important;}
+    .dropdown-menu {left: -25px;}
 
+    .col-right .block-blogs li { padding: 14px 0;}
 }
 @media (min-width: 980px) and (max-width: 1280px) {
 
@@ -83,7 +88,8 @@
     #megamenu ul li.level-0 > a span { background: url("../images/icon-menu-parent.png") no-repeat scroll 100% 3px ;}
     .sticky-wrapper .mt-menu-top {margin: 0 0 20px;}
 
-    .product-view .video-item, .product-view .video-list {padding : 10px;}
+    .product-view .video-item,
+    .product-view .video-list {padding : 10px;}
     .product-view .product-shop .page-title {float: left ;}
 
 
@@ -116,14 +122,13 @@
     .header-top .header-top-inner .col-lg-6 {padding-left: 10px !important; margin: 0 0 20px;}
     .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;}
     .top-login .font { padding: 0 12px; width: 23%; }
+    .toplogin .popover  { left: -5px !important;}
+    .toplogin .popover .arrow { left: -45px !important;}
+    .top-cart .popover { left: -60px !important;}
+    .top-cart .popover .arrow {left: -20px !important;}
     .top-location .btn-group { float: right ; }
     .top-location i {left: 170px; }
-    .top-cart {
-        display: inline-block;
-        right: 0;
-        width: 47px;
-        left: auto;
-    }
+    .top-cart {display: inline-block; right: 0; width: 47px; left: auto;}
     .top-banner {margin: 30px 0  ;}
     .top-banner li {text-align: left ; padding: 0;}
     .sticky-wrapper {float: left ; }
@@ -169,6 +174,9 @@
     .footer-coppyright-inner .social-links {float: left;}
     .footer-top .block-subscribe {margin: 20px 0 10px;float: left !important;   }
 
+    .products-grid .owl-wrapper-outer .owl-item .item .product-name {margin: 10px 0 0;}
+    .products-grid .owl-wrapper-outer .owl-item .item .price-box .old-price .price {font-size: 80%;}
+
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
 
     table#checkout-review-table {
@@ -193,6 +201,11 @@
         text-align:center;
         padding:5px;
     }
+
+    .product-view .product-shop {
+        float: left;
+        padding-left: 20px;
+    }
 }
 @media (max-width: 900px) {
     .sticky-wrapper { float: none;}
@@ -200,6 +213,10 @@
 @media (max-width: 767px) {
     .header-top .header-top-inner .col-lg-6 {padding-left: 10px !important; margin: 0 0 20px;}
     .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ; border: none ;}
+    .toplogin .popover  { left: -10px !important;}
+    .toplogin .popover .arrow { left: -45px !important;}
+    .top-cart .popover { left: -60px !important;}
+    .top-cart .popover .arrow {left: -20px !important;}
     .header-top-right {width: 105px;}
     .header-top-right .vr{border: none ;}
     .top-banner li {width: 50% ; text-align: left ;}
@@ -342,6 +359,11 @@
     .checkout-progress li {width: 100% ; margin: 0 0 10px ;}
     #multiship-addresses-table td .btn-remove2 { display: inline-block ;}
     .opc li { padding-left: 0;}
+
+    .footer-top .footer-top-inner .col-lg-4 .block-subscribe {float: left !important;}
+    .footer-center-inner .items {margin: 0 0 20px;}
+
+    .product-view .btn-cart {font-size: 140% ; margin: 20px 0 0;}
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
 
@@ -369,4 +391,13 @@
 
     .fields .field {width: 100% ;}
     .toolbar .toolbar-view {margin: 20px 0 0 ; float: left ;}
+
+    .attribute-carousel-wrapper h2 {font-size: 160% !important;}
+    .toplogin .popover  { left: -10px !important;}
+    .toplogin .popover .arrow { left: -45px !important;}
+    .top-cart .popover { left: -60px !important;}
+    .top-cart .popover .arrow {left: -20px !important;}
+
+    .product-img-box .price-discount {left: 0 ;}
+    .product-view .btn-cart {font-size: 130% ; margin: 20px 0 0;}
 }
