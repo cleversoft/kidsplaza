@@ -18,13 +18,13 @@ class MT_KidsPlaza_Block_Catalog_View extends Mage_Core_Block_Template{
 
     public function getCacheTags(){
         $tags = parent::getCacheTags();
-        $tags = array_merge($tags, array('KIDSPLAZA_CATEGORY_'.$this->getCategory()->getId()));
+        $tags = array_merge($tags, array('KIDSPLAZA_CATEGORY_'.$this->getCategory()->getId(), Mage_Catalog_Model_Category::CACHE_TAG));
         return array_unique($tags);
     }
 
     public function getCacheKeyInfo(){
         return array(
-            'MT_KIDSPLAZAa',
+            'KIDSPLAZA',
             'CATALOG_VIEW',
             $this->getCategory()->getId(),
             Mage::app()->getStore()->getId()
