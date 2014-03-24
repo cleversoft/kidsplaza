@@ -39,8 +39,12 @@
                     </category_products>
                     <attribute_brand translate="label">
                         <value>mt/widget/attribute-brands.phtml</value>
-                        <label>Attribute Brands</label>
+                        <label>Home Brands</label>
                     </attribute_brand>
+                    <category_brand translate="label">
+                        <value>mt/widget/category-brands.phtml</value>
+                        <label>Category Brands</label>
+                    </category_brand>
                     <upsell_products translate="label">
                         <value>mt/widget/upsell-products.phtml</value>
                         <label>Upsell Products</label>

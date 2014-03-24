@@ -137,8 +137,8 @@ Category layered navigation layout
                     <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
                 </block>
             </block>
-            <block type="core/text_list" name="category.product.mostviewed" as="category.product.mostviewed">
-                <label>Product Most Viewd</label>
+            <block type="core/text_list" name="category.blocks" as="category.blocks">
+                <label>Category Blocks</label>
             </block>
         </reference>
     </catalog_category_layered>

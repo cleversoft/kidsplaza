@@ -1,0 +1,48 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php
+$attributes = $this->getAttibuteOptions();
+$id         = $this->getConfig('id');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+?>
+<?php if ($scroll == 1): ?>
+    <script type="text/javascript">
+        <?php echo $id ?> = {
+            items: <?php echo $this->getConfig('items') ?>,
+            autoPlay: <?php echo $this->getConfig('autoplay') ?>,
+            pagination: <?php echo $this->getConfig('paging') ?>,
+            afterInit: function(slider){
+                var parent = jQuery(slider).parent();
+                jQuery('.btn-prev', parent).click(function(){
+                    jQuery(slider).data('owlCarousel').prev();
+                });
+                jQuery('.btn-next', parent).click(function(){
+                    jQuery(slider).data('owlCarousel').next();
+                });
+            }
+        };
+    </script>
+<?php endif ?>
+<div class="attribute-carousel-wrapper">
+    <?php if ($title): ?>
+        <h3 class="utm-cookies"><?php echo $title ?></h3>
+    <?php endif ?>
+    <div class="slider-attribute-wrapper <?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
+        <?php foreach ($attributes as $attribute): ?>
+            <div>
+                <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
+                    <img src="<?php echo strpos($attribute['image'], 'http') === 0 ? $attribute['image'] : Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media') .DS. $attribute['image'], 80) ?>" alt="<?php echo $attribute['label'] ?>" />
+                </a>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>

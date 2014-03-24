@@ -146,7 +146,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
     public function getAttibuteOptions(){
         $showOptions = explode(',', $this->getData('attribute_options'));
-        list($attributeId, $attributeCode) = explode(',' ,$this->getData('attribute'));
+        list($attributeId, $attributeCode) = explode(',' , $this->getData('attribute'));
         $optionCollection = Mage::getResourceModel('eav/entity_attribute_option_collection')
             ->setAttributeFilter($attributeId)
             ->setStoreFilter()
@@ -162,7 +162,24 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 );
             }
         }
-        if ($this->getData('attribute_mode') == 1 && $attributeCode){
+        if ($this->getData('current_category') == 1){
+            $category = Mage::registry('current_category');
+            if ($category->getId()){
+                $productCollection = Mage::getResourceModel('catalog/product_collection')
+                    ->addStoreFilter()
+                    ->addAttributeToSelect($attributeCode)
+                    ->addAttributeToFilter($attributeCode, array('neq' => ''))
+                    ->addAttributeToFilter($attributeCode, array('notnull' => true))
+                    ->addCategoryFilter($category);
+                $optionsInUse = array_unique($productCollection->getColumnValues($attributeCode));
+                foreach ($options as $i => $option){
+                    if (!in_array($option['id'], $optionsInUse)){
+                        unset($options[$i]);
+                    }
+                }
+            }
+        }
+        /*if ($this->getData('attribute_mode') == 1 && $attributeCode){
             $productCollection = Mage::getResourceModel('catalog/product_collection')
                 ->addStoreFilter()
                 ->addAttributeToSelect($attributeCode)
@@ -174,7 +191,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                     unset($options[$i]);
                 }
             }
-        }
+        }*/
         return $options;
     }
 
