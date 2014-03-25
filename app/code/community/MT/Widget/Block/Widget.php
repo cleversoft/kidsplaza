@@ -33,7 +33,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getCacheLifetime(){
-        return $this->getData('cache') ? (int)$this->getData('cache') : null;
+        //return $this->getData('cache') ? (int)$this->getData('cache') : null;
     }
 
     public function getCacheKeyInfo(){
@@ -179,7 +179,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 }
             }
         }
-        /*if ($this->getData('attribute_mode') == 1 && $attributeCode){
+        if ($this->getData('attribute_mode') == 1 && $attributeCode){
             $productCollection = Mage::getResourceModel('catalog/product_collection')
                 ->addStoreFilter()
                 ->addAttributeToSelect($attributeCode)
@@ -191,7 +191,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                     unset($options[$i]);
                 }
             }
-        }*/
+        }
         return $options;
     }
 
