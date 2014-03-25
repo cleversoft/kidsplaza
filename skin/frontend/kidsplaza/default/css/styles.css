@@ -483,7 +483,7 @@ input,textarea{outline:0}
 #shopping-cart-table a.link-wishlist{line-height: 70px;}
 .col-main{min-height:300px}
 .catalog-product-view .col-main{clear: both;}
-.catalog-product-view .product-image img{padding: 0; width: 100% ;}
+.catalog-product-view .product-image img{padding: 0;}
 .opc .please-wait{margin-top:20px;display:block}
 input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px;}
 .opc .panel-heading{padding:6px 15px}
