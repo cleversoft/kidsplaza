@@ -166,9 +166,11 @@ jQuery(function(){
 
     //init zoom
     jQuery('img.img-zoom').imagezoomsl({
-        zoomrange: [1,3],
+        zoomrange: [3,3],
         magnifiersize: [570, 430],
-        magnifierborder: '1px solid #ddd'
+        magnifierborder: '1px solid #ddd',
+        magnifiereffectanimate: "fadeIn",
+        scrollspeedanimate: 2
     });
 
     //init more views
