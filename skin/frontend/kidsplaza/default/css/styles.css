@@ -916,3 +916,10 @@ dl.item-options{
 .home-combo-carousel-wrapper .ratings .amount{
     display: none;
 }
+.box-account .col2-set .box-content{
+    clear: both;
+}
+.box-account .col2-set{
+    float: left;
+    width: 100%;
+}
