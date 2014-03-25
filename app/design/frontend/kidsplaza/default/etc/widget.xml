@@ -33,10 +33,14 @@
                         <value>mt/widget/home-deal.phtml</value>
                         <label>Home Deal</label>
                     </home_deal>
-                    <category_products translate="label">
-                        <value>mt/widget/category-products.phtml</value>
-                        <label>Category Products</label>
-                    </category_products>
+                    <catagory_deal translate="label">
+                        <value>mt/widget/category-deal.phtml</value>
+                        <label>Category Deal</label>
+                    </catagory_deal>
+                    <daily_products translate="label">
+                        <value>mt/widget/daily-products.phtml</value>
+                        <label>Daily Deal Products</label>
+                    </daily_products>
                     <attribute_brand translate="label">
                         <value>mt/widget/attribute-brands.phtml</value>
                         <label>Home Brands</label>

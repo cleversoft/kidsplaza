@@ -76,7 +76,18 @@
     </collection_view_promotion>
 
     <collection_view_daily>
-        <label>Daily Deal Products</label>
-        <update handle="collection_view"/>
+        <label>Daily Deal Collection</label>
+        <reference name="head">
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.carousel.css</name></action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.transitions.css</name></action>
+            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.theme.css</name></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><file>page/1column.phtml</file></action>
+        </reference>
+        <reference name="js_bottom">
+            <action method="addJs"><file>mt/extensions/jquery/plugins/jquery.lazyload.js</file></action>
+            <action method="addJs"><file>mt/mage/collection/Deal.js</file></action>
+        </reference>
     </collection_view_daily>
 </layout>

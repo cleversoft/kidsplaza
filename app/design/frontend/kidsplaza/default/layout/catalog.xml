@@ -104,7 +104,7 @@ Category layered navigation layout
     <catalog_category_layered translate="label">
         <label>Catalog Category (Anchor)</label>
         <reference name="head">
-            <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/flexslider/flexslider.css</name></action>
+            <!--action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/flexslider/flexslider.css</name></action-->
             <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.carousel.css</name></action>
             <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.transitions.css</name></action>
             <action method="addItem"><type>js_css</type><name>mt/extensions/jquery/plugins/owl-carousel/owl.theme.css</name></action>

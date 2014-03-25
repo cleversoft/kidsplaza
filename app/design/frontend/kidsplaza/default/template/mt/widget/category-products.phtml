@@ -34,7 +34,6 @@ $_title             = $this->getConfig('widget_title');
 $_core              = $this->helper('core/string');
 /* @var $category Mage_Catalog_Model_Category */
 $category           = Mage::registry('current_category');
-Mage::log(1);
 ?>
 <?php if (!$this->getRequest()->isXmlHttpRequest()): ?>
 <?php if ($category && $category->hasChildren()): ?>
