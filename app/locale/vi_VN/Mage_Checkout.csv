@@ -145,7 +145,7 @@
 "Please agree to all Terms and Conditions before placing the orders.","Please agree to all Terms and Conditions before placing the orders."
 "Please enter a valid zip code. For example 90602 or 90602-1234.","Please enter a valid zip code. For example 90602 or 90602-1234."
 "Please log in below:","Please log in below:"
-"Please select region, state or province","Please select region, state or province"
+"Please select region, state or province","Lựa chọn tỉnh thành phố"
 "Please select shipping address for applicable items","Please select shipping address for applicable items"
 "Please select shipping methods for all addresses","Please select shipping methods for all addresses"
 "Price","Price"
@@ -245,3 +245,4 @@
 "Your order has been received.","Đặt hàng thành công"
 "Click <a href=""%s"">here</a> to continue shopping.","Nhấn <a href=""%s"">vào đây</a> để tiếp tục mua hàng."
 "Create an account for later use","Tạo tài khoản để sử dụng"
+"Edit item parameters","chỉnh sửa"
