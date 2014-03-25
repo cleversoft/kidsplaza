@@ -32,7 +32,12 @@ $_collectionSize    = $_productCollection ? $_productCollection->count() : 0;
 $_id                = $this->getConfig('id');
 $_title             = $this->getConfig('widget_title');
 $_core              = $this->helper('core/string');
+/* @var $category Mage_Catalog_Model_Category */
+$category           = Mage::registry('current_category');
+Mage::log(1);
 ?>
+<?php if (!$this->getRequest()->isXmlHttpRequest()): ?>
+<?php if ($category && $category->hasChildren()): ?>
 <?php if ($_collectionSize): ?>
     <script type="text/javascript">
         <?php echo $_id ?> = {
@@ -89,4 +94,6 @@ $_core              = $this->helper('core/string');
             <?php endforeach ?>
         </div>
     </div>
+<?php endif; ?>
+<?php endif; ?>
 <?php endif; ?>
