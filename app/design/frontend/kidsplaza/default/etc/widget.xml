@@ -33,10 +33,6 @@
                         <value>mt/widget/home-deal.phtml</value>
                         <label>Home Deal</label>
                     </home_deal>
-                    <catagory_deal translate="label">
-                        <value>mt/widget/category-deal.phtml</value>
-                        <label>Category Deal</label>
-                    </catagory_deal>
                     <daily_products translate="label">
                         <value>mt/widget/daily-products.phtml</value>
                         <label>Daily Deal Products</label>
