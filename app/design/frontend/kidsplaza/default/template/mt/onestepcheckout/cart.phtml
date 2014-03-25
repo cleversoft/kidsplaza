@@ -37,7 +37,7 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
         <h2><?php echo Mage::getStoreConfig('mtonestepcheckout/titles/cart') ? Mage::getStoreConfig('mtonestepcheckout/titles/cart') : $this->__('Shopping Cart') ?></h2>
         <?php if (Mage::getStoreConfig('mtonestepcheckout/titles/cart_sub')):?><p><?php echo Mage::getStoreConfig('mtonestepcheckout/titles/cart_sub')?></p><?php endif ?>
     </div>
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php echo $this->getChildHtml('form_before') ?>
     <form id="submitCartForm" action="<?php echo $this->getUrl('mtonestepcheckout/cart/updatePost') ?>" method="post">
         <fieldset>

@@ -33,7 +33,7 @@
         <?php endif; ?>
         <h1><?php echo $this->__('My Wishlist') ?></h1>
     </div>
-    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
     <?php if ($this->hasWishlistItems()): ?>
     <form id="wishlist-view-form" action="<?php echo $this->getUrl('*/*/update') ?>" method="post">
         <fieldset>
@@ -67,7 +67,7 @@
                             <?php echo $this->getDetailsHtml($item) ?>
                         </td>
                         <td>
-                            <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" class="form-control" title="<?php echo $this->__('Comment') ?>"><?php echo $this->getCommentValue($item); ?></textarea>
+                            <textarea name="description[<?php echo $item->getWishlistItemId() ?>]" rows="3" cols="5" class="form-control" title="<?php echo $this->__('Comment') ?>"><?php echo $this->escapeHtml($item->getDescription()); ?></textarea>
                         </td>
                         <td>
                             <span class="nobr"><?php echo $this->getFormatedDate($item->getAddedAt()) ?></span>
@@ -99,7 +99,7 @@
             <div class="buttons-set buttons-set2">
                 <!--button type="submit" onclick="this.name='save_and_share'" title="<?php echo $this->__('Share Wishlist') ?>" class="button btn-kid btn btn-share"><span><span><?php echo $this->__('Share Wishlist') ?></span></span></button-->
                 <?php if($this->isSaleable()):?>
-                    <button type="button" title="<?php echo $this->__('Add All to Cart') ?>" onclick="addAllWItemsToCart()" class="button btn-kid btn btn-add "><span><span><?php echo $this->__('Add All to Cart') ?></span></span></button>
+                    <!--button type="button" title="<?php echo $this->__('Add All to Cart') ?>" onclick="addAllWItemsToCart()" class="button btn-kid btn btn-add "><span><span><?php echo $this->__('Add All to Cart') ?></span></span></button-->
                 <?php endif;?>
                 <button type="submit" title="<?php echo $this->__('Update Wishlist') ?>" onclick="this.name='do'" class="button btn-kid btn btn-update"><span><span><?php echo $this->__('Update Wishlist') ?></span></span></button>
             </div>
@@ -137,7 +137,7 @@
     }
 
     function addAllWItemsToCart() {
-        var url = '<?php echo $this->getUrl('*/*/allcart') ?>';
+        var url = '<?php echo $this->getUrl('*/*/cart') ?>';
         var separator = (url.indexOf('?') >= 0) ? '&' : '?';
         $$('#wishlist-view-form .qty').each(
             function (input, index) {

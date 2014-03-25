@@ -134,6 +134,15 @@
                 </MT_KidsPlaza>
             </modules>
         </translate>
+        <routers>
+            <wishlist>
+                <args>
+                    <modules>
+                        <MT_KidsPlaza before="Mage_Wishlist">MT_KidsPlaza_Wishlist</MT_KidsPlaza>
+                    </modules>
+                </args>
+            </wishlist>
+        </routers>
     </frontend>
 
     <default>
