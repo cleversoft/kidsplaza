@@ -40,12 +40,12 @@
 <div class="product-view" data-product="<?php echo $_product->getId()?>">
     <div class="product-essential row show-grid">
     <div class="product-essential-inner">
-        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+        <form action="<?php echo $this->getUrl('checkout/cart/add') ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
             <?php echo $this->getBlockHtml('formkey') ?>
-            <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-products-field" value="" />
+            <input type="hidden" name="product" id="product-field" value="<?php echo $_product->getId() ?>" />
+            <input type="hidden" name="related_product" id="related-field" value="" />
             <div class="product-img-box col-md-6 col-lg-6">
-                    <?php echo $this->getChildHtml('media') ?>
+                <?php echo $this->getChildHtml('media') ?>
             </div>
             <div class="product-shop col-md-6 col-lg-6 col-sm-6 col-xs-12">
                 <div class="page-title">

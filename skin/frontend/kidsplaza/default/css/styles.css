@@ -52,8 +52,8 @@
 .product-view .product-shop  .right-desc p span { font-weight: bold ;}
 .product-view #product-related{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-upsell{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
-.product-view #product-description{  padding: 50px 0 ; }
-.product-view #product-description h2{  font-size: 18px; margin: 0 0 30px; color: #ff3d70 ; }
+.product-view #product-description{  padding: 50px 0; }
+.product-view #product-description h2{ color: #333; }
 .product-view .category-products { padding: 50px 0; border-bottom: 1px solid #f2f2f2; border-top: 1px solid #f2f2f2;}
 .category-products > .btn-group {display: inline-block; position: absolute;  vertical-align: middle; width: 100%;z-index: 9; }
 .category-products > .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #d6d6d7;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 60px ;}
@@ -84,7 +84,6 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .product-options .attr-img.active{ border: 1px solid #007d9e;}
 .product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 20px; }
 .category-products .products-grid .product-name{font-size: 16px;font-family: 'Open Sans',arial, sans-serif;}
-.product-view h2,
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
 
 #product-related h3,

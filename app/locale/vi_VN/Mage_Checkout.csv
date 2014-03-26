@@ -1,5 +1,5 @@
 "%s was successfully added to your shopping cart.","%s was successfully added to your shopping cart."
-"%s was added to your shopping cart.","Bạn đã thêm ""%s"" vào giỏ hàng"
+"%s was added to your shopping cart.","Bạn đã thêm <span class=""p"">%s</span> vào giỏ hàng"
 "&laquo; Back to Billing Information","&laquo; Back to Billing Information"
 "&laquo; Back to Select Addresses","&laquo; Back to Select Addresses"
 "&laquo; Back to Shopping Cart","&laquo; Back to Shopping Cart"

@@ -28,6 +28,9 @@ jQuery('.product-view').each(function(i, product){
 
     if (window['price' + id]) window.optionsPrice = new Product.OptionsPrice(window['price' + id]);
     if (window['related' + id]){
+        window['related'+id].productPrice = 0;
+        window['related'+id].priceExclTax = 0;
+        window['related'+id].priceInclTax = 0;
         window.relatedPrice = new RelatedPrice(window['related' + id]);
         addRelatedToProduct();
         window.relatedProductsCheckFlag = false;
@@ -39,6 +42,15 @@ jQuery('.product-view').each(function(i, product){
         if (this.validator.validate()){
             var form = this.form;
             var oldUrl = form.action;
+
+            var relatedField = $('related-field');
+            if (relatedField){
+                var relatedValues = [];
+                relatedField.value.split(',').each(function(rid){
+                    if (id != rid) relatedValues.push(rid);
+                });
+                relatedField.value = relatedValues.join(',');
+            }
 
             if (url){
                 form.action = url;
@@ -59,12 +71,17 @@ jQuery('.product-view').each(function(i, product){
 
     productAddToCartForm.submitRelated = function(button, url){
         if (this.validator.validate()){
-            var hasChecked = false;
+            var relatedValues = [];
             $$('.related-checkbox').each(function(cb){
-                if (cb.checked) hasChecked = true;
+                if (cb.checked){
+                    relatedValues.push(cb.value);
+                }
             });
-            if (!hasChecked) alert(Translator.translate('You must select a product!'));
+            if (!relatedValues.length) alert(Translator.translate('You must select a product!'));
             else{
+                var first = relatedValues.splice(0,1);
+                $('product-field').value = first[0];
+                $('related-field').value = relatedValues.join(',');
                 if (url) this.form.action = url;
                 this.form.submit();
                 button.disabled = true;
@@ -120,8 +137,8 @@ function addRelatedToProduct(){
             prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
         }
     }
-    if ($('related-products-field')){
-        $('related-products-field').value = values.join(',');
+    if ($('related-field')){
+        $('related-field').value = values.join(',');
     }
     for (var i=0; i<prices.length; i++){
         relatedPrice && relatedPrice.addCustomPrices('related-' + prices[i].product, prices[i]);

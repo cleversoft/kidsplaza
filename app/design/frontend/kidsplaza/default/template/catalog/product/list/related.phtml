@@ -58,7 +58,7 @@ $product = Mage::registry('product');
                 <?php $_price = $product->getFinalPrice() ?>
                 <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
                 <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
-                <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
+                <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $product->getId() ?>" name="related_products[]" value="<?php echo $product->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
             <?php else: ?>
                 <script type="text/javascript">
                     window['related<?php echo $product->getId() ?>'].priceExclTax=0;
