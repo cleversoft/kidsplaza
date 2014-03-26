@@ -685,7 +685,7 @@ p.back-link{float: left;}
 .cms-index-index .std{display: none;}
 .cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
 .category-products .btn-group  .btn-default{opacity: 0; }
-.category-products .toolbar-view .btn-group .btn-default{opacity: 1; }
+.category-products .toolbar-view .btn-group .btn-default{opacity: 1; min-width: 160px;}
 .category-products .toolbar-view .btn-group .btn-default:hover{background: none ; opacity: 1;  }
 .category-products .toolbar-view .btn-group .sort-dir.btn-default:hover{background: #01A1ED ; opacity: 1;  }
 .category-products:hover .btn-group  .btn-default{opacity: 0.65; }
