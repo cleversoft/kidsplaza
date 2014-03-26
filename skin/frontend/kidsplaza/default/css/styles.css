@@ -563,11 +563,11 @@ span.separator{vertical-align: top; }
 .my-wishlist  .buttons-set .button {margin: 0 5px;}
 .my-wishlist h3 {font-size: 100%;}
 
-.cart .page-title { background: #0098cd ; }
-.cart .page-title h2 { border: none ; font-size: 18px ; color: #fff;  margin: 35px 0 0; padding: 15px 20px;}
-.cart  .product-name a{ color: #333333 ; font-size: 16px ;  }
+.cart .page-title { background: #0098cd; }
+.cart .page-title h2 { border: none; font-size: 18px; color: #fff;  margin: 0; padding: 15px 20px;}
+.cart  .product-name a{ color: #333333; font-size: 16px;}
 .cart  .btn-remove,
-.cart  .btn-edit{ color: #333333 ;border: 1px dashed #989898 ; padding: 2px 5px; line-height: 70px;}
+.cart  .btn-edit{ color: #333333; border: 1px dashed #989898; padding: 2px 5px; line-height: 70px;}
 .cart .btn-remove:focus,
 .cart .btn-remove:active{}
 .cart .cart-price {  line-height: 70px ; }
@@ -922,4 +922,12 @@ dl.item-options{
 .box-account .col2-set{
     float: left;
     width: 100%;
+}
+.cart .btn-edit:hover,
+.cart .link-wishlist:hover,
+.cart .btn-remove:hover{
+    text-decoration: none;
+}
+.success-msg .p{
+    color: #0098cd;
 }

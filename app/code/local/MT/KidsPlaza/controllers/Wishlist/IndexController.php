@@ -130,4 +130,51 @@ class MT_KidsPlaza_Wishlist_IndexController extends Mage_Wishlist_IndexControlle
 
         $this->_redirectReferer(Mage::getUrl('*/*'));
     }
+
+    /**
+     * Add cart item to wishlist and remove from cart
+     */
+    public function fromcartAction()
+    {
+        $wishlist = $this->_getWishlist();
+        if (!$wishlist) {
+            return $this->norouteAction();
+        }
+        $itemId = (int) $this->getRequest()->getParam('item');
+
+        /* @var Mage_Checkout_Model_Cart $cart */
+        $cart = Mage::getSingleton('checkout/cart');
+        $session = Mage::getSingleton('core/session');
+
+        try {
+            $item = $cart->getQuote()->getItemById($itemId);
+            if (!$item) {
+                Mage::throwException(
+                    Mage::helper('wishlist')->__("Requested cart item doesn't exist")
+                );
+            }
+
+            $productId  = $item->getProductId();
+            $buyRequest = $item->getBuyRequest();
+
+            $wishlist->addNewItem($productId, $buyRequest);
+
+            $productIds[] = $productId;
+            $cart->getQuote()->removeItem($itemId);
+            $cart->save();
+            Mage::helper('wishlist')->calculate();
+            $productName = Mage::helper('core')->escapeHtml($item->getProduct()->getName());
+            $wishlistName = Mage::helper('core')->escapeHtml($wishlist->getName());
+            $session->addSuccess(
+                Mage::helper('wishlist')->__("%s has been moved to wishlist %s", $productName, $wishlistName)
+            );
+            $wishlist->save();
+        } catch (Mage_Core_Exception $e) {
+            $session->addError($e->getMessage());
+        } catch (Exception $e) {
+            $session->addException($e, Mage::helper('wishlist')->__('Cannot move item to wishlist'));
+        }
+
+        return $this->_redirectUrl($this->_getRefererUrl());
+    }
 }
