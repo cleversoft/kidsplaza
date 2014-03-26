@@ -60,6 +60,8 @@
 .category-products > .btn-group a i.glyphicon{color: #fff;left: -1px;top: 3px; }
 .category-products > .btn-group a.btn-next { right : 0px;}
 .category-products > .btn-group a.btn-prev { left: 0px;}
+.home-combo-carousel-wrapper > .btn-group a.btn-next { right : 5px;}
+.upsell-carousel-wrapper > .btn-group a.btn-next { right : 5px;}
 
 .products-grid .owl-wrapper-outer .owl-item  { text-align: center ; }
 .products-grid .owl-wrapper-outer .owl-item .item  img { float:none ; padding: 3px ; display: inline-block;width: 135px;}
