@@ -1,0 +1,103 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_StockNotify
+@copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+    <modules>
+        <MT_StockNotify>
+            <version>1.0</version>
+        </MT_StockNotify>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtstocknotify>
+                <class>MT_StockNotify_Block</class>
+            </mtstocknotify>
+        </blocks>
+        <helpers>
+            <mtstocknotify>
+                <class>MT_StockNotify_Helper</class>
+            </mtstocknotify>
+        </helpers>
+        <models>
+            <mtstocknotify>
+                <class>MT_StockNotify_Model</class>
+                <resourceModel>mtstocknotify_mysql4</resourceModel>
+            </mtstocknotify>
+            <mtstocknotify_mysql4>
+                <class>MT_StockNotify_Model_Mysql4</class>
+                <entities>
+                    <notify>
+                        <table>mt_stocknotify</table>
+                    </notify>
+                </entities>
+            </mtstocknotify_mysql4>
+        </models>
+        <resources>
+            <mtstocknotify_setup>
+                <setup>
+                    <module>MT_StockNotify</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mtstocknotify_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <routers>
+            <mtstocknotify>
+                <use>standard</use>
+                <args>
+                    <module>MT_StockNotify</module>
+                    <frontName>mtstocknotify</frontName>
+                </args>
+            </mtstocknotify>
+        </routers>
+        <layout>
+            <updates>
+                <mtstocknotify>
+                    <file>mt_stocknotify.xml</file>
+                </mtstocknotify>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <MT_StockNotify>
+                    <files>
+                        <default>MT_StockNotify.csv</default>
+                    </files>
+                </MT_StockNotify>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <mtstocknotifyadmin>
+                <use>admin</use>
+                <args>
+                    <module>MT_StockNotify</module>
+                    <frontName>mtstocknotifyadmin</frontName>
+                </args>
+            </mtstocknotifyadmin>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtstocknotify>
+                    <file>mt_stocknotify.xml</file>
+                </mtstocknotify>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>

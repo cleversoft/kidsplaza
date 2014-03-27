@@ -888,11 +888,9 @@ p.back-link{float: left;}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .table-striped > tbody > tr td.text { width: 30% ;}
     .table-bordered > tbody > tr > td.right {border-right: 1px solid #d7d7d7 !important ;}
-
     ::i-block-chrome, .category-products > .btn-group a.btn-next {
         right:5px;
     }
-
 }
 
 /************ Fix IE8 **************/
@@ -944,4 +942,8 @@ dl.item-options{
 }
 .success-msg .p{
     color: #0098cd;
+}
+.product-view .product-shop .right-desc .stock-notify-note{
+    line-height: 100%;
+    margin-top: 10px;
 }

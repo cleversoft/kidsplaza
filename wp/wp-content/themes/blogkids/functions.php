@@ -5,7 +5,7 @@
     require_once(CT_INCLUDES_PATH . '/plugins/aq_resizer.php');
     include_once(CT_INCLUDES_PATH . '/plugins/love-it-pro/love-it-pro.php');
     include_once(TEMPLATEPATH . '/includes/widget-view-post.php');
-
+    include_once('admin/index.php');
     //menu
     function register_main_menus() {
         register_nav_menus(
@@ -97,6 +97,7 @@
     function alx_styles() 
     {
         wp_enqueue_style( 'font-awesome', get_template_directory_uri().'/css/font-awesome.min.css' );
+        wp_enqueue_style( 'ss-gizmo', get_template_directory_uri().'/css/ss-gizmo.css' );
         wp_enqueue_style( 'bootstrap', get_template_directory_uri().'/css/bootstrap.min.css' );
         wp_enqueue_style( 'responsive', get_template_directory_uri().'/css/responsive.css' );
     }
@@ -370,7 +371,7 @@ if($sbc_settings['sbc_style'] === '1'){
     function style_insert() {
         $current_path = get_option('siteurl').'/wp-content/plugins/'.basename(dirname(__FILE__));
         
-        echo "<link href='{$current_path}/sbc-style.css' type='text/css' rel='stylesheet' />";
+        //echo "<link href='{$current_path}/sbc-style.css' type='text/css' rel='stylesheet' />";
     }
 
     // insert custom stylesheet

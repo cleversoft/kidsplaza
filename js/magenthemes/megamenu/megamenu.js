@@ -12,12 +12,14 @@
             mm_timeout: 0
         }, options);
         $(this).children('li.parent').bind('mouseenter', function(e){
+            $(this).prev().addClass('bgnone');
             var mm_item_obj = $(this).children('div');
             mm_item_obj.show();
             $(this).addClass('over');
 
         });
         $(this).children('li.parent').bind('mouseleave', function(e){
+            $(this).prev().removeClass('bgnone');
             var mm_item_obj = $(this).children('div');
             mm_item_obj.hide();
             $(this).removeClass('over');

@@ -13,8 +13,8 @@
 	</a>
 	<div class="blog-item-details">
 		<ul class="litst-details">
-			<li class="col-sm-3"><i class="fa fa-calendar"></i> <?php the_time("d/m/Y - H:i a") ?></li>
-			<li class="col-sm-2"><i class="fa fa-comments"></i> <a href="<?php the_permalink(); ?>/#comment-area"><?php comments_popup_link('0', '1', '%','comment-link'); ?></a> Comment</li>
+			<li class="col-md-3 col-sm-5"><i class="fa fa-calendar"></i> <?php the_time("d/m/Y - H:i a") ?></li>
+			<li class="col-md-2 col-sm-3"><i class="fa fa-comments"></i> <a href="<?php the_permalink(); ?>/#comment-area"><?php comments_popup_link('0', '1', '%','comment-link'); ?></a> Comment</li>
 		</ul>
 	</div>
 </article>

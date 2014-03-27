@@ -1,40 +1,41 @@
+<?php global $data; ?>
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 ">
+				<div class="col-md-3 col-xs-6">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer1')): endif;?>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-xs-6">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer2')): endif;?>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-xs-6">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer3')): endif;?>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-3 col-xs-6">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer4')): endif;?>
 				</div>
-				<div class="diachi col-md-12 clearfix">
-					<div class="col-md-3">
+				<div class="diachi col-xs-12 clearfix">
+					<div class="col-sm-3 col-xs-6">
 						<h3>Kids plaza Hà Nội</h3>
 					</div>
-					<div class="diachiso col-md-3">
+					<div class="diachiso col-sm-3 col-xs-6">
 						<p><strong>Q.Đống Đa:</strong> Số 20-22 Thái Thịnh</p>
 						<p><strong>Q.Ba Đình:</strong> Số 56 Giang Văn Minh</p>
 					</div>
-					<div class="diachiso col-md-3">
+					<div class="diachiso col-sm-3 col-xs-6">
 						<p><strong>Q.Cầu Giấy:</strong> Số 40 Trần Thái Tông</p>
 						<p><strong>Q.Hà Đông:</strong> Số 44-TT4A Văn Quán</p>
 					</div>
-					<div class="diachiso col-md-3">
+					<div class="diachiso col-sm-3 col-xs-6">
 						<p><strong>Q.Thanh Xuân:</strong> Số 533 Nguyễn Trãi</p>
 						<p><strong>Q.Hai Bà Trưng:</strong> Số 340 Bạch Mai</p>
 					</div>
 				</div>
-				<div class="diachi col-md-12">
-					<div class="col-md-3">
+				<div class="diachi col-xs-12">
+					<div class="col-sm-3  col-xs-6">
 						<h3>Kids plaza Hồ Chí Minh</h3>
 					</div>
-					<div class="diachiso hcm col-md-9">
+					<div class="diachiso hcm col-sm-9  col-xs-6">
 						<p>162L/18 Trường Chinh, P.12, Quận Tân Bình, TPHCM</p>
 					</div>
 				</div>
@@ -44,22 +45,49 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="text-copyright col-lg-6 col-md-5">
-					<p>Copyright © 2009-2013 Kidsplaza.vn. Bản quyền của công ty Kids Plaza</p>
+				<div class="text-copyright col-lg-6 col-md-5 col-sm-8">
+					<p><?php echo $data['apl_footer_text']; ?></p>
 				</div>
-				<div class="email-copyright col-sm-3">
-					<p>Email: <a href="mailto:hotro@kidsplaza.vn">hotro@kidsplaza.vn</a></p>
+				<div class="email-copyright col-md-3 col-sm-4">
+					<p>Email: <a href="mailto:<?php echo $data['apl_footer_email']; ?>"><?php echo $data['apl_footer_email']; ?></a></p>
 				</div>
 				<div class="social col-lg-3 col-md-4">
 					<ul>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/facebook.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/pinterest.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/flickr.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/twitter.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/youtube.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/linkedin.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/skype.png"></a></li>
-						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/google.png"></a></li>
+					<?php 
+					$url = get_template_directory_uri();
+					$facebook = $data['apl_facebook'];
+					$pinterest = $data['apl_pinterest'];
+					$flickr = $data['apl_flickr'];
+					$twitter = $data['apl_twitter'];
+					$youtube = $data['apl_youtube'];
+					$inlink = $data['apl_inlink'];
+					$skype = $data['apl_skype'];
+					$google = $data['apl_google'];
+					if (!empty($facebook)) {
+						echo "<li><a href='".$facebook."'><img src='". $url ."/images/facebook.png'></a></li>";
+					}
+					if (!empty($pinterest)) {
+						echo "<li><a href='".$pinterest."'><img src='". $url ."/images/pinterest.png'></a></li>";
+					}
+					if (!empty($flickr)) {
+						echo "<li><a href='".$flickr."'><img src='". $url ."/images/flickr.png'></a></li>";
+					}
+					if (!empty($twitter)) {
+						echo "<li><a href='".$twitter."'><img src='". $url ."/images/twitter.png'></a></li>";
+					}
+					if (!empty($youtube)) {
+						echo "<li><a href='".$youtube."'><img src='". $url ."/images/youtube.png'></a></li>";
+					}
+					if (!empty($inlink)) {
+						echo "<li><a href='".$inlink."'><img src='". $url ."/images/linkedin.png'></a></li>";
+					}
+					if (!empty($skype)) {
+						echo "<li><a href='".$skype."'><img src='". $url ."/images/skype.png'></a></li>";
+					}
+					if (!empty($google)) {
+						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
+					}
+					?>
 					</ul>
 				</div>
 			</div>

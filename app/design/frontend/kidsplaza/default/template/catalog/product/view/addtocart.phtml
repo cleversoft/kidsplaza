@@ -30,7 +30,7 @@
 <?php if ($_product->isAvailable()): ?>
     <a class="btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
 <?php else: ?>
-    <a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Call Me') ?></a>
+    <!--a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Call Me') ?></a-->
 <?php endif ?>
 <p class="shipping-note"><?php echo $this->__('Shipping within <span>6 - 12hrs</span>') ?></p>
 <?php if ($_product->isSaleable()): ?>
@@ -47,7 +47,11 @@
         <?php echo $this->getChildHtml('', true, true) ?>
     </div>
 <?php else: ?>
-    <!--button class="btn btn-cart btn-kid " type="button">
-        Notify Me
-    </button-->
+    <input id="stock-notify-email" type="text" class="form-control" placeholder="<?php echo $this->__('Enter your email or phone number here') ?>"/>
+    <p class="stock-notify-note"><?php echo $this->__('Ex: guest@gmail.com or 0978654321') ?></p>
+    <button class="btn btn-cart btn-login"
+            type="button" style=""
+            onclick="stockNotifySubmit(this, '<?php echo $this->getUrl('mtstocknotify/notify/submit', array('product'=>$_product->getId(),'form_key'=>Mage::getSingleton('core/session')->getFormKey())) ?>')">
+        <?php echo $this->__('Call Me') ?>
+    </button>
 <?php endif ?>

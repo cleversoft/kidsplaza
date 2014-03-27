@@ -11,7 +11,7 @@
 	LARGE DISPLAYS
 -------------------------------------------- */
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
 	.page-menu ul {
  	   margin-top: 10px;
 	}
@@ -140,8 +140,25 @@
 	}
 }
 
-@media only screen and (min-width: 768px) and (max-width: 959px) {	
-	
+@media only screen and (min-width: 768px) and (max-width: 991px) {	
+	.diachiso {
+	    margin-top: 20px;
+	}
+	.diachi h3 {
+		background-size: 40px;
+		font-size: 14px;
+		line-height: 26px;
+		padding-left: 45px;
+	}
+	.share .addthis_toolbox {
+		padding: 14px 0 7px 28px;
+	}
+	.share .addthis_toolbox .addthis_button_pinterest_pinit, .share .addthis_button_tweet  {
+		display: none;
+	}
+	.litst-details li:last-child {
+		padding-right: 0;
+	}
 
 }
 
@@ -151,6 +168,51 @@
 -------------------------------------------- */
 
 @media only screen and (max-width: 767px) {
+	.navbar-brand {
+		display: block;
+		color: #fff;
+	}
+	.navbar-brand:hover {
+		color: #000;
+	}
+	.navbar-toggle:after {
+	    color: #FFFFFF;
+	    content: "";
+	    font-family: "SSGizmo";
+	    font-size: 33px;
+	    position: absolute;
+	    right: -2px;
+	    top: -2px;
+	}
+	.main-navigation ul > li {
+		display: block !important;
+		float: inherit !important;
+	}
+	.main-navigation ul > li a {
+		color: #fff;
+	}
+	.main-navigation ul {
+		text-align: left;
+		border: 0;
+		background: #17A1EF;
+		margin-top: 0;
+		padding-top: 0;
+	}
+	.main-navigation ul > li:first-child > a {
+		background: none;
+		font-size: 14px;
+	}
+	.account {
+		width: 193px;
+		margin: 0 auto;
+	}
+	.logo {
+		width: 250px;
+		margin: 0 auto;
+	}
+	.b-search #sbc-submit {
+		margin-left: 3px;
+	}
 
 }
 
@@ -159,5 +221,13 @@
 -------------------------------------------- */
 
 @media only screen and (max-width: 479px) {
-
+	#sbc-search .multi-cat {
+	    width: 50%;
+	}
+	footer div {
+		width: 100% !important;
+	}
+	.share p {
+		margin-bottom: 0;
+	}
 }

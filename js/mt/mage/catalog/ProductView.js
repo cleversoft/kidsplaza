@@ -247,3 +247,26 @@ jQuery(function(){
         }
     });
 });
+
+function stockNotifySubmit(btn, url){
+    var field = jQuery('#stock-notify-email');
+    if (!field.length || !url) return;
+    var value = field.val();
+    if (!value) alert(Translator.translate('You must enter email or phone number'));
+    else{
+        jQuery.ajax({
+            url: url,
+            method: 'post',
+            data: {value:value},
+            beforeSend: function(){
+                jQuery(btn).addClass('disabled');
+                jQuery(btn).attr('disabled', true);
+            },
+            success: function(data){
+                jQuery(btn).removeClass('disabled');
+                jQuery(btn).removeAttr('disabled');
+
+            }
+        });
+    }
+}

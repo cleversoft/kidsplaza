@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+ <?php get_header(); ?>
 	<div class="breadcrumbs col-lg-12">
 	    <?php if(function_exists('bcn_display'))
 	    {
@@ -17,19 +17,26 @@
 					$image = aq_resize( $thumb_img_url, 870, 300, true, false);
 				?>
 				<img class="img-responsive thumbnails" src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
-				<figcaption>
-					<div class="thumb-info thumb-info-alt">
-						<i class="ss-navigateright"></i>
-					</div>
-				</figcaption>
 				<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
 				<div class="blog-item-details-single">
 					<ul class="litst-details">
-						<li class="col-sm-1"><i class="fa fa-user"></i> <?php the_author(); ?></li>
-						<li class="col-sm-3"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
-						<li class="col-sm-2"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
-						<li class="col-sm-1"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment-area"><?php comments_popup_link('0', '1', '%','comment-link'); ?></a></li>
-						<li class="col-sm-1">
+						<li class="col-md-1 col-sm-2 col-xs-4"><i class="fa fa-user"></i> <?php the_author(); ?></li>
+						<li class="col-md-3 col-sm-4 col-xs-4"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
+						<li class="col-md-2 col-sm-3 col-xs-4"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
+						<li class="col-md-1 col-sm-2 col-xs-4"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment">
+						<?php
+						    $url = get_permalink();
+						    $urlfb='http://api.ak.facebook.com/restserver.php?v=1.0&method=links.getStats&urls=' . urlencode($url) . '&format=json';
+						    $content=@file_get_contents($urlfb);
+						    if ($content) {
+						        $likeInfo=json_decode($content);
+						        echo '' . $likeInfo[0]->comment_count;
+						    } else {
+						        echo '0';
+						    }
+						?>
+						</a></li>
+						<li class="col-md-1 col-sm-1 col-xs-4">
 							<?php if (function_exists( 'lip_love_it_link' )) {
 									echo lip_love_it_link(get_the_ID(), '<i class="fa-heart-o"></i>', '<i class="fa-heart"></i>', false);
 						
@@ -40,9 +47,9 @@
 						<?php the_content(); ?>
 					</div>
 					<div class="share">
-						<p class="col-lg-1 col-md-2">Share</p>
+						<p class="col-lg-1 col-sm-2">Share</p>
 						<!-- AddThis Button BEGIN -->
-						<div class="addthis_toolbox addthis_default_style col-lg-11 col-md-10">
+						<div class="addthis_toolbox addthis_default_style col-lg-11 col-sm-10">
 							<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
 							<a class="addthis_button_facebook_send"></a>
 							<a class="addthis_button_google_plusone" g:plusone:size="medium"></a> 
@@ -66,7 +73,7 @@
 					wp_reset_postdata();
 				?>
 			</div>
-			<div class="comment">
+			<div class="comment" id="comment">
 				<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="800" data-numposts="5" data-colorscheme="light">
 			</div>
 	</section>

@@ -1,10 +1,10 @@
 /*   
-Theme Name: BLANK Theme
-Theme URI: http://digwp.com
-Description: This is just a BLANK starter WordPress Theme template -- WordPress v3.0.1
-Author: Chris Coyier
-Author URI: http://chriscoyier.net
-Version: 2
+Theme Name: BlogKids
+Theme URI: http://apl.vn/
+Description: Giao diện blog kidsplaza.vn
+Author: APL
+Author URI: http://apl.vn/
+Version: 6.9
 */
 
 h2 {
@@ -15,10 +15,10 @@ h3 {
     font-size: 18px;
 }
 a {
-    color: #333 !important;
+    color: #333;
 }
 a:hover {
-    color: #ff0084 !important;
+    color: #ff0084;
 }
 p {
     color: #525252;
@@ -136,7 +136,7 @@ ul li {
     border-right: 1px solid #CFCFCF;
     color: #484848;
     font-size: 14px;
-    padding: 0 31px 5px 0;
+    padding: 0 15px 5px 0;
     text-transform: uppercase;
 }
 .main-navigation ul > li > a:hover, .main-navigation ul > li > a:focus {
@@ -463,6 +463,13 @@ aside .widget_nav_menu ul li a:before{
 }
 .view_post_widget .post-view {
     padding: 10px;
+    overflow: hidden;
+}
+.view_post_widget .post-view a{
+    color: #333;
+}
+.view_post_widget .post-view a:hover {
+    color: #ff0084;
 }
 .view_post_widget .post-view img {
     float: left;
@@ -471,8 +478,8 @@ aside .widget_nav_menu ul li a:before{
 .view_post_widget .post-view h2 {
     font-size: 13px;
     font-weight: bold;
-    line-height: 20px;
-    margin-top: 5px;
+    line-height: 17px;
+    margin: 0;
 }
 .view_post_widget .bg-2 {
     background: #fbfbfb;
@@ -725,6 +732,9 @@ footer .widget_nav_menu ul li a {
     font-weight: normal;
     padding: 6px 8px 6px 15px;
     width: 90px;
+}
+#sbc-search .postform option {
+    border: 0;
 }
 #sbc-search .multi-cat {
     background: url("images/search.png") no-repeat scroll left center rgba(0, 0, 0, 0);
