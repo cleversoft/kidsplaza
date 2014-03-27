@@ -16,7 +16,10 @@
 				</div>
 				<div class="diachi col-xs-12 clearfix">
 					<div class="col-sm-3 col-xs-6">
-						<h3>Kids plaza Hà Nội</h3>
+                        <div class="hn widget">
+                            <em></em>
+                            <h3>Kids plaza Hà Nội</h3>
+                        </div>
 					</div>
 					<div class="diachiso col-sm-3 col-xs-6">
 						<p><strong>Q.Đống Đa:</strong> Số 20-22 Thái Thịnh</p>
@@ -32,8 +35,11 @@
 					</div>
 				</div>
 				<div class="diachi col-xs-12">
-					<div class="col-sm-3  col-xs-6">
-						<h3>Kids plaza Hồ Chí Minh</h3>
+					<div class="col-sm-3 widget col-xs-6">
+                        <div class="hcm widget">
+                            <em></em>
+                            <h3>Kids plaza Hồ Chí Minh</h3>
+					    </div>
 					</div>
 					<div class="diachiso hcm col-sm-9  col-xs-6">
 						<p>162L/18 Trường Chinh, P.12, Quận Tân Bình, TPHCM</p>
@@ -45,13 +51,13 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="text-copyright col-lg-6 col-md-5 col-sm-8">
+				<div class="text-copyright col-lg-5 col-md-5 col-sm-12 col-xs-12">
 					<p><?php echo $data['apl_footer_text']; ?></p>
 				</div>
-				<div class="email-copyright col-md-3 col-sm-4">
+				<div class="email-copyright col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<p>Email: <a href="mailto:<?php echo $data['apl_footer_email']; ?>"><?php echo $data['apl_footer_email']; ?></a></p>
 				</div>
-				<div class="social col-lg-3 col-md-4">
+				<div class="social col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<ul>
 					<?php 
 					$url = get_template_directory_uri();

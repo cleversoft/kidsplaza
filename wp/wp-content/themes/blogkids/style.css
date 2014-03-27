@@ -6,7 +6,10 @@ Author: APL
 Author URI: http://apl.vn/
 Version: 6.9
 */
-
+body {
+    font-size: 13px !important;
+    color: #636363 !important;
+}
 h2 {
     font-size: 26px;
     color: #333;
@@ -34,7 +37,8 @@ ul li {
 
 /*top-header */
 .top-header {
-    background: url(images/bg-top-header.png) repeat-x bottom #009fe6;
+    background: url(images/bgHeader.png) repeat-x bottom #009fe6;
+    background-position: 0 100%;
 }
 .social ul{
     margin-top: 20px;
@@ -43,13 +47,14 @@ ul li {
 }
 .social ul li {
     float: left;
-    padding-right: 5px;
+    padding-left: 4px;
 }
 .page-menu ul {
     margin-top: 20px;
     overflow: hidden;
     padding: 0;
     text-align: center;
+    float: left;
 }
 .page-menu ul li {
     display: inline-block !important;
@@ -75,10 +80,8 @@ ul li {
     margin: 0;
 }
 .page-menu ul li:first-child a{
-    font-size: 17px;
-}
-.account {
-    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: bold;
 }
 .account a {
     display: block;
@@ -90,7 +93,7 @@ ul li {
     background: #ff4884;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    margin-bottom: 35px;
+    margin-bottom: 40px;
     padding-left: 8px;
 }
 .account a:hover {
@@ -426,18 +429,12 @@ figure.animated-overlay.overlay-alt:hover figcaption {
 /*widget*/
 .widget {
     margin-bottom: 20px;
-    overflow: hidden;
-}
-.widget h3 {
-    font-weight: bold;
-    font-size: 18px;
-    color: #333;
 }
 .widget .menu {
     padding: 0;
 }
-.widget a:hover {
-    text-decoration: none;
+footer .widget_nav_menu ul li a:hover {
+    text-decoration: underline;
 }
 .widget_nav_menu ul li {
     padding: 5px 0;
@@ -450,16 +447,8 @@ aside .widget_nav_menu ul li a:before{
     margin-right: 10px;
     text-decoration: inherit;
 }
-.widget_nav_menu ul li a {
-    color: #484848;
-}
 .widget_nav_menu ul li a:hover {
-    color: #ff4884;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -webkit-transition: all 0.3s ease-in-out;
-    -o-transition: all 0.3s ease-in-out;
+    text-decoration: none;
 }
 .view_post_widget .post-view {
     padding: 10px;
@@ -499,84 +488,62 @@ aside .widget_nav_menu ul li a:before{
 }
 
 /* Footer */
+.widget h3 {
+    margin: 15px 0 8px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    padding: 9px 0 0 0;
+}
 footer {
     margin-top: 30px;
     background: url(images/bg-top-footer.png) repeat-x top #0095d6;
     padding: 50px 0;
-    font-size: 16px;
 }
-#nav_menu-3 h3 {
-    background: url(images/icon-1.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+.widget em {
+    background: url("images/bgIcons.png") no-repeat 0 0;
+    display: block;
+    float: left;
+    height: 45px;
+    margin: 1px 12px 0 0;
+    width: 46px;
 }
-#nav_menu-5 h3 {
-    background: url(images/icon-2.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-3 em {
+    background-position: 0 0;
 }
-#nav_menu-7 h3 {
-    background: url(images/icon-3.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-5 em {
+    background-position: -46px 0;
 }
-#nav_menu-8 h3 {
-    background: url(images/icon-4.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-7 em {
+    background-position: -92px 0
 }
-#nav_menu-4 h3 {
-    background: url(images/icon-5.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-8 em {
+    background-position: -138px 0;
 }
-#nav_menu-6 h3 {
-    background: url(images/icon-6.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-4 em {
+    background-position: 0 -45px;
 }
-#text-3 h3 {
-    background: url(images/icon-7.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    text-indent: 55px;
-    font-size: 16px;
+#nav_menu-6 em {
+    background-position: -46px -45px;
 }
-.diachi h3 {
-    background: url(images/icon-8.png) no-repeat scroll 0 center rgba(0, 0, 0, 0);
-    color: #FFFFFF;
-    line-height: 45px;
-    margin-bottom: 0;
-    padding-left: 55px;
-    font-size: 16px;
+#text-3 em {
+    background-position: -91px -45px;
+}
+.diachi .hn em {
+    background-position: -137px -45px;
+}
+.diachi .hcm em {
+    background-position: -137px -45px;
 }
 .diachi h3:after {
     content: "\f101";
     float: right;
     font-family: FontAwesome;
     font-size: 20px;
+    line-height: 13px;
 }
 #nav_menu-3 ul, #nav_menu-4 ul, #nav_menu-5 ul, #nav_menu-6 ul, #nav_menu-7 ul, #nav_menu-8 ul{
-    margin-left: 55px;
+    margin-left: 58px;
 }
 #text-3 .textwidget {
     font-size: 31px;
@@ -593,11 +560,12 @@ footer .widget_nav_menu .menu li:last-child a{
     padding: 0 20px 0 0;
 }
 .diachiso {
-    margin-top: 30px;
+    margin-top: 17px;
 }
 .diachiso p {
     color: #fff;
     font-size: 12px;
+    margin: 0;
 }
 .diachi .hcm p{
     font-weight: bold;
@@ -605,7 +573,7 @@ footer .widget_nav_menu .menu li:last-child a{
     line-height: 25px;
 }
 footer .widget_nav_menu ul li {
-    padding: 1px 0;
+    padding: 0;
 }
 footer .widget_nav_menu ul li a {
     color: #fff !important;
@@ -614,7 +582,8 @@ footer .widget_nav_menu ul li a {
 
 /*copyright*/
 .copyright {
-    background: #555555;
+    background: #4d4d4d;
+    padding: 4px 0;
 }
 .copyright p, .copyright a {
     color: #fff !important ;
@@ -625,9 +594,10 @@ footer .widget_nav_menu ul li a {
 }
 .copyright .social ul {
     margin-top: 10px;
+    float: right;
 }
 .text-copyright, .email-copyright {
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 

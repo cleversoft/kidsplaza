@@ -44,7 +44,7 @@
 
     register_sidebar(array(
         'name' => 'Footer1',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s"><em></em>',
         'after_widget'  => '</div>',
         'before_title'  => '<h3>',
         'after_title'   => '</h3>'
@@ -52,21 +52,21 @@
     
     register_sidebar(array(
         'name' => 'Footer2',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s"><em></em>',
         'after_widget'  => '</div>',
         'before_title'  => '<h3>',
         'after_title'   => '</h3>'
     ));
         register_sidebar(array(
         'name' => 'Footer3',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s"><em></em>',
         'after_widget'  => '</div>',
         'before_title'  => '<h3>',
         'after_title'   => '</h3>'
     )); 
     register_sidebar(array(
         'name' => 'Footer4',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'before_widget' => '<div id="%1$s" class="widget %2$s"><em></em>',
         'after_widget'  => '</div>',
         'before_title'  => '<h3>',
         'after_title'   => '</h3>'

@@ -31,7 +31,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <link href="<?php echo $data['apl_favicon']; ?>" rel="shortcut icon" />
     <link href="<?php echo $data['apl_apple_touch']; ?>" rel="apple-touch-icon" />
-	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,700&subset=vietnamese' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=vietnamese' rel='stylesheet' type='text/css'>
 	<?php if (is_singular()) wp_enqueue_script('comment-reply'); ?>
 	<?php wp_head(); ?>
 </head>
