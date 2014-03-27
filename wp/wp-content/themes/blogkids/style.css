@@ -136,7 +136,7 @@ ul li {
     border-right: 1px solid #CFCFCF;
     color: #484848;
     font-size: 14px;
-    padding: 0 15px 5px 0;
+    padding: 0 31px 5px 0;
     text-transform: uppercase;
 }
 .main-navigation ul > li > a:hover, .main-navigation ul > li > a:focus {
@@ -582,6 +582,15 @@ footer {
     font-size: 31px;
     color: #fff;
     margin-left: 55px;
+}
+footer .widget_nav_menu .menu li:last-child{
+    margin-top: 5px;
+}
+footer .widget_nav_menu .menu li:last-child a{
+    background: url(images/iconft.png) no-repeat scroll 100% 50% rgba(0, 0, 0, 0);
+    display: inline-block;
+    font-size: 90%;
+    padding: 0 20px 0 0;
 }
 .diachiso {
     margin-top: 30px;
