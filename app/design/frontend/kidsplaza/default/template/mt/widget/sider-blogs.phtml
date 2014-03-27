@@ -29,7 +29,7 @@ $title      = $this->getConfig('widget_title');
                <a href="<?php echo $blog->getUrl() ?>"><?php echo $blog->getPostTitle() ?></a>
                 <?php if ($blog->getPostTime()): ?>
                     <i class="glyphicon glyphicon-calendar"></i>
-                    <span><?php echo $blog->getPostTime() ?></span>
+                    <span><?php echo $blog->getPostTime('d/m/Y') ?></span>
                 <?php endif ?>
             </div>
         </li>
