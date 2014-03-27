@@ -56,12 +56,12 @@
 .product-view #product-description h2{ color: #333; }
 .product-view .category-products { padding: 50px 0; border-bottom: 1px solid #f2f2f2; border-top: 1px solid #f2f2f2;}
 .category-products > .btn-group {display: inline-block; position: absolute;  vertical-align: middle; width: 100%;z-index: 9; }
-.category-products > .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #d6d6d7;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 60px ;}
+.category-products > .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #d6d6d7;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 140px ;}
 .category-products > .btn-group a i.glyphicon{color: #fff;left: -1px;top: 3px; }
 .category-products > .btn-group a.btn-next { right : 0px;}
 .category-products > .btn-group a.btn-prev { left: 0px;}
 .home-combo-carousel-wrapper > .btn-group a.btn-next { right : 5px;}
-.upsell-carousel-wrapper > .btn-group a.btn-next { right : 5px;}
+.upsell-carousel-wrapper .btn-group a.btn-next { right : 5px !important;}
 
 .products-grid .owl-wrapper-outer .owl-item  { text-align: center ; }
 .products-grid .owl-wrapper-outer .owl-item .item  img { float:none ; padding: 3px ; display: inline-block;width: 135px;}
@@ -73,6 +73,7 @@
 .products-grid .owl-wrapper-outer .owl-item .item  .price-box .old-price .price { color:#333 ; margin:0 ;text-decoration: line-through;}
 .products-grid .owl-wrapper-outer .owl-item .item .btn-kid.btn-cart { background-color: #7FB92A;border: 1px solid #477700; border-radius: 4px; outline: medium none; padding: 8px 20px;text-transform: uppercase;}
 .products-grid .owl-wrapper-outer .owl-item .item .btn-kid.btn-cart .glyphicon { display: none ;}
+
 
 .home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 12px;}
 .home-combo-carousel-wrapper .products-grid .actions {width: 96% ;}
@@ -331,7 +332,8 @@ input,textarea{outline:0}
 .btn-subscribe{font-weight:700}
 .footer-coppyright-inner .social-links{float:right}
 .grid-5 li{width: 20%;}
-.products-grid li{float:left;text-align:center;position:relative;height:270px;margin-bottom:15px ;margin-top: 40px;}
+.products-grid li ,
+.products-grid .item{float:left;text-align:center;position:relative;height:270px;margin-bottom:15px ;margin-top: 0;}
 .products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;margin:5px 0;}
 .products-grid .product-name a{color:#634f4f}
 .products-grid .product-image{display:block;text-align: center;padding: 10px 0 0;}
@@ -408,7 +410,7 @@ input,textarea{outline:0}
 .category-products .price-box .old-price .price-label { display: none ;}
 .category-products.root-category h2.product-name { margin-bottom: 10px;}
 .category-products.root-category h2.product-name a{ color: #ff498b ; line-height:20px ;font-weight: bold ;font-size: 14px ; font-family: 'Roboto Slab','Open Sans','Arial'; }
-.category-products.root-category .products-grid .item {height: 300px ; border: none ; }
+.category-products.root-category .products-grid .item {height: 200px ; border: none ; }
 .category-products.root-category .products-grid .item:hover {border: none ; box-shadow: none  ;}
 .category-products.root-category .products-grid .item ul  li{float: left;height: auto;margin: 0;width: 100%; }
 .category-products.root-category .products-grid .item ul  li a {background:url("../images/tick-kids.png") 100% -43px no-repeat; color: #636363 ; padding:0 12px;font-size: 11px ; text-transform: uppercase ;  }
@@ -539,7 +541,7 @@ span.separator{vertical-align: top; }
 .box-account .box .box-title {padding:0 0 2px; margin:0 0 8px; text-align:right;}
 .box-account .box .box-title h3 { float:left; font-size:110%; font-weight:normal; margin:0;line-height:20px;}
 .box-account .box .box-title h4 { float:left;font-size:110%; font-weight:normal;margin:0;line-height:20px;}
-
+.box-account  .col2-set { float: left ; width: 100% ;}
 .my-account .page-title h1 {font-size: 20px ; }
 .my-account .fieldset .form-list .customer-name .fields label {padding: 0 ;  width: 20%; }
 .my-account .fieldset .form-list .fields label {padding: 0 ;  width: auto; }
@@ -880,6 +882,10 @@ p.back-link{float: left;}
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .table-striped > tbody > tr td.text { width: 30% ;}
     .table-bordered > tbody > tr > td.right {border-right: 1px solid #d7d7d7 !important ;}
+
+    .category-products > .btn-group a.btn-next {
+        right:5px;
+    }
 }
 
 /************ Fix IE8 **************/
@@ -887,7 +893,7 @@ p.back-link{float: left;}
 .ie8 .slider-product-wrapper .bordered-tab .title .btn-widget { font-size: 90% ; }
 .ie8 .slider-product-wrapper .nav-tabs li { padding: 0 8px 6px ;}
 .ie8 .deals-wrapper .owl-pagination { bottom: 20px;}
-.ie8 .products-grid .actions { display: none ; }
+.ie8 .products-grid .item .actions { display: none ; }
 .ie8 .products-grid .item:hover .actions {display: block ;}
 .ie8 .block-subscribe input{line-height: 30px;}
 .ie8 .slider-product-wrapper .bordered-tab .title { padding: 2px 0 0;}

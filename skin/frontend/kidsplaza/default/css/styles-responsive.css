@@ -34,6 +34,8 @@
     .product-view .video-list { padding:0 ;}
     .product-view .video-item img { width: 30%;}
     .product-view .tracker {width: 367px !important; z-index: 999}
+    .upsell-carousel-wrapper .btn-group a.btn-next { right : 5px !important;}
+
 
     .btn-login {font-size: 11px;}
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
@@ -174,13 +176,16 @@
     .account-login .account-create .form-list label { width: 30%;  }
     .account-login .buttons-set a.f-right {width: 75px; font-size: 65% ;}
     .col2-set-right .btn-login {padding: 4px;}
-    #content {float: left; width :100% ;}
+    /*#content {float: left; width :100% ;}*/
 
     .footer-coppyright-inner .social-links {float: left;}
     .footer-top .block-subscribe {margin: 20px 0 10px;float: left !important;   }
 
     .products-grid .owl-wrapper-outer .owl-item .item .product-name {margin: 10px 0 0;}
     .products-grid .owl-wrapper-outer .owl-item .item .price-box .old-price .price {font-size: 80%;}
+
+    .upsell-carousel-wrapper .btn-group a.btn-next { right : 5px !important;}
+    .category-carousel-wrapper .btn-group a.btn-next {right: 5px !important;}
 
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
 
