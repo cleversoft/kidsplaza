@@ -68,6 +68,11 @@
                     <currency>MT_KidsPlaza_Model_Directory_Currency</currency>
                 </rewrite>
             </directory>
+            <catalog>
+                <rewrite>
+                    <config>MT_KidsPlaza_Model_Catalog_Config</config>
+                </rewrite>
+            </catalog>
         </models>
         <events>
             <model_save_after>

@@ -50,25 +50,44 @@
             <div class="btn-group">
                 <span class="btn-group">
                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo Mage::helper('catalog')->__(ucfirst($this->getCurrentOrder())) ?>&nbsp;<span class="caret"></span>
+                        <?php echo Mage::helper('catalog')->__(ucfirst($this->getCurrentOrder())) ?>
+                        <?php if ($this->getCurrentOrder() == 'name'): ?>
+                            <?php echo $this->getCurrentDirection() == 'asc' ? '(A - Z)' : '(Z - A)' ?>
+                        <?php elseif ($this->getCurrentOrder() == 'entity_id'): ?>
+                            <?php // ?>
+                        <?php else: ?>
+                            <?php echo $this->getCurrentDirection() == 'asc' ? $this->__('ascending') : $this->__('descending') ?>
+                        <?php endif; ?>
+                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
                     <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+                        <?php if ($_key == 'position') continue ?>
+                        <?php if (!in_array($_key, array('entity_id'))): ?>
                         <li>
-                            <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>"><?php echo $this->__($_order) ?></a>
+                            <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>">
+                                <?php echo $this->__($_order) ?>
+                                <?php if ($_key == 'name'): ?>
+                                    <?php echo '(A - Z)' ?>
+                                <?php elseif ($_key == 'price'): ?>
+                                    <?php echo $this->__('ascending') ?>
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                        <?php endif; ?>
+                        <li>
+                            <a href="<?php echo $this->getOrderUrl($_key, 'desc') ?>">
+                                <?php echo $this->__($_order) ?>
+                                <?php if ($_key == 'name'): ?>
+                                    <?php echo '(Z - A)' ?>
+                                <?php elseif ($_key == 'price'): ?>
+                                    <?php echo $this->__('descending') ?>
+                                <?php endif; ?>
+                            </a>
                         </li>
                     <?php endforeach; ?>
                     </ul>
                 </span>
-                <?php if($this->getCurrentDirection() == 'desc'): ?>
-                    <a class="sort-dir btn-default btn" href="<?php echo $this->getOrderUrl(null, 'asc') ?>" title="<?php echo $this->__('Set Ascending Direction') ?>">
-                        <i class="glyphicon glyphicon-circle-arrow-down"></i>
-                    </a>
-                <?php else: ?>
-                    <a class="sort-dir btn-default btn" href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>">
-                        <i class="glyphicon glyphicon-circle-arrow-up"></i>
-                    </a>
-                <?php endif; ?>
             </div>
         </div>
         </div>
