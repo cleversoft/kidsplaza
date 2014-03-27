@@ -49,11 +49,12 @@
             <strong><?php echo $this->__('Sort by') ?></strong>
             <div class="btn-group">
                 <span class="btn-group">
+                    <?php $orders = $this->getAvailableOrders() ?>
                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo Mage::helper('catalog')->__(ucfirst($this->getCurrentOrder())) ?>
+                        <?php echo $this->__($orders[$this->getCurrentOrder()]) ?>
                         <?php if ($this->getCurrentOrder() == 'name'): ?>
                             <?php echo $this->getCurrentDirection() == 'asc' ? '(A - Z)' : '(Z - A)' ?>
-                        <?php elseif ($this->getCurrentOrder() == 'entity_id'): ?>
+                        <?php elseif (in_array($this->getCurrentOrder(), array('entity_id','bestsell'))): ?>
                             <?php // ?>
                         <?php else: ?>
                             <?php echo $this->getCurrentDirection() == 'asc' ? $this->__('ascending') : $this->__('descending') ?>
@@ -61,9 +62,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                    <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>
+                    <?php foreach($orders as $_key => $_order): ?>
                         <?php if ($_key == 'position') continue ?>
-                        <?php if (!in_array($_key, array('entity_id'))): ?>
+                        <?php if (!in_array($_key, array('entity_id','bestsell'))): ?>
                         <li>
                             <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>">
                                 <?php echo $this->__($_order) ?>

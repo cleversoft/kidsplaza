@@ -18,7 +18,8 @@ class MT_KidsPlaza_Model_Catalog_Config extends Mage_Catalog_Model_Config{
     {
         $options = array(
             'position'  => Mage::helper('catalog')->__('Position'),
-            'entity_id' => Mage::helper('catalog')->__('Entity_id')
+            'entity_id' => Mage::helper('catalog')->__('Lastest'),
+            'bestsell'  => Mage::helper('catalog')->__('Bestsell')
         );
         foreach ($this->getAttributesUsedForSortBy() as $attribute) {
             /* @var $attribute Mage_Eav_Model_Entity_Attribute_Abstract */

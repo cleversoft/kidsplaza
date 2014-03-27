@@ -7,20 +7,23 @@
 		$thumb_img_url = wp_get_attachment_url( $thumb_image, 'widget-image' );
 		$image = aq_resize( $thumb_img_url, 870, 300, true, false);
 	?>
-	<img class="img-responsive thumbnails" src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
-	<figcaption>
+	<figure class="animated-overlay overlay-alt">
+		<img width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" alt="pacific_rim_fight_scene-wallpaper" src="<?php echo $image[0]; ?>" itemprop="image">
+		<a class="link-to-post" href="http://192.168.1.203/zt_zone/designs-by-mother-nature-biomimetic-products/"></a>
+		<figcaption>
 		<div class="thumb-info thumb-info-alt">
-			<i class="ss-navigateright"></i>
+		<i class="ss-navigateright">+</i>
 		</div>
 	</figcaption>
+</figure>
 	<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
 	<div class="blog-item-details">
 		<ul class="litst-details">
-			<li class="col-sm-1"><i class="fa fa-user"></i> <?php the_author(); ?></li>
-			<li class="col-sm-2"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
-			<li class="col-sm-3"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
-			<li class="col-sm-1"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment-area"><?php comments_popup_link('0', '1', '%','comment-link'); ?></a></li>
-			<li class="col-sm-1">
+			<li class="col-md-1 col-sm-2"><i class="fa fa-user"></i> <?php the_author(); ?></li>
+			<li class="col-md-2 col-sm-3"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
+			<li class="col-md-3 col-sm-3"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
+			<li class="col-md-1 col-sm-2"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment-area"><?php comments_popup_link('0', '1', '%','comment-link'); ?></a></li>
+			<li class="col-md-1 col-sm-2">
 				<?php if (function_exists( 'lip_love_it_link' )) {
 						echo lip_love_it_link(get_the_ID(), '<i class="fa-heart-o"></i>', '<i class="fa-heart"></i>', false);
 			

@@ -47,6 +47,11 @@
                     <layer_filter_category>MT_KidsPlaza_Block_Catalogsearch_Layer_Filter_Category</layer_filter_category>
                 </rewrite>
             </mtsearch>
+            <catalog>
+                <rewrite>
+                    <product_list_toolbar>MT_KidsPlaza_Block_Catalog_Product_List_Toolbar</product_list_toolbar>
+                </rewrite>
+            </catalog>
         </blocks>
         <resources>
             <kidsplaza>

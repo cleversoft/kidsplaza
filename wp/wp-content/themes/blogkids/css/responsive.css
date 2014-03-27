@@ -11,26 +11,7 @@
 	LARGE DISPLAYS
 -------------------------------------------- */
 
-@media only screen and (min-width: 1200px) {
-		
-	
-}
-
-@media only screen and (min-width: 1250px) {
-	
-	
-}
-
-@media only screen and (min-width: 1500px) {
-	
-}
-
-@media only screen and (min-width: 1980px) {
-
-
-}
-
-@media only screen and (min-width: 992px) {
+@media only screen and (max-width: 1200px) {
 	.page-menu ul {
  	   margin-top: 10px;
 	}
@@ -38,8 +19,8 @@
 	    padding: 10px 7px;
 	}
 	.main-navigation ul > li > a {
-		padding: 0 10px 5px 0;
-		font-size: 13px;
+	    font-size: 13px;
+	    padding: 0 15px 5px 0;
 	}
 	.b-search #sbc-submit {
 		width: 95%;
@@ -76,6 +57,25 @@
 	.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
    		width: 100% !important;
 	}
+		
+}
+
+@media only screen and (min-width: 1250px) {
+	
+	
+}
+
+@media only screen and (min-width: 1500px) {
+	
+}
+
+@media only screen and (min-width: 1980px) {
+
+
+}
+
+@media only screen and (min-width: 992px) {
+	
 }
 
 /* --------------------------------------------
@@ -112,6 +112,31 @@
 	}
 	#sbc-search .multi-cat {
 		width: 60%;
+	}
+	.main-navigation ul {
+		text-align: center;
+	}
+	.main-navigation ul > li {
+		float: none !important;
+		display: inline-block !important;
+	}
+	.main-navigation ul > li > a {
+		border: 0;
+	}
+	.social {
+		display: none;
+	}
+	.page-menu {
+		padding: 0;
+	}
+	.page-menu ul li a {
+		padding-right: 6px;
+	}
+	.page-menu ul li a:before {
+		margin-right: 8px;
+	}
+	.top-header .page-menu ul {
+		margin-top: 20px;
 	}
 }
 

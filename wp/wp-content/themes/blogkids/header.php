@@ -57,7 +57,7 @@
 						<li><a href="#"><img src="<?php echo get_template_directory_uri(); ?>/images/google.png"></a></li>
 					</ul>
 				</div>
-				<nav class="page-menu col-lg-7 col-md-5 col-sm-4">
+				<nav class="page-menu col-lg-7 col-md-5 col-sm-9">
 					<?php
 					$defaults = array(
 						'theme_location'  => '',
@@ -108,7 +108,7 @@
 						} ?>
 					</div>
 				</div>
-				<nav class="main-navigation col-sm-12">
+				<nav class="main-navigation">
 			      	<div class="navbar-header">
 			          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 			            <span class="sr-only">Toggle navigation</span>
