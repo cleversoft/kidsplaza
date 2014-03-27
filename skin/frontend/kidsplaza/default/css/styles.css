@@ -77,7 +77,7 @@
 
 .home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 12px;}
 .home-combo-carousel-wrapper .products-grid .actions {width: 96% ;}
-.owl-carousel  { margin: 0 auto ;}
+.products-grid.owl-carousel  { margin: 0 auto ; width: auto ; float: none ;}
 .product-view  #product-review {padding: 50px 0 ;}
 a.btn-kid:hover{outline: 3px solid #01a1ed;}
 a.btn-view:hover{outline: 3px solid #fc4c8c;}
@@ -332,8 +332,9 @@ input,textarea{outline:0}
 .btn-subscribe{font-weight:700}
 .footer-coppyright-inner .social-links{float:right}
 .grid-5 li{width: 20%;}
+.products-grid {float: left;width: 100%;}
 .products-grid li ,
-.products-grid .item{float:left;text-align:center;position:relative;height:270px;margin-bottom:15px ;margin-top: 0;}
+.products-grid .item{float:left;text-align:center;position:relative;height:auto;margin-bottom:15px ;margin-top: 0;}
 .products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;margin:5px 0;}
 .products-grid .product-name a{color:#634f4f}
 .products-grid .product-image{display:block;text-align: center;padding: 10px 0 0;}
@@ -402,7 +403,7 @@ input,textarea{outline:0}
 .catalog-product-view .category-products h2{font-size: 24px;color: #20a4f0;}
 .collection-view h1,
 .catalog-category-view h1{padding-bottom:10px;margin-top:20px;font-size: 24px;color: #20a4f0;}
-.catalog-category-view h3.utm-cookies{font-size: 24px;color: #20a4f0;margin:0 0 40px 0;}
+.catalog-category-view h3.utm-cookies{font-size: 24px;color: #20a4f0;margin:20px 0 40px ;}
 .panel,.breadcrumb{margin-bottom:10px}
 .category-products{clear:both;position:relative}
 .category-products .price-box .special-price {margin : 0 ;}
@@ -704,7 +705,7 @@ p.back-link{float: left;}
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0; padding-right: 4px;}
 .slider-product-wrapper .bordered-tab .title { padding: 6px 0 0 0 ; }
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0 ; line-height: 27px; }
-.slider-product-wrapper .bordered-tab h3 .utm-cookies{   margin:4px 2px 0 0 ; }
+.slider-product-wrapper .bordered-tab h3 .utm-cookies{   margin:4px  0 0 ; }
 .slider-product-wrapper .bordered-tab .utm-cookies { line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
 .slider-product-wrapper .bordered-tab .title { padding: 3px 0 ; }
 .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { border: none ; float: right ;}
@@ -749,15 +750,15 @@ p.back-link{float: left;}
 
 
 .deals-wrapper  li.deal-item { background-color: #c82e56 ; border: 1px solid #ECECEC ; list-style: none ;}
-.deals-wrapper  li.deal-item .deal-item-inner{background-color: #fff ;  ;margin:  5px  ;  display: inline-block; }
-.deals-wrapper  .label-deal {  background-image: url("../images/bgLable.png"); background-position: -116px 100%; background-repeat: no-repeat;  display: inline-block;  margin: 5px;  position: absolute;  width: 86px ; height: 86px;  right: -12px; top: -6px; }
-.deals-wrapper  li.deal-item .deal-item-inner .deal-item-percent{padding: 27px 0 20px; color: #c82e56 ; font-size: 54px; text-align: center ;  }
+.deals-wrapper  li.deal-item .deal-item-inner{background-color: #c82e56 ;  ;margin:  5px  ;  display: inline-block; }
+.deals-wrapper  .label-deal {background-image: url("../images/bgLable.png"); background-position: -116px 100%; background-repeat: no-repeat;  display: inline-block;  margin: 5px;  position: absolute;  width: 86px ; height: 86px;  right: -12px; top: -6px; }
+.deals-wrapper  li.deal-item .deal-item-inner .deal-item-percent{padding: 27px 0 20px; color: #fff ; font-size: 54px; text-align: center ;  }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-image{padding: 0 0 47px; }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-price { float: left;font-size: 15px;padding: 0 25px; position: absolute; }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-price .old-price {float: left ;font-size:13px; width: 100% ; text-decoration: line-through; }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-price .new-price {float: left ; width: 100% ;  }
 .deals-wrapper .owl-pagination {position: absolute; bottom:0 ;text-align: center;width: 100%; }
-.deals-wrapper .owl-pagination  .owl-page span{width: 8px ; height: 8px; margin: 5px;}
+.deals-wrapper .owl-pagination  .owl-page span{width: 8px ; height: 8px; margin: 5px; background: #000;}
 
 
 .widget-static-block img {width:100% ;}
