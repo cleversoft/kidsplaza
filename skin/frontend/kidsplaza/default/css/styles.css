@@ -38,7 +38,7 @@
 .product-view .add-to-cart .add-bt{float: left ; width: 100% ; margin: 25px 0 0  ;}
 .product-view .add-to-links{padding: 20px 0;}
 .product-view .add-to-links li{display: inline-block;}
-.product-view .product-essential{margin-bottom: 40px; }
+.product-view .product-essential{margin-bottom: 0; }
 .product-view .page-title h2 {color: #322c29 ; font-size: 26px; border-bottom: 1px solid #e3e3e3 ;font-weight: 400;}
 .product-view .price-box .old-price {color: #686868; font-weight: 500 ; }
 .product-view .price-box .old-price .price-label {font-size: 16px;color: #686868;  }
@@ -50,7 +50,7 @@
 .product-view .product-shop  .right-desc a.btn-danger { color: #d43f3a;}
 .product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px;}
 .product-view .product-shop  .right-desc p span { font-weight: bold ;}
-.product-view #product-related{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
+.product-view #product-related{ margin: 20px 0 0 ; border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-upsell{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-description{  padding: 50px 0; }
 .product-view #product-description h2{ color: #333; }
@@ -410,7 +410,7 @@ input,textarea{outline:0}
 .category-products .price-box .old-price .price-label { display: none ;}
 .category-products.root-category h2.product-name { margin-bottom: 10px;}
 .category-products.root-category h2.product-name a{ color: #ff498b ; line-height:20px ;font-weight: bold ;font-size: 14px ; font-family: 'Roboto Slab','Open Sans','Arial'; }
-.category-products.root-category .products-grid .item {height: 200px ; border: none ; }
+.category-products.root-category .products-grid .item {height: auto ; border: none ; }
 .category-products.root-category .products-grid .item:hover {border: none ; box-shadow: none  ;}
 .category-products.root-category .products-grid .item ul  li{float: left;height: auto;margin: 0;width: 100%; }
 .category-products.root-category .products-grid .item ul  li a {background:url("../images/tick-kids.png") 100% -43px no-repeat; color: #636363 ; padding:0 12px;font-size: 11px ; text-transform: uppercase ;  }
@@ -889,9 +889,10 @@ p.back-link{float: left;}
     .table-striped > tbody > tr td.text { width: 30% ;}
     .table-bordered > tbody > tr > td.right {border-right: 1px solid #d7d7d7 !important ;}
 
-    .category-products > .btn-group a.btn-next {
+    ::i-block-chrome, .category-products > .btn-group a.btn-next {
         right:5px;
     }
+
 }
 
 /************ Fix IE8 **************/
