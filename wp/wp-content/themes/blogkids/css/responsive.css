@@ -1,0 +1,138 @@
+/* #Responsive Styles
+================================================== */
+
+/*
+* Cootheme Responsive Stylesheet v1.0
+* Responsive Stylesheet for Display on Devices
+* Copyright 2013, Cootheme
+*/
+
+/* --------------------------------------------
+	LARGE DISPLAYS
+-------------------------------------------- */
+
+@media only screen and (min-width: 1200px) {
+		
+	
+}
+
+@media only screen and (min-width: 1250px) {
+	
+	
+}
+
+@media only screen and (min-width: 1500px) {
+	
+}
+
+@media only screen and (min-width: 1980px) {
+
+
+}
+
+@media only screen and (min-width: 992px) {
+	.page-menu ul {
+ 	   margin-top: 10px;
+	}
+	.main-navigation ul > li {
+	    padding: 10px 7px;
+	}
+	.main-navigation ul > li > a {
+		padding: 0 10px 5px 0;
+		font-size: 13px;
+	}
+	.b-search #sbc-submit {
+		width: 95%;
+	}
+	footer .widget_nav_menu h3, footer .widget_text h3 {
+		font-size: 13px !important;
+		background-size: 35px !important;
+		text-indent: 40px !important;
+	}
+	#nav_menu-3 ul, #nav_menu-4 ul, #nav_menu-5 ul, #nav_menu-6 ul, #nav_menu-7 ul, #nav_menu-8 ul {
+		margin-left: 40px;
+	}
+	footer #text-3 .textwidget {
+		font-size: 25px;
+		margin-left: 40px;
+	}
+	.diachi h3 {
+		font-size: 13px !important;
+		background-size: 35px !important;
+		padding-left: 40px;
+	}
+	.share .addthis_counter {
+		width: 60px;
+	}
+	.share .addthis_toolbox {
+		padding:12px 0 3px 5px;
+	}
+	.share .addthis_toolbox a {
+		width: 96px;
+	}
+	.share p {
+		padding: 12px 25px;
+	}
+	.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
+   		width: 100% !important;
+	}
+}
+
+/* --------------------------------------------
+	iPAD/TABLET LANDSCAPE
+-------------------------------------------- */
+
+@media only screen and (max-width: 1024px) {
+	
+	
+}
+
+/* --------------------------------------------
+	iPAD/TABLET PORTRAIT
+-------------------------------------------- */
+
+@media only screen and (max-width: 991px) {
+	.top-header .social {
+		padding-right: 0;
+	}
+	.top-header .page-menu{
+		padding-left: 0;
+	}
+	.top-header .page-menu ul {
+		margin-top: 10px;
+	}
+	.account a img {
+	    padding: 7px 6px 0 0;
+	}
+	.account {
+	    margin-bottom: 30px;
+	}
+	.logo img {
+		max-width: 100%;
+	}
+	#sbc-search .multi-cat {
+		width: 60%;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {	
+	
+
+}
+
+
+/* --------------------------------------------
+	iPHONE LANDSCAPE
+-------------------------------------------- */
+
+@media only screen and (max-width: 767px) {
+
+}
+
+/* --------------------------------------------
+	iPHONE PORTRAIT
+-------------------------------------------- */
+
+@media only screen and (max-width: 479px) {
+
+}
