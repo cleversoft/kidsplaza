@@ -682,6 +682,12 @@ p.back-link{float: left;}
 .cloud-zoom-gallery {border: 1px solid #fff;display: block;text-align: center;}
 .desc table .label{display: block;text-align: left;font-weight: normal;font-size: 100%;color: #333;padding: 7px;}
 
+.toolbar .btn .caret{
+    position: absolute;
+    top: 50%;
+    right: 7px;
+    margin-top: -2px;
+}
 .cms-index-index .std{display: none;}
 .cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
 .category-products .btn-group  .btn-default{opacity: 0; }
