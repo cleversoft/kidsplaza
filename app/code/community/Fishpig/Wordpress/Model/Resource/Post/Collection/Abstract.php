@@ -115,7 +115,21 @@ abstract class Fishpig_Wordpress_Model_Resource_Post_Collection_Abstract extends
 	 */
 	public function addIsPublishedFilter()
 	{
-		return $this->addStatusFilter('publish');
+		return $this->addIsViewableFilter();
+	}
+	
+	/**
+	 * Filters the collection so that only posts that can be viewed are displayed
+	 *
+	 * @return $this
+	 */
+	public function addIsViewableFilter()
+	{
+		if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+			return $this->addStatusFilter(array('publish', 'private', 'protected'));
+		}
+
+		return $this->addStatusFilter(array('publish', 'protected'));		
 	}
 	
 	/**

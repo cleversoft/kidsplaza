@@ -178,7 +178,7 @@ class Fishpig_Wordpress_Model_Post extends Fishpig_Wordpress_Model_Post_Abstract
 	protected function _getTeaserAnchor()
 	{
 		// Allows translation
-		//return stripslashes(Mage::helper('wordpress')->__('Continue reading <span class=\"meta-nav\">&rarr;</span>'));
+		return stripslashes(Mage::helper('wordpress')->__('Continue reading <span class=\"meta-nav\">&rarr;</span>'));
 	}
 	
 	/**
@@ -192,7 +192,7 @@ class Fishpig_Wordpress_Model_Post extends Fishpig_Wordpress_Model_Post_Abstract
 			$this->setPreviousPost(false);
 			
 			$collection = Mage::getResourceModel('wordpress/post_collection')
-				->addIsPublishedFilter()
+				->addIsViewableFilter()
 				->addPostDateFilter(array('lt' => $this->_getData('post_date')))
 				->setPageSize(1)
 				->setCurPage(1)
@@ -218,7 +218,7 @@ class Fishpig_Wordpress_Model_Post extends Fishpig_Wordpress_Model_Post_Abstract
 			$this->setNextPost(false);
 			
 			$collection = Mage::getResourceModel('wordpress/post_collection')
-				->addIsPublishedFilter()
+				->addIsViewableFilter()
 				->addPostDateFilter(array('gt' => $this->_getData('post_date')))
 				->setPageSize(1)
 				->setCurPage(1)

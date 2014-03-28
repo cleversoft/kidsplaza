@@ -101,7 +101,7 @@ class Fishpig_Wordpress_Model_Term extends Fishpig_Wordpress_Model_Abstract
 		if (!$this->hasPostCollection()) {
 			if ($this->getTaxonomy()) {
 				$posts = $this->_getObjectResourceModel()
-    				->addIsPublishedFilter()
+    				->addIsViewableFilter()
     				->addTermIdFilter($this->getId(), $this->getTaxonomy());
     			
 	    		$this->setPosts($posts);

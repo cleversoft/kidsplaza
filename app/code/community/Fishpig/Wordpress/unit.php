@@ -5,7 +5,7 @@
 	}
 
 	$posts = Mage::getResourceModel('wordpress/post_collection')
-		->addIsPublishedFilter()
+		->addIsViewableFilter()
 		->load();
 
 	_title('Post Collection', 2);

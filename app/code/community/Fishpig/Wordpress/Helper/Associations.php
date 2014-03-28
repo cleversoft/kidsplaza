@@ -33,7 +33,7 @@ class Fishpig_Wordpress_Helper_Associations extends Fishpig_Wordpress_Helper_Abs
 		if (count($associations) > 0) {
 			return Mage::getResourceModel('wordpress/post_collection')
 				->addFieldToFilter('ID', array('IN' => $associations))
-				->addIsPublishedFilter();
+				->addIsViewableFilter();
 		}
 		
 		return false;
@@ -58,7 +58,7 @@ class Fishpig_Wordpress_Helper_Associations extends Fishpig_Wordpress_Helper_Abs
 		if (count($associations) > 0) {
 			return Mage::getResourceModel('wordpress/post_collection')
 				->addFieldToFilter('ID', array('IN' => $associations))
-				->addIsPublishedFilter();
+				->addIsViewableFilter();
 		}
 		
 		return false;

@@ -43,7 +43,7 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Calendar extends Fishpig_Wordpress_
 	{
 		$posts = Mage::getResourceModel('wordpress/post_collection')
 			->addPostDateFilter($this->getYear() . '-' . $this->getMonth() . '-%')
-			->addIsPublishedFilter();
+			->addIsViewableFilter();
 		
 		$posts->getSelect()
 			->distinct()
@@ -138,7 +138,7 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Calendar extends Fishpig_Wordpress_
 	protected function _initPreviousNextLinks()
 	{
 		$posts = Mage::getResourceModel('wordpress/post_collection')
-			->addIsPublishedFilter()
+			->addIsViewableFilter()
 			->setOrderByPostDate('desc')
 			->addFieldToFilter('post_date', array('lteq' => $this->getYear() . '-' . $this->getMonth() . '-01 00:00:00'))
 			->setPageSize(1)
@@ -155,7 +155,7 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Calendar extends Fishpig_Wordpress_
 		$dateString = date('Y-m-d', strtotime('+1 month', strtotime($this->getYear() . '-' . $this->getMonth() . '-01')));
 
 		$posts = Mage::getResourceModel('wordpress/post_collection')
-			->addIsPublishedFilter()
+			->addIsViewableFilter()
 			->setOrderByPostDate('asc')
 			->addFieldToFilter('post_date', array('gteq' => $dateString))
 			->setPageSize(1)

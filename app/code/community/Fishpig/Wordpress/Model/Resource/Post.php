@@ -233,23 +233,22 @@ class Fishpig_Wordpress_Model_Resource_Post extends Fishpig_Wordpress_Model_Reso
 	{	
 		$tokens = Mage::helper('wordpress/post')->getExplodedPermalinkStructure();
 		$fields = $this->getPermalinkSqlFields();
-
+		
 		$select = $this->_getReadAdapter()
 			->select()
 			->from(array('main_table' => $this->getMainTable()), array('id' => 'ID', 'permalink' => $this->getPermalinkSqlColumn()))
-			->where('post_status=?', 'publish')
-			->where('post_type=?', 'post');
+			->where('post_type=?', 'post')
+			->where('post_status IN (?)', array('publish', 'protected', 'private'));
 
 		foreach($filters as $field => $value) {
 			if (isset($fields[$field])) {
 				$select->where($fields[$field] . '=?', urlencode($value));
 			}
 		}
-		
 
 		if ($results = $this->_getReadAdapter()->fetchAll($select)) {
 			$routes = array();
-			
+
 			foreach($results as $result) {
 				$routes[$result['id']] = urldecode($result['permalink']);
 			

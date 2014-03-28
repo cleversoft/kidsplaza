@@ -27,7 +27,7 @@ class Fishpig_Wordpress_PostController extends Fishpig_Wordpress_Controller_Abst
 	public function preDispatch()
 	{
 		$this->_handlePostedComment();
-		
+
 		return parent::preDispatch();
 	}
 
@@ -137,7 +137,7 @@ class Fishpig_Wordpress_PostController extends Fishpig_Wordpress_Controller_Abst
 					return $post;
 				}
 
-				if ($post->isPublished()) {
+				if ($post->canBeViewed()) {
 					$this->_redirectUrl($post->getUrl());
 					$this->getResponse()->sendHeaders();
 					exit;
@@ -147,7 +147,7 @@ class Fishpig_Wordpress_PostController extends Fishpig_Wordpress_Controller_Abst
 		else if ($postId = $this->getRequest()->getParam('id')) {
 			$post = Mage::getModel('wordpress/post')->load($postId);
 			
-			if ($post->getId() && ($post->isPublished() || $isPreview)) {
+			if ($post->getId() && ($post->canBeViewed() || $isPreview)) {
 				Mage::register('wordpress_post', $post);
 				
 				return $post;

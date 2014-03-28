@@ -153,11 +153,11 @@ class Fishpig_Wordpress_Block_Sidebar extends Fishpig_Wordpress_Block_Abstract
 	protected function _initAvailableWidgets()
 	{
 		$availableWidgets = (array)Mage::app()->getConfig()->getNode()->wordpress->sidebar->widgets;
+		
 		foreach($availableWidgets as $name => $widget) {
-			$widget = (array)$widget;
-	        if($name=='categories'){
-                $this->addWidgetType($name, $widget['block'], isset($widget['template']) ? $widget['template'] : null);
-            }
+			$widget = (array)$widget;	
+	
+			$this->addWidgetType($name, $widget['block'], isset($widget['template']) ? $widget['template'] : null);
 		}
 		
 		return $this;

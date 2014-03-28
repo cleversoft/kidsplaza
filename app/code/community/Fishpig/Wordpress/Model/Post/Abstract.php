@@ -282,4 +282,15 @@ abstract class Fishpig_Wordpress_Model_Post_Abstract extends Fishpig_Wordpress_M
 	{
 		return $this->_getData('is_sticky');
 	}
+	
+	/**
+	 * Determine whether a post object can be viewed
+	 *
+	 * @return string
+	 */
+	public function canBeViewed()
+	{
+		return $this->isPublished()
+			|| ($this->getPostStatus() === 'private' && Mage::getSingleton('customer/session')->isLoggedIn());
+	}
 }

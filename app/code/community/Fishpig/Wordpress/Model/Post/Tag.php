@@ -43,7 +43,7 @@ class Fishpig_Wordpress_Model_Post_Tag extends Fishpig_Wordpress_Model_Term
     {
     	if (!$this->hasPostCollection()) {
 			$posts = Mage::getResourceModel('wordpress/post_collection')
-    			->addIsPublishedFilter()
+    			->addIsViewableFilter()
     			->addTagIdFilter($this->getId());
     			
     		$this->setPostCollection($posts);

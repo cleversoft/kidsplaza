@@ -124,7 +124,7 @@ implements Mage_Adminhtml_Block_Widget_Tab_Interface
     {
 		if ($this->_getWpEntity() === 'post') {
 			$collection = Mage::getResourceModel('wordpress/post_collection')
-				->addIsPublishedFilter();
+				->addIsViewableFilter();
 		}
 		else if ($this->_getWpEntity() === 'category') {
 			$collection = Mage::getResourceModel('wordpress/post_category_collection');
