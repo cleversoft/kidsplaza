@@ -2,34 +2,49 @@
 	<footer>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-3 col-xs-6">
+				<div class="col-md-3 col-xs-6 clearfix">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer1')): endif;?>
 				</div>
-				<div class="col-md-3 col-xs-6">
+				<div class="col-md-3 col-xs-6 clearfix">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer2')): endif;?>
 				</div>
-				<div class="col-md-3 col-xs-6">
+				<div class="responsive-menu-footer"></div>
+				<div class="col-md-3 col-xs-6 clearfix">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer3')): endif;?>
 				</div>
-				<div class="col-md-3 col-xs-6">
+				<div class="col-md-3 col-xs-6 clearfix">
 					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer4')): endif;?>
 				</div>
+				<div class="responsive-menu-footer desktop-footer"></div>
+				<div class="col-md-3 col-xs-6 clearfix">
+					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer5')): endif;?>
+				</div>
+				<div class="col-md-3 col-xs-6 clearfix">
+					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer6')): endif;?>
+				</div>
+				<div class="responsive-menu-footer"></div>
+				<div class="col-md-3 col-xs-6 clearfix">
+					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer7')): endif;?>
+				</div>
+				<div class="col-md-3 col-xs-6 clearfix">
+					<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Footer8')): endif;?>
+				</div>
 				<div class="diachi col-xs-12 clearfix">
-					<div class="col-sm-3 col-xs-6">
+					<div class="col-xs-3">
                         <div class="hn widget">
                             <em></em>
                             <h3>Kids plaza Hà Nội</h3>
                         </div>
 					</div>
-					<div class="diachiso col-sm-3 col-xs-6">
+					<div class="diachiso col-xs-3">
 						<p><strong>Q.Đống Đa:</strong> Số 20-22 Thái Thịnh</p>
 						<p><strong>Q.Ba Đình:</strong> Số 56 Giang Văn Minh</p>
 					</div>
-					<div class="diachiso col-sm-3 col-xs-6">
+					<div class="diachiso col-xs-3">
 						<p><strong>Q.Cầu Giấy:</strong> Số 40 Trần Thái Tông</p>
 						<p><strong>Q.Hà Đông:</strong> Số 44-TT4A Văn Quán</p>
 					</div>
-					<div class="diachiso col-sm-3 col-xs-6">
+					<div class="diachiso col-xs-3">
 						<p><strong>Q.Thanh Xuân:</strong> Số 533 Nguyễn Trãi</p>
 						<p><strong>Q.Hai Bà Trưng:</strong> Số 340 Bạch Mai</p>
 					</div>

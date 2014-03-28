@@ -16,22 +16,17 @@
  	   margin-top: 10px;
 	}
 	.main-navigation ul > li {
-	    padding: 10px 7px;
+	    padding: 10px 4px;
 	}
 	.main-navigation ul > li > a {
 	    font-size: 13px;
-	    padding: 0 15px 5px 0;
+	    padding: 0 8px 5px 0;
 	}
 	.b-search #sbc-submit {
 		width: 95%;
 	}
-	footer .widget_nav_menu h3, footer .widget_text h3 {
-		font-size: 13px !important;
-		background-size: 35px !important;
-		text-indent: 40px !important;
-	}
-	#nav_menu-3 ul, #nav_menu-4 ul, #nav_menu-5 ul, #nav_menu-6 ul, #nav_menu-7 ul, #nav_menu-8 ul {
-		margin-left: 40px;
+	footer .widget_nav_menu .menu{
+	    margin-left: 58px;
 	}
 	footer #text-3 .textwidget {
 		font-size: 25px;
@@ -54,10 +49,6 @@
 	.share p {
 		padding: 12px 25px;
 	}
-	.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
-   		width: 100% !important;
-	}
-		
 }
 
 @media only screen and (min-width: 1250px) {
@@ -75,7 +66,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-	
+
 }
 
 /* --------------------------------------------
@@ -83,7 +74,6 @@
 -------------------------------------------- */
 
 @media only screen and (max-width: 1024px) {
-	
 	
 }
 
@@ -159,9 +149,13 @@
 	.litst-details li:last-child {
 		padding-right: 0;
 	}
-
+	.responsive-menu-footer {
+		clear: both;
+	}
+	footer .widget h3 {
+		font-size: 13px;
+	}
 }
-
 
 /* --------------------------------------------
 	iPHONE LANDSCAPE
@@ -205,6 +199,7 @@
 	.account {
 		width: 193px;
 		margin: 0 auto;
+		overflow: hidden;
 	}
 	.logo {
 		width: 250px;
@@ -213,7 +208,9 @@
 	.b-search #sbc-submit {
 		margin-left: 3px;
 	}
-
+	.responsive-menu-footer {
+		clear: both;
+	}
 }
 
 /* --------------------------------------------
@@ -229,5 +226,17 @@
 	}
 	.share p {
 		margin-bottom: 0;
+	}
+	.share .addthis_toolbox {
+		padding: 12px 0 3px 0;
+	}
+	.share .addthis_toolbox a {
+		width: 87px;
+	}
+	.all-catgory {
+		display: none;
+	}
+	#sbc-search .multi-cat {
+		width: 66%;
 	}
 }

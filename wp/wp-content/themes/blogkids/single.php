@@ -17,7 +17,7 @@
 					$image = aq_resize( $thumb_img_url, 870, 300, true, false);
 				?>
 				<img class="img-responsive thumbnails" src="<?php echo $image[0]; ?>" width="<?php echo $image[1]; ?>" height="<?php echo $image[2]; ?>" />
-				<a href="<?php the_permalink(); ?>"><h2><?php the_title(); ?></h2></a>
+				<a href="<?php the_permalink(); ?>"><h1><?php the_title(); ?></h1></a>
 				<div class="blog-item-details-single">
 					<ul class="litst-details">
 						<li class="col-md-1 col-sm-2 col-xs-4"><i class="fa fa-user"></i> <?php the_author(); ?></li>
