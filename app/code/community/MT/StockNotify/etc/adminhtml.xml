@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_StockNotify
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <mtstocknotify translate="title">
+                    <title>MT Stock Notify</title>
+                    <action>mtstocknotifyadmin/manage_index/index</action>
+                    <sort_order>99</sort_order>
+                </mtstocknotify>
+            </children>
+        </catalog>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtstocknotify translate="title">
+                                        <title>MT Stock Notify</title>
+                                    </mtstocknotify>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

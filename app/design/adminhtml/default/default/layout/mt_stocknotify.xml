@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_StockNotify
+* @copyright   Copyright (C) 2014 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <mtstocknotifyadmin_manage_index_index>
+        <reference name="content">
+            <block type="mtstocknotify/adminhtml_notify" name="mtstocknotify_notify"/>
+        </reference>
+    </mtstocknotifyadmin_manage_index_index>
+</layout>

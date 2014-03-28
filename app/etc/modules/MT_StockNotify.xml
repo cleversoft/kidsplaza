@@ -10,7 +10,7 @@
 <config>
     <modules>
         <MT_StockNotify>
-            <active>false</active>
+            <active>true</active>
             <codePool>community</codePool>
         </MT_StockNotify>
     </modules>
