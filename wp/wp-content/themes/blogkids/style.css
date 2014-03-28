@@ -230,6 +230,7 @@ ul li {
     float: right;
     margin-top: 30px;
     font-weight: bold;
+    font-family: 'Roboto Slab', serif;
     color: #008aa8 !important;
 }
 .love-it-wrapper a i {
@@ -694,7 +695,9 @@ footer .widget_nav_menu ul li a {
 .share .addthis_toolbox {
     background: none repeat scroll 0 0 #F1F4ED;
     float: left;
-    padding: 12px 0 3px 28px;
+    padding: 12px 0 5px 28px;
+    position: absolute;
+    left: 85px;
 }
 .share .addthis_toolbox a {
     float: left;

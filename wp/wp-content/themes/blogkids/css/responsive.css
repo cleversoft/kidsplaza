@@ -41,7 +41,8 @@
 		width: 60px;
 	}
 	.share .addthis_toolbox {
-		padding:12px 0 3px 5px;
+		padding:12px 0 5px 5px;
+		left: 131px;
 	}
 	.share .addthis_toolbox a {
 		width: 96px;
@@ -141,7 +142,8 @@
 		padding-left: 45px;
 	}
 	.share .addthis_toolbox {
-		padding: 14px 0 7px 28px;
+		padding: 14px 0 8px 28px;
+		left: 85px;
 	}
 	.share .addthis_toolbox .addthis_button_pinterest_pinit, .share .addthis_button_tweet  {
 		display: none;
@@ -210,6 +212,9 @@
 	}
 	.responsive-menu-footer {
 		clear: both;
+	}
+	.share .addthis_toolbox {
+		position: static;
 	}
 }
 
