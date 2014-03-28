@@ -63,7 +63,7 @@ abstract class Fishpig_Wordpress_Model_Abstract extends Mage_Core_Model_Abstract
 	public function load($id, $field=null)
 	{
 		if (!is_null($field)) {
-			$id = urlencode($id);
+			$id = $this->_encodeLoadingValue($id, $field);
 		}
 
 		if ($this->getSkipObjectCache()) {
@@ -93,6 +93,20 @@ abstract class Fishpig_Wordpress_Model_Abstract extends Mage_Core_Model_Abstract
 		return $this;
 	}
 	
+	/**
+	 * Encode the loading value
+	 *
+	 * @param mixed $value
+	 * @param string $field
+	 * @return string
+	 */
+	protected function _encodeLoadingValue($value, $field)
+	{
+		return strpos($field, 'email') === false
+			? urlencode($value)
+			: $value;
+	}
+
 	/**
 	 * Retrieve the name of the meta database table
 	 *

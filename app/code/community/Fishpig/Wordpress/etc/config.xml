@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fishpig_Wordpress>
-            <version>3.0.40.0</version>
+            <version>3.0.47.0</version>
         </Fishpig_Wordpress>
     </modules>
     <global>
@@ -195,13 +195,13 @@
 				<path>wp</path>
 			</integration>
 			<toplink>
-				<enabled>0</enabled>
+				<enabled>1</enabled>
+				<label>Blog</label>
+				<position>100</position>
 			</toplink>
 			<misc>
-                <sidebar_left_empty>0</sidebar_left_empty>
-                <sidebar_right_empty>0</sidebar_right_empty>
-				<include_css>0</include_css>
-				<autop>0</autop>
+				<include_css>1</include_css>
+				<autop>1</autop>
 			</misc>
 		</wordpress>
 		<web>

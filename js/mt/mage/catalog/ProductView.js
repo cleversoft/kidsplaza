@@ -252,11 +252,12 @@ function stockNotifySubmit(btn, url){
     var field = jQuery('#stock-notify-email');
     if (!field.length || !url) return;
     var value = field.val();
-    if (!value) alert(Translator.translate('You must enter email or phone number'));
+    if (!value) alert(Translator.translate('You must enter information'));
     else{
         jQuery.ajax({
             url: url,
             method: 'post',
+            dataType: 'json',
             data: {value:value},
             beforeSend: function(){
                 jQuery(btn).addClass('disabled');
@@ -265,7 +266,11 @@ function stockNotifySubmit(btn, url){
             success: function(data){
                 jQuery(btn).removeClass('disabled');
                 jQuery(btn).removeAttr('disabled');
-
+                if (data.error == 1){
+                    alert(data.message);
+                }else{
+                    window.location.reload();
+                }
             }
         });
     }

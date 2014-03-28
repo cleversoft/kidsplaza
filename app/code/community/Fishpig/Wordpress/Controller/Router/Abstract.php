@@ -186,7 +186,7 @@ abstract class Fishpig_Wordpress_Controller_Router_Abstract extends Mage_Core_Co
 					$match = false;
 
 					if (substr($route, 0, 1) !== '/') {
-						$match = $route === $encodedUri;
+						$match = $route === $encodedUri || $route === $uri;
 					}
 					else {
 						if (preg_match($route, $uri, $matches)) {

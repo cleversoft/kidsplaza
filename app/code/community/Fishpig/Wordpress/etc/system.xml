@@ -255,7 +255,7 @@
 						</page>
         			</fields>
         		</template>
-            	<!--menu>
+            	<menu>
             		<label>Menu</label>
             		<comment>Append a WordPress custom menu onto your Magento Topmenu</comment>
             		<sort_order>26</sort_order>
@@ -369,7 +369,7 @@
 							<show_in_store>1</show_in_store>
 		        		</autop>
 					</fields>
-            	</misc-->
+            	</misc>
             </groups>
         </wordpress>
     </sections>

@@ -56,17 +56,16 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getCacheTags(){
-        $tags = array('MT_WIDGET');
+        $tags = array('MT_WIDGET', Mage_Core_Block_Template::CACHE_GROUP);
         if ($this->getData('widget_type') == 'product'){
             $tags[] = Mage_Catalog_Model_Product::CACHE_TAG;
         }
         if (is_array($this->getData('cache_tags'))){
-            return array_merge($this->getData('cache_tags'), $tags);
+            $tags = array_merge($this->getData('cache_tags'), $tags);
         }elseif(is_string($this->getData('cache_tags'))){
-            return $tags[] = $this->getData('cache_tags');
-        }else{
-            return $tags;
+            $tags[] = $this->getData('cache_tags');
         }
+        return array_unique($tags);
     }
 
     protected function _beforeToHtml(){

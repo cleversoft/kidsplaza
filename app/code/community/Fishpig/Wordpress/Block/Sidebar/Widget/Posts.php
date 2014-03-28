@@ -73,10 +73,16 @@ implements Mage_Widget_Block_Interface
 	{
 		if (is_null($this->_collection)) {
 			$collection = Mage::getResourceModel('wordpress/post_collection')
-				->addIsPublishedFilter()
 				->setOrderByPostDate()
 				->setPageSize($this->getNumber())
 				->setCurPage(1);
+				
+			if (Mage::getSingleton('customer/session')->isLoggedIn() && Mage::helper('wordpress')->isAddonInstalled('CS')) {
+				$collection->addStatusFilter(array('publish', 'private'));
+			}
+			else {
+				$collection->addStatusFilter('publish');
+			}
 	
 			if ($categoryId = $this->getCategoryId()) {
 				$collection->addCategoryIdFilter($categoryId);

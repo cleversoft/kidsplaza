@@ -12,7 +12,7 @@ class Fishpig_Wordpress_Model_Resource_User extends Fishpig_Wordpress_Model_Reso
 	{
 		$this->_init('wordpress/user', 'ID');
 	}
-	
+
 	/**
 	 * Load the WP User associated with the current logged in Customer
 	 *
@@ -63,5 +63,40 @@ class Fishpig_Wordpress_Model_Resource_User extends Fishpig_Wordpress_Model_Reso
 		}
 			
     	return parent::_beforeSave($object);
+    }
+    
+    /**
+     * Remove duplicate user accounts from WordPress that use the same email address
+     *
+     * @return $this
+     */
+    public function cleanDuplicates()
+    {
+		$collection = Mage::getResourceModel('wordpress/user_collection')->load();
+		$byEmail = array();
+		
+		foreach($collection as $user) {
+			$email = $user->getUserEmail();
+			
+			if (!isset($byEmail[$email])) {
+				$byEmail[$email] = array();
+			}
+
+			$byEmail[$email]	[] = (int)$user->getId();
+		}
+
+	    $write = $this->_getWriteAdapter();
+		$postTable = $this->getTable('wordpress/post');
+		
+	    foreach($byEmail as $email => $users) {
+		    if (count($users) > 1) {
+			    $original = array_shift($users);
+	
+			    $write->update($postTable, array('post_author' => $original), $write->quoteInto('post_author IN (?)', $users));
+				$write->delete($this->getMainTable(), $write->quoteInto('ID IN (?)', $users));
+			}
+	    }
+		
+		return $this;
     }
 }

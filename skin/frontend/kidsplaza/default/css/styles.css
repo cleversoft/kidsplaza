@@ -948,3 +948,10 @@ dl.item-options{
     line-height: 100%;
     margin-top: 10px;
 }
+.stock-notify-note span{
+    color: #FF4E8F;
+}
+.stock-notified{
+    color: #FF4E8F;
+    font-size: 16px;
+}

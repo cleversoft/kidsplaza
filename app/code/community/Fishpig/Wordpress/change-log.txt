@@ -5,6 +5,23 @@
 # URL:  http://fishpig.co.uk/magento/wordpress-integration/
 ##
 
+26/03/2014 - 3.0.47.0
+- Added addIsViewableFilter to Post collection
+- Fixed bug in Yarpp for WordPress Multisite
+
+26/03/2014 - 3.0.46.0
+- Fixed bug that stopped private posts from displaying in recent posts widget even when logged in
+- Added the Slovenian language file
+
+26/03/2014 - 3.0.44.0
+- Fix for Customer Synchronisation
+
+23/03/2014 - 3.0.42.0
+- Fix for Chinese characters in post permalink
+
+21/03/2014 - 3.0.41.0
+- Fix for private posts
+
 19/03/2014 - 3.0.40.0
 - Small fix for password protected posts
 

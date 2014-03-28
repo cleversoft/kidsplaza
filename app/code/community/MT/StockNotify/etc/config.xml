@@ -10,7 +10,7 @@
 <config>
     <modules>
         <MT_StockNotify>
-            <version>1.0</version>
+            <version>1.1</version>
         </MT_StockNotify>
     </modules>
 
@@ -92,6 +92,15 @@
     </admin>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_StockNotify>
+                    <files>
+                        <default>MT_StockNotify.csv</default>
+                    </files>
+                </MT_StockNotify>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <mtstocknotify>
