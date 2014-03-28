@@ -97,7 +97,6 @@ ul.detail-parent {
     padding: 0 0 0 17px;
 }
 .navbar {
-    float: left;
     z-index: 5;
     border: none;
 }
@@ -326,6 +325,7 @@ ul.nav-accordion li span.collapse {
     margin: 0;
     padding-left: 15px;
 }
+.mt-menu ul.nav-accordion li a:hover { background: #FC4C8C ;}
 .mt-menu a {
     border-bottom: 1px solid #565656;
     color: #FFFFFF;

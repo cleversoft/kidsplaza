@@ -317,7 +317,7 @@ ul.nav-accordion li {
 
 .navbar-inner a.btn-navbar:hover { background-color: #ECECEC; }
 
-.navbar { margin: 0 10px !important; }
+.navbar {  }
 
 .nav-collapse,
 .nav-collapse.collapse { display: block !important; }

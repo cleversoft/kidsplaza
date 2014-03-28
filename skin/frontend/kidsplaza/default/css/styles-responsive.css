@@ -259,6 +259,9 @@
     .toolbar .toolbar-view {margin: 20px 0 0 ;}
     .footer-coppyright-inner .social-links {float: left; margin: 20px 0 0;}
 
+    .navbar-inverse .navbar-toggle { margin-top: 35px;}
+
+
     .cart .form-control {text-align: center ; }
     #wishlist-table .buttons-set { text-align: center ;}
     .cart .input-group {margin: 15px auto 0;}
@@ -424,4 +427,6 @@
 
     .product-img-box .price-discount {left: 0 ;}
     .product-view .btn-cart {font-size: 130% ; margin: 20px 0 0;}
+
+    a.logo img {max-width: 100% ; float: left ;}
 }
