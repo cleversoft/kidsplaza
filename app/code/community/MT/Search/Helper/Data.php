@@ -20,7 +20,7 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 			$url = Mage::getUrl('catalogsearch/result', array('q'=>$word));
 			$links[] = sprintf('<a href="%s" title="%s">%s</a>', $url, $word, $word);
 		}
-		return $this->__('Did you mean: ') . implode(', ', $links);
+		return $this->__('Did you mean') .': '. implode(', ', $links);
 	}
 
 	/**

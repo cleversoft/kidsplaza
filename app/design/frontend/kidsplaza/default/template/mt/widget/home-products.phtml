@@ -100,8 +100,8 @@ $_core              = $this->helper('core/string');
         <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div-->
     <div class="tab-content">
-    <?php $i=0; foreach ($this->getCategories() as $cat):?>
-        <div class="tab-pane<?php echo $i++ == 0 ? ' active' : ''?>" id="<?php echo $_id.'_'.$cat->getId()?>">
+    <?php $j=0; foreach ($this->getCategories() as $cat):?>
+        <div class="tab-pane<?php echo $j++ == 0 ? ' active' : ''?>" id="<?php echo $_id.'_'.$cat->getId()?>">
         <?php $_productCollection = $this->getProductCollection($cat) ?>
         <?php $_collectionSize = $_productCollection->count() ?>
         <?php $i=0; foreach ($_productCollection as $_product): ?>

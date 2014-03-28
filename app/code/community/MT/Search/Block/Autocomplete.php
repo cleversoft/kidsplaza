@@ -30,7 +30,7 @@ class MT_Search_Block_Autocomplete extends Mage_Core_Block_Abstract {
 			try{
 				$service->query($query, array('store_id'=>$store), $attrs, $limit ? $limit : 10);
 				
-				$templateSuggest = '<li title="{{word}}">Did you mean <b>{{word}}</b></li>';
+				$templateSuggest = '<li title="{{word}}">'.$this->__('Did you mean').' <b>{{word}}</b></li>';
 
 				foreach ($service->getSuggestions() as $word){
 					$html .= str_replace(

@@ -718,7 +718,7 @@ p.back-link{float: left;}
 .bordered .tab-pane .products-grid{clear: both;}
 .bordered .tab-pane .slide{display: inline-block;vertical-align: top;}
 .bordered{float: left;width: 100%;}
-.bordered .tab-content{float: none;min-height: 311px;}
+.bordered .tab-content{float: none;min-height: 311px;margin-top: 10px;}
 .bordered .nav-tabs-wrapper{padding: 0 15px;float: left;margin-bottom: 10px;width: 100%;}
 .bordered .nav-tabs{float: left;width: 100%;}
 .nav-tabs li:first-child{}
@@ -957,4 +957,7 @@ dl.item-options{
 }
 .product-options dd{
     margin-bottom: 15px;
+}
+.catalogsearch-result-index .page-title h2{
+    margin: 0;
 }
