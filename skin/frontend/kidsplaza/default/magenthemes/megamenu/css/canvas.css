@@ -158,84 +158,84 @@ ul.nav-accordion li span.collapse {
 /**END STYLE DRILLMENU**/
 
 /*Sidebar Menu mt-effect-slide mt-menu-open*/
-    .mt-container {
-		position: relative;
-		overflow: hidden;
-    }
-    .mt-wrapper {
-		position: relative;
-		left: 0;
-		z-index: 99;
-		height: 100%;
-		-webkit-transition: -webkit-transform 0.5s;
-		-o-transition: transform 0.5s;
-		transition: transform 0.5s;
-        overflow: hidden;
-    }
-    .mt-wrapper::after {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: 0;
-		height: 0;
-		background: rgba(0,0,0,0.2);
-		content: '';
-		opacity: 0;
-		-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-		transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-		-o-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-		}
-    .mt-menu-open .mt-wrapper::after {
-		width: 100%;
-		height: 100%;
-		opacity: 1;
-		-webkit-transition: opacity 0.5s;
-		transition: opacity 0.5s;
-		-o-transition: opacity 0.5s;
-    }
-    .mt-menu {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		visibility: hidden;
-		width: 250px;
-		height: 100%;
-		background: #2d2d2d;
-		-webkit-transition: all 0.5s;
-		transition: all 0.5s;
-		-o-transition: all 0.5s;
-		overflow: auto;
-    }
-    .mt-menu .mt-menu-title {
+.mt-container {
+    position: relative;
+    overflow: hidden;
+}
+.mt-wrapper {
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    -webkit-transition: -webkit-transform 0.5s;
+    -o-transition: transform 0.5s;
+    transition: transform 0.5s;
+    overflow: hidden;
+}
+.mt-wrapper::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    background: rgba(0,0,0,0.2);
+    content: '';
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    -o-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+.mt-menu-open .mt-wrapper::after {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
+}
+.mt-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    visibility: hidden;
+    width: 250px;
+    height: 100%;
+    background: #2d2d2d;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -o-transition: all 0.5s;
+    overflow: auto;
+}
+.mt-menu .mt-menu-title {
     border-bottom: #dfdfdf solid 1px;
-	  text-transform: uppercase;
-    }
-    .mt-menu .mt-menu-title h3 {
+    text-transform: uppercase;
+}
+.mt-menu .mt-menu-title h3 {
     color: #fff;
     padding: 0 0 0 29px;
-    }
-    .mt-menu-open .mt-menu::after {
+}
+.mt-menu-open .mt-menu::after {
     width: 0;
     height: 0;
     opacity: 0;
     -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
     transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
     -o-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
-    }
-    /* Effect:Slide along */
-    .mt-effect-slide.mt-menu-open .mt-wrapper {
+}
+/* Effect:Slide along */
+
+.mt-effect-slide.mt-menu-open .mt-wrapper {
     -webkit-transform: translate3d(250px, 0, 0);
     transform: translate3d(250px, 0, 0);
-    }
+}
 
-    .mt-effect-slide.mt-menu {
+.mt-effect-slide.mt-menu {
     -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
     -o-transition: translate3d(-100%, 0, 0);
-    }
+}
 
-    .mt-effect-slide.mt-menu-open .mt-effect-slide.mt-menu {
+.mt-effect-slide.mt-menu-open .mt-effect-slide.mt-menu {
     visibility: visible;
     -webkit-transition: -webkit-transform 0.5s;
     transition: transform 0.5s;
@@ -243,12 +243,12 @@ ul.nav-accordion li span.collapse {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     -o-transition: translate3d(0, 0, 0);
-    }
+}
 
-    .mt-effect-slide.mt-menu::after {
+.mt-effect-slide.mt-menu::after {
     display: none;
-    }
-    .mt-effect-slide.mt-menu-open .site-overlay {
+}
+.mt-effect-slide.mt-menu-open .site-overlay {
     display: block;
     position: fixed;
     top: 0;
@@ -257,70 +257,70 @@ ul.nav-accordion li span.collapse {
     opacity: 0;
     left: 250px;
     z-index: 9999;
-    }
-	.mt-menu .navbar-header .navbar-toggle .icon-bar {
-		background-color: #FFFFFF;
-		height: 3px;
-		margin: 4px 0  ;
-		width: 22px;
-	}
-	.mt-menu .navbar-header .collapsed-icon {
-		float: left;
-		margin: 9px 0 0;
-	}
-	.mt-menu .mt-menu-active {
-		background: none repeat scroll 0 0 #1F1F1F;
-		border-bottom: 1px solid #474747;
-		display: block;
-		overflow: hidden;
-		padding: 0 15px;
-		cursor: pointer ;
-	}
-	.mt-menu .mt-menu-active .navbar-toggle {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
-	.mt-menu .navbar-header {
-		margin: 12px 0;
-		text-align: left;
-		float: none ;
-	}
-	.mt-menu .mt-menu-active .navbar-toggle {
-		margin: 0;
-		padding: 0;
-		width: 100%;
-	}
-	.mt-menu .mt-menu-active .navbar { 
-	   background: none  !important;
-	   line-height: 45px;
-		margin-bottom: 0 !important;
-		min-height: 45px !important;
-	}
-	.mt-menu .mt-menu-active .navbar-toggle {
-	   padding-left: 0 !important ;
-	    padding-right: 0 !important ;
-	}
-	.mt-menu .mt-menu-active .navbar-toggle .icon-bar { 
-	   border-radius: 0 !important ;
-	}
-	.title-canvas {
-		color: #FFFFFF;
-		font-size: 120%;
-		line-height: 36px;
-		margin-left: 9px;
-		text-transform: uppercase;
-	}
-	.mt-menu-active .mt-close-canvas {
-		background: url("../images/close-canvas-menu.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-		border: medium none;
-		float: right;
-		height: 16px;
-		width: 17px;
-		margin: 13px 0 0;
-	}
-	.mt-menu .sidebar ul.nav-accordion li  { background: none; border: none ;}
-	.mt-menu ul.nav-accordion li a {
+}
+.mt-menu .navbar-header .navbar-toggle .icon-bar {
+    background-color: #FFFFFF;
+    height: 3px;
+    margin: 4px 0  ;
+    width: 22px;
+}
+.mt-menu .navbar-header .collapsed-icon {
+    float: left;
+    margin: 9px 0 0;
+}
+.mt-menu .mt-menu-active {
+    background: none repeat scroll 0 0 #1F1F1F;
+    border-bottom: 1px solid #474747;
+    display: block;
+    overflow: hidden;
+    padding: 0 15px;
+    cursor: pointer ;
+}
+.mt-menu .mt-menu-active .navbar-toggle {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.mt-menu .navbar-header {
+    margin: 12px 0;
+    text-align: left;
+    float: none ;
+}
+.mt-menu .mt-menu-active .navbar-toggle {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.mt-menu .mt-menu-active .navbar {
+   background: none  !important;
+   line-height: 45px;
+    margin-bottom: 0 !important;
+    min-height: 45px !important;
+}
+.mt-menu .mt-menu-active .navbar-toggle {
+   padding-left: 0 !important ;
+    padding-right: 0 !important ;
+}
+.mt-menu .mt-menu-active .navbar-toggle .icon-bar {
+   border-radius: 0 !important ;
+}
+.title-canvas {
+    color: #FFFFFF;
+    font-size: 120%;
+    line-height: 36px;
+    margin-left: 9px;
+    text-transform: uppercase;
+}
+.mt-menu-active .mt-close-canvas {
+    background: url("../images/close-canvas-menu.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    float: right;
+    height: 16px;
+    width: 17px;
+    margin: 13px 0 0;
+}
+.mt-menu .sidebar ul.nav-accordion li  { background: none; border: none ;}
+.mt-menu ul.nav-accordion li a {
     color: #FFFFFF;
     font-size: 14px;
     margin: 0;
