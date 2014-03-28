@@ -32,7 +32,7 @@ $_attributes = Mage::helper('core')->decorateArray($this->getAllowAttributes());
 <?php if ($_product->isSaleable() && count($_attributes)):?>
     <dl>
     <?php foreach($_attributes as $_attribute): ?>
-        <dt><label class="required"><em>*</em><?php echo $_attribute->getLabel() ?></label></dt>
+        <dt><label class="required"><em>*</em><?php echo $_attribute->getProductAttribute()->getFrontendLabel() ?></label></dt>
         <dd<?php if ($_attribute->decoratedIsLast):?> class="last"<?php endif ?>>
             <?php if ($_attribute->getOption()):?>
                 <?php if (Mage::getStoreConfig('mtattribute/general/show') != 2):?>
