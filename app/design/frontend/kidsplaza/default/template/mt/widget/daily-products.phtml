@@ -80,11 +80,11 @@ $_core              = $this->helper('core/string');
                         <div class="actions">
                             <?php if($_product->isSaleable()): ?>
                                 <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart" onclick="onBuyBtnClick('<?php echo $this->getAddToCartUrl($_product) ?>')">
-                                    <i class="glyphicon glyphicon-shopping-cart"></i> <?php echo $this->__('Add to Cart') ?>
+                                    <?php echo $this->__('Add to Cart') ?>
                                 </button>
                             <?php else: ?>
-                                <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-disabled" disabled="disabled">
-                                    <i class="glyphicon glyphicon-remove"></i> <?php echo $this->__('Call Me') ?>
+                                <button type="button" title="<?php echo $this->__('Call Me') ?>" class="btn btn-kid btn-cart" onclick="setLocation('<?php echo $_product->getProductUrl() ?>')">
+                                    <?php echo $this->__('Call Me') ?>
                                 </button>
                             <?php endif; ?>
                         </div>
