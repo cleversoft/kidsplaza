@@ -502,7 +502,9 @@ aside .widget_nav_menu ul li a:hover {
     text-decoration: none;
     color: #ff4884;
 }
-.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe {
+.fb-like-box,
+.fb-like-box span,
+.fb-like-box span iframe {
     width: 100% !important;
 }   
 .view_post_widget .post-view {
