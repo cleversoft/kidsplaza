@@ -19,7 +19,8 @@ jQuery(function(){
     //init category banner
     if (jQuery.fn.owlCarousel){
         jQuery('.catalog-root-banner').owlCarousel({
-            items: 1,
+            itemsScaleUp: true,
+            singleItem: true,
             autoPlay: true,
             navigation: false,
             pagination: false,
