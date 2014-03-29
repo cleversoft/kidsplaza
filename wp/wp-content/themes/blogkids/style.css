@@ -359,6 +359,9 @@ figcaption .thumb-info-alt i {
     transform: translateY(-30px);
     transition: all 0.3s ease 0s;
     width: 42px;
+    font-style: normal;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 100;
 }
 figcaption .thumb-info-excerpt h4 {
     line-height: 20px;
@@ -697,7 +700,7 @@ footer .widget_nav_menu ul li a {
     float: left;
     padding: 12px 0 5px 28px;
     position: absolute;
-    left: 85px;
+    left: 86px;
 }
 .share .addthis_toolbox a {
     float: left;
@@ -737,6 +740,11 @@ footer .widget_nav_menu ul li a {
     font-size: 120%;
     line-height: 25px;
     padding: 25% 0 0;
+}
+.error404 section p a {
+    color: #F74D88;
+    font-style: italic;
+    font-weight: bold;
 }
 .error404 .banner img {
     width: 100%;
@@ -821,6 +829,7 @@ footer .widget_nav_menu ul li a {
     padding: 7px 10px 7px 25px;
     width: 71%;
     color: #a1a2a2;
+    outline:none;
 }
 .b-search {
     background: #189eef;

@@ -157,6 +157,9 @@
 	footer .widget h3 {
 		font-size: 13px;
 	}
+	.account a {
+		margin-bottom: 15px;
+	}
 }
 
 /* --------------------------------------------
@@ -243,5 +246,8 @@
 	}
 	#sbc-search .multi-cat {
 		width: 66%;
+	}
+	.no-pading-left-phone {
+		padding-left: 0;
 	}
 }

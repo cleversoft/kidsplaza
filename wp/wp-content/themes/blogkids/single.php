@@ -21,9 +21,9 @@
 				<div class="blog-item-details-single">
 					<ul class="litst-details">
 						<li class="col-md-1 col-sm-2 col-xs-4"><i class="fa fa-user"></i> <?php the_author(); ?></li>
-						<li class="col-md-3 col-sm-4 col-xs-4"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
-						<li class="col-md-2 col-sm-3 col-xs-4"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
-						<li class="col-md-1 col-sm-2 col-xs-4"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment">
+						<li class="col-md-3 col-sm-4 col-xs-8"><i class="fa fa-bookmark"></i> <a href="<?php echo $link_first_categories ?>"><?php echo $first_categories ?></a></li>
+						<li class="col-md-2 col-sm-3 col-xs-6 no-pading-left-phone"><i class="fa fa-clock-o"></i> <?php the_time("d/m/Y") ?></li>
+						<li class="col-md-1 col-sm-2 col-xs-3"><i class="fa fa-comment-o"></i> <a href="<?php the_permalink(); ?>/#comment">
 						<?php
 						    $url = get_permalink();
 						    $urlfb='http://api.ak.facebook.com/restserver.php?v=1.0&method=links.getStats&urls=' . urlencode($url) . '&format=json';
@@ -36,10 +36,9 @@
 						    }
 						?>
 						</a></li>
-						<li class="col-md-1 col-sm-1 col-xs-4">
+						<li class="col-md-1 col-sm-1 col-xs-3">
 							<?php if (function_exists( 'lip_love_it_link' )) {
 									echo lip_love_it_link(get_the_ID(), '<i class="fa-heart-o"></i>', '<i class="fa-heart"></i>', false);
-						
 								} ?>
 						</li>
 					</ul>

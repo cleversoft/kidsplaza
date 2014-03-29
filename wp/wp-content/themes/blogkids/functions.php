@@ -259,33 +259,29 @@ if ( ! class_exists( 'SBC_Admin' ) ) {
                 <?php if (function_exists('wp_nonce_field')) { wp_nonce_field('sbc-updatesettings'); } ?>
                     <table class="form-table">
                         <tr>
-                            <th scope="row" valign="top"><label for="search-text">Display text in the search box:</label></th>
+                            <th scope="row" valign="top"><label for="search-text">Hiển thị văn bản trong hộp tìm kiếm:</label></th>
                             <td><input type="text" name="search-text" id="search-text" class="regular-text" value="<?php echo $search_text; ?>"/></td>
                         </tr>
                         <tr>
-                            <th scope="row" valign="top"><label for="focus">Display text in drop-down selection:</label></th>
+                            <th scope="row" valign="top"><label for="focus">Hiển thị văn bản trong lựa chọn thả xuống:</label></th>
                             <td><input type="text" name="focus" id="focus" class="regular-text" value="<?php echo $focus; ?>"/></td>
                         </tr>
                         <tr>
-                            <th scope="row" valign="top"><label for="hide-empty">Hide categories with no posts?</label></th>
+                            <th scope="row" valign="top"><label for="hide-empty">Ẩn danh mục không có bài?</label></th>
                             <td><input type="checkbox" name="hide-empty" id="hide-empty" value="1" <?php if ($hide_empty === '1') echo 'checked="checked"'; ?> /></td>
                         </tr>
                         <tr>
-                            <th scope="row" valign="top"><label for="exclude-child">Exclude Child categories from list?</label></th>
+                            <th scope="row" valign="top"><label for="exclude-child">Loại trừ category khỏi danh sách?</label></th>
                             <td><input type="checkbox" name="exclude-child" id="exclude-child" value="1" <?php if ($exclude_child === '1') echo 'checked="checked"'; ?> /></td>
                         </tr>
                         <tr>
-                            <th scope="row" valign="top"><label for="sbc-style">Use the SBC Form styling?</label></th>
-                            <td><input type="checkbox" name="sbc-style" id="sbc-style" value="1" <?php if ($sbc_style === '1') echo 'checked="checked"'; ?> /> <em>* Styling doesn't display correctly in IE7 and earlier *</em></td>
-                        </tr>
-                        <tr>
-                            <th scope="row" valign="top"><label>Categories to exclude:</label></th>
+                            <th scope="row" valign="top"><label>Loại để loại trừ:</label></th>
                             <td><ul><?php wp_category_checklist(0,0,$raw_excluded_cats); ?></ul></td>
                         </tr>
                         <tr>
-                            <th scope="row" valign="top"><label>Categories to always exclude from search results:</label></th>
-                            <td><input type="text" name="inall_exclude" id="inall_exclude" class="regular-text" value="<?php echo $inall_exclude; ?>"/><p><em><strong>Insert categories as comma seperated IDs (EX: 1,3,15,7)</strong></em></p></td>
-                            <td><span class="description">Sometimes you don't want users to see posts from every category, categories listed here will be excluded from processing if users don't pick a specific category from the dropdown menu.</span></td>
+                            <th scope="row" valign="top"><label>Categories loại trừ từ kết quả tìm kiếm:</label></th>
+                            <td><input type="text" name="inall_exclude" id="inall_exclude" class="regular-text" value="<?php echo $inall_exclude; ?>"/><p><em><strong>Thêm các mục như dấu phẩy tách ID (EX: 1,3,15,7)</strong></em></p></td>
+                            <td><span class="description">Đôi khi bạn không muốn người dùng để xem bài viết mỗi thể loại, loại được liệt kê ở đây sẽ bị loại khỏi xử lý nếu người dùng không chọn một thể loại cụ thể từ trình đơn thả xuống.</span></td>
                         </tr>
                     </table>
                     
@@ -395,17 +391,6 @@ function return_only_selected_category() {
 }
 
 $sbc_settings = get_option("sbc-settings");
-if($sbc_settings['sbc_style'] === '1'){
-    // Add our styling
-    function style_insert() {
-        $current_path = get_option('siteurl').'/wp-content/plugins/'.basename(dirname(__FILE__));
-        
-        //echo "<link href='{$current_path}/sbc-style.css' type='text/css' rel='stylesheet' />";
-    }
-
-    // insert custom stylesheet
-    add_action('wp_head','style_insert');
-}
 
 // Highjack the search
 add_filter('pre_get_posts', 'return_only_selected_category');

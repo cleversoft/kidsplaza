@@ -32,7 +32,7 @@
     <link href="<?php echo $data['apl_favicon']; ?>" rel="shortcut icon" />
     <link href="<?php echo $data['apl_apple_touch']; ?>" rel="apple-touch-icon" />
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,100&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 	<?php if (is_singular()) wp_enqueue_script('comment-reply'); ?>
 	<?php wp_head(); ?>
 </head>
