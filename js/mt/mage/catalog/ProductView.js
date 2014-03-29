@@ -182,13 +182,33 @@ jQuery(function(){
     jQuery('table', '#product_tabs_description_contents').addClass('table');
 
     //init zoom
-    jQuery('img.img-zoom').imagezoomsl({
-        zoomrange: [3,3],
-        magnifiersize: [570, 430],
-        magnifierborder: '1px solid #ddd',
-        magnifiereffectanimate: "fadeIn",
-        scrollspeedanimate: 2
+    function initImageZoomSl(){
+        var parent = jQuery('.product-view'),
+            image = parent.find('img.img-zoom');
+
+        if (jQuery(window).width() < 1000) image.unbind();
+        else{
+            var w = parent.find('.product-shop').width(),
+                h = image.height();
+
+            image.unbind();
+            image.imagezoomsl({
+                zoomrange: [3, 3],
+                magnifiersize: [w, h],
+                magnifierborder: '1px solid #ddd',
+                magnifiereffectanimate: "fadeIn",
+                scrollspeedanimate: 2
+            });
+        }
+    }
+    var zoomTimer;
+    jQuery(window).resize(function(){
+        if (zoomTimer) clearTimeout(zoomTimer);
+        zoomTimer = setTimeout(function(){
+            initImageZoomSl();
+        }, 300);
     });
+    initImageZoomSl();
 
     //init more views
     jQuery('.more-views img').on('click',function(){
