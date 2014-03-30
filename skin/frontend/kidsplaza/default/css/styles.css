@@ -861,7 +861,7 @@ p.back-link{float: left;}
         min-height: 34px;
     }
 }
-.product-view .product-image{
+.product-view .product-img-box .product-image{
     float: right;
     min-height: 430px;
 }
