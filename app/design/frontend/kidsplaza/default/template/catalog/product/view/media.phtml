@@ -58,7 +58,7 @@
     <span class="price-discount utm-cookies"><?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%</span>
 <?php endif ?>
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
-    <img class="img-responsive img-main img-zoom"
+    <img class="img-responsive img-main<?php echo Mage::getStoreConfigFlag('catalog/zoom/enable') ? ' img-zoom' : '' ?><?php echo Mage::getStoreConfigFlag('catalog/zoom/popup') ? ' img-popup' : '' ?>"
         src="<?php echo $_imgHelper->init($_product, 'image')->resize(430)?>"
         data-large="<?php echo $_imgHelper->init($_product, 'image')?>"
         alt="<?php echo $this->htmlEscape($_product->getName())?>"/>

@@ -39,10 +39,10 @@
 <?php echo $this->getChildHtml('head') ?>
 </head>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<a class="sr-only" href="#content">Skip to main content</a>
     <section class="mt-container">
         <?php echo $this->getChildHtml('mtcanvas') ?>
         <section class="mt-wrapper">
-            <a class="sr-only" href="#content">Skip to main content</a>
             <?php echo $this->getChildHtml('after_body_start') ?>
             <div class="wrapper">
                 <?php echo $this->getChildHtml('header') ?>

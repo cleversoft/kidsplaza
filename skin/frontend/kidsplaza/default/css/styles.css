@@ -862,6 +862,7 @@ p.back-link{float: left;}
 }
 .product-view .product-image{
     float: right;
+    min-height: 430px;
 }
 .root-category .item{
     margin-top: 10px;
@@ -960,4 +961,7 @@ dl.item-options{
 }
 .catalogsearch-result-index .page-title h2{
     margin: 0;
+}
+.img-popup{
+    cursor: pointer;
 }

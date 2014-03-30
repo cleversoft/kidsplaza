@@ -47,6 +47,10 @@ $session = Mage::getSingleton('customer/session');
                     <i class="glyphicon glyphicon-heart"></i>
                     <a href="<?php echo $this->getUrl('wishlist') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
                 </li>
+                <li>
+                    <i class="glyphicon glyphicon-usd"></i>
+                    <a href="<?php echo $this->getUrl('mtpoint/point') ?>"><?php echo Mage::helper('kidsplaza')->__('My Points') ?></a>
+                </li>
                 <?php if ($session->isLoggedIn()): ?>
                 <li>
                     <i class="glyphicon glyphicon-log-out"></i>

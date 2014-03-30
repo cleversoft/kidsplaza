@@ -24,12 +24,12 @@
 		 *
 		 */
 		 -->
-        <reference name="head">
+        <!--reference name="head">
             <action method="addItem">
                 <type>skin_css</type>
                 <name>w_blog/css/style.css</name>
             </action>
-        </reference>
+        </reference-->
 		<reference name="top.links">
 			<action method="addLink" translate="label title" module="wordpress" ifconfig="wordpress/toplink/enabled">
 				<label helper="wordpress/getTopLinkLabel" />
