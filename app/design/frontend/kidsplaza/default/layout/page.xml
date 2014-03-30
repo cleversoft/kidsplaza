@@ -61,7 +61,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
                 <action method="addJs"><script>bootstrap/js/bootstrap.min.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.sticky.js</script></action>
-                <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.hoverIntent.min.js</script></action>
+                <!--action method="addJs"><script>mt/extensions/jquery/plugins/jquery.hoverIntent.min.js</script></action-->
                 <action method="addJs"><script>mt/kidsplaza/location.js</script></action>
             </block>
 

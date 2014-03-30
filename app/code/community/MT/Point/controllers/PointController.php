@@ -8,6 +8,29 @@
  * @email       support@magentothemes.net
  */
 class MT_Point_PointController extends Mage_Core_Controller_Front_Action{
+    /**
+     * Retrieve customer session model object
+     *
+     * @return Mage_Customer_Model_Session
+     */
+    protected function _getSession(){
+        return Mage::getSingleton('customer/session');
+    }
+
+    /**
+     * Action predispatch
+     *
+     * Check customer authentication for some actions
+     */
+    public function preDispatch(){
+        parent::preDispatch();
+
+        if (!$this->_getSession()->isLoggedIn()){
+            $this->_redirect('customer/account/login');
+            return;
+        }
+    }
+
     public function indexAction(){
         $this->loadLayout();
         $this->renderLayout();
