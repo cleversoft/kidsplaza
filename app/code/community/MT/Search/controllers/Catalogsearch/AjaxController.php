@@ -23,6 +23,7 @@ class  MT_Search_Catalogsearch_AjaxController extends Mage_CatalogSearch_AjaxCon
 			$this->getResponse()->setBody(
 				$this->getLayout()->createBlock('mtsearch/autocomplete')
                     ->setData('query', $this->getRequest()->getParam('q', ''))
+                    ->setData('fq', array('category_ids' => $this->getRequest()->getParam('category_ids')))
                     ->toHtml()
 			);
 		}

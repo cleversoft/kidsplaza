@@ -96,10 +96,15 @@ var EnhancedAjaxAutocompleter = Class.create(Ajax.Autocompleter, {
 var KidsPlazaSearch = Class.create(Varien.searchForm, {
     initAutocomplete : function(url, destinationElement){
         new EnhancedAjaxAutocompleter(this.field, destinationElement, url, {
+            callback: function(elm, entry){
+                var form = elm.up('form');
+                if (form) return form.serialize();
+                else return entry;
+            },
             frequency: 0.2,
             paramName: this.field.name,
             method: 'get',
-            minChars: 2,
+            minChars: 3,
             updateElement: this._selectAutocompleteItem.bind(this),
             onShow: function(element, update){
                 update.style.width = element.getWidth() + 7 + 'px';
@@ -107,6 +112,18 @@ var KidsPlazaSearch = Class.create(Varien.searchForm, {
                 update.style.opacity = 1;
                 Effect.SlideDown(update, {duration: 0.2});
             }
+        });
+    },
+
+    initSearchFilter: function(field, target){
+        var field = this.form.down('input[name="'+field+'"]');
+        if (!field) return;
+        var target = this.form.down(target);
+        this.form.select('.dropdown-menu a').each(function(item){
+            Event.observe(item, 'click', function(){
+                field.value = item.readAttribute('data-value');
+                if (target) target.innerHTML = item.innerHTML;
+            });
         });
     }
 });
@@ -139,6 +156,7 @@ new KidsPlazaCart('cart-top');
 //init search
 var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
 KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
+KPSearch.initSearchFilter('category_ids', '.category-label');
 //init newsletter
 new VarienForm('newsletter-validate-detail');
 //init sticky header
@@ -146,5 +164,5 @@ jQuery('.mt-menu-top').sticky({topSpacing:-1});
 //init to-top button
 jQuery('.toTop').on('click',function(){jQuery('html,body').animate({scrollTop:0},500);});
 jQuery(window).scroll(function(){var elm=jQuery('.toTop');if(!elm.length)return;if(jQuery(window).scrollTop()>=330){if(!elm.data('show')){elm.data('show',true);elm.slideDown('fast');}}else{if(elm.data('show')){elm.data('show',false);elm.fadeOut();}}});
-//init style select
+//init style select input
 $$('select').each(function(select){ select.addClassName('form-control input-sm');});

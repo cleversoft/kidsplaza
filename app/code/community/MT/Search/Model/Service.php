@@ -31,6 +31,7 @@ class MT_Search_Model_Service extends Apache_Solr_Service {
 		if (is_array($filters)){
 			$tmpFilters = array();
 			foreach ($filters as $attr => $val){
+                if (!$val) continue;
 				if (is_array($val)){
 					$tmpFilter = array();
 					foreach ($val as $v){

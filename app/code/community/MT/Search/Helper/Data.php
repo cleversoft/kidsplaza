@@ -77,6 +77,9 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 					list($from, $to) = explode('-', $value);
 					$filters[$priceName] = sprintf('[%s TO %s]', $from ? $from : 0, $to ? $to : '*');
 					break;
+                case 'category_ids':
+                    $filters['category_ids'] = $value;
+                    break;
 				default:
 					$filters['attr_' . $key . '_value'] = $value;
 					break;

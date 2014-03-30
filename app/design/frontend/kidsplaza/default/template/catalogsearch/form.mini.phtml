@@ -26,17 +26,34 @@
 /* @var $this Mage_Core_Block_Template */
 /* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
 $catalogSearchHelper =  $this->helper('catalogsearch');
+$rootCategory = Mage::app()->getGroup()->getRootCategoryId();
+$currentCategory = $this->getRequest()->getParam('category_ids');
+$categories = Mage::getResourceModel('catalog/category_collection')
+    ->addIsActiveFilter()
+    ->addNameToResult()
+    ->addFieldToFilter('parent_id', array('eq' => $rootCategory));
+$categoryMap = array();
+foreach ($categories as $category){
+    $categoryMap[$category->getId()] = $this->escapeHtml($category->getName());
+}
 ?>
 <form id="search_mini_form" action="<?php echo $catalogSearchHelper->getResultUrl() ?>" method="get" data-suggest="<?php echo $catalogSearchHelper->getSuggestUrl() ?>" data-text="<?php echo $this->__('Search entire store here...')?>" autocomplete="off">
-    <span class="glyphicon glyphicon-search input-search-bg"></span>
     <div class="input-group top-search">
-        <!--span class="input-group-btnn menu">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><?php echo $this->__('All')?>&nbsp;<span class="caret"></span></button>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                <li><a href="javascript:void(0)">Action</a></li>
-                <li><a href="javascript:void(0)">Action</a></li>
+        <span class="input-group-btn category-filter">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                <span class="category-label">
+                    <?php echo isset($categoryMap[$currentCategory]) ? $categoryMap[$currentCategory] : $this->__('All') ?>
+                </span>&nbsp;<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="javascript:void(0)" data-value=""><?php echo $this->__('All')?></a></li>
+                <?php foreach ($categoryMap as $categoryId => $categoryName): ?>
+                <li><a href="javascript:void(0)" data-value="<?php echo $categoryId ?>"><?php echo $categoryName ?></a></li>
+                <?php endforeach ?>
             </ul>
-        </span-->
+        </span>
+        <input type="hidden" name="category_ids" value="<?php echo $currentCategory ?>"/>
+        <!--span class="glyphicon glyphicon-search input-search-bg"></span-->
         <input
             id="search"
             type="text"

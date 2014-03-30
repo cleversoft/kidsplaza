@@ -26,9 +26,17 @@ class MT_Search_Block_Autocomplete extends Mage_Core_Block_Abstract {
 			foreach ($vars as $var){
 				$attrs[] = 'attr_' . str_replace(array('{', '}'), array('', ''), $var);
 			}
+            $fq = array('store_id' => $store);
+            if ($filters = $this->getData('fq')){
+                if (is_array($filters)){
+                    foreach ($filters as $k => $v){
+                        if ($v) $fq[$k] = $v;
+                    }
+                }
+            }
 
 			try{
-				$service->query($query, array('store_id'=>$store), $attrs, $limit ? $limit : 10);
+				$service->query($query, $fq, $attrs, $limit ? $limit : 10);
 				
 				$templateSuggest = '<li title="{{word}}">'.$this->__('Did you mean').' <b>{{word}}</b></li>';
 

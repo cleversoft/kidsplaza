@@ -224,6 +224,7 @@ jQuery(function(){
                     }
                 });
                 jQuery.fancybox.open(images, {
+                    closeBtn: false,
                     padding: 0,
                     helpers: {
                         thumbs: {

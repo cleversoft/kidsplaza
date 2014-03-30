@@ -170,7 +170,8 @@ header .social-links {margin : 10px 0 0; }
 header .input-search-bg{color:#a5a5a5;position:absolute;height:40px;display:block;padding:10px;line-height:22px;left:0;top:0;z-index:9;}
 .top-search input{box-shadow:none;border:0}
 .top-search .menu{border-right:2px solid #e5e5e5}
-.top-search input{color:#a5a5a5;padding-left:25px}
+.top-search input{color:#a5a5a5;padding-left:10px}
+.top-search input:before{content: "\e003";}
 .btn-kid{background-color:#01a1ed;border:1px dashed #1a83c4;color:#fff;outline:3px solid #01a1ed}
 .btn-kid.btn-seach{outline:3px solid #01a1ed;}
 .btn-kid:hover{color:#fff}
@@ -959,9 +960,19 @@ dl.item-options{
 .product-options dd{
     margin-bottom: 15px;
 }
+.catalogsearch-result-index .page-title h1,
 .catalogsearch-result-index .page-title h2{
-    margin: 0;
+    margin: 0 0 10px;
 }
 .img-popup{
     cursor: pointer;
+}
+.top-search .category-filter{
+    border-right: 2px solid #E5E5E5;
+}
+.category-filter button:hover,
+.category-filter button:focus,
+.category-filter button{
+    color: #a5a5a5;
+    background: #F5F5F5;
 }
