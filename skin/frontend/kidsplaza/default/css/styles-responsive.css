@@ -54,6 +54,7 @@
     .category-products > .btn-group a.btn-next {right: 0;}
     .products-grid .owl-wrapper-outer .owl-item .item .price-box .price {font-size: 12px;}
     .category-products > .btn-group a.btn-next { right : 0;}
+    .top-banner li a {font-size: 86% ;}
 
 }
 @media (min-width: 980px) and (max-width: 1280px) {
@@ -67,7 +68,7 @@
     .slider-product-wrapper .nav-tabs li a {font-size: 80%}
 
     .category-products .products-grid .product-name { font-size: 11px;}
-    .footer-top .block-subscribe {float: left !important;margin: 20px 0 10px;}
+    .footer-top .block-subscribe {float: left !important;margin: 20px 70px 10px;}
 
     .cart {float: left ; width: 100% ;}
 
@@ -187,7 +188,7 @@
     .upsell-carousel-wrapper .btn-group a.btn-next { right : 5px !important;}
     .category-carousel-wrapper .btn-group a.btn-next {right: 5px !important;}
 
-    .products-grid li.item, .products-grid .item {height: 250px !important;}
+    .products-grid li.item, .products-grid .item {height: 255px !important;}
     .category-products.root-category .products-grid .item ul li a {font-size: 10px;}
 
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
@@ -229,6 +230,7 @@
         left: auto;
         right: 0px;
     }
+    .header-mid #search_mini_form .dropdown-menu {left: 0;}
     .products-grid .owl-wrapper-outer .owl-item .item .price-box .price {
         color: #FF3D70;
         font-size: 12px;
