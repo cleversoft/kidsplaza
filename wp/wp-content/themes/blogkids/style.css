@@ -766,11 +766,13 @@ footer .widget_nav_menu ul li a {
     width: 100%;
     clear: both;
 }
+.sbHolder {
+    padding: 10px;
+}
 .all-catgory {
     float: left;
     margin: 0 !important;
     padding: 0 !important;
-    width: 91px;
     border-right: 1px solid #e5e5e5;
     background: #f5f5f5;
     position: relative;
@@ -791,11 +793,10 @@ footer .widget_nav_menu ul li a {
     width: 20px;
 }
 .sbSelector {
-    display: block;
     font-size: 18px;
     font-weight: normal;
     overflow: hidden;
-    padding: 8px 20px;
+    padding: 15px 25px 15px 15px;
     height: 42px;
     color: #818282;
 }
@@ -803,13 +804,14 @@ footer .widget_nav_menu ul li a {
     background: #FFFFFF;
     padding:0;
     position: absolute;
-    top: 42px !important;
+    top: 51px !important;
     width: 225px;
     z-index: 9999;
     max-height: none !important;
     border-left: 1px solid #e5e5e5;
     border-right: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
+    margin-left: -15px;
 }
 .sbOptions li {
     padding: 8px;
@@ -831,8 +833,8 @@ footer .widget_nav_menu ul li a {
     float: left;
     font-size: 18px;
     margin-left: 10px;
-    padding: 8px 10px 8px 25px;
-    width: 71%;
+    padding: 10px 10px 10px 25px;
+    width: 50%;
     color: #a1a2a2;
     outline:none;
 }
@@ -851,6 +853,7 @@ footer .widget_nav_menu ul li a {
     font-size: 18px;
     font-weight: bold;
     margin-left: 5px;
-    padding: 6px;
+    padding: 8px;
+    -webkit-padding-after: 6px;
     width: 96%;
 }
