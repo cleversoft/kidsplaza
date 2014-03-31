@@ -54,7 +54,7 @@
 .product-view #product-upsell{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-description{  padding: 0; }
 .product-view #product-description h2{ color: #333; }
-.product-view .category-products { padding: 50px 0; border-bottom: 1px solid #f2f2f2; border-top: 1px solid #f2f2f2;}
+.product-view .category-products { padding: 20px 0; border-bottom: 1px solid #f2f2f2; border-top: 1px solid #f2f2f2;}
 .category-products > .btn-group {display: inline-block; position: absolute;  vertical-align: middle; width: 100%;z-index: 9; }
 .category-products > .btn-group a { opacity:0.9 ;background: none repeat scroll 0 0 #d6d6d7;border: none; border-radius: 2px !important ; -webkit-border-radius: 2px !important; -moz-border-radius: 2px !important; height: 34px;margin: 0; position: absolute; width: 34px;z-index: 9; top: 100px ;}
 .category-products > .btn-group a i.glyphicon{color: #fff;left: -1px;top: 3px; }
@@ -335,7 +335,7 @@ input,textarea{outline:0}
 .grid-5 li{width: 20%;}
 .products-grid {float: left;width: 100%;}
 .products-grid li ,
-.products-grid .item{float:left;text-align:center;position:relative;height:auto;margin-bottom:15px ;margin-top: 0;}
+.products-grid .item{float:left;text-align:center;position:relative;height:auto;margin-bottom:15px ;margin-top: 15px;}
 .products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;margin:5px 0;}
 .products-grid .product-name a{color:#634f4f}
 .products-grid .product-image{display:block;text-align: center;padding: 10px 0 0;}
@@ -693,7 +693,7 @@ p.back-link{float: left;}
     margin-top: -2px;
 }
 .cms-index-index .std{display: none;}
-.cms-index-index .category-products{margin-bottom: 40px;float: left;width: 100%;}
+.cms-index-index .category-products{margin-bottom: 10px;float: left;width: 100%;}
 .category-products .btn-group  .btn-default{opacity: 0; }
 .category-products .toolbar-view .btn-group .btn-default{opacity: 1; min-width: 160px;}
 .category-products .toolbar-view .btn-group .btn-default:hover{background: none ; opacity: 1;  }

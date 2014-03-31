@@ -126,6 +126,7 @@
     }
 }
 @media (min-width: 768px) and (max-width: 979px) {
+    .header-bot {height: auto ;}
     .header-top .header-top-inner .col-lg-6 {padding-left: 10px !important; margin: 0 0 20px;}
     .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;}
     .top-login .font { padding: 0 12px; width: 23%; }
@@ -176,7 +177,6 @@
     .account-login .account-create .form-list label { width: 30%;  }
     .account-login .buttons-set a.f-right {width: 75px; font-size: 65% ;}
     .col2-set-right .btn-login {padding: 4px;}
-    /*#content {float: left; width :100% ;}*/
 
     .footer-coppyright-inner .social-links {float: left;}
     .footer-top .block-subscribe {margin: 20px 0 10px;float: left !important;   }
@@ -186,6 +186,9 @@
 
     .upsell-carousel-wrapper .btn-group a.btn-next { right : 5px !important;}
     .category-carousel-wrapper .btn-group a.btn-next {right: 5px !important;}
+
+    .products-grid li.item, .products-grid .item {height: 250px !important;}
+    .category-products.root-category .products-grid .item ul li a {font-size: 10px;}
 
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
 
@@ -235,7 +238,12 @@
     .sticky-wrapper { float: none;}
 }
 @media (max-width: 767px) {
+
+    .header-bot {height: auto ;}
     .header-top .header-top-inner .col-lg-6 {padding-left: 10px !important; margin: 0 0 20px;}
+    .social-links, .top-links {
+        height: auto;
+    }
     .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ; border: none ;}
     .toplogin .popover  { left: 10px !important;}
     .toplogin .popover .arrow { left: -45px !important;}
