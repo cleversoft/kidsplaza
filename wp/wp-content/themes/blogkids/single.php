@@ -75,29 +75,6 @@
 			<div class="comment" id="comment">
 				<div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="800" data-numposts="5" data-colorscheme="light">
 			</div>
-			<script type="text/javascript">
-				/* resize facebook comments */
-				(function(window){
-				    var dh = null;
-				    $(window).on("resize",function(){
-				        if ( dh ) {
-				            clearTimeout(dh);
-				        }
-				        dh = setTimeout(function(){
-				            var $fbc = $(".fb-comments");
-				            var $stc = $(".comment");
-				            dh = null;
-				            if ( $fbc.attr("data-width") != $stc.width() ) {
-				                $stc.css({height:$stc.height()});
-				                $fbc.attr("data-width", $stc.width());
-				                FB.XFBML.parse($stc[0],function(){
-				                    $stc.css({height:'auto'});
-				                });
-				            }
-				        },300);
-				    }).trigger("resize");
-				})(this);
-			</script>
 	</section>
 	<aside class="col-md-3">
 		<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar')): endif;?>

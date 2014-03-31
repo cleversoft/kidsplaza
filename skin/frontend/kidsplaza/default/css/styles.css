@@ -977,3 +977,6 @@ dl.item-options{
     color: #a5a5a5;
     background: #F5F5F5;
 }
+.related-name-item strong{
+    color: #333;
+}

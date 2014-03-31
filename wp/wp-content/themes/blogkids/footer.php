@@ -135,12 +135,26 @@
 	            }
 	        },300);
 	    }).trigger("resize");
+
+	   	var kl = null;
+	    $(window).on("resize",function(){
+	        if ( kl ) {
+	            clearTimeout(kl);
+	        }
+	        kl = setTimeout(function(){
+	            var $fbl = $(".fb-comments");
+	            var $stl = $(".comment");
+	            dh = null;
+	            if ( $fbl.attr("data-width") != $stl.width() ) {
+	                $stl.css({height:$stl.height()});
+	                $fbl.attr("data-width", $stl.width());
+	                FB.XFBML.parse($stl[0],function(){
+	                    $stl.css({height:'auto'});
+	                });
+	            }
+	        },300);
+	    }).trigger("resize");
 	})(this);
-
-
-
-
-
 
 	$(".postform").selectbox({
 	onOpen: function (inst) {
@@ -178,7 +192,6 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script>
 	<?php wp_footer(); ?>
-	<!-- Don't forget analytics -->
 </body>
 
 </html>

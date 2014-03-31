@@ -117,7 +117,7 @@
 	.main-navigation ul > li > a {
 		border: 0;
 	}
-	.social {
+	.no-mobile {
 		display: none;
 	}
 	.page-menu {
@@ -130,7 +130,7 @@
 		margin-right: 8px;
 	}
 	.top-header .page-menu ul {
-		margin-top: 20px;
+		margin-top: 10px;
 	}
 }
 
@@ -211,9 +211,12 @@
 		font-size: 14px;
 	}
 	.account {
-		width: 193px;
+		width: none;
 		margin: 0 auto;
 		overflow: hidden;
+	}
+	.account a p {
+		display: none;
 	}
 	.logo {
 		width: 250px;
@@ -228,7 +231,9 @@
 	.share .addthis_toolbox {
 		position: static;
 	}
-
+	.page-menu {
+		width: 66.6667%;
+	}
 }
 
 /* --------------------------------------------
@@ -262,5 +267,18 @@
 	}
 	.b-search {
 		width: 30%;
+	}
+	.account {
+		width: 190px;
+		float: none;
+	}
+	.account a p {
+		display: block;
+	}
+	.top-header .social {
+		width: 25%;
+	}
+	.top-header .page-menu {
+		width: 75%;
 	}
 }

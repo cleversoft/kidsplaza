@@ -48,6 +48,7 @@ ul li {
 .social ul li {
     float: left;
     padding-left: 4px;
+    margin-bottom: 5px;
 }
 .page-menu ul {
     margin-top: 20px;
@@ -502,9 +503,9 @@ aside .widget_nav_menu ul li a:hover {
     text-decoration: none;
     color: #ff4884;
 }
-.fb-like-box, .fb-like-box span, .fb-like-box span iframe {
-    width: 98% !important;
-}   
+.fb-like-box, .fb-like-box span, .fb-like-box span iframe [style] {
+    width: 100% !important;
+}
 .view_post_widget .post-view {
     padding: 10px;
     overflow: hidden;
@@ -701,6 +702,7 @@ footer .widget_nav_menu ul li a {
     padding: 12px 0 5px 28px;
     position: absolute;
     left: 86px;
+    width: auto;
 }
 .share .addthis_toolbox a {
     float: left;
