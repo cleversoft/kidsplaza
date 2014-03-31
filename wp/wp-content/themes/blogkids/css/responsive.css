@@ -51,10 +51,7 @@
 		padding: 12px 25px;
 	}
 	#sbc-search .multi-cat {
-		width: 68%;
-	}
-	.b-search {
-		margin-left: 8px;
+		width: 46%;
 	}
 }
 
@@ -108,7 +105,7 @@
 		max-width: 100%;
 	}
 	#sbc-search .multi-cat {
-		width: 60%;
+		width: 32%;
 	}
 	.main-navigation ul {
 		text-align: center;
@@ -170,10 +167,7 @@
 		margin-left: 3px;
 	}
 	#sbc-search .multi-cat {
-		width: 62%;
-	}
-	.b-search {
-		margin-left: 9px;
+		width: 32%;
 	}
 }
 
