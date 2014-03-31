@@ -50,6 +50,12 @@
 	.share p {
 		padding: 12px 25px;
 	}
+	#sbc-search .multi-cat {
+		width: 68%;
+	}
+	.b-search {
+		margin-left: 8px;
+	}
 }
 
 @media only screen and (min-width: 1250px) {
@@ -160,6 +166,15 @@
 	.account a {
 		margin-bottom: 15px;
 	}
+	.b-search #sbc-submit {
+		margin-left: 3px;
+	}
+	#sbc-search .multi-cat {
+		width: 62%;
+	}
+	.b-search {
+		margin-left: 9px;
+	}
 }
 
 /* --------------------------------------------
@@ -219,6 +234,7 @@
 	.share .addthis_toolbox {
 		position: static;
 	}
+
 }
 
 /* --------------------------------------------
@@ -249,5 +265,8 @@
 	}
 	.no-pading-left-phone {
 		padding-left: 0;
+	}
+	.b-search {
+		width: 30%;
 	}
 }

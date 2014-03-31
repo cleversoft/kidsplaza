@@ -31,6 +31,7 @@
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <link href="<?php echo $data['apl_favicon']; ?>" rel="shortcut icon" />
     <link href="<?php echo $data['apl_apple_touch']; ?>" rel="apple-touch-icon" />
+    <link href='http://fonts.googleapis.com/css?family=Bubblegum+Sans' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,100&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 	<?php if (is_singular()) wp_enqueue_script('comment-reply'); ?>
@@ -119,13 +120,13 @@
 	<div class="container">
 		<div class="row">
 			<header>
-				<div class="main-header">
+				<div class="main-header clearfix">
 					<div class="logo col-sm-4">
 						<a href="<?php echo get_option('home'); ?>">
 							<img src="<?php echo $data['apl_logo']; ?>">
 						</a>
 					</div>
-					<div class="search-category col-lg-8">
+					<div class="search-category col-sm-8">
 						<?php if(function_exists('sbc')){ 
 						    sbc();
 						} ?>

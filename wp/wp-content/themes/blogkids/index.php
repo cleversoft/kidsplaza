@@ -5,11 +5,11 @@
 	        bcn_display();
 	    }?>
 	</div>
-	<section class="col-sm-9">
+	<section class="col-md-9">
 		<?php while (have_posts()) : the_post(); get_template_part( 'includes/loop', 'index' ); endwhile; ?>
 		<?php wp_pagenavi(); ?>
 	</section>
-	<aside class="col-sm-3">
+	<aside class="col-md-3">
 		<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar')): endif;?>
 	</aside>
 	</div>

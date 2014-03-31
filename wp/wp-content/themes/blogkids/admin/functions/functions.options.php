@@ -175,13 +175,67 @@ $of_options[] = array( 	"name" 		=> "Footer Text",
 						"type" 		=> "textarea"
 				);
 
-$of_options[] = array( 	"name" 		=> "Footer Email",
-						"desc" 		=> "Điền email của bạn vào đây",
-						"id" 		=> "apl_footer_email",
-						"std" 		=> "hotro@kidsplaza.vn",
-						"type" 		=> "textarea"
+$of_options[] = array( 	"name" 		=> "Địa chỉ HN",
+						"desc" 		=> "Điền địa chỉ của bạn vào đây",
+						"id" 		=> "apl_footer_dc_hn",
+						"std" 		=> "Kids plaza Hà Nội",
+						"type" 		=> "text"
 				);
 
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 1",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_1",
+						"std" 		=> "<strong>Q.Đống Đa: </strong>Số 20-22 Thái Thịnh",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 2",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_2",
+						"std" 		=> "<strong>Q.Ba Đình: </strong>Số 56 Giang Văn Minh",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 3",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_3",
+						"std" 		=> "<strong>Q.Cầu Giấy: </strong>Số 40 Trần Thái Tông",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 4",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_4",
+						"std" 		=> "<strong>Q.Hà Đông: </strong>Số 44-TT4A Văn Quán",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 5",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_5",
+						"std" 		=> "<strong>Q.Thanh Xuân: </strong>Số 533 Nguyễn Trãi",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Chi nhánh HN 6",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_cn_6",
+						"std" 		=> "<strong>Q.Hai Bà Trưng:</strong>Số 340 Bạch Mai",
+						"type" 		=> "text"
+				);
+
+$of_options[] = array( 	"name" 		=> "Địa chỉ HCM",
+						"desc" 		=> "Điền địa chỉ của bạn vào đây",
+						"id" 		=> "apl_footer_dc_hcm",
+						"std" 		=> "Kids plaza Hồ Chí Minh",
+						"type" 		=> "text"
+				);
+$of_options[] = array( 	"name" 		=> "Chi nhánh HCM 1",
+						"desc" 		=> "Điền địa chỉ chi nhánh của bạn vào đây",
+						"id" 		=> "apl_footer_hcm_1",
+						"std" 		=> "162L/18 Trường Chinh, P.12, Quận Tân Bình, TPHCM",
+						"type" 		=> "text"
+				);
 //End oftion				
 	}
 }

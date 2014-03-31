@@ -120,6 +120,8 @@
         wp_enqueue_script('html5shiv');
         wp_register_script('respond', get_stylesheet_directory_uri() .'/js/respond.min.js');
         wp_enqueue_script('respond');
+        wp_register_script('selectbox', get_stylesheet_directory_uri() .'/js/jquery.selectbox.js');
+        wp_enqueue_script('selectbox');
 	}
 
     //Load css

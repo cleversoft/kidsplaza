@@ -33,31 +33,31 @@
 					<div class="col-xs-3">
                         <div class="hn widget">
                             <em></em>
-                            <h3>Kids plaza Hà Nội</h3>
+                            <h3><?php echo $data['apl_footer_dc_hn']; ?></h3>
                         </div>
 					</div>
 					<div class="diachiso col-xs-3">
-						<p><strong>Q.Đống Đa:</strong> Số 20-22 Thái Thịnh</p>
-						<p><strong>Q.Ba Đình:</strong> Số 56 Giang Văn Minh</p>
+						<p><?php echo $data['apl_footer_cn_1']; ?></p>
+						<p><?php echo $data['apl_footer_cn_2']; ?></p>
 					</div>
 					<div class="diachiso col-xs-3">
-						<p><strong>Q.Cầu Giấy:</strong> Số 40 Trần Thái Tông</p>
-						<p><strong>Q.Hà Đông:</strong> Số 44-TT4A Văn Quán</p>
+						<p><?php echo $data['apl_footer_cn_3']; ?></p>
+						<p><?php echo $data['apl_footer_cn_4']; ?></p>
 					</div>
 					<div class="diachiso col-xs-3">
-						<p><strong>Q.Thanh Xuân:</strong> Số 533 Nguyễn Trãi</p>
-						<p><strong>Q.Hai Bà Trưng:</strong> Số 340 Bạch Mai</p>
+						<p><?php echo $data['apl_footer_cn_5']; ?></p>
+						<p><?php echo $data['apl_footer_cn_6']; ?></p>
 					</div>
 				</div>
 				<div class="diachi col-xs-12">
 					<div class="col-sm-3 widget col-xs-6">
                         <div class="hcm widget">
                             <em></em>
-                            <h3>Kids plaza Hồ Chí Minh</h3>
+                            <h3><?php echo $data['apl_footer_dc_hcm']; ?></h3>
 					    </div>
 					</div>
 					<div class="diachiso hcm col-sm-9  col-xs-6">
-						<p>162L/18 Trường Chinh, P.12, Quận Tân Bình, TPHCM</p>
+						<p><?php echo $data['apl_footer_hcm_1']; ?></p>
 					</div>
 				</div>
 			</div>
@@ -114,14 +114,69 @@
 			</div>
 		</div>
 	</div>
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VI/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+	<script type="text/javascript">
+	/* resize facebook comments */
+	(function(window){
+	    var dh = null;
+	    $(window).on("resize",function(){
+	        if ( dh ) {
+	            clearTimeout(dh);
+	        }
+	        dh = setTimeout(function(){
+	            var $fbc = $(".fb-like-box");
+	            var $stc = $(".textwidget");
+	            dh = null;
+	            if ( $fbc.attr("data-width") != $stc.width() ) {
+	                $stc.css({height:$stc.height()});
+	                $fbc.attr("data-width", $stc.width());
+	                FB.XFBML.parse($stc[0],function(){
+	                    $stc.css({height:'auto'});
+	                });
+	            }
+	        },300);
+	    }).trigger("resize");
+	})(this);
+
+
+
+
+
+
+	$(".postform").selectbox({
+	onOpen: function (inst) {
+		//console.log("open", inst);
+	},
+	onClose: function (inst) {
+		//console.log("close", inst);
+	},
+	onChange: function (val, inst) {
+		$.ajax({
+			type: "GET",
+			data: {country_id: val},
+			url: "ajax.php",
+			success: function (data) {
+				$(".postform").html(data);
+				$(".postform").selectbox();
+			}
+		});
+	},
+	effect: "slide"
+	});
+	$(".all-catgory").selectbox({
+		effect: "fade"
+	});
+	$(".all-catgory").selectbox({
+		speed: 0
+	});
+	</script>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VI/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<?php wp_footer(); ?>
 	<!-- Don't forget analytics -->
 </body>
