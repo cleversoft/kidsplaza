@@ -87,7 +87,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .product-options .attr-img{ border: 1px solid #fff; padding: 1px;display: inline-block;}
 .product-view .product-options .attr-img.active{ border: 1px solid #007d9e;}
 .product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 20px; }
-.category-products .products-grid .product-name{font-size: 16px;font-family: 'Open Sans',arial, sans-serif;}
+.category-products .products-grid .product-name{font-size: 100%;font-family: 'Open Sans',arial, sans-serif;}
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
 
 #product-related h3,
@@ -729,7 +729,14 @@ p.back-link{float: left;}
 .col-rigth{padding-right: 0;}
 .rev_slider_wrapper{margin-bottom: 20px !important;}
 .btn-checkout{font-weight: 700;}
-@media screen and (min-width: 768px){ .modal-dialog { margin: 60px auto;}}
+@media screen and (min-width: 768px){
+    .modal-dialog { margin:  auto; width: 490px; top: 20% ;}
+    .modal-dialog .modal-content { padding: 210px 0 0 ;box-shadow: none ; border: none ;   background-image: url("../images/bgLocation.png") ; background-position: 0 0; background-repeat: no-repeat ; background-color: transparent ; height: 400px; }
+    .modal-header ,.modal-body { width: 330px ; margin: auto ; border: none ;padding: 15px 0 ;}
+    .modal-header h4 { color: #000; font-family: 'Roboto Slab','Open Sans','Arial'; font-weight: bold ;}
+    .modal-header h4  .glyphicon  {font-size: 140%;line-height: 10px; float: right ; color: #78bb1a ;}
+    .modal-body a {color: #000; font-family: 'Roboto Slab','Open Sans','Arial'; font-weight: bold ; height: 33px; padding: 8px 40px; line-height: 20px; background: #dfdfdf ; border-radius: 30px ; -webkit-border-radius: 30px ; -moz-border-radius: 30px ;border-bottom: 1px solid #b7b7b7 ; }
+}
 .review-items td{font-size: 12px;}
 .search-autocomplete li a{vertical-align: top;}
 .search-autocomplete li a img{margin-right: 5px;}
