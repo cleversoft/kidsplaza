@@ -18,9 +18,9 @@ KidsPlazaLocation.prototype = {
         }
     },
     showLocationSelect: function(){
-        jQuery(function(){
-            //triggerLocationOverlay();
-        });
+        document.observe('dom:loaded', function(){
+            this.triggerLocationOverlay();
+        }.bind(this));
     },
     setLocation: function(location){
         var expire = new Date();
@@ -28,6 +28,9 @@ KidsPlazaLocation.prototype = {
         Mage.Cookies.set(this.locationVar, location, expire);
         this.location = location;
         window.location.reload();
+    },
+    triggerLocationOverlay: function(){
+        jQuery('#location-modal').modal('show');
     }
 };
 

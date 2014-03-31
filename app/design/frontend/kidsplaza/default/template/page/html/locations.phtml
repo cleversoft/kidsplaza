@@ -8,13 +8,19 @@
  * @email       support@magentothemes.net
  */
 ?>
-<div class="overlay overlay-scale">
-    <nav>
-        <ul>
-            <li><a href="javascript:void(0)"><i class="glyphicon glyphicon-map-marker"></i> <?php echo $this->__('Choose your location') ?>:</a></li>
-            <?php foreach ($this->getWebsites() as $website): ?>
-            <li class="li"><a href="#" onclick="return KPLocation.setLocation('<?php echo $website['code'] ?>')"><?php echo $website['label'] ?></a></li>
-            <?php endforeach; ?>
-        </ul>
-    </nav>
+<div class="modal fade" id="location-modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><i class="glyphicon glyphicon-map-marker"></i> <?php echo $this->__('Choose your location') ?></h4>
+            </div>
+            <div class="modal-body">
+                <?php foreach ($this->getWebsites() as $website): ?>
+                    <a class="btn btn-login" href="#" onclick="return KPLocation.setLocation('<?php echo $website['code'] ?>')">
+                        <?php echo $website['label'] ?>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
 </div>
