@@ -56,6 +56,8 @@
     .category-products > .btn-group a.btn-next { right : 0;}
     .top-banner li a {font-size: 86% ;}
 
+    .product-view #product-related .relared-price {margin: 20px 0 ;}
+    .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
 }
 @media (min-width: 980px) and (max-width: 1280px) {
 
@@ -235,6 +237,11 @@
         color: #FF3D70;
         font-size: 12px;
     }
+
+    .product-view #product-related .relared-price {margin: 20px 0 ;}
+
+    .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
+
 }
 @media (max-width: 900px) {
     .sticky-wrapper { float: none;}
@@ -401,6 +408,7 @@
     .footer-center-inner .items {margin: 0 0 20px;}
 
     .product-view .btn-cart {font-size: 140% ; margin: 20px 0 0;}
+    .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
 

@@ -26,8 +26,8 @@ $_id = $this->getConfig('id');
 		    <div class="label-deal">&nbsp;</div>
             <div class="deal-item-inner">
 
-                <div class="deal-item-percent">
-                     <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% OFF
+                <div class="deal-item-percent utm-cookies">
+                     <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% 
                 </div>
                 <div class="deal-item-price">
                     <span class="old-price"><?php echo Mage::helper('core')->formatPrice($product->getPrice()) ?></span>

@@ -68,16 +68,12 @@ header .menu-top {
 }
 #megamenu ul li.level-0.over > a span{
    line-height: 45px;
-   background: url(../images/icon-menu-parent.png) no-repeat 100% -36px ;
+   background: url(../images/icon-menu-parent.png) no-repeat 100% -40px ;
    color: #FF4E8F;
-   background: url(../images/icon-menu-parent.png) no-repeat 100% -39px ;
-    color: #FF4E8F;
 }
 #megamenu ul li.level-0 > a span {
-    color: #515151;
-    background: url(../images/icon-menu-parent.png) no-repeat 100% 3px ;
-    color: #757575;
     background: url(../images/icon-menu-parent.png) no-repeat 100% 6px ;
+    color: #484848;
     padding-right: 15px;
 }
 #megamenu ul li.level-0.over > a span {
@@ -278,7 +274,7 @@ header .menu-top {
     background: 0;
 }
 #megamenu li.level-0:first-child span , #megamenu li.level-0:first-child span:hover{
-    background: url(../../../images/bgIcons2.png) no-repeat -230px -2px;
+    background: url(../../../images/bgIcons2.png) no-repeat -230px -47px;
     display: block;
     width: 40px;
     height: 40px;

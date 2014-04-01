@@ -37,8 +37,9 @@
     <div class="add-to-cart">
         <?php if (!$_product->isGrouped()): ?>
             <label for="qty"><?php echo $this->__('Quantity') ?></label>
-            <input type="number" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
-            <p id="product-price-total"><?php echo $this->__('Total Price') ?>: <span class="price"></span></p>
+            <input type="number" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty " />
+            
+			<p id="product-price-total"><?php echo $this->__('Total Price') ?>: <span class="price"></span></p>
         <?php endif ?>
         <div class="add-bt">
             <button type="button" class="btn btn-kid btn-cart btn-login" title="<?php echo $buttonTitle ?>" onclick="window.productAddToCartForm.submit(this)">

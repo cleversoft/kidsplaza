@@ -88,12 +88,12 @@ $totalPrice = 0;
                 <?php endforeach ?>
             </ol>
         </div>
-        <div class="col-lg-5">
+        <div class="relared-price col-lg-5">
             <p class="relared-price-all"><?php echo $this->__('Price for all: %s', Mage::helper('core')->formatPrice($totalPrice)) ?></p>
-            <button class="btn btn-related" onclick="productAddToCartForm.submitAllRelated(this)">
+            <button class="btn btn-related btn-addcart" onclick="productAddToCartForm.submitAllRelated(this)">
                 <?php echo $this->__('Add all to Cart') ?>
             </button>
-            <button class="btn btn-related" onclick="productAddToCartForm.submitAllLight(this, '<?php echo $this->getUrl('wishlist/index/all') ?>')">
+            <button class="btn btn-related " onclick="productAddToCartForm.submitAllLight(this, '<?php echo $this->getUrl('wishlist/index/all') ?>')">
                 <?php echo $this->__('Add all to Wishlist') ?>
             </button>
         </div>
