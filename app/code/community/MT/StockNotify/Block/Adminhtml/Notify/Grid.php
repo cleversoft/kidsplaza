@@ -81,6 +81,10 @@ class MT_StockNotify_Block_Adminhtml_Notify_Grid extends Mage_Adminhtml_Block_Wi
                 )
             )
         ));
+        $this->getMassactionBlock()->addItem('delete', array(
+            'label' => Mage::helper('mtstocknotify')->__('Delete'),
+            'url'   => $this->getUrl('*/*/massDelete')
+        ));
         return $this;
     }
 }

@@ -21,13 +21,15 @@ var ProductOptionPrice = Class.create(Product.OptionsPrice, {
         this.containers[2] = 'price-including-tax-' + this.productId;
         this.containers[3] = 'price-excluding-tax-' + this.productId;
         this.containers[4] = 'old-price-' + this.productId;
-        Event.observe('qty', 'change', function(event){
-            var elm = event.findElement('input'),
-                qty = elm.value;
-            qty = qty <= 0 ? 1 : (qty > 99 ? 99 : qty);
-            elm.value = qty;
-            this.reload();
-        }.bind(this));
+        if ($('qty')){
+            Event.observe('qty', 'change', function(event){
+                var elm = event.findElement('input'),
+                    qty = elm.value;
+                qty = qty <= 0 ? 1 : (qty > 99 ? 99 : qty);
+                elm.value = qty;
+                this.reload();
+            }.bind(this));
+        }
     },
 
     reload: function() {
@@ -360,18 +362,29 @@ function addRelatedToProduct(){
             prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
         }
     }
+
     if ($('related-field')){
         $('related-field').value = values.join(',');
     }
+
     for (var i=0; i<prices.length; i++){
         relatedPrice && relatedPrice.addCustomPrices('related-' + prices[i].product, prices[i]);
     }
+
+    var isFirst = false;
+    $$('.related-img-item').each(function(item){
+        if (!isFirst && !item.hasClassName('hide')){
+            isFirst = true;
+            item.addClassName('first');
+        }
+    });
+
     relatedPrice && relatedPrice.reload();
 }
 
 jQuery(function(){
     //init show more/less
-    var content_height_limit = 500,
+    /*var content_height_limit = 500,
         mainPane = jQuery('#product-description'),
         height = mainPane.height(),
         showMore = jQuery('<div/>')
@@ -399,7 +412,7 @@ jQuery(function(){
             showMore.show();
             jQuery('#product-description').scrollToMe();
         });
-    }
+    }*/
 
     //init table description
     jQuery('table', '#product_tabs_description_contents').addClass('table');

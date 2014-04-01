@@ -11,12 +11,12 @@ class MT_StockNotify_NotifyController extends Mage_Core_Controller_Front_Action{
     public function submitAction(){
         $response = array();
         if ($this->_validateFormKey()){
+            $productId = $this->getRequest()->getParam('product');
+            if (!$productId) $response = array('error' => 1, 'message' => $this->__('Product Invalid!'));
             $session = Mage::getSingleton('core/session');
-            if ($session->getStockNotify()){
+            if ($session->getData('stock'.$productId)){
                 $response = array('error' => 1, 'message' => $this->__('Stock Notified!'));
-            }else {
-                $productId = $this->getRequest()->getParam('product');
-                if (!$productId) $response = array('error' => 1, 'message' => $this->__('Product Invalid!'));
+            }else{
                 $product = Mage::getModel('catalog/product')->load($productId, array('entity_id'));
                 if (!$product->getId()) $response = array('error' => 1, 'message' => $this->__('Product Invalid!'));
                 if (Mage::getSingleton('customer/session')->isLoggedIn()) {
@@ -32,7 +32,7 @@ class MT_StockNotify_NotifyController extends Mage_Core_Controller_Front_Action{
                         $notify->save();
                         $response = array('error' => 0, 'message' => $this->__('Save successful!'));
                         $session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
-                        $session->setStockNotify(true);
+                        $session->setData('stock'.$productId, true);
                     } catch (Exception $e) {
                         $response = array('error' => 1, 'message' => $this->__('Save error!'));
                     }
@@ -59,7 +59,7 @@ class MT_StockNotify_NotifyController extends Mage_Core_Controller_Front_Action{
                             $notify->save();
                             $response = array('error' => 0, 'message' => $this->__('Save successful!'));
                             $session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
-                            $session->setStockNotify(true);
+                            $session->setData('stock'.$productId, true);
                         } catch (Exception $e) {
                             $response = array('error' => 1, 'message' => $this->__('Save error!'));
                         }

@@ -36,14 +36,13 @@ $totalPrice = 0;
 </script>
 <div class="related-wrapper">
     <ol class="related-img">
-        <li class="related-<?php echo $product->getId() ?> related-img-item" style="display: inline-block">
+        <li class="related-<?php echo $product->getId() ?> related-img-item first" style="display: inline-block">
             <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
             </a>
         </li>
         <?php foreach ($this->getItems() as $_item): ?>
             <?php if ($_item->isSaleable()): ?>
-                <?php $totalPrice += $_item->getFinalPrice() ?>
                 <li class="hide related-<?php echo $_item->getId() ?> related-img-item" style="display: inline-block">
                     <div class="related-separator">+</div>
                     <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
@@ -59,6 +58,7 @@ $totalPrice = 0;
                 <li class="related-name-item">
                     <strong><?php echo $this->__('Current item') ?>:</strong>
                     <?php if ($product->isSaleable()): ?>
+                        <?php $totalPrice += $product->getFinalPrice() ?>
                         <?php $_price = $product->getFinalPrice() ?>
                         <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
                         <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
@@ -76,6 +76,7 @@ $totalPrice = 0;
                 <li class="related-name-item">
                     <?php if (!$_item->isComposite() && $_item->isSaleable()): ?>
                         <?php if (!$_item->getRequiredOptions()): ?>
+                            <?php $totalPrice += $_item->getFinalPrice() ?>
                             <?php $_price = $_item->getFinalPrice() ?>
                             <?php $_priceIncTax = Mage::helper('tax')->getPrice($_item, $_price, true) ?>
                             <?php $_priceExcTax = Mage::helper('tax')->getPrice($_item, $_price) ?>

@@ -32,7 +32,10 @@
 <?php else: ?>
     <!--a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Call Me') ?></a-->
 <?php endif ?>
-<p class="shipping-note"><?php echo $this->__('Shipping within <span>6 - 12hrs</span>') ?></p>
+<p class="shipping-note">
+    <span><?php echo $this->__('Shipping within <b>6 - 12hrs</b>') ?></span>
+    <span><?php echo $this->__('Free Shipping <a href="#">(*)</a>') ?></span>
+</p>
 <?php if ($_product->isSaleable()): ?>
     <div class="add-to-cart">
         <?php if (!$_product->isGrouped()): ?>
@@ -49,10 +52,10 @@
         <?php echo $this->getChildHtml('', true, true) ?>
     </div>
 <?php else: ?>
-    <?php if (!Mage::getSingleton('core/session')->getStockNotify()): ?>
+    <?php if (!Mage::getSingleton('core/session')->getData('stock'.$_product->getId())): ?>
         <?php if (!Mage::getSingleton('customer/session')->isLoggedIn()): ?>
-            <input id="stock-notify-email" type="text" class="form-control" placeholder="<?php echo Mage::helper('mtstocknotify')->__('Enter your email or phone number here') ?>"/>
-            <p class="stock-notify-note"><?php echo Mage::helper('mtstocknotify')->__('Example: guest@gmail.com or 0987654321') ?></p>
+            <input id="stock-notify-email" type="text" class="form-control" placeholder="<?php echo Mage::helper('mtstocknotify')->__('Enter your phone number here') ?>"/>
+            <p class="stock-notify-note"><?php echo Mage::helper('mtstocknotify')->__('Example: 0987654321') ?></p>
         <?php else: ?>
             <input id="stock-notify-email" type="hidden" value="<?php echo Mage::getSingleton('customer/session')->getCustomer()->getEmail() ?>"/>
         <?php endif ?>

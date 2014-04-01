@@ -36,7 +36,26 @@ class MT_StockNotify_Manage_IndexController extends Mage_Adminhtml_Controller_Ac
                 $this->_getSession()->addError(Mage::helper('mtstocknotify')->__('Change status error for Id: %d', $id));
             }
         }
-        $this->_getSession()->addSuccess(Mage::helper('mtstocknotify')->__('Total of %d record(s) have been updated.', $count));
+        if ($count) $this->_getSession()->addSuccess(Mage::helper('mtstocknotify')->__('Total of %d record(s) have been updated.', $count));
+        return $this->_redirect('*/*/index');
+    }
+
+    public function massDeleteAction(){
+        $ids = $this->getRequest()->getParam('ids');
+        if (!count($ids)) $this->_getSession()->addError(Mage::helper('mtstocknotify')->__('Data invalid'));
+        $count = 0;
+        foreach ($ids as $id){
+            if (!is_numeric($id)) continue;
+            $notify = Mage::getModel('mtstocknotify/notify')->load($id);
+            if (!$notify->getId()) continue;
+            try{
+                $notify->delete();
+                $count++;
+            }catch (Exception $e){
+                $this->_getSession()->addError(Mage::helper('mtstocknotify')->__('Delete error for Id: %d', $id));
+            }
+        }
+        if ($count) $this->_getSession()->addSuccess(Mage::helper('mtstocknotify')->__('Total of %d record(s) have been deleted.', $count));
         return $this->_redirect('*/*/index');
     }
 }
