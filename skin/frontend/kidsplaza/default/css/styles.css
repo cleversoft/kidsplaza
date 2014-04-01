@@ -33,7 +33,7 @@
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price ,.product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 500;}
 .product-view .add-to-cart span{ float:  left ; margin: 0 5px 0 0; line-height: 36px;}
-.product-view .add-to-cart .qty{height: 36px;width: 60px; color: #5ec215 ; font-size: 16px;display: inline-block;}
+.product-view .add-to-cart .qty{height: 36px;width: 100px; color: #5ec215 ; font-size: 16px;display: inline-block;}
 .product-view .add-to-cart label{font-size: 16px;}
 .product-view .add-to-cart .add-bt{float: left ; width: 100% ; margin: 25px 0 0  ;}
 .product-view .add-to-links{padding: 20px 0;}
