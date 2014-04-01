@@ -461,7 +461,7 @@ class MT_RevSlider_Block_Slider_Preview extends Mage_Core_Block_Template impleme
                 }
 
                 $imageAddParams .= "data-bgrepeat='{$bgRepeat}' ";
-
+                $htmlParams .= " data-title='{$slide->getData('title')}'";
                 $output .= "<li data-transition='{$transition}' data-slotamount='{$slotAmount}' {$htmlParams}>";
                 $output .= "<img src='{$urlSlideImage}' {$styleImage} {$imageAddParams} {$kb_pz}/>";
                 $output .= $this->renderLayers($slide);
