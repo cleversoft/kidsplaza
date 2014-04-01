@@ -43,7 +43,8 @@
         <form action="<?php echo $this->getUrl('checkout/cart/add') ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
             <?php echo $this->getBlockHtml('formkey') ?>
             <input type="hidden" name="product" id="product-field" value="<?php echo $_product->getId() ?>" />
-            <input type="hidden" name="related_product" id="related-field" value="" />
+            <input type="hidden" name="related_product" id="related-field"/>
+            <input type="hidden" name="wishlist_product" id="wistlist-field"/>
             <div class="product-img-box col-md-6 col-lg-6">
                 <?php echo $this->getChildHtml('media') ?>
             </div>

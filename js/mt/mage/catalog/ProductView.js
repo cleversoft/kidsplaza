@@ -90,6 +90,55 @@ jQuery('.product-view').each(function(i, product){
         }
     }.bind(productAddToCartForm);
 
+    productAddToCartForm.submitAllRelated = function(button, url){
+        if (this.validator.validate()){
+            var relatedValues = [];
+            $$('.related-checkbox').each(function(cb){
+                //if (cb.checked){
+                    relatedValues.push(cb.value);
+                //}
+            });
+            if (!relatedValues.length) alert(Translator.translate('You must select a product!'));
+            else{
+                var first = relatedValues.splice(0, 1);
+                $('product-field').value = first[0];
+                $('related-field').value = relatedValues.join(',');
+                if (url) this.form.action = url;
+                this.form.submit();
+                button.disabled = true;
+                button.addClassName('disabled');
+            }
+        }
+    }.bind(productAddToCartForm);
+
+    productAddToCartForm.submitAllLight = function(button, url){
+        if (this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods){
+                if (methodName.match(/^validate-datetime-.*/i)){
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()){
+                if (url) {
+                    this.form.action = url;
+                }
+                var wishlistValues = [];
+                $$('.related-checkbox').each(function(cb){
+                    wishlistValues.push(cb.value);
+                });
+                $('wistlist-field').value = wishlistValues.join(',');
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+
     productAddToCartForm.submitLight = function(button, url){
         if (this.validator) {
             var nv = Validation.methods;
@@ -124,9 +173,11 @@ function addRelatedToProduct(){
         prices = [];
 
     for (var i=0; i<checkboxes.length; i++){
-        var product = checkboxes[i].value;
+        var product = checkboxes[i].value,
+            imgElm = $$('.related-' + product)[0];
 
         if (checkboxes[i].checked){
+            imgElm && imgElm.removeClassName('hide');
             var price = checkboxes[i].readAttribute('price'),
                 includeTax = checkboxes[i].readAttribute('price1'),
                 excludeTax = checkboxes[i].readAttribute('price2');
@@ -134,6 +185,7 @@ function addRelatedToProduct(){
             values.push(product);
             prices.push({product: product, price: price, excludeTax: excludeTax, includeTax: includeTax});
         }else{
+            imgElm && imgElm.addClassName('hide');
             prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
         }
     }

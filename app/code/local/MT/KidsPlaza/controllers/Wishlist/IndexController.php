@@ -177,4 +177,49 @@ class MT_KidsPlaza_Wishlist_IndexController extends Mage_Wishlist_IndexControlle
 
         return $this->_redirectUrl($this->_getRefererUrl());
     }
+
+    public function allAction(){
+        if (!$this->_validateFormKey()){
+            return $this->_redirect($this->_getRefererUrl());
+        }
+        $wishlist = $this->_getWishlist();
+        if (!$wishlist){
+            return $this->_redirect($this->_getRefererUrl());
+        }
+        $items = explode(',', $this->getRequest()->getParam('wishlist_product', ''));
+        $hasChanged = false;
+        $session = Mage::getSingleton('core/session');
+        if (count($items)){
+            foreach ($items as $item){
+                if (is_numeric($item)){
+                    $product = Mage::getModel('catalog/product')->load($item, array('name'));
+                    if (!$product->getId() || !$product->isVisibleInCatalog()) {
+                        $session->addError($this->__('Cannot specify product.'));
+                        return $this->_redirect($this->_getRefererUrl());
+                    }
+                    $requestParams = $this->getRequest()->getParams();
+                    $buyRequest = new Varien_Object($requestParams);
+                    $result = $wishlist->addNewItem($product, $buyRequest);
+                    if (is_string($result)) {
+                        Mage::throwException($result);
+                    }
+                    Mage::dispatchEvent('wishlist_add_product', array(
+                        'wishlist'  => $wishlist,
+                        'product'   => $product,
+                        'item'      => $result
+                    ));
+                    $hasChanged = true;
+                }
+            }
+        }
+        if ($hasChanged){
+            try{
+                $wishlist->save();
+                $session->addSuccess(Mage::helper('wishlist')->__("Wishlist updated."));
+            }catch (Exception $e){
+                $session->addException($e, Mage::helper('wishlist')->__('Cannot move item to wishlist'));
+            }
+        }
+        return $this->_redirectUrl($this->_getRefererUrl());
+    }
 }
