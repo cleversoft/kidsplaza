@@ -373,9 +373,13 @@ function addRelatedToProduct(){
 
     var isFirst = false;
     $$('.related-img-item').each(function(item){
-        if (!isFirst && !item.hasClassName('hide')){
-            isFirst = true;
-            item.addClassName('first');
+        if (!item.hasClassName('hide')){
+            if (!isFirst){
+                isFirst = true;
+                item.addClassName('first');
+            }else{
+                item.removeClassName('first');
+            }
         }
     });
 

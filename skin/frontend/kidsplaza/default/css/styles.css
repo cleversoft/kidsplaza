@@ -46,7 +46,7 @@
 .product-view .product-shop  .ratings a{color: #373737 ;  }
 .product-view .product-shop  .desc {border-right: 1px solid #efefef ;}
 .product-view .product-shop  .desc .desc-more a  {font-weight: bold ; text-decoration: underline ;}
-.product-view .product-shop  .desc .desc-more {padding: 0 20px 0;margin-top: 5px;}
+.product-view .product-shop  .desc .desc-more {padding: 0;margin-top: 5px;}
 .product-view .product-shop  .right-desc a { font-weight: bold ;padding: 10px 0  ; color:#1da645 ; border: none ; font-size:16px ; background: none ;cursor: default;text-decoration: none;font-family: 'roboto slab',arial, sans-serif;}
 .product-view .product-shop  .right-desc a.btn-danger { color: #d43f3a;}
 .product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px;}
