@@ -42,6 +42,9 @@ $_id = $this->getConfig('id');
                             alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" />
                     </a>
                 </div>
+				<h2 class="deal-item-name">
+                       <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ;?></a>
+                </h2>
             </div>
         </li>
     <?php endforeach ?>
