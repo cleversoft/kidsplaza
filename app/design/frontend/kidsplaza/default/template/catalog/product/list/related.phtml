@@ -23,8 +23,10 @@
  * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
+/* @var $this Mage_Catalog_Block_Product_List_Related */
 $size = $this->getItems()->getSize();
 $product = Mage::registry('product');
+$totalPrice = 0;
 ?>
 <?php if ($size): ?>
 <div id="product-related">
@@ -34,59 +36,74 @@ $product = Mage::registry('product');
 </script>
 <div class="related-wrapper">
     <ol class="related-img">
-        <li class="related-img-item first" style="display: inline-block">
+        <li class="related-<?php echo $product->getId() ?> related-img-item" style="display: inline-block">
             <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
             </a>
         </li>
-        <li class="related-separator">+</li>
-    <?php $i=1; foreach($this->getItems() as $_item): ?>
-        <li class="related-img-item <?php echo $i == $size ? 'last' : '' ?>" style="display: inline-block">
-            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
-                <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
-            </a>
-        </li>
-        <?php if ($i++ < $size): ?>
-            <li class="related-separator">+</li>
-        <?php endif ?>
-    <?php endforeach ?>
-    </ol>
-    <ol class="related-name">
-        <li class="related-name-item">
-            <strong><?php echo $this->__('Current item') ?>:</strong>
-            <?php if ($product->isSaleable()): ?>
-                <?php $_price = $product->getFinalPrice() ?>
-                <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
-                <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
-                <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $product->getId() ?>" name="related_products[]" value="<?php echo $product->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
-            <?php else: ?>
-                <script type="text/javascript">
-                    window['related<?php echo $product->getId() ?>'].priceExclTax=0;
-                    window['related<?php echo $product->getId() ?>'].productPrice=0;
-                </script>
+        <?php foreach ($this->getItems() as $_item): ?>
+            <?php if ($_item->isSaleable()): ?>
+                <?php $totalPrice += $_item->getFinalPrice() ?>
+                <li class="hide related-<?php echo $_item->getId() ?> related-img-item" style="display: inline-block">
+                    <div class="related-separator">+</div>
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
+                    </a>
+                </li>
             <?php endif ?>
-            <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
-            <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
-        </li>
-    <?php foreach($this->getItems() as $_item): ?>
-        <li class="related-name-item">
-            <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
-                <?php if (!$_item->getRequiredOptions()): ?>
-                    <?php $_price = $_item->getFinalPrice() ?>
-                    <?php $_priceIncTax = Mage::helper('tax')->getPrice($_item, $_price, true) ?>
-                    <?php $_priceExcTax = Mage::helper('tax')->getPrice($_item, $_price) ?>
-                    <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
-                <?php endif; ?>
-            <?php endif; ?>
-            <a href="<?php echo $_item->getProductUrl() ?>"><strong><?php echo $this->escapeHtml($_item->getName()) ?></strong></a>
-            <?php echo Mage::helper('core')->formatPrice($_item->getFinalPrice()) ?>
-        </li>
-    <?php endforeach ?>
+        <?php endforeach ?>
     </ol>
+    <div class="row">
+        <div class="col-lg-7">
+            <ol class="related-name">
+                <li class="related-name-item">
+                    <strong><?php echo $this->__('Current item') ?>:</strong>
+                    <?php if ($product->isSaleable()): ?>
+                        <?php $_price = $product->getFinalPrice() ?>
+                        <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
+                        <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
+                        <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $product->getId() ?>" name="related_products[]" value="<?php echo $product->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
+                    <?php else: ?>
+                        <script type="text/javascript">
+                            window['related<?php echo $product->getId() ?>'].priceExclTax=0;
+                            window['related<?php echo $product->getId() ?>'].productPrice=0;
+                        </script>
+                    <?php endif ?>
+                    <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
+                    <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
+                </li>
+                <?php foreach ($this->getItems() as $_item): ?>
+                <li class="related-name-item">
+                    <?php if (!$_item->isComposite() && $_item->isSaleable()): ?>
+                        <?php if (!$_item->getRequiredOptions()): ?>
+                            <?php $_price = $_item->getFinalPrice() ?>
+                            <?php $_priceIncTax = Mage::helper('tax')->getPrice($_item, $_price, true) ?>
+                            <?php $_priceExcTax = Mage::helper('tax')->getPrice($_item, $_price) ?>
+                            <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
+                            <a href="<?php echo $_item->getProductUrl() ?>"><strong><?php echo $this->escapeHtml($_item->getName()) ?></strong></a>
+                            <?php echo Mage::helper('core')->formatPrice($_item->getFinalPrice()) ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach ?>
+            </ol>
+        </div>
+        <div class="col-lg-5">
+            <p class="relared-price-all"><?php echo $this->__('Price for all: %s', Mage::helper('core')->formatPrice($totalPrice)) ?></p>
+            <button class="btn btn-related" onclick="productAddToCartForm.submitAllRelated(this)">
+                <?php echo $this->__('Add all to Cart') ?>
+            </button>
+            <button class="btn btn-related" onclick="productAddToCartForm.submitAllLight(this, '<?php echo $this->getUrl('wishlist/index/all') ?>')">
+                <?php echo $this->__('Add all to Wishlist') ?>
+            </button>
+        </div>
+    </div>
     <div class="related-action">
         <span class="price-label"><?php echo $this->__('Total') ?>:</span>
         <span class="price" id="related-price"></span>
-        <button class="btn btn-kid btn-cart btn-login " type="button" onclick="window.productAddToCartForm.submitRelated(this)"><?php echo $this->__('Buy All') ?></button>
+        <button class="btn btn-kid btn-cart btn-login" type="button" onclick="window.productAddToCartForm.submitRelated(this)">
+            <?php echo $this->__('Buy All') ?>
+        </button>
     </div>
 </div>
 </div>
