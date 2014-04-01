@@ -987,3 +987,39 @@ dl.item-options{
 .related-name-item strong{
     color: #333;
 }
+#rev_slider_1_wrapper .tp-bullets {
+    background: #f8f8f8;
+    display: block;
+    float: left;
+    width: 100%;
+    opacity: 1;
+    position: relative;
+}
+#rev_slider_1_wrapper .tp-bullets .bullet {
+    float: left;
+    position: relative;
+    visibility: visible;
+    line-height: 30px;
+    width: auto;
+    height: auto;
+    background: none;
+    padding: 3px 0px;
+    margin: 0 10px;
+    font-size: 125%;
+}
+#rev_slider_1_wrapper .tp-bullets .bullet.selected {
+    color: #fe4b8c;
+    font-weight: bold;
+}
+#rev_slider_1_wrapper .tp-bullets .bullet.selected i.icon {
+    background: url(../images/bgbulleft.png) no-repeat top center;
+    position: absolute;
+    z-index: 99;
+    width: 90%;
+    height: 9px;
+    top: -9px;
+}
+#rev_slider_1_wrapper .tp-bullets .bullet:hover {
+    color: #fe4b8c;
+    font-weight: bold;
+}
