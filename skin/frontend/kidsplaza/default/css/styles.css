@@ -994,6 +994,7 @@ dl.item-options{
     width: 100%;
     opacity: 1;
     position: relative;
+    z-index: 99;
 }
 #rev_slider_1_wrapper .tp-bullets .bullet {
     float: left;
@@ -1021,5 +1022,4 @@ dl.item-options{
 }
 #rev_slider_1_wrapper .tp-bullets .bullet:hover {
     color: #fe4b8c;
-    font-weight: bold;
 }
