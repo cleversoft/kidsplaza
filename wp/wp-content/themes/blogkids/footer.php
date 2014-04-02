@@ -66,47 +66,31 @@
 	<div class="copyright">
 		<div class="container">
 			<div class="row">
-				<div class="text-copyright col-lg-5 col-md-5 col-sm-12 col-xs-12">
+				<div class="text-copyright col-lg-7 col-md-5 col-sm-12 col-xs-12">
 					<p><?php echo $data['apl_footer_text']; ?></p>
 				</div>
 				<div class="email-copyright col-lg-3 col-md-3 col-sm-12 col-xs-12">
 					<p>Email: <a href="mailto:<?php echo $data['apl_footer_email']; ?>"><?php echo $data['apl_footer_email']; ?></a></p>
 				</div>
-				<div class="social col-lg-4 col-md-4 col-sm-12 col-xs-12">
+				<div class="social col-lg-2 col-md-4 col-sm-12 col-xs-12">
 					<ul>
 					<?php 
 					$url = get_template_directory_uri();
 					$facebook = $data['apl_facebook'];
-					$pinterest = $data['apl_pinterest'];
-					$flickr = $data['apl_flickr'];
 					$twitter = $data['apl_twitter'];
 					$youtube = $data['apl_youtube'];
-					$inlink = $data['apl_inlink'];
-					$skype = $data['apl_skype'];
 					$google = $data['apl_google'];
 					if (!empty($facebook)) {
 						echo "<li><a href='".$facebook."'><img src='". $url ."/images/facebook.png'></a></li>";
 					}
-					if (!empty($pinterest)) {
-						echo "<li><a href='".$pinterest."'><img src='". $url ."/images/pinterest.png'></a></li>";
-					}
-					if (!empty($flickr)) {
-						echo "<li><a href='".$flickr."'><img src='". $url ."/images/flickr.png'></a></li>";
-					}
-					if (!empty($twitter)) {
-						echo "<li><a href='".$twitter."'><img src='". $url ."/images/twitter.png'></a></li>";
+					if (!empty($google)) {
+						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
 					}
 					if (!empty($youtube)) {
 						echo "<li><a href='".$youtube."'><img src='". $url ."/images/youtube.png'></a></li>";
 					}
-					if (!empty($inlink)) {
-						echo "<li><a href='".$inlink."'><img src='". $url ."/images/linkedin.png'></a></li>";
-					}
-					if (!empty($skype)) {
-						echo "<li><a href='".$skype."'><img src='". $url ."/images/skype.png'></a></li>";
-					}
-					if (!empty($google)) {
-						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
+					if (!empty($twitter)) {
+						echo "<li><a href='".$twitter."'><img src='". $url ."/images/twitter.png'></a></li>";
 					}
 					?>
 					</ul>

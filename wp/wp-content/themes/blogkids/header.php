@@ -42,17 +42,11 @@
 	<div class="top-header">
 		<div class="container">
 			<div class="row">
-				<div class="social col-lg-3 col-md-4 col-xs-2">
+				<div class="social col-lg-1 col-md-2 col-xs-2">
 					<ul>
 					<?php 
 					$url = get_template_directory_uri();
 					$facebook = $data['apl_facebook'];
-					$pinterest = $data['apl_pinterest'];
-					$flickr = $data['apl_flickr'];
-					$twitter = $data['apl_twitter'];
-					$youtube = $data['apl_youtube'];
-					$inlink = $data['apl_inlink'];
-					$skype = $data['apl_skype'];
 					$google = $data['apl_google'];
 					if (!empty($facebook)) {
 						echo "<li><a href='".$facebook."'><img src='". $url ."/images/facebook.png'></a></li>";
@@ -60,30 +54,10 @@
 					if (!empty($google)) {
 						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
 					}
-					if (!empty($youtube)) {
-						echo "<li><a href='".$youtube."'><img src='". $url ."/images/youtube.png'></a></li>";
-					}
-					if (!empty($pinterest)) {
-						echo "<li class='no-mobile'><a href='".$pinterest."'><img src='". $url ."/images/pinterest.png'></a></li>";
-					}
-					if (!empty($flickr)) {
-						echo "<li class='no-mobile'><a href='".$flickr."'><img src='". $url ."/images/flickr.png'></a></li>";
-					}
-					if (!empty($twitter)) {
-						echo "<li class='no-mobile'><a href='".$twitter."'><img src='". $url ."/images/twitter.png'></a></li>";
-					}
-
-					if (!empty($inlink)) {
-						echo "<li class='no-mobile'><a href='".$inlink."'><img src='". $url ."/images/linkedin.png'></a></li>";
-					}
-					if (!empty($skype)) {
-						echo "<li class='no-mobile'><a href='".$skype."'><img src='". $url ."/images/skype.png'></a></li>";
-					}
-
 					?>
 					</ul>
 				</div>
-				<nav class="page-menu col-lg-7 col-md-5 col-xs-7">
+				<nav class="page-menu col-lg-9 col-md-7 col-xs-7">
 					<?php
 					$defaults = array(
 						'theme_location'  => '',
@@ -124,7 +98,7 @@
 			<header>
 				<div class="main-header clearfix">
 					<div class="logo col-sm-4">
-						<a href="<?php echo get_option('home'); ?>">
+						<a href="http://kidsplaza.vn/">
 							<img src="<?php echo $data['apl_logo']; ?>">
 						</a>
 					</div>

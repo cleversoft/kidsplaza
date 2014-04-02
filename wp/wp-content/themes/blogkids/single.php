@@ -56,7 +56,6 @@
 							<a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
 							<a class="addthis_counter addthis_pill_style"></a>
 						</div>
-						<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 						<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-533233bf3d1ea5a0"></script>
 						<!-- AddThis Button END -->
 					</div>

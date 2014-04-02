@@ -564,7 +564,7 @@ footer {
     float: left;
     height: 45px;
     margin: 1px 12px 0 0;
-    width: 46px;
+    width: 45px;
 }
 footer .widget_nav_menu ul li a:hover {
     text-decoration: underline;
@@ -581,28 +581,28 @@ footer .widget_nav_menu ul li a:hover {
     background-position: 0 0;
 }
 #nav_menu-5 em {
-    background-position: -46px 0;
+    background-position: -45px 0;
 }
 #nav_menu-7 em {
-    background-position: -92px 0
+    background-position: -90px 0
 }
 #nav_menu-8 em {
-    background-position: -138px 0;
+    background-position: -135px 0;
 }
 #nav_menu-4 em {
     background-position: 0 -45px;
 }
 #nav_menu-6 em {
-    background-position: -46px -45px;
+    background-position: -45px -45px;
 }
 #text-3 em {
-    background-position: -91px -45px;
+    background-position: -90px -45px;
 }
 .diachi .hn em {
-    background-position: -137px -45px;
+    background-position: -135px -45px;
 }
 .diachi .hcm em {
-    background-position: -137px -45px;
+    background-position: -135px -45px;
 }
 .diachi h3:after {
     content: "\f101";
@@ -798,7 +798,7 @@ footer .widget_nav_menu ul li a {
     font-size: 18px;
     font-weight: normal;
     overflow: hidden;
-    padding: 15px 25px 15px 15px;
+    padding: 20px 25px 20px 15px;
     height: 42px;
     color: #818282;
 }
