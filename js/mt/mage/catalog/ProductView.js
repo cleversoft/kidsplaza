@@ -489,7 +489,7 @@ jQuery(function(){
     initImageZoomSl();
 
     //init more views
-    jQuery('.product-view .more-views img').on('click',function(){
+    jQuery('.product-view .more-views img').on('click', function(){
         jQuery('.product-view .more-views img').removeClass('active');
         var item = jQuery(this).addClass('active');
         jQuery('.product-view img.img-main').fadeOut(100, function(){

@@ -157,7 +157,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                     'id' => $option->getId(),
                     'label' => $option->getValue(),
                     'image' => $option->getImage(),
-                    'link' => $this->getUrl('catalogsearch/result/index', array('q' => $option->getValue()))
+                    'link' => Mage::helper('kidsplaza')->getBrandUrl($option->getId(), $option->getValue())
                 );
             }
         }

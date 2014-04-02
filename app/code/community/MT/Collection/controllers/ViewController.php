@@ -72,4 +72,25 @@ class MT_Collection_ViewController extends Mage_Core_Controller_Front_Action{
         //$layout->getBlock('collection.view')->setTitle($title);
         $this->processRequest();
     }
+
+    public function brandAction(){
+        $brandId = $this->getRequest()->getParam('id');
+        $brandLabel = '';
+        Mage::register('current_collection', 'brand');
+        Mage::register('current_brand', $brandId);
+        $brandModel = Mage::getSingleton('eav/config')->getAttribute(Mage_Catalog_Model_Product::ENTITY, 'brand');
+        $brandOptions = $brandModel->getSource()->getAllOptions(false);
+        foreach ($brandOptions as $brandOption){
+            if ($brandOption['value'] == $brandId){
+                $brandLabel = $brandOption['label'];
+                break;
+            }
+        }
+        $this->loadLayout();
+        $layout = $this->getLayout();
+        $title = $this->__('Brand %s', $brandLabel);
+        $layout->getBlock('head')->setTitle($title);
+        $layout->getBlock('collection.view')->setTitle($title);
+        $this->processRequest();
+    }
 }

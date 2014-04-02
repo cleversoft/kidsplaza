@@ -73,7 +73,9 @@
 .products-grid .owl-wrapper-outer .owl-item .item  img { float:none ; padding: 3px ; display: inline-block;width: 135px;}
 .home-combo-carousel-wrapper .products-grid .owl-wrapper-outer .owl-item .item  img{width: 120px;}
 .products-grid .owl-wrapper-outer .owl-item .item  .product-image {display: block; width: 100% ; padding: 10px 0 0;text-align: center;}
-.products-grid .owl-wrapper-outer .owl-item .item  .product-name {margin: 10px 0 ;}
+.products-grid .owl-wrapper-outer .owl-item .item  .product-name {margin: 10px 0 7px 0;}
+.upsell-carousel-wrapper .owl-wrapper-outer .owl-item .item  .product-name {margin: 10px 0 0 0;}
+
 .products-grid .item .price-box { padding: 0 0 20px;}
 .products-grid .owl-wrapper-outer .owl-item .item  .price-box .price {color: #ff3d70 ; font-size: 14px;}
 .products-grid .owl-wrapper-outer .owl-item .item  .price-box .old-price .price { color:#333 ; margin:0 ;text-decoration: line-through; font-size: 12px ;}
@@ -92,7 +94,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .product-options .attr-img.active{ border: 1px solid #007d9e;}
 .product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 0 0 20px; height: 18px;overflow: hidden;}
 .product-view .product-shop .short-desc.expand li {height: auto;overflow: visible;}
-.category-products .products-grid .product-name{font-size: 100%;font-family: 'Open Sans',arial, sans-serif;}
+.category-products .products-grid .product-name{font-size: 100%;font-family: 'Open Sans',arial, sans-serif;height: 30px;overflow: hidden;}
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
 
 #product-related h3,
@@ -126,6 +128,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .video-item-user {color: #0098cd;}
 .product-shop{padding-left: 0;}
 .product-shop h1{font-size: 26px ;margin-top: 0;border-bottom: 1px solid #f2f2f2;padding-bottom: 20px;margin-bottom: 20px;font-family: 'Roboto Slab',arial, sans-serif;}
+.product-shop h1 a{color: #0098cd;font-style: italic;}
 .table .value{background: #fff !important;}
 .product-view .desc{padding: 15px;}
 .product-view #product-description .desc{padding: 0;}
@@ -156,7 +159,7 @@ header .social-links {margin : 10px 0 0; }
 .top-links li{display:inline-block;color:#fff;padding:0 4px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
-.social-links li{background:url(../images/bgSocial.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0 6px}
+.social-links li{background:url(../images/bgSocial.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;}
 .social-links li a{text-indent:-9999px;display:block;outline:0}
 .social-links li:first-child{margin-left:0}
 .social-links li:last-child{margin-left:0}
@@ -365,7 +368,7 @@ input,textarea{outline:0}
 .products-grid  .item:hover .actions { opacity: 1;}
 .products-grid  .item .price-discount {transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 58px; width: 58px; line-height: 58px; color: #fff ; font-weight: bold ; font-size: 100% ; background: url("../images/bgLable.png" ) no-repeat -62px 0;}
 
-.product-img-box .price-discount { transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 83px; width: 83px; line-height: 83px; color: #fff ; font-weight: bold ; font-size: 150% ; background: url("../images/bgLable.png" ) no-repeat 0px -35px;}
+.product-img-box .price-discount { transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 102px; width: 107px; line-height: 100px; color: #fff ; font-weight: bold ; font-size: 150% ; background: url("../images/bgLable.png" ) no-repeat -121px -46px;}
 .price-box .old-price .price{text-decoration:line-through ; font-size: 11px;}
 .price-box .old-price{margin:0}
 .toolbar .btn{padding:2px 10px}
@@ -538,6 +541,8 @@ a.link-wishlist{font-size: 16px;}
 .category-products .price-box .price-save{display: none;}
 .price-box p{margin-bottom: 0;}
 span.separator{vertical-align: top; }
+span.product-sku{vertical-align: top;}
+.review .ratings{margin-top: 2px;}
 .account-login .buttons-set a.f-right { font-size: 12px;padding: 8px 0;text-align: left ; line-height: 30px;  background: url("../images/tick-login.png") no-repeat scroll 0 50% ; padding: 0 0 0 10px;width: 110px; color: #636363 ;}
 .account-login .form_register.fieldset  { float: none ; width: 70% ; padding: 0 ; text-align: right ; background: none ; border: none ; margin: 0 auto ; }
 .account-login .account-create .form-list .input-box{ width: 60% ; display: inline-block; float: right;}
@@ -824,6 +829,7 @@ p.back-link{float: left;}
     text-align: center;
     color: #333;
 }
+.deals-wrapper  li.deal-item .deal-item-inner .deal-item-name{height: 40px;clear: both;}
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-image{padding: 20px 0 30px;float: left; }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-price { float: left;padding: 40px 20px 0 ;  }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-price .old-price {float: left ;font-size:120%; font-weight: bold ; width: 100% ; text-decoration: line-through; }

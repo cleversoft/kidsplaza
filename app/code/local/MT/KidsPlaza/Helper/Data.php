@@ -221,4 +221,29 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         if (!$str) $str = microtime();
         return Mage::getBaseUrl().'identicon.php?size=60&hash='.md5($str);
     }
+
+    public function getBrandUrl($brand, $label){
+        if (!is_numeric($brand) || !is_string($label)) return '';
+        $idPath = sprintf('collection/brand/%d', $brand);
+        $urlModel = Mage::getModel('core/url_rewrite');
+        /* @var $urlModel Mage_Core_Model_Url_Rewrite */
+        $urlModel->setStoreId(Mage::app()->getStore()->getId());
+        $urlModel->loadByIdPath($idPath);
+        if ($urlModel->getId()) return Mage::getUrl().$urlModel->getRequestPath();
+        else{
+            $urlService = Mage::getModel('catalog/product_url');
+            /* @var $urlService Mage_Catalog_Model_Product_Url */
+            try{
+                $urlModel->setIsSystem(0)
+                    ->setIdPath($idPath)
+                    ->setTargetPath('collection/view/brand/id/'.$brand)
+                    ->setRequestPath('thuong-hieu/'.$urlService->formatUrlKey($label))
+                    ->save();
+
+                return Mage::getUrl().$urlModel->getRequestPath();
+            }catch (Exception $e){
+                return '';
+            }
+        }
+    }
 }

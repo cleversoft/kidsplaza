@@ -11,6 +11,9 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     public function getProductCollection(){
         if (!isset($this->_productCollections[0])){
             switch (Mage::registry('current_collection')){
+                case 'brand':
+                    $collection = $this->_getBrandCollection();
+                    break;
                 case 'daily':
                     $collection = $this->_getDailyCollection();
                     break;
@@ -31,6 +34,15 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             $this->_productCollections[0] = $collection;
         }
         return $this->_productCollections[0];
+    }
+
+    protected function _getBrandCollection(){
+        $brandId = Mage::registry('current_brand');
+        $collection = Mage::getResourceModel('catalog/product_collection');
+        $collection->addAttributeToSelect('brand');
+        $collection->addAttributeToFilter('brand', array('eq' => $brandId));
+        $this->prepareProductCollection($collection);
+        return $collection;
     }
 
     protected function _getDailyCollection(){

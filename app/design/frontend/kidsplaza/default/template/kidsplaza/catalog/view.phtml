@@ -9,6 +9,7 @@
  */
 /** @var MT_KidsPlaza_Block_Catalog_View $this */
 $_category = $this->getCategory();
+$_core = $this->helper('core/string');
 ?>
 <div class="category-products root-category">
     <?php $column = 5 ?>
@@ -31,8 +32,8 @@ $_category = $this->getCategory();
                 <?php $j=1; foreach ($c->getChildrenCategories() as $cc): ?>
                     <?php if ($j++ > 3) break ?>
                     <li>
-                        <a href="<?php echo $cc->getUrl() ?>">
-                            <?php echo $this->escapeHtml($cc->getName()) ?>
+                        <a href="<?php echo $cc->getUrl() ?>" title="<?php echo $this->escapeHtml($cc->getName()) ?>">
+                            <?php echo $_core->truncate($this->escapeHtml($cc->getName()), 25) ?>
                         </a>
                     </li>
                 <?php endforeach ?>
