@@ -35,6 +35,13 @@
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto+Slab:700,100&subset=latin,vietnamese' rel='stylesheet' type='text/css'>
 	<?php if (is_singular()) wp_enqueue_script('comment-reply'); ?>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/vi_VI/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 	<?php wp_head(); ?>
 </head>
 
