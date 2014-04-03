@@ -15,7 +15,7 @@ $session = Mage::getSingleton('customer/session');
 <div class="top-login pull-left">
         <div class="toplogin" id="topLogin">
             <div class="font"><i class="glyphicon glyphicon-user"></i></div>
-            <div class="right-login hidden-sm hidden-md  hidden-xs">
+            <div class="right-login hidden-sm hidden-xs">
                 <?php if ($session->isLoggedIn()): ?>
                     <p><?php echo $session->getCustomer()->getName() ?></p>
                 <?php else: ?>

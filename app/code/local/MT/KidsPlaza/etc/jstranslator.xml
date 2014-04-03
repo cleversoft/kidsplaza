@@ -11,7 +11,7 @@
 -->
 <jstranslator>
     <show-more translate="message" module="kidsplaza">
-        <message>Show More</message>
+        <message>Show More Description</message>
     </show-more>
     <show-less translate="message" module="kidsplaza">
         <message>Show Less</message>
