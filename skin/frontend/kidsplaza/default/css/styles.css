@@ -56,6 +56,7 @@
 .product-view .product-shop  .right-desc p#product-price-total .price { color:#ff3d70 ;font-weight: bold ; }
 .product-view   #product-price-total p span { font-weight: bold ; float: none ;}
 .product-view #product-related{ margin: 20px 0 0 ; border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
+.product-view #product-combo{ margin: 20px 0 0 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-upsell{ border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
 .product-view #product-description{  padding: 0; }
 .product-view #product-description h2{ color: #333; }
@@ -98,6 +99,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
 
 #product-related h3,
+#product-combo h3,
 #product-description h3,
 #product-review > h3,
 .upsell-carousel-wrapper h3{font-family: 'Roboto Slab','Open Sans','Arial';color: #ff3d70;font-size: 17px;font-weight: bold;}
@@ -172,7 +174,7 @@ header .social-links {margin : 10px 0 0; }
 .social-links li.skype{background-position:-159px 0}
 .social-links li.google{background-position:-40px 0}
 .btn{border-radius:0;}
-.product-view .related-separator{display: inline-block;font-size: 30px; font-weight: 700; color: #01a1ed;}
+.product-view .related-separator,.product-view .combo-separator{display: inline-block;font-size: 30px; font-weight: 700; color: #01a1ed;}
 .product-view .related-img-item.first .related-separator{display: none;}
 .btn:active,.btn:focus{color:#fff}
 .btn-login{color:#fff;background-color:#ff4884;border-color:#ff4884;border-radius:0;}
@@ -1091,4 +1093,18 @@ dl.item-options{
 }
 #rev_slider_1_wrapper .tp-bullets .bullet:hover {
     color: #fe4b8c;
+}
+.main-combo .item-combo {
+    float: left;
+    width: 215px;
+    position: relative;
+    margin-right: 20px;
+}
+.main-combo .plus, .main-combo .equal, .main-combo.regular-price{
+    float: left;
+    line-height: 180px;
+    font-size: 270%;
+    font-weight: bold;
+    color: #01a1ed;
+    margin-right: 35px;
 }

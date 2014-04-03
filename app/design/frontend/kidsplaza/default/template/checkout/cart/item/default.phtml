@@ -39,6 +39,18 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
             <?php echo $this->escapeHtml($this->getProductName()) ?>
         <?php endif; ?>
         </p>
+        <?php
+        $_productsCombo = Mage::helper('kidsplaza')->getProductsCombo($_item->getProduct()->getId());
+        $size = $_productsCombo->getSize();
+        ?>
+        <?php if($size):?>
+            <dl>
+                <dt><?php echo $this->__('Products Combo');?></dt>
+                <?php foreach($_productsCombo as $_product):?>
+                <dt><a href="<?php echo $_product->getProductUrl();?>"> <?php echo $this->escapeHtml($_product->getName());?></a></dt>
+                <?php endforeach;?>
+            </dl>
+        <?php endif;?>
         <?php if ($_options = $this->getOptionList()):?>
         <dl class="item-options">
             <?php foreach ($_options as $_option) : ?>

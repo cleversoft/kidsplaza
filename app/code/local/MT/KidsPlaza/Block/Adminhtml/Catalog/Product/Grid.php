@@ -10,6 +10,13 @@ class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends Mage_Adminhtml_B
                 'type'  => 'options',
                 'options' => array(1 => $this->__('Yes'))
             ), 'status');
+        $this->addColumnAfter('combo_enable', array(
+            'header'=> $this->__('Combo'),
+            'width' => '70px',
+            'index' => 'combo_enable',
+            'type'  => 'options',
+            'options' => array(1 => $this->__('Yes'))
+        ), 'status');
         return parent::_prepareColumns();
     }
 

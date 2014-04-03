@@ -79,7 +79,6 @@ while ($row = mysql_fetch_assoc($rs)){
         'post_type' => 'post'
     );
     $catid = process_category($row['catId']);
-
     $id = wp_insert_post($data);
     wp_set_object_terms( $id, $catid["term_id"], 'category', true);
     if($row['thumnail']){
@@ -89,22 +88,33 @@ while ($row = mysql_fetch_assoc($rs)){
 
 function process_category($id){
     global $tree;
-
     if (!$id) return array();
     $path = isset($tree[$id]) ? $tree[$id]['path'] : array();
     $currentPath = [0];
     foreach ($path as $cid){
         if (!isset($tree[$cid])) break;
-        $catid = wp_insert_term(
-            $tree[$cid]['title'],
-            'category',
-            array(
-                'description'	=> '',
-                'slug' 		=> $tree[$cid]['identifier'],
-                'parent'=> $currentPath
-            )
-        );
-        $currentPath[] = $catid;
+        $term = get_term_by('id', $tree[$cid], 'category');
+        if($term){
+            printf("Exist category: %s\n", $tree[$cid]['title']);
+            $currentPath[] = $term->term_id;
+        }else{
+            try{
+                $catid = wp_insert_term(
+                    $tree[$cid]['title'],
+                    'category',
+                    array(
+                        'description'	=> '',
+                        'slug' 		=> $tree[$cid]['identifier'],
+                        'parent'=> '0'
+                    )
+                );
+                $currentPath[] = $catid;
+                printf("Save category: %s OK\n", $catid->name);
+            }catch (Exception $e){
+                printf("Error save category: %s\n", $tree[$cid]['title']);
+            }
+
+        }
     }
     return end($currentPath);
 }

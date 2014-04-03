@@ -62,9 +62,38 @@ $_core              = $this->helper('core/string');
             <?php $i=0; foreach ($_productCollection as $_product): ?>
                 <div class="item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
                     <?php $i++ ?>
-                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                        <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" width="200" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
-                    </a>
+                    <?php
+                        $groupCombo = $_product->getProductsCombo();
+                        $_productsCombo = explode(',',$groupCombo);?>
+                    <div class="main-combo">
+                        <?php
+                        $n=0;
+                        foreach($_productsCombo as $combo_id){
+                        $n++;
+                        $_productCombo = $this->getProductCombo($combo_id);
+                        ?>
+                        <?php if(count($_productsCombo)>1 && $n > 1){?>
+                        <div class="plus"> + </div>
+                        <?php }?>
+                        <div class="item-combo">
+                            <a href="<?php echo $_productCombo->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_productCombo, 'small_image'), null, true) ?>" class="product-image">
+                                <?php if ($_productCombo->getPrice() > $_productCombo->getFinalPrice()):?>
+                                    <span class="price-discount"><?php echo floor(($_productCombo->getFinalPrice()-$_productCombo->getPrice())*100/$_productCombo->getPrice()) ?>%</span>
+                                <?php endif ?>
+                                <img class="lazy" data-original="<?php echo $this->helper('catalog/image')->init($_productCombo, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_productCombo, 'small_image'), null, true) ?>" />
+                            </a>
+                            <?php echo $this->getReviewsSummaryHtml($_productCombo, 'short') ?>
+                            <h2 class="product-name">
+                                <a href="<?php echo $_productCombo->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>">
+                                    <?php echo $_core->truncate($_helper->productAttribute($_productCombo, $_productCombo->getName(), 'name'), 25) ?>
+                                </a>
+                            </h2>
+                            <?php echo $this->getPriceHtml($_productCombo, true) ?>
+                        </div>
+                        <?php } ?>
+                        <div class="equal"> = </div>
+                        <div class="combo-price"><?php echo $this->getPriceHtml($_product, true) ?></div>
+                    </ul>
                 </div>
             <?php endforeach ?>
         </div>

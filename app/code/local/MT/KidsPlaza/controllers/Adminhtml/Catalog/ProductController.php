@@ -8,20 +8,40 @@
  * @email       support@magentothemes.net
  */
 require_once 'Mage/Adminhtml/controllers/Catalog/ProductController.php';
-class MT_KidsPlaza_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Catalog_ProductController{
-    public function videoTabAction(){
+class MT_KidsPlaza_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Catalog_ProductController
+{
+    public function videoTabAction()
+    {
         $this->_initProduct();
         $this->loadLayout();
         $this->renderLayout();
     }
 
-    public function wpTabAction(){
+    public function comboTabAction()
+    {
         $this->_initProduct();
         $this->loadLayout();
         $this->renderLayout();
     }
 
-    public function wpGridAction(){
+    public function comboGridAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->getLayout()->getBlock('catalog.product.edit.tab.combo')
+            ->setProductsCombo($this->getRequest()->getPost('combo', null));
+        $this->renderLayout();
+    }
+
+    public function wpTabAction()
+    {
+        $this->_initProduct();
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+
+    public function wpGridAction()
+    {
         $this->_initProduct();
         $this->loadLayout();
         $this->getLayout()->getBlock('catalog.product.edit.tab.wordpress')
