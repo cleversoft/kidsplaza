@@ -1,0 +1,33 @@
+<?php
+$collection = $this->getProductsComboCollection();
+$size = $collection->getSize();
+$_product = Mage::registry('product');
+$totalPrice = 0;
+?>
+<?php if ($size): ?>
+<div id="product-combo">
+    <h3><?php echo $this->__('Products Combo') ?></h3>
+    <div class="combo-wrapper">
+        <ol class="combo-img">
+            <?php $i=0;
+                foreach ($collection as $_item):
+                $i++;
+                ?>
+                <li class="combo-<?php echo $_item->getId() ?> combo-img-item" style="display: inline-block">
+                    <?php if($i>1):?><div class="combo-separator">+</div><?php endif;?>
+                    <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
+                    </a>
+                </li>
+            <?php endforeach ?>
+            <li class="combo-addtocart" style="display: inline-block;">
+                <?php if($_product->isSaleable()): ?>
+                    <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart btn-login" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                <?php else: ?>
+                    <p class="availability out-of-stock"><span><?php echo $this->__('Call Me') ?></span></p>
+                <?php endif; ?>
+            </li>
+        </ol>
+    </div>
+</div>
+<?php endif ?>
