@@ -26,7 +26,7 @@
 		         echo ' - page '. $paged; }
 		   ?>
 	</title>
-	<link rel="shortcut icon" href="/favicon.ico">
+	<!--link rel="shortcut icon" href="/favicon.ico"-->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
     <link href="<?php echo $data['apl_favicon']; ?>" rel="shortcut icon" />

@@ -247,7 +247,7 @@ a.logo{margin-top:20px;display:block}
 .toolbar-pages a{font-size: 15px;font-weight: 700;padding: 0 3px;text-decoration: none;}
 .toolbar-pages a.disable{color: #999;}
 .toolbar-pages a i{font-size: 12px;}
-.toolbar-sort strong{font-size: 15px;}
+.toolbar-sort strong{font-size: 15px;vertical-align: middle;}
 .toolbar-sort .btn-default,
 .toolbar-sort .btn-default.dropdown-toggle{border-color: #01a1ed;}
 .toolbar-sort .btn-default.dropdown-toggle{width: 125px;text-align: left;}
