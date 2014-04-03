@@ -35,6 +35,7 @@
     $_productCollection=$this->getLoadedProductCollection();
     $_helper = $this->helper('catalog/output');
     $_core = $this->helper('core/string');
+    $date = Mage::getModel('core/date')
 ?>
 <?php if(!$_productCollection->count()): ?>
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
@@ -79,6 +80,9 @@
                     </ul>
                 </div>
             </div>
+            <?php if($_product->getGrouponEnable()):?>
+                <div class="groupon-timedown" data-cdate="<?php echo $date->date('Y/m/d', strtotime($_product->getGrouponTo())); ?>"></div>
+            <?php endif;?>
         </li>
     <?php endforeach; ?>
     </ol>
@@ -120,6 +124,9 @@
                         </button>
                     <?php endif; ?>
                 </div>
+                <?php if($_product->getGrouponEnable()):?>
+                <div class="groupon-timedown" data-cdate="<?php echo $date->date('Y/m/d H:i', strtotime($_product->getGrouponTo())); ?>"></div>
+                <?php endif;?>
             </li>
         <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
         </ul>

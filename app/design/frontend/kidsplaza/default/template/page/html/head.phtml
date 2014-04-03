@@ -40,3 +40,13 @@
 <?php echo $this->getCssJsHtml() ?>
 <?php echo $this->getChildHtml() ?>
 <?php echo $this->getIncludes() ?>
+<script type="text/javascript">
+    dataTranslate = {};
+    dataTranslate.year = '<?php echo $this->__('Year');?>';
+    dataTranslate.month = '<?php echo $this->__('Month');?>';
+    dataTranslate.weeks = '<?php echo $this->__('Weeks');?>';
+    dataTranslate.day = '<?php echo $this->__('Day');?>';
+    dataTranslate.hours = '<?php echo $this->__('Hours');?>';
+    dataTranslate.mins = '<?php echo $this->__('Mins');?>';
+    dataTranslate.sec = '<?php echo $this->__('Sec');?>';
+</script>

@@ -1112,3 +1112,12 @@ dl.item-options{
     color: #01a1ed;
     margin-right: 35px;
 }
+.groupon-timedown {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.groupon-timedown span {
+    font-weight: bold;
+    color: #f74d89;
+}
