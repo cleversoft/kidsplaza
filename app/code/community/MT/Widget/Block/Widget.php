@@ -596,6 +596,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             ->addStoreFilter()
             ->addUrlRewrite()
             ->addTaxPercents()
+            ->addAttributeToFilter('combo_enable', array('eq' =>1))
             ->addAttributeToFilter('products_combo', array('notnull' => true))
             ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
             ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)

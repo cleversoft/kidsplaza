@@ -253,6 +253,7 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         $productIds = explode(',', $model->getProductsCombo());
         $products = Mage::getResourceModel('catalog/product_collection')
             ->addAttributeToSelect('*')
+            ->addAttributeToFilter('combo_enable', array('eq' =>1))
             ->addAttributeToFilter('entity_id', array('in' => $productIds));
         $products->load();
         return $products;

@@ -28,7 +28,6 @@ class MT_KidsPlaza_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Ca
     {
         $this->_initProduct();
         $this->loadLayout();
-        Mage::log($this->getRequest()->getPost('combo', null));
         $this->getLayout()->getBlock('catalog.product.edit.tab.combo')
             ->setProductsCombo($this->getRequest()->getPost('combo', null));
         $this->renderLayout();

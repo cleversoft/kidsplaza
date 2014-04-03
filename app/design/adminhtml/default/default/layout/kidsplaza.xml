@@ -35,6 +35,7 @@
 
     <kidsplaza_admin_adminhtml_catalog_product_combotab>
         <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_combocf" name="catalog.product.edit.tab.combocf"/>
             <block type="kidsplaza/adminhtml_catalog_product_edit_tab_combo" name="catalog.product.edit.tab.combo"/>
             <block type="adminhtml/widget_grid_serializer" name="combo_grid_serializer">
                 <reference name="combo_grid_serializer">
