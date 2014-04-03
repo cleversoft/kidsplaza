@@ -2,14 +2,13 @@
 
 }
 @media (min-width: 960px) and (max-width: 1200px) {
-    .top-login { width: 47px;  float: right ; border: none;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;outline: none; height: 47px ; display: inline-block ;}
+    /*.top-login { width: 47px;  float: right ; border: none;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;outline: none; height: 47px ; display: inline-block ;}
     .top-login .font { padding: 0 12px; width: 23%; }
-    .top-login .font .glyphicon { font-size: 170%; }
+    .top-login .font .glyphicon { font-size: 170%; }*/
     .social-links li { margin: 0;   height: 25px;width: 23px;}
     .top-location .btn-group { float: right ; }
     .top-location i {left: 120px; }
     .top-cart { right: 0;}
-    .header-top-right {width: 103px;}
     .sticky-wrapper .mt-menu-top {margin: 0 0 20px;}
     #megamenu ul li a {font-size: 70% !important;  padding: 0 5px 0 7px !important;}
     #megamenu div.childcontent ul li { padding: 0 !important;}
@@ -44,9 +43,7 @@
     .footer-coppyright .footer-coppyright-inner address {font-size: 85% ;}
     .footer-coppyright-inner .social-links {margin: 0;}
 
-    .popover {left:-105px !important;}
-    .popover .arrow {left: 15px;}
-    .toplogin .popover  { left: -105px !important;}
+
     .dropdown-menu {left: -25px;}
 
     .col-right .block-blogs li { padding: 14px 0;}
@@ -58,10 +55,11 @@
 
     .product-view #product-related .relared-price {margin: 20px 0 ;}
     .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
+    .top-banner {width: 95% ; margin: 0 auto ;}
 }
 @media (min-width: 980px) and (max-width: 1280px) {
 
-    .top-banner {margin: 30px 0  ;}
+    .top-banner {margin: 30px auto  ;}
     .top-banner li {text-align: left ; padding: 0;}
     .sticky-wrapper { float: none; display: inline; }
 
@@ -261,7 +259,6 @@
     .header-top-right {width: 105px;}
     .header-top-right .vr{border: none ;}
     .top-banner li {width: 50% ; text-align: left ;}
-    .header-top-right {width: 103px;}
     .home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 12px;}
     .header-top .header-top-inner .col-lg-3 {margin: 20px 0 0 ;}
     .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { float: left;}
