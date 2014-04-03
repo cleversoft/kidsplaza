@@ -12,12 +12,7 @@ $installer = $this;
 $installer->startSetup();
 $installer->getConnection()->addColumn(
     $installer->getTable('eav/attribute_option'),
-    'image',
-    'VARCHAR(255) NULL DEFAULT NULL COMMENT "Attribute Image"'
-);
-$installer->getConnection()->addColumn(
-    $installer->getTable('eav/attribute_option'),
-    'thumb',
-    'VARCHAR(255) NULL DEFAULT NULL COMMENT "Attribute Image Thumb"'
+    'description',
+    'TEXT NULL DEFAULT NULL COMMENT "Attribute Description"'
 );
 $installer->endSetup();

@@ -10,11 +10,37 @@
 */
 -->
 <config>
+    <menu>
+        <catalog>
+            <children>
+                <attributes>
+                    <children>
+                        <options translate="title">
+                            <title>Manage Attribute Options</title>
+                            <action>mtattributeadmin/catalog_product_attribute/</action>
+                        </options>
+                    </children>
+                </attributes>
+            </children>
+        </catalog>
+    </menu>
+
     <acl>
         <resources>
             <all>
                 <title>Allow Everything</title>
             </all>
+            <catalog>
+                <children>
+                    <attributes>
+                        <children>
+                            <options translate="title">
+                                <title>Manage Attribute Options</title>
+                            </options>
+                        </children>
+                    </attributes>
+                </children>
+            </catalog>
             <admin>
                 <children>
                     <system>

@@ -146,10 +146,12 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     public function getAttibuteOptions(){
         $showOptions = explode(',', $this->getData('attribute_options'));
         list($attributeId, $attributeCode) = explode(',' , $this->getData('attribute'));
+
         $optionCollection = Mage::getResourceModel('eav/entity_attribute_option_collection')
             ->setAttributeFilter($attributeId)
             ->setStoreFilter()
             ->load();
+
         $options = array();
         foreach ($optionCollection as $option){
             if ($option->getImage() && in_array($option->getId(), $showOptions)){
@@ -161,6 +163,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 );
             }
         }
+
         if ($this->getData('current_category') == 1){
             $category = Mage::registry('current_category');
             if ($category->getId()){
@@ -178,6 +181,7 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 }
             }
         }
+
         if ($this->getData('attribute_mode') == 1 && $attributeCode){
             $productCollection = Mage::getResourceModel('catalog/product_collection')
                 ->addStoreFilter()
@@ -191,6 +195,12 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 }
             }
         }
+
+        $limit = $this->getData('limit');
+        if ($limit){
+            if (count($options) > $limit) array_splice($options, 0, $limit - 1);
+        }
+
         return $options;
     }
 

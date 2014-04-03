@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Attribute
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<layout>
+    <mtattributeadmin_catalog_product_attribute_index>
+        <reference name="content">
+            <block type="mtattribute/adminhtml_catalog_product_attribute_options" name="mtattribute_catalog_product_attribute_options"/>
+        </reference>
+    </mtattributeadmin_catalog_product_attribute_index>
+
+    <mtattributeadmin_catalog_product_attribute_edit>
+        <reference name="content">
+            <block type="mtattribute/adminhtml_catalog_product_attribute_options_edit" name="mtattribute_catalog_product_attribute_options_edit"/>
+        </reference>
+    </mtattributeadmin_catalog_product_attribute_edit>
+</layout>
