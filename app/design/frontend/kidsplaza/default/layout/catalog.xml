@@ -214,6 +214,7 @@ Product view
                 <block type="catalog/product_view_additional" name="product.info.additional" as="product_additional_data" />
                 <block type="catalog/product_view_description" name="product.description" as="product_description" template="catalog/product/view/description.phtml"/>
                 <block type="kidsplaza/catalog_product_list_related" name="product.related" as="product_related" template="catalog/product/list/related.phtml"/>
+                <block type="kidsplaza/catalog_product_list_combo" name="product.related" as="product_combo" template="catalog/product/list/combo.phtml"/>
                 <block type="kidsplaza/catalog_product_videos" name="product.videos" as="product_videos"/>
                 <!--MT Review-->
                 <block type="core/template" name="product.info.other" as="other" template="mt/review/product/view/other.phtml"/>

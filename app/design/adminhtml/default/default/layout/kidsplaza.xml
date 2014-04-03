@@ -17,6 +17,10 @@
                 <block>kidsplaza/adminhtml_catalog_product_edit_video</block>
             </action>
             <action method="addTab">
+                <name>combo</name>
+                <block>kidsplaza/adminhtml_catalog_product_edit_combo</block>
+            </action>
+            <action method="addTab">
                 <name>blog</name>
                 <block>kidsplaza/adminhtml_catalog_product_edit_wordpress</block>
             </action>
@@ -28,6 +32,28 @@
             <block type="kidsplaza/adminhtml_catalog_product_edit_tab_video" name="catalog.product.edit.tab.video"/>
         </block>
     </kidsplaza_admin_adminhtml_catalog_product_videotab>
+
+    <kidsplaza_admin_adminhtml_catalog_product_combotab>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_combo" name="catalog.product.edit.tab.combo"/>
+            <block type="adminhtml/widget_grid_serializer" name="combo_grid_serializer">
+                <reference name="combo_grid_serializer">
+                    <action method="initSerializerBlock">
+                        <grid_block_name>catalog.product.edit.tab.combo</grid_block_name>
+                        <data_callback>getSelectedCombo</data_callback>
+                        <hidden_input_name>links[combo]</hidden_input_name>
+                        <reload_param_name>combo</reload_param_name>
+                    </action>
+                </reference>
+            </block>
+        </block>
+    </kidsplaza_admin_adminhtml_catalog_product_combotab>
+
+    <kidsplaza_admin_adminhtml_catalog_product_combogrid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="kidsplaza/adminhtml_catalog_product_edit_tab_combo" name="catalog.product.edit.tab.combo"/>
+        </block>
+    </kidsplaza_admin_adminhtml_catalog_product_combogrid>
 
     <kidsplaza_admin_adminhtml_catalog_product_wptab>
         <block type="core/text_list" name="root" output="toHtml">

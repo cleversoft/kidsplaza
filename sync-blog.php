@@ -134,7 +134,8 @@ function process_category($id){
             ->addFieldToFilter('identifier', array('eq' => $tree[$cid]['identifier']))
             ->addFieldToFilter('parent', array('eq' => end($currentPath)));
 
-        if ($collection->getSize()){
+        if ($collection->getSize())
+        {
             printf("Exist category: %s\n", $tree[$cid]['title']);
             $model = $collection->getFirstItem();
             $currentPath[] = $model->getId();

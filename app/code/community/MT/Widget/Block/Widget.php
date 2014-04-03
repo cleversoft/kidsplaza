@@ -316,6 +316,9 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             case 'discount':
                 $collection = $this->getDiscountCollection();
                 break;
+            case 'combo':
+                $collection = $this->getComboCollection();
+                break;
         }
         Mage::dispatchEvent('catalog_block_product_list_collection', array(
             'collection' => $collection
@@ -577,6 +580,26 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
                 ->setOrder($fieldorder, $order);
         }
+        $products->setPage(1, $this->getLimit());
+        $products->load();
+        return $products;
+    }
+
+    protected function getComboCollection($fieldorder='updated_at', $order='desc')
+    {
+        $catIds = $this->getCategoryIds();
+
+        $products = Mage::getResourceModel('catalog/product_collection')
+            ->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+            ->addMinimalPrice()
+            ->addFinalPrice()
+            ->addStoreFilter()
+            ->addUrlRewrite()
+            ->addTaxPercents()
+            ->addAttributeToFilter('products_combo', array('notnull' => true))
+            ->addFieldToFilter('visibility', Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH)
+            ->addFieldToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED)
+            ->setOrder($fieldorder, $order);
         $products->setPage(1, $this->getLimit());
         $products->load();
         return $products;
@@ -908,6 +931,12 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
         ));
 
         return $collection;
+    }
+
+    public function getProductCombo($product_id)
+    {
+        $product = Mage::getModel('catalog/product')->load($product_id);
+        return $product;
     }
 
     /**

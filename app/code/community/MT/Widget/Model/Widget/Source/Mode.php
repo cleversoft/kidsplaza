@@ -21,7 +21,8 @@ class MT_Widget_Model_Widget_Source_Mode{
             array('value' => 'up', 'label' => Mage::helper('mtwidget')->__('Up-sell Products')),
             array('value' => 'cross', 'label' => Mage::helper('mtwidget')->__('Cross-sell Products')),
             array('value' => 'discount', 'label' => Mage::helper('mtwidget')->__('Discount Products')),
-            array('value' => 'groupon', 'label' => Mage::helper('mtwidget')->__('Groupon Products'))
+            array('value' => 'groupon', 'label' => Mage::helper('mtwidget')->__('Groupon Products')),
+            array('value' => 'combo', 'label' => Mage::helper('mtwidget')->__('Combo Products'))
         );
     	if ($attribute->getId()){
         	$modes[] = array(

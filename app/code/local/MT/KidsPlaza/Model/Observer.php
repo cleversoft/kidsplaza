@@ -16,7 +16,6 @@ class MT_KidsPlaza_Model_Observer{
     public function catalogProductPrepareSave($observer){
         $product = $observer->getEvent()->getProduct();
         $request = $observer->getEvent()->getRequest();
-
         $videos = $request->getParam('videos', array());
         $product->setData('video', Mage::helper('core')->jsonEncode($videos));
 
@@ -27,6 +26,13 @@ class MT_KidsPlaza_Model_Observer{
                 if (!is_numeric($wp)) unset($wordpress[$index]);
             }
             $product->setData('related_wordpress', implode(',', $wordpress));
+        }
+        if (isset($links['combo'])){
+            $productsCombo = explode('&', $links['combo']);
+            foreach ($productsCombo as $index => $combo){
+                if (!is_numeric($combo)) unset($productsCombo[$index]);
+            }
+            $product->setData('products_combo', implode(',', $productsCombo));
         }
     }
 
