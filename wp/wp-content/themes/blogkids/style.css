@@ -558,6 +558,9 @@ footer {
     background: url(images/bg-top-footer.png) repeat-x top #0095d6;
     padding: 50px 0 20px 0;
 }
+.single footer{
+    margin-top: 0;
+}
 .widget em {
     background: url("images/bgIcons.png") no-repeat 0 0;
     display: block;

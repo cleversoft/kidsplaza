@@ -389,13 +389,13 @@ function addRelatedToProduct(){
 
 jQuery(function(){
     //init show more/less
-    /*var content_height_limit = 500,
+    var content_height_limit = 500,
         mainPane = jQuery('#product-description'),
         height = mainPane.height(),
         showMore = jQuery('<div/>')
             .addClass('show-more')
             .css('display','none')
-            .html('<a class="btn  btn-login">'+Translator.translate('Show More')+'</a>'),
+            .html('<a class="btn  btn-login">'+Translator.translate('Show More Description')+'</a>'),
         showLess = jQuery('<div/>')
             .addClass('show-less')
             .css('display','none')
@@ -417,7 +417,7 @@ jQuery(function(){
             showMore.show();
             jQuery('#product-description').scrollToMe();
         });
-    }*/
+    }
 
     //init table description
     jQuery('table', '#product_tabs_description_contents').addClass('table');
