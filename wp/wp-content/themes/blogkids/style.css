@@ -726,7 +726,7 @@ footer .widget_nav_menu ul li a {
 }
 /*comment*/
 .comment {
-    margin-bottom: 20px;
+    padding-top: 20px;
 }
 /*404*/
 .error404 .tick {
@@ -769,7 +769,7 @@ footer .widget_nav_menu ul li a {
     clear: both;
 }
 .sbHolder {
-    padding: 10px 10px 10px 0px;
+    padding: 8px 10px 8px 0;
 }
 .all-catgory {
     float: left;
@@ -835,7 +835,7 @@ footer .widget_nav_menu ul li a {
     float: left;
     font-size: 18px;
     margin-left: 10px;
-    padding: 10px 10px 10px 25px;
+    padding: 8px 10px 8px 25px;
     width: 50%;
     color: #a1a2a2;
     outline:none;
@@ -843,7 +843,7 @@ footer .widget_nav_menu ul li a {
 .b-search {
     background: #189eef;
     float: right;
-    width: 14%;
+    width: 16%;
     padding: 2px;
     -webkit-padding-after: 0px;
 }
@@ -852,10 +852,10 @@ footer .widget_nav_menu ul li a {
     border: 2px dashed #138ACA;
     color: #FFFFFF;
     font-family: 'Bubblegum Sans', cursive;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: bold;
     margin-left: 5px;
-    padding: 8px;
-    -webkit-padding-after: 6px;
+    padding: 4px;
+    -webkit-padding-after: 0px;
     width: 96%;
 }
