@@ -816,14 +816,18 @@ p.back-link{float: left;}
     right: 10px;
     top: 20px;
     width: 105px;
-    color: #fff ; font-size: 270%;line-height: 120px;
-    transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */
-
+    color: #fff ;
+    font-size: 270%;
+    line-height: 105px;
+    transform:rotate(-35deg);
+    -ms-transform:rotate(-35deg); /* IE 9 */
+    -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */
+    text-align: center;
 }
-.deals-wrapper  li.deal-item .deal-item-inner .deal-item-percent  cufon {
+/*.deals-wrapper  li.deal-item .deal-item-inner .deal-item-percent  cufon {
     right: -20px !important;
     top: -10px !important;
-}
+}*/
 .deals-wrapper li.deal-item .deal-item-inner .deal-item-name a{
     font-size: 45%;
     font-weight: bold;

@@ -218,11 +218,12 @@ jQuery('.product-view').each(function(i, product){
 
             var relatedField = $('related-field');
             if (relatedField){
-                var relatedValues = [];
+               /* var relatedValues = [];
                 relatedField.value.split(',').each(function(rid){
                     if (id != rid) relatedValues.push(rid);
                 });
-                relatedField.value = relatedValues.join(',');
+                relatedField.value = relatedValues.join(',');*/
+                relatedField.value = '';
             }
 
             if (url){

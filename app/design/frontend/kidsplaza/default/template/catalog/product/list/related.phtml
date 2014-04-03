@@ -90,8 +90,8 @@ $totalPrice = 0;
             </ol>
         </div>
         <div class="relared-price col-lg-5">
-            <p class="relared-price-all"><?php echo $this->__('Price for all: %s', Mage::helper('core')->formatPrice($totalPrice)) ?></p>
-            <button class="btn btn-related btn-addcart" onclick="productAddToCartForm.submitAllRelated(this)">
+            <p class="relared-price-all" id="related-price"><?php echo $this->__('Price for all: %s', Mage::helper('core')->formatPrice($totalPrice)) ?></p>
+            <button class="btn btn-related btn-addcart" onclick="productAddToCartForm.submitRelated(this)">
                 <?php echo $this->__('Add all to Cart') ?>
             </button>
             <button class="btn btn-related " onclick="productAddToCartForm.submitAllLight(this, '<?php echo $this->getUrl('wishlist/index/all') ?>')">
@@ -99,13 +99,13 @@ $totalPrice = 0;
             </button>
         </div>
     </div>
-    <div class="related-action">
+    <!--div class="related-action">
         <span class="price-label"><?php echo $this->__('Total') ?>:</span>
         <span class="price" id="related-price"></span>
         <button class="btn btn-kid btn-cart btn-login" type="button" onclick="window.productAddToCartForm.submitRelated(this)">
             <?php echo $this->__('Buy All') ?>
         </button>
-    </div>
+    </div-->
 </div>
 </div>
 <?php endif ?>
