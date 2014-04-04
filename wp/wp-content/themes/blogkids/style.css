@@ -862,3 +862,41 @@ footer .widget_nav_menu ul li a {
     -webkit-padding-after: 0px;
     width: 96%;
 }
+.social ul.footer-social {
+    overflow: inherit;
+}
+.footer-social li {
+    position: relative;
+}
+.footer-social li a{
+    padding: 30px 0 0 0;
+}
+.footer-social .so-social-share {
+    display: none;
+    position: absolute;
+    top: -55px;
+    left: -8px;
+    min-width: 50px;
+    min-height: 20px;
+    background: #e6edf6;
+    background-color: #f3faff;
+    background-image: -moz-linear-gradient(#e6edf6 0,white 100%);
+    border: 1px solid #003580;
+    border-radius: 5px;
+    z-index: 51;
+    padding: 7px 20px;
+}
+.footer-social .so-social-share .marker {
+    position: absolute;
+    z-index: 51;
+    bottom: -10px;
+    cursor: pointer;
+    display: block;
+    height: 10px;
+    margin-left: -5px;
+    left: 21px;
+    width: 15px;
+    background-image: url(images/market.png)!important;
+    background-position: left top;
+    background-repeat: no-repeat;
+}

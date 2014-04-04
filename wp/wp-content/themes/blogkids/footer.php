@@ -73,73 +73,76 @@
 					<p>Email: <a href="mailto:<?php echo $data['apl_footer_email']; ?>"><?php echo $data['apl_footer_email']; ?></a></p>
 				</div>
 				<div class="social col-lg-2 col-md-4 col-sm-12 col-xs-12">
-					<ul>
-					<?php 
+					<ul class="footer-social">
+					<?php
 					$url = get_template_directory_uri();
-					$facebook = $data['apl_facebook'];
-					$twitter = $data['apl_twitter'];
-					$youtube = $data['apl_youtube'];
-					$google = $data['apl_google'];
-					if (!empty($facebook)) {
-						echo "<li><a href='".$facebook."'><img src='". $url ."/images/facebook.png'></a></li>";
-					}
-					if (!empty($google)) {
-						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
-					}
-					if (!empty($youtube)) {
-						echo "<li><a href='".$youtube."'><img src='". $url ."/images/youtube.png'></a></li>";
-					}
-					if (!empty($twitter)) {
-						echo "<li><a href='".$twitter."'><img src='". $url ."/images/twitter.png'></a></li>";
-					}
 					?>
+                        <li>
+                            <a href="#facebook">
+                                <img src="<?php echo $url ?>/images/facebook.png">
+                            </a>
+                            <div id="facebook" class="top so-social-share">
+                                <div class="marker"></div>
+                                <div id="fb-root"></div>
+                                <div class="fb-like" data-href="http://kidsplaza.vn" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#google">
+                                <img src="<?php echo $url ?>/images/google.png">
+                            </a>
+                            <div id="google" class="so-plusone so-social-share">
+                                <div class="marker"></div>
+                                <div class="g-plusone" data-size="medium"></div>
+                                <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#twitter">
+                                <img src="<?php echo $url ?>/images/twitter.png">
+                            </a>
+                            <div id="twitter" class="so-twitter so-social-share">
+                                <div class="marker"></div>
+                                <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-dnt="true">Tweet</a>
+                            </div>
+                        </li>
 					</ul>
+                    <script type="text/javascript">
+                        $(document).ready(function() {
+                            $('.footer-social a').hover(function(){
+                                $(this).next().show();
+                                $(this).next().hover(function(){
+                                    $(this).show();
+                                },function(){
+                                    $(this).hide();
+                                });
+                            },function(){
+                                $(this).next().hide();
+                            });
+                        });
+                        (function(d, s, id) {
+                            var js, fjs = d.getElementsByTagName(s)[0];
+                            if (d.getElementById(id)) return;
+                            js = d.createElement(s);
+                            js.id = id;
+                            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=115245961994281";
+                            fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));
+                        !function(d,s,id){
+                            var js,fjs=d.getElementsByTagName(s)[0];
+                            if(!d.getElementById(id)){
+                                js=d.createElement(s);
+                                js.id=id;
+                                js.src="//platform.twitter.com/widgets.js";
+                                fjs.parentNode.insertBefore(js,fjs);
+                            }
+                        }(document,"script","twitter-wjs");
+                    </script>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-	/* resize facebook comments */
-	(function(window){
-	    var dh = null;
-	    $(window).on("resize",function(){
-	        if ( dh ) {
-	            clearTimeout(dh);
-	        }
-	        dh = setTimeout(function(){
-	            var $fbc = $(".fb-like-box");
-	            var $stc = $(".textwidget");
-	            dh = null;
-	            if ( $fbc.attr("data-width") != $stc.width() ) {
-	                $stc.css({height:$stc.height()});
-	                $fbc.attr("data-width", $stc.width());
-	                FB.XFBML.parse($stc[0],function(){
-	                    $stc.css({height:'auto'});
-	                });
-	            }
-	        },300);
-	    }).trigger("resize");
-
-	   	var kl = null;
-	    $(window).on("resize",function(){
-	        if ( kl ) {
-	            clearTimeout(kl);
-	        }
-	        kl = setTimeout(function(){
-	            var $fbl = $(".fb-comments");
-	            var $stl = $(".comment");
-	            dh = null;
-	            if ( $fbl.attr("data-width") != $stl.width() ) {
-	                $stl.css({height:$stl.height()});
-	                $fbl.attr("data-width", $stl.width());
-	                FB.XFBML.parse($stl[0],function(){
-	                    $stl.css({height:'auto'});
-	                });
-	            }
-	        },300);
-	    }).trigger("resize");
-	})(this);
-
 	$(".postform").selectbox({
 	onOpen: function (inst) {
 		//console.log("open", inst);
