@@ -258,4 +258,10 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         $products->load();
         return $products;
     }
+
+    public function countdown($product){
+        if ($product instanceof Mage_Catalog_Model_Product && $product->getGrouponEnable()) {
+            return sprintf('<div class="groupon-timedown" data-cdate="%s"></div>', date('Y/m/d H:i', strtotime($product->getGrouponTo())));
+        }
+    }
 }

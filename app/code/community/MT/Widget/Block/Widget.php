@@ -857,12 +857,17 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             case 'groupon':
                 /* @var $date Mage_Core_Model_Date */
                 $date = Mage::getModel('core/date');
-                $today = $date->date('Y-m-d');
+                $today = $date->date('Y-m-d H:i:s');
                 $collection->addAttributeToFilter('groupon_enable', array('eq' => 1));
+
+                $collection->addAttributeToSelect('groupon_from');
+                $collection->addAttributeToFilter('groupon_from', array(
+                    'lteq'  => $today
+                ));
+
                 $collection->addAttributeToSelect('groupon_to');
                 $collection->addAttributeToFilter('groupon_to', array(
-                    'from'  => sprintf('%s 00:00:00', $today),
-                    'to'    => sprintf('%s 23:59:59', $today)
+                    'gteq'  => $today
                 ));
                 break;
             case 'discount':

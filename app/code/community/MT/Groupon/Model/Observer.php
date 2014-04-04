@@ -8,6 +8,9 @@
  * @email       support@magentothemes.net
  */
 class MT_Groupon_Model_Observer{
+    /**
+     * Convert to website time
+     */
     public function catalogProductPrepareSave($observer){
         $product = $observer->getEvent()->getProduct();
 

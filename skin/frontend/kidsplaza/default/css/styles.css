@@ -1118,10 +1118,13 @@ dl.item-options{
     position: absolute;
     top: 0;
     right: 0;
+    background: rgb(0,0,0);
+    background: rgba(0,0,0,0.5);
+    padding: 2px 4px;
 }
 .groupon-timedown span {
     font-weight: bold;
-    color: #f74d89;
+    color: #fff;
 }
 .collap #shortDesc{
     max-height: 72px;

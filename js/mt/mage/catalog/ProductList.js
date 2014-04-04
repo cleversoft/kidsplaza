@@ -1,7 +1,7 @@
 (function($){
     $(".groupon-timedown").countdown({
         dataAttr: "cdate",
-        leadingZero: false,
+        leadingZero: true,
         yearText: dataTranslate.year,
         monthText: dataTranslate.month,
         weekText: dataTranslate.weeks,
