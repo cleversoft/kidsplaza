@@ -1,0 +1,35 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Widget
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<?php
+$attributes = $this->getAttibuteOptions();
+$id         = $this->getConfig('id');
+$scroll     = $this->getConfig('scroll');
+$title      = $this->getConfig('widget_title');
+?>
+<div class="attribute-menu-wrapper">
+    <?php if ($title): ?>
+        <div class="title"><?php echo $title ?></div>
+    <?php endif ?>
+    <?php $_columnCount = 5; ?>
+    <?php $i=0; foreach ($attributes as $attribute): ?>
+        <?php if ($i++%$_columnCount==0): ?>
+            <ul class="grid-<?php echo $_columnCount?> attribute-wrapper">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
+                    <?php echo $attribute['label'];?>
+                </a>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==count($attributes)): ?>
+            </ul>
+        <?php endif ?>
+    <?php endforeach ?>
+</div>

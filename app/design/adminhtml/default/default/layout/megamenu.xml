@@ -17,6 +17,7 @@
             <action method="addNode"><name>static_block</name><title>Static Block</title><model>cms/block</model><title_field>title</title_field><parent>internal_link</parent></action>
             <action method="addNode"><name>cms_page</name><title>CMS Page</title><model>cms/page</model><title_field>title</title_field><parent>internal_link</parent></action>
             <action method="addNode"><name>category</name><title>Category</title><model>catalog/category</model><title_field>name</title_field><parent>internal_link</parent></action>
+            <action method="addNode"><name>widget</name><title>Widget</title><model>widget/widget_instance</model><title_field>title</title_field><parent>internal_link</parent></action>
         </block>
         <reference name="left">
             <block name="megamenu.tree" type="megamenu/adminhtml_megamenu_tree" template="megamenu/megamenu/tree.phtml" />

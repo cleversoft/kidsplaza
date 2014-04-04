@@ -69,6 +69,8 @@
             $('megamenu_static_block').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_external_link').hide();
             $('megamenu_external_link').down('td.value').down('input').setAttribute('disabled', 'disabled');
+            $('megamenu_widget').hide();
+            $('megamenu_widget').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_' + type).show();
             $('megamenu_' + type).down('td.value').down('select').removeAttribute('disabled');
         }
@@ -80,6 +82,8 @@
             $('megamenu_static_block').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_external_link').hide();
             $('megamenu_external_link').down('td.value').down('input').setAttribute('disabled', 'disabled');
+            $('megamenu_widget').hide();
+            $('megamenu_widget').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_' + type).show();
             $('megamenu_' + type).down('td.value').down('select').removeAttribute('disabled');
         }
@@ -91,6 +95,8 @@
             $('megamenu_cms_page').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_external_link').hide();
             $('megamenu_external_link').down('td.value').down('input').setAttribute('disabled', 'disabled');
+            $('megamenu_widget').hide();
+            $('megamenu_widget').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_' + type).show();
             $('megamenu_' + type).down('td.value').down('select').removeAttribute('disabled');
         }
@@ -102,8 +108,23 @@
             $('megamenu_cms_page').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_static_block').hide();
             $('megamenu_static_block').down('td.value').down('select').setAttribute('disabled', 'disabled');
+            $('megamenu_widget').hide();
+            $('megamenu_widget').down('td.value').down('select').setAttribute('disabled', 'disabled');
             $('megamenu_' + type).show();
             $('megamenu_' + type).down('td.value').down('input').removeAttribute('disabled');
+        }
+
+        if('megamenu_' + type == 'megamenu_widget') {
+            $('megamenu_category').hide();
+            $('megamenu_category').down('td.value').down('select').setAttribute('disabled', 'disabled');
+            $('megamenu_cms_page').hide();
+            $('megamenu_cms_page').down('td.value').down('select').setAttribute('disabled', 'disabled');
+            $('megamenu_static_block').hide();
+            $('megamenu_static_block').down('td.value').down('select').setAttribute('disabled', 'disabled');
+            $('megamenu_external_link').hide();
+            $('megamenu_external_link').down('td.value').down('input').setAttribute('disabled', 'disabled');
+            $('megamenu_' + type).show();
+            $('megamenu_' + type).down('td.value').down('select').removeAttribute('disabled');
         }
     }
     

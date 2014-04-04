@@ -92,6 +92,14 @@
                                     <?php echo $this->getArticleHtml('static_block', (!$megamenu->getId() || $megamenu->getType() != 'static_block')); ?>
                                 </td>
                             </tr>
+                            <tr id="megamenu_widget" <?php if(!$megamenu->getId() || $megamenu->getType() != 'widget'): ?>style="display:none;"<?php endif; ?>>
+                                <td class="label">
+                                    <label for="megamenu[article]"><?php echo $this->__('Article') ?><span class="required">*</span></label>
+                                </td>
+                                <td class="value">
+                                    <?php echo $this->getArticleHtml('widget', (!$megamenu->getId() || $megamenu->getType() != 'widget')); ?>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -1142,3 +1142,22 @@ dl.item-options{
 .desc-more .t-show{
     display: none;
 }
+.attribute-menu-wrapper {
+    width: 100%;
+    float: left;
+}
+.attribute-menu-wrapper .title {
+    color: #fe4b8c;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    float: left;
+}
+#megamenu div.childcontent .attribute-menu-wrapper ul.grid-5 {
+    width: 50%;
+    float: left;
+}
+#megamenu div.childcontent .attribute-menu-wrapper ul.grid-5 li a {
+    color: #01a1ed;
+    font-size: 13px;
+}

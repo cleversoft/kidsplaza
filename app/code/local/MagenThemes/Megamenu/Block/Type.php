@@ -43,6 +43,18 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
         return null;
     }
 
+    public function getWidgetType() {
+        if($this->hasContent()) {
+            $widget = Mage::getModel('widget/widget_instance')->load($this->_menu->getArticle());
+            return $this->getLayout()->createBlock($widget->getType())
+                    ->setTemplate($widget->getPageGroups()[0]['page_template'])
+                    ->setData($widget->getWidgetParameters())
+                    ->setPageId(2)
+                    ->toHtml();
+        }
+        return null;
+    }
+
     public function getObjectType() {
         return $this->getLayout()->getBlock('megamenu.nav')->getType($this->_type);
     }
@@ -197,10 +209,18 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
                 if($this->_level == 1 && $this->_type == 'category')
                     $html .= '<span class="cat-summary">'.$this->escapeHtml($model->getSummary()).'</span>';
             }
-            if($this->_menu->isContent())
-                $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
-                    ->setMenu($this->_menu, $this->_level+1)
-                    ->getContentType();
+            if($this->_menu->isContent()){
+                if($this->_menu->getType() == 'widget'){
+                    $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
+                        ->setMenu($this->_menu, $this->_level+1)
+                        ->getWidgetType();
+                }else{
+                    $html .= $this->getLayout()->createBlock($this->_getObjectType($this->_menu->getType())->getBlock())
+                        ->setMenu($this->_menu, $this->_level+1)
+                        ->getContentType();
+                }
+            }
+
         }
         if($this->_menu->hasChild(true) && $this->_menu->showSub()) {
             if($this->_level != 0 && !$this->_menu->isGroup()) {

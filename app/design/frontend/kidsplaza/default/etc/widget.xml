@@ -49,6 +49,10 @@
                         <value>mt/widget/upsell-products.phtml</value>
                         <label>Upsell Products</label>
                     </upsell_products>
+                    <menu_brand translate="label">
+                        <value>mt/widget/menu-brands.phtml</value>
+                        <label>Menu Brands</label>
+                    </menu_brand>
                 </values>
             </template>
         </parameters>

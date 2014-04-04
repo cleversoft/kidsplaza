@@ -96,7 +96,7 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_New_Form extends Mage_Adminh
             }
         }
         
-        $collection = Mage::getModel($nodeData->getModel())->getCollection(); 
+        $collection = Mage::getModel($nodeData->getModel())->getCollection();
         $html .= '<select name="megamenu[article]" id="megamenu[article]" class="input-text required-entry"';
         if($disabled)
             $html .= 'disabled="disabled"';

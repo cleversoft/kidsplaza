@@ -144,7 +144,12 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getAttibuteOptions(){
-        $showOptions = explode(',', $this->getData('attribute_options'));
+        Mage::log($this->getData());
+        if(is_array($this->getData('attribute_options'))){
+            $showOptions = $this->getData('attribute_options');
+        }else{
+            $showOptions = explode(',', $this->getData('attribute_options'));
+        }
         list($attributeId, $attributeCode) = explode(',' , $this->getData('attribute'));
 
         $optionCollection = Mage::getResourceModel('eav/entity_attribute_option_collection')
@@ -154,7 +159,8 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
 
         $options = array();
         foreach ($optionCollection as $option){
-            if ($option->getImage() && in_array($option->getId(), $showOptions)){
+            //if ($option->getImage() && in_array($option->getId(), $showOptions)){
+            if (in_array($option->getId(), $showOptions)){
                 $options[] = array(
                     'id' => $option->getId(),
                     'label' => $option->getValue(),
