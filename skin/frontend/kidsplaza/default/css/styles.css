@@ -372,7 +372,7 @@ input,textarea{outline:0}
 .products-grid  .item:hover .actions { opacity: 1;}
 .products-grid  .item .price-discount {transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */ position: absolute ; left: 0 ; height: 58px; width: 58px; line-height: 58px; color: #fff ; font-weight: bold ; font-size: 100% ; background: url("../images/bgLable.png" ) no-repeat -62px 0;}
 
-.product-img-box .price-discount { transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 102px; width: 107px; line-height: 100px; color: #fff ; font-weight: bold ; font-size: 150% ; background: url("../images/bgLable.png" ) no-repeat -121px -46px;}
+.product-img-box .price-discount { transform:rotate(-35deg);-ms-transform:rotate(-35deg); /* IE 9 */ -webkit-transform:rotate(-35deg); /* Opera, Chrome, and Safari */position: absolute ; text-align: center ; left: 138px ; height: 102px; width: 107px; line-height: 100px; color: #fff ; font-weight: bold ; font-size: 200% ; background: url("../images/bgLable.png" ) no-repeat -121px -46px;}
 .price-box .old-price .price{text-decoration:line-through ; font-size: 11px;}
 .price-box .old-price{margin:0}
 .toolbar .btn{padding:2px 10px}
@@ -799,7 +799,7 @@ p.back-link{float: left;}
 .col-left .col-left-top { background: url("../images/lefttop.jpg") no-repeat right top ;}
 .col-left .col-left-center  { background: url("../images/leftcenter.jpg") repeat-y right top ;}
 .col-left .col-left-bottom { background: url("../images/leftbottom.jpg") no-repeat right bottom ;}
-.breadcrumb {background:  none ; border-radius :0 ; padding:  0 ; margin: 20px 0 ;  }
+.breadcrumb {background:  none ; border-radius :0 ; padding:  0 ; margin: 5px 0 20px 0 ;  }
 .breadcrumb li a{ color: #686868 ; font-size: 13px ; }
 .breadcrumb li { color: #f74d89 ; font-size: 13px ; }
 .breadcrumb > li + li:before {color: #CCCCCC;content: "> ";padding: 0 5px;}
@@ -1122,4 +1122,20 @@ dl.item-options{
 .groupon-timedown span {
     font-weight: bold;
     color: #f74d89;
+}
+.collap #shortDesc{
+    max-height: 72px;
+    overflow: hidden;
+}
+.collap .desc-more .t-show{
+    display: block;
+}
+.collap .desc-more .t-hide{
+    display: none;
+}
+.desc-more .t-hide{
+    display: block;
+}
+.desc-more .t-show{
+    display: none;
 }

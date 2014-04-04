@@ -54,10 +54,12 @@ $_product = $this->getProduct();
                 <div class="page-title">
                     <h1>
                         <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                        <?php if ($_product->getData('brand')): ?>
                         <small>by</small>
                         <a href="<?php echo $this->helper('kidsplaza')->getBrandUrl($_product->getData('brand'), $_product->getAttributeText('brand')) ?>">
                             <?php echo $_product->getAttributeText('brand') ?>
                         </a>
+                        <?php endif ?>
                     </h1>
                 </div>
                 <div class="row">
@@ -123,9 +125,16 @@ $_product = $this->getProduct();
                         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                             <?php echo $this->getChildChildHtml('container2', 'product.info.options.wrapper', true, true) ?>
                         <?php endif;?>
+                        <div id="shortDesc">
                         <?php echo $_helper->productAttribute($_product, $this->stripTags($_product->getShortDescription(), '<ul><li>'), 'short_description') ?>
-                        <p class="desc-more">
-                            <a href="javascript:void(0)" onclick="jQuery('.short-desc').toggleClass('expand')"><?php echo $this->__('See more') ?> &raquo;</a>
+                        </div>
+                        <p class="desc-more" style="display: none;" id="shortDescToggle">
+                            <a href="javascript:void(0)" onclick="jQuery('.short-desc').toggleClass('collap')" class="t-show">
+                                <?php echo $this->__('See more') ?> &raquo;
+                            </a>
+                            <a href="javascript:void(0)" onclick="jQuery('.short-desc').toggleClass('collap')" class="t-hide">
+                                <?php echo $this->__('See less') ?> &raquo;
+                            </a>
                         </p>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 right-desc">
