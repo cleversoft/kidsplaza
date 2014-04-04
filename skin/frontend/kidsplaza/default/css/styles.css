@@ -47,10 +47,10 @@
 .product-view .product-shop  .desc {border-right: 1px solid #efefef ;}
 .product-view .product-shop  .desc .desc-more a  {font-weight: bold ; text-decoration: underline ;}
 .product-view .product-shop  .desc .desc-more {padding: 0;margin-top: 5px;}
-.product-view .product-shop  .right-desc a { font-weight: bold ;padding: 10px 0  ; color:#1da645 ; border: none ; font-size:16px ; background: none ;cursor: default;text-decoration: none;font-family: 'roboto slab',arial, sans-serif;}
+.product-view .product-shop  .right-desc a { font-weight: bold ;padding: 7px 9px  ; background-color:#5ec215 ; border-radius: 8px ; -moz-border-radius: 8px ; -webkit-border-radius: 8px; /* color:#1da645 ;*/  font-size:110% ; cursor: default;text-decoration: none;font-family: 'roboto slab',arial, sans-serif;}
 .product-view .product-shop  .right-desc a.btn-danger { color: #d43f3a;}
-.product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px;}
-.product-view .product-shop  .shipping-note a { color: #FF4E8F;font-weight: 400;font-size: 14px;}
+.product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px; margin: 10px 0 5px;}
+.product-view .product-shop  .shipping-note a { color: #FF4E8F;font-weight: 400;font-size: 100%; background: none ;}
 .product-view .product-shop  .shipping-note span { display: block;line-height: 150%;}
 .product-view .product-shop  .right-desc p#product-price-total { font-weight: bold ;font-size: 130%;margin: 10px 0; }
 .product-view .product-shop  .right-desc p#product-price-total .price { color:#ff3d70 ;font-weight: bold ; }
@@ -222,16 +222,21 @@ a.logo{margin-top:20px;display:block}
 .top-banner {float: left ; width: 100% ;}
 .top-banner li{list-style:none;text-align:center;height: 70px;}
 .top-banner li a{display:inline-block;width:auto;padding:15px 0;vertical-align:top;color:#515151;text-align:left; line-height: 40px}
+.top-banner li:hover a ,
 .top-banner li a:hover{color: #ff3d70 ; text-decoration: none ;}
 .top-banner em{cursor:pointer ; display:inline-block;width:45px;height:45px;background:url(../images/bgIcons2.png) no-repeat;margin:11px 10px 18px 0}
 .top-banner .checkout em{background-position:0 0}
-.top-banner .checkout em:hover{background-position:0 -45px;}
+.top-banner .checkout em:hover ,
+.top-banner .checkout:hover  em {background-position:0 -45px;}
 .top-banner .shipping em{background-position:-45px 0}
-.top-banner .shipping em:hover{background-position:-45px -45px}
+.top-banner .shipping em:hover,
+.top-banner .shipping:hover  em{background-position:-45px -45px}
 .top-banner .return em{background-position:-90px 0}
-.top-banner .return em:hover{background-position:-90px -45px ;}
+.top-banner .return em:hover,
+.top-banner .return:hover  em{background-position:-90px -45px ;}
 .top-banner .promo em{background-position:-135px 0 ; width: 46px;}
-.top-banner .promo em:hover{background-position:-135px -45px ; width: 46px;}
+.top-banner .promo em:hover,
+.top-banner .promo:hover  em{background-position:-135px -45px ; width: 46px;}
 .top-banner .promo a{}
 .dropdown-menu{border-radius:0}
 .header-top-right .vr{height: 70%; display: inline-block;  border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7;filter: alpha(opacity=70);}
@@ -269,7 +274,7 @@ p.error{color: #a94442;}
 .top-login .popover-content p span {font-size: 10px; }
 .top-login .popover-content p a {font-size: 13px; color:  #009fe6 ; font-weight: bold ;}
 .top-login .popover-content ul {margin: 0;clear: both;}
-.top-login .popover-content ul li a{ line-height: 30px; font-size: 13px;}
+.top-login .popover-content ul li a{ line-height: 30px; font-size: 100%; margin-left: 5px; }
 .top-login .btn-signin{width: 100%; font-weight: bold;}
 .top-login .toplogin {float: left;width: 100%;height: 100%;}
 .top-cart .popover .arrow,
@@ -341,7 +346,7 @@ input,textarea{outline:0}
 .footer-bottom .block{float:left;width:100%}
 .footer-bottom .block ul {float:left; padding: 7px  15px ;  }
 .footer-bottom .block ul li a {color: #fff ; font-size: 12px; }
-.footer-bottom .block em{background: url("../images/bgIcons.png") no-repeat scroll -135px -45px rgba(0, 0, 0, 0);display: block;float: left; height: 45px; margin: 0 12px 0 0;width: 45px;}
+.footer-bottom .block em {background: url("../images/bgIcons.png") no-repeat scroll -135px -45px ;display: block;float: left; height: 45px; margin: 0 12px 0 0;width: 45px;}
 .footer-bottom .kidshn .kids{float:left;display:block}
 .footer-bottom .kidshcm .kids{float:left;display:block}
 .footer-bottom .kidplaza .kids{margin:0 45px 0 10px}
@@ -354,7 +359,7 @@ input,textarea{outline:0}
 .footer-coppyright .footer-coppyright-inner address{margin:0;color:#fff}
 .footer-coppyright .footer-coppyright-inner a,
 .footer-coppyright .footer-coppyright-inner p{margin:0;color:#fff}
-.footer-coppyright .footer-coppyright-inner p{}
+.footer-coppyright .footer-coppyright-inner p{ text-align: right ;}
 .btn-subscribe{font-weight:700}
 .footer-coppyright-inner .social-links{float:right}
 .grid-5 li{width: 20%;}
@@ -721,9 +726,9 @@ p.back-link{float: left;}
 }
 .cms-index-index .std{display: none;}
 .cms-index-index .category-products{margin-bottom: 10px;float: left;width: 100%;}
-.category-products .btn-group  .btn-default{opacity: 0; }
-.category-products .toolbar-view .btn-group .btn-default{opacity: 1; min-width: 160px;}
-.category-products .toolbar-view .btn-group .btn-default:hover{background: none ; opacity: 1;  }
+.category-products .btn-group .btn-default{opacity: 0; }
+.category-products .toolbar-view .btn-group .btn-default {opacity: 1; min-width: 160px;}
+.category-products .toolbar-view .btn-group .btn-default:hover { background: none ; opacity: 1;  }
 .category-products .toolbar-view .btn-group .sort-dir.btn-default:hover{background: #01A1ED ; opacity: 1;  }
 .category-products:hover .btn-group  .btn-default{opacity: 0.65; }
 .category-products:hover .toolbar-view .btn-group  .btn-default{ opacity:1; }
@@ -807,16 +812,17 @@ p.back-link{float: left;}
 
 
 .deals-wrapper  li.deal-item { background-color: #fff; border: 1px solid #ECECEC ; list-style: none ;}
-.deals-wrapper  li.deal-item .deal-item-inner{background-color: #fffff ;  margin:  5px  ;  display: inline-block; }
+.deals-wrapper  li.deal-item .deal-item-inner{ position:relative ;background-color: #fff;  margin:  5px  ;  display: inline-block; }
 .deals-wrapper  li.deal-item .deal-item-inner .deal-item-percent {
     background-image: url("../images/bgLable.png");
     background-position: -120px -44px;
     background-repeat: no-repeat;
+    background-color: transparent;
     display: inline-block;
     height: 105px;
     position: absolute;
     right: 10px;
-    top: 20px;
+    top: -15px;
     width: 105px;
     color: #fff ;
     font-size: 270%;
@@ -831,7 +837,7 @@ p.back-link{float: left;}
     top: -10px !important;
 }*/
 .deals-wrapper li.deal-item .deal-item-inner .deal-item-name a{
-    font-size: 45%;
+    font-size: 42%;
     font-weight: bold;
     margin: 0 0 30px;
     text-align: center;
@@ -997,6 +1003,9 @@ p.back-link{float: left;}
 .ie8 .attribute-carousel-wrapper .flex-direction-nav a{ display: none ; }
 .ie8 .category-products:hover .btn-group .btn-default,
 .ie8 .attribute-carousel-wrapper:hover .flex-direction-nav a{ display: block ; }
+.ie8 .category-products .btn-group .btn-default{display: none ; }
+.ie8 .category-products .toolbar-view .btn-group .btn-default {display: block ; min-width: 160px;}
+.ie8 .category-products .toolbar-view .btn-group .btn-default:hover { background: none ;display: block ;  }
 /*Page sitemap*/
 .page-sitemap .page-title h1 {color:#20a4f0;border-bottom: none;}
 .page-sitemap .pager .amount strong {
