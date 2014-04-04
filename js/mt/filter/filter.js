@@ -78,6 +78,7 @@ MTFilter.prototype = {
             initLayerFilterWithScrollAndList(container);
         });
         ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
+        initCountDown();
     },
     injectLoadMore: function(){
         var container = this.getDOM(this.config.loadDOM || '.toolbar .pages', true);
