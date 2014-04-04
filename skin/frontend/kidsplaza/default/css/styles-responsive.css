@@ -72,16 +72,35 @@
 
     .cart {float: left ; width: 100% ;}
 
-}
-@media (min-width: 981px) and (max-iwdth: 1170px) {
 
+}
+@media (min-width: 981px) and (max-iwdth: 1024px) {
+    .top-links li a ,
+    .top-links strong{font-size: 80% ;}
+
+    .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;}
+    .top-login .font { padding: 0 12px; width: 23%; }
+    .toplogin .popover  { left: -5px !important;}
+    .toplogin .popover .arrow { left: -45px !important;}
+    .top-cart .popover { left: -60px !important;}
+    .top-cart .popover .arrow {left: -20px !important;}
 }
 @media (max-width: 980px) {
 
     .grid-5 li {width: 32%;}
     .header-top .header-top-inner .col-lg-6 {padding-left: 10px !important; margin: 0 0 20px;}
-    .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ;}
-    .top-login .font { padding: 0 12px; width: 23%; }
+
+
+
+    .top-links li a ,
+    .top-links strong{font-size: 80% ;}
+    .top-login { width: 47px;border-radius:50%; -moz-border-radius:50%; -webkit-border-radius:50% ; border: none ;}
+    .toplogin .popover  { left: 10px !important;}
+    .toplogin .popover .arrow { left: -45px !important;}
+    .top-cart .popover { left: -60px !important;}
+    .top-cart .popover .arrow {left: -20px !important;}
+    .header-top-right {width: 105px;}
+
     .top-location i {left: 180px;}
     .filter-item .badge {font-size: 60% ; padding: 2px;}
     .filter-item a.filter-item-name { font-size: 70%;}
@@ -239,6 +258,7 @@
     .product-view #product-related .relared-price {margin: 20px 0 ;}
 
     .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
+
 
 }
 @media (max-width: 900px) {
