@@ -861,8 +861,9 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
                 $collection->addAttributeToFilter('groupon_enable', array('eq' => 1));
 
                 $collection->addAttributeToSelect('groupon_from');
-                $collection->addAttributeToFilter('groupon_from', array(
-                    'lteq'  => $today
+                $collection->addAttributeToFilter(array(
+                    array('attribute' => 'groupon_from', 'null' => true),
+                    array('attribute' => 'groupon_from', 'lteq' => $today)
                 ));
 
                 $collection->addAttributeToSelect('groupon_to');
