@@ -20,43 +20,6 @@
 <stores><item>0</item></stores>
 </cms_block>
 <cms_block>
-<title><![CDATA[Footer - Kids Plaza Hà Nội]]></title>
-<identifier><![CDATA[ft-hanoi]]></identifier>
-<content><![CDATA[<div class="block block-address"><em> &nbsp; </em>
-<div class="block-inner">
-<h3>Kids Plaza H&agrave; Nội</h3>
-<ul class="first">
-<li><a href="#"><strong>Q.Đống Đa:</strong> Số 20-22 Th&aacute;i Thịnh</a></li>
-<li><a href="#"><strong>Q.Ba Đ&igrave;nh:</strong> Số 56 Giang Văn Minh</a></li>
-</ul>
-<ul>
-<li><a href="#"><strong>Q.Cầu Giấy:</strong> Số 40 Trần Th&aacute;i T&ocirc;ng</a></li>
-<li><a href="#"><strong>Q.H&agrave; Đ&ocirc;ng:</strong> Số 44-TT4A Văn Qu&aacute;n</a></li>
-</ul>
-<ul class="last">
-<li><a href="#"><strong>Q.Thanh Xu&acirc;n:</strong> Số 533 Nguyễn Tr&atilde;i</a></li>
-<li><a href="#"><strong>Q.Hai B&agrave; Trưng:</strong> Số 340 Bạch Mai </a></li>
-</ul>
-</div>
-</div>]]></content>
-<is_active>1</is_active>
-<stores><item>0</item></stores>
-</cms_block>
-<cms_block>
-<title><![CDATA[Footer - Kids Plaza Hồ Chí Minh]]></title>
-<identifier><![CDATA[ft-hcm]]></identifier>
-<content><![CDATA[<div class="block block-address"><em> &nbsp; </em>
-<div class="block-inner">
-<h3>Kids Plaza Hồ Ch&iacute; Minh</h3>
-<ul>
-<li><a href="#">162L/18 Trường Chinh, P.12, Quận T&acirc;n B&igrave;nh, TPHCM</a></li>
-</ul>
-</div>
-</div>]]></content>
-<is_active>1</is_active>
-<stores><item>0</item></stores>
-</cms_block>
-<cms_block>
 <title><![CDATA[Footer - Dịch Vụ Miễn Phí]]></title>
 <identifier><![CDATA[ft-service]]></identifier>
 <content><![CDATA[<div class="block block-service"><em> &nbsp; </em>
@@ -96,12 +59,6 @@
 <identifier><![CDATA[social-links]]></identifier>
 <content><![CDATA[<ul class="social-links">
 <li class="facebook"><a href="#">facebook</a></li>
-<li class="pinterest"><a href="#">pinterest</a></li>
-<li class="flickr"><a href="#">flickr</a></li>
-<li class="twitter"><a href="#">twitter</a></li>
-<li class="youtube"><a href="#">youtube</a></li>
-<li class="linkedin"><a href="#">linkedin</a></li>
-<li class="skype"><a href="#">skype</a></li>
 <li class="google"><a href="#">google</a></li>
 </ul>]]></content>
 <is_active>1</is_active>
@@ -240,6 +197,55 @@
 <title><![CDATA[Footer - Hạng Vàng]]></title>
 <identifier><![CDATA[ft-hangvang]]></identifier>
 <content><![CDATA[<div class="banner banner-transform"><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/b9.png"}}" alt="" /></a></div>]]></content>
+<is_active>1</is_active>
+<stores><item>0</item></stores>
+</cms_block>
+<cms_block>
+<title><![CDATA[Footer - Kids Plaza Hà Nội]]></title>
+<identifier><![CDATA[ft-hanoi]]></identifier>
+<content><![CDATA[<div class="block block-address"><em> &nbsp; </em>
+<div class="block-inner">
+<h3>Kids Plaza H&agrave; Nội</h3>
+<ul class="first">
+<li><a href="#"><strong>Q.Đống Đa:</strong> Số 20-22 Th&aacute;i Thịnh</a></li>
+<li><a href="#"><strong>Q.Ba Đ&igrave;nh:</strong> Số 56 Giang Văn Minh</a></li>
+</ul>
+<ul>
+<li><a href="#"><strong>Q.Cầu Giấy:</strong> Số 40 Trần Th&aacute;i T&ocirc;ng</a></li>
+<li><a href="#"><strong>Q.H&agrave; Đ&ocirc;ng:</strong> Số 44-TT4A Văn Qu&aacute;n</a></li>
+</ul>
+<ul class="last">
+<li><a href="#"><strong>Q.Thanh Xu&acirc;n:</strong> Số 533 Nguyễn Tr&atilde;i</a></li>
+<li><a href="#"><strong>Q.Hai B&agrave; Trưng:</strong> Số 340 Bạch Mai </a></li>
+</ul>
+</div>
+</div>]]></content>
+<is_active>1</is_active>
+<stores><item>0</item></stores>
+</cms_block>
+<cms_block>
+<title><![CDATA[Footer - Kids Plaza Hồ Chí Minh]]></title>
+<identifier><![CDATA[ft-hcm]]></identifier>
+<content><![CDATA[<div class="block block-address"><em> &nbsp; </em>
+<div class="block-inner">
+<h3>Kids Plaza Hồ Ch&iacute; Minh</h3>
+<ul>
+<li><a href="#">162L/18 Trường Chinh, P.12, Quận T&acirc;n B&igrave;nh, TPHCM</a></li>
+</ul>
+</div>
+</div>]]></content>
+<is_active>1</is_active>
+<stores><item>0</item></stores>
+</cms_block>
+<cms_block>
+<title><![CDATA[Social Links Footer]]></title>
+<identifier><![CDATA[social-links-footer]]></identifier>
+<content><![CDATA[<ul class="social-links">
+<li class="facebook"><a href="#">facebook</a></li>
+<li class="google"><a href="#">google</a></li>
+<li class="youtube"><a href="#">youtube</a></li>
+<li class="twitter"><a href="#">twitter</a></li>
+</ul>]]></content>
 <is_active>1</is_active>
 <stores><item>0</item></stores>
 </cms_block>

@@ -161,8 +161,8 @@ header .social-links {margin : 10px 0 0; }
 .top-links li{display:inline-block;color:#fff;padding:0 4px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
-.social-links li{background:url(../images/bgSocial.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;}
-.social-links li a{text-indent:-9999px;display:block;outline:0}
+.social-links li{background:url(../images/bgSocial2.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;}
+.social-links li a{text-indent:-9999px;display:block;outline:0;text-align: left;}
 .social-links li:first-child{margin-left:0}
 .social-links li:last-child{margin-left:0}
 .social-links li.facebook{background-position:0 0}
@@ -172,7 +172,7 @@ header .social-links {margin : 10px 0 0; }
 .social-links li.youtube{background-position:-107px 0}
 .social-links li.linkedin{background-position:-133px 0}
 .social-links li.skype{background-position:-159px 0}
-.social-links li.google{background-position:-40px 0}
+.social-links li.google{background-position:-185px 0}
 .btn{border-radius:0;}
 .product-view .related-separator,.product-view .combo-separator{display: inline-block;font-size: 30px; font-weight: 700; color: #01a1ed;}
 .product-view .related-img-item.first .related-separator{display: none;}
@@ -354,12 +354,12 @@ input,textarea{outline:0}
 .footer-coppyright .footer-coppyright-inner address{margin:0;color:#fff}
 .footer-coppyright .footer-coppyright-inner a,
 .footer-coppyright .footer-coppyright-inner p{margin:0;color:#fff}
-.footer-coppyright .footer-coppyright-inner p{text-align: right ;}
+.footer-coppyright .footer-coppyright-inner p{}
 .btn-subscribe{font-weight:700}
 .footer-coppyright-inner .social-links{float:right}
 .grid-5 li{width: 20%;}
 .products-grid {float: left;width: 100%;}
-.products-grid li ,
+.products-grid li,
 .products-grid .item{float:left;text-align:center;position:relative;height:auto;margin-bottom:15px ;margin-top: 15px;}
 .products-grid .product-name{font-weight:400;font-size:14px;padding:0 14px;margin:5px 0;}
 .products-grid .product-name a{color:#634f4f}

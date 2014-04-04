@@ -150,6 +150,9 @@ Default layout, loads most of the pages
                 <block type="cms/block" name="ft.email" as="ft.email">
                     <action method="setBlockId"><block_id>ft-email</block_id></action>
                 </block>
+                <block type="cms/block" name="ft.social" as="ft.social">
+                    <action method="setBlockId"><block_id>social-links-footer</block_id></action>
+                </block>
                 <block type="cms/block" name="top.social" as="top.social">
                     <action method="setBlockId"><block_id>social-links</block_id></action>
                 </block>
