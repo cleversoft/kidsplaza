@@ -46,8 +46,9 @@ class MagenThemes_Megamenu_Block_Type extends Mage_Core_Block_Template
     public function getWidgetType() {
         if($this->hasContent()) {
             $widget = Mage::getModel('widget/widget_instance')->load($this->_menu->getArticle());
+            $pg = $widget->getPageGroups();
             return $this->getLayout()->createBlock($widget->getType())
-                    ->setTemplate($widget->getPageGroups()[0]['page_template'])
+                    ->setTemplate($pg[0]['page_template'])
                     ->setData($widget->getWidgetParameters())
                     ->setPageId(2)
                     ->toHtml();
