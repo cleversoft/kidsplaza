@@ -1,0 +1,27 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Location
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+$locations = Mage::getModel('mtlocation/location')->getCollection();
+$data = array();
+$data[] = array(
+    'id'        => 0,
+    'address'   => '',
+    'position'  => Mage::getStoreConfig('mtlocation/general/default')
+);
+foreach ($locations as $location){
+    $data[] = array(
+        'id'        => $location->getData('id'),
+        'address'   => $location->getData('address'),
+        'position'  => $location->getData('position')
+    );
+}
+?>
+<script type="text/javascript">
+    var map = new Locations('locations', 'location_map', <?php echo Mage::helper('core')->jsonEncode($data) ?>);
+</script>

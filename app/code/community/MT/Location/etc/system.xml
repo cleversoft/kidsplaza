@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Location
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <sections>
+        <mtlocation translate="label">
+            <label>MT Location</label>
+            <tab>mtext</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>1</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <default translate="label comment">
+                            <label>Default Location</label>
+                            <frontend_type>text</frontend_type>
+                            <comment>Map center here. Ex: 21.018095, 105.838409</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </default>
+                    </fields>
+                </general>
+            </groups>
+        </mtlocation>
+    </sections>
+</config>
