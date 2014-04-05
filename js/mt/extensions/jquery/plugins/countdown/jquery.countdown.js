@@ -321,7 +321,7 @@
                     addSeparator();
                 }
 
-                if( !hideDays ) {
+                if( !hideDays && daysLeft>0) {
                     addTime( daysLeft );
                     addText( (daysLeft == 1 && settings.daySingularText) ? settings.daySingularText : settings.dayText );
                     addSeparator();
