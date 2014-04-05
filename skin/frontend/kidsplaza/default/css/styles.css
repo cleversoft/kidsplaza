@@ -1170,3 +1170,14 @@ dl.item-options{
     color: #01a1ed;
     font-size: 13px;
 }
+.locations li.active{
+    background: #01A1ED;
+}
+.locations li.active a{
+    color: #fff;
+}
+.locations li{
+    cursor: pointer;
+    color: #333;
+    padding: 8px 5px;
+}

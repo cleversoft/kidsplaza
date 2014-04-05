@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Location
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <menu>
+        <mt>
+            <children>
+                <mtlocation translate="title">
+                    <title>MT Location</title>
+                    <action>mtlocationadmin/manage_location/index</action>
+                    <sort_order>99</sort_order>
+                </mtlocation>
+            </children>
+        </mt>
+    </menu>
+
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <mtlocation translate="title">
+                                        <title>MT Location Settings</title>
+                                    </mtlocation>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

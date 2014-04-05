@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Location
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<layout>
+    <default>
+        <reference name="before_body_end">
+            <block type="page/html" template="mt/location/js.phtml"/>
+        </reference>
+    </default>
+
+    <mtlocation_location_index>
+        <reference name="js_bottom">
+            <action method="addJs"><js>mt/location/Location.js</js></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><file>page/1column.phtml</file></action>
+        </reference>
+        <reference name="content">
+            <block type="mtlocation/location" name="mtlocation_location"/>
+        </reference>
+    </mtlocation_location_index>
+</layout>

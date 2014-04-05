@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Location
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+    <modules>
+        <MT_Location>
+            <version>1.0</version>
+        </MT_Location>
+    </modules>
+
+    <global>
+        <blocks>
+            <mtlocation>
+                <class>MT_Location_Block</class>
+            </mtlocation>
+        </blocks>
+        <helpers>
+            <mtlocation>
+                <class>MT_Location_Helper</class>
+            </mtlocation>
+        </helpers>
+        <models>
+            <mtlocation>
+                <class>MT_Location_Model</class>
+                <resourceModel>mtlocation_mysql4</resourceModel>
+            </mtlocation>
+            <mtlocation_mysql4>
+                <class>MT_Location_Model_Mysql4</class>
+                <entities>
+                    <location>
+                        <table>mt_location</table>
+                    </location>
+                </entities>
+            </mtlocation_mysql4>
+        </models>
+        <resources>
+            <mtlocation_setup>
+                <setup>
+                    <module>MT_Location</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mtlocation_setup>
+        </resources>
+    </global>
+
+    <frontend>
+        <routers>
+            <mtlocation>
+                <use>standard</use>
+                <args>
+                    <module>MT_Location</module>
+                    <frontName>mtlocation</frontName>
+                </args>
+            </mtlocation>
+        </routers>
+        <layout>
+            <updates>
+                <mtlocation>
+                    <file>mt_location.xml</file>
+                </mtlocation>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <MT_Location>
+                    <files>
+                        <default>MT_Location.csv</default>
+                    </files>
+                </MT_Location>
+            </modules>
+        </translate>
+    </frontend>
+
+    <admin>
+        <routers>
+            <mtlocationadmin>
+                <use>admin</use>
+                <args>
+                    <module>MT_Location</module>
+                    <frontName>mtlocationadmin</frontName>
+                </args>
+            </mtlocationadmin>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <mtlocation>
+                    <file>mt_location.xml</file>
+                </mtlocation>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <default>
+        <mtlocation>
+            <general>
+                <default>21.018095, 105.838409</default>
+            </general>
+        </mtlocation>
+    </default>
+</config>
