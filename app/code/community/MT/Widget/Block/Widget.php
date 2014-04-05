@@ -144,7 +144,6 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
     }
 
     public function getAttibuteOptions(){
-        Mage::log($this->getData());
         if(is_array($this->getData('attribute_options'))){
             $showOptions = $this->getData('attribute_options');
         }else{
