@@ -8,12 +8,6 @@
 @email       support@magentothemes.net
 -->
 <layout>
-    <default>
-        <reference name="before_body_end">
-            <block type="page/html" template="mt/location/js.phtml"/>
-        </reference>
-    </default>
-
     <mtlocation_location_index>
         <reference name="js_bottom">
             <action method="addJs"><js>mt/location/Location.js</js></action>
@@ -23,6 +17,9 @@
         </reference>
         <reference name="content">
             <block type="mtlocation/location" name="mtlocation_location"/>
+        </reference>
+        <reference name="before_body_end">
+            <block type="page/html" template="mt/location/js.phtml"/>
         </reference>
     </mtlocation_location_index>
 </layout>
