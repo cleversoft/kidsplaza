@@ -169,3 +169,24 @@ jQuery('.toTop').on('click',function(){jQuery('html,body').animate({scrollTop:0}
 jQuery(window).scroll(function(){var elm=jQuery('.toTop');if(!elm.length)return;if(jQuery(window).scrollTop()>=330){if(!elm.data('show')){elm.data('show',true);elm.slideDown('fast');}}else{if(elm.data('show')){elm.data('show',false);elm.fadeOut();}}});
 //init style select input
 $$('select').each(function(select){ select.addClassName('form-control input-sm');});
+jQuery(document).ready(function() {
+    jQuery('.social-links a').hover(function(){
+        jQuery(this).next().show();
+        jQuery(this).next().hover(function(){
+            jQuery(this).show();
+        },function(){
+            jQuery(this).hide();
+        });
+    },function(){
+        jQuery(this).next().hide();
+    });
+});
+!function(d,s,id){
+    var js,fjs=d.getElementsByTagName(s)[0];
+    if(!d.getElementById(id)){
+        js=d.createElement(s);
+        js.id=id;
+        js.src="//platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js,fjs);
+    }
+}(document,"script","twitter-wjs");

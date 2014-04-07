@@ -161,8 +161,38 @@ header .social-links {margin : 10px 0 0; }
 .top-links li{display:inline-block;color:#fff;padding:0 4px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
-.social-links li{background:url(../images/bgSocial2.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;}
+.social-links li{background:url(../images/bgSocial2.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;position: relative;}
 .social-links li a{text-indent:-9999px;display:block;outline:0;text-align: left;}
+.social-links li .fb_iframe_widget span { vertical-align: top !important; padding-top: 8px;}
+.social-links li .so-social-share {
+    display: none;
+    position: absolute;
+    top: -50px;
+    left: -8px;
+    min-width: 50px;
+    height: 40px;
+    background: #e6edf6;
+    background-color: #f3faff;
+    background-image: -moz-linear-gradient(#e6edf6 0,white 100%);
+    border: 1px solid #003580;
+    border-radius: 5px;
+    z-index: 51;
+    padding: 2px 9px;
+}
+.social-links li .so-social-share .marker {
+    position: absolute;
+    z-index: 51;
+    bottom: -10px;
+    cursor: pointer;
+    display: block;
+    height: 10px;
+    margin-left: -5px;
+    left: 21px;
+    width: 15px;
+    background-image: url(../images/market.png)!important;
+    background-position: left top;
+    background-repeat: no-repeat;
+}
 .social-links li:first-child{margin-left:0}
 .social-links li:last-child{margin-left:0}
 .social-links li.facebook{background-position:0 0}
@@ -354,7 +384,7 @@ input,textarea{outline:0}
 .footer-bottom .block h3{background:url("../images/tick-kids.png") 100% 12px no-repeat;padding:0 53px 0 0;margin:0 ; line-height: 35px;width: 210px;}
 .footer-bottom .last { padding: 10px 15px 0;}
 .footer-bottom .last .block h2{padding:0 23px 0 0;}
-.footer-coppyright{float:left;width:100% ; overflow: hidden ;}
+.footer-coppyright{float:left;width:100% ;}
 .footer-coppyright .footer-coppyright-inner{background:#4d4d4d;padding:15px 0;font-size:13px}
 .footer-coppyright .footer-coppyright-inner address{margin:0;color:#fff}
 .footer-coppyright .footer-coppyright-inner a,
