@@ -7,6 +7,9 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
+/* @var $helper Mage_Cms_Helper_Data */
+$helper = Mage::helper('cms');
+$processor = $helper->getBlockTemplateProcessor();
 $locations = Mage::getModel('mtlocation/location')->getCollection();
 $data = array();
 $data[] = array(
@@ -16,9 +19,10 @@ $data[] = array(
 );
 foreach ($locations as $location){
     $data[] = array(
-        'id'        => $location->getData('id'),
-        'address'   => $location->getData('address'),
-        'position'  => $location->getData('position')
+        'id'            => $location->getData('id'),
+        'address'       => $location->getData('address'),
+        'position'      => $location->getData('position'),
+        'description'   => $processor->filter($location->getData('description'))
     );
 }
 ?>

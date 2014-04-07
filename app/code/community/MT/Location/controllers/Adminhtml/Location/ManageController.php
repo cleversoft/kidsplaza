@@ -7,7 +7,7 @@
  * @author      MagentoThemes.net
  * @email       support@magentothemes.net
  */
-class MT_Location_Manage_LocationController extends Mage_Adminhtml_Controller_Action{
+class MT_Location_Adminhtml_Location_ManageController extends Mage_Adminhtml_Controller_Action{
     protected function _initAction(){
         $this->loadLayout()->_setActiveMenu('mt');
         return $this;

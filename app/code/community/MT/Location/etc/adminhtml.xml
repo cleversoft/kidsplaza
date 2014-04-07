@@ -15,7 +15,7 @@
             <children>
                 <mtlocation translate="title">
                     <title>MT Location</title>
-                    <action>mtlocationadmin/manage_location/index</action>
+                    <action>adminhtml/location_manage/index</action>
                     <sort_order>99</sort_order>
                 </mtlocation>
             </children>

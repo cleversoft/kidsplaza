@@ -201,9 +201,9 @@ class MT_Widget_Block_Widget extends Mage_Catalog_Block_Product_Abstract impleme
             }
         }
 
-        $limit = $this->getData('limit');
+        $limit = (int)$this->getData('limit');
         if ($limit){
-            if (count($options) > $limit) array_splice($options, 0, $limit - 1);
+            if (count($options) > $limit) $options = array_splice($options, 0, $limit);
         }
 
         return $options;
