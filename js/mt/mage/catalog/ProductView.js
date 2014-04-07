@@ -574,11 +574,12 @@ function stockNotifySubmit(btn, url){
                 jQuery(btn).attr('disabled', true);
             },
             success: function(data){
-                jQuery(btn).removeClass('disabled');
-                jQuery(btn).removeAttr('disabled');
                 if (data.message) alert(data.message);
                 if (data.error == 0){
                     window.location.reload();
+                }else{
+                    jQuery(btn).removeClass('disabled');
+                    jQuery(btn).removeAttr('disabled');
                 }
             }
         });
