@@ -576,9 +576,8 @@ function stockNotifySubmit(btn, url){
             success: function(data){
                 jQuery(btn).removeClass('disabled');
                 jQuery(btn).removeAttr('disabled');
-                if (data.error == 1){
-                    alert(data.message);
-                }else{
+                if (data.message) alert(data.message);
+                if (data.error == 0){
                     window.location.reload();
                 }
             }

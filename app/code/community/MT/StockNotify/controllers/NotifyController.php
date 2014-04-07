@@ -57,8 +57,8 @@ class MT_StockNotify_NotifyController extends Mage_Core_Controller_Front_Action{
                         $notify->setData('status', 1);
                         try {
                             $notify->save();
-                            $response = array('error' => 0, 'message' => $this->__('Save successful!'));
-                            $session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
+                            $response = array('error' => 0, 'message' => $this->__('Thank you for ordering.'));
+                            //$session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
                             $session->setData('stock'.$productId, true);
                         } catch (Exception $e) {
                             $response = array('error' => 1, 'message' => $this->__('Save error!'));
