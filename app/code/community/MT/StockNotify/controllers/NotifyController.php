@@ -23,27 +23,29 @@ class MT_StockNotify_NotifyController extends Mage_Core_Controller_Front_Action{
                     /* @var $customer Mage_Customer_Model_Customer */
                     $customer = Mage::getSingleton('customer/session')->getCustomer();
                     $notify = Mage::getModel('mtstocknotify/notify');
-                    $notify->setData('customer_email', $customer->getEmail());
+                    $notify->setData('customer_id', $customer->getId());
+                    $notify->setData('customer_email', $customer->getData('phone_number'));
                     $notify->setData('product_id', $productId);
                     $notify->setData('store_id', Mage::app()->getStore()->getId());
                     $notify->setData('created_at', time());
                     $notify->setData('status', 1);
                     try {
                         $notify->save();
-                        $response = array('error' => 0, 'message' => $this->__('Save successful!'));
-                        $session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
+                        $response = array('error' => 0, 'message' => $this->__('Thank you for ordering.'));
+                        //$session->addSuccess(Mage::helper('mtstocknotify')->__('Thank you for ordering.'));
                         $session->setData('stock'.$productId, true);
                     } catch (Exception $e) {
                         $response = array('error' => 1, 'message' => $this->__('Save error!'));
                     }
                 } else {
                     $value = $this->getRequest()->getParam('value');
-                    $emailValidator = new Zend_Validate_EmailAddress();
+                    //$emailValidator = new Zend_Validate_EmailAddress();
                     $numberValidator = new Zend_Validate_Digits();
                     $isValid = false;
-                    if ($emailValidator->isValid($value)) {
-                        $isValid = true;
-                    } elseif ($numberValidator->isValid($value)) {
+                    //if ($emailValidator->isValid($value)) {
+                    //    $isValid = true;
+                    //} elseif ($numberValidator->isValid($value)) {
+                    if ($numberValidator->isValid($value)) {
                         $isValid = true;
                     } else {
                         $response = array('error' => 1, 'message' => $this->__('Information Invalid!'));
