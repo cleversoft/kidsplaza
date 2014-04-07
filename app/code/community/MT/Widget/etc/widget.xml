@@ -278,7 +278,7 @@
                         <values>
                             <product>product</product>
                             <blog>blog</blog>
-                            <attribute>attribute</attribute>
+                            <!--attribute>attribute</attribute-->
                         </values>
                     </widget_type>
                 </depends>

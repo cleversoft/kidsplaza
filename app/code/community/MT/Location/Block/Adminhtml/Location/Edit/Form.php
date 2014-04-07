@@ -40,9 +40,34 @@ class MT_Location_Block_Adminhtml_Location_Edit_Form extends Mage_Adminhtml_Bloc
             'title'     => Mage::helper('mtlocation')->__('Latiude,Longtitude'),
             'note'      => Mage::helper('mtlocation')->__('Ex: 123.456,987.654')
         ));
+        $fieldset->addField('description', 'editor', array(
+            'name'      => 'description',
+            'label'     => Mage::helper('mtlocation')->__('Description'),
+            'config'    => Mage::getSingleton('cms/wysiwyg_config')->getConfig(),
+            'style'     => 'width:600px;height:400px;',
+        ));
 
         $form->setValues($rate->getData());
         $this->setForm($form);
         return parent::_prepareForm();
+    }
+
+    protected function _prepareLayout(){
+        parent::_prepareLayout();
+        if (Mage::getSingleton('cms/wysiwyg_config')->isEnabled()){
+            $head = $this->getLayout()->getBlock('head');
+            $head->setCanLoadTinyMce(true);
+            $head->setCanLoadExtJs(true);
+            $head->addJs('prototype/window.js')
+                ->addJs('lib/flex.js')
+                ->addJs('lib/FABridge.js')
+                ->addJs('mage/adminhtml/flexuploader.js')
+                ->addJs('mage/adminhtml/browser.js')
+                ->addJs('mage/adminhtml/variables.js')
+                ->addJs('mage/adminhtml/wysiwyg/widget.js')
+                ->addItem('js_css', 'prototype/windows/themes/default.css')
+                ->addItem('skin_css', 'lib/prototype/windows/themes/magento.css');
+        }
+        return $this;
     }
 }

@@ -10,15 +10,15 @@
 */
 -->
 <layout>
-    <mtlocationadmin_manage_location_index>
+    <adminhtml_location_manage_index>
         <reference name="content">
             <block type="mtlocation/adminhtml_location" name="mtlocation_location"/>
         </reference>
-    </mtlocationadmin_manage_location_index>
+    </adminhtml_location_manage_index>
 
-    <mtlocationadmin_manage_location_edit>
+    <adminhtml_location_manage_edit>
         <reference name="content">
             <block type="mtlocation/adminhtml_location_edit" name="mtlocation_location_edit"/>
         </reference>
-    </mtlocationadmin_manage_location_edit>
+    </adminhtml_location_manage_edit>
 </layout>

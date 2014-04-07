@@ -12,6 +12,7 @@ var Locations = Class.create();
 Locations.prototype = {
     map: null,
     makers: {},
+    info: {},
     initialize: function(list, mapDiv, data){
         this.list = $(list);
         this.mapDiv = $(mapDiv);
@@ -46,6 +47,15 @@ Locations.prototype = {
                 title: location.address.stripTags(),
                 animation: google.maps.Animation.DROP
             });
+
+            if (location.description) {
+                this.info[location.id] = new google.maps.InfoWindow({
+                    content: location.description
+                });
+                google.maps.event.addListener(this.makers[location.id], 'click', function(){
+                    this.info[location.id].open(this.map, this.makers[location.id]);
+                }.bind(this));
+            }
         }.bind(this));
     },
     initLinks: function(){

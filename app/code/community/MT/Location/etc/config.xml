@@ -10,7 +10,7 @@
 <config>
     <modules>
         <MT_Location>
-            <version>1.0</version>
+            <version>1.1</version>
         </MT_Location>
     </modules>
 
@@ -81,13 +81,13 @@
 
     <admin>
         <routers>
-            <mtlocationadmin>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>MT_Location</module>
-                    <frontName>mtlocationadmin</frontName>
+                    <modules>
+                        <MT_Location_Adminhtml before="Mage_Adminhtml">MT_Location_Adminhtml</MT_Location_Adminhtml>
+                    </modules>
                 </args>
-            </mtlocationadmin>
+            </adminhtml>
         </routers>
     </admin>
 
