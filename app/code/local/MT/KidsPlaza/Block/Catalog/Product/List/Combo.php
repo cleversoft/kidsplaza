@@ -25,7 +25,6 @@ class MT_KidsPlaza_Block_Catalog_Product_List_Combo extends Mage_Catalog_Block_P
         $productIds = explode(',',$groupCombo);
         $products = Mage::getResourceModel('catalog/product_collection')
             ->addAttributeToSelect('*')
-            ->addAttributeToFilter('combo_enable', array('eq' =>1))
             ->addAttributeToFilter('entity_id', array('in' => $productIds));
         $products->load();
         return $products;

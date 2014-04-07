@@ -160,7 +160,9 @@ $_product = $this->getProduct();
         </form>
     </div>
     </div>
+    <?php if($_product->getComboEnable()){?>
     <?php echo $this->getChildHtml('product_combo') ?>
+    <?php }?>
     <?php echo $this->getChildHtml('product_related') ?>
 
     <div id="product-description">
