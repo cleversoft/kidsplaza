@@ -112,25 +112,37 @@ class MT_Export_Adminhtml_BlockController extends Mage_Adminhtml_Controller_Acti
                 throw new Exception(Mage::helper('export')->__('Data invalid.'));
             }
 
-            foreach ($data->blocks->cms_block as $block){
-                $model = Mage::getModel('cms/block');
-                /* @var $model Mage_Cms_Model_Block */
-                $model->load($block->identifier);
-                if ($model->getId()){
-                    $model->setTitle($block->title);
-                    $model->setContent($block->content);
-                    $model->save();
-                    $this->_getSession()->addWarning(Mage::helper('export')->__('Updated %s', $model->getTitle()));
-                }else{
-                    $model->setData(array(
-                        'title' => $block->title,
-                        'identifier' => $block->identifier,
-                        'stores' => array(0),
-                        'is_active' => $block->is_active,
-                        'content' => $block->content
-                    ));
-                    $model->save();
-                    $this->_getSession()->addSuccess(Mage::helper('export')->__('Imported %s', $model->getTitle()));
+            if (count($data->blocks->cms_block)) {
+                $blocks = array();
+
+                foreach($data->blocks->cms_block as $block){
+                    if (is_object($block)) $blocks = $data->blocks->cms_block;
+                    else $blocks = $data->blocks;
+                    break;
+                }
+
+                foreach ($blocks as $block) {
+                    if (!is_object($block)) continue;
+
+                    $model = Mage::getModel('cms/block');
+                    /* @var $model Mage_Cms_Model_Block */
+                    $model->load($block->identifier);
+                    if ($model->getId()) {
+                        $model->setTitle($block->title);
+                        $model->setContent($block->content);
+                        $model->save();
+                        $this->_getSession()->addWarning(Mage::helper('export')->__('Updated %s', $model->getTitle()));
+                    } else {
+                        $model->setData(array(
+                            'title' => $block->title,
+                            'identifier' => $block->identifier,
+                            'stores' => array(0),
+                            'is_active' => $block->is_active,
+                            'content' => $block->content
+                        ));
+                        $model->save();
+                        $this->_getSession()->addSuccess(Mage::helper('export')->__('Imported %s', $model->getTitle()));
+                    }
                 }
             }
         }catch (Exception $e){
