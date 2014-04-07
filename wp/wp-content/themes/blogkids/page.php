@@ -69,9 +69,31 @@
 				?>
 			</div>
 			<div class="comment" id="comment">
-                <iframe src="http://www.facebook.com/plugins/comments.php?href=<?php the_permalink(); ?>&amp;num_posts=2&amp;action=comment&amp;scrolling=yes&amp;"
-                        scrolling="yes" frameborder="0" style="border:none; overflow:hidden; width:100%;" allowTransparency="true"></iframe>
+                <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="800" data-numposts="5" data-colorscheme="light"></div>
 			</div>
+            <script type="text/javascript">
+                /* resize facebook comments */
+                (function(window){
+                    var dh = null;
+                    $(window).on("resize",function(){
+                        if ( dh ) {
+                            clearTimeout(dh);
+                        }
+                        dh = setTimeout(function(){
+                            var $fbc = $(".fb-comments");
+                            var $stc = $(".comment");
+                            dh = null;
+                            if ( $fbc.attr("data-width") != $stc.width() ) {
+                                $stc.css({height:$stc.height()});
+                                $fbc.attr("data-width", $stc.width());
+                                FB.XFBML.parse($stc[0],function(){
+                                    $stc.css({height:'auto'});
+                                });
+                            }
+                        },300);
+                    }).trigger("resize");
+                })(this);
+            </script>
 	</section>
 	<aside class="col-md-3">
 		<?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Sidebar')): endif;?>

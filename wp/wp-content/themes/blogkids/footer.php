@@ -143,32 +143,59 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-	$(".postform").selectbox({
-	onOpen: function (inst) {
-		//console.log("open", inst);
-	},
-	onClose: function (inst) {
-		//console.log("close", inst);
-	},
-	onChange: function (val, inst) {
-		$.ajax({
-			type: "GET",
-			data: {country_id: val},
-			url: "ajax.php",
-			success: function (data) {
-				$(".postform").html(data);
-				$(".postform").selectbox();
-			}
-		});
-	},
-	effect: "slide"
-	});
-	$(".all-catgory").selectbox({
-		effect: "fade"
-	});
-	$(".all-catgory").selectbox({
-		speed: 0
-	});
+        /* resize facebook comments */
+        (function(window){
+            resize();
+        })(this);
+        $(document).ready(function(){
+            resize();
+        });
+        function resize(){
+            var kl = null;
+            $(window).resize(function(){
+                if ( kl ) {
+                    clearTimeout(kl);
+                }
+                kl = setTimeout(function(){
+                    var $fbl = $(".fb-comments");
+                    var $stl = $(".comment");
+                    dh = null;
+                    if ( $fbl.attr("data-width") != $stl.width() ) {
+                        $stl.css({height:$stl.height()});
+                        $fbl.attr("data-width", $stl.width());
+                        FB.XFBML.parse($stl[0],function(){
+                            $stl.css({height:'auto'});
+                        });
+                    }
+                },300);
+            });
+        }
+        $(".postform").selectbox({
+            onOpen: function (inst) {
+                //console.log("open", inst);
+            },
+            onClose: function (inst) {
+                //console.log("close", inst);
+            },
+            onChange: function (val, inst) {
+                $.ajax({
+                    type: "GET",
+                    data: {country_id: val},
+                    url: "ajax.php",
+                    success: function (data) {
+                        $(".postform").html(data);
+                        $(".postform").selectbox();
+                    }
+                });
+            },
+            effect: "slide"
+        });
+        $(".all-catgory").selectbox({
+            effect: "fade"
+        });
+        $(".all-catgory").selectbox({
+            speed: 0
+        });
 	</script>
 	<?php wp_footer(); ?>
 </body>
