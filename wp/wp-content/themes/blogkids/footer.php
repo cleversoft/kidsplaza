@@ -98,6 +98,11 @@
                             </div>
                         </li>
                         <li>
+                            <a href="http://www.youtube.com/user/KidsPlazaChannel">
+                                <img src="<?php echo $url ?>/images/youtube.png">
+                            </a>
+                        </li>
+                        <li>
                             <a href="#twitter">
                                 <img src="<?php echo $url ?>/images/twitter.png">
                             </a>
