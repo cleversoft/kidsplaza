@@ -76,6 +76,7 @@
             <catalog>
                 <rewrite>
                     <config>MT_KidsPlaza_Model_Catalog_Config</config>
+                    <product_type_configurable>MT_KidsPlaza_Model_Catalog_Product_Type_Configurable</product_type_configurable>
                 </rewrite>
             </catalog>
         </models>
