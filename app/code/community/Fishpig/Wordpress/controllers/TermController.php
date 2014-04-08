@@ -32,6 +32,7 @@ class Fishpig_Wordpress_TermController extends Fishpig_Wordpress_Controller_Abst
 		$term = $this->_initTerm();
 		
 		if ($term->isDefaultTerm()) {
+		exit('dfsdsf');
 			$this->_forceForwardViaException('noRoute');
 			return false;
 		}
@@ -92,8 +93,14 @@ class Fishpig_Wordpress_TermController extends Fishpig_Wordpress_Controller_Abst
 			return $term;
 		}
 
-		$term = Mage::getModel('wordpress/term')->load($this->getRequest()->getParam('id'));
+		$term = Mage::getModel('wordpress/term');
 		
+		if ($tax = $this->getRequest()->getParam('taxonomy')) {
+			$term->setTaxonomy($tax);
+		}
+		
+		$term->load($this->getRequest()->getParam('id'));
+
 		if ($term->getId()) {
 			Mage::register('wordpress_term', $term);
 

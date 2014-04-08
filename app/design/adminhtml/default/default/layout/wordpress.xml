@@ -84,14 +84,14 @@
 	 */
 	 -->
 	<adminhtml_catalog_product_edit>
-		<!--<reference name="product_tabs">
+		<!--reference name="product_tabs">
 			<action method="addTab">
 				<name>wp_posts</name><block>wordpress/adminhtml_associations_product_post</block>
 			</action>
 			<action method="addTab">
 				<name>wp_categories</name><block>wordpress/adminhtml_associations_product_category</block>
 			</action>
-		</reference>	-->
+		</reference-->
 	</adminhtml_catalog_product_edit>
 	<adminhtml_wordpress_association_product_post>
 		<block type="core/text_list" name="root" output="toHtml">

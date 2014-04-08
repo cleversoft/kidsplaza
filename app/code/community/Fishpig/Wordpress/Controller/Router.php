@@ -9,21 +9,6 @@
 class Fishpig_Wordpress_Controller_Router extends Fishpig_Wordpress_Controller_Router_Abstract
 {
 	/**
-	 * Create an instance of the router and add it to the queue
-	 *
-	 * @param Varien_Event_Observer $observer
-	 * @return bool
-	 */
-    public function initControllerObserver(Varien_Event_Observer $observer)
-    {
-    	if (Mage::helper('wordpress')->isEnabled()) {
-    		return parent::initControllerObserver($observer);
-        }
-        
-        return false;
-    }
-
-	/**
 	 * Remove the AW_Blog route to stop conflicts
 	 *
 	 * @param Varien_Event_Observer $observer
@@ -31,7 +16,7 @@ class Fishpig_Wordpress_Controller_Router extends Fishpig_Wordpress_Controller_R
 	 */
     public function initControllerBeforeObserver(Varien_Event_Observer $observer)
     {
-    	if (Mage::helper('wordpress')->isEnabled() && Mage::getDesign()->getArea() === 'frontend') {
+    	if (Mage::getDesign()->getArea() === 'frontend') {
 	    	$node = Mage::getConfig()->getNode('global/events/controller_front_init_routers/observers');
     	
 	    	if (isset($node->blog)) {
@@ -232,7 +217,7 @@ class Fishpig_Wordpress_Controller_Router extends Fishpig_Wordpress_Controller_R
 
 		if (($routes = $term->getAllUris()) !== false) {
 			foreach($routes as $routeId => $route) {
-				$this->addRoute($term->getTaxonomyType() . '/' . $route, '*/term/view', array('id' => $routeId));
+				$this->addRoute($term->getTaxonomyType() . '/' . $route, '*/term/view', array('id' => $routeId, 'taxonomy' => $term->getTaxonomyType()));
 			}
 		}
 		

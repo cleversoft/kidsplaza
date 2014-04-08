@@ -20,6 +20,7 @@ class Fishpig_Wordpress_Block_Sidebar_Widget_Tagcloud extends Fishpig_Wordpress_
 
 			$tags = Mage::getResourceModel('wordpress/post_tag_collection')
 				->addTagCloudFilter()
+				->setOrderByName()
 				->load();
 
 			if (count($tags) > 0) {

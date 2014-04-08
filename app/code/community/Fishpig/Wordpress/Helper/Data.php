@@ -130,7 +130,7 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 	 */
 	public function isEnabled()
 	{
-		return Mage::getStoreConfigFlag('wordpress/module/enabled')
+		return Mage::helper('wordpress/config')->getConfigFlag('wordpress/module/enabled')
 			&& !Mage::getStoreConfig('advanced/modules_disable_output/Fishpig_Wordpress');
 	}
 	
@@ -397,11 +397,7 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 		if (!Mage::registry('wordpress_legacy_hacks')) {
 			Mage::register('wordpress_legacy_hacks', true);
 
-			$version = Mage::getVersion();
-	
-			if (version_compare($version, '1.6.0.0', '<') && version_compare($version, '1.3.0.0', '>')) {
-				require_once(Mage::getModuleDir('', 'Fishpig_Wordpress') . DS . 'legacy.php');
-			}
+			require_once(Mage::getModuleDir('', 'Fishpig_Wordpress') . DS . 'legacy.php');
 		}
 		
 		return $this;

@@ -116,13 +116,10 @@ class Fishpig_Wordpress_Addon_WordPressSEO_Helper_Data extends Fishpig_Wordpress
 				'description' => trim($this->getMetadescHome()),
 				'keywords' => trim($this->getMetakeyHome()),
 			));
-			
-			$this->_applyOpenGraph(array());
-			
-			if ($this->getPlusAuthor()) {
-				$this->_addGooglePlusLinkRel($this->getPlusAuthor());
-			}
 		}
+
+		$this->_applyOpenGraph(array());
+		$this->_addGooglePlusLinkRel($this->getPlusAuthor());
 			
 		return $this;
 	}
@@ -225,11 +222,11 @@ class Fishpig_Wordpress_Addon_WordPressSEO_Helper_Data extends Fishpig_Wordpress
 		
 		$this->_addGooglePlusLinkRel($object->getAuthor());
 		
-		if ($this->getOpengraph() === 'on') {
+		if ($this->getOpengraph()) {
 			$this->_addPostOpenGraphTags($object, $type);
 		}
 		
-		if ($this->getTwitter() === 'on') {
+		if ($this->getTwitter() ) {
 			$this->_addTwitterCard(array(
 				'card' => 'summary',
 				'site' => ($this->getData('twitter_site') ? '@' . $this->getData('twitter_site') : ''),
@@ -566,7 +563,7 @@ class Fishpig_Wordpress_Addon_WordPressSEO_Helper_Data extends Fishpig_Wordpress
 	 */
 	protected function _addGooglePlusLinkRel($user)
 	{
-		if (!is_object($user)) {
+		if (!is_object($user) && $user) {
 			$user = Mage::getModel('wordpress/user')->load($user);
 			
 			if (!$user->getId()) {
@@ -574,10 +571,10 @@ class Fishpig_Wordpress_Addon_WordPressSEO_Helper_Data extends Fishpig_Wordpress
 			}
 		}
 		
-		if ($user->getId() && $user->getMetaValue('googleplus')) {
+		if (is_object($user) && $user->getId() && $user->getMetaValue('googleplus')) {
 			$this->_getHeadBlock()->addItem('link_rel', $user->getMetaValue('googleplus'), 'rel="author"');
 		}
-		
+
 		if ($publisher = $this->getData('plus_publisher')) {
 			$this->_getHeadBlock()->addItem('link_rel', $publisher, 'rel="publisher"');
 		}

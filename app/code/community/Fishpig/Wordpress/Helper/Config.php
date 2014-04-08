@@ -35,7 +35,7 @@ class Fishpig_Wordpress_Helper_Config extends Fishpig_Wordpress_Helper_Abstract
 			
 			$store = Mage::app()->getStore();
 			$request	= Mage::app()->getRequest();
-			
+
 			if ($store->getCode() == 'admin') {
 				$websiteCode = $request->getParam('website', false);
 				$storeCode = $request->getParam('store', false);
