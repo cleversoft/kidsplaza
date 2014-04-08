@@ -145,6 +145,13 @@
             </modules>
         </translate>
         <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <MT_KidsPlaza before="Mage_Checkout">MT_KidsPlaza_Checkout</MT_KidsPlaza>
+                    </modules>
+                </args>
+            </checkout>
             <wishlist>
                 <args>
                     <modules>
