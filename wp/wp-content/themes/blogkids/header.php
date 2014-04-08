@@ -44,22 +44,18 @@
 	<div class="top-header">
 		<div class="container">
 			<div class="row">
-				<div class="social col-lg-1 col-md-2 col-xs-2">
-					<ul>
-					<?php 
-					$url = get_template_directory_uri();
-					$facebook = $data['apl_facebook'];
-					$google = $data['apl_google'];
-					if (!empty($facebook)) {
-						echo "<li><a href='".$facebook."'><img src='". $url ."/images/facebook.png'></a></li>";
-					}
-					if (!empty($google)) {
-						echo "<li><a href='".$google."'><img src='". $url ."/images/google.png'></a></li>";
-					}
-					?>
+				<div class="social col-lg-2 col-md-2 col-xs-2">
+					<ul class="header-social">
+                        <li>
+                            <div class="fb-like" data-href="http://kidsplaza.vn" data-send="false" data-layout="button_count" data-width="20" data-show-faces="false">&nbsp;</div>
+                        </li>
+                        <li>
+                            <div class="g-plusone" data-size="medium">&nbsp;</div>
+                            <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                        </li>
 					</ul>
 				</div>
-				<nav class="page-menu col-lg-9 col-md-7 col-xs-7">
+				<nav class="page-menu col-lg-8 col-md-7 col-xs-7">
 					<?php
 					$defaults = array(
 						'theme_location'  => '',

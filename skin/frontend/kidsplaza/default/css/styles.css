@@ -163,6 +163,7 @@ header .social-links {margin : 10px 0 0; }
 .top-links li{display:inline-block;color:#fff;padding:0 4px;border-right:1px solid #fff;line-height:12px}
 .top-links li:last-child{border-right:0}
 .top-links li a{color:#fff;font-size:13px}
+.header-social li {float: left;width: 82px; padding-top: 10px;}
 .social-links li{background:url(../images/bgSocial2.png) no-repeat 0 0;display:inline-block;width:26px;height:26px;margin:0;position: relative;}
 .social-links li a{text-indent:-9999px;display:block;outline:0;text-align: left;}
 .social-links li .fb_iframe_widget span { vertical-align: top !important; padding-top: 8px;}

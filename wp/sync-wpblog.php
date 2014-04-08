@@ -1,8 +1,10 @@
 <?php
 define( 'ABSPATH', dirname(__FILE__) . '/' );
 define( 'WPINC', 'wp-includes' );
+define( 'WPINCADMIN', 'wp-admin' );
 require_once(ABSPATH.'/wp-load.php');
 require_once(ABSPATH.WPINC.'/post.php');
+require_once(ABSPATH.WPINCADMIN.'/includes/taxonomy.php');
 global $wpdb;
 
 $tree = array();
@@ -61,7 +63,8 @@ while ($row = mysql_fetch_assoc($rs)){
     if($row['summary']==''){
         $content = $row['content'];
     }else{
-        $content = $row['summary'].$row['content'] ? '<!--more-->'.$row['content'] : '';
+        $content = $row['summary'];
+        $content .= $row['content'] ? '<!--more-->'.$row['content'] : '';
     }
     $data = array(
         'id' => $row['id'],
@@ -80,7 +83,7 @@ while ($row = mysql_fetch_assoc($rs)){
     );
     $catid = process_category($row['catId']);
     $id = wp_insert_post($data);
-    wp_set_object_terms( $id, $catid["term_id"], 'category', true);
+    wp_set_object_terms( $id, $catid, 'category', true);
     if($row['thumnail']){
         process_thumb($row['thumnail'],$id,$row['title']);
     }
@@ -93,27 +96,15 @@ function process_category($id){
     $currentPath = [0];
     foreach ($path as $cid){
         if (!isset($tree[$cid])) break;
-        $term = get_term_by('id', $tree[$cid], 'category');
-        if($term){
-            printf("Exist category: %s\n", $tree[$cid]['title']);
-            $currentPath[] = $term->term_id;
-        }else{
-            try{
-                $catid = wp_insert_term(
-                    $tree[$cid]['title'],
-                    'category',
-                    array(
-                        'description'	=> '',
-                        'slug' 		=> $tree[$cid]['identifier'],
-                        'parent'=> '0'
-                    )
-                );
-                $currentPath[] = $catid;
-                printf("Save category: %s OK\n", $catid->name);
-            }catch (Exception $e){
-                printf("Error save category: %s\n", $tree[$cid]['title']);
+        try{
+            $category_id = get_cat_ID($tree[$cid]['title']);
+            if(!$category_id){
+                $category_id = wp_create_category($tree[$cid]['title'], $currentPath);
             }
-
+            $currentPath[] = $category_id;
+            printf("Save category: %s OK\n", $tree[$cid]['title']);
+        }catch (Exception $e){
+            printf("Error save category: %s\n", $tree[$cid]['title']);
         }
     }
     return end($currentPath);

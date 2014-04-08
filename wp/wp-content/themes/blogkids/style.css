@@ -50,6 +50,12 @@ ul li {
     padding-left: 4px;
     margin-bottom: 5px;
 }
+.header-social li {
+    float: left;
+    padding-left: 4px;
+    margin-bottom: 5px;
+    width: 82px;
+}
 .page-menu ul {
     margin-top: 20px;
     overflow: hidden;
