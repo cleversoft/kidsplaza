@@ -1224,3 +1224,6 @@ dl.item-options{
     color: #333;
     padding: 8px 5px;
 }
+.fb_iframe_widget{
+    z-index:99;
+}
