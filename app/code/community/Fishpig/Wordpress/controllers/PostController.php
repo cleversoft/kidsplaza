@@ -26,9 +26,11 @@ class Fishpig_Wordpress_PostController extends Fishpig_Wordpress_Controller_Abst
 	 */
 	public function preDispatch()
 	{
+		parent::preDispatch();
+		
 		$this->_handlePostedComment();
-
-		return parent::preDispatch();
+		
+		return $this;
 	}
 
 	/**

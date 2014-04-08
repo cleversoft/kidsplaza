@@ -55,7 +55,7 @@ abstract class Fishpig_Wordpress_Helper_Shortcode_Abstract extends Fishpig_Wordp
 			return $this->_apply($content, $object);
 		}
 		catch (Exception $e) {
-		exit($e);
+		echo $e->getMessage() . '<br/><pre>' . $e->getTraceAsString();exit;
 			$this->log($e);
 		}
 	}	

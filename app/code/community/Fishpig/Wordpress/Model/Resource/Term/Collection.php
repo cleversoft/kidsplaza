@@ -41,6 +41,15 @@ class Fishpig_Wordpress_Model_Resource_Term_Collection extends Fishpig_Wordpress
 		return $this;
 	}
 	
+	public function setOrderByName($dir = 'ASC')
+	{
+		$this->getSelect()
+			->reset(Zend_Db_Select::ORDER)
+			->order('main_table.name ' . $dir);
+			
+		return $this;
+	}
+	
 	/**
 	 * Add a slug filter to the collection
 	 *

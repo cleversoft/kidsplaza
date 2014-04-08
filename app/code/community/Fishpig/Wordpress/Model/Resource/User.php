@@ -85,18 +85,28 @@ class Fishpig_Wordpress_Model_Resource_User extends Fishpig_Wordpress_Model_Reso
 			$byEmail[$email]	[] = (int)$user->getId();
 		}
 
-	    $write = $this->_getWriteAdapter();
+	    $db = $this->_getWriteAdapter();
 		$postTable = $this->getTable('wordpress/post');
 		
 	    foreach($byEmail as $email => $users) {
 		    if (count($users) > 1) {
 			    $original = array_shift($users);
-	
-			    $write->update($postTable, array('post_author' => $original), $write->quoteInto('post_author IN (?)', $users));
-				$write->delete($this->getMainTable(), $write->quoteInto('ID IN (?)', $users));
+
+			    $db->update($postTable, array('post_author' => $original), $db->quoteInto('post_author IN (?)', $users));
+				$db->delete($this->getMainTable(), $db->quoteInto('ID IN (?)', $users));
 			}
 	    }
+	    
+	    $select = $db->select()
+	    	->distinct()
+	    	->from($this->getTable('wordpress/user'), 'ID');
+	    	
+	    $userIds = $db->fetchCol($select);
 		
+		if (count($userIds) > 0) {
+			$db->delete($this->getTable('wordpress/user_meta'), $db->quoteInto('user_id NOT IN (?)', $userIds));
+		}
+
 		return $this;
     }
 }

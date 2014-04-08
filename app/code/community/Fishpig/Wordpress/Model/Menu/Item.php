@@ -84,6 +84,7 @@ class Fishpig_Wordpress_Model_Menu_Item extends Fishpig_Wordpress_Model_Post_Abs
 	 */
 	public function getObject()
 	{
+
 		$this->setObject(false);
 
 		if (!$this->isCustomLink()) {
@@ -91,6 +92,9 @@ class Fishpig_Wordpress_Model_Menu_Item extends Fishpig_Wordpress_Model_Post_Abs
 				if ($menuObjectId = $this->getMetaValue('_menu_item_object_id')) {
 					if ($this->isPostTypeLink() && $this->getObjectType() !== 'page')  {
 						$object = Mage::getModel('wordpress/post')->setPostType($this->getObjectType());
+					}
+					else if ($this->isTaxonomyLink()) {
+						$object = Mage::getModel('wordpress/term')->setTaxonomy($this->getObjectType());
 					}
 					else {
 						$object = Mage::getModel('wordpress/' . $this->getObjectType());

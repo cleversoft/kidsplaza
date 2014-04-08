@@ -18,7 +18,7 @@ class Fishpig_Wordpress_PageController extends Fishpig_Wordpress_Controller_Abst
 	{
 		return $this->_initPage();
 	}
-	
+		
 	/**
 	 * If the feed parameter is set, forward to the comments action
 	 *
@@ -27,6 +27,8 @@ class Fishpig_Wordpress_PageController extends Fishpig_Wordpress_Controller_Abst
 	public function preDispatch()
 	{
 		parent::preDispatch();
+
+		$this->_handlePostedComment();
 
 		if ($this->_initPage()->isBlogPage()) {
 			$this->_forceForwardViaException('index', 'index');
@@ -154,5 +156,31 @@ class Fishpig_Wordpress_PageController extends Fishpig_Wordpress_Controller_Abst
 		}
 		
 		return false;
-	}	
+	}
+	
+	/**
+	 * Display the appropriate message for a posted comment
+	 *
+	 * @return $this
+	 */
+	protected function _handlePostedComment()
+	{
+		$commentId = $this->getRequest()->getParam('comment');
+		
+		if ($commentId && $this->getRequest()->getActionName() === 'view') {
+			$comment = Mage::getModel('wordpress/post_comment')->load($commentId);
+			
+			if ($comment->getId() && $comment->getPost()->getId() === $this->getEntityObject()->getId()) {
+				if ($comment->isApproved()) {
+					header('Location: ' . $comment->getUrl());
+					exit;
+				}
+				else {
+					Mage::getSingleton('core/session')->addSuccess($this->__('Your comment is awaiting moderation.'));	
+				}
+			}
+		}
+		
+		return $this;
+	}
 }

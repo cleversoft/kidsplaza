@@ -21,41 +21,6 @@ class Fishpig_Wordpress_Model_Post_Comment extends Fishpig_Wordpress_Model_Abstr
 	}
 
 	/**
-	  * Returns a collection of comments for a certain post
-	  *
-	  * @param int $postId
-	  * @param bool $isApproved
-	  * @return Fishpig_Wordpress_Model_Mysql4_Post_Comment_Collection
-	  */
-	public function loadByPostId($postId, $isApproved = true)
-	{
-		$comments = Mage::getResourceModel('wordpress/post_comment_collection')
-			->addPostIdFilter($postId);
-								
-		if ($isApproved) {
-			$comments->addCommentApprovedFilter();
-		}
-		
-		return $comments;
-	}
-	
-	/**
-	 * Set the post this comment is associated to
-	 *
-	 * @param mixed $post
-	 * @return Fishpig_Wordpress_Model_Post_Comment
-	 */
-	public function setPost($post)
-	{
-		if ($post instanceof Fishpig_Wordpress_Model_Post_Abstract) {
-			$this->setPostId($post->getId());
-			$this->setData('comment_post_ID', $post->getId());
-		}
-
-		return $this->setData('post', $post);
-	}
-
-	/**
 	 * Retrieve the post that this comment is associated to
 	 *
 	 * @return Fishpig_Wordpress_Model_Post
@@ -63,20 +28,16 @@ class Fishpig_Wordpress_Model_Post_Comment extends Fishpig_Wordpress_Model_Abstr
 	public function getPost()
 	{
 		if (!$this->hasPost()) {
-			$this->setPost(new Varien_Object());
+			$this->setPost(false);
 
-			$post = Mage::getModel('wordpress/post')->load($this->getData('comment_post_ID'));
-
-			if ($post->getId()) {
-
-				$this->setPost($post);
-			}
-			else {
-				$page = Mage::getModel('wordpress/page')->load($this->getData('comment_post_ID'));
+			$posts = Mage::getResourceModel('wordpress/post_collection')
+				->addPostTypeFilter(array('post', 'page'))
+				->addFieldToFilter('ID', $this->getData('comment_post_ID'))
+				->setPageSize(1)
+				->load();
 				
-				if ($page->getId()) {
-					$this->setPost($page);
-				}
+			if (count($posts) > 0) {
+				$this->setPost($posts->getFirstItem());
 			}
 		}
 		
