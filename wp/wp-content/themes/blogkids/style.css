@@ -42,8 +42,11 @@ ul li {
 }
 .social ul{
     margin-top: 20px;
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 0;
+}
+.fb_iframe_widget{
+    z-index:99;
 }
 .social ul li {
     float: left;
