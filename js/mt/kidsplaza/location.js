@@ -122,9 +122,9 @@ var KidsPlazaSearch = Class.create(Varien.searchForm, {
             updateElement: this._selectAutocompleteItem.bind(this),
             onShow: function(element, update){
                 update.style.width = element.getWidth() + 7 + 'px';
-                //update.style.height = 'auto';
+                update.style.height = 'auto';
                 update.style.opacity = 1;
-                Effect.SlideDown(update, {duration: 0.2});
+                Effect.Appear(update, {duration: 0.2});
             }
         });
     },
