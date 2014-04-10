@@ -16,6 +16,7 @@
 	$basePath = DS . implode(DS, array_slice(explode('/', trim(dirname(__FILE__), DS)), 0, -3)) 
 		. DS . implode(DS, array('core', 'Mage', 'Core', 'Model'));
 	
+    $basePath = implode(DS, array(Mage::getBaseDir('app'), 'code', 'core', 'Mage', 'Core', 'Model'));
 
 	// Resource DB File hack	
 	$resourceDb = $basePath . DS . implode(DS, array('Resource', 'Db', 'Abstract.php'));
