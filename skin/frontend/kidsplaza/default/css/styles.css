@@ -784,6 +784,8 @@ p.back-link{float: left;}
 .slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0 ; line-height: 27px; }
 .slider-product-wrapper .bordered-tab h3 .utm-cookies{   margin:4px  0 0 ; }
 .slider-product-wrapper .bordered-tab .utm-cookies { line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
+.category-deal-wrapper h3 a {line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
+.category-deal-wrapper {padding-top: 1px;}
 .slider-product-wrapper .bordered-tab .title { padding: 3px 0 ; }
 .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { border: none ; float: right ;}
 .slider-product-wrapper .tab-content{float: left;}
