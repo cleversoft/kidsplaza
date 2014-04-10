@@ -93,6 +93,17 @@ var EnhancedAjaxAutocompleter = Class.create(Ajax.Autocompleter, {
                 this.render();
             }
         }
+    },
+
+    selectEntry: function() {
+        var currentEntry = this.getCurrentEntry(),
+            a = $(currentEntry).down('a');
+
+        if (a) window.location.href = a.href;
+        else{
+            this.active = false;
+            this.updateElement(currentEntry);
+        }
     }
 });
 

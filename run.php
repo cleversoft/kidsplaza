@@ -46,7 +46,7 @@ function _getIdFromSku($sku){
 function _checkIfSkuExists($sku){
     if (!$sku) return false;
     $connection = $this->_getConnection('core_read');
-    $sql = "SELECT COUNT(*) AS count_no FROM " . $this->_getTableName('catalog_product_entity') . " WHERE sku = ?";
+    $sql = "SELECT COUNT(*) AS count FROM " . $this->_getTableName('catalog_product_entity') . " WHERE sku = ?";
     $count = $connection->fetchOne($sql, array($sku));
     if ($count > 0){
         return true;

@@ -21,7 +21,7 @@ class MT_Search_Block_Autocomplete extends Mage_Core_Block_Abstract {
 			$templateProduct = Mage::getStoreConfig('mtsearch/utils/tpl');
 			preg_match_all('/{{\w+}}/', $templateProduct, $vars);
 			$vars = isset($vars[0]) ? $vars[0] : array();
-			$vars += array('{{url}}');
+			//$vars += array('{{url_key}}');
 			$attrs = array('id');
 			foreach ($vars as $var){
 				$attrs[] = 'attr_' . str_replace(array('{', '}'), array('', ''), $var);
@@ -52,9 +52,9 @@ class MT_Search_Block_Autocomplete extends Mage_Core_Block_Abstract {
 					$values = array();
 					foreach ($vars as $var){
 						$var = str_replace(array('{', '}'), array('', ''), $var);
-						if ($var == 'url'){
-							$f = $doc->getField('id');
-							$values[] = $this->getUrl('catalog/product/view', array('id' => isset($f['value']) ? $f['value'] : ''));
+						if ($var == 'url_key'){
+							$f = $doc->getField('attr_' . $var);
+							$values[] = $this->getUrl(isset($f['value']) ? $f['value'].'.html' : '');
 						}else{
 							$f = $doc->getField('attr_' . $var);
 							$values[] = $f ? (isset($f['value']) ? $f['value'] : '') : '';
