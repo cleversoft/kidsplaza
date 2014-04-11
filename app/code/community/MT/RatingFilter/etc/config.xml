@@ -49,6 +49,18 @@
         </events>
     </global>
 
+    <frontend>
+        <translate>
+            <modules>
+                <ratingfilter>
+                    <files>
+                        <default>MT_RatingFilter.csv</default>
+                    </files>
+                </ratingfilter>
+            </modules>
+        </translate>
+    </frontend>
+
     <default>
         <ratingfilter>
             <general>
