@@ -38,60 +38,78 @@
             <?php echo $this->__('%d items', $this->getTotalNum()) ?>
         </strong>
     </div>
-
     <div class="toolbar-pages">
         <?php echo $this->getPagerHtml() ?>
     </div>
-
     <?php if( $this->isExpanded() ): ?>
         <div class="toolbar-view">
+            <div class="toolbar-sort">
+                <strong><?php echo $this->__('Sort by') ?></strong>
+                <div class="btn-group">
+                    <span class="btn-group">
+                        <?php $orders = $this->getAvailableOrders() ?>
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <?php echo $this->__($orders[$this->getCurrentOrder()]) ?>
+                            <?php if ($this->getCurrentOrder() == 'name'): ?>
+                                <?php echo $this->getCurrentDirection() == 'asc' ? '(A - Z)' : '(Z - A)' ?>
+                            <?php elseif (in_array($this->getCurrentOrder(), array('entity_id','bestsell'))): ?>
+                                <?php // ?>
+                            <?php else: ?>
+                                <?php echo $this->getCurrentDirection() == 'asc' ? $this->__('ascending') : $this->__('descending') ?>
+                            <?php endif; ?>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                        <?php foreach($orders as $_key => $_order): ?>
+                            <?php if ($_key == 'position') continue ?>
+                            <?php if (!in_array($_key, array('entity_id','bestsell'))): ?>
+                            <li>
+                                <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>">
+                                    <?php echo $this->__($_order) ?>
+                                    <?php if ($_key == 'name'): ?>
+                                        <?php echo '(A - Z)' ?>
+                                    <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
+                                        <?php echo $this->__('ascending') ?>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                            <?php endif; ?>
+                            <li>
+                                <a href="<?php echo $this->getOrderUrl($_key, 'desc') ?>">
+                                    <?php echo $this->__($_order) ?>
+                                    <?php if ($_key == 'name'): ?>
+                                        <?php echo '(Z - A)' ?>
+                                    <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
+                                        <?php echo $this->__('descending') ?>
+                                    <?php endif; ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="toolbar-view toolbar-show">
         <div class="toolbar-sort">
-            <strong><?php echo $this->__('Sort by') ?></strong>
+            <strong><?php echo $this->__('Show') ?></strong>
             <div class="btn-group">
                 <span class="btn-group">
-                    <?php $orders = $this->getAvailableOrders() ?>
                     <a class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <?php echo $this->__($orders[$this->getCurrentOrder()]) ?>
-                        <?php if ($this->getCurrentOrder() == 'name'): ?>
-                            <?php echo $this->getCurrentDirection() == 'asc' ? '(A - Z)' : '(Z - A)' ?>
-                        <?php elseif (in_array($this->getCurrentOrder(), array('entity_id','bestsell'))): ?>
-                            <?php // ?>
-                        <?php else: ?>
-                            <?php echo $this->getCurrentDirection() == 'asc' ? $this->__('ascending') : $this->__('descending') ?>
-                        <?php endif; ?>
+                        <?php echo $this->getLimit()=='all' ? $this->__('All') : $this->getLimit();?>
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                    <?php foreach($orders as $_key => $_order): ?>
-                        <?php if ($_key == 'position') continue ?>
-                        <?php if (!in_array($_key, array('entity_id','bestsell'))): ?>
-                        <li>
-                            <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>">
-                                <?php echo $this->__($_order) ?>
-                                <?php if ($_key == 'name'): ?>
-                                    <?php echo '(A - Z)' ?>
-                                <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
-                                    <?php echo $this->__('ascending') ?>
-                                <?php endif; ?>
-                            </a>
-                        </li>
-                        <?php endif; ?>
-                        <li>
-                            <a href="<?php echo $this->getOrderUrl($_key, 'desc') ?>">
-                                <?php echo $this->__($_order) ?>
-                                <?php if ($_key == 'name'): ?>
-                                    <?php echo '(Z - A)' ?>
-                                <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
-                                    <?php echo $this->__('descending') ?>
-                                <?php endif; ?>
-                            </a>
-                        </li>
-                    <?php endforeach; ?>
+                        <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>
+                            <li>
+                                <a href="<?php echo $this->getLimitUrl($_key) ?>" <?php if($this->isLimitCurrent($_key)): ?> class="active"<?php endif ?>><?php echo $_limit ?></a>
+                            </li>
+                        <?php endforeach; ?>
                     </ul>
                 </span>
             </div>
         </div>
-        </div>
-    <?php endif; ?>
+    </div>
 </div>
 <?php endif ?>

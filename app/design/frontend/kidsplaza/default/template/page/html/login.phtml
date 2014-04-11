@@ -26,35 +26,35 @@ $session = Mage::getSingleton('customer/session');
         </div>
         <div class="login-content" style="display: none">
             <?php if (!$session->isLoggedIn()): ?>
-                <button onclick="setLocation('<?php echo $this->getUrl('customer/account/login') ?>')" class="btn btn-login btn-signin">
+                <button onclick="setLocation('<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/login/');?>')" class="btn btn-login btn-signin">
                     <?php echo $this->__('Login') ?>
                 </button>
                 <p>
                     <span><?php echo Mage::helper('kidsplaza')->__('New customer?') ?></span>
-                    <a href="<?php echo $this->getUrl('customer/account/login') ?>"><?php echo Mage::helper('kidsplaza')->__('Create account') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/login/');?><?php //echo $this->getUrl('customer/account/login') ?>"><?php echo Mage::helper('kidsplaza')->__('Create account') ?></a>
                 </p>
             <?php endif ?>
             <ul>
                 <li>
                     <i class="glyphicon glyphicon-user"></i>
-                    <a href="<?php echo $this->getUrl('customer/account') ?>"><?php echo Mage::helper('kidsplaza')->__('My account') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/');?><?php //echo $this->getUrl('customer/account') ?>"><?php echo Mage::helper('kidsplaza')->__('My account') ?></a>
                 </li>
                 <li>
                     <i class="glyphicon glyphicon-list-alt"></i>
-                    <a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo Mage::helper('kidsplaza')->__('My Orders') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('sales/order/history/');?><?php //echo $this->getUrl('sales/order/history') ?>"><?php echo Mage::helper('kidsplaza')->__('My Orders') ?></a>
                 </li>
                 <li>
                     <i class="glyphicon glyphicon-heart"></i>
-                    <a href="<?php echo $this->getUrl('wishlist') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('wishlist/');?><?php //echo $this->getUrl('wishlist') ?>"><?php echo Mage::helper('kidsplaza')->__('My Wishlist') ?></a>
                 </li>
                 <li>
                     <i class="glyphicon glyphicon-usd"></i>
-                    <a href="<?php echo $this->getUrl('mtpoint/point') ?>"><?php echo Mage::helper('kidsplaza')->__('My Points') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('mtpoint/point');?><?php //echo $this->getUrl('mtpoint/point') ?>"><?php echo Mage::helper('kidsplaza')->__('My Points') ?></a>
                 </li>
                 <?php if ($session->isLoggedIn()): ?>
                 <li>
                     <i class="glyphicon glyphicon-log-out"></i>
-                    <a href="<?php echo $this->getUrl('customer/account/logout') ?>"><?php echo Mage::helper('kidsplaza')->__('Log out') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/logout/');?><?php //echo $this->getUrl('customer/account/logout') ?>"><?php echo Mage::helper('kidsplaza')->__('Log out') ?></a>
                 </li>
                 <?php endif ?>
             </ul>

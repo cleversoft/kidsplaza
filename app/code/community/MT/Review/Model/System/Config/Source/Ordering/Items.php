@@ -23,8 +23,8 @@ class MT_Review_Model_System_Config_Source_Ordering_Items
     {
         return array(
             self::CREATED_AT    => Mage::helper('mtreview')->__('Date'),
-            self::RATING   => Mage::helper('mtreview')->__('Average rating'),
-            self::HELPFULNESS   => Mage::helper('mtreview')->__('Helpfulness')
+            //self::RATING   => Mage::helper('mtreview')->__('Average rating'),
+            //self::HELPFULNESS   => Mage::helper('mtreview')->__('Helpfulness')
         );
     }
 }

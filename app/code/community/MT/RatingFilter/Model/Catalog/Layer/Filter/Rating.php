@@ -52,14 +52,14 @@ class MT_RatingFilter_Model_Catalog_Layer_Filter_Rating extends MT_Filter_Model_
                 if ($flag){
                     if ($count > 0){
                         $items[] = array(
-                            'label' => sprintf('<div class="rating-box"><div class="rating" style="width:%s%%"></div></div>', $i*20),
+                            'label' => sprintf('<div class="rating-box" title="%s"><div class="rating" style="width:%s%%"></div></div>', Mage::helper('ratingfilter')->__('%d star', $i), $i*20),
                             'value' => $i,
                             'count' => (int)$count
                         );
                     }
                 }else{
                     $items[] = array(
-                        'label' => sprintf('<div class="rating-box"><div class="rating" style="width:%s%%"></div></div>', $i*20),
+                        'label' => sprintf('<div class="rating-box" title="%s"><div class="rating" style="width:%s%%"></div></div>', Mage::helper('ratingfilter')->__('%d star', $i), $i*20),
                         'value' => $i,
                         'count' => (int)$count
                     );
