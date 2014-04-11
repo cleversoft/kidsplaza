@@ -145,7 +145,7 @@ header .header-top{}
 header .social-links {margin : 10px 0 0; }
 .social-links,.top-links{display:inline-block;height:25px;line-height:45px}
 
-.top-login{ cursor: pointer;display: inline-block; margin: 2px 0;width: 150px; float: left ;}
+.top-login{ cursor: pointer;display: inline-block; margin: 2px 0;width: 149px; float: left ;}
 .top-login .font { float: left ; width: 23% ; padding: 0 7px; }
 .top-login .font .glyphicon { float: left ; color: #fff; font-size: 170% ;  line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
@@ -275,7 +275,7 @@ a.logo{margin-top:0px;display:block}
 .dropdown-menu{border-radius:0}
 .header-top-right .vr{height: 70%; display: inline-block;  border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7;filter: alpha(opacity=70);}
 .top-cart{position: relative;}
-.top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%; width: 115px;   margin-left: 5px;}
+.top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%; width: 122px;   margin-left: 5px;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
 .top-cart .cart-icon{ float: left ;height:40px;background:url(../images/bgIcons2.png) no-repeat -188px -45px;width:40px;display:inline-block;margin-right:0}
