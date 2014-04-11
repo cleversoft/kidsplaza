@@ -59,7 +59,7 @@
                     <div class="login-form row">
                         <div class="content">
                             <h3><?php echo $this->__('Registered Customers') ?></h3>
-                            
+
                             <ul class="form-list">
                                 <li>
                                     <label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
@@ -81,7 +81,7 @@
                         </div>
 
                         <div class="buttons-set">
-                            <a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-right"><?php echo $this->__('Forgot password?') ?></a>
+                            <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/forgotpassword/');?>" class="f-right"><?php echo $this->__('Forgot password?') ?></a>
                             <button type="submit" class="button btn-kid btn btn-login" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
                         </div>
                     </div>

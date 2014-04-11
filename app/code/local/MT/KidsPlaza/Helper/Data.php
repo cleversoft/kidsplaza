@@ -247,13 +247,73 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         }
     }
 
+    public function getCustomRewriteUrl($url)
+    {
+        $urlModel = Mage::getModel('core/url_rewrite');
+        /* @var $urlModel Mage_Core_Model_Url_Rewrite */
+        $urlModel->setStoreId(Mage::app()->getStore()->getId());
+        $urlModel->loadByIdPath($url);
+        if ($urlModel->getId()) return Mage::getUrl().$urlModel->getRequestPath();
+        else{
+            try{
+                $urlModel->setIsSystem(0)->setIdPath($url)
+                    ->setTargetPath($url);
+                switch($url){
+                    case 'customer/account/login/':
+                        $urlModel->setRequestPath('tai-khoan/dang-nhap');
+                        break;
+                    case 'customer/account/forgotpassword/':
+                        $urlModel->setRequestPath('tai-khoan/quen-mat-khau');
+                        break;
+                    case 'customer/account/':
+                    case 'customer/account/index/':
+                        $urlModel->setRequestPath('tai-khoan');
+                        break;
+                    case 'customer/account/edit/':
+                        $urlModel->setRequestPath('tai-khoan/thong-tin-tai-khoan');
+                        break;
+                    case 'sales/order/history/':
+                        $urlModel->setRequestPath('tai-khoan/don-hang-cua-toi');
+                        break;
+                    case 'customer/address/':
+                        $urlModel->setRequestPath('tai-khoan/so-dia-chi');
+                        break;
+                    case 'customer/address/new/':
+                        $urlModel->setRequestPath('tai-khoan/so-dia-chi-moi');
+                        break;
+                    case 'customer/address/edit/':
+                        $urlModel->setRequestPath('tai-khoan/sua-dia-chi');
+                        break;
+                    case 'newsletter/manage/':
+                        $urlModel->setRequestPath('tai-khoan/danh-sach-nhan-tin');
+                        break;
+                    case 'downloadable/customer/products':
+                        $urlModel->setRequestPath('tai-khoan/san-pham-so');
+                        break;
+                    case 'wishlist/':
+                        $urlModel->setRequestPath('tai-khoan/danh-sach-yeu-thich');
+                        break;
+                    case 'mtpoint/point':
+                        $urlModel->setRequestPath('tai-khoan/diem-tich-luy');
+                        break;
+                    case 'customer/account/logout/':
+                        $urlModel->setRequestPath('tai-khoan/dang-xuat');
+                        break;
+                }
+                $urlModel->save();
+                return Mage::getUrl().$urlModel->getRequestPath();
+            }catch (Exception $e){
+                return '';
+            }
+        }
+    }
+
     public function getProductsCombo($productId)
     {
         $model = Mage::getModel('catalog/product')->load($productId);
         $productIds = explode(',', $model->getProductsCombo());
         $products = Mage::getResourceModel('catalog/product_collection')
             ->addAttributeToSelect('*')
-            ->addAttributeToFilter('combo_enable', array('eq' =>1))
             ->addAttributeToFilter('entity_id', array('in' => $productIds));
         $products->load();
         return $products;
