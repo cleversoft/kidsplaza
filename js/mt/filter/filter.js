@@ -79,6 +79,7 @@ MTFilter.prototype = {
         });
         ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
         initCountDown();
+        Cufon.replace('.utm-cookies');
     },
     injectLoadMore: function(){
         var container = this.getDOM(this.config.loadDOM || '.toolbar .pages', true);

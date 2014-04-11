@@ -22,9 +22,11 @@ $_core = $this->helper('core/string');
         <?php endif ?>
         <li class="item">
             <h2 class="product-name">
-                <a href="<?php echo $c->getUrl() ?>"><?php echo $this->escapeHtml($c->getName()) ?></a>
+                <a href="<?php echo $c->getUrl() ?>" title="<?php echo $this->escapeHtml($c->getName()) ?>">
+                    <?php echo $this->escapeHtml($c->getName()) ?>
+                </a>
             </h2>
-            <a class="product-image" href="<?php echo $c->getUrl() ?>">
+            <a class="product-image" href="<?php echo $c->getUrl() ?>" title="<?php echo $this->escapeHtml($c->getName()) ?>">
                 <img src="<?php echo Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media').DS.'catalog'.DS.'category'.DS.$c->getImage(), 135) ?>"/>
             </a>
             <?php if ($c->hasChildren()): ?>
