@@ -420,7 +420,10 @@ input,textarea{outline:0}
 .toolbar{margin:0 0 10px 0;height:42px ; float: left ; width: 100% ; background-color:  #d3eff6 ; padding: 9px 12px ;}
 .toolbar .toolbar-pages{padding-left: 10px;display: inline-block;vertical-align: top;border-left: 1px solid #999;}
 .toolbar .toolbar-limit{display: inline-block;vertical-align: top;font-size: 15px;padding-right: 10px;}
-.toolbar .toolbar-view{float:right}
+.toolbar .toolbar-view{float:right;}
+.toolbar .toolbar-show{float:right; padding-right: 10px;}
+.category-products .toolbar-show .btn-group .btn-default {min-width: 50px !important; width: 75px;}
+
 .toolbar-view-mode i{font-size:15px}
 .toolbar-view-mode .view-mode-active{color:#0095d6}
 .toolbar-pages a.current{color:#0095d6}
