@@ -16,7 +16,7 @@ $helper->generateCaptchaKey();
         </div>
         <div class="form-field form-group">
             <label for="question_author_email_field" class="required"><?php echo Mage::helper('productquestions')->__('Categories') ?><em>*</em></label><br />
-            <select class="form-control" name="category_id">
+            <select class="form-control required-entry" name="category_id">
                 <option value=""><?php echo Mage::helper('productquestions')->__('Select');?></option>
                 <?php foreach($this->getCategories() as $category) {?>
                     <option value="<?php echo $category->getCatId();?>"><?php echo $category->getName();?></option>

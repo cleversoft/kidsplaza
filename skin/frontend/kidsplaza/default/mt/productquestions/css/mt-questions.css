@@ -29,3 +29,6 @@
 .main-categories span.num {color: #979797;float: right;display: inline-block;}
 /*Validate*/
 .main-form-question .validation-advice {display: none}
+.mt-questions-main .media-list {
+    float: left;
+}

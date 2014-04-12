@@ -149,7 +149,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                         return $this->_redirectReferer();
                     }
                 }
-                if($data['parent_question_id']){
+                if(isset($data['parent_question_id'])){
                     $parent_id = $data['parent_question_id'];
                 }else{
                     $parent_id = 0;
@@ -177,7 +177,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                 $urlRewriteKey = preg_replace('/\s+?(\S+)?$/', '', substr($questions->getIdentifier(), 0, 80));
                 $urlRewriteSub = substr($urlRewriteKey, 0, -1);
                 $id_path = "{$urlQuestionsParam}/{$questionId}";
-                $request_path = "{$urlQuestionsParam}/{$urlRewriteSub}.html";
+                $request_path = "{$urlQuestionsParam}/{$urlRewriteSub}-{$questionId}.html";
                 $target_path = "productquestions/questions/view/id/{$questionId}";
                 $rewrite = Mage::getModel('core/url_rewrite');
                 $rewrite->setStoreId($storeId)
@@ -192,7 +192,7 @@ class MT_ProductQuestions_QuestionsController extends Mage_Core_Controller_Front
                 $session->addError(Mage::helper('productquestions')->__('Unable to post question. Please, try again later.'));
             }
         }
-        if($data['answer_view']){
+        if(isset($data['answer_view'])){
             $this->_redirectReferer();
         }else{
             $url =  substr(Mage::getUrl($request_path), 0, -1);

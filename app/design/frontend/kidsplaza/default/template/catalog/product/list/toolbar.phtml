@@ -31,6 +31,9 @@
  * @var $this Mage_Catalog_Block_Product_List_Toolbar
  */
 ?>
+<?php
+$category = $this->getRequest()->getControllerName();
+?>
 <?php if($this->getCollection()->getSize()): ?>
 <div class="toolbar" role="toolbar">
     <div class="toolbar-limit">
@@ -91,6 +94,7 @@
             </div>
         </div>
     <?php endif; ?>
+    <?php if($category=='category'):?>
     <div class="toolbar-view toolbar-show">
         <div class="toolbar-sort">
             <strong><?php echo $this->__('Show') ?></strong>
@@ -111,5 +115,6 @@
             </div>
         </div>
     </div>
+    <?php endif ?>
 </div>
 <?php endif ?>
