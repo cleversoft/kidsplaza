@@ -71,7 +71,7 @@ $category = $this->getRequest()->getControllerName();
                                     <?php echo $this->__($_order) ?>
                                     <?php if ($_key == 'name'): ?>
                                         <?php echo '(A - Z)' ?>
-                                    <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
+                                    <?php elseif ($_key == 'price' || $_key == 'created_at' || $_key == 'relevance'): ?>
                                         <?php echo $this->__('ascending') ?>
                                     <?php endif; ?>
                                 </a>
@@ -82,7 +82,7 @@ $category = $this->getRequest()->getControllerName();
                                     <?php echo $this->__($_order) ?>
                                     <?php if ($_key == 'name'): ?>
                                         <?php echo '(Z - A)' ?>
-                                    <?php elseif ($_key == 'price' || $_key == 'relevance'): ?>
+                                    <?php elseif ($_key == 'price' || $_key == 'created_at' || $_key == 'relevance'): ?>
                                         <?php echo $this->__('descending') ?>
                                     <?php endif; ?>
                                 </a>
