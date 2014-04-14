@@ -150,8 +150,7 @@ header .social-links {margin : 10px 0 0; }
 .top-login .font .glyphicon { float: left ; color: #fff; font-size: 170% ;  line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
 .header-top-right { background: #F74D88; border: none  ; float:left ; width: 100% ;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: block ;}
-.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 15px ;  }
-.top-login .toplogin p { float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 14px ; font-weight: bold; }
+.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 110%  ; height: 23px;  }
 .top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 10px; }
 .top-login .popover a{color: #515151;}
 .top-login .popover span{color: #515151;float: none;font-weight: normal;}
@@ -278,9 +277,9 @@ a.logo{margin-top:0px;display:block}
 .top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%; width: 122px;   margin-left: 5px;}
 .top-cart .popover{z-index: 9999;}
 .top-cart .cart-content .caret{margin-left:-8px}
-.top-cart .cart-icon{ float: left ;height:40px;background:url(../images/bgIcons2.png) no-repeat -188px -45px;width:40px;display:inline-block;margin-right:0}
+.top-cart .cart-icon{ float: left ;height:40px;background:url(../images/bgIcons2.png) no-repeat -188px -45px;width:35px;display:inline-block;margin-right:0}
 .top-cart .cart-summary{display:block;font-weight:700;font-size:15px;color:#fff;}
-.top-cart .cart-content{float: left ;display:inline-block;text-align:left;line-height:24px;color:#fff ;  font-size: 110%;font-weight: bold; margin: 3px 0 0;}
+.top-cart .cart-content{float: left ;display:inline-block;text-align:left;line-height:24px;color:#fff ;  font-size: 100%;font-weight: bold; margin: 3px 0 0;}
 .top-cart .cart-content span { font-size: 80%;font-weight: normal; line-height: 10px; width: 100%; }
 
 .top-cart .cart-content:hover,
@@ -344,7 +343,7 @@ input,textarea{outline:0}
 .footer-top .input-box{float:left}
 .footer-top .actions{float:left;margin:3px 0 0}
 .footer-top .block-content{float:right;padding:12px 0}
-.footer-top .block-subscribe{border:medium none;margin:0;padding:0}
+.footer-top .block-subscribe{border:medium none;margin:0 3px 0 0;padding:0}
 .footer-top .block-subscribe .block-content .input-box input.input-text{border:1px solid #e9e9e9;background:#f1f1f1;padding:3px 5px;border-radius:3px 0 0 3px;color:#7a6f6f;height:40px;line-height:30px;width:200px}
 .footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;z-index:2;float:left;width:100%}
 .footer-center-inner{padding:50px 0 20px 0;background-color:#0095d6}
@@ -782,9 +781,8 @@ p.back-link{float: left;}
 .category-products .btn-group  .btn-default:hover { background: #01A1ED;}
 
 .slider-product-wrapper .bordered-tab { border-bottom: 1px solid #ebebeb ; float: left ; width: 100% ; }
-.slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0; padding-right: 4px;}
 .slider-product-wrapper .bordered-tab .title { padding: 6px 0 0 0 ; }
-.slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0 ; line-height: 27px; }
+.slider-product-wrapper .bordered-tab h3{  float: left ; margin: 0 0 0 3px ; line-height: 27px; }
 .slider-product-wrapper .bordered-tab h3 .utm-cookies{   margin:4px  0 0 ; }
 .slider-product-wrapper .bordered-tab .utm-cookies { line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
 .category-deal-wrapper h3 a {line-height: 28px ; font-size: 16px ; padding: 0 5px ; margin: 0; height: 31px; text-transform: uppercase ; }
