@@ -63,7 +63,7 @@ $_core              = $this->helper('core/string');
                 <div class="item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
                     <?php $i++ ?>
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
-                        <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(200); ?>" width="200" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                        <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300,150); ?>" width="300" height="150" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                     </a>
                 </div>
             <?php endforeach ?>
