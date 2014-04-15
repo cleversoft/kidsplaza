@@ -340,25 +340,34 @@ function addRelatedToProduct(){
     var checkboxes = $$('.related-checkbox'),
         values = [],
         prices = [];
-
+    var n = 0;
     for (var i=0; i<checkboxes.length; i++){
         var product = checkboxes[i].value,
             imgElm = $$('.related-' + product)[0];
-
         if (checkboxes[i].checked){
             imgElm && imgElm.removeClassName('hide');
             var price = checkboxes[i].readAttribute('price'),
                 includeTax = checkboxes[i].readAttribute('price1'),
                 excludeTax = checkboxes[i].readAttribute('price2');
-
             values.push(product);
             prices.push({product: product, price: price, excludeTax: excludeTax, includeTax: includeTax});
         }else{
             imgElm && imgElm.addClassName('hide');
             prices.push({product: product, price: 0, excludeTax: 0, includeTax: 0});
         }
+        if (checkboxes[i].checked === true) {
+            n++;
+        }
     }
-
+    if(n==0){
+        $$('.btn-related').each(function(el){
+            el.addClassName('hide');
+        });
+    }else{
+        $$('.btn-related').each(function(el){
+            el.removeClassName('hide');
+        });
+    }
     if ($('related-field')){
         $('related-field').value = values.join(',');
     }
