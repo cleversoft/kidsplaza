@@ -192,6 +192,7 @@ Product view
             <action method="addJs"><script>varien/configurable.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.rating.js</script></action>
             <action method="addJs"><script>mt/review/plugins/jquery.review.js</script></action>
+            <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.imageready.min.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.zoomsl.min.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/m-custom-scrollbar/jquery.mCustomScrollbar.js</script></action>
             <action method="addJs"><script>mt/extensions/jquery/plugins/fancybox/jquery.fancybox.pack.js</script></action>

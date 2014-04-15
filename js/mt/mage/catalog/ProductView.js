@@ -501,7 +501,9 @@ jQuery(function(){
             initImageZoomSl();
         }, 300);
     });
-    initImageZoomSl();
+    jQuery('.product-img-box .product-image').imageready(function () {
+        initImageZoomSl();
+    });
 
     //init more views
     function onProductThumbActive(elm){
@@ -511,6 +513,9 @@ jQuery(function(){
         item.addClass('active');
         jQuery('.product-view img.img-main').fadeOut(100, function(){
             jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
+        });
+        jQuery('.product-img-box .product-image').imageready(function () {
+            initImageZoomSl();
         });
     }
     jQuery('.product-view .more-views img').on('click', function(e){
