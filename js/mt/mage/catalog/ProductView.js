@@ -452,7 +452,7 @@ jQuery(function(){
 
                 image.unbind();
                 image.imagezoomsl({
-                    zoomrange: [3, 3],
+                    zoomrange: [4, 3],
                     magnifiersize: [w, h],
                     magnifierborder: '1px solid #ddd',
                     magnifiereffectanimate: "fadeIn",

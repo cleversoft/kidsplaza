@@ -175,7 +175,6 @@ header .social-links {margin : 10px 0 0; }
     min-width: 50px;
     height: 40px;
     background: #e6edf6;
-    background-color: #f3faff;
     background-image: -moz-linear-gradient(#e6edf6 0,white 100%);
     border: 1px solid #003580;
     border-radius: 5px;
@@ -381,7 +380,6 @@ input,textarea{outline:0}
 .footer-bottom .block ul li a {color: #fff ; font-size: 12px; }
 .footer-bottom .block em {background: url("../images/bgIcons.png") no-repeat scroll -135px -45px ;display: block;float: left; height: 45px; margin: 0 12px 0 0;width: 45px;}
 .footer-bottom .kidshn .kids{float:left;display:block}
-.footer-bottom .kidshcm .kids{float:left;display:block}
 .footer-bottom .kidplaza .kids{margin:0 45px 0 10px}
 .footer-bottom .kidplaza.kidshcm .kids.first{padding:0 20px 0 0}
 .footer-bottom .block h3{background:url("../images/tick-kids.png") 100% 12px no-repeat;padding:0 53px 0 0;margin:0 ; line-height: 35px;width: 210px;}
@@ -1057,6 +1055,7 @@ p.back-link{float: left;}
 .ie8 .top-login {width: 150px !important; }
 .ie8 .top-login .toplogin {width: 150px; }
 .ie8 .top-cart .cart-icon {width: 30px ;}
+.ie8 .top-cart {width: 112px ;}
 .ie8 .modal-header ,
 .ie8 .modal-body { text-align:left ;width: 330px ; margin: auto ; display:block ; border: none ;padding: 15px 0 ;}
 /*Page sitemap*/
