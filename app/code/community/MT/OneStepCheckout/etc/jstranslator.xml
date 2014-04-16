@@ -13,4 +13,7 @@
     <cart-confirm-remove translate="message">
         <message>Are you sure you would like to remove this item from the shopping cart?</message>
     </cart-confirm-remove>
+    <validate_vn_error translate="message">
+        <message>Please enter a valid phone number in this field.</message>
+    </validate_vn_error>
 </jstranslator>

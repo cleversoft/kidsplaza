@@ -142,7 +142,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                     <div class="<?php echo Mage::getStoreConfig('mtonestepcheckout/field/fax') ? 'field' : ''?>">
                         <label for="billing:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                         <div class="input-box">
-                            <input type="text" name="billing[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-number input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="billing:telephone" />
+                            <input type="text" name="billing[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-phoneprefix input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="billing:telephone" />
                         </div>
                     </div>
                 <?php else: ?>
@@ -243,6 +243,8 @@ $this->getAddress()->setCountryId($address->getCountryId());
     <?php if (!$this->canShip()): ?>
         <input type="hidden" name="billing[use_for_shipping]" value="1" />
     <?php endif; ?>
+    <input id="phone_prefix" name="phone_prefix" type="hidden" value="<?php echo Mage::getStoreConfig('mtonestepcheckout/settings/phone_prefix');?>">
+    <input id="phone_len" name="phone_len" type="hidden" value="7">
 </form>
 <script type="text/javascript">
 //<![CDATA[

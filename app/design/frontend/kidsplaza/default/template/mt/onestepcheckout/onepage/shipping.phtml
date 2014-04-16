@@ -138,7 +138,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                         <div class="field">
                             <label for="shipping:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                             <div class="input-box">
-                                <input type="text" name="shipping[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-number input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="shipping:telephone" onchange="shipping.setSameAsBilling(false);" />
+                                <input type="text" name="shipping[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-phoneprefix input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="shipping:telephone" onchange="shipping.setSameAsBilling(false);" />
                             </div>
                         </div>
                     <?php else: ?>
@@ -167,6 +167,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
         </li>
         <li class="fields">
             <input type="checkbox" name="shipping[same_as_billing]" id="shipping:same_as_billing" value="1" <?php if ($address->getSameAsBilling()):?>checked="checked"<?php endif ?> title="<?php echo $this->__('Use Billing Address') ?>" onclick="shipping.setSameAsBilling(this.checked)" class="checkbox" /><label for="shipping:same_as_billing"><?php echo $this->__('Use Billing Address') ?></label>
+
         </li>
     </ul>
 </form>
