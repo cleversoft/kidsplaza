@@ -55,12 +55,14 @@
 
     .product-view #product-related .relared-price {margin: 20px 0 ;}
     .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
-    .top-banner {width: 95% ; margin: 0 auto ;}
+    .top-banner { margin: 0 auto ;}
+
+    .top-links {margin: 0 0 0 30px;}
 }
 @media (min-width: 980px) and (max-width: 1280px) {
 
-    .top-banner {margin: 30px auto  ;}
-    .top-banner li {text-align: left ; padding: 0;}
+    .top-banner {margin: 0 auto  ;}
+    .top-banner li {text-align: center ; padding: 0;}
     .sticky-wrapper { float: none; display: inline; }
 
     .slider-product-wrapper .bordered-tab .title .utm-cookies {font-size: 70% ;  margin: 4px 2px 0px 0 !important; }
