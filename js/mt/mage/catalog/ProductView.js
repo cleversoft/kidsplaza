@@ -334,6 +334,22 @@ jQuery('.product-view').each(function(i, product){
     $$('.related-checkbox').each(function(elem){
         Event.observe(elem, 'click', addRelatedToProduct)
     });
+
+    jQuery('.add-to-cart #arrow-top').click(function(){
+        var parent = jQuery(this).parents('.add-to-cart'),
+            input = parent.find('input#qty');
+        if (!input.length) return;
+        var oldValue = !isNaN(input.val()) ? parseInt(input.val()) : 1;
+        input.val(oldValue + 1);
+    });
+
+    jQuery('.add-to-cart #arrow-bottom').click(function(){
+        var parent = jQuery(this).parents('.add-to-cart'),
+            input = parent.find('input#qty');
+        if (!input.length) return;
+        var oldValue = !isNaN(input.val()) ? parseInt(input.val()) : 1;
+        input.val(oldValue - 1 < 1 ? 1 : oldValue - 1);
+    });
 });
 
 function addRelatedToProduct(){
