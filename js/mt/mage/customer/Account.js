@@ -14,7 +14,7 @@ jQuery(document).ready(function(){
     jQuery(".btn-regisform").click(function(){
         jQuery(".form_register").toggle();
     });
-    jQuery.fn.equalHeights('.col-left .nav', '.col-main');
+    jQuery.fn.equalHeights && jQuery.fn.equalHeights('.col-left .nav', '.col-main');
 });
 
 if (typeof isSetPasswordForm != 'undefined') setPasswordForm(true);
