@@ -15,7 +15,6 @@ Validation.addAllThese([
         if (!phoneLen || isNaN(phoneLen) || phoneLen <= 0) {
             return true;
         }
-        console.log(phonePrefix.length);
         for (i=0; i < phonePrefix.length; i++) {
             if (value.substring(0,phonePrefix[i].length) == phonePrefix[i] && value.length == (phonePrefix[i].length + parseInt(phoneLen))) {
                 return true;
