@@ -46,7 +46,7 @@
                 </zoom>
             </groups>
         </catalog>
-        <kidsplaza>
+        <!--kidsplaza>
             <label>MT KidsPlaza</label>
             <tab>mtext</tab>
             <frontend_type>text</frontend_type>
@@ -90,6 +90,6 @@
                     </fields>
                 </catalog>
             </groups>
-        </kidsplaza>
+        </kidsplaza-->
     </sections>
 </config>
