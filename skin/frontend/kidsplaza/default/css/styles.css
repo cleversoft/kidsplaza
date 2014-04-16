@@ -1239,3 +1239,4 @@ dl.item-options{
 .home-combo-carousel-wrapper h3 {
     color: #fe4b8c;
 }
+.magnifier {z-index: 999 !important;}
