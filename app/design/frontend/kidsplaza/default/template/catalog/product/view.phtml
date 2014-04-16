@@ -121,6 +121,7 @@ $_product = $this->getProduct();
                 <?php echo $this->getChildHtml('extrahint') ?>
 
                 <div class="row">
+                    <?php if($_product->getShortDescription() != ''):?>
                     <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 desc short-desc">
                         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                             <?php echo $this->getChildChildHtml('container2', 'product.info.options.wrapper', true, true) ?>
@@ -137,7 +138,12 @@ $_product = $this->getProduct();
                             </a>
                         </p>
                     </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 right-desc">
+                    <?php endif;?>
+                    <?php if($_product->getShortDescription() != ''):?>
+                        <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12 right-desc">
+                    <?php else:?>
+                        <div class="col-lg-12 col-md-12 col-sm-12  col-xs-12 right-desc">
+                    <?php endif;?>
                         <?php if (!$this->hasOptions()):?>
                             <?php echo $this->getChildHtml('addtocart') ?>
                             <?php //echo $this->getChildHtml('addto') ?>
