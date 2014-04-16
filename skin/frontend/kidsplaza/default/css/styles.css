@@ -35,10 +35,13 @@
 .product-view .price-box .price, .product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 400;}
 .product-view .add-to-cart span{ float: none ; margin: 0 5px 0 0; line-height: 10px;}
 .product-view .add-to-cart span .glyphicon{ font-size: 100% ;}
-.product-view .add-to-cart .qty{ float: left ;/*background-image:url("../images/tick-sl.png");background-position:34px 15px ; background-repeat: no-repeat ;*/ height: 36px;width: 56px; color: #5ec215 ; font-size: 130%; padding:0  5px 0 5px;display: inline-block;}
+.product-view .add-to-cart .qty{ float: left ;border: none; box-shadow: none;/*background-image:url("../images/tick-sl.png");background-position:34px 15px ; background-repeat: no-repeat ;*/ height: 36px;width: 36px; color: #5ec215 ; font-size: 130%; padding:0  5px 0 5px;display: inline-block;}
 .product-view .add-to-cart .quantity{ float: left ; width: 100% ;}
-.product-view .mt-arrow { float: left ;}
-.product-view .arrow {margin-left: 3px;}
+.product-view .add-to-cart .mt-qty {background-color: #FFFFFF; background-image: none; border: 1px solid #CCCCCC; float: left ;margin: 0 0 0 5px;}
+.product-view .mt-arrow { float: left ; margin: 10px 0 0}
+.product-view .arrow {cursor:pointer ; margin-bottom: 5px; height:6px;margin-left: 3px; width: 20px; background: url("../images/tick-sl.png") 0 50% no-repeat ;}
+.product-view .arrow.arrow-top { background: url("../images/tick-sl.png") 0 -6px no-repeat ;}
+.product-view .arrow.arrow-bottom {background: url("../images/tick-sl.png") 0 0 no-repeat ;}
 .product-view .add-to-cart label{font-size: 130%; float: left ; line-height: 35px;}
 .product-view .add-to-cart .add-bt{float: left ; width: 100% ; margin: 25px 0 0  ;}
 .product-view .add-to-links{padding: 20px 0;}
@@ -57,7 +60,7 @@
 .product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px; margin: 10px 0 5px;}
 .product-view .product-shop  .shipping-note a { color: #FF4E8F;font-weight: 400;font-size: 100%; background: none ;}
 .product-view .product-shop  .shipping-note span { display: block;line-height: 150%;}
-.product-view .product-shop  .right-desc p#product-price-total { font-weight: bold ;font-size: 130%;margin: 10px 0; }
+.product-view .product-shop  .right-desc p#product-price-total { font-weight: bold ;font-size: 130%;margin: 10px 0; float: left ; }
 .product-view .product-shop  .right-desc p#product-price-total .price { color:#ff3d70 ;font-weight: bold ; }
 .product-view   #product-price-total p span { font-weight: bold ; float: none ;}
 .product-view #product-related{ margin: 20px 0 0 ; border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
@@ -153,8 +156,8 @@ header .social-links {margin : 10px 0 0; }
 .top-login .font { float: left ; width: 23% ; padding: 0 7px; }
 .top-login .font .glyphicon { float: left ; color: #fff; font-size: 170% ;  line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
-.header-top-right { background: #F74D88; border: none  ; float:left ; width: 100% ;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: block ;}
-.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 110%  ; height: 23px;  }
+.header-top-right { background: #F74D88; border: none  ; float:left ; width: 100% ;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: auto ; display: block ;}
+.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 110%  ;   }
 .top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 10px; }
 .top-login .popover a{color: #515151;}
 .top-login .popover span{color: #515151;float: none;font-weight: normal;}
@@ -275,7 +278,7 @@ a.logo{margin-top:0px;display:block}
 .top-banner .promo:hover  em{background-position:-135px -45px ; width: 46px;}
 .top-banner .promo a{}
 .dropdown-menu{border-radius:0}
-.header-top-right .vr{height: 70%; display: inline-block;  border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7;filter: alpha(opacity=70);}
+.header-top-right .vr{height: 70%; display: inline-block; height: 35px; border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7; filter: alpha(opacity=70);}
 .top-cart{position: relative;}
 .top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%; width: 122px;   margin-left: 5px;}
 .top-cart .popover{z-index: 9999;}
