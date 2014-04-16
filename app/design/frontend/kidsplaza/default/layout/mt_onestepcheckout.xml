@@ -33,6 +33,9 @@
                 <js>prototype/window.js</js>
             </action-->
             <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
+                <js>mt/onestepcheckout/phone_validate.js</js>
+            </action>
+            <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
                 <js>mt/onestepcheckout/checkout.js</js>
             </action>
             <action method="addJs" ifconfig="mtonestepcheckout/settings/enable">
