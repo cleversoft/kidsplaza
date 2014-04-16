@@ -199,7 +199,7 @@ ul.nav-accordion li span.collapse {
     visibility: hidden;
     width: 250px;
     height: 100%;
-    background: #2d2d2d;
+    background: #fff;
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
     -o-transition: all 0.5s;
@@ -258,9 +258,9 @@ ul.nav-accordion li span.collapse {
     z-index: 9999;
 }
 .mt-menu .navbar-header .navbar-toggle .icon-bar {
-    background-color: #FFFFFF;
+    background-color: #009FE6;
     height: 3px;
-    margin: 4px 0  ;
+    margin: 4px 0;
     width: 22px;
 }
 .mt-menu .navbar-header .collapsed-icon {
@@ -268,8 +268,8 @@ ul.nav-accordion li span.collapse {
     margin: 9px 0 0;
 }
 .mt-menu .mt-menu-active {
-    background: none repeat scroll 0 0 #1F1F1F;
-    border-bottom: 1px solid #474747;
+    background: none repeat scroll 0 0 #fff;
+    border-bottom: 1px solid #333;
     display: block;
     overflow: hidden;
     padding: 0 15px;
@@ -304,7 +304,7 @@ ul.nav-accordion li span.collapse {
    border-radius: 0 !important ;
 }
 .title-canvas {
-    color: #FFFFFF;
+    color: #009fe6;
     font-size: 120%;
     line-height: 36px;
     margin-left: 9px;
@@ -320,7 +320,7 @@ ul.nav-accordion li span.collapse {
 }
 .mt-menu .sidebar ul.nav-accordion li  { background: none; border: none ;}
 .mt-menu ul.nav-accordion li a {
-    color: #FFFFFF;
+    color: #009fe6;
     font-size: 14px;
     margin: 0;
     padding-left: 15px;

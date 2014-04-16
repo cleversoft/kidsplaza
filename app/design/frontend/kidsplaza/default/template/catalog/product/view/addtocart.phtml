@@ -43,15 +43,11 @@
             <div class="quantity">
                     <label for="qty"><?php echo $this->__('Quantity') ?></label>
                     <div class="mt-qty">
-                            <input type="number" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty " />
-                            <div class="mt-arrow">
-                                <div id="arrow-top" class="arrow arrow-top ">&nbsp;</div>
-                                <div id="arrow-bottom" class="arrow arrow-bottom">&nbsp;</div>
-                            </div>
-                    <input type="text" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty " />
-                    <div class="mt-arrow">
-                        <div id="arrow-top" class="arrow arrow-top "><span class="glyphicon glyphicon-chevron-up">&nbsp;</span></div>
-                        <div id="arrow-bottom" class="arrow arrow-bottom"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></div>
+                        <input type="text" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty " />
+                        <div class="mt-arrow">
+                            <div id="arrow-top" class="arrow arrow-top ">&nbsp;</div>
+                            <div id="arrow-bottom" class="arrow arrow-bottom">&nbsp;</div>
+                        </div>
                     </div>
             </div>
 			<p id="product-price-total"><?php echo $this->__('Total Price') ?>: <span class="price"></span></p>

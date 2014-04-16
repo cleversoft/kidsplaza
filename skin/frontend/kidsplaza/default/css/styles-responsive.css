@@ -456,7 +456,8 @@
 }
 @media only screen and (min-width: 320px) and (max-width: 480px) {
     .top-banner li ,
-    .grid-5 li {width: 100% ;}
+    .grid-5 li {width: 50% ;}
+    .top-banner li {height: 20px; margin: 20px  0; padding-right: 0;}
     .tabs  { padding: 0 ;}
     .slider-product-wrapper .nav-tabs li a {font-size: 70% ;}
 
@@ -467,13 +468,75 @@
     .toolbar .toolbar-view {margin: 20px 0 0 ; float: left ;}
 
     .attribute-carousel-wrapper h2 {font-size: 160% !important;}
-    .toplogin .popover  { left: 10px !important;}
-    .toplogin .popover .arrow { left: -45px !important;}
-    .top-cart .popover { left: -60px !important;}
-    .top-cart .popover .arrow {left: -20px !important;}
+
 
     .product-img-box .price-discount {left: 0 ;}
     .product-view .btn-cart {font-size: 130% ; margin: 20px 0 0;}
 
     a.logo img {max-width: 100% ; float: left ;}
+
+    .top-banner em {
+        background: url("../images/rep-icon.png") no-repeat scroll 0 0 ;
+        width: 20px;
+        height: 20px;
+        margin: 0 5px 0 0;
+    }
+    .top-banner li a {padding: 0; line-height: 20px ; display: inline ; font-size: 55% ;}
+    .top-banner .checkout em{background-position:0 0}
+    .top-banner .checkout em:hover ,
+    .top-banner .checkout:hover  em {background-position:0 -20px;}
+    .top-banner .shipping em{background-position:-20px 0}
+    .top-banner .shipping em:hover,
+    .top-banner .shipping:hover  em{background-position:-20px -20px}
+    .top-banner .return em{background-position:-40px 0}
+    .top-banner .return em:hover,
+    .top-banner .return:hover  em{background-position:-40px -20px ;}
+    .top-banner .promo em{background-position:-60px 0 ;  width: 20px ;}
+    .top-banner .promo em:hover,
+    .top-banner .promo:hover  em{background-position:-60px -20px ;  width: 20px ; }
+    .top-links {  line-height: 30px; padding: 10px 10px 0;}
+
+    .header-top .header-top-inner .col-lg-3 { position: absolute ; top: -10px; right: 15px; }
+    .header-top .header-top-inner .col-lg-3 .header-top-right { float: right ;}
+    .header-top .header-top-inner .col-lg-7  {margin: 10px 0;}
+    .toplogin .popover  { left: auto !important; right: 0px !important;}
+    .toplogin .popover .arrow { left: 30px !important; }
+    .top-cart .popover { left: auto !important; right: 0px !important;}
+    .top-cart .popover .arrow {left: 80px !important;}
+
+    .navbar {margin: 0;}
+    .product-view .product-img-box .product-image {
+        min-height: 330px;
+    }
+    .product-shop h1 {font-size: 150% ;}
+    .product-view .product-shop .right-desc p#product-price-total {width: 100% ; margin: 0 ;}
+    .product-view .add-to-cart .add-bt {margin: 0 0 10px;}
+    .product-view #product-related  , .product-view #product-description{padding: 0 30px ;}
+    .product-view .btn-related.btn-addcart {margin: 0 0 20px;}
+    .product-view #product-review {padding: 0;}
+    .product-view .box-reviews {margin: 0;}
+
+
+    .footer-center-inner {padding: 10px 0 0 ;}
+    .footer-center .items .block em , .footer-bottom .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px;}
+    .footer-center .items .block.block-gt em{background-position:-88px 0;}
+    .footer-center .items .block.block-hd em{background-position:-128px 0 ;}
+    .footer-center .items .block.block-vc em{background-position:-108px 0 ;}
+    .footer-center .items .block.block-address em{background-position:-33px -33px}
+    .footer-center .items .block.block-service em{background-position: -108px -20px ;}
+    .footer-center .items .block.block-cs em{background-position: -88px -20px ;}
+    .footer-center .items .block.block-agree em{background-position:-148px 0;}
+    .footer-center .items .widget-static-block {width: 70% ;margin: auto ;}
+    .footer-center .items .block.ft-tong-dai em { background-position: -128px -20px; }
+
+    .footer-center-inner .items {margin: 0;}
+    .footer-bottom .block em {background: url("../images/rep-icon.png") -148px -20px no-repeat }
+    .footer-bottom .footer-bottom-inner {padding: 0;}
+    .footer-bottom .footer-bottom-inner .container {width: 70% ; margin: auto ;}
+    .footer-bottom .block h3 {background: none ;}
+
+    .footer-top .footer-top-inner .col-lg-4 .block-subscribe { margin:20px auto 0;float: none !important;}
+    .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}
+    .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group { margin: auto ; width: 80% ;}
+
 }

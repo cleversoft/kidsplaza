@@ -60,7 +60,7 @@
 .product-view .product-shop  .right-desc p { font-weight: normal ; line-height: 35px; margin: 10px 0 5px;}
 .product-view .product-shop  .shipping-note a { color: #FF4E8F;font-weight: 400;font-size: 100%; background: none ;}
 .product-view .product-shop  .shipping-note span { display: block;line-height: 150%;}
-.product-view .product-shop  .right-desc p#product-price-total { font-weight: bold ;font-size: 130%;margin: 10px 0; }
+.product-view .product-shop  .right-desc p#product-price-total { font-weight: bold ;font-size: 130%;margin: 10px 0; float: left ; }
 .product-view .product-shop  .right-desc p#product-price-total .price { color:#ff3d70 ;font-weight: bold ; }
 .product-view   #product-price-total p span { font-weight: bold ; float: none ;}
 .product-view #product-related{ margin: 20px 0 0 ; border-bottom: 1px solid #f2f2f2 ; border-top: 1px solid#f2f2f2 ;  padding: 0 0 50px; }
@@ -156,8 +156,8 @@ header .social-links {margin : 10px 0 0; }
 .top-login .font { float: left ; width: 23% ; padding: 0 7px; }
 .top-login .font .glyphicon { float: left ; color: #fff; font-size: 170% ;  line-height: 43px; }
 .top-login .right-login { float: left ; width: 75% ;}
-.header-top-right { background: #F74D88; border: none  ; float:left ; width: 100% ;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: 47px ; display: block ;}
-.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 110%  ; height: 23px;  }
+.header-top-right { background: #F74D88; border: none  ; float:left ; width: 100% ;border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px ;outline: none; height: auto ; display: block ;}
+.top-login .toplogin p {font-weight: bold ; float: left ;width: 100% ; margin: 0; color: #FFFFFF ; line-height: 24px; font-size: 110%  ;   }
 .top-login .toplogin span { float: left ; width: 100% ; color: #fff ; font-size: 10px; }
 .top-login .popover a{color: #515151;}
 .top-login .popover span{color: #515151;float: none;font-weight: normal;}
@@ -278,7 +278,7 @@ a.logo{margin-top:0px;display:block}
 .top-banner .promo:hover  em{background-position:-135px -45px ; width: 46px;}
 .top-banner .promo a{}
 .dropdown-menu{border-radius:0}
-.header-top-right .vr{height: 70%; display: inline-block;  border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7;filter: alpha(opacity=70);}
+.header-top-right .vr{height: 70%; display: inline-block; height: 35px; border-left: 1px solid #fff; float: left;  margin: 7px 0;  opacity: .7; filter: alpha(opacity=70);}
 .top-cart{position: relative;}
 .top-cart{float:left; text-align: center; padding:0 10px 0 0 ; height: 100%; width: 122px;   margin-left: 5px;}
 .top-cart .popover{z-index: 9999;}
