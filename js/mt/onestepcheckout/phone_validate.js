@@ -11,15 +11,18 @@ Validation.addAllThese([
         var prefix = jQuery("#" +'phone_prefix').val(),
             phonePrefix = prefix.split(','),
             phoneLen = jQuery("#" +'phone_len').val(),
+            msg = '',
             i;
         if (!phoneLen || isNaN(phoneLen) || phoneLen <= 0) {
+            msg = 'test1';
             return true;
         }
         for (i=0; i < phonePrefix.length; i++) {
             if (value.substring(0,phonePrefix[i].length) == phonePrefix[i] && value.length == (phonePrefix[i].length + parseInt(phoneLen))) {
+                msg = 'test2';
                 return true;
             }
         }
-        return false;
+        return Validation.get('IsEmpty').test(value);
     }]
 ]);
