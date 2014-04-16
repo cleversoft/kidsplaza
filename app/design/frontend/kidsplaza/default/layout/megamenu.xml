@@ -32,9 +32,9 @@
             </block>
         </reference>
         <reference name="root">
-            <!--block type="megamenu/navigation_top" name="mtcanvas">
+            <block type="megamenu/navigation_top" name="mtcanvas">
                 <action method="setTemplate" ifconfig="megamenu/general/active"><template>megamenu/navigation/canvas.phtml</template></action>
-            </block-->
+            </block>
         </reference>
     </default>
 </layout>
