@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+@category    MT
+@package     MT_Erp
+@copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+@license     GNU General Public License version 2 or later
+@author      MagentoThemes.net
+@email       support@magentothemes.net
+-->
+<config>
+    <modules>
+        <MT_Erp>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <MT_Extensions/>
+            </depends>
+        </MT_Erp>
+    </modules>
+</config>

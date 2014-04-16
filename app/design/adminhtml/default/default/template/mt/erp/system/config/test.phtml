@@ -1,0 +1,50 @@
+<?php
+/**
+ * @category    MT
+ * @package     MT_Erp
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+?>
+<script type="text/javascript">
+	function testConnection() {
+		var params = {
+			host:   $('kidsplaza_erp_host').value,
+			user:   $('kidsplaza_erp_user').value,
+			pass:   $('kidsplaza_erp_pass').value,
+			db:     $('kidsplaza_erp_db').value
+		};
+
+        var resultText = $('testResult'),
+		    info = '<table>'+
+			    '<tr><td><?php echo $this->__("Connection Status")?></td><td class="val">{{status}}</td></tr>'+
+			    '<tr><td colspan="2">{{msg}}</td></tr>'+
+			    '</table>';
+
+		new Ajax.Request('<?php echo $this->getUrl("adminhtml/erp/ping")?>', {
+			parameters: params,
+			onSuccess: function(transport) {
+				try {
+					var response = transport.responseText.evalJSON();
+                    if (response.error == 1) {
+                        info = info.replace(/{{status}}/, '<?php echo $this->__("Failed")?>').replace(/{{msg}}/, response.msg);
+                    }else{
+                        info = info.replace(/{{status}}/, '<?php echo $this->__("OK")?>').replace(/{{msg}}/, response.msg);
+                    }
+				} catch (e) {
+					info = info.replace(/{{status}}/, '<?php echo $this->__("Failed")?>').replace(/{{msg}}/, '');
+				}
+				resultText.update(info);
+			}
+		});
+	}
+</script>
+<?php echo $this->getChildHtml('testConnectionBtn')?>
+<div id="testResult" style=""></div>
+<style type="text/css">
+	#testResult table tr td{ text-align: right; border-bottom: 1px solid #ddd; width: 50%;}
+	#testResult table tr td:first-child{ text-align: left;}
+    #testResult table tr td.val{ font-weight: bold;}
+</style>

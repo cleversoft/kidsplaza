@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_Erp
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_Erp>
+            <version>1.0</version>
+        </MT_Erp>
+    </modules>
+
+    <global>
+        <blocks>
+            <mterp>
+                <class>MT_Erp_Block</class>
+            </mterp>
+        </blocks>
+        <helpers>
+            <mterp>
+                <class>MT_Erp_Helper</class>
+            </mterp>
+        </helpers>
+        <models>
+            <mterp>
+                <class>MT_Erp_Model</class>
+            </mterp>
+        </models>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <MT_Erp before="Mage_Adminhtml">MT_Erp_Adminhtml</MT_Erp>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <MT_Erp>
+                    <files>
+                        <default>MT_Erp.csv</default>
+                    </files>
+                </MT_Erp>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <crontab>
+        <jobs>
+            <mterp_sync>
+                <schedule><config_path>kidsplaza/erp/schedule</config_path></schedule>
+                <run><model>mterp/observer::run</model></run>
+            </mterp_sync>
+        </jobs>
+    </crontab>
+
+    <default>
+        <kidsplaza>
+            <erp>
+                <schedule>*/30 * * * *</schedule>
+                <user>sa</user>
+            </erp>
+        </kidsplaza>
+    </default>
+</config>
