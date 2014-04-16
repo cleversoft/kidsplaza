@@ -63,13 +63,6 @@ $_product = $this->getProduct();
                     </h1>
                 </div>
                 <div class="row">
-                    <div class="review col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <span class="product-sku"><?php echo $this->__('SKU: %s', $_product->getSku()) ?></span>
-                        <span class="separator">|</span>
-                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
-                        <span class="separator">|</span>
-                        <?php echo $this->getChildHtml('addto') ?>
-                    </div>
                     <div class="mt-social-links col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="so-facebook so-social-share">
                             <div id="fb-root"></div>
@@ -92,6 +85,13 @@ $_product = $this->getProduct();
                             </a>
                             <script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
                         </div-->
+                    </div>
+                    <div class="review col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                        <span class="product-sku"><?php echo $this->__('SKU: %s', $_product->getSku()) ?></span>
+                        <span class="separator">|</span>
+                        <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+                        <span class="separator">|</span>
+                        <?php echo $this->getChildHtml('addto') ?>
                     </div>
                     <script type="text/javascript">
                         (function(d, s, id) {
