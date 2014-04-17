@@ -525,7 +525,7 @@ jQuery(function(){
     function onProductThumbActive(elm){
         var item = jQuery(elm);
         if (item.hasClass('active')) return;
-        jQuery('.product-view .more-views img').removeClass('active');
+        jQuery('.product-view .more-views img, .product-view .more-views-horizontal img').removeClass('active');
         item.addClass('active');
         jQuery('.product-view img.img-main').fadeOut(100, function(){
             jQuery(this).attr('src', item.attr('data-small')).attr('data-large', item.attr('data-large')).fadeIn(100);
@@ -534,10 +534,10 @@ jQuery(function(){
             initImageZoomSl();
         });
     }
-    jQuery('.product-view .more-views img').on('click', function(e){
+    jQuery('.product-view .more-views img, .product-view .more-views-horizontal img').on('click', function(e){
         onProductThumbActive(e.target);
     });
-    jQuery('.product-view .more-views img').hover(function(e){
+    jQuery('.product-view .more-views img, .product-view .more-views-horizontal img').hover(function(e){
         onProductThumbActive(e.target);
     });
 
@@ -577,6 +577,45 @@ jQuery(function(){
             jQuery(".product-img-box #thumbs").animate({"top" : '-=85'}, 250, function() {
                 top.remove();
                 jQuery(".product-img-box #thumbs").animate({"top" : "+=85"}, 0);
+            });
+            clone.on('click', function(e){
+                onProductThumbActive(e.target);
+            });
+            clone.hover(function(e){
+                onProductThumbActive(e.target);
+            });
+        }
+    });
+    //init media horizontal slider
+    var carhCount = jQuery('.product-img-box #thumbs_horizontal').find('a').length;
+    jQuery(".product-img-box #thumbs_horizontal").width(90*carhCount);
+    if (carhCount <= 4){
+        jQuery('.product-img-box .horizontal-nav').hide();
+    }
+    jQuery(".product-img-box #carousel-horizontal-up").on("click", function() {
+        if (!jQuery(".product-img-box #thumbs_horizontal").is(':animated')) {
+            var bottom = jQuery(".product-img-box #thumbs_horizontal > a:last-child");
+            var clone = jQuery(".product-img-box #thumbs_horizontal > a:last-child").clone();
+            clone.prependTo(".product-img-box #thumbs_horizontal");
+            jQuery(".product-img-box #thumbs_horizontal").animate({"left" : "-=85"}, 0).stop().animate({"left" : '+=85'}, 250, function() {
+                bottom.remove();
+            });
+            clone.on('click', function(e){
+                onProductThumbActive(e.target);
+            });
+            clone.hover(function(e){
+                onProductThumbActive(e.target);
+            });
+        }
+    });
+    jQuery(".product-img-box #carousel-horizontal-down").on("click", function() {
+        if (!jQuery(".product-img-box #thumbs_horizontal").is(':animated')) {
+            var top = jQuery(".product-img-box #thumbs_horizontal > a:first-child");
+            var clone = jQuery(".product-img-box #thumbs_horizontal > a:first-child").clone();
+            clone.appendTo(".product-img-box #thumbs_horizontal");
+            jQuery(".product-img-box #thumbs_horizontal").animate({"left" : '-=85'}, 250, function() {
+                top.remove();
+                jQuery(".product-img-box #thumbs_horizontal").animate({"left" : "+=85"}, 0);
             });
             clone.on('click', function(e){
                 onProductThumbActive(e.target);

@@ -31,6 +31,17 @@
 .product-view .more-views div#thumbs {position: relative;}
 .product-view .more-views .active {border: 2px solid #007d9e;}
 .product-view .more-views img {border: 2px solid #dfdfdf;}
+.product-view .more-views-horizontal {position: relative; overflow: hidden; width: 415px; margin: 0 auto; display: none;}
+.product-view .more-views-horizontal div#thumbs_horizontal {position: absolute;}
+.product-view .more-views-horizontal .media-list-horizontal {width: 359px; height: 85px; overflow: hidden; margin: 0 auto; position: relative;}
+.product-view .more-views-horizontal .horizontal-nav {position: absolute; top: 30px; width: 20px; height: 20px; background: #a1a2a3; z-index: 99;}
+.product-view .more-views-horizontal .horizontal-prev{left: 0px;}
+.product-view .more-views-horizontal .horizontal-next{right: 0px;}
+.product-view .more-views-horizontal .horizontal-nav:hover { background: #01A1ED ;}
+.product-view .more-views-horizontal a {overflow: hidden; display: inline-block; margin-right: 5px; float: left;}
+.product-view .more-views-horizontal img {border: 2px solid #dfdfdf;}
+.product-view .more-views-horizontal .active {border: 2px solid #007d9e;}
+.product-view .horizontal-nav .glyphicon { color: #eeeeee ; font-size: 90%;top: 2px; left: 4px;}
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price, .product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 400;}
 .product-view .add-to-cart span{ float: none ; margin: 0 5px 0 0; line-height: 10px;}
