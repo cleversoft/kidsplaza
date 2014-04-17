@@ -1148,7 +1148,10 @@ dl.item-options{
 }
 .related-name-item strong{
     color: #333;
-    display: inherit;
+}
+
+.product-view #product-related .related-name li.current_product {
+    padding-left: 46px;
 }
 #rev_slider_1_wrapper .tp-bullets {
     background: #f8f8f8;

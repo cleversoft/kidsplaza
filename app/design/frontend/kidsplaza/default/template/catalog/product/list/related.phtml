@@ -56,20 +56,21 @@ $totalPrice = 0;
     <div class="row">
         <div class="col-lg-7">
             <ol class="related-name">
-                <li class="related-name-item">
-                    <strong><?php echo $this->__('Current item') ?>:</strong>
+                <li class="related-name-item <?php if (!$product->isSaleable()): ?> current_product <?php endif;?>">
                     <?php if ($product->isSaleable()): ?>
                         <?php $totalPrice += $product->getFinalPrice() ?>
                         <?php $_price = $product->getFinalPrice() ?>
                         <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
                         <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
                         <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $product->getId() ?>" name="related_products[]" value="<?php echo $product->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
+
                     <?php else: ?>
                         <script type="text/javascript">
                             window['related<?php echo $product->getId() ?>'].priceExclTax=0;
                             window['related<?php echo $product->getId() ?>'].productPrice=0;
                         </script>
                     <?php endif ?>
+                    <strong><?php echo $this->__('Current item') ?>:</strong>
                     <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
                     <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
                 </li>
