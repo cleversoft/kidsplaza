@@ -14,11 +14,18 @@ jQuery(document).ready(function(){
     jQuery(".btn-regisform").click(function(){
         jQuery(".form_register").toggle();
     });
+
     jQuery.fn.equalHeights && jQuery.fn.equalHeights('.col-left .nav', '.col-main');
+
+    if (window.location.href.indexOf('is_register') > 0){
+        jQuery('.form_register').toggle();
+    }
 });
 
 if (typeof isSetPasswordForm != 'undefined') setPasswordForm(true);
 if (typeof regionData != 'undefined' && regionData.length == 7){
-    $('region_id').setAttribute('defaultValue', regionData[0]);
-    new RegionUpdater(regionData[1], regionData[2], regionData[3], regionData[4], regionData[5], regionData[6]);
+    if ($('region_id')){
+        $('region_id').setAttribute('defaultValue', regionData[0]);
+        new RegionUpdater(regionData[1], regionData[2], regionData[3], regionData[4], regionData[5], regionData[6]);
+    }
 }

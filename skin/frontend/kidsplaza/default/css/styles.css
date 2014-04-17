@@ -1260,3 +1260,9 @@ dl.item-options{
     color: #fe4b8c;
 }
 .magnifier {z-index: 999 !important;}
+.my-account .form-list .fields .name-firstname{
+    padding-right: 0;
+}
+.my-account .form-list .fields .name-lastname {
+    padding-left: 0;
+}
