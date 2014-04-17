@@ -651,7 +651,7 @@ span.product-sku{vertical-align: top;}
 .pager .amount strong { float:left;padding:0 10px;}
 .pager .limiter label {float:left;  padding:10px 0 0 15px;}
 .pager .limiter select { width:35%; }
-.my-account .pager .limiter select{width: auto;display: inline-block;}
+.my-account .pager .limiter select{width: 100%;display: inline-block;}
 .my-account .pager .limiter {float: right;}
 .my-account .pager .limiter label {display: none;}
 .my-account .pager .amount strong {font-weight: 400;}
