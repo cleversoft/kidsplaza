@@ -513,3 +513,6 @@
 "ZIP/Post Code","ZIP/Post Code"
 "separate by "",""","separate by "","""
 "My Orders","My Orders"
+"%s Order(s)","%s đơn hàng"
+"order(s) per page","đơn hàng mỗi trang"
+

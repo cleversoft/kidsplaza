@@ -76,6 +76,9 @@ Customer account home dashboard layout
         <update handle="customer_account"/>
         <reference name="my.account.wrapper">
             <block type="sales/order_history" name="sales.order.history">
+                <reference name="sales.order.history.pager">
+                    <action method="setTemplate"><file>sales/order/pager.phtml</file></action>
+                </reference>
                 <block type="core/text_list" name="sales.order.history.info" as="info" translate="label">
                     <label>Order History Info</label>
                 </block>

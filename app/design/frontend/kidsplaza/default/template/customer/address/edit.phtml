@@ -95,7 +95,10 @@
                 </div>
             </li>
             <?php endif; ?>
-            <li class="fields">
+            <input type="hidden" name="city" value="N/A"/>
+            <input type="hidden" name="postcode" value="N/A"/>
+            <input type="hidden" name="country_id" value="VN"/>
+            <!--li class="fields">
                 <div class="field">
                     <label for="city" class="required"><em>*</em><?php echo $this->__('City') ?></label>
                     <div class="input-box">
@@ -111,8 +114,8 @@
                         <input type="text" id="region" name="region" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
                     </div>
                 </div>
-            </li>
-            <li class="fields">
+            </li-->
+            <!--li class="fields">
                 <div class="field">
                     <label for="zip" class="required"><em>*</em><?php echo $this->__('Zip/Postal Code') ?></label>
                     <div class="input-box">
@@ -125,7 +128,7 @@
                         <?php echo $this->getCountryHtmlSelect() ?>
                     </div>
                 </div>
-            </li>
+            </li-->
             <li<?php if($this->canSetAsDefaultBilling()) echo ' class="control"' ?>>
                 <?php if($this->isDefaultBilling()): ?>
                     <strong><?php echo $this->__('Default Billing Address') ?></strong>
