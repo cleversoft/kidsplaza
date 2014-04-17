@@ -68,7 +68,6 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 <tfoot>
                     <tr>
                         <td colspan="50" class="a-right">
-
 						    <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
                                 <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
                             </button>&nbsp;
@@ -86,18 +85,15 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                     </tr>
                 </tfoot>
                 <tbody>
-                <?php foreach($this->getItems() as $_item): ?>
+                <?php foreach ($this->getItems() as $_item): ?>
                     <?php echo $this->getItemHtml($_item) ?>
                 <?php endforeach ?>
                 </tbody>
             </table>
-			
-			
-			
+
 			<table id="shopping-cart-table" class="hidden-lg hidden-sm  cart-mobile">
-            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
                 <thead>
-                  
                     <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
                     <tr>
                         <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
@@ -110,7 +106,6 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 <tfoot>
                     <tr>
                         <td colspan="50" class="a-right">
-
 						    <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
                                 <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
                             </button>&nbsp;
@@ -128,7 +123,8 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                     </tr>
                 </tfoot>
                 <tbody>
-                <?php foreach($this->getItems() as $_item): ?>
+                <?php foreach ($this->getItems() as $_item): ?>
+                    <?php $_item->setIsMobile(true) ?>
                     <?php echo $this->getItemHtml($_item) ?>
                 <?php endforeach ?>
                 </tbody>
