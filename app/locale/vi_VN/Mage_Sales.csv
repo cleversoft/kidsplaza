@@ -259,7 +259,7 @@
 "Order #","Đơn hàng #"
 "Order # ","Order # "
 "Order # %s","Order # %s"
-"Order #%s","Order #%s"
+"Order #%s","Số #%s"
 "Order #%s - %s","Đơn hàng #%s - %s"
 "Order API","Order API"
 "Order Comment","Order Comment"
@@ -515,4 +515,6 @@
 "My Orders","My Orders"
 "%s Order(s)","%s đơn hàng"
 "order(s) per page","đơn hàng mỗi trang"
-
+"Order invoice","Phiếu bán hàng / Invoice"
+"User:","Khách hàng:"
+"Poin:","Điểm tích lũy:"

@@ -25,13 +25,28 @@
  */
 ?>
 <?php $_order = $this->getOrder() ?>
-<div class="row">
-    <div class="col-lg-12">
-        <h1><?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?></h1>
-        <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+<div class="row header-print">
+    <div class="tore_name col-lg-12">
+        <?php
+        $store_name = Mage::getStoreConfig('general/store_information/name');
+        $store_info = explode('/', $store_name);
+        ?>
+        <?php echo $store_info[0];?>
+        <em><?php echo $store_info[1];?></em>
     </div>
+    <div class="phone col-lg-12"><?php echo Mage::getStoreConfig('general/store_information/phone');?></div>
+    <div class="siteinfo col-lg-12"><?php echo Mage::getBaseUrl();?></div>
+    <div class="titleorder col-lg-12"><?php echo $this->__('Order invoice');?></div>
 </div>
 <div class="row">
+    <div class="col-lg-12">
+        <span class="number_order">
+            <?php echo $this->__('Order #%s', $_order->getRealOrderId()) ?>
+            <?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?>
+        </span>
+    </div>
+</div>
+<!--div class="row">
     <?php if (!$_order->getIsVirtual()): ?>
     <div class="col-lg-6">
         <div class="col-1">
@@ -54,8 +69,8 @@
             <?php echo $this->getPaymentInfoHtml() ?>
         </div>
     </div>
-</div>
-<h2><?php echo $this->__('Items Ordered') ?></h2>
+</div-->
+<!--h2><?php echo $this->__('Items Ordered') ?></h2-->
 <table class="table" id="my-orders-table">
     <thead>
         <tr>
@@ -78,4 +93,26 @@
     </tbody>
         <?php endforeach; ?>
 </table>
+<div class="row">
+    <div class="user_info col-lg-12">
+        <div class="row">
+            <div class="col-xs-6"><?php echo $this->__('User:')?></div>
+            <div class="col-xs-6 end"><?php echo Mage::getSingleton('customer/session')->getCustomer()->getName();?></div>
+        </div>
+    </div>
+    <div class="user_info col-lg-12">
+        <div class="row">
+            <div class="col-xs-6"><?php echo $this->__('Poin:')?></div>
+            <div class="col-xs-6 end">
+                <?php $point = Mage::getModel('mtpoint/point')->loadByCustomer(Mage::getSingleton('customer/session')->getCustomer());?>
+                <?php echo (int)$point->getBalance() ?>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="intro_store col-lg-12">
+        <?php echo Mage::getStoreConfig('general/store_information/address')?>
+    </div>
+</div>
 <script type="text/javascript">window.print();</script>
