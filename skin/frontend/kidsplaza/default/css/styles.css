@@ -369,7 +369,7 @@ input,textarea{outline:0}
 .footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;z-index:2;float:left;width:100%}
 .footer-center-inner{padding:50px 0 20px 0;background-color:#0095d6}
 .footer-center ul{list-style:none}
-.footer-center ul li a{font-size:13px;}
+.footer-center ul li a{font-size:13px; transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;}
 .footer-center a,
 .footer-center h3,
 .footer-center span{color:#fff;font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}

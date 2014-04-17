@@ -28,3 +28,14 @@
 <?php echo $this->getCssJsHtml() ?>
 <?php echo $this->getChildHtml() ?>
 <?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<script type="text/javascript">
+    jQuery(".accordion-footer").addClass("accordion-show");
+        jQuery(".accordion-footer").click(function(){
+            if(jQuery(this).parent().next().is(":visible")){
+                jQuery(this).addClass("accordion-show");
+            }else{
+                jQuery(this).removeClass("accordion-show");
+            }
+            jQuery(this).parent().next().toggle(400);
+        });
+</script>
