@@ -86,7 +86,13 @@ class MT_OneStepCheckout_CartController extends Mage_Checkout_CartController {
                 foreach ($messages as $message) $msg[] = $message->getCode();
                 $out = array('error' => 1, 'msg' => $msg);
             }else{
-                $out = array('error' => 0, 'msg' => $this->__('Cart updated.'), 'count' => $cart->getItemsCount(), 'items' => $this->_getCartItemsHtml($cartData));
+                $out = array(
+                    'error' => 0,
+                    'msg' => $this->__('Cart updated.'),
+                    'count' => $cart->getItemsCount(),
+                    'items' => $this->_getCartItemsHtml($cartData),
+                    'isMobile' => $this->getRequest()->getParam('isMobile', false)
+                );
             }
         } catch (Mage_Core_Exception $e) {
             $out = array('error' => 1, 'msg' => $e->getMessage());
@@ -200,7 +206,9 @@ class MT_OneStepCheckout_CartController extends Mage_Checkout_CartController {
         $cart->chooseTemplate();
         $html = array();
         if ($items = $cart->getItems()){
+            $isMobile = $this->getRequest()->getParam('isMobile', false);
             foreach ($items as $item){
+                if ($isMobile) $item->setIsMobile(1);
                 /* @var $item Mage_Sales_Model_Quote_Item */
                 foreach ($data as $id => $qty){
                     if ($id == $item->getId()){

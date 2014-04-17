@@ -205,7 +205,10 @@ MT.OneStepCheckout.prototype = {
     },
 
     handleCartQty: function(inputElm, action){
-        var qty = inputElm.value;
+        var qty = inputElm.value,
+            table = inputElm.up('table'),
+            params = {};
+
         switch (action){
             case '-':
                 qty = qty - 1 <= 0 ? 0 : qty - 1;
@@ -215,8 +218,8 @@ MT.OneStepCheckout.prototype = {
                 break;
         }
         inputElm.value = qty;
-        var params = {};
         params[inputElm.name] = inputElm.value;
+        if (table.hasClassName('cart-mobile')) params.isMobile = 1;
         this.request(this.cart.action, params, function(transport){
             this.onUpdateCartItem(transport, inputElm);
         }.bind(this));
@@ -387,7 +390,7 @@ MT.OneStepCheckout.prototype = {
                 if (response.count === 0) window.location.reload();
                 else{
                     if (elm.value == 0) this.removeCartItemHtml(elm);
-                    if (response.items) this.updateCartItemHtml(response.items);
+                    if (response.items) this.updateCartItemHtml(response.items, response.isMobile);
                     this.showCartMessages('success', response.msg);
                     Event.fire(document, 'cart:update');
                 }
@@ -397,10 +400,13 @@ MT.OneStepCheckout.prototype = {
         }
     },
 
-    updateCartItemHtml: function(items){
+    updateCartItemHtml: function(items, isMobile){
+        var cart = isMobile == 1 ? $$('.cart-mobile')[0] : $$('.cart-table')[0];
+
         for (var id in items){
             var name = 'cart[' + id + '][qty]',
-                input = $(document.getElementsByName(name)[0]);
+                input = cart.down('input[name="'+name+'"]');
+
             if (input){
                 var tr = input.up('tr');
                 if (tr) tr.replace(items[id]);
@@ -453,7 +459,7 @@ MT.OneStepCheckout.prototype = {
                     this.cart.select('input.qty').each(function(input){
                         if (input.value == 0) this.removeCartItemHtml(input);
                     }, this);
-                    if (response.items) this.updateCartItemHtml(response.items);
+                    if (response.items) this.updateCartItemHtml(response.items, response.isMobile);
                 }
             }catch(e){
                 console.log(e);

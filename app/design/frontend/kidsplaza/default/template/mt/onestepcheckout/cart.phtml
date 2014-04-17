@@ -42,7 +42,7 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
         </div>
         <fieldset>
             <table id="shopping-cart-table" class="hidden-xs table cart-table table-striped table-bordered table-condensed">
-            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
                 <thead>
                     <!--<tr>
                         <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Image') ?></span></th>
@@ -68,9 +68,9 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 <tfoot>
                     <tr>
                         <td colspan="50" class="a-right">
-						    <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
+						    <!--button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
                                 <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
-                            </button>&nbsp;
+                            </button-->&nbsp;
 
                             <?php if($this->getContinueShoppingUrl()): ?>
                                 <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-ribbon  btn-con" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
@@ -106,9 +106,9 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 <tfoot>
                     <tr>
                         <td colspan="50" class="a-right">
-						    <button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
+						    <!--button type="button" onclick="mtOneStepCheckout.updateCart('update_qty');" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="btn btn-kid  btn-update pull-left">
                                 <i class="glyphicon glyphicon-refresh"></i> <?php echo $this->__('Update Shopping Cart'); ?>
-                            </button>&nbsp;
+                            </button-->&nbsp;
 
                             <?php if($this->getContinueShoppingUrl()): ?>
                                 <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="btn-ribbon  btn-con" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')">
