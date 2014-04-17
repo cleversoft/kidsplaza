@@ -443,7 +443,13 @@
 
 }
 @media (max-width: 480px) {
-
+    .product-view .related-img-item .related-separator{
+        display: block;
+    }
+    .product-view .related-img-item{
+        width: 100%;
+        text-align: center;
+    }
 }
 @media only screen and (min-width: 400px) and (max-width: 600px) {
 
