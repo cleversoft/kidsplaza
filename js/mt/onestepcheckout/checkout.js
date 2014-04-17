@@ -872,6 +872,9 @@ MT.Payment.prototype = {
 
     update: function(html){
         this.container.update(html);
+        setTimeout(function(){
+            jQuery("select, input[type='radio'], input[type='checkbox']").uniform();
+        });
     },
 
     addBeforeInitFunction : function(code, func) {
