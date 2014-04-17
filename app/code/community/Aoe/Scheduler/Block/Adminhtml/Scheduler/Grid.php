@@ -123,7 +123,7 @@ class Aoe_Scheduler_Block_Adminhtml_Scheduler_Grid extends Mage_Adminhtml_Block_
 		$return = '';
 		if (!empty($value)) {
 			$return .= '<a href="#" onclick="$(\'messages_'.$row->getScheduleId().'\').toggle(); return false;">'.Mage::helper('aoe_scheduler')->__('Message').'</a>';
-			$return .= '<div class="schedule-message" id="messages_'.$row->getScheduleId().'" style="display: none; width: 300px; overflow: auto; font-size: small;"><pre>'.$value.'</pre></div>';
+			$return .= '<div class="schedule-message" id="messages_'.$row->getScheduleId().'" style="display: none; overflow: auto; font-size: small;"><pre>'.html_entity_decode($value).'</pre></div>';
 		}
 		return $return;
 	}

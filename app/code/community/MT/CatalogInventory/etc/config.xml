@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @category    MT
+* @package     MT_CatalogInventory
+* @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+* @license     GNU General Public License version 2 or later
+* @author      MagentoThemes.net
+* @email       support@magentothemes.net
+*/
+-->
+<config>
+    <modules>
+        <MT_CatalogInventory>
+            <version>1.0</version>
+        </MT_CatalogInventory>
+    </modules>
+
+    <global>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                    <catalog_product_edit_tab_inventory>MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory</catalog_product_edit_tab_inventory>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+        <models>
+            <cataloginventory>
+                <rewrite>
+                    <stock_item>MT_CatalogInventory_Model_Stock_Item</stock_item>
+                </rewrite>
+            </cataloginventory>
+            <cataloginventory_resource>
+                <rewrite>
+                    <indexer_stock_default>MT_CatalogInventory_Model_Resource_Indexer_Stock_Default</indexer_stock_default>
+                </rewrite>
+            </cataloginventory_resource>
+        </models>
+    </global>
+
+    <adminhtml>
+        <events>
+            <catalog_product_save_after>
+                <observers>
+                    <mtcataloginventory>
+                        <type>singleton</type>
+                        <class>MT_CatalogInventory_Model_Observer</class>
+                        <method>saveAfterProduct</method>
+                    </mtcataloginventory>
+                </observers>
+            </catalog_product_save_after>
+        </events>
+    </adminhtml>
+</config>
