@@ -40,14 +40,15 @@ $totalPrice = 0;
             <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
             </a>
+            <div class="related-separator">+</div>
         </li>
         <?php foreach ($this->getItems() as $_item): ?>
             <?php if ($_item->isSaleable()): ?>
                 <li class="hide related-<?php echo $_item->getId() ?> related-img-item" style="display: inline-block">
-                    <div class="related-separator">+</div>
                     <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
                         <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
                     </a>
+                    <div class="related-separator">+</div>
                 </li>
             <?php endif ?>
         <?php endforeach ?>

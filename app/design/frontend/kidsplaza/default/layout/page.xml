@@ -66,6 +66,8 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mt/mage/catalog/ProductList.js</script></action>
                 <!--action method="addJs"><script>mt/extensions/jquery/plugins/jquery.hoverIntent.min.js</script></action-->
                 <action method="addJs"><script>mt/kidsplaza/location.js</script></action>
+                <action method="addJs"><script>mt/kidsplaza/jquery.accordion.js</script></action>
+
             </block>
 
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">

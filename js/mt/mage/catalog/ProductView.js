@@ -341,6 +341,7 @@ jQuery('.product-view').each(function(i, product){
         if (!input.length) return;
         var oldValue = !isNaN(input.val()) ? parseInt(input.val()) : 1;
         input.val(oldValue + 1);
+        if (fireEvent) fireEvent($('qty'), 'change');
     });
 
     jQuery('.add-to-cart #arrow-bottom').click(function(){
@@ -349,6 +350,7 @@ jQuery('.product-view').each(function(i, product){
         if (!input.length) return;
         var oldValue = !isNaN(input.val()) ? parseInt(input.val()) : 1;
         input.val(oldValue - 1 < 1 ? 1 : oldValue - 1);
+        if (fireEvent) fireEvent($('qty'), 'change');
     });
 });
 

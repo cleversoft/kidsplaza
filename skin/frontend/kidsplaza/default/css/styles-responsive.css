@@ -302,7 +302,7 @@
     .toolbar .toolbar-view {margin: 20px 0 0 ;}
     .footer-coppyright-inner .social-links {float: left; margin: 20px 0 0;}
 
-    .navbar-inverse .navbar-toggle { margin-top: 35px;}
+    .navbar-inverse .navbar-toggle { margin-top: 12px;}
     .top-cart {width: auto ;}
 
     .cart .form-control {text-align: center ; }
@@ -438,12 +438,78 @@
     .footer-coppyright .footer-coppyright-inner p {text-align: left ;}
 
     #undefined-sticky-wrapper {display: none ;}
+
+
+    .acc { display:none; margin-left: 32px;}
+    .accordion-footer.accordion-show {
+        background:url("../images/opener.png") 100% 70% no-repeat;
+        border:0 none;
+        width:70px;
+        padding:0;
+        text-indent:-99999px;
+        position:absolute;
+        top:0;
+        right:0;
+        cursor:pointer;
+    }
+
+    .accordion-footer {
+        background: url("../images/opener-active.png") no-repeat scroll 100% 70%;
+        border: 0 none;
+        cursor: pointer;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        text-indent: -99999px;
+        top: 0;
+        width: 70px;
+    }
+    .footer-center .items .block-inner {display: inline ; }
+    .footer-center .read {
+        float: left;
+        margin: 10px 0 10px 33px;
+    }
+    .footer-bottom .last  .accordion-footer {top: 10px ;}
+    .footer-bottom  .accordion-footer.accordion-show  ,.footer-bottom .accordion-footer{
+          right: -15px;
+          background-position: 100% 50% ;
+    }
+    .footer-bottom .block h3 {line-height: 25px; width: 230px;}
+    .footer-bottom .block ul {
+        float: left;
+        margin: 10px 0 ;
+    }
+    .footer-bottom .acc {
+        float: left;
+        margin: 0;
+        width: 100%;
+    }
+    table#shopping-cart-table .a-moblie { border-bottom:  1px solid #DEDEE2 ;}
+    table#shopping-cart-table .a-moblie  .edit .edit-left{ float: left ;  }
+    table#shopping-cart-table .a-moblie  .edit .edit-right{ float: left ;  }
+    table#shopping-cart-table .a-center-mobile { float: left ;padding: 20px 0; }
+    table#shopping-cart-table .a-right-mobile { float: left ;padding: 20px 0; text-align: left ;  }
+    table#shopping-cart-table .a-center-mobile a.product-image {
+        border: 1px solid #DEDEE2;
+        display: inline-block;
+        height: 88px;
+        padding-top: 10px;
+        text-align: center;
+    }
+    .cart .product-name a {font-size: 100% ;}
+    .cart .btn-remove, .cart .btn-edit , #shopping-cart-table a.link-wishlist{line-height: 30px;}
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
 
 }
 @media (max-width: 480px) {
-
+    .product-view .related-img-item .related-separator{
+        display: block;
+    }
+    .product-view .related-img-item{
+        width: 100%;
+        text-align: center;
+    }
 }
 @media only screen and (min-width: 400px) and (max-width: 600px) {
 
@@ -528,7 +594,8 @@
 
 
     .footer-center-inner {padding: 10px 0 0 ;}
-    .footer-center .items .block em , .footer-bottom .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px;}
+    .footer-center .items .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px; margin:-4px 12px 0 0  }
+    .footer-bottom .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px; margin:0 12px 0 0  }
     .footer-center .items .block.block-gt em{background-position:-88px 0;}
     .footer-center .items .block.block-hd em{background-position:-128px 0 ;}
     .footer-center .items .block.block-vc em{background-position:-108px 0 ;}
@@ -536,14 +603,14 @@
     .footer-center .items .block.block-service em{background-position: -108px -20px ;}
     .footer-center .items .block.block-cs em{background-position: -88px -20px ;}
     .footer-center .items .block.block-agree em{background-position:-148px 0;}
-    .footer-center .items .widget-static-block {width: 70% ;margin: auto ;}
+    .footer-center .items .widget-static-block {margin: auto ;}
     .footer-center .items .block.ft-tong-dai em { background-position: -128px -20px; }
 
-    .footer-center-inner .items {margin: 0;}
+    .footer-center-inner .items {margin: 0 0 10px;}
     .footer-bottom .block em {background: url("../images/rep-icon.png") -148px -20px no-repeat }
     .footer-bottom .footer-bottom-inner {padding: 0;}
-    .footer-bottom .footer-bottom-inner .container {width: 70% ; margin: auto ;}
-    .footer-bottom .block h3 {background: none ; width: auto ; padding: 0;}
+
+    .footer-bottom .block h3 {background: none ;  padding: 0;}
 
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe { margin:20px auto 0;float: none !important;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}

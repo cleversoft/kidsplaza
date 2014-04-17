@@ -46,15 +46,17 @@ a:focus, button:focus { outline: none; }
 .product-view .price-box .price, .product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 400;}
 .product-view .add-to-cart span{ float: none ; margin: 0 5px 0 0; line-height: 10px;}
 .product-view .add-to-cart span .glyphicon{ font-size: 100% ;}
-.product-view .add-to-cart .qty{ float: left ;border: none; box-shadow: none;/*background-image:url("../images/tick-sl.png");background-position:34px 15px ; background-repeat: no-repeat ;*/ height: 36px;width: 36px; color: #5ec215 ; font-size: 130%; padding:0  5px 0 5px;display: inline-block;}
+.product-view .add-to-cart .qty{ color: #5ec215 ; font-size: 130%; text-align: center;}
+.product-view .quantity .input-group{width: 120px;}
+.product-view .quantity .input-group-btn button{margin: 0;}
 .product-view .add-to-cart .quantity{ float: left ; width: 100% ;}
 .product-view .add-to-cart .mt-qty {background-color: #FFFFFF; background-image: none; border: 1px solid #CCCCCC; float: left ;margin: 0 0 0 5px;}
 .product-view .mt-arrow { float: left ; margin: 10px 0 0}
 .product-view .arrow {cursor:pointer ; margin-bottom: 5px; height:6px;margin-left: 3px; width: 20px; background: url("../images/tick-sl.png") 0 50% no-repeat ;}
 .product-view .arrow.arrow-top { background: url("../images/tick-sl.png") 0 -6px no-repeat ;}
 .product-view .arrow.arrow-bottom {background: url("../images/tick-sl.png") 0 0 no-repeat ;}
-.product-view .add-to-cart label{font-size: 130%; float: left ; line-height: 35px;}
-.product-view .add-to-cart .add-bt{float: left ; width: 100% ; margin: 25px 0 0  ;}
+.product-view .add-to-cart label{font-size: 130%; float: left ; line-height: 35px;margin-right: 10px;}
+.product-view .add-to-cart .add-bt{float: left; width: 100% ; margin: 0;}
 .product-view .add-to-links{padding: 20px 0;}
 .product-view .add-to-links li{display: inline-block;}
 .product-view .product-essential{margin-bottom: 0; }
@@ -113,10 +115,11 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .ratings .amount {background: url(../images/bgLable.png) no-repeat -122px -20px; display: inline-block;width: 26px;height: 19px;vertical-align: top;color: #fff;font-size: 11px;}
 .product-view .product-options .attr-img{ border: 1px solid #fff; padding: 1px;display: inline-block;}
 .product-view .product-options .attr-img.active{ border: 1px solid #007d9e;}
-.product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 0 0 20px; height: 18px;overflow: hidden;}
-.product-view .product-shop .short-desc.expand li {height: auto;overflow: visible;}
+.product-view .product-shop .short-desc li { background-image: url("../images/iconview.png"); background-position: 0 6px; background-repeat: no-repeat ; padding: 0 0 0 20px;height: auto;overflow: visible;}
+.product-view .product-shop .collap li {height: 18px;overflow: hidden;}
 .category-products .products-grid .product-name{font-size: 110%;font-family: 'Open Sans',arial, sans-serif;height: 32px;overflow: hidden;}
 .related-action .btn{ color: #fff;font-family: 'Roboto Slab','Open Sans','Arial';}
+.product-view .related-img li{margin-bottom: 20px;}
 
 #product-related h3,
 #product-combo h3,
@@ -225,7 +228,8 @@ header .social-links {margin : 10px 0 0; }
 .social-links li.google{background-position:-185px 0}
 .btn{border-radius:0;}
 .product-view .related-separator,.product-view .combo-separator{display: inline-block;font-size: 30px; font-weight: 700; color: #01a1ed;}
-.product-view .related-img-item.first .related-separator{display: none;}
+.product-view .related-img-item:last-child .related-separator{display: none;}
+.product-view .related-img-item a:hover{text-decoration: none;}
 .btn:active,.btn:focus{color:#fff}
 .btn-login{color:#fff;background-color:#ff4884;border-color:#ff4884;border-radius:0;}
 .btn-login:hover{color:#fff;background-color:#f2004f;border-color:#f2004f}
@@ -365,7 +369,7 @@ input,textarea{outline:0}
 .footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;z-index:2;float:left;width:100%}
 .footer-center-inner{padding:50px 0 20px 0;background-color:#0095d6}
 .footer-center ul{list-style:none}
-.footer-center ul li a{font-size:13px;}
+.footer-center ul li a{font-size:13px; transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;}
 .footer-center a,
 .footer-center h3,
 .footer-center span{color:#fff;font-family:'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif}
