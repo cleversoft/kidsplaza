@@ -70,3 +70,23 @@
         alt="<?php echo $this->htmlEscape($_product->getName())?>"/>
 </p>
 <?php endif; ?>
+<div class="more-views-horizontal">
+    <a class="horizontal-prev horizontal-nav" href="javascript:void(0)" id="carousel-horizontal-up">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+    </a>
+    <div class="media-list-horizontal">
+        <div id="thumbs_horizontal" class="cycle-slideshow horizontal">
+            <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <a><img class="<?php echo $_image->getFile() == $_product->getImage() ? 'active' : '' ?>"
+                        width="85" height="85"
+                        data-small="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(430)?>"
+                        data-large="<?php echo $_image->getUrl()?>"
+                        src="<?php echo $_imgHelper->init($_product, 'image', $_image->getFile())->resize(84)?>"/>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <a class="horizontal-next horizontal-nav" href="javascript:void(0)" id="carousel-horizontal-down">
+        <i class="glyphicon glyphicon-chevron-right"></i>
+    </a>
+</div>

@@ -448,6 +448,16 @@
 @media only screen and (min-width: 400px) and (max-width: 600px) {
 
 }
+@media only screen and (min-width: 300px) and (max-width: 555px) {
+    .product-img-box .more-views {display: none;}
+    .product-img-box .more-views-horizontal {display: inline-block; margin-bottom: 20px;}
+}
+@media only screen and (min-width: 300px) and (max-width: 360px) {
+    .product-img-box .more-views {display: none;}
+    .product-img-box .more-views-horizontal {display: inline-block; margin-bottom: 20px;}
+    .product-view .more-views-horizontal {width: 355px;}
+    .product-img-box {padding: 0 2px;}
+}
 @media (max-width: 360px) {
 
 }
