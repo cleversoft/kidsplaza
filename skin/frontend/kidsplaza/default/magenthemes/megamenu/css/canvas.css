@@ -325,7 +325,7 @@ ul.nav-accordion li span.collapse {
     margin: 0;
     padding-left: 15px;
 }
-.mt-menu ul.nav-accordion li a:hover { background: #FC4C8C ;}
+.mt-menu ul.nav-accordion li a:hover { color: #FC4C8C ;}
 .mt-menu a {
     border-bottom: 1px solid #565656;
     color: #FFFFFF;

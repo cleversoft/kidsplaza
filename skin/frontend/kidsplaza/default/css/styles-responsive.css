@@ -543,7 +543,7 @@
     .footer-bottom .block em {background: url("../images/rep-icon.png") -148px -20px no-repeat }
     .footer-bottom .footer-bottom-inner {padding: 0;}
     .footer-bottom .footer-bottom-inner .container {width: 70% ; margin: auto ;}
-    .footer-bottom .block h3 {background: none ;}
+    .footer-bottom .block h3 {background: none ; width: auto ; padding: 0;}
 
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe { margin:20px auto 0;float: none !important;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}
