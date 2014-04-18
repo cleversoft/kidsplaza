@@ -42,15 +42,15 @@ $category   = Mage::registry('current_category');
     <?php if ($title): ?>
         <h3 class="utm-cookies"><?php echo $title ?></h3>
     <?php endif ?>
-    <div class="slider-attribute-wrapper <?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
+    <ul class="grid-6 slider-attribute-wrapper <?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
         <?php foreach ($attributes as $attribute): ?>
-            <div class="attribute-brands">
+            <li class="attribute-brands">
                 <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
                     <img src="<?php echo strpos($attribute['image'], 'http') === 0 ? $attribute['image'] : Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media') .DS. $attribute['image'], 80) ?>" alt="<?php echo $attribute['label'] ?>" />
                 </a>
-            </div>
+            </li>
         <?php endforeach ?>
-    </div>
+    </ul>
 </div>
 <?php endif ?>
 <?php endif ?>

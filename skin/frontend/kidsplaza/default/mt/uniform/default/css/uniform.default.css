@@ -90,7 +90,7 @@ div.selector {
     left: 0px;
     width: 100%; }
   div.selector.active {
-    background-position: 0 -156px; }
+    background-position: 0 -157px; }
     div.selector.active span {
       background-position: right -26px; }
   div.selector.hover, div.selector.focus {
@@ -98,9 +98,9 @@ div.selector {
     div.selector.hover span, div.selector.focus span {
       background-position: right -53px; }
     div.selector.hover.active, div.selector.focus.active {
-      background-position: 0 -208px; }
+      background-position: 0 -210px; }
       div.selector.hover.active span, div.selector.focus.active span {
-        background-position: right -78px; }
+        background-position: right -79px; }
   div.selector.disabled, div.selector.disabled.active {
     background-position: 0 -234px; }
     div.selector.disabled span, div.selector.disabled.active span {
