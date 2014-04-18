@@ -564,7 +564,7 @@ input,textarea{outline:0}
 .block-subscribe input{height:40px; border-radius:0 ; border: none ; background:url("../images/bgSubscribe.png") 0 50% no-repeat;}
 .fields{clear:both}
 .fields .field{width:50%;float:left}
-.fields .input-box{padding:5px 5px 5px 0}
+.fields .input-box{padding:1px 5px 1px 0}
 .fields .input-box input,.fields .input-box select{width:100%;border-radius:0}
 .required em{color:red;float:right}
 .fields label{font-weight:400;margin-bottom:0}
@@ -586,7 +586,7 @@ input,textarea{outline:0}
 .catalog-product-view .col-main{clear: both;}
 .catalog-product-view .product-image img{padding: 0;}
 .opc .please-wait{margin-top:20px;display:block}
-input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px;}
+input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px; box-shadow: none;}
 .opc .panel-heading{padding:6px 15px}
 .checkout-login-loading{width:16px;height:16px;margin-left:5px}
 #co-shipping-form .fields label{margin-left:3px}
@@ -708,7 +708,7 @@ span.product-sku{vertical-align: top;}
 .form-list .name-middlename input.input-text{width:49px}
 .form-list .input-box{display:block;clear:both;width:100%}
 .form-list .input-box input.input-text ,
-.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; box-shadow: 3px 3px 3px -1px #CCCCCC inset; height: 25px ; border: 1px solid #ccc ;}
+.form-list .input-box input.input-sm{width:100%;padding:5px;margin:0 0 10px ; height: 24px ; border: 1px solid #d7d7d7; box-shadow: none;}
 .form-list .customer-dob input.input-text{display:block;width:74px}
 .form-list .customer-dob label{font-size:80%;font-weight:normal;color:#888}
 .form-list .customer-dob .dob-year{float:left;width:85px;width:140px}
