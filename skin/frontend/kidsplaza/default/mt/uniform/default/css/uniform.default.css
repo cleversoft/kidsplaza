@@ -173,7 +173,9 @@ div.radio {
     display: inline-block;
     *display: inline;
     zoom: 1;
-    text-align: center; }
+    text-align: center;
+      margin: 0 !important;
+  }
   div.radio.active span {
     background-position: -18px -18px -279px; }
     div.radio.active span.checked {
