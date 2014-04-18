@@ -191,7 +191,7 @@ jQuery(document).ready(function() {
     },function(){
         jQuery(this).next().hide();
     });
-    jQuery("select, input[type='radio'], input[type='checkbox']").uniform();
+    jQuery.fn.uniform && jQuery("select, input[type='radio'], input[type='checkbox']").uniform();
 });
 !function(d,s,id){
     var js,fjs=d.getElementsByTagName(s)[0];
