@@ -108,6 +108,12 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
                         <?php endif ?>
                     </div>
                 <?php endif ?>
+
+                <div class="a-remove">
+                    <a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>" class="btn-remove">
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </div>
         </div>
 
         <?php if ($canApplyMsrp): ?>
@@ -299,11 +305,6 @@ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage
         </div>
     <?php endif; ?>
 
-    <div class="a-center">
-        <a href="<?php echo $this->getDeleteUrl()?>" title="<?php echo $this->__('Remove item')?>" class="btn-remove">
-            <i class="glyphicon glyphicon-remove"></i>
-        </a>
-    </div>
 </tr>
 <?php else: ?>
 <tr>
