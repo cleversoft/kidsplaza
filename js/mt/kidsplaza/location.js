@@ -211,7 +211,8 @@ jQuery(document).ready(function() {
     },function(){
         jQuery(this).next().hide();
     });
-    jQuery.fn.uniform && jQuery("select, input[type='radio'], input[type='checkbox']").uniform();
+    jQuery.fn.uniform && jQuery("select, input[type='checkbox']").uniform();
+    jQuery.fn.uniform && jQuery("input[type='radio']").not(".rating-star").uniform();
 });
 //set product grid height
 setGridItemsEqualHeight();
