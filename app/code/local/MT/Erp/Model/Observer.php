@@ -360,6 +360,7 @@ class MT_Erp_Model_Observer{
      * Send new customer to ERP
      */
     public function customerRegisterSuccess($observer, $customer=null){
+        if (!$this->_getMSSQLConnection()) return;
         $customer = $customer ? $customer : $observer->getEvent()->getCustomer();
         /* @var $customer Mage_Customer_Model_Customer */
         if ($customer->getId() && $customer->getPhoneNumber()){
