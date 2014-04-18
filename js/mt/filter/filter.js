@@ -79,6 +79,7 @@ MTFilter.prototype = {
         });
         ensureEqualHeight('.catalog-category-view .col2-left-layout > .row');
         initCountDown();
+        setGridItemsEqualHeight();
         Cufon.replace('.utm-cookies');
     },
     injectLoadMore: function(){
