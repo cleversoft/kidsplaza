@@ -266,7 +266,7 @@
     .top-cart .popover .arrow {left: -20px !important;}
     .header-top-right {width: 105px;}
     .header-top-right .vr{border: none ;}
-    .top-banner li {width: 100% ; text-align: left ;}
+    .top-banner li {width: 50% ; text-align: left ;}
     .home-combo-carousel-wrapper  .owl-item .item .product-name {font-size: 12px;}
     .header-top .header-top-inner .col-lg-3 {margin: 20px 0 0 ;}
     .slider-product-wrapper .nav-tabs-wrapper .nav-tabs { float: left;}
@@ -464,7 +464,8 @@
     }
     table#shopping-cart-table .a-moblie { border-bottom:  1px solid #DEDEE2 ;}
     table#shopping-cart-table .a-moblie  .edit .edit-left ,
-    table#shopping-cart-table .a-moblie  .edit .edit-right{ float: left ; width: 50% ; }
+    table#shopping-cart-table .a-moblie  .edit .edit-right,
+    table#shopping-cart-table .a-moblie  .edit .a-remove{ float: left ; width: 30px ; margin-right: 5px; }
     table#shopping-cart-table .a-center-mobile { float: left ;padding: 20px 0; }
     table#shopping-cart-table .a-right-mobile { float: left ;padding: 20px 0; text-align: left ;  }
     table#shopping-cart-table .a-center-mobile a.product-image {
@@ -517,7 +518,7 @@
 
 }
 @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .top-banner li ,
+    .top-banner li{width: 25% ;}
     .grid-5 li {width: 50% ;}
     .top-banner li {height: 20px; margin: 20px  0; padding-right: 0;}
     .tabs  { padding: 0 ;}
