@@ -122,28 +122,7 @@
 
     .table-striped > tbody > tr td .glyphicon { line-height: 0; display: inline ;}
 
-    table#checkout-review-table {
-        outline:none;
-        border:0;
-    }
-    table#checkout-review-table td {
-        display:block;
-        float:none;
-        text-align:center;
-    }
-    table#checkout-review-table th {
-        display:block;
-        float:none;
-        text-align:center;
-    }
-    table#checkout-review-table tr.last td.last { border-bottom:1px solid #dddddd; }
-    table#checkout-review-table tr.last th.last { border-bottom:1px solid #dddddd; }
-    table#super-product-table td{
-        display:block;
-        float:none;
-        text-align:center;
-        padding:5px;
-    }
+
 }
 @media (min-width: 768px) and (max-width: 991px) {
     .header-bot {height: auto ;}
@@ -310,7 +289,7 @@
     .cart .input-group {margin: 15px auto 0;}
     .cart tfoot .btn.btn-update {float: none !important ;}
     .cart tfoot .btn-ribbon {display: block ; text-align: center ; margin: auto ;}
-    table#checkout-review-table {
+    /*table#checkout-review-table {
         outline:none;
         border:0;
     }
@@ -325,7 +304,7 @@
         text-align:center;
     }
     table#checkout-review-table tr.last td.last { border-bottom:1px solid #dddddd; }
-    table#checkout-review-table tr.last th.last { border-bottom:1px solid #dddddd; }
+    table#checkout-review-table tr.last th.last { border-bottom:1px solid #dddddd; }*/
     table#super-product-table td{
         display:block;
         float:none;
@@ -469,7 +448,6 @@
         float: left;
         margin: 10px 0 10px 33px;
     }
-    .footer-bottom .last  .accordion-footer {top: 10px ;}
     .footer-bottom  .accordion-footer.accordion-show  ,.footer-bottom .accordion-footer{
           right: -15px;
           background-position: 100% 50% ;
@@ -485,8 +463,8 @@
         width: 100%;
     }
     table#shopping-cart-table .a-moblie { border-bottom:  1px solid #DEDEE2 ;}
-    table#shopping-cart-table .a-moblie  .edit .edit-left{ float: left ;  }
-    table#shopping-cart-table .a-moblie  .edit .edit-right{ float: left ;  }
+    table#shopping-cart-table .a-moblie  .edit .edit-left ,
+    table#shopping-cart-table .a-moblie  .edit .edit-right{ float: left ; width: 50% ; }
     table#shopping-cart-table .a-center-mobile { float: left ;padding: 20px 0; }
     table#shopping-cart-table .a-right-mobile { float: left ;padding: 20px 0; text-align: left ;  }
     table#shopping-cart-table .a-center-mobile a.product-image {
@@ -495,9 +473,17 @@
         height: 88px;
         padding-top: 10px;
         text-align: center;
+        float: left;
     }
     .cart .product-name a {font-size: 100% ;}
     .cart .btn-remove, .cart .btn-edit , #shopping-cart-table a.link-wishlist{line-height: 30px;}
+    .footer-center-inner .row {margin: 0;}
+    .cart .input-group { margin: 15px 0 0 ;}
+    .cart-mobile .a-center { text-align: left ; float: left ;  width: 100% ;}
+    .cart-mobile .a-center span { line-height: 30px;}
+    .opc li {padding: 0;}
+
+    .footer-center-inner .items { padding: 0;}
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
 
@@ -592,7 +578,6 @@
     .product-view #product-review {padding: 0;}
     .product-view .box-reviews {margin: 0;}
 
-
     .footer-center-inner {padding: 10px 0 0 ;}
     .footer-center .items .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px; margin:-4px 12px 0 0  }
     .footer-bottom .block em {background: url("../images/rep-icon.png") -88px 0 no-repeat ; width: 20px ; height: 20px; margin:0 12px 0 0  }
@@ -607,6 +592,7 @@
     .footer-center .items .block.ft-tong-dai em { background-position: -128px -20px; }
 
     .footer-center-inner .items {margin: 0 0 10px;}
+    .footer-bottom .items {margin: 0 ;}
     .footer-bottom .block em {background: url("../images/rep-icon.png") -148px -20px no-repeat }
     .footer-bottom .footer-bottom-inner {padding: 0;}
 
@@ -615,5 +601,5 @@
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe { margin:20px auto 0;float: none !important;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group { margin: auto ; width: 80% ;}
-
+    .fields .input-box input, .fields .input-box select {width: 250px;}
 }

@@ -91,7 +91,7 @@ if (!Mage::getStoreConfig('mtonestepcheckout/settings/cart')) return;
                 </tbody>
             </table>
 
-			<table id="shopping-cart-table" class="hidden-lg hidden-sm  cart-mobile">
+			<table id="shopping-cart-table" class="hidden-lg hidden-sm hidden-md cart-mobile">
                 <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
                 <thead>
                     <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
