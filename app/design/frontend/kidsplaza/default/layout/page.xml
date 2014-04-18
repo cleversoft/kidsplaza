@@ -37,7 +37,7 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>js_css</type><css>bootstrap/css/bootstrap.min.css</css></action>
                 <action method="addCss"><stylesheet>css/styles.css</stylesheet></action>
                 <action method="addCss"><stylesheet>css/styles-responsive.css</stylesheet></action>
-                <action method="addCss"><stylesheet>mt/uniform/aristo/css/uniform.aristo.css</stylesheet></action>
+                <action method="addCss"><stylesheet>mt/uniform/default/css/uniform.default.css</stylesheet></action>
                 <action method="addItem"><type>js</type><js>html5shiv/html5shiv.js</js><params/><if>lt IE 9</if></action>
                 <action method="addItem"><type>js</type><js>respond/respond.min.js</js><params/><if>lt IE 9</if></action>
 

@@ -1,40 +1,37 @@
 /*
 
-Uniform Theme: Aristo
-Version: 1.1
-By: 280North / Ported by Josh Pyles
-License: Creative Commons Share Alike
+Uniform Theme: Uniform Default
+Version: 1.8
+By: Josh Pyles
+License: MIT License
 ---
 For use with the Uniform plugin:
 http://uniformjs.com/
 
 */
 
-$button-height: 32px;
+$button-height: 30px;
 $button-margin-left: 13px;
-$button-padding: 5px 15px 5px 2px;
+$button-padding: 8px 15px 0 2px;
 $button-span-height: 22px;
-$checkbox-height: 23px;
-$checkbox-width: 23px;
-$input-background-focus: "../images/bg-input-focus-aristo.png";
-$input-background: "../images/bg-input-aristo.png";
-$input-padding: 4px;
-$radio-height: 23px;
-$radio-width: 23px;
+$checkbox-height: 19px;
+$checkbox-width: 19px;
+$input-padding: 3px;
+$radio-height: 18px;
+$radio-width: 18px;
 $select-fixed-width: 190px;
-$select-height: 32px;
+$select-height: 26px;
 $select-margin-left: 10px;
 $select-margin-right: 25px;
-$select-select-height: 24px;
-$select-select-top: 4px;
-$sprite: "../images/sprite-aristo.png";
-$upload-action-width: 90px;
-$upload-filename-margin-left: 4px;
-$upload-filename-margin-top: 4px;
-$upload-filename-margin-bottom: 4px;
+$select-select-height: 22px;
+$select-select-top: 2px;
+$upload-action-width: 82px;
+$upload-filename-margin-top: 2px;
+$upload-filename-margin-bottom: 2px;
+$upload-filename-margin-left: 2px;
+$upload-filename-width: 85px;
 $upload-filename-padding: 0 10px;
-$upload-filename-width: 76px;
-$upload-height: 32px;
+$upload-height: 28px;
 $upload-width: 190px;
 
 @import "../../_base/css/uniform._base.scss";
@@ -44,32 +41,31 @@ $upload-width: 190px;
 #{$class-wrapper-element}#{$class-wrapper} input#{$class-input},
 #{$class-wrapper-element}#{$class-wrapper} select#{$class-multiselect},
 #{$class-wrapper-element}#{$class-wrapper} textarea#{$class-textarea} {
-	font-size: 14px;
+	font-size: 12px;
 	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	color: #777;
-	background-color: #a1cbe2;
 	border-top: solid 1px #aaa;
 	border-left: solid 1px #aaa;
 	border-bottom: solid 1px #ccc;
 	border-right: solid 1px #ccc;
-	@include border-radius(3px);
+	@include border-radius($input-padding);
 
 	@include whenHover {
-		@include box-shadow(0 0 4px rgba(0,0,0,0.3));
+		@include box-shadow(0px 0px 4px rgba(0,0,0,0.3));
 		border-color: #999;
-		background-color: #a1cbe2;
 	}
 }
 
-/* Uploader */
+/* PRESENTATION */
 
+/* Buttons */
 
 div#{$class-wrapper}#{$class-button} {
 	span {
 		font-weight: bold;
 		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-		font-size: 13px;
+		font-size: 12px;
 		letter-spacing: 1px;
 		text-transform: uppercase;
 	}
@@ -91,9 +87,7 @@ div#{$class-wrapper}#{$class-button} {
 /* Select */
 
 div#{$class-wrapper}#{$class-select} {
-	font-weight: bold;
-	color: #464545;
-	font-size: 14px;
+	font-size: 12px;
 
 	span {
 		color: #666;
@@ -102,8 +96,7 @@ div#{$class-wrapper}#{$class-select} {
 
 	select {
 		font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-		font-size: 1em;
-		border: solid 1px #fff;
+		font-size: 12px;
 	}
 
 	@include whenDisabled {
@@ -113,28 +106,28 @@ div#{$class-wrapper}#{$class-select} {
 	}
 }
 
-
-
 /* Checker */
 div#{$class-wrapper}#{$class-checkbox} {
-	margin-right: 10px;
+	margin-right: 5px;
 }
 
 /* Radio */
 div#{$class-wrapper}#{$class-radio} {
-	margin-right: 10px;
+	margin-right: 3px;
 }
 
+/* Uploader */
 div#{$class-wrapper}#{$class-upload} {
 	span#{$class-action} {
-		text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+		text-shadow: #fff 0px 1px 0px;
 		background-color: #fff;
+		font-size: 11px;
 		font-weight: bold;
-		color: #1c4257;
 	}
 
 	span#{$class-filename} {
 		color: #777;
+		border-right: solid 1px #bbb;
 		font-size: 11px;
 	}
 
@@ -147,5 +140,11 @@ div#{$class-wrapper}#{$class-upload} {
 			border-color: #ddd;
 			color: #aaa;
 		}
+	}
+}
+
+#{$class-wrapper-element}#{$class-wrapper} input#{$class-input} {
+	&, &:focus {
+		background-color: #fff;
 	}
 }
