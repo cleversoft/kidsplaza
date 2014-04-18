@@ -44,11 +44,13 @@ a:focus, button:focus { outline: none; }
 .product-view .horizontal-nav .glyphicon { color: #eeeeee ; font-size: 90%;top: 2px; left: 4px;}
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price, .product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 400;}
-.product-view .add-to-cart span{ float: none ; margin: 0 5px 0 0; line-height: 10px;}
+.product-view .add-to-cart span{ float: none ; line-height: 10px;}
+.product-view .add-to-cart .input-group-btn{width: 34px; display: inline-block;vertical-align: top;}
 .product-view .add-to-cart span .glyphicon{ font-size: 100% ;}
-.product-view .add-to-cart .qty{ color: #5ec215 ; font-size: 130%; text-align: center;}
-.product-view .quantity .input-group{width: 120px;}
-.product-view .quantity .input-group-btn button{margin: 0;}
+.product-view .add-to-cart .qty{ color: #5ec215 ; font-size: 130%; text-align: center;width: 36px;padding: 0;float: none;}
+.product-view .quantity .input-group{width: 105px;}
+.product-view .quantity .input-group-btn button{margin: 0;width: 100%;}
+.product-view .quantity .input-group-btn button:focus{outline: none;}
 .product-view .add-to-cart .quantity{ float: left ; width: 100% ;}
 .product-view .add-to-cart .mt-qty {background-color: #FFFFFF; background-image: none; border: 1px solid #CCCCCC; float: left ;margin: 0 0 0 5px;}
 .product-view .mt-arrow { float: left ; margin: 10px 0 0}
