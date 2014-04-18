@@ -14,11 +14,12 @@ $_core = $this->helper('core/string');
 <div class="category-products root-category">
     <?php $column = 5 ?>
     <?php $categories = $_category->getChildrenCategories() ?>
+    <ul class="show-grid grid-5 products-grid">
     <?php $i=0; foreach ($categories as $c): ?>
         <?php /** @var $c Mage_Catalog_Model_Category */ ?>
         <?php $c->load($c->getId(), array('image')) ?>
         <?php if ($i++ % $column === 0): ?>
-            <ul class="grid-5 products-grid">
+            <!--ul class="grid-5 products-grid"-->
         <?php endif ?>
         <li class="item">
             <h2 class="product-name">
@@ -43,7 +44,8 @@ $_core = $this->helper('core/string');
             <?php endif ?>
         </li>
         <?php if ($i % $column === 0 || $i == count($categories)): ?>
-            </ul>
+            <!--/ul-->
         <?php endif ?>
     <?php endforeach ?>
+    </ul>
 </div>
