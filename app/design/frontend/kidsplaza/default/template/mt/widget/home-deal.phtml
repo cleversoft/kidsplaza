@@ -19,13 +19,10 @@ $_id = $this->getConfig('id');
     };
 </script>
 <div class="deals-wrapper owl-carousel" id="<?php echo $_id ?>">
-    
     <?php foreach ($this->getProductCollection() as $product): ?>
-
         <li class="deal-item">
 		    <div class="label-deal">&nbsp;</div>
             <div class="deal-item-inner">
-
                 <div class="deal-item-percent utm-cookies">
                      <?php echo floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice()) ?>% 
                 </div>
@@ -43,7 +40,7 @@ $_id = $this->getConfig('id');
                     </a>
                 </div>
 				<h2 class="deal-item-name">
-                       <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ;?></a>
+                   <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ;?></a>
                 </h2>
             </div>
         </li>

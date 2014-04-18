@@ -22,4 +22,15 @@ class MT_DiscountFilter_Model_Observer{
             $block->setChild('discount_filter', $discountBlock);
         }
     }
+
+    public function mtsearchPrepareLayout($observer){
+        $block = $observer->getEvent()->getBlock();
+        if ($this->isEnable()){
+            $discountBlock = $block->getLayout()->createBlock('discountfilter/catalogSearch_layer_filter_discount')
+                ->setLayer($block->getLayer())
+                ->init();
+
+            $block->setChild('discount_filter', $discountBlock);
+        }
+    }
 }

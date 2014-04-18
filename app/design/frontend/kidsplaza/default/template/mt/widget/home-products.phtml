@@ -112,7 +112,7 @@ $_core              = $this->helper('core/string');
             <!--start slide--><div class="slide">
         <?php endif ?>
             <?php if ($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
-            <ul class="grid-<?php echo $_column?> products-grid<?php echo $_scroll==1 && $_rowCount==1 ? ' slides' : ''?>">
+            <ul class="grid-<?php echo $_column?> show-grid products-grid<?php echo $_scroll==1 && $_rowCount==1 ? ' slides' : ''?>">
         <?php endif ?>
             <li class="slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
                 <?php $i++ ?>

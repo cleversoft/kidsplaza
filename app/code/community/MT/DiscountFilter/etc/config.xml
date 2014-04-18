@@ -46,6 +46,15 @@
                     </discountfilter>
                 </observers>
             </mtfilter_prepare_layout>
+            <mtsearch_prepare_layout>
+                <observers>
+                    <discountfilter>
+                        <type>singleton</type>
+                        <class>discountfilter/observer</class>
+                        <method>mtsearchPrepareLayout</method>
+                    </discountfilter>
+                </observers>
+            </mtsearch_prepare_layout>
         </events>
     </global>
 

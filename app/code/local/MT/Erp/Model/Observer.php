@@ -61,9 +61,9 @@ class MT_Erp_Model_Observer{
 
     protected function log($message, $level=Zend_Log::INFO){
         if (!$this->_logger){
-            $date = Mage::getModel('core/date');
-            $logDir = Mage::getBaseDir('media') . DS . 'erp';
-            $logFile = uniqid($date->date('Y-m-d-H-i-')) . '.log';
+            $date       = Mage::getModel('core/date');
+            $logDir     = Mage::getBaseDir('media') . DS . 'erp';
+            $logFile    = uniqid($date->date('Y-m-d-H-i-')) . '.log';
             $this->_logFile = $logFile;
 
             if (!is_dir($logDir)){
@@ -71,9 +71,9 @@ class MT_Erp_Model_Observer{
                 chmod($logDir, 0777);
             }
 
-            if (!file_exists($logFile)){
-                file_put_contents($logFile, '');
-                chmod($logFile, 0777);
+            if (!file_exists($logDir . DS . $logFile)){
+                file_put_contents($logDir . DS . $logFile, '');
+                chmod($logDir . DS . $logFile, 0777);
             }
 
             $format = '%timestamp% %priorityName%: %message%' . PHP_EOL;
