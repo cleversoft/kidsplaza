@@ -252,58 +252,99 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
         $urlModel = Mage::getModel('core/url_rewrite');
         /* @var $urlModel Mage_Core_Model_Url_Rewrite */
         $urlModel->setStoreId(Mage::app()->getStore()->getId());
-        $urlModel->loadByIdPath($url);
-        if ($urlModel->getId()) return Mage::getUrl().$urlModel->getRequestPath();
-        else{
+
+        switch ($url){
+            case 'customer/account/login':
+            case 'customer/account/login/':
+                $urlModel->setIdPath('customer/account/login/');
+                $urlModel->setRequestPath('tai-khoan/dang-nhap');
+                break;
+            case 'customer/account/forgotpassword':
+            case 'customer/account/forgotpassword/':
+                $urlModel->setIdPath('customer/account/forgotpassword/');
+                $urlModel->setRequestPath('tai-khoan/quen-mat-khau');
+                break;
+            case 'customer/account':
+            case 'customer/account/':
+            case 'customer/account/index':
+            case 'customer/account/index/':
+                $urlModel->setIdPath('customer/account/');
+                $urlModel->setRequestPath('tai-khoan');
+                break;
+            case 'customer/account/edit':
+            case 'customer/account/edit/':
+                $urlModel->setIdPath('customer/account/edit/');
+                $urlModel->setRequestPath('tai-khoan/thay-doi-thong-tin-tai-khoan');
+                break;
+            case 'sales/order/history':
+            case 'sales/order/history/':
+                $urlModel->setIdPath('sales/order/history/');
+                $urlModel->setRequestPath('tai-khoan/don-hang-cua-toi');
+                break;
+            case 'customer/address':
+            case 'customer/address/':
+            case 'customer/address/index':
+            case 'customer/address/index/':
+                $urlModel->setIdPath('customer/address/index/');
+                $urlModel->setRequestPath('tai-khoan/so-dia-chi');
+                break;
+            case 'customer/address/new':
+            case 'customer/address/new/':
+                $urlModel->setIdPath('customer/address/new/');
+                $urlModel->setRequestPath('tai-khoan/so-dia-chi-moi');
+                break;
+            case 'customer/address/edit':
+            case 'customer/address/edit/':
+                $urlModel->setIdPath('customer/address/edit/');
+                $urlModel->setRequestPath('tai-khoan/sua-dia-chi');
+                break;
+            case 'newsletter/manage':
+            case 'newsletter/manage/':
+            case 'newsletter/manage/index':
+            case 'newsletter/manage/index/':
+                $urlModel->setIdPath('newsletter/manage/index/');
+                $urlModel->setRequestPath('tai-khoan/danh-sach-nhan-tin');
+                break;
+            case 'downloadable/customer/products':
+            case 'downloadable/customer/products/':
+                $urlModel->setIdPath('downloadable/customer/products/');
+                $urlModel->setRequestPath('tai-khoan/san-pham-so');
+                break;
+            case 'wishlist':
+            case 'wishlist/':
+            case 'wishlist/index':
+            case 'wishlist/index/':
+            case 'wishlist/index/index':
+            case 'wishlist/index/index/':
+                $urlModel->setIdPath('wishlist/');
+                $urlModel->setRequestPath('tai-khoan/danh-sach-yeu-thich');
+                break;
+            case 'mtpoint/point':
+            case 'mtpoint/point/':
+            case 'mtpoint/point/index':
+            case 'mtpoint/point/index/':
+                $urlModel->setIdPath('mtpoint/point');
+                $urlModel->setRequestPath('tai-khoan/diem-tich-luy');
+                break;
+            case 'customer/account/logout':
+            case 'customer/account/logout/':
+                $urlModel->setIdPath('customer/account/logout/');
+                $urlModel->setRequestPath('tai-khoan/dang-xuat');
+                break;
+        }
+
+        $urlModel->loadByIdPath($urlModel->getIdPath());
+
+        if ($urlModel->getId()){
+            return Mage::getUrl().$urlModel->getRequestPath();
+        }else{
             try{
-                $urlModel->setIsSystem(0)->setIdPath($url)
-                    ->setTargetPath($url);
-                switch($url){
-                    case 'customer/account/login/':
-                        $urlModel->setRequestPath('tai-khoan/dang-nhap');
-                        break;
-                    case 'customer/account/forgotpassword/':
-                        $urlModel->setRequestPath('tai-khoan/quen-mat-khau');
-                        break;
-                    case 'customer/account/':
-                    case 'customer/account/index/':
-                        $urlModel->setRequestPath('tai-khoan');
-                        break;
-                    case 'customer/account/edit/':
-                        $urlModel->setRequestPath('tai-khoan/thong-tin-tai-khoan');
-                        break;
-                    case 'sales/order/history/':
-                        $urlModel->setRequestPath('tai-khoan/don-hang-cua-toi');
-                        break;
-                    case 'customer/address/':
-                        $urlModel->setRequestPath('tai-khoan/so-dia-chi');
-                        break;
-                    case 'customer/address/new/':
-                        $urlModel->setRequestPath('tai-khoan/so-dia-chi-moi');
-                        break;
-                    case 'customer/address/edit/':
-                        $urlModel->setRequestPath('tai-khoan/sua-dia-chi');
-                        break;
-                    case 'newsletter/manage/':
-                        $urlModel->setRequestPath('tai-khoan/danh-sach-nhan-tin');
-                        break;
-                    case 'downloadable/customer/products':
-                        $urlModel->setRequestPath('tai-khoan/san-pham-so');
-                        break;
-                    case 'wishlist/':
-                        $urlModel->setRequestPath('tai-khoan/danh-sach-yeu-thich');
-                        break;
-                    case 'mtpoint/point':
-                        $urlModel->setRequestPath('tai-khoan/diem-tich-luy');
-                        break;
-                    case 'customer/account/logout/':
-                        $urlModel->setRequestPath('tai-khoan/dang-xuat');
-                        break;
-                }
+                $urlModel->setIsSystem(0);
+                $urlModel->setTargetPath($urlModel->getIdPath());
                 $urlModel->save();
                 return Mage::getUrl().$urlModel->getRequestPath();
             }catch (Exception $e){
-                return '';
+                return Mage::getUrl($url);
             }
         }
     }

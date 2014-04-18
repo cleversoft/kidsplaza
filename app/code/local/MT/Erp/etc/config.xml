@@ -32,6 +32,17 @@
                 <class>MT_Erp_Model</class>
             </mterp>
         </models>
+        <events>
+            <customer_register_success>
+                <observers>
+                    <mterp>
+                        <type>singleton</type>
+                        <class>mterp/observer</class>
+                        <method>customerRegisterSuccess</method>
+                    </mterp>
+                </observers>
+            </customer_register_success>
+        </events>
     </global>
 
     <admin>

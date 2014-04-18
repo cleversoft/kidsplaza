@@ -1,22 +1,24 @@
 <?php
-class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends Mage_Adminhtml_Block_Catalog_Product_Grid
+class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Grid
 {
     protected function _prepareColumns()
     {
         $this->addColumnAfter('groupon_enable', array(
-                'header'=> $this->__('Groupon'),
-                'width' => '70px',
-                'index' => 'groupon_enable',
-                'type'  => 'options',
-                'options' => array(1 => $this->__('Yes'))
-            ), 'status');
-        $this->addColumnAfter('combo_enable', array(
-            'header'=> $this->__('Combo'),
-            'width' => '70px',
-            'index' => 'combo_enable',
-            'type'  => 'options',
-            'options' => array(1 => $this->__('Yes'))
+            'header'    => $this->__('Groupon'),
+            'width'     => '70px',
+            'index'     => 'groupon_enable',
+            'type'      => 'options',
+            'options'   => array(1 => $this->__('Yes'))
         ), 'status');
+
+        $this->addColumnAfter('combo_enable', array(
+            'header'    => $this->__('Combo'),
+            'width'     => '70px',
+            'index'     => 'combo_enable',
+            'type'      => 'options',
+            'options'   => array(1 => $this->__('Yes'))
+        ), 'status');
+
         return parent::_prepareColumns();
     }
 
@@ -26,8 +28,8 @@ class MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid extends Mage_Adminhtml_B
         $priceChange = $this->getRequest()->getParam('price_change');
         if ($priceChange) {
             $today = Mage::getModel('core/date')->date();
-            $maxTime = 60*24*60*60;
-            $dateCheck = Mage::getModel('core/date')->date('Y-m-d H:i:s',strtotime($today) -  $maxTime);
+            $maxTime = 60*24*60*60; // 60 days
+            $dateCheck = Mage::getModel('core/date')->date('Y-m-d H:i:s', strtotime($today) -  $maxTime);
             $collection->addAttributeToFilter('price_date', array('lteq' => $dateCheck));
             $fromPart = $collection->getSelect()->getPart('from');
             if($store->getId()){

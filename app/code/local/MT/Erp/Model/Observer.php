@@ -14,12 +14,14 @@ class MT_Erp_Model_Observer{
     protected $_promotions;
     protected $_websites;
     protected $_stores;
+    protected $_logger;
+    protected $_logFile;
 
     protected function _getMSSQLConnection(){
         if ($this->_MSSQLConnection) return $this->_MSSQLConnection;
 
         if (!function_exists('sqlsrv_connect')){
-            $this->log('ERROR: Microsoft SQL Server Driver not found');
+            $this->log('Microsoft SQL Server Driver not found', Zend_Log::CRIT);
             return null;
         }
 
@@ -32,10 +34,10 @@ class MT_Erp_Model_Observer{
         $mssql_conn = sqlsrv_connect($mssql_host, $mssql_info);
 
         if (!$mssql_conn){
-            $this->log('ERROR: Microsoft SQL Server connection failed');
+            $this->log('Microsoft SQL Server connection failed', Zend_Log::CRIT);
             return null;
         }else{
-            $this->log('INFO: Microsoft SQL Server connected');
+            $this->log('Microsoft SQL Server connected');
         }
 
         $this->_MSSQLConnection = $mssql_conn;
@@ -43,21 +45,51 @@ class MT_Erp_Model_Observer{
         return $this->_MSSQLConnection;
     }
 
-    protected function _MSSQLQuery($query){
+    protected function _MSSQLQuery($query, $params=array()){
         $mssql_conn = $this->_getMSSQLConnection();
         if (!$mssql_conn) return null;
 
-        $rs = sqlsrv_query($mssql_conn, $query);
+        $rs = sqlsrv_query($mssql_conn, $query, $params);
         if (!$rs) {
-            $this->log("ERROR: Microsoft SQL Server query:\n{$query}");
+            $this->log("Microsoft SQL Server query:\n{$query}", Zend_Log::CRIT);
+            $this->log(sqlsrv_errors(), Zend_Log::CRIT);
             return null;
         }
 
         return $rs;
     }
 
-    protected function log($message){
-        Mage::log($message);
+    protected function log($message, $level=Zend_Log::INFO){
+        if (!$this->_logger){
+            $date = Mage::getModel('core/date');
+            $logDir = Mage::getBaseDir('media') . DS . 'erp';
+            $logFile = uniqid($date->date('Y-m-d-H-i-')) . '.log';
+            $this->_logFile = $logFile;
+
+            if (!is_dir($logDir)){
+                mkdir($logDir);
+                chmod($logDir, 0777);
+            }
+
+            if (!file_exists($logFile)){
+                file_put_contents($logFile, '');
+                chmod($logFile, 0777);
+            }
+
+            $format = '%timestamp% %priorityName%: %message%' . PHP_EOL;
+            $formatter = new Zend_Log_Formatter_Simple($format);
+
+            $writer = new Zend_Log_Writer_Stream($logDir . DS . $logFile);
+            $writer->setFormatter($formatter);
+
+            $this->_logger = new Zend_Log($writer);
+        }
+
+        if (is_array($message) || is_object($message)){
+            $message = print_r($message, true);
+        }
+
+        $this->_logger->log($message, $level);
     }
 
     protected function _getConnection($type = 'core_read'){
@@ -154,6 +186,7 @@ class MT_Erp_Model_Observer{
         $erpStores = explode("\n", Mage::getStoreConfig('kidsplaza/erp/stores', $storeInWebsite));
 
         if (count($erpStores)){
+            //enclose store id string
             array_walk($erpStores, function(&$v){ $v = "'".$v."'"; });
             $this->_stores[$website] = $erpStores;
             return $this->_stores[$website];
@@ -209,7 +242,7 @@ class MT_Erp_Model_Observer{
         $connection->query($sql, array($price, $priceAttributeId, $product['entity_id']));
         $connection->query($sql, array($specialPrice, $specialPriceAttributeId, $product['entity_id']));
 
-        $this->log(sprintf('INFO: PRICE SKU [%s], price=%s, special_price=%s', $erp->MHCODE, $price, $specialPrice ? $specialPrice : 'NULL'));
+        $this->log(sprintf('PRICE SKU [%s], price=%s, special_price=%s', $erp->MHCODE, $price, $specialPrice ? $specialPrice : 'NULL'));
 
         return true;
     }
@@ -220,25 +253,59 @@ class MT_Erp_Model_Observer{
         $connection = $this->_getConnection('core_write');
         $websites = $this->_getWebsites();
         $logs = array();
+        $stockId = null;
+        $totalQty = 0;
+
+        $countSql = "
+            SELECT COUNT(*)
+            FROM ".$this->_getTableName('cataloginventory_stock_status')." ciss
+            WHERE ciss.product_id = ? AND ciss.website_id = ?
+        ";
 
         foreach ($websites as $website) {
             $newQty = $this->_getErpQtyByStores($erp, $website);
             if (is_null($newQty)) continue;
+            $stockStatus = $newQty > 0 ? 1 : 0;
+            $totalQty += $newQty;
 
-            $isInStock = $newQty > 0 ? 1 : 0;
-            $stockStatus = $isInStock;
+            $isInTable = $connection->fetchOne($countSql, array($product['entity_id'], $website));
 
-            $sql = "
-                UPDATE " . $this->_getTableName('cataloginventory_stock_item') . " cisi," . $this->_getTableName('cataloginventory_stock_status') . " ciss
-                SET cisi.qty = ?, cisi.is_in_stock = ?, ciss.qty = ?, ciss.stock_status = ?
-                WHERE cisi.product_id = ? AND ciss.website_id = ? AND cisi.product_id = ciss.product_id";
+            if ($isInTable){
+                $sql = "
+                    UPDATE " . $this->_getTableName('cataloginventory_stock_status') . "
+                    SET qty = ?, stock_status = ?
+                    WHERE product_id = ? AND website_id = ?
+                ";
 
-            $connection->query($sql, array($newQty, $isInStock, $newQty, $stockStatus, $product['entity_id'], $website));
+                $connection->query($sql, array($newQty, $stockStatus, $product['entity_id'], $website));
+                $logs[] = sprintf("%d=%d", $website, $newQty);
+            }else{
+                if (is_null($stockId)){
+                    $stockSql = "SELECT stock_id FROM ".$this->_getTableName('cataloginventory_stock_item')." WHERE product_id=?";
+                    $stockId = $connection->fetchOne($stockSql, array($product['entity_id']));
+                    $stockId = $stockId  > 0 ? $stockId : 1;
+                }
 
-            $logs[] = sprintf("%s=%s", $website, $newQty);
+                $sql = "
+                    INSERT INTO " . $this->_getTableName('cataloginventory_stock_status') . "
+                    (product_id, website_id, stock_id, qty, stock_status) VALUES(?,?,?,?,?)
+                ";
+
+                $connection->query($sql, array($product['entity_id'], $website, $stockId, $newQty, $stockStatus));
+                $logs[] = sprintf("%d=%d", $website, $newQty);
+            }
         }
 
-        $this->log(sprintf('INFO: STOCK SKU [%s], %s', $erp->MHCODE, implode(', ', $logs)));
+        $insertItemSql = "
+            UPDATE " . $this->_getTableName('cataloginventory_stock_item') ."
+            SET qty = ?, is_in_stock = ?
+            WHERE product_id = ?
+        ";
+
+        $connection->query($insertItemSql, array($totalQty, $totalQty > 0 ? 1 : 0, $product['entity_id']));
+        $logs[] = sprintf("all=%s", $totalQty);
+
+        $this->log(sprintf('STOCK SKU [%s], %s', $erp->MHCODE, implode(', ', $logs)));
 
         return true;
     }
@@ -262,14 +329,15 @@ class MT_Erp_Model_Observer{
 
         $products = $this->_getProductCollection();
         if (!count($products)){
-            $this->log('ERROR: No product avaiable');
+            $this->log('No product avaiable', Zend_Log::CRIT);
             return;
-        }else $this->log(sprintf('INFO: Total products: %d', count($products)));
+        }else $this->log(sprintf('Total products: %d', count($products)));
 
         $i = 0;
         $countProcessed = 0;
         foreach ($products as $product){
-            if ($i++ == 100) break;
+            //limit for test
+            //if ($i++ == 10) break;
             $row = $this->_getErpProductBySku($product['sku']);
             if (!$row) continue;
             $this->_updatePrices($product, $row);
@@ -277,7 +345,41 @@ class MT_Erp_Model_Observer{
             $countProcessed++;
         }
 
-        $this->log(sprintf('INFO: Processed products: %d', $countProcessed));
-        return;
+        $this->log(sprintf('Processed products: %d', $countProcessed));
+
+        $this->log('Reindex catalog_product_price');
+        Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
+
+        //$this->log('Reindex cataloginventory_stock');
+        //Mage::getModel('index/indexer')->getProcessByCode('cataloginventory_stock')->reindexAll();
+
+        return sprintf('<a href="%s" target="_blank">%s</a>', Mage::getBaseUrl('media').'erp/'.$this->_logFile, Mage::helper('mterp')->__('View log'));
+    }
+
+    /**
+     * Send new customer to ERP
+     */
+    public function customerRegisterSuccess($observer, $customer=null){
+        $customer = $customer ? $customer : $observer->getEvent()->getCustomer();
+        /* @var $customer Mage_Customer_Model_Customer */
+        if ($customer->getId() && $customer->getPhoneNumber()){
+            $sql = "
+                INSERT INTO [dbo].[KHACHHANG] ([KHID],[KHCODE],[KHCID],[KHNID],[KHTEN],[GIOITINH],[DIENTHOAI],[DIDONG],[EMAIL],[NGAYTAO],[CREATEDDATE])
+                VALUES (NEWID(),?,?,?,?,?,?,?,?,CONVERT(date, GETDATE()),GETDATE())
+            ";
+
+            $params = array(
+                array($customer->getPhoneNumber(), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array(Mage::getStoreConfig('kidsplaza/erp/khcid'), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array(Mage::getStoreConfig('kidsplaza/erp/khnid'), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array($customer->getName(), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array($customer->getGender() ? ($customer->getGender() == 1 ? "Nam" : "Nữ") : null, SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array($customer->getPhoneNumber(), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array($customer->getPhoneNumber(), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                array($customer->getEmail(), SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8'))
+            );
+
+            $this->_MSSQLQuery($sql, $params);
+        }
     }
 }
