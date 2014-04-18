@@ -156,7 +156,8 @@ $_product = $this->getProduct();
                         <?php endif;?>
                     </div>
                 </div>
-
+                <input id="phone_prefix" name="phone_prefix" type="hidden" value="<?php echo Mage::getStoreConfig('mtonestepcheckout/settings/phone_prefix');?>">
+                <input id="phone_len" name="phone_len" type="hidden" value="7">
                 <?php //echo $this->getChildHtml('other');?>
 
                 <?php if ($_product->isSaleable() && $this->hasOptions()):?>

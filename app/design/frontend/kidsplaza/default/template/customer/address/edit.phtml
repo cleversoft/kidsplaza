@@ -61,7 +61,7 @@
                     </div-->
                     <label for="telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                     <div class="input-box">
-                        <input type="text" name="telephone" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text  <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="telephone" />
+                        <input type="text" name="telephone" value="<?php echo $this->escapeHtml($this->getAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-phoneprefix input-text  <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="telephone" />
                     </div>
                 </div>
             </li>
@@ -108,7 +108,7 @@
                         <select id="region_id" name="region_id" title="<?php echo $this->__('State/Province') ?>" class="validate-select" style="display:none;">
                            <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
                         </select>
-                        <input type="text" id="region" name="region" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+                        <input type="hidden" id="region" name="region" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo $this->__('State/Province') ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
                     </div>
                 </div>
                 <div class="field">
@@ -150,6 +150,8 @@
         <p class="required"><?php echo $this->__('* Required Fields') ?></p>
         <p class="back-link"><a href="<?php echo $this->escapeUrl($this->getBackUrl()) ?>"><small>&laquo; </small><?php echo $this->__('Back') ?></a></p>
         <button type="submit" title="<?php echo $this->__('Save Address') ?>" class="button btn-kid"><span><span><?php echo $this->__('Save Address') ?></span></span></button>
+        <input id="phone_prefix" name="phone_prefix" type="hidden" value="<?php echo Mage::getStoreConfig('mtonestepcheckout/settings/phone_prefix');?>">
+        <input id="phone_len" name="phone_len" type="hidden" value="7">
     </div>
 </form>
 <script type="text/javascript">

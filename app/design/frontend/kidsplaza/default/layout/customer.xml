@@ -313,6 +313,9 @@ Customer account address edit page
         </reference>
         <reference name="js_bottom">
             <action method="addJs"><js>mt/mage/customer/Account.js</js></action>
+            <action method="addJs">
+                <js>mt/onestepcheckout/phone_validate.js</js>
+            </action>
         </reference>
     </customer_address_form>
 

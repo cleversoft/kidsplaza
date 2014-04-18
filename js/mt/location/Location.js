@@ -52,6 +52,7 @@ Locations.prototype = {
                 this.info[location.id] = new google.maps.InfoWindow({
                     content: location.description
                 });
+                this.info[location.id].close();
                 google.maps.event.addListener(this.makers[location.id], 'click', function(){
                     this.info[location.id].open(this.map, this.makers[location.id]);
                 }.bind(this));
@@ -78,10 +79,17 @@ Locations.prototype = {
                 li.addClassName('active');
                 this.map.setCenter(this.makers[location.id].getPosition());
                 this.map.setZoom(14);
+                this.removeInfoWindow();
+                this.info[location.id].open(this.map, this.makers[location.id]);
             }.bind(this));
-
             li.insert(a);
             this.list.insert(li);
+        }.bind(this));
+    },
+    removeInfoWindow: function(){
+        this.locations.each(function(location){
+            if (!location.id) return;
+            this.info[location.id].close();
         }.bind(this));
     }
 };

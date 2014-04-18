@@ -635,24 +635,45 @@ function stockNotifySubmit(btn, url){
     var value = field.val();
     if (!value) alert(Translator.translate('You must enter information'));
     else{
-        jQuery.ajax({
-            url: url,
-            method: 'post',
-            dataType: 'json',
-            data: {value:value},
-            beforeSend: function(){
-                jQuery(btn).addClass('disabled');
-                jQuery(btn).attr('disabled', true);
-            },
-            success: function(data){
-                if (data.message) alert(data.message);
-                if (data.error == 0){
-                    window.location.reload();
-                }else{
-                    jQuery(btn).removeClass('disabled');
-                    jQuery(btn).removeAttr('disabled');
+        var valid = validPhonePrefix(value);
+        if(valid!=true){
+            alert(valid);
+        }else{
+            jQuery.ajax({
+                url: url,
+                method: 'post',
+                dataType: 'json',
+                data: {value:value},
+                beforeSend: function(){
+                    jQuery(btn).addClass('disabled');
+                    jQuery(btn).attr('disabled', true);
+                },
+                success: function(data){
+                    if (data.message) alert(data.message);
+                    if (data.error == 0){
+                        window.location.reload();
+                    }else{
+                        jQuery(btn).removeClass('disabled');
+                        jQuery(btn).removeAttr('disabled');
+                    }
                 }
-            }
-        });
+            });
+        }
     }
+}
+
+function validPhonePrefix(value){
+    var prefix = jQuery("#" +'phone_prefix').val(),
+        phonePrefix = prefix.split(','),
+        phoneLen = jQuery("#" +'phone_len').val(),
+        i;
+    if (!phoneLen || isNaN(phoneLen) || phoneLen <= 0) {
+        return true;
+    }
+    for (i=0; i < phonePrefix.length; i++) {
+        if (value.substring(0,phonePrefix[i].length) == phonePrefix[i] && value.length == (phonePrefix[i].length + parseInt(phoneLen))) {
+            return true;
+        }
+    }
+    return Translator.translate('Please enter a valid phone number in this field.')
 }
