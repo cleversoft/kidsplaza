@@ -485,6 +485,8 @@
     .opc li {padding: 0;}
 
     .footer-center-inner .items { padding: 0;}
+
+    .attribute-brands img {width: 60% ;}
 }
 @media only screen and (max-width: 767px) and (min-width: 480px) {
     .grid-6 li {width: 20% ;}

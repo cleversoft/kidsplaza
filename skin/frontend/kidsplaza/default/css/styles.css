@@ -530,7 +530,7 @@ input,textarea{outline:0}
 .attribute-carousel-wrapper:hover .flex-direction-nav a { opacity: 0.65; }
 
 
-.attribute-brands { float: left ; width: 16%; padding-bottom: 20px;}
+.attribute-brands { float: left ; width: 16.5% ;}
 .attribute-brands img { display: block;margin: 0 auto;}
 .slider-attribute-wrapper a img:hover{
     filter: none;
