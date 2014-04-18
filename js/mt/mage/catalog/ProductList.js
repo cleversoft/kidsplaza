@@ -22,7 +22,7 @@ jQuery(window).load(function(){
 });
 function setGridItemsEqualHeight(){
     var winWidth = jQuery(window).width();
-    if (winWidth >= 350)
+    if (winWidth >= 200)
     {
         jQuery('.show-grid').removeClass("auto-height");
         var gridItemMaxHeight = 0;
