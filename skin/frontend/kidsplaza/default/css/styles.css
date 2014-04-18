@@ -45,9 +45,9 @@ a:focus, button:focus { outline: none; }
 .product-view .price-box{padding: 20px 0;}
 .product-view .price-box .price, .product-view .price-label { color: #FF4E8F; font-size: 36px; font-weight: 400;}
 .product-view .add-to-cart span{ float: none ; line-height: 10px;}
-.product-view .add-to-cart .input-group-btn{width: 34px; display: inline-block;vertical-align: top;}
+.product-view .add-to-cart .input-group-btn{width: 34px; display: inline-block;vertical-align: top;*display:inline;zoom:1;}
 .product-view .add-to-cart span .glyphicon{ font-size: 100% ;}
-.product-view .add-to-cart .qty{ color: #5ec215 ; font-size: 130%; text-align: center;width: 36px;padding: 0;float: none;}
+.product-view .add-to-cart .qty{ color: #5ec215 ; font-size: 130%; text-align: center;width: 36px;padding: 0;float: none;display: inline-block;vertical-align: top;*display:inline;zoom:1;}
 .product-view .quantity .input-group{width: 105px;}
 .product-view .quantity .input-group-btn button{margin: 0;width: 100%;}
 .product-view .quantity .input-group-btn button:focus{outline: none;}
