@@ -159,6 +159,26 @@ function triggerLocationOverlay(){
     }
 }
 
+function setGridItemsEqualHeight(){
+    var winWidth = jQuery(window).width(),
+        grid = jQuery('.show-grid'),
+        items = grid.find('.item');
+
+    if (winWidth >= 200){
+        var gridItemMaxHeight = 0;
+        grid.removeClass('auto-height');
+        items.each(function() {
+            jQuery(this).css('height', 'auto');
+            gridItemMaxHeight = Math.max(gridItemMaxHeight, jQuery(this).height());
+        });
+        items.css('height', gridItemMaxHeight + 'px');
+    }else{
+        grid.addClass('auto-height');
+        items.css('height', 'auto');
+        items.css('padding-bottom', '20px');
+    }
+}
+
 //init cufont
 Cufon.replace('.utm-cookies');
 //init login header
@@ -193,6 +213,9 @@ jQuery(document).ready(function() {
     });
     jQuery.fn.uniform && jQuery("select, input[type='radio'], input[type='checkbox']").uniform();
 });
+//set product grid height
+setGridItemsEqualHeight();
+//init twitter js
 !function(d,s,id){
     var js,fjs=d.getElementsByTagName(s)[0];
     if(!d.getElementById(id)){
@@ -202,6 +225,7 @@ jQuery(document).ready(function() {
         fjs.parentNode.insertBefore(js,fjs);
     }
 }(document,"script","twitter-wjs");
+//init facebook js
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;

@@ -131,15 +131,14 @@ class MT_Search_Model_Resource_Solr_Engine {
 		// add category_ids field
 		$resource = Mage::getSingleton('core/resource');
 		$connection = $resource->getConnection('core_read');
-		
+
 		$select = $connection->select()
 			->from(
 				array($resource->getTableName('catalog/category_product_index')),
 				array('category_id', 'product_id', 'store_id'))
 			->where('store_id = ?', $storeId)
 			->where('product_id = ?', $entityId);
-		
-		$category_ids = array();
+
 		foreach ($connection->fetchAll($select) as $row){
 			$document->addField('category_ids', $row['category_id']);
 		}
@@ -148,14 +147,19 @@ class MT_Search_Model_Resource_Solr_Engine {
 		$select = $connection->select()
 			->from(
 				array($resource->getTableName('catalog/product_index_price')),
-				array('entity_id', 'customer_group_id', 'website_id', 'min_price'))
+				array('entity_id', 'customer_group_id', 'website_id', 'price', 'final_price'))
 			->where('entity_id = ?', $entityId);
 
-		$prices = array();
 		foreach ($connection->fetchAll($select) as $row){
 			$document->addField(
 				sprintf('price_%d_%d_f', $row['website_id'], $row['customer_group_id']),
-				$row['min_price']);
+				$row['final_price']
+            );
+            // for discount filter
+            $document->addField(
+                sprintf('price_%d_%d_b', $row['website_id'], $row['customer_group_id']),
+                $row['price'] > $row['final_price'] ? 1 : 0
+            );
 		}
 
 		// add some important fields
@@ -163,6 +167,8 @@ class MT_Search_Model_Resource_Solr_Engine {
 		$document->addField('store_id', $storeId);
 		$document->addField('unique', $storeId . '|' . $entityId);
 		$document->addField('fulltext', implode('|', $fulltext));
+
+        Mage::dispatchEvent('mtsearch_prepare_document_data', array('document' => $document));
 
 		return $document;
 	}

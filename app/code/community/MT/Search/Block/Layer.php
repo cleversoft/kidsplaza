@@ -8,6 +8,25 @@
  * @email       support@magentothemes.net
  */
 class MT_Search_Block_Layer extends Mage_CatalogSearch_Block_Layer {
+    protected function _prepareLayout(){
+        parent::_prepareLayout();
+        Mage::dispatchEvent('mtsearch_prepare_layout', array('block' => $this));
+        return $this;
+    }
+
+    /**
+     * Get all layer filters
+     */
+    public function getFilters(){
+        $filters = array();
+        foreach ($this->getChild('') as $code => $child){
+            if (strpos($code, '_filter') > 1 && !isset($filters[$code])){
+                $filters[$code] = $child;
+            }
+        }
+        return $filters;
+    }
+
 	/**
 	 * Initialize blocks names
 	 */

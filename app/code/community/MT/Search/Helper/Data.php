@@ -64,7 +64,8 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
                 case '___SID':
 				case 'limit':
 				case 'p':
-				case 'mode': break;
+				case 'mode':
+                    break;
 				case 'order':
 					if ($value == 'name') $order = $value;
 					elseif ($value == 'price') $order = $this->getCurrentPriceName();
@@ -80,6 +81,10 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
                 case 'category_ids':
                     $filters['category_ids'] = $value;
                     break;
+                case 'discount':
+                    $priceName = $this->getCurrentPriceName('b');
+                    $filters[$priceName] = true;
+                    break;
 				default:
 					$filters['attr_' . $key . '_value'] = $value;
 					break;
@@ -91,14 +96,15 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 	/**
 	 * Get current price attribute name
 	 *
+     * @param string $suffix
 	 * @return string
 	 */
-	public function getCurrentPriceName() {
+	public function getCurrentPriceName($suffix='f') {
 		$websiteId = Mage::app()->getStore()->getWebsiteId();
 		$customer = Mage::getSingleton('customer/session')->getCustomer();
 		$customerGroupId = $customer->getId() ? $customer->getGroupId() : 0;
 
-		return sprintf('price_%d_%d_f', $websiteId, $customerGroupId);
+		return sprintf('price_%d_%d_%s', $websiteId, $customerGroupId, $suffix);
 	}
 
     /**
