@@ -27,7 +27,11 @@
 /* @var $catalogSearchHelper Mage_Catalogsearch_Helper_Data */
 $catalogSearchHelper =  $this->helper('catalogsearch');
 $rootCategory = Mage::app()->getGroup()->getRootCategoryId();
-$currentCategory = $this->getRequest()->getParam('category_ids');
+$_module = $this->getRequest()->getModuleName();
+if ($_module == 'catalogsearch')
+    $currentCategory = $this->getRequest()->getParam('cat');
+else
+    $currentCategory = '';
 $categories = Mage::getResourceModel('catalog/category_collection')
     ->addIsActiveFilter()
     ->addNameToResult()
@@ -52,7 +56,7 @@ foreach ($categories as $category){
                 <?php endforeach ?>
             </ul>
         </span>
-        <input type="hidden" name="category_ids" value="<?php echo $currentCategory ?>"/>
+        <input type="hidden" name="cat" value="<?php echo $currentCategory ?>"/>
         <!--span class="glyphicon glyphicon-search input-search-bg"></span-->
         <input
             id="search"

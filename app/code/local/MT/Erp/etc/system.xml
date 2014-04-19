@@ -31,12 +31,46 @@
                         <schedule translate="label comment">
                             <label>Scheduling Synchronization</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>10</sort_order>
+                            <sort_order>0</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                             <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
                         </schedule>
+                        <enable_clear_log translate="label comment">
+                            <label>Enable Log Cleaning</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                        </enable_clear_log>
+                        <clear_log translate="label comment">
+                            <label>Log Cleaning Frequency</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
+                            <depends>
+                                <enable_clear_log>1</enable_clear_log>
+                            </depends>
+                        </clear_log>
+                        <log_days translate="label comment">
+                            <label>Save Log Days</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                            <depends>
+                                <enable_clear_log>1</enable_clear_log>
+                            </depends>
+                        </log_days>
                         <host translate="label comment">
                             <label>ERP Host</label>
                             <frontend_type>text</frontend_type>
