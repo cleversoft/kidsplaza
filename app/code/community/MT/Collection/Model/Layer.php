@@ -62,6 +62,7 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     }
 
     protected function _getPromotionCollection(){
+        $categoryId = Mage::app()->getRequest()->getParam('parent');
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
         $websiteId = (int)Mage::app()->getWebsite()->getId();
         /* @var $session Mage_Customer_Model_Session */
@@ -73,6 +74,17 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             ->where('price > final_price')
             ->where('website_id = ?', $websiteId)
             ->where('customer_group_id = ?', $customerGroupId);
+
+        if ($categoryId){
+            $select
+                ->join(
+                    array('c' => 'catalog_category_product_index'),
+                    join(' AND ', array('c.product_id = entity_id')),
+                    array()
+                )
+                ->where('c.store_id = ?', Mage::app()->getStore()->getId())
+                ->where('c.category_id = ?', $categoryId);
+        }
 
         $collection = Mage::getResourceModel('catalog/product_collection');
         $collection->getSelect()->join(
@@ -86,6 +98,7 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     }
 
     protected function _getMostViewedCollection(){
+        $categoryId = Mage::app()->getRequest()->getParam('parent');
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
         $storeId = (int)Mage::app()->getStore()->getId();
 
@@ -97,6 +110,17 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             ->group('report_event.object_id')
             ->order('views DESC')
             ->having('views > ?', 0);
+
+        if ($categoryId){
+            $select
+                ->join(
+                    array('c' => 'catalog_category_product_index'),
+                    join(' AND ', array('c.product_id = object_id')),
+                    array()
+                )
+                ->where('c.store_id = ?', Mage::app()->getStore()->getId())
+                ->where('c.category_id = ?', $categoryId);
+        }
 
         $collection = Mage::getResourceModel('catalog/product_collection');
         $collection->getSelect()->join(
@@ -110,6 +134,7 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     }
 
     protected function _getBestsellerCollection(){
+        $categoryId = Mage::app()->getRequest()->getParam('parent');
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
 
         $select = $connection->select()
@@ -121,6 +146,17 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
             ->where('sales_flat_order.status = ?', 'complete')
             ->group('sales_flat_order_item.product_id')
             ->order('count DESC');
+
+        if ($categoryId){
+            $select
+                ->join(
+                    array('c' => 'catalog_category_product_index'),
+                    join(' AND ', array('c.product_id = sales_flat_order_item.product_id')),
+                    array()
+                )
+                ->where('c.store_id = ?', Mage::app()->getStore()->getId())
+                ->where('c.category_id = ?', $categoryId);
+        }
 
         $collection = Mage::getResourceModel('catalog/product_collection');
         $collection->getSelect()->join(
@@ -134,18 +170,32 @@ class MT_Collection_Model_Layer extends Mage_Catalog_Model_Layer{
     }
 
     protected function _getLastestCollection(){
+        $categoryId = Mage::app()->getRequest()->getParam('parent');
         $connection = Mage::getSingleton('core/resource')->getConnection('core_read');
+
         $select = $connection->select()
-            ->from('catalog_product_entity', array('eid' => 'entity_id', 'eua' => 'updated_at'))
-            ->order('eua DESC')
+            ->from(array('p' => 'catalog_product_entity'), array('entity_id', 'updated_at'))
+            ->order('p.entity_id DESC')
             ->limit(100);
+
+        if ($categoryId){
+            $select
+                ->join(
+                    array('c' => 'catalog_category_product_index'),
+                    join(' AND ', array('c.product_id = p.entity_id')),
+                    array()
+                )
+                ->where('c.store_id = ?', Mage::app()->getStore()->getId())
+                ->where('c.category_id = ?', $categoryId);
+        }
 
         $collection = Mage::getResourceModel('catalog/product_collection');
         $collection->getSelect()->join(
             array('e2' => $select),
-            join(' AND ', array('e2.eid = e.entity_id')),
+            join(' AND ', array('e2.entity_id = e.entity_id')),
             array()
         );
+
         $this->prepareProductCollection($collection);
         unset($connection, $select);
         return $collection;

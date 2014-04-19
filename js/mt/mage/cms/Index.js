@@ -41,5 +41,5 @@ function setCollectionLocation(elm, url){
     if (!parent.length) window.location.href = url;
     var tabActive = parent.find('.nav-tabs li.active');
     if (!tabActive.length) window.location.href = url;
-    window.location.href = url.indexOf('?') > 0 ? url + '&cat=' + tabActive.data('id') : url + '?cat=' + tabActive.data('id');
+    window.location.href = url.indexOf('?') > 0 ? url + '&parent=' + tabActive.data('id') : url + '?parent=' + tabActive.data('id');
 }
