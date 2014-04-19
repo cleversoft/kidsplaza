@@ -229,7 +229,7 @@ jQuery(document).ready(function(){
     //calculate product grid height
     setGridItemsEqualHeight();
 });
-/*//init twitter js
+//init twitter js
 (function(d,s,id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (!d.getElementById(id)){
@@ -256,4 +256,4 @@ jQuery(document).ready(function(){
     js.id = id;
     js.src = "//apis.google.com/js/plusone.js";
     fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'google-plus'));*/
+}(document, 'script', 'google-plus'));
