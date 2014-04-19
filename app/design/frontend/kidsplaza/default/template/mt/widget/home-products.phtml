@@ -72,10 +72,10 @@ $_core              = $this->helper('core/string');
        <div class="title col-lg-4 col-md-5 col-sm-5 col-xs-12 ">
             <?php if ($_title):?>
                 <h3>
-                    <a onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-kid" type="button">
+                    <a onclick="<?php echo $_href ? "setCollectionLocation(this,'{$_href}')":''?>" class="utm-cookies btn-widget btn btn-kid" type="button">
                         <?php echo $_title?>
                     </a>
-                    <a onclick="<?php echo $_href ? "setLocation('{$_href}')":''?>" class="utm-cookies btn-widget btn btn-view" type="button">
+                    <a onclick="<?php echo $_href ? "setCollectionLocation(this,'{$_href}')":''?>" class="utm-cookies btn-widget btn btn-view" type="button">
                         <?php echo $this->__('VIEW ALL')?>
                     </a>
                 </h3>
@@ -85,7 +85,7 @@ $_core              = $this->helper('core/string');
             <div class="nav-tabs-wrapper">
                 <ul class="nav-tabs">
                     <?php $i=0; foreach ($this->getCategories() as $cat):?>
-                        <li class="<?php echo $i++ == 0 ? 'active' : ''?>">
+                        <li class="<?php echo $i++ == 0 ? 'active' : ''?>" data-id="<?php echo $cat->getId() ?>">
                             <a href="#<?php echo $_id.'_'.$cat->getId()?>" data-toggle="tab"><?php echo $cat->getName()?></a>
                         </li>
                     <?php endforeach ?>

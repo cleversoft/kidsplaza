@@ -34,3 +34,12 @@ jQuery(function(){
         jQuery(slider).owlCarousel(window[id]);
     });
 });
+
+function setCollectionLocation(elm, url){
+    if (!url) return;
+    var parent = jQuery(elm).parents('.category-products');
+    if (!parent.length) window.location.href = url;
+    var tabActive = parent.find('.nav-tabs li.active');
+    if (!tabActive.length) window.location.href = url;
+    window.location.href = url.indexOf('?') > 0 ? url + '&cat=' + tabActive.data('id') : url + '?cat=' + tabActive.data('id');
+}
