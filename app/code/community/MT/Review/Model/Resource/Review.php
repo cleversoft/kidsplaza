@@ -297,6 +297,17 @@ class MT_Review_Model_Resource_Review extends Mage_Core_Model_Resource_Db_Abstra
         $ratingModel    = Mage::getModel('rating/rating');
         $ratingSummaries= $ratingModel->getEntitySummary($object->getEntityPkValue(), false);
 
+        $data0 = new Varien_Object();
+        $data0->setReviewsCount(0)
+            ->setEntityPkValue($object->getEntityPkValue())
+            ->setEntityType($object->getEntityId())
+            ->setRatingSummary(0)
+            ->setStoreId(0);
+
+        $condition0 = array("{$this->_aggregateTable}.entity_pk_value = ?" => $object->getEntityPkValue(),
+                            "{$this->_aggregateTable}.store_id = ?" => 0);
+        $writeAdapter->update($this->_aggregateTable, $data0->getData(), $condition0);
+
         foreach ($ratingSummaries as $ratingSummaryObject) {
             if ($ratingSummaryObject->getCount()) {
                 $ratingSummary = round($ratingSummaryObject->getSum() / $ratingSummaryObject->getCount());

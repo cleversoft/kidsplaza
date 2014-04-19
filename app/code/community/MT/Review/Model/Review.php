@@ -10,7 +10,7 @@
  * @author       MagentoThemes.net
  * @email        support@magentothemes.net
  * ------------------------------------------------------------------------------
- *
+ * @method MT_Review_Model_Resource_Review getResource()
  */
 class MT_Review_Model_Review extends Mage_Core_Model_Abstract {
 
@@ -68,11 +68,22 @@ class MT_Review_Model_Review extends Mage_Core_Model_Abstract {
     public function getEntitySummary($product, $storeId=0)
     {
         $summaryData = Mage::getModel('review/review_summary')
-            //->setStoreId($storeId)
+            ->setStoreId(0)
             ->load($product->getId());
         $summary = new Varien_Object();
         $summary->setData($summaryData->getData());
         $product->setRatingSummary($summary);
+    }
+
+    /**
+     * Perform actions after object delete
+     *
+     * @return Mage_Core_Model_Abstract
+     */
+    protected function _afterDeleteCommit()
+    {
+        $this->getResource()->afterDeleteCommit($this);
+        return parent::_afterDeleteCommit();
     }
 
     /**
@@ -106,6 +117,12 @@ class MT_Review_Model_Review extends Mage_Core_Model_Abstract {
         }
 
         return $this;
+    }
+
+    protected function _beforeDelete()
+    {
+        $this->_protectFromNonAdmin();
+        return parent::_beforeDelete();
     }
 
     public function getPendingStatus()
