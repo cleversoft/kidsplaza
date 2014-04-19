@@ -8,26 +8,39 @@ $totalPrice = 0;
 <div id="product-combo">
     <h3><?php echo $this->__('Products Combo') ?></h3>
     <div class="combo-wrapper">
-        <ol class="combo-img">
+        <ul class="show-grid product-grid combo-img">
             <?php $i=0;
-                foreach ($collection as $_item):
+            foreach ($collection as $_item):
                 $i++;
                 ?>
-                <li class="combo-<?php echo $_item->getId() ?> combo-img-item" style="display: inline-block">
+                <?php $totalPrice += $_item->getFinalPrice() ?>
+                <li class="item combo-<?php echo $_item->getId() ?> combo-img-item" style="display: inline-block">
                     <?php if($i>1):?><div class="combo-separator">+</div><?php endif;?>
                     <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->escapeHtml($_item->getName()) ?>" class="">
                         <img src="<?php echo $this->helper('catalog/image')->init($_item, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($_item->getName()) ?>" />
                     </a>
+                    <h2 class="product-name"><?php echo $_item->getName();?></h2>
+            <span class="combo-price-box">
+                <?php echo Mage::helper('core')->formatPrice($_item->getFinalPrice()) ?>
+            </span>
                 </li>
             <?php endforeach ?>
-            <li class="combo-addtocart" style="display: inline-block;">
+            <li class="item total" style="display: inline-block">
+                <div class="combo-separator">=</div>
+                <div class="total-price"><?php echo Mage::helper('core')->formatPrice($totalPrice) ?></div>
+            </li>
+            <li class="item combo-addtocart" style="display: inline-block;">
+                <div class="combo-price">
+                    <span class="price-label"><?php echo $this->__('Combo ')?><?php echo $this->__('Price');?></span>
+                    <?php echo Mage::helper('core')->formatPrice($_product->getFinalPrice()) ?>
+                </div>
                 <?php if($_product->isSaleable()): ?>
                     <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="btn btn-kid btn-cart btn-login" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
                 <?php else: ?>
                     <p class="availability out-of-stock"><span><?php echo $this->__('Call Me') ?></span></p>
                 <?php endif; ?>
             </li>
-        </ol>
+        </ul>
     </div>
 </div>
 <?php endif ?>
