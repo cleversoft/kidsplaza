@@ -21,7 +21,7 @@ class MT_KidsPlaza_Model_Catalogsearch_Layer_Filter_Category extends MT_Search_M
             'facet.field' => $attrField
         );
         list($q, $filters) = Mage::helper('mtsearch')->getCurrentFilters();
-        //if (isset($filters['category_ids'])) unset($filters['category_ids']);
+        if (isset($filters['category_ids'])) unset($filters['category_ids']);
 
         try{
             $result = Mage::getModel('mtsearch/service')->query($q, $filters, null, 0, 0, $params);

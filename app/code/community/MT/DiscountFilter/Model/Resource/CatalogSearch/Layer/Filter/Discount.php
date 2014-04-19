@@ -20,7 +20,7 @@ class MT_DiscountFilter_Model_Resource_CatalogSearch_Layer_Filter_Discount exten
         $filters[$priceName] = 1;
 
         try{
-            $result = Mage::getModel('mtsearch/service')->query($q, $filters);
+            $result = Mage::getModel('mtsearch/service')->query($q, $filters, null, 0, 0, array('facet' => 'off'));
             return array('count' => $result->getNumFound());
         }catch(Exception $e){
             Mage::logException($e);

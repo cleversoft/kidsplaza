@@ -54,7 +54,7 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 		foreach (Mage::app()->getRequest()->getParams() as $key => $value){
 			switch ($key){
 				case 'cat':
-					$filters['category_ids'] = $value;
+					if ($value) $filters['category_ids'] = $value;
 					break;
 				case 'q':
 					$q = $value;
@@ -79,7 +79,7 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
 					$filters[$priceName] = sprintf('[%s TO %s]', $from ? $from : 0, $to ? $to : '*');
 					break;
                 case 'category_ids':
-                    $filters['category_ids'] = $value;
+                    if ($value) $filters['category_ids'] = $value;
                     break;
                 case 'discount':
                     $priceName = $this->getCurrentPriceName('b');

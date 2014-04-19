@@ -177,6 +177,8 @@ function setGridItemsEqualHeight(){
         items.css('height', 'auto');
         items.css('padding-bottom', '20px');
     }
+
+    if (window.ensureEqualHeight) ensureEqualHeight();
 }
 
 //init cufont
@@ -190,7 +192,7 @@ new KidsPlazaCart('cart-top');
 //init search
 var KPSearch = new KidsPlazaSearch('search_mini_form', 'search', $('search_mini_form').readAttribute('data-text'));
 KPSearch.initAutocomplete($('search_mini_form').readAttribute('data-suggest'), 'search_autocomplete');
-KPSearch.initSearchFilter('category_ids', '.category-label');
+KPSearch.initSearchFilter('cat', '.category-label');
 //init newsletter
 new VarienForm('newsletter-validate-detail');
 //init sticky header
@@ -198,9 +200,8 @@ jQuery('.mt-menu-top').sticky({topSpacing:-1});
 //init to-top button
 jQuery('.toTop').on('click',function(){jQuery('html,body').animate({scrollTop:0},500);});
 jQuery(window).scroll(function(){var elm=jQuery('.toTop');if(!elm.length)return;if(jQuery(window).scrollTop()>=330){if(!elm.data('show')){elm.data('show',true);elm.slideDown('fast');}}else{if(elm.data('show')){elm.data('show',false);elm.fadeOut();}}});
-//init style select input
-$$('select').each(function(select){ select.addClassName('form-control input-sm');});
-jQuery(document).ready(function() {
+jQuery(document).ready(function(){
+    //init social link hover
     jQuery('.social-links a').hover(function(){
         jQuery(this).next().show();
         jQuery(this).next().hover(function(){
@@ -211,21 +212,22 @@ jQuery(document).ready(function() {
     },function(){
         jQuery(this).next().hide();
     });
+    //init uniform
     jQuery.fn.uniform && jQuery("select, input[type='checkbox']").uniform();
     jQuery.fn.uniform && jQuery("input[type='radio']").not(".rating-star").uniform();
+    //calculate product grid height
+    setGridItemsEqualHeight();
 });
-//set product grid height
-setGridItemsEqualHeight();
-//init twitter js
-!function(d,s,id){
-    var js,fjs=d.getElementsByTagName(s)[0];
-    if(!d.getElementById(id)){
-        js=d.createElement(s);
-        js.id=id;
-        js.src="//platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js,fjs);
+/*//init twitter js
+(function(d,s,id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (!d.getElementById(id)){
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
     }
-}(document,"script","twitter-wjs");
+}(document, 'script', 'twitter-wjs'));
 //init facebook js
 (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -235,3 +237,12 @@ setGridItemsEqualHeight();
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=115245961994281";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
+//init google plus js
+(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//apis.google.com/js/plusone.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'google-plus'));*/

@@ -63,7 +63,7 @@ function initCountDown(){
 }
 
 function ensureEqualHeight(){
-    jQuery.fn.equalHeights('.col-main', '.col-left-bottom');
+    jQuery.fn.equalHeights && jQuery.fn.equalHeights('.col-main', '.col-left-bottom');
 }
 
 function initLayerFilterWithScrollAndList(container){
