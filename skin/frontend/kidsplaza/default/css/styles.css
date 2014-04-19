@@ -548,7 +548,7 @@ input,textarea{outline:0}
 .slider-attribute-wrapper .flex-viewport { width: 90% ; margin: 0 auto ;  }
 .slider-attribute-wrapper .owl-wrapper-outer {  margin: -20px auto 20px ;  }
 
-.owl-carousel .owl-item  a{ display: block;text-align: center;}
+.owl-carousel .owl-item  a{ display: inline-block; text-align: center;}
 
 .a-right{text-align:right}
 .a-center{text-align:center}
@@ -1281,4 +1281,14 @@ dl.item-options{
     display: block;
     padding-left: 50px;
     margin-top: 20px;
+}
+.input-box .spinner{
+    position: absolute;
+    background: url(../images/opc-ajax-loader.gif) no-repeat;
+    display: block;
+    width: 16px;
+    height: 16px;
+    top: 3px;
+    right: 3px;
+    z-index: 1;
 }
