@@ -1274,3 +1274,11 @@ dl.item-options{
 .my-account .form-list .fields .name-lastname {
     padding-left: 0;
 }
+.product-view .hotline-contact {
+    background-image: url(../images/bgLable.png);
+    background-repeat: no-repeat;
+    background-position: 0 105%;
+    display: block;
+    padding-left: 50px;
+    margin-top: 20px;
+}

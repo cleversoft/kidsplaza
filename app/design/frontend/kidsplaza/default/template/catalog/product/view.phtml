@@ -137,6 +137,9 @@ $_product = $this->getProduct();
                                 <?php echo $this->__('See less') ?> &raquo;
                             </a>
                         </p>
+                        <span class="hotline-contact">
+                            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('hotline_product_detail')->toHtml() ?>
+                        </span>
                     </div>
                     <?php endif;?>
                     <?php if($_product->getShortDescription() != ''):?>
@@ -154,6 +157,7 @@ $_product = $this->getProduct();
                         <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                             <?php echo $this->getChildChildHtml('container2', 'product.info.options.wrapper.bottom', true, true) ?>
                         <?php endif;?>
+
                     </div>
                 </div>
                 <input id="phone_prefix" name="phone_prefix" type="hidden" value="<?php echo Mage::getStoreConfig('mtonestepcheckout/settings/phone_prefix');?>">
