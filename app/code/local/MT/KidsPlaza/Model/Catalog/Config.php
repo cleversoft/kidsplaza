@@ -16,11 +16,14 @@ class MT_KidsPlaza_Model_Catalog_Config extends Mage_Catalog_Model_Config{
      */
     public function getAttributeUsedForSortByArray()
     {
+        $_module = Mage::app()->getRequest()->getModuleName();
         $options = array(
-            'position'  => Mage::helper('catalog')->__('Position'),
-            'entity_id' => Mage::helper('catalog')->__('Lastest'),
-            'bestsell'  => Mage::helper('catalog')->__('Bestsell')
+            'position'  => Mage::helper('catalog')->__('Position')
         );
+        if ($_module == 'catalog' || $_module == 'collection'){
+            $options['entity_id'] = Mage::helper('catalog')->__('Lastest');
+            $options['bestsell']  = Mage::helper('catalog')->__('Bestsell');
+        }
         foreach ($this->getAttributesUsedForSortBy() as $attribute) {
             /* @var $attribute Mage_Eav_Model_Entity_Attribute_Abstract */
             $options[$attribute->getAttributeCode()] = $attribute->getStoreLabel();

@@ -31,7 +31,7 @@ $_module = $this->getRequest()->getModuleName();
 if ($_module == 'catalogsearch')
     $currentCategory = $this->getRequest()->getParam('cat');
 else
-    $currentCategory = 0;
+    $currentCategory = '';
 $categories = Mage::getResourceModel('catalog/category_collection')
     ->addIsActiveFilter()
     ->addNameToResult()
