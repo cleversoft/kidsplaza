@@ -122,6 +122,7 @@ Category layered navigation layout
             <action method="addJs"><js>mt/extensions/jquery/plugins/jquery.mousewheel.min.js</js></action>
             <action method="addJs"><js>mt/extensions/jquery/plugins/m-custom-scrollbar/jquery.mCustomScrollbar.js</js></action>
             <action method="addJs"><js>mt/extensions/jquery/plugins/jquery.equalHeights.js</js></action>
+            <action method="addJs"><js>mt/extensions/jquery/plugins/jquery.imageready.min.js</js></action>
             <action method="addJs"><js>mt/mage/catalog/CategoryView.js</js></action>
         </reference>
         <reference name="left">

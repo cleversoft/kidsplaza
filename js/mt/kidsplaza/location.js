@@ -160,22 +160,33 @@ function triggerLocationOverlay(){
 }
 
 function setGridItemsEqualHeight(){
-    var winWidth = jQuery(window).width(),
-        grid = jQuery('.show-grid'),
-        items = grid.find('.item');
+    var grid = jQuery('.show-grid');
 
-    if (winWidth >= 200){
-        var gridItemMaxHeight = 0;
-        grid.removeClass('auto-height');
-        items.each(function() {
-            jQuery(this).css('height', 'auto');
-            gridItemMaxHeight = Math.max(gridItemMaxHeight, jQuery(this).height());
+    if (jQuery.fn.imageready){
+        grid.imageready(function(){
+            calculateGridItemHeight(grid);
         });
-        items.css('height', gridItemMaxHeight + 'px');
     }else{
-        grid.addClass('auto-height');
-        items.css('height', 'auto');
-        items.css('padding-bottom', '20px');
+        calculateGridItemHeight(grid);
+    }
+
+    function calculateGridItemHeight(grid) {
+        var winWidth = jQuery(window).width(),
+            items = grid.find('.item');
+
+        if (winWidth >= 200) {
+            var gridItemMaxHeight = 0;
+            grid.removeClass('auto-height');
+            items.each(function () {
+                jQuery(this).css('height', 'auto');
+                gridItemMaxHeight = Math.max(gridItemMaxHeight, jQuery(this).height());
+            });
+            items.css('height', gridItemMaxHeight + 'px');
+        } else {
+            grid.addClass('auto-height');
+            items.css('height', 'auto');
+            items.css('padding-bottom', '20px');
+        }
     }
 
     if (window.ensureEqualHeight) ensureEqualHeight();
