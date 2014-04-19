@@ -75,6 +75,10 @@
                 <schedule><config_path>kidsplaza/erp/schedule</config_path></schedule>
                 <run><model>mterp/observer::run</model></run>
             </mterp_sync>
+            <mterp_clear_log>
+                <schedule><config_path>kidsplaza/erp/clear_log</config_path></schedule>
+                <run><model>mterp/observer::clearLog</model></run>
+            </mterp_clear_log>
         </jobs>
     </crontab>
 
@@ -83,6 +87,9 @@
             <erp>
                 <schedule>*/30 * * * *</schedule>
                 <user>sa</user>
+                <enable_clear_log>1</enable_clear_log>
+                <clear_log>0 0 * * 0</clear_log>
+                <log_days>7</log_days>
             </erp>
         </kidsplaza>
     </default>

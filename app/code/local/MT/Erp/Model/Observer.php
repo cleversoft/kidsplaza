@@ -383,4 +383,26 @@ class MT_Erp_Model_Observer{
             $this->_MSSQLQuery($sql, $params);
         }
     }
+
+    /**
+     * Log cleaning
+     */
+    public function clearLog(){
+        if (!Mage::getStoreConfigFlag('kidsplaza/erp/enable_clear_log')) return;
+        $logDir = Mage::getBaseDir('media') . DS . 'erp';
+        if (!is_dir($logDir)) return;
+        $keepLogDays = (int)Mage::getStoreConfig('kidsplaza/erp/log_days');
+        $keepLogDays = $keepLogDays > 0 ? $keepLogDays : 7;
+        $date = Mage::getModel('core/date');
+        $today = $date->timestamp($date->date('Y-m-d'));
+        $expireDate = $date->timestamp($date->date('Y-m-d', $today - $keepLogDays * 86400));
+        foreach (scandir($logDir) as $file){
+            $filePath = $logDir . DS .$file;
+            if (!file_exists($filePath)) continue;
+            $parts = explode('-', $file);
+            if (count($parts) <= 3 || (int)$parts[0] == 0 || (int)$parts[1] == 0 || (int)$parts[2] == 0) continue;
+            $dateOfFile = $date->timestamp(sprintf('%d-%d-%d', $parts[0], $parts[1], $parts[2]));
+            if ($dateOfFile < $expireDate) @unlink($filePath);
+        }
+    }
 }
