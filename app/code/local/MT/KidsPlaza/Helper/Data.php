@@ -365,4 +365,9 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
             return sprintf('<div class="groupon-timedown" data-cdate="%s"></div>', date('Y/m/d H:i', strtotime($product->getGrouponTo())));
         }
     }
+
+    public function getDiscount($product){
+        if (!$product) return;
+        return floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice());
+    }
 }

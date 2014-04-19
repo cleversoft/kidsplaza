@@ -118,7 +118,7 @@ $_core              = $this->helper('core/string');
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <?php if ($_product->getPrice() > $_product->getFinalPrice()):?>
-                        <span class="price-discount"><?php echo floor(($_product->getFinalPrice()-$_product->getPrice())*100/$_product->getPrice()) ?>%</span>
+                        <span class="price-discount">-<?php echo Mage::helper('kidsplaza')->getDiscount($_product) ?>%</span>
                     <?php endif ?>
                     <img class="lazy" data-original="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
                 </a>
