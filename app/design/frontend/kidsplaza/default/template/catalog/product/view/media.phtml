@@ -55,7 +55,7 @@
 </div>
 <p class="product-image">
 <?php if ($_product->getPrice() > $_product->getFinalPrice()):?>
-    <span class="price-discount utm-cookies">-<?php echo floor(($_product->getPrice()-$_product->getFinalPrice())*100/$_product->getPrice()) ?>%</span>
+    <span class="price-discount utm-cookies">-<?php echo Mage::helper('kidsplaza')->getDiscount($_product) ?>%</span>
 <?php endif ?>
 <?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
     <img class="img-responsive img-main<?php echo Mage::getStoreConfigFlag('catalog/zoom/enable') ? ' img-zoom' : '' ?><?php echo Mage::getStoreConfigFlag('catalog/zoom/popup') ? ' img-popup' : '' ?>"
