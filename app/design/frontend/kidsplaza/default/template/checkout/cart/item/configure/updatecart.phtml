@@ -24,21 +24,31 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
-
-<?php $_product = $this->getProduct(); ?>
-<?php $buttonTitle = $this->__('Update Cart'); ?>
+<?php /* @var $this Mage_Catalog_Block_Product_View */ ?>
+<?php $_product = $this->getProduct() ?>
+<?php $buttonTitle = $this->__('Add to Cart') ?>
 <?php if ($_product->isAvailable()): ?>
     <a class="btn-success" href="javascript:void(0)"><?php echo $this->__('In stock') ?></a>
 <?php else: ?>
-    <a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Out of stock') ?></a>
+    <!--a class="btn-danger" href="javascript:void(0)"><?php echo $this->__('Call Me') ?></a-->
 <?php endif ?>
-<p class="shipping-note"><?php echo $this->__('Shipping within <span>6 - 12hrs</span>') ?></p>
+<p class="shipping-note">
+    <span><?php echo $this->__('Shipping within <b>6 - 12hrs</b>') ?></span>
+    <span><?php echo $this->__('Free Shipping <a href="#">(*)</a>') ?></span>
+</p>
 <?php if ($_product->isSaleable()): ?>
     <div class="add-to-cart">
         <?php if (!$_product->isGrouped()): ?>
-        <label for="qty"><?php echo $this->__('Quantity') ?></label>
-        <input type="text" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty" />
-        <?php endif; ?>
+            <div class="quantity">
+                <label for="qty"><?php echo $this->__('Quantity') ?></label>
+                <div class="input-group">
+                    <span id="arrow-bottom" class="input-group-btn"><button class="btn btn-info btn-qty" type="button">-</button></span>
+                    <input type="text" autocomplete="off" max="99" min="1" name="qty" id="qty" maxlength="2" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="form-control qty " />
+                    <span id="arrow-top" class="input-group-btn"><button class="btn btn-info btn-qty" type="button">+</button></span>
+                </div>
+            </div>
+            <p id="product-price-total"><?php echo $this->__('Total Price') ?>: <span class="price"></span></p>
+        <?php endif ?>
         <div class="add-bt">
             <button type="button" class="btn btn-kid btn-cart btn-login" title="<?php echo $buttonTitle ?>" onclick="window.productAddToCartForm.submit(this)">
                 <?php echo $buttonTitle ?>
@@ -46,4 +56,19 @@
         </div>
         <?php echo $this->getChildHtml('', true, true) ?>
     </div>
-<?php endif; ?>
+<?php else: ?>
+    <?php if (!Mage::getSingleton('core/session')->getData('stock'.$_product->getId())): ?>
+        <?php if (!Mage::getSingleton('customer/session')->isLoggedIn() || !Mage::getSingleton('customer/session')->getCustomer()->getData('phone_number')): ?>
+            <input id="stock-notify-email" type="text" class="form-control" placeholder="<?php echo Mage::helper('mtstocknotify')->__('Enter your phone number here') ?>"/>
+            <p class="stock-notify-note"><?php echo Mage::helper('mtstocknotify')->__('Example: 0987654321') ?></p>
+        <?php else: ?>
+            <input id="stock-notify-email" type="hidden" value="<?php echo Mage::getSingleton('customer/session')->getCustomer()->getData('phone_number') ?>"/>
+        <?php endif ?>
+        <button class="btn btn-cart btn-login" type="button"
+                onclick="stockNotifySubmit(this, '<?php echo $this->getUrl('mtstocknotify/notify/submit', array('product'=>$_product->getId(),'form_key'=>Mage::getSingleton('core/session')->getFormKey())) ?>')">
+            <?php echo $this->__('Call Me') ?>
+        </button>
+    <?php else: ?>
+        <p class="stock-notified"><?php echo Mage::helper('mtstocknotify')->__('Notified') ?></p>
+    <?php endif ?>
+<?php endif ?>
