@@ -56,12 +56,12 @@ $_product = $this->getProduct();
                         <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                     </h1>
                     <?php if ($_product->getData('brand')): ?>
-                        <div class="brand">
+                        <span class="brand">
                             <small>by</small>
                             <a href="<?php echo $this->helper('kidsplaza')->getBrandUrl($_product->getData('brand'), $_product->getAttributeText('brand')) ?>">
                                 <?php echo $_product->getAttributeText('brand') ?>
                             </a>
-                        </div>
+                        </span>
                     <?php endif ?>
                 </div>
                 <div class="row">

@@ -153,7 +153,7 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
 .product-view .video-item-user {color: #0098cd;}
 .product-shop{padding-left: 0;}
 .product-shop .page-title {border-bottom: 1px solid #f2f2f2;padding-bottom: 5px;margin-bottom: 20px; overflow: hidden;}
-.product-shop h1{font-size: 20px ;margin-top: 0;font-family: 'Roboto Slab',arial, sans-serif; float: left;}
+.product-shop h1{font-size: 20px ;margin-top: 0;font-family: 'Roboto Slab',arial, sans-serif; float: left; padding-right: 5px;}
 .product-shop h1 a{color: #0098cd;font-style: italic;}
 .product-shop .brand {
     font-size: 15px;
@@ -161,7 +161,6 @@ a.btn-view:hover{outline: 3px solid #fc4c8c;}
     float: left;
     font-family: 'Roboto Slab',arial, sans-serif;
     line-height: 24px;
-    padding-left: 10px;
 }
 .table .value{background: #fff !important;}
 .product-view .desc{padding: 15px;}
