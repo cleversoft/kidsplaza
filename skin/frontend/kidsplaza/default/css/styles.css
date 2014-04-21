@@ -543,7 +543,7 @@ input,textarea{outline:0}
 .flexslider h3{height:34px;border-bottom:1px solid #ccc;margin-top: 0;}
 .flexslider h3 .badge{vertical-align:top;background-color:#f0ad4e;color:#fff}
 #coupon-loading{padding-left: 10px;}
-.category-title  h1 { color: #20a4f0 ; font-size: 22px; text-transform: uppercase ;}
+.category-title  h1 { color: #20a4f0 ; font-size: 22px; text-transform: uppercase; margin:0;}
 
 .attribute-carousel-wrapper {float: left ; width:  100% ; position: relative ; }
 .attribute-carousel-wrapper .title {left: 0; position: absolute; text-align: center; top: -4px;width: 100%;}

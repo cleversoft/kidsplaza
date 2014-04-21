@@ -49,14 +49,15 @@
     </div>
 <?php endif; ?>
 
-<?php if ($_category->hasChildren()): ?>
+<div class="catalog-product-list">
+<?php //if ($_category->hasChildren()): ?>
 <div class="category-title page-title">
     <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
         <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
     <?php endif; ?>
     <h1 class="utm-cookies"><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
 </div>
-<?php endif; ?>
+<?php //endif; ?>
 
 <?php if($this->isContentMode()): ?>
     <?php echo $this->getCmsBlockHtml() ?>
@@ -71,3 +72,4 @@
         <?php echo $this->getProductListHtml() ?>
     <?php endif ?>
 <?php endif; ?>
+</div>
