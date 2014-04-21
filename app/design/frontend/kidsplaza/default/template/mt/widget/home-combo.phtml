@@ -51,9 +51,11 @@ $_core              = $this->helper('core/string');
         };
     </script>
     <div class="home-combo-carousel-wrapper category-products">
-        <?php if ($_title): ?>
-            <h3><?php echo $_title ?></h3>
-        <?php endif ?>
+        <div class="bordered-tab">
+                <?php if ($_title): ?>
+                    <h3><a class="utm-cookies btn-widget btn btn-kid"><?php echo $_title ?></a></h3>
+                <?php endif ?>
+        </div>
         <div class="btn-group">
             <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
             <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>

@@ -1132,6 +1132,12 @@ dl.item-options{
 .home-combo-carousel-wrapper .ratings .amount{
     display: none;
 }
+.home-combo-carousel-wrapper h3 {margin: 2px 0;}
+.home-combo-carousel-wrapper h3 a{ text-transform: uppercase ;}
+.home-combo-carousel-wrapper .bordered-tab {
+    border-bottom: 1px solid #EBEBEB;
+    width: 100%;
+}
 .box-account .col2-set .box-content{
     clear: both;
 }
