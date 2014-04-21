@@ -63,6 +63,8 @@ a:focus, button:focus { outline: none; }
 .product-view .page-title h2 {color: #322c29 ; font-size: 26px; border-bottom: 1px solid #e3e3e3 ;font-weight: 400;}
 .product-view .price-box .old-price {color: #686868; font-weight: 500 ; }
 .product-view .price-box .old-price .price-label {font-size: 16px;color: #686868;  }
+.product-view .price-box .old-price .price-label-save,
+.product-view .price-box .old-price .price.price-save{font-weight: 700;color: #FF4E8F;}
 .product-view .price-box .old-price .price {font-size: 16px ;color: #686868; text-decoration:none ;}
 .product-view .product-shop  .ratings a{color: #373737 ;  }
 .product-view .product-shop  .desc {border-right: 1px solid #efefef ;}
