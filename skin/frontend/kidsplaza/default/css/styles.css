@@ -1129,6 +1129,7 @@ dl.item-options{
 .tabs-left .nav-tabs{
     width: 100%;
 }
+.home-combo-carousel-wrapper {margin-top: 20px; }
 .home-combo-carousel-wrapper .ratings .amount{
     display: none;
 }
