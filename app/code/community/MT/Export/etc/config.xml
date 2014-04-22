@@ -58,6 +58,15 @@
         </routers>
     </admin>
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_Export>
+                    <files>
+                        <default>MT_Export.csv</default>
+                    </files>
+                </MT_Export>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <export>

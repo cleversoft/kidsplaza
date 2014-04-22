@@ -46,7 +46,7 @@ class MT_StockNotify_Block_Adminhtml_Notify_Grid extends Mage_Adminhtml_Block_Wi
             'renderer'  => 'mtstocknotify/adminhtml_notify_grid_column_renderer_customer'
         ));
         $this->addColumn('store_id', array(
-            'header'    => Mage::helper('mtstocknotify')->__('Customer'),
+            'header'    => Mage::helper('mtstocknotify')->__('Website'),
             'index'     => 'store_id',
             'width'     => 300,
             'type'      => 'store'

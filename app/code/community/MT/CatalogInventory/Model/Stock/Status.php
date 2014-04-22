@@ -42,7 +42,7 @@ class MT_CatalogInventory_Model_Stock_Status extends Mage_CatalogInventory_Model
                 foreach ($stockStatuses as $productId => $status) {
                     if ($product = $productCollection->getItemById($productId)) {
                         $product->setIsSalable($status);
-                        $productStatus[] = $productId;
+                        $productStatus[$productId] = 1;
                     }
                 }
                 foreach ($productCollection as $product) {

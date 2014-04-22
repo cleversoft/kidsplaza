@@ -42,6 +42,15 @@
         </routers>
     </admin>
     <adminhtml>
+        <translate>
+            <modules>
+                <MagenThemes_Megamenu>
+                    <files>
+                        <default>MagenThemes_Megamenu.csv</default>
+                    </files>
+                </MagenThemes_Megamenu>
+            </modules>
+        </translate>
 		<layout>
 			<updates>
 				<megamenu>

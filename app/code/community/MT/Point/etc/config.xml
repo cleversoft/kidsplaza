@@ -145,6 +145,15 @@
     </admin>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_Point>
+                    <files>
+                        <default>MT_Point.csv</default>
+                    </files>
+                </MT_Point>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <mtpoint>

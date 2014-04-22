@@ -85,6 +85,15 @@
     </admin>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_RevSlider>
+                    <files>
+                        <default>MT_RevSlider.csv</default>
+                    </files>
+                </MT_RevSlider>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <revslider>

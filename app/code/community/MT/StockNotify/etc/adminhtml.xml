@@ -11,7 +11,7 @@
 -->
 <config>
     <menu>
-        <catalog>
+        <mt>
             <children>
                 <mtstocknotify translate="title">
                     <title>MT Stock Notify</title>
@@ -19,7 +19,7 @@
                     <sort_order>99</sort_order>
                 </mtstocknotify>
             </children>
-        </catalog>
+        </mt>
     </menu>
 
     <acl>

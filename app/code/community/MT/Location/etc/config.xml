@@ -92,6 +92,15 @@
     </admin>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_Location>
+                    <files>
+                        <default>MT_Location.csv</default>
+                    </files>
+                </MT_Location>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <mtlocation>
