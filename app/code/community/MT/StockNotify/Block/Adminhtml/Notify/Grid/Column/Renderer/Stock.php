@@ -17,6 +17,9 @@ class MT_StockNotify_Block_Adminhtml_Notify_Grid_Column_Renderer_Stock extends M
             if (!$product->getId()) return '';
         }
         $stock = $product->getStockItem();
-        return $stock->getIsInStock() ? $this->__('In stock (%d)', $stock->getQty()) : $this->__('Out of stock');
+        if (!$stock) return '';
+        $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
+        $productsData = $stockStatus->getProductData($product->getId(), $product->getStore()->getWebsiteId());
+        return isset($productsData[$product->getId()]) ? $this->__('In stock (%d)', $productsData[$product->getId()]['qty']) : $this->__('Out of stock');
     }
 }
