@@ -451,7 +451,7 @@ class MT_Erp_Model_Observer{
 
         if (!$this->_getMSSQLConnection()) return;
 
-        $sql = "SELECT [MHID],[MHCODE],[MHTEN],[GIABANLE] FROM [dbo].[MATHANG]";
+        $sql = "SELECT [MHID],[MHCODE],[MHTEN],[SOLUONG],[GIABANLE] FROM [dbo].[MATHANG]";
         $rs = $this->_MSSQLQuery($sql);
         if (!$rs) return;
 
@@ -461,7 +461,8 @@ class MT_Erp_Model_Observer{
                 'MHID'      => sqlsrv_get_field($rs, 0, SQLSRV_PHPTYPE_STRING('UTF-8')),
                 'MHCODE'    => sqlsrv_get_field($rs, 1, SQLSRV_PHPTYPE_STRING('UTF-8')),
                 'MHTEN'     => sqlsrv_get_field($rs, 2, SQLSRV_PHPTYPE_STRING('UTF-8')),
-                'GIABANLE'  => sqlsrv_get_field($rs, 3, SQLSRV_PHPTYPE_STRING('UTF-8'))
+                'SOLUONG'   => sqlsrv_get_field($rs, 3, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                'GIABANLE'  => sqlsrv_get_field($rs, 4, SQLSRV_PHPTYPE_STRING('UTF-8'))
             );
         }
 
@@ -481,7 +482,7 @@ class MT_Erp_Model_Observer{
         $insertProduct = 0;
         $failedProduct = 0;
         for ($i=0; $i<$erpTotal; $i++){
-            if ($i == 50) break;
+            //if ($i == 60) break;
             $erp = $erpProducts[$i];
             if (!isset($products[$erp->MHCODE])){
                 $product = Mage::getModel('catalog/product');
@@ -495,7 +496,11 @@ class MT_Erp_Model_Observer{
                     'visibility'    => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
                     'status'        => 2,
                     'tax_class_id'  => 0,
-                    'price'         => $erp->GIABANLE
+                    'price'         => $erp->GIABANLE,
+                    'stock_data'    => array(
+                        'qty' => $erp->SOLUONG > 0 ? $erp->SOLUONG : 0,
+                        'is_in_stock' => $erp->SOLUONG > 0 ? 1 : 0
+                    )
                 ));
                 try{
                     $product->save();
@@ -546,7 +551,7 @@ class MT_Erp_Model_Observer{
             }elseif ($products[$i]['type_id'] == 'simple'){
                 $row = $this->_getErpProductBySku($products[$i]['sku']);
                 if (!$row) continue;
-                if ($i == 5) break;
+                //if ($i == 5) break;
                 $this->_updatePrices($products[$i]['entity_id'], $row);
                 $this->_updateStocks($products[$i]['entity_id'], $row);
                 $countProcessed++;
@@ -564,10 +569,7 @@ class MT_Erp_Model_Observer{
         $this->log(sprintf('Update products: %d', $countProcessed));
 
         $this->log('Reindex catalog_product_price');
-        //Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
-
-        //$this->log('Reindex cataloginventory_stock');
-        //Mage::getModel('index/indexer')->getProcessByCode('cataloginventory_stock')->reindexAll();
+        Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
         $this->_closeMSSQLConnection();
 
