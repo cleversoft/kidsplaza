@@ -9,20 +9,26 @@
  */
 class MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory
     extends Mage_Adminhtml_Block_Catalog_Product_Edit_Tab_Inventory{
+    protected $_stockStatus = array();
 
     public function getFieldValue($field){
         if ($this->getStockItem()){
-            if ($field == 'qty'){
-                $productId = $this->getProduct()->getId();
-                if ($productId){
-                    $storeId = (int)$this->getRequest()->getParam('store', 0);
-                    if ($storeId){
-                        $websiteId = Mage::app()->getStore($storeId)->getWebsiteId();
-                        $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
-                        $productsData = $stockStatus->getProductData($productId, $websiteId);
-                        if (isset($productsData[$productId])){
-                            return $productsData[$productId]['qty'];
-                        }
+            $productId = $this->getProduct()->getId();
+            $storeId = (int)$this->getRequest()->getParam('store', 0);
+            if ($productId && $storeId){
+                if (!isset($this->_stockStatus[$productId])){
+                    $websiteId = Mage::app()->getStore($storeId)->getWebsiteId();
+                    $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
+                    $this->_stockStatus = $stockStatus->getProductData($productId, $websiteId);
+                }
+                if (isset($this->_stockStatus[$productId])){
+                    switch ($field){
+                        case 'qty':
+                            return $this->_stockStatus[$productId]['qty'];
+                            break;
+                        case 'is_in_stock':
+                            return $this->_stockStatus[$productId]['stock_status'];
+                            break;
                     }
                 }
             }

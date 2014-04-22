@@ -16,6 +16,20 @@ class MT_Erp_Model_Observer{
     protected $_stores;
     protected $_logger;
     protected $_logFile;
+    protected $_isSync = true;
+
+    public function setIsCron($flag=false){
+        $this->_isSync = (bool)$flag;
+    }
+
+    public function getIsCron(){
+        return $this->_isSync;
+    }
+
+    protected function _closeMSSQLConnection(){
+        if ($this->_MSSQLConnection) sqlsrv_close($this->_MSSQLConnection);
+        $this->log('Microsoft SQL Server closed');
+    }
 
     protected function _getMSSQLConnection(){
         if ($this->_MSSQLConnection) return $this->_MSSQLConnection;
@@ -37,7 +51,9 @@ class MT_Erp_Model_Observer{
             $this->log('Microsoft SQL Server connection failed', Zend_Log::CRIT);
             return null;
         }else{
-            $this->log('Microsoft SQL Server connected');
+            if ($this->getIsCron()){
+                $this->log('Microsoft SQL Server connected');
+            }
         }
 
         $this->_MSSQLConnection = $mssql_conn;
@@ -60,26 +76,31 @@ class MT_Erp_Model_Observer{
     }
 
     protected function log($message, $level=Zend_Log::INFO){
+        if (!$this->getIsCron()){
+            Mage::log($message, $level);
+            return;
+        }
         if (!$this->_logger){
-            $date       = Mage::getModel('core/date');
-            $logDir     = Mage::getBaseDir('media') . DS . 'erp';
-            $logFile    = uniqid($date->date('Y-m-d-H-i-')) . '.log';
-            $this->_logFile = $logFile;
+            $logDir = Mage::getBaseDir('media') . DS . 'erp';
+            if (!$this->_logFile){
+                $date = Mage::getModel('core/date');
+                $this->_logFile = uniqid($date->date('Y-m-d-H-i-')) . '.log';
+            }
 
             if (!is_dir($logDir)){
                 mkdir($logDir);
                 chmod($logDir, 0777);
             }
 
-            if (!file_exists($logDir . DS . $logFile)){
-                file_put_contents($logDir . DS . $logFile, '');
-                chmod($logDir . DS . $logFile, 0777);
+            if (!file_exists($logDir . DS . $this->_logFile)){
+                file_put_contents($logDir . DS . $this->_logFile, '');
+                chmod($logDir . DS . $this->_logFile, 0777);
             }
 
             $format = '%timestamp% %priorityName%: %message%' . PHP_EOL;
             $formatter = new Zend_Log_Formatter_Simple($format);
 
-            $writer = new Zend_Log_Writer_Stream($logDir . DS . $logFile);
+            $writer = new Zend_Log_Writer_Stream($logDir . DS . $this->_logFile);
             $writer->setFormatter($formatter);
 
             $this->_logger = new Zend_Log($writer);
@@ -218,8 +239,8 @@ class MT_Erp_Model_Observer{
         return $row->QTY > 0 ? (int)$row->QTY : 0;
     }
 
-    protected function _updatePrices($product, $erp){
-        if (!$product['sku'] || !$erp->MHCODE) return false;
+    protected function _updatePrices($productId, $erp){
+        if (!$productId || !$erp->MHCODE) return false;
 
         $connection = $this->_getConnection('core_write');
         $priceAttributeId = $this->_getAttributeId('price');
@@ -239,16 +260,77 @@ class MT_Erp_Model_Observer{
             $specialPrice = null;
         }
 
-        $connection->query($sql, array($price, $priceAttributeId, $product['entity_id']));
-        $connection->query($sql, array($specialPrice, $specialPriceAttributeId, $product['entity_id']));
+        $connection->query($sql, array($price, $priceAttributeId, $productId));
+        $connection->query($sql, array($specialPrice, $specialPriceAttributeId, $productId));
 
-        $this->log(sprintf('PRICE SKU [%s], price=%s, special_price=%s', $erp->MHCODE, $price, $specialPrice ? $specialPrice : 'NULL'));
+        $this->log(sprintf('PRICE SKU [%s] price=%s, special_price=%s', $erp->MHCODE, $price, $specialPrice ? $specialPrice : 'NULL'));
 
         return true;
     }
 
-    protected function _updateStocks($product, $erp){
-        if (!$product['sku'] || !$erp->MHCODE) return false;
+    protected function _updateParentStocks($parentId){
+        if (!$parentId) return false;
+
+        $stockId = null;
+        $connection = $this->_getConnection('core_write');
+        $logs = array();
+        $inStock = 0;
+        $countSql = "
+            SELECT COUNT(*)
+            FROM ".$this->_getTableName('cataloginventory_stock_status')."
+            WHERE product_id = ? AND website_id = ?
+        ";
+
+        foreach ($this->_getWebsites() as $websiteId){
+            $qty = $this->_getQtyParentProduct($parentId, $websiteId);
+            $stockStatus = $qty > 0 ? 1 : 0;
+            if ($stockStatus == 1) $inStock = 1;
+            $isInTable = $connection->fetchOne($countSql, array($parentId, $websiteId));
+
+            if ($isInTable){
+                $updateSql = "
+                    UPDATE " . $this->_getTableName('cataloginventory_stock_status') . "
+                    SET qty = ?, stock_status = ?
+                    WHERE product_id = ? AND website_id = ?
+                ";
+
+                $connection->query($updateSql, array(0, $stockStatus, $parentId, $websiteId));
+            }else{
+                if (is_null($stockId)){
+                    $stockSql = "
+                        SELECT stock_id FROM ".$this->_getTableName('cataloginventory_stock_item')."
+                        WHERE product_id = ?
+                    ";
+                    $stockId = $connection->fetchOne($stockSql, array($parentId));
+                    $stockId = $stockId  > 0 ? $stockId : 1;
+                }
+
+                $insertSql = "
+                    INSERT INTO " . $this->_getTableName('cataloginventory_stock_status') . "
+                    (product_id, website_id, stock_id, qty, stock_status) VALUES (?,?,?,?,?)
+                ";
+
+                $connection->query($insertSql, array($parentId, $websiteId, $stockId, 0, $stockStatus));
+            }
+
+            $logs[] = sprintf('%d=%d(%d)', $websiteId, $stockStatus, $qty);
+        }
+
+        $updateSql = "
+            UPDATE ".$this->_getTableName('cataloginventory_stock_item')."
+            SET is_in_stock = ?
+            WHERE product_id = ?
+        ";
+        if ($connection->query($updateSql, array($inStock, $parentId)))
+            $logs[] = sprintf('all=%d', $inStock);
+
+        $this->log(sprintf('STOCK ID [%d] %s', $parentId, implode(', ', $logs)));
+
+        return true;
+    }
+
+    protected function _updateStocks($productId, $erp){
+        if (!$productId || !$erp->MHID) return false;
 
         $connection = $this->_getConnection('core_write');
         $websites = $this->_getWebsites();
@@ -268,7 +350,7 @@ class MT_Erp_Model_Observer{
             $stockStatus = $newQty > 0 ? 1 : 0;
             $totalQty += $newQty;
 
-            $isInTable = $connection->fetchOne($countSql, array($product['entity_id'], $website));
+            $isInTable = $connection->fetchOne($countSql, array($productId, $website));
 
             if ($isInTable){
                 $sql = "
@@ -277,21 +359,24 @@ class MT_Erp_Model_Observer{
                     WHERE product_id = ? AND website_id = ?
                 ";
 
-                $connection->query($sql, array($newQty, $stockStatus, $product['entity_id'], $website));
+                $connection->query($sql, array($newQty, $stockStatus, $productId, $website));
                 $logs[] = sprintf("%d=%d", $website, $newQty);
             }else{
                 if (is_null($stockId)){
-                    $stockSql = "SELECT stock_id FROM ".$this->_getTableName('cataloginventory_stock_item')." WHERE product_id=?";
-                    $stockId = $connection->fetchOne($stockSql, array($product['entity_id']));
+                    $stockSql = "
+                        SELECT stock_id FROM ".$this->_getTableName('cataloginventory_stock_item')."
+                        WHERE product_id = ?
+                    ";
+                    $stockId = $connection->fetchOne($stockSql, array($productId));
                     $stockId = $stockId  > 0 ? $stockId : 1;
                 }
 
                 $sql = "
                     INSERT INTO " . $this->_getTableName('cataloginventory_stock_status') . "
-                    (product_id, website_id, stock_id, qty, stock_status) VALUES(?,?,?,?,?)
+                    (product_id, website_id, stock_id, qty, stock_status) VALUES (?,?,?,?,?)
                 ";
 
-                $connection->query($sql, array($product['entity_id'], $website, $stockId, $newQty, $stockStatus));
+                $connection->query($sql, array($productId, $website, $stockId, $newQty, $stockStatus));
                 $logs[] = sprintf("%d=%d", $website, $newQty);
             }
         }
@@ -302,17 +387,30 @@ class MT_Erp_Model_Observer{
             WHERE product_id = ?
         ";
 
-        $connection->query($insertItemSql, array($totalQty, $totalQty > 0 ? 1 : 0, $product['entity_id']));
-        $logs[] = sprintf("all=%s", $totalQty);
+        if ($connection->query($insertItemSql, array($totalQty, $totalQty > 0 ? 1 : 0, $productId)))
+            $logs[] = sprintf("all=%s", $totalQty);
 
-        $this->log(sprintf('STOCK SKU [%s], %s', $erp->MHCODE, implode(', ', $logs)));
+        $this->log(sprintf('STOCK SKU [%s] %s', $erp->MHCODE, implode(', ', $logs)));
 
         return true;
     }
 
+    protected function _getQtyParentProduct($parentId, $websiteId){
+        if (!$parentId || !$websiteId) return 0;
+
+        $connection = $this->_getConnection('core_read');
+        $query = "
+            SELECT SUM(css.qty) FROM ".$this->_getTableName('cataloginventory_stock_status')." AS css
+            INNER JOIN ".$this->_getTableName('catalog_product_relation')." AS cpr ON cpr.child_id = css.product_id
+            WHERE css.website_id = ? AND cpr.parent_id = ?
+        ";
+
+        return $connection->fetchOne($query, array($websiteId, $parentId));
+    }
+
     protected function _getProductCollection(){
         $connection = $this->_getConnection('core_read');
-        $query = sprintf("SELECT * FROM %s", $this->_getTableName('catalog_product_entity'));
+        $query = sprintf("SELECT entity_id,type_id,sku FROM %s ORDER BY entity_id DESC", $this->_getTableName('catalog_product_entity'));
         return $connection->fetchAll($query);
     }
 
@@ -324,36 +422,172 @@ class MT_Erp_Model_Observer{
         return sqlsrv_fetch_object($rs);
     }
 
+    protected function _getCatalogProductMeta(){
+        $connection = $this->_getConnection('core_read');
+        $query = sprintf(
+            "SELECT eas.attribute_set_id FROM %s AS eas INNER JOIN %s AS eet ON eas.entity_type_id = eet.entity_type_id WHERE eet.entity_type_code = '%s'",
+            $this->_getTableName('eav_attribute_set'),
+            $this->_getTableName('eav_entity_type'),
+            'catalog_product'
+        );
+        return $connection->fetchOne($query);
+    }
+
+    protected function _getChildProduct($parentId){
+        if (!$parentId) return array();
+
+        $connection = $this->_getConnection('core_read');
+        $query = sprintf(
+            "SELECT child_id FROM %s WHERE parent_id = %s",
+            $this->_getTableName('catalog_product_relation'),
+            $parentId
+        );
+        return $connection->fetchAll($query);
+    }
+
+    public function runAll(){
+        $date = Mage::getModel('core/date');
+        $this->_logFile = uniqid($date->date('Y-m-d-H-i-\a\l\l-')) . '.log';
+
+        if (!$this->_getMSSQLConnection()) return;
+
+        $sql = "SELECT [MHID],[MHCODE],[MHTEN],[GIABANLE] FROM [dbo].[MATHANG]";
+        $rs = $this->_MSSQLQuery($sql);
+        if (!$rs) return;
+
+        $erpProducts = array();
+        while (sqlsrv_fetch($rs)){
+            $erpProducts[] = (object)array(
+                'MHID'      => sqlsrv_get_field($rs, 0, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                'MHCODE'    => sqlsrv_get_field($rs, 1, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                'MHTEN'     => sqlsrv_get_field($rs, 2, SQLSRV_PHPTYPE_STRING('UTF-8')),
+                'GIABANLE'  => sqlsrv_get_field($rs, 3, SQLSRV_PHPTYPE_STRING('UTF-8'))
+            );
+        }
+
+        $erpTotal = count($erpProducts);
+        if (!$erpTotal) return;
+        $this->log(sprintf('Total ERP products: %d', $erpTotal));
+
+        $products = $this->_getProductCollection();
+        $total = count($products);
+        for ($i=0; $i<$total; $i++){
+            $products[$products[$i]['sku']] = $products[$i];
+        }
+
+        $attributeSetId = $this->_getCatalogProductMeta();
+
+        $updateProduct = 0;
+        $insertProduct = 0;
+        $failedProduct = 0;
+        for ($i=0; $i<$erpTotal; $i++){
+            if ($i == 50) break;
+            $erp = $erpProducts[$i];
+            if (!isset($products[$erp->MHCODE])){
+                $product = Mage::getModel('catalog/product');
+                $product->setData(array(
+                    'type_id'       => 'simple',
+                    'attribute_set_id' => $attributeSetId,
+                    'sku'           => $erp->MHCODE,
+                    'name'          => $erp->MHTEN,
+                    'website_ids'   => $this->_getWebsites(),
+                    'weight'        => 1,
+                    'visibility'    => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
+                    'status'        => 2,
+                    'tax_class_id'  => 0,
+                    'price'         => $erp->GIABANLE
+                ));
+                try{
+                    $product->save();
+                    $this->log(sprintf('INSERT SKU [%s]', $product->getSku()));
+                    $insertProduct++;
+                }catch (Exception $e){
+                    $this->log(sprintf('INSERT ERROR SKU [%s]: %s', $product->getSku(), $e->getMessage()), Zend_Log::CRIT);
+                    $failedProduct++;
+                }
+            }else{
+                $product = $products[$erp->MHCODE];
+                $this->_updatePrices($product['entity_id'], $erp);
+                $this->_updateStocks($product['entity_id'], $erp);
+                $updateProduct++;
+            }
+        }
+
+        $this->log(sprintf('Update products: %d', $updateProduct));
+        $this->log(sprintf('Insert products: %d', $insertProduct));
+        $this->log(sprintf('Failed products: %d', $failedProduct));
+
+        $this->_closeMSSQLConnection();
+
+        return sprintf('<a href="%s" target="_blank">%s</a>',
+            Mage::getBaseUrl('media').'erp/'.$this->_logFile,
+            Mage::helper('mterp')->__('View log')
+        );
+    }
+
     public function run(){
         if (!$this->_getMSSQLConnection()) return;
 
         $products = $this->_getProductCollection();
-        if (!count($products)){
+
+        $total = count($products);
+        if (!$total){
             $this->log('No product avaiable', Zend_Log::CRIT);
             return;
-        }else $this->log(sprintf('Total products: %d', count($products)));
+        }else $this->log(sprintf('Total products: %d', $total));
 
-        $i = 0;
         $countProcessed = 0;
-        foreach ($products as $product){
-            //limit for test
-            //if ($i++ == 10) break;
-            $row = $this->_getErpProductBySku($product['sku']);
-            if (!$row) continue;
-            $this->_updatePrices($product, $row);
-            $this->_updateStocks($product, $row);
-            $countProcessed++;
+        $configurableProducts = array();
+
+        for ($i=0; $i<$total; $i++){
+            if ($products[$i]['type_id'] == 'configurable'){
+                $configurableProducts[] = $products[$i];
+                continue;
+            }elseif ($products[$i]['type_id'] == 'simple'){
+                $row = $this->_getErpProductBySku($products[$i]['sku']);
+                if (!$row) continue;
+                if ($i == 5) break;
+                $this->_updatePrices($products[$i]['entity_id'], $row);
+                $this->_updateStocks($products[$i]['entity_id'], $row);
+                $countProcessed++;
+            }
         }
 
-        $this->log(sprintf('Processed products: %d', $countProcessed));
+        $totalConfigurableProducts = count($configurableProducts);
+        if ($totalConfigurableProducts){
+            for ($i=0; $i<$totalConfigurableProducts; $i++){
+                $this->_updateParentStocks($configurableProducts[$i]['entity_id']);
+                $countProcessed++;
+            }
+        }
+
+        $this->log(sprintf('Update products: %d', $countProcessed));
 
         $this->log('Reindex catalog_product_price');
-        Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
+        //Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
         //$this->log('Reindex cataloginventory_stock');
         //Mage::getModel('index/indexer')->getProcessByCode('cataloginventory_stock')->reindexAll();
 
-        return sprintf('<a href="%s" target="_blank">%s</a>', Mage::getBaseUrl('media').'erp/'.$this->_logFile, Mage::helper('mterp')->__('View log'));
+        $this->_closeMSSQLConnection();
+
+        return sprintf('<a href="%s" target="_blank">%s</a>',
+            Mage::getBaseUrl('media').'erp/'.$this->_logFile,
+            Mage::helper('mterp')->__('View log')
+        );
+    }
+
+    /**
+     * Get ERP customer by phone number
+     */
+    public function getErpCustomer($phoneNumber){
+        if (!$phoneNumber) return null;
+        if (!$this->_getMSSQLConnection()) return null;
+        $sql = "SELECT TOP 1 [KHTEN],[GIOITINH],[EMAIL],[DIACHI] FROM [dbo].[KHACHHANG] WHERE [DIENTHOAI] = ? OR [DIDONG] = ?";
+        return $this->_MSSQLQuery($sql, array(
+            array($phoneNumber, SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8')),
+            array($phoneNumber, SQLSRV_PARAM_IN, SQLSRV_PHPTYPE_STRING('UTF-8'))
+        ));
     }
 
     /**

@@ -257,3 +257,20 @@ jQuery(document).ready(function(){
     js.src = "//apis.google.com/js/plusone.js";
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'google-plus'));
+//init phone validation
+Validation && Validation.addAllThese([
+    ['validate-phoneprefix', 'Please enter a valid phone number in this field.', function(value){
+        if (!validatePhonePrefix) return true;
+
+        var phonePrefix = validatePhonePrefix.split(','),
+            phoneLen = 7;
+
+        for (var i=0; i<phonePrefix.length; i++) {
+            if (value.substring(0, phonePrefix[i].length) == phonePrefix[i] && value.length == (phonePrefix[i].length + phoneLen)){
+                return true;
+            }
+        }
+
+        return Validation.get('IsEmpty').test(value);
+    }]
+]);

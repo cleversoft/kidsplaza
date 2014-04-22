@@ -1,4 +1,5 @@
 <?php
+die;
 require_once 'app/Mage.php';
 Mage::app('admin', 'store');
 

@@ -12,7 +12,7 @@ class MT_KidsPlaza_Model_Catalog_Layer_Filter_Item extends MT_Filter_Model_Layer
         if ($this->getHref()){
             return Mage::getUrl(null, array(
                 '_current'  => true,
-                '_direct'   => str_replace(Mage::getUrl(), '', $this->getHref()),
+                '_direct'   => str_replace(Mage::getBaseUrl(), '', $this->getHref()),
                 '_query'    => array(
                     Mage::getBlockSingleton('page/html_pager')->getPageVarName() => null,
                     'toolbar' => null

@@ -35,30 +35,36 @@
 <div class="account-create">
     <?php echo $this->getChildHtml('form_fields_before')?>
     <?php //echo $this->getMessagesBlock()->getGroupedHtml() ?>
-    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate" class="form-horizontal">
+    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-register" class="form-horizontal">
         <?php echo $this->getBlockHtml('formkey') ?>
         <div class="fieldset form-group">
             <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
             <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
             <ul class="form-list">
+                <li>
+                    <div class="field">
+                        <div class="input-box col-sm-10">
+                            <input data-url="<?php echo Mage::getUrl('mterp/customer/query') ?>"
+                                type="text"
+                                name="phone_number"
+                                id="phone_number"
+                                value="<?php echo $this->escapeHtml($this->getFormData()->getPhoneNumber()) ?>"
+                                title="<?php echo $this->__('Telephone') ?>"
+                                class="validate-phoneprefix input-text form-control<?php echo $this->helper('customer/address')->getAttributeValidationClass('phone_number') ?>" />
+                            <span class="spinner" style="display: none"></span>
+                        </div>
+                        <label class="col-sm-2 control-label" for="telephone"><?php echo $this->__('Telephone') ?></label>
+                    </div>
+                </li>
                 <li class="fields">
                     <?php echo $this->getLayout()->createBlock('customer/widget_name')->setObject($this->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
                 </li>
                 <li>
-				    <div class="field name-firstname"> 
-					        <div class="input-box col-sm-10">
-								<input type="text" name="phone_number" id="phone_number" value="<?php echo $this->escapeHtml($this->getFormData()->getPhoneNumber()) ?>" title="<?php echo $this->__('Telephone') ?>" class="input-text form-control<?php echo $this->helper('customer/address')->getAttributeValidationClass('phone_number') ?>" />
-							</div> 
-							<label class="col-sm-2 control-label" for="telephone"><?php echo $this->__('Telephone') ?></label>
-							
-					</div>
-                </li>
-                <li>
-				    <div class="field name-firstname"> 
-							<label for="email_address" class="required col-sm-2 control-label"><em>*</em><?php echo $this->__('Email Address') ?></label>
-							<div class="input-box col-sm-10">
-								<input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text form-control validate-email required-entry" />
-							</div>
+				    <div class="field">
+                        <label for="email_address" class="required col-sm-2 control-label"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                        <div class="input-box col-sm-10">
+                            <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text form-control validate-email required-entry" />
+                        </div>
 					</div>
                 </li>
                 <li class="fields">

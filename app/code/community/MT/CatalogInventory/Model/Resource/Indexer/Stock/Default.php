@@ -10,11 +10,13 @@
 class MT_CatalogInventory_Model_Resource_Indexer_Stock_Default extends Mage_CatalogInventory_Model_Resource_Indexer_Stock_Default{
     public function reindexAll(){
         //exit immediately
+        //parent::reindexAll();
         return $this;
     }
 
     public function reindexEntity($entityIds){
         //exit immediately
+        //parent::reindexEntity($entityIds);
         return $this;
     }
 }

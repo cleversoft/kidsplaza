@@ -22,6 +22,7 @@
                 <rewrite>
                     <catalog_product_grid>MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
                     <catalog_product_edit_tab_inventory>MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory</catalog_product_edit_tab_inventory>
+                    <catalog_product_edit_tab_super_config_grid>MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Super_Config_Grid</catalog_product_edit_tab_super_config_grid>
                 </rewrite>
             </adminhtml>
         </blocks>
@@ -29,11 +30,13 @@
             <cataloginventory>
                 <rewrite>
                     <stock_item>MT_CatalogInventory_Model_Stock_Item</stock_item>
+                    <stock_status>MT_CatalogInventory_Model_Stock_Status</stock_status>
                 </rewrite>
             </cataloginventory>
             <cataloginventory_resource>
                 <rewrite>
                     <indexer_stock_default>MT_CatalogInventory_Model_Resource_Indexer_Stock_Default</indexer_stock_default>
+                    <indexer_stock_configurable>MT_CatalogInventory_Model_Resource_Indexer_Stock_Configurable</indexer_stock_configurable>
                 </rewrite>
             </cataloginventory_resource>
         </models>

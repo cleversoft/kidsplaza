@@ -635,9 +635,10 @@ function stockNotifySubmit(btn, url){
     var value = field.val();
     if (!value) alert(Translator.translate('You must enter information'));
     else{
-        var valid = validPhonePrefix(value);
-        if(valid!=true){
-            alert(valid);
+        var validator = Validation.get('validate-phoneprefix');
+        if (!validator) return;
+        if (!validator.test(value)){
+            alert(Translator.translate('Please enter a valid phone number in this field.'));
         }else{
             jQuery.ajax({
                 url: url,
@@ -660,20 +661,4 @@ function stockNotifySubmit(btn, url){
             });
         }
     }
-}
-
-function validPhonePrefix(value){
-    var prefix = jQuery("#" +'phone_prefix').val(),
-        phonePrefix = prefix.split(','),
-        phoneLen = jQuery("#" +'phone_len').val(),
-        i;
-    if (!phoneLen || isNaN(phoneLen) || phoneLen <= 0) {
-        return true;
-    }
-    for (i=0; i < phonePrefix.length; i++) {
-        if (value.substring(0,phonePrefix[i].length) == phonePrefix[i] && value.length == (phonePrefix[i].length + parseInt(phoneLen))) {
-            return true;
-        }
-    }
-    return Translator.translate('Please enter a valid phone number in this field.')
 }
