@@ -58,6 +58,18 @@
         </events>
     </global>
 
+    <frontend>
+        <translate>
+            <modules>
+                <discountfilter>
+                    <files>
+                        <default>MT_DiscountFilter.csv</default>
+                    </files>
+                </discountfilter>
+            </modules>
+        </translate>
+    </frontend>
+
     <default>
         <discountfilter>
             <general>

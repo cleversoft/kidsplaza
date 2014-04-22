@@ -686,7 +686,7 @@ span.product-sku{vertical-align: top;}
 .pager .amount strong { float:left;padding:0 10px;}
 .pager .limiter label {float:left;  padding:10px 0 0 15px;}
 .pager .limiter select { width:35%; }
-.my-account .pager .limiter select{width: 100%;display: inline-block;}
+.my-account .pager .limiter select{width: 60px;display: inline-block;}
 .my-account .pager .limiter {float: right;}
 .my-account .pager .limiter label {display: none;}
 .my-account .pager .amount strong {font-weight: 400;}
@@ -1156,7 +1156,7 @@ dl.item-options{
 }
 .product-view .product-shop .right-desc .stock-notify-note{
     line-height: 100%;
-    margin-top: 10px;
+    margin: 10px 0;
 }
 .stock-notify-note span{
     color: #FF4E8F;

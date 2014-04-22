@@ -60,7 +60,7 @@ div.selector {
   padding: 0 0 0 10px;
   position: relative;
   overflow: hidden;
-    width: 100% !important;
+  /*width: 100% !important;*/
 }
   div.selector span {
     text-overflow: ellipsis;
