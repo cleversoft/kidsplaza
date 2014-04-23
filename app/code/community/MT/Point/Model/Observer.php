@@ -127,7 +127,7 @@ class MT_Point_Model_Observer{
                 'point_id'  => $balance->getId(),
                 'balance'   => $balance->getBalance(),
                 'delta'     => $delta,
-                'comment'   => Mage::helper('mtpoint')->__('[Review] From reviewing (Submit <a href="%s" target="_blank">#%d</a>)',
+                'comment'   => Mage::helper('mtpoint')->__('[Review] Submit <a href="%s" target="_blank">#%d</a>',
                         Mage::getUrl('mtreview/adminhtml_review/edit', array('id'=>$review->getReviewId())),
                         $review->getReviewId())
             ));
@@ -158,9 +158,7 @@ class MT_Point_Model_Observer{
                     'point_id'  => $balance->getId(),
                     'balance'   => $balance->getBalance(),
                     'delta'     => $delta,
-                    'comment'   => Mage::helper('mtpoint')->__('[Review] From reviewing (Delete)',
-                            Mage::getUrl('mtreview/adminhtml_review/edit', array('id'=>$review->getReviewId())),
-                            $review->getReviewId())
+                    'comment'   => Mage::helper('mtpoint')->__('[Review] Delete #%d', $review->getReviewId())
                 ));
                 $history->save();
                 /*Clean Cache Product*/

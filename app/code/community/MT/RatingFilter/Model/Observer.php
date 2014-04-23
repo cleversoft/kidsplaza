@@ -22,4 +22,23 @@ class MT_RatingFilter_Model_Observer{
             $block->setChild('rating_filter', $ratingBlock);
         }
     }
+
+    public function mtsearchPrepareLayout($observer){
+        $block = $observer->getEvent()->getBlock();
+        if ($this->isEnable()){
+            $discountBlock = $block->getLayout()->createBlock('ratingfilter/catalogSearch_layer_filter_rating')
+                ->setLayer($block->getLayer())
+                ->init();
+
+            $block->setChild('rating_filter', $discountBlock);
+        }
+    }
+
+    public function reindexProduct($observer){
+        if ($this->isEnable()){
+            $review = $observer->getEvent()->getReview();
+            $productId = $review->getData('entity_pk_value');
+            if ($productId) Mage::getSingleton('catalogsearch/fulltext')->rebuildIndex(null, array($productId));
+        }
+    }
 }

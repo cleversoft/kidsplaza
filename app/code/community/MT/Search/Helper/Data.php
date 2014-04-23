@@ -85,6 +85,9 @@ class MT_Search_Helper_Data extends Mage_CatalogSearch_Helper_Data {
                     $priceName = $this->getCurrentPriceName('b');
                     $filters[$priceName] = true;
                     break;
+                case 'rating':
+                    $filters['rating_i'] = sprintf('[%d TO %d]', ($value - 1)*20 + 1, $value*20);
+                    break;
 				default:
 					$filters['attr_' . $key . '_value'] = $value;
 					break;

@@ -128,10 +128,10 @@ class MT_Search_Model_Resource_Solr_Engine {
 			}catch(Exception $e){}
 		}
 
-		// add category_ids field
-		$resource = Mage::getSingleton('core/resource');
-		$connection = $resource->getConnection('core_read');
+        $resource = Mage::getSingleton('core/resource');
+        $connection = $resource->getConnection('core_read');
 
+		// add category_ids field
 		$select = $connection->select()
 			->from(
 				array($resource->getTableName('catalog/category_product_index')),
@@ -142,6 +142,7 @@ class MT_Search_Model_Resource_Solr_Engine {
 		foreach ($connection->fetchAll($select) as $row){
 			$document->addField('category_ids', $row['category_id']);
 		}
+        unset($select);
 
 		// add price fields
 		$select = $connection->select()
@@ -161,6 +162,20 @@ class MT_Search_Model_Resource_Solr_Engine {
                 $row['price'] > $row['final_price'] ? 1 : 0
             );
 		}
+        unset($select);
+
+        // add rating field
+        $select = $connection->select()
+            ->from(
+                array($resource->getTableName('rating/rating_vote_aggregated')),
+                array('entity_pk_value', 'percent_approved', 'store_id'))
+            ->where('entity_pk_value = ?', $entityId)
+            ->where('store_id = ?', 0);
+
+        foreach ($connection->fetchAll($select) as $row){
+            $document->addField('rating_i', $row['percent_approved']);
+        }
+        unset($select);
 
 		// add some important fields
 		$document->addField('id', $entityId);
@@ -168,7 +183,7 @@ class MT_Search_Model_Resource_Solr_Engine {
 		$document->addField('unique', $storeId . '|' . $entityId);
 		$document->addField('fulltext', implode('|', $fulltext));
 
-        Mage::dispatchEvent('mtsearch_prepare_document_data', array('document' => $document));
+        //Mage::dispatchEvent('mtsearch_prepare_document_data', array('document' => $document));
 
 		return $document;
 	}

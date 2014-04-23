@@ -7,12 +7,11 @@ class MT_CatalogInventory_Model_Observer{
         $product = $observer->getEvent()->getProduct();
         if (!$product->getId() || !$product->getStockItem() || $product->getStore()->getId() == 0) return;
 
-        $adapter = Mage::getSingleton('core/resource');
-        $connection = $adapter->getConnection('core_write');
-        $cssTable = $adapter->getTableName('cataloginventory_stock_status');
-        $csiTable = $adapter->getTableName('cataloginventory_stock_item');
-
         if ($product->getTypeId() == 'simple'){
+            $adapter = Mage::getSingleton('core/resource');
+            $connection = $adapter->getConnection('core_write');
+            $cssTable = $adapter->getTableName('cataloginventory_stock_status');
+            $csiTable = $adapter->getTableName('cataloginventory_stock_item');
             $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
             $stockData = $product->getStockItem()->getData();
             $productId = $product->getId();

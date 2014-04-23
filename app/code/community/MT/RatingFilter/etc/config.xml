@@ -46,6 +46,33 @@
                     </ratingfilter>
                 </observers>
             </mtfilter_prepare_layout>
+            <mtsearch_prepare_layout>
+                <observers>
+                    <ratingfilter>
+                        <type>singleton</type>
+                        <class>ratingfilter/observer</class>
+                        <method>mtsearchPrepareLayout</method>
+                    </ratingfilter>
+                </observers>
+            </mtsearch_prepare_layout>
+            <mt_review_approved>
+                <observers>
+                    <ratingfilter>
+                        <type>singleton</type>
+                        <class>ratingfilter/observer</class>
+                        <method>reindexProduct</method>
+                    </ratingfilter>
+                </observers>
+            </mt_review_approved>
+            <mt_review_removed>
+                <observers>
+                    <ratingfilter>
+                        <type>singleton</type>
+                        <class>ratingfilter/observer</class>
+                        <method>reindexProduct</method>
+                    </ratingfilter>
+                </observers>
+            </mt_review_removed>
         </events>
     </global>
 

@@ -15,6 +15,6 @@ class MT_CatalogInventory_Model_Stock_Item extends Mage_CatalogInventory_Model_S
         $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
         $productsData = $stockStatus->getProductData($productId, Mage::app()->getStore()->getWebsiteId());
 
-        return isset($productsData[$productId]) ? $productsData[$productId]['qty'] : $this->getData('qty');
+        return isset($productsData[$productId]) ? $productsData[$productId]['qty'] : 0;//$this->getData('qty');
     }
 }
