@@ -23,7 +23,7 @@ class MT_RatingFilter_Model_Resource_Catalog_Layer_Filter_Rating extends Mage_Co
         $conditions = array(
             'rating.entity_pk_value = e.entity_id',
             $connection->quoteInto('rating.store_id = ?', 0),
-            $connection->quoteInto('rating.percent_approved >= ?', $value == 1 ? 0 : ($value-1)*20 + 1),
+            $connection->quoteInto('rating.percent_approved >= ?', (($value >= 1 ? $value : 1) - 1)*20 + 1),
             $connection->quoteInto('rating.percent_approved <= ?', $value*20)
         );
 
