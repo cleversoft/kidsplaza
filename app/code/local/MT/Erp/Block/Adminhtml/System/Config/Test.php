@@ -18,7 +18,7 @@ class MT_Erp_Block_Adminhtml_System_Config_Test extends Mage_Adminhtml_Block_Sys
 			->setId('testConnectionBtn')
 			->setType('button')
 			->setClass('testBtn')
-			->setLabel(Mage::helper('mtsearch')->__('Test MSSQL Connection'))
+			->setLabel(Mage::helper('mterp')->__('Test Connection'))
 			->setOnClick("testConnection()"));
 
 		return $this;
