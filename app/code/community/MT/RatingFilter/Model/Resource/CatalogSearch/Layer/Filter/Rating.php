@@ -20,8 +20,7 @@ class MT_RatingFilter_Model_Resource_CatalogSearch_Layer_Filter_Rating extends M
 
         $attrField = 'rating_i';
         for ($i = 0; $i < 5; $i++){
-            if ($i == 0) $params['facet.query'][] = sprintf('%s:[%d TO %d]', $attrField, 20 * $i, 20 * ($i + 1));
-            else $params['facet.query'][] = sprintf('%s:[%d TO %d]', $attrField, 20 * $i + 1, 20 * ($i + 1));
+            $params['facet.query'][] = sprintf('%s:[%d TO %d]', $attrField, 20*$i + 1, 20*($i + 1));
         }
 
         list($q, $filters) = Mage::helper('mtsearch')->getCurrentFilters();

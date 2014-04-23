@@ -66,7 +66,7 @@ class MT_RatingFilter_Model_Resource_Catalog_Layer_Filter_Rating extends Mage_Co
             array('rating' => $this->getMainTable()),
             join(' AND ', $conditions),
             array(
-                's1' => 'SUM(CASE WHEN rating.percent_approved <= 20 THEN 1 ELSE 0 END)',
+                's1' => 'SUM(CASE WHEN rating.percent_approved > 0 AND rating.percent_approved <= 20 THEN 1 ELSE 0 END)',
                 's2' => 'SUM(CASE WHEN rating.percent_approved > 20 AND rating.percent_approved <= 40 THEN 1 ELSE 0 END)',
                 's3' => 'SUM(CASE WHEN rating.percent_approved > 40 AND rating.percent_approved <= 60 THEN 1 ELSE 0 END)',
                 's4' => 'SUM(CASE WHEN rating.percent_approved > 60 AND rating.percent_approved <= 80 THEN 1 ELSE 0 END)',
