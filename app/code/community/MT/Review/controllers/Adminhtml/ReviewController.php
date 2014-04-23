@@ -117,6 +117,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                 try {
                     $review->addData($data)->save();
                     Mage::dispatchEvent('mt_review_approved', array('review'=>$review));
+                    Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
                     $arrRatingId = $this->getRequest()->getParam('ratings', array());
                     $votes = Mage::getModel('rating/rating_option_vote')
                         ->getResourceCollection()
@@ -163,6 +164,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
             if ($review->getId()){
                 $review->delete();
                 Mage::dispatchEvent('mt_review_removed', array('review'=>$review));
+                Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
                 $session->addSuccess(Mage::helper('catalog')->__('The review has been deleted'));
             }
             if( $this->getRequest()->getParam('ret') == 'pending' ) {
@@ -193,6 +195,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                     $model = Mage::getModel('mtreview/review')->load($reviewId);
                     $model->delete();
                     Mage::dispatchEvent('mt_review_removed', array('review'=>$model));
+                    Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
                 }
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('adminhtml')->__('Total of %d record(s) have been deleted.', count($reviewsIds))
@@ -224,6 +227,7 @@ class MT_Review_Adminhtml_ReviewController extends Mage_Adminhtml_Controller_Act
                         ->save()
                         ->aggregate();
                     Mage::dispatchEvent('mt_review_approved', array('review'=>$model));
+                    Mage::app()->cleanCache(array(Mage_Catalog_Model_Product::CACHE_TAG));
                 }
                 $session->addSuccess(
                     Mage::helper('adminhtml')->__('Total of %d record(s) have been updated.', count($reviewsIds))

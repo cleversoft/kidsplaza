@@ -274,3 +274,34 @@ Validation && Validation.addAllThese([
         return Validation.get('IsEmpty').test(value);
     }]
 ]);
+//extend Validation
+Object.extend(Validation,{
+    insertAdvice : function(elm, advice){
+        var container = $(elm).up('.field-row'),
+            uniform = $(elm).up();
+
+        if (uniform.hasClassName('selector')){
+            Element.insert(uniform, {after: advice});
+        }else if (container){
+            Element.insert(container, {after: advice});
+        } else if (elm.up('td.value')) {
+            elm.up('td.value').insert({bottom: advice});
+        } else if (elm.advaiceContainer && $(elm.advaiceContainer)) {
+            $(elm.advaiceContainer).update(advice);
+        } else {
+            switch (elm.type.toLowerCase()) {
+                case 'checkbox':
+                case 'radio':
+                    var p = elm.parentNode;
+                    if(p) {
+                        Element.insert(p, {'bottom': advice});
+                    } else {
+                        Element.insert(elm, {'after': advice});
+                    }
+                    break;
+                default:
+                    Element.insert(elm, {'after': advice});
+            }
+        }
+    }
+});
