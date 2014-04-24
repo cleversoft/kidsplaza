@@ -10,6 +10,7 @@
 class MT_Erp_Model_Observer{
     protected $_adapter;
     protected $_attributes;
+    protected $_eavAttributes;
     protected $_entityTypes;
     protected $_promotions;
     protected $_websites;
@@ -75,38 +76,30 @@ class MT_Erp_Model_Observer{
     protected function _getAttributeId($attribute_code){
         if (!$attribute_code) return null;
 
-        if (!is_array($this->_attributes)) {
+        if (!isset($this->_attributes[$attribute_code])) {
             $connection = $this->_getConnection('core_read');
             $sql = "
                 SELECT attribute_id
                 FROM {$this->_getTableName('eav_attribute')}
-                WHERE entity_type_id = ? AND attribute_code = ?";
-
+                WHERE entity_type_id = ? AND attribute_code = ?
+            ";
             $entity_type_id = $this->_getEntityTypeId('catalog_product');
             $this->_attributes[$attribute_code] = $connection->fetchOne($sql, array($entity_type_id, $attribute_code));
-
-            return $this->_attributes[$attribute_code];
-        }else{
-            if (isset($this->_attributes[$attribute_code])) {
-                return $this->_attributes[$attribute_code];
-            }
         }
+
+        return $this->_attributes[$attribute_code];
     }
 
     protected function _getEntityTypeId($entity_type_code='catalog_product'){
         if (!$entity_type_code) return null;
 
-        if (!is_array($this->_entityTypes)) {
+        if (!isset($this->_entityTypes[$entity_type_code])) {
             $connection = $this->_getConnection('core_read');
             $sql = "SELECT entity_type_id FROM {$this->_getTableName('eav_entity_type')} WHERE entity_type_code = ?";
             $this->_entityTypes[$entity_type_code] = $connection->fetchOne($sql, array($entity_type_code));
-
-            return $this->_entityTypes[$entity_type_code];
-        }else{
-            if (isset($entityTypes[$entity_type_code])){
-                return $entityTypes[$entity_type_code];
-            }
         }
+
+        return $this->_entityTypes[$entity_type_code];
     }
 
     /**
@@ -166,14 +159,28 @@ class MT_Erp_Model_Observer{
         $connection = $this->_getConnection('core_write');
         $priceAttributeId = $this->_getAttributeId('price');
         $specialPriceAttributeId = $this->_getAttributeId('special_price');
+        $entityTypeId = $this->_getEntityTypeId('catalog_product');
         $promotions = $this->_getErpProductPromotion();
 
-        $sql = "
+        $checkSql = "
+            SELECT COUNT(*)
+            FROM {$this->_getTableName('catalog_product_entity_decimal')}
+            WHERE entity_id = ? AND attribute_id = ? AND entity_type_id = ?
+        ";
+
+        $updateSql = "
             UPDATE {$this->_getTableName('catalog_product_entity_decimal')}
             SET value = ?
-            WHERE attribute_id = ? AND entity_id = ?";
+            WHERE attribute_id = ? AND entity_id = ?
+        ";
 
-        $price = $erpProduct['price'] ? $erpProduct['price'] : 0;
+        $insertSql = "
+            INSERT INTO {$this->_getTableName('catalog_product_entity_decimal')}
+            (entity_type_id,attribute_id,store_id,entity_id,value)
+            VALUES (?,?,?,?,?)
+        ";
+
+        $price = isset($erpProduct['price']) ? $erpProduct['price'] : 0;
         if (isset($promotions[$erpProduct['productCode']])){
             $promotion = $promotions[$erpProduct['productCode']];
             $specialPrice = $promotion['specialPrice'];
@@ -181,8 +188,17 @@ class MT_Erp_Model_Observer{
             $specialPrice = null;
         }
 
-        $connection->query($sql, array($price, $priceAttributeId, $productId));
-        $connection->query($sql, array($specialPrice, $specialPriceAttributeId, $productId));
+        if ($connection->fetchOne($checkSql, array($productId, $priceAttributeId, $entityTypeId))){
+            $connection->query($updateSql, array($price, $priceAttributeId, $productId));
+        }else{
+            $connection->query($insertSql, array($entityTypeId, $priceAttributeId, 0, $productId, $price));
+        }
+
+        if ($connection->fetchOne($checkSql, array($productId, $specialPriceAttributeId, $entityTypeId))){
+            $connection->query($updateSql, array($specialPrice, $specialPriceAttributeId, $productId));
+        }else{
+            $connection->query($insertSql, array($entityTypeId, $specialPriceAttributeId, 0, $productId, $specialPrice));
+        }
 
         $this->log(sprintf('PRICE SKU [%s] price=%s, special_price=%s', $erpProduct['productCode'], $price, $specialPrice ? $specialPrice : 'NULL'));
 
@@ -259,7 +275,7 @@ class MT_Erp_Model_Observer{
         $stockId = null;
         $totalQty = 0;
 
-        $countSql = "
+        $checkStatusSql = "
             SELECT COUNT(*)
             FROM {$this->_getTableName('cataloginventory_stock_status')}
             WHERE product_id = ? AND website_id = ?
@@ -270,7 +286,7 @@ class MT_Erp_Model_Observer{
             $stockStatus = $newQty > 0 ? 1 : 0;
             $totalQty += $newQty;
 
-            $isInTable = $connection->fetchOne($countSql, array($productId, $website));
+            $isInTable = $connection->fetchOne($checkStatusSql, array($productId, $website));
 
             if ($isInTable){
                 $sql = "
@@ -301,17 +317,27 @@ class MT_Erp_Model_Observer{
             }
         }
 
-        $insertItemSql = "
-            UPDATE {$this->_getTableName('cataloginventory_stock_item')}
-            SET qty = ?, is_in_stock = ?
-            WHERE product_id = ?
-        ";
+        $checkItemSql = "SELECT COUNT(*) FROM {$this->_getTableName('cataloginventory_stock_item')} WHERE product_id = ?";
+        if ($connection->fetchOne($checkItemSql, array($productId))){
+            $updateItemSql = "
+                UPDATE {$this->_getTableName('cataloginventory_stock_item')}
+                SET qty = ?, is_in_stock = ?
+                WHERE product_id = ?
+            ";
 
-        if ($connection->query($insertItemSql, array($totalQty, $totalQty > 0 ? 1 : 0, $productId)))
-            $logs[] = sprintf("all=%s", $totalQty);
+            $connection->query($updateItemSql, array($totalQty, $totalQty > 0 ? 1 : 0, $productId));
+        }else{
+            $insertItemSql = "
+                INSERT INTO {$this->_getTableName('cataloginventory_stock_item')}
+                (product_id,stock_id,qty,use_config_min_qty,is_qty_decimal,use_config_backorders,use_config_min_sale_qty,use_config_max_sale_qty,is_in_stock,use_config_notify_stock_qty,use_config_manage_stock,use_config_qty_increments,use_config_enable_qty_inc)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+            ";
+
+            $connection->query($insertItemSql, array($productId, 1, $totalQty, 1, 0, 1, 1, 1, $totalQty > 0 ? 1 : 0, 1, 1, 1, 1));
+        }
+        $logs[] = sprintf("all=%s", $totalQty);
 
         $this->log(sprintf('STOCK SKU [%s] %s', $erpProduct['productCode'], implode(', ', $logs)));
-
         return true;
     }
 
@@ -350,6 +376,106 @@ class MT_Erp_Model_Observer{
         $connection = $this->_getConnection('core_read');
         $query = "SELECT child_id FROM {$this->_getTableName('catalog_product_relation')} WHERE parent_id = ?";
         return $connection->fetchAll($query, array($parentId));
+    }
+
+
+    protected function _insertEntity($product){
+        if (!$product->getSku() || !$product->getTypeId() || !$product->getAttributeSetId()){
+            throw new Exception('SKU, Type Id or Attribute Set Id not found');
+        }
+        $connection = $this->_getConnection('core_write');
+        $checkSql = "SELECT entity_id FROM {$this->_getTableName('catalog_product_entity')} WHERE sku = ?";
+        $rs = $connection->fetchOne($checkSql, array($product->getSku()));
+        if ($rs){
+            $product->setId($rs);
+        }else{
+            $insertSql = "
+            INSERT INTO {$this->_getTableName('catalog_product_entity')}
+            (entity_type_id,attribute_set_id,type_id,sku,created_at,updated_at) VALUES (?,?,?,?,NOW(),NOW())";
+            $connection->query($insertSql, array(
+                $product->getEntityTypeId(),
+                $product->getAttributeSetId(),
+                $product->getTypeId(),
+                $product->getSku()
+            ));
+            $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('catalog_product_entity')}");
+            $product->setId($entityId);
+        }
+    }
+
+    protected function _getEavAttributes($model){
+        $entityTypeId = $model->getEntityTypeId();
+        if (!$entityTypeId){
+            throw new Exception('Entity Type Id not found');
+        }
+
+        if (isset($this->_eavAttributes[$entityTypeId])) return $this->_eavAttributes[$entityTypeId];
+
+        $connection = $this->_getConnection('core_read');
+        $sql = "SELECT attribute_id,attribute_code,backend_type FROM {$this->_getTableName('eav_attribute')} WHERE entity_type_id = ?";
+        $this->_eavAttributes[$entityTypeId] = $connection->fetchAll($sql, array($entityTypeId));
+
+        return $this->_eavAttributes[$entityTypeId];
+    }
+
+    protected function _insertAttributes($product){
+        if (!$product->getId()){
+            throw new Exception('Product Id not found');
+        }
+
+        $productAttributes = $this->_getEavAttributes($product);
+        $connection = $this->_getConnection('core_write');
+        foreach ($productAttributes as $productAttribute){
+            if ($product->getData($productAttribute['attribute_code'])){
+                $backendType = $productAttribute['backend_type'];
+                switch ($backendType){
+                    case 'varchar':
+                    case 'decimal':
+                    case 'int':
+                    case 'text':
+                        $entityTable = $this->_getTableName('catalog_product_entity_' . $backendType);
+                        break;
+                    default:
+                        $entityTable = null;
+                }
+                if (is_null($entityTable)) continue;
+                $sql = "INSERT INTO {$entityTable} e (e.entity_type_id, e.attribute_id, e.store_id, e.entity_id, e.value) VALUES (?,?,?,?,?)";
+                $connection->query($sql, array(
+                    $product->getEntityTypeId(),
+                    $productAttribute['attribute_id'],
+                    0,
+                    $product->getId(),
+                    $product->getData($productAttribute['attribute_code'])
+                ));
+            }
+        }
+    }
+
+    protected function _insertWebsites($product){
+        if (!$product->getId()){
+            throw new Exception('Product Id not found');
+        }
+
+        $websites = $product->getData('website_ids');
+        if (!$websites) return;
+        if (!is_array($websites)) $websites = explode(',', $websites);
+        $connection = $this->_getConnection('core_write');
+
+        $sql = "INSERT INTO {$this->_getTableName('catalog_product_website')} (product_id,website_id) VALUES (?,?)";
+        foreach ($websites as $website){
+            if (!is_numeric($website)) continue;
+            $connection->query($sql, array($product->getId(), $website));
+        }
+    }
+
+    protected function _saveProduct($product){
+        if (!$product instanceof Mage_Catalog_Model_Product){
+            throw new Exception('Product Model invalid');
+        }
+
+        $this->_insertEntity($product);
+        $this->_insertAttributes($product);
+        $this->_insertWebsites($product);
     }
 
     public function runAll(){
@@ -394,7 +520,7 @@ class MT_Erp_Model_Observer{
             $insertProduct = 0;
             $failedProduct = 0;
             for ($i=1; $i<$pageTotal; $i++){
-                if ($i == 2) break;
+                if ($i == 3) break;
                 $erpProducts = $this->_adapter->getProducts($i, $paging);
                 $currentTotal = count($erpProducts);
                 if (!$currentTotal) break;
@@ -404,6 +530,7 @@ class MT_Erp_Model_Observer{
                     if (!isset($products[$erpProduct['productCode']])){
                         $product = Mage::getModel('catalog/product');
                         $product->setData(array(
+                            'entity_type_id' => 4,
                             'type_id'       => 'simple',
                             'attribute_set_id' => $attributeSetId,
                             'sku'           => $erpProduct['productCode'],
@@ -411,17 +538,20 @@ class MT_Erp_Model_Observer{
                             'website_ids'   => $this->_getWebsites(),
                             'weight'        => 1,
                             'visibility'    => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
-                            'status'        => 2,
-                            'tax_class_id'  => 0,
-                            'price'         => $erpProduct['price'],
+                            'status'        => Mage_Catalog_Model_Product_Status::STATUS_DISABLED,
+                            'tax_class_id'  => 0
+                            /*'price'         => $erpProduct['price'],
                             'stock_data'    => array(
                                 'qty' => $erpProduct['qty'] > 0 ? $erpProduct['qty'] : 0,
                                 'is_in_stock' => $erpProduct['qty'] > 0 ? 1 : 0
-                            )
+                            )*/
                         ));
                         try{
-                            $product->save();
+                            //$product->save();
+                            $this->_saveProduct($product);
                             $this->log(sprintf('INSERT SKU [%s]', $product->getSku()));
+                            $this->_updatePrices($product->getId(), $erpProduct);
+                            $this->_updateStocks($product->getId(), $erpProduct);
                             $insertProduct++;
                         }catch (Exception $e){
                             $this->log(sprintf('INSERT ERROR SKU [%s]: %s', $product->getSku(), $e->getMessage()), Zend_Log::CRIT);
@@ -442,6 +572,7 @@ class MT_Erp_Model_Observer{
 
             $this->_adapter->close();
         }catch (Exception $e){
+            Mage::logException($e);
             $this->log($e->getMessage(), Zend_Log::CRIT);
         }
 
