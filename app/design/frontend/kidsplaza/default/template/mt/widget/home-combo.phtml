@@ -50,11 +50,11 @@ $_core              = $this->helper('core/string');
             }
         };
     </script>
-    <div class="home-combo-carousel-wrapper category-products">
+    <div class="<?php echo $this->getConfig('classes')?> home-combo-carousel-wrapper category-products">
         <div class="bordered-tab">
-                <?php if ($_title): ?>
-                    <h3><a class="utm-cookies btn-widget btn btn-kid"><?php echo $_title ?></a></h3>
-                <?php endif ?>
+            <?php if ($_title): ?>
+                <h3><a class="utm-cookies btn-widget btn btn-kid"><?php echo $_title ?></a></h3>
+            <?php endif ?>
         </div>
         <div class="btn-group">
             <a class="btn btn-default btn-prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -62,7 +62,7 @@ $_core              = $this->helper('core/string');
         </div>
         <div class="products-grid owl-carousel" id="<?php echo $_id ?>">
             <?php $i=0; foreach ($_productCollection as $_product): ?>
-                <div class="item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
+                <div class="item-<?php echo $i ?> item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
                     <?php $i++ ?>
                     <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                         <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(300,150); ?>" width="300" height="150" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />

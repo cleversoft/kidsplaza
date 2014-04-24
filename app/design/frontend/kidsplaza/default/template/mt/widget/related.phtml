@@ -70,7 +70,7 @@ $_title             = $this->getConfig('widget_title');
             });
         </script>
     <?php endif ?>
-    <div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_scroll == 1 ? $_id : '' ?>">
+    <div class="<?php echo $this->getConfig('classes')?> slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_scroll == 1 ? $_id : '' ?>">
         <?php if ($_title):?><h2><?php echo $_title?></h2><?php endif ?>
         <p class="block-subtitle">
             <?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a>
@@ -85,7 +85,7 @@ $_title             = $this->getConfig('widget_title');
             <?php if ($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
             <ul class="products-grid<?php echo $_scroll==1 && $_rowCount==1 ? ' slides' : ''?>">
         <?php endif ?>
-            <li class="slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
+            <li class="slide-<?php echo $i ?> slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />

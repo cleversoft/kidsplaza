@@ -32,7 +32,7 @@ $title      = $this->getConfig('widget_title');
         };
     </script>
 <?php endif ?>
-<div class="attribute-carousel-wrapper ">
+<div class="attribute-carousel-wrapper <?php echo $this->getConfig('classes')?>">
     <?php if ($title): ?>
         <div class="bg-title-inner">&nbsp;</div>
         <div class="title"><h2 class="utm-cookies"><?php echo $title ?></h2></div>
@@ -42,8 +42,8 @@ $title      = $this->getConfig('widget_title');
             <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
     <div class="slider-attribute-wrapper <?php echo $scroll==1 ? 'owl-carousel' : '' ?>" id="<?php echo $id ?>">
-        <?php foreach ($attributes as $attribute): ?>
-            <div>
+        <?php $i=0; foreach ($attributes as $attribute): ?>
+            <div class="item-<?php echo $i++ ?>">
                 <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
                     <img src="<?php echo strpos($attribute['image'], 'http') === 0 ? $attribute['image'] : Mage::helper('kidsplaza')->resize(Mage::getBaseDir('media') .DS. $attribute['image'], 80) ?>" alt="<?php echo $attribute['label'] ?>" />
                 </a>

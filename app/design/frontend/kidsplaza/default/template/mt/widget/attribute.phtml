@@ -40,7 +40,7 @@ $title      = $this->getConfig('widget_title');
         };
     </script>
 <?php endif ?>
-<div class="slider-attribute-wrapper<?php echo $scroll==1 ? ' flexslider' : ''?>" id="<?php echo $id ?>">
+<div class="<?php echo $this->getConfig('classes')?> slider-attribute-wrapper<?php echo $scroll==1 ? ' flexslider' : ''?>" id="<?php echo $id ?>">
     <?php if ($title):?>
         <button class="btn-widget btn btn-kid" type="button"><?php echo $title?></button>
     <?php endif ?>
@@ -49,8 +49,8 @@ $title      = $this->getConfig('widget_title');
         <a class="btn btn-default btn-next"><i class="glyphicon glyphicon-chevron-right"></i></a>
     </div>
     <ul class="slides">
-        <?php foreach ($attributes as $attribute): ?>
-            <li class="slide">
+        <?php $i=0; foreach ($attributes as $attribute): ?>
+            <li class="slide-<?php echo $i++ ?> slide">
                 <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
                     <img src="<?php echo strpos($attribute['image'], 'http') === 0 ? $attribute['image'] : Mage::getBaseUrl('media') . $attribute['image'] ?>" alt="<?php echo $attribute['label'] ?>" />
                 </a>

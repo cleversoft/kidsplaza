@@ -18,10 +18,10 @@ $title      = $this->getConfig('widget_title');
 <?php if ($title):?>
 <h3><?php echo $title ?></h3>
 <?php endif ?>
-<ul class="block-blogs">
-    <?php foreach ($blogs as $blog):?>
+<ul class="block-blogs <?php echo $this->getConfig('classes')?>">
+    <?php $i=0; foreach ($blogs as $blog):?>
         <?php /* @var $blog Fishpig_Wordpress_Model_Post */ ?>
-        <li>
+        <li class="item-<?php echo $i++ ?>">
             <a class="img" href="<?php echo $blog->getUrl() ?>">
                 <img src="<?php echo $blog->getFeaturedImage() ? $blog->getFeaturedImage()->getThumbnailImage() : Mage::helper('kidsplaza')->resize('tmp/nofile', 50) ?>" width="50"/>
             </a>
