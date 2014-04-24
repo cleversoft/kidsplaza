@@ -426,28 +426,27 @@ class MT_Erp_Model_Observer{
         $productAttributes = $this->_getEavAttributes($product);
         $connection = $this->_getConnection('core_write');
         foreach ($productAttributes as $productAttribute){
-            if ($product->getData($productAttribute['attribute_code'])){
-                $backendType = $productAttribute['backend_type'];
-                switch ($backendType){
-                    case 'varchar':
-                    case 'decimal':
-                    case 'int':
-                    case 'text':
-                        $entityTable = $this->_getTableName('catalog_product_entity_' . $backendType);
-                        break;
-                    default:
-                        $entityTable = null;
-                }
-                if (is_null($entityTable)) continue;
-                $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,store_id,entity_id,value) VALUES (?,?,?,?,?)";
-                $connection->query($sql, array(
-                    $product->getEntityTypeId(),
-                    $productAttribute['attribute_id'],
-                    0,
-                    $product->getId(),
-                    $product->getData($productAttribute['attribute_code'])
-                ));
+            if ($product->getData($productAttribute['attribute_code']) === null) continue;
+            $backendType = $productAttribute['backend_type'];
+            switch ($backendType){
+                case 'varchar':
+                case 'decimal':
+                case 'int':
+                case 'text':
+                    $entityTable = $this->_getTableName('catalog_product_entity_' . $backendType);
+                    break;
+                default:
+                    $entityTable = null;
             }
+            if (is_null($entityTable)) continue;
+            $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,store_id,entity_id,value) VALUES (?,?,?,?,?)";
+            $connection->query($sql, array(
+                $product->getEntityTypeId(),
+                $productAttribute['attribute_id'],
+                0,
+                $product->getId(),
+                $product->getData($productAttribute['attribute_code'])
+            ));
         }
     }
 
@@ -520,12 +519,12 @@ class MT_Erp_Model_Observer{
             $insertProduct = 0;
             $failedProduct = 0;
             for ($i=1; $i<$pageTotal; $i++){
-                //if ($i == 4) break;
+                //if ($i == 14) break;
                 $erpProducts = $this->_adapter->getProducts($i, $paging);
                 $currentTotal = count($erpProducts);
                 if (!$currentTotal) break;
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($j == 10) break;
+                    //if ($j == 4) break;
                     $erpProduct = $erpProducts[$j];
                     if (!isset($products[$erpProduct['productCode']])){
                         $product = Mage::getModel('catalog/product');
