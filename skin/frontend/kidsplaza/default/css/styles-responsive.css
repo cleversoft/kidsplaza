@@ -561,11 +561,11 @@
     .top-banner .promo em{background-position:-60px 0 ;  width: 20px ;}
     .top-banner .promo em:hover,
     .top-banner .promo:hover  em{background-position:-60px -20px ;  width: 20px ; }
-    .top-links {  line-height: 30px; padding: 10px 10px 0;}
+    .top-links {  line-height: 30px; padding: 0 10px 0;}
 
     .header-top .header-top-inner .col-lg-3 { position: absolute ; top: -10px; right: 15px; }
     .header-top .header-top-inner .col-lg-3 .header-top-right { float: right ;}
-    .header-top .header-top-inner .col-lg-7  {margin: 10px 0;}
+    .header-top .header-top-inner .col-lg-7  {margin: 10px 0 0;}
     .toplogin .popover  { left: auto !important; right: 0px !important;}
     .toplogin .popover .arrow { left: 30px !important; }
     .top-cart .popover { left: auto !important; right: 0px !important;}
@@ -607,4 +607,9 @@
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group { margin: auto ; width: 80% ;}
     .fields .input-box input, .fields .input-box select {width: 250px;}
+    .header-top .header-top-inner {padding: 10px 0 0;}
+    .header-mid {
+        height: 80px;
+        margin: -10px 0 0;
+    }
 }
