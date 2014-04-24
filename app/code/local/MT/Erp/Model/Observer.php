@@ -373,8 +373,7 @@ class MT_Erp_Model_Observer{
 
             $erpTotal = $this->_adapter->getProductCount();
             if (!$erpTotal){
-                $this->log('No ERP product found');
-                return;
+                throw new Exception('No ERP product found');
             }
             $this->log(sprintf('Total ERP products: %d', $erpTotal));
             $paging = 100;
@@ -387,6 +386,9 @@ class MT_Erp_Model_Observer{
             }
 
             $attributeSetId = $this->_getCatalogProductMeta();
+            if (!$attributeSetId){
+                throw new Exception('Product attribute set not found');
+            }
 
             $updateProduct = 0;
             $insertProduct = 0;
@@ -469,21 +471,21 @@ class MT_Erp_Model_Observer{
 
             $total = count($products);
             if (!$total){
-                $this->log('No product avaiable', Zend_Log::CRIT);
-                return;
-            }else $this->log(sprintf('Total products: %d', $total));
+                throw new Exception('No product avaiable');
+            }
+            $this->log(sprintf('Total products: %d', $total));
 
             $countProcessed = 0;
             $configurableProducts = array();
 
             for ($i=0; $i<$total; $i++){
+                if ($i == 10) break;
                 if ($products[$i]['type_id'] == 'configurable'){
                     $configurableProducts[] = $products[$i];
                     continue;
                 }elseif ($products[$i]['type_id'] == 'simple'){
                     $erpProduct = $this->_adapter->getProductBySku($products[$i]['sku']);
                     if (!$erpProduct) continue;
-                    if ($i == 5) break;
                     $this->_updatePrices($products[$i]['entity_id'], $erpProduct);
                     $this->_updateStocks($products[$i]['entity_id'], $erpProduct);
                     $countProcessed++;

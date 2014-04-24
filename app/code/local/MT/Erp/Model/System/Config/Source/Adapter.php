@@ -10,8 +10,8 @@
 class MT_Erp_Model_System_Config_Source_Adapter{
     public function toOptionArray(){
         return array(
-            array('value' => 'db', 'label'=>Mage::helper('mterp')->__('Microsoft SQL Server Direct')),
-            array('value' => 'api', 'label'=>Mage::helper('mterp')->__('API Wrapper')),
+            array('value' => 'db', 'label' => Mage::helper('mterp')->__('Microsoft SQL Server Direct')),
+            array('value' => 'api', 'label' => Mage::helper('mterp')->__('API Wrapper')),
         );
     }
 }
