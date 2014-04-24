@@ -439,7 +439,7 @@ class MT_Erp_Model_Observer{
                         $entityTable = null;
                 }
                 if (is_null($entityTable)) continue;
-                $sql = "INSERT INTO {$entityTable} e (e.entity_type_id, e.attribute_id, e.store_id, e.entity_id, e.value) VALUES (?,?,?,?,?)";
+                $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,store_id,entity_id,value) VALUES (?,?,?,?,?)";
                 $connection->query($sql, array(
                     $product->getEntityTypeId(),
                     $productAttribute['attribute_id'],
@@ -520,7 +520,7 @@ class MT_Erp_Model_Observer{
             $insertProduct = 0;
             $failedProduct = 0;
             for ($i=1; $i<$pageTotal; $i++){
-                if ($i == 3) break;
+                //if ($i == 4) break;
                 $erpProducts = $this->_adapter->getProducts($i, $paging);
                 $currentTotal = count($erpProducts);
                 if (!$currentTotal) break;
@@ -540,11 +540,11 @@ class MT_Erp_Model_Observer{
                             'visibility'    => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
                             'status'        => Mage_Catalog_Model_Product_Status::STATUS_DISABLED,
                             'tax_class_id'  => 0
-                            /*'price'         => $erpProduct['price'],
-                            'stock_data'    => array(
-                                'qty' => $erpProduct['qty'] > 0 ? $erpProduct['qty'] : 0,
-                                'is_in_stock' => $erpProduct['qty'] > 0 ? 1 : 0
-                            )*/
+                            //'price'       => $erpProduct['price'],
+                            //'stock_data'  => array(
+                                //'qty' => $erpProduct['qty'] > 0 ? $erpProduct['qty'] : 0,
+                                //'is_in_stock' => $erpProduct['qty'] > 0 ? 1 : 0
+                            //)
                         ));
                         try{
                             //$product->save();
@@ -569,6 +569,9 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Update products: %d', $updateProduct));
             $this->log(sprintf('Insert products: %d', $insertProduct));
             $this->log(sprintf('Failed products: %d', $failedProduct));
+
+            $this->log('Reindex catalog_product_price');
+            Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
             $this->_adapter->close();
         }catch (Exception $e){
@@ -610,7 +613,7 @@ class MT_Erp_Model_Observer{
             $configurableProducts = array();
 
             for ($i=0; $i<$total; $i++){
-                if ($i == 10) break;
+                //if ($i == 10) break;
                 if ($products[$i]['type_id'] == 'configurable'){
                     $configurableProducts[] = $products[$i];
                     continue;
@@ -634,10 +637,11 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Update products: %d', $countProcessed));
 
             $this->log('Reindex catalog_product_price');
-            //Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
+            Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
             $this->_adapter->close();
         }catch (Exception $e){
+            Mage::logException($e);
             $this->log($e->getMessage(), Zend_Log::CRIT);
         }
 

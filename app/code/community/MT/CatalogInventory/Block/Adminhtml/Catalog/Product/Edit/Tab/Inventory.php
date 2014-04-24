@@ -32,7 +32,7 @@ class MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory
                     }
                 }
             }
-            return $this->getStockItem()->getDataUsingMethod($field);
+            return $this->getStockItem()->getData($field);
         }
         return Mage::getStoreConfig(Mage_CatalogInventory_Model_Stock_Item::XML_PATH_ITEM . $field);
     }
