@@ -11,16 +11,18 @@
 <script type="text/javascript">
 	function testConnection() {
 		var params = {
+            adapter: $('kidsplaza_erp_adapter').value,
 			host:   $('kidsplaza_erp_host').value,
 			user:   $('kidsplaza_erp_user').value,
 			pass:   $('kidsplaza_erp_pass').value,
-			db:     $('kidsplaza_erp_db').value
+			db:     $('kidsplaza_erp_db').value,
+            api:    $('kidsplaza_erp_api').value
 		};
 
         var resultText = $('testResult'),
 		    info = '<table>'+
-			    '<tr><td><?php echo $this->__("Connection Status")?></td><td class="val">{{status}}</td></tr>'+
-			    '<tr><td colspan="2">{{msg}}</td></tr>'+
+			    '<tr><td><?php echo Mage::helper('mterp')->__("Connection Status")?></td><td class="val">{{status}}</td></tr>'+
+			    '<tr><td colspan="2" style="font-style: italic;">{{msg}}</td></tr>'+
 			    '</table>';
 
 		new Ajax.Request('<?php echo $this->getUrl("adminhtml/erp/ping")?>', {
@@ -29,12 +31,12 @@
 				try {
 					var response = transport.responseText.evalJSON();
                     if (response.error == 1) {
-                        info = info.replace(/{{status}}/, '<?php echo $this->__("Failed")?>').replace(/{{msg}}/, response.msg);
+                        info = info.replace(/{{status}}/, '<?php echo Mage::helper('mterp')->__("Failed")?>').replace(/{{msg}}/, response.msg);
                     }else{
-                        info = info.replace(/{{status}}/, '<?php echo $this->__("OK")?>').replace(/{{msg}}/, response.msg);
+                        info = info.replace(/{{status}}/, '<?php echo Mage::helper('mterp')->__("ok")?>').replace(/{{msg}}/, response.msg);
                     }
 				} catch (e) {
-					info = info.replace(/{{status}}/, '<?php echo $this->__("Failed")?>').replace(/{{msg}}/, '');
+					info = info.replace(/{{status}}/, '<?php echo Mage::helper('mterp')->__("Failed")?>').replace(/{{msg}}/, '');
 				}
 				resultText.update(info);
 			}

@@ -50,7 +50,7 @@ $_core              = $this->helper('core/string');
             }
         };
     </script>
-    <div class="upsell-carousel-wrapper category-products">
+    <div class="<?php echo $this->getConfig('classes')?> upsell-carousel-wrapper category-products">
         <?php if ($_title):?>
             <h3><?php echo $_title ?></h3>
         <?php endif ?>
@@ -60,7 +60,7 @@ $_core              = $this->helper('core/string');
         </div>
         <div class="products-grid owl-carousel" id="<?php echo $_id ?>">
         <?php $i=0; foreach ($_productCollection as $_product): ?>
-            <div class="item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
+            <div class="item-<?php echo $i ?> item <?php echo $i==0 ? 'first' : ($i+1==$_collectionSize ? 'last' : '') ?>">
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <img class="lazy" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />

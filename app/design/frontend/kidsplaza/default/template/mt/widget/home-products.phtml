@@ -67,7 +67,7 @@ $_core              = $this->helper('core/string');
         };
     </script>
 <?php endif ?>
-<div class="slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
+<div class="<?php echo $this->getConfig('classes')?> slider-product-wrapper category-products<?php echo $_scroll == 1 ? ' flexslider' : '' ?>" id="<?php echo $_id ?>">
    <div class="bordered-tab">
        <div class="title col-lg-4 col-md-5 col-sm-5 col-xs-12 ">
             <?php if ($_title):?>
@@ -114,7 +114,7 @@ $_core              = $this->helper('core/string');
             <?php if ($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_rowCount==0)): ?>
             <ul class="grid-<?php echo $_column?> show-grid products-grid<?php echo $_scroll==1 && $_rowCount==1 ? ' slides' : ''?>">
         <?php endif ?>
-            <li class="slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
+            <li class="slide-<?php echo $i ?> slide item<?php if($i%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && $i%$_column==0)): ?> first<?php elseif(($i+1)%$_columnCount==0 || ($_scroll==1 && $_rowCount>1 && ($i+1)%$_column==0)): ?> last<?php endif; ?>">
                 <?php $i++ ?>
                 <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image">
                     <?php if ($_product->getPrice() > $_product->getFinalPrice()):?>

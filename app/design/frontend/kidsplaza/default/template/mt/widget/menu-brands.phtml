@@ -14,7 +14,7 @@ $id         = $this->getConfig('id');
 $scroll     = $this->getConfig('scroll');
 $title      = $this->getConfig('widget_title');
 ?>
-<div class="attribute-menu-wrapper">
+<div class="<?php echo $this->getConfig('classes')?> attribute-menu-wrapper">
     <?php if ($title): ?>
         <div class="title"><?php echo $title ?></div>
     <?php endif ?>
@@ -23,7 +23,7 @@ $title      = $this->getConfig('widget_title');
         <?php if ($i++%$_columnCount==0): ?>
             <ul class="grid-<?php echo $_columnCount?> attribute-wrapper">
         <?php endif ?>
-            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+            <li class="item-<?php echo $i ?> item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
                 <a href="<?php echo $attribute['link'] ?>" title="<?php echo Mage::helper('mtwidget')->__('%s', $attribute['label']) ?>">
                     <?php echo $attribute['label'];?>
                 </a>

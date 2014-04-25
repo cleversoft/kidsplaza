@@ -18,9 +18,9 @@ $_id = $this->getConfig('id');
         singleItem: true
     };
 </script>
-<div class="deals-wrapper owl-carousel" id="<?php echo $_id ?>">
-    <?php foreach ($this->getProductCollection() as $product): ?>
-        <li class="deal-item">
+<div class="<?php echo $this->getConfig('classes')?> deals-wrapper owl-carousel" id="<?php echo $_id ?>">
+    <?php $i=0; foreach ($this->getProductCollection() as $product): ?>
+        <li class="item-<?php echo $i++ ?> deal-item">
 		    <div class="label-deal">&nbsp;</div>
             <div class="deal-item-inner">
                 <div class="deal-item-percent utm-cookies">

@@ -14,16 +14,14 @@ class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
         if (!$phoneNumber) return;
         $service = Mage::getModel('mterp/observer');
         $service->setIsCron(false);
-        $raw = $service->getErpCustomer($phoneNumber);
+        $customer = $service->getErpCustomer($phoneNumber);
         $data = array();
-        if ($raw){
-            if (sqlsrv_fetch($raw)){
-                $name = trim(sqlsrv_get_field($raw, 0, SQLSRV_PHPTYPE_STRING('UTF-8')));
-                $data['firstname'] = strrpos($name, ' ') > 0 ? substr($name, 0, strrpos($name, ' ')) : '';
-                $data['lastname'] = strrpos($name, ' ') > 0 ? substr($name, strrpos($name, ' ') + 1, strlen($name)) : $name;
-                $data['gender'] = trim(sqlsrv_get_field($raw, 1, SQLSRV_PHPTYPE_STRING('UTF-8'))) == 'Nam' ? 1 : 2;
-                $data['email'] = trim(sqlsrv_get_field($raw, 2, SQLSRV_PHPTYPE_STRING('UTF-8')));
-            }
+        if (is_array($customer)){
+            $name = trim($customer['customerName']);
+            $data['firstname']  = strrpos($name, ' ') > 0 ? substr($name, 0, strrpos($name, ' ')) : '';
+            $data['lastname']   = strrpos($name, ' ') > 0 ? substr($name, strrpos($name, ' ') + 1, strlen($name)) : $name;
+            $data['gender']     = trim($customer['customerGender']) == 'Nam' ? 1 : 2;
+            $data['email']      = trim($customer['customerEmail']);
         }
         $this->getResponse()->setHeader('Content-Type', 'applicaion/json');
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($data));
