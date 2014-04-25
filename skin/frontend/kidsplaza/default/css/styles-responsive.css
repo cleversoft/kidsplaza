@@ -607,4 +607,9 @@
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group .form-control {font-size: 70% ;}
     .footer-top .footer-top-inner .col-lg-4 .block-subscribe .input-group { margin: auto ; width: 80% ;}
     .fields .input-box input, .fields .input-box select {width: 250px;}
+
+    .bordered .tab-pane .slide-2,.bordered .tab-pane .slide-3,.bordered .tab-pane .slide-4,.bordered .tab-pane .slide-5,
+    .bordered .tab-pane .slide-6,.bordered .tab-pane .slide-7,.bordered .tab-pane .slide-8,.bordered .tab-pane .slide-9{
+        display: none;
+    }
 }
