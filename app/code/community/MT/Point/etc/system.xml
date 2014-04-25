@@ -63,7 +63,7 @@
                                 <enable>1</enable>
                             </depends>
                         </register>
-                        <review translate="label comment">
+                        <review translate="label comment" module="mtpoint">
                             <label>Review</label>
                             <frontend_type>text</frontend_type>
                             <comment>Earn point for reviewing product</comment>

@@ -376,7 +376,7 @@ input,textarea{outline:0}
 .footer-top .block-content{float:right;padding:12px 0}
 .footer-top .block-subscribe{border:medium none;margin:0 3px 0 0;padding:0}
 .footer-top .block-subscribe .block-content .input-box input.input-text{border:1px solid #e9e9e9;background:#f1f1f1;padding:3px 5px;border-radius:3px 0 0 3px;color:#7a6f6f;height:40px;line-height:30px;width:200px}
-.footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;z-index:2;float:left;width:100%}
+.footer-center{background:url("../images/bgFooter.png") repeat-x 0 0;margin:-10px 0 0;padding:20px 0 0;position:relative;float:left;width:100%}
 .footer-center-inner{padding:50px 0 20px 0;background-color:#0095d6}
 .footer-center ul{list-style:none}
 .footer-center ul li a{font-size:13px; transition: color 450ms ease-in-out 0s, background-color 450ms ease-in-out 0s;}

@@ -62,6 +62,18 @@
         </translate>
     </frontend>
 
+    <adminhtml>
+        <translate>
+            <modules>
+                <MT_Collection>
+                    <files>
+                        <default>MT_Collection.csv</default>
+                    </files>
+                </MT_Collection>
+            </modules>
+        </translate>
+    </adminhtml>
+
     <default>
         <mtfilter>
             <collection>

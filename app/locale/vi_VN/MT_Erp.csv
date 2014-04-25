@@ -1,1 +1,10 @@
 "ok","OK"
+"MT ERP","Kết nối ERP"
+"ERP Settings","Cấu hình ERP"
+"Scheduling Synchronization","Lịch đồng bộ với ERP"
+"Enable Log Cleaning","Xóa báo cáo tự động"
+"Log Cleaning Frequency","Lịch xóa tự động"
+"Save Log Days","Lưu báo cáo trong vòng (ngày)"
+"Customer to ERP","Đồng bộ khách hàng tới ERP"
+"Scheduling Synchronization All","Lịch đồng bộ từ ERP"
+
