@@ -449,8 +449,8 @@
         margin: 10px 0 10px 33px;
     }
     .footer-bottom  .accordion-footer.accordion-show  ,.footer-bottom .accordion-footer{
-          right: -15px;
-          background-position: 100% 50% ;
+        right: -15px;
+        background-position: 100% 50% ;
     }
     .footer-bottom .block h3 {line-height: 25px; width: 230px;}
     .footer-bottom .block ul {
@@ -540,7 +540,7 @@
     .product-img-box .price-discount {left: 0 ;}
     .product-view .btn-cart {font-size: 130% ; margin: 20px 0 0;}
 
-    a.logo img {max-width: 100% ; float: left ;}
+    a.logo img {max-width: 70% ; float: left ;}
 
     .top-banner em {
         background: url("../images/rep-icon.png") no-repeat scroll 0 0 ;
@@ -561,15 +561,26 @@
     .top-banner .promo em{background-position:-60px 0 ;  width: 20px ;}
     .top-banner .promo em:hover,
     .top-banner .promo:hover  em{background-position:-60px -20px ;  width: 20px ; }
-    .top-links {  line-height: 30px; padding: 0 10px 0;}
+    .top-links {  line-height: 20px; padding: 5px 10px 0;}
 
-    .header-top .header-top-inner .col-lg-3 { position: absolute ; top: -10px; right: 15px; }
-    .header-top .header-top-inner .col-lg-3 .header-top-right { float: right ;}
-    .header-top .header-top-inner .col-lg-7  {margin: 10px 0 0;}
-    .toplogin .popover  { left: auto !important; right: 0px !important;}
+    .header-top .header-top-inner {padding: 0;}
+    .header-top .header-top-inner .col-lg-3 { position: absolute ; top: -16px; right: 15px; }
+    .header-top .header-top-inner .col-lg-3 .header-top-right { float: right ; width: 60px; height: 30px;}
+    .header-top .header-top-inner .col-lg-7  {margin: 0;}
+    .header-mid { margin: -10px 0 0;}
+    .toplogin .popover  { left: auto !important; right: -25px !important;}
     .toplogin .popover .arrow { left: 30px !important; }
-    .top-cart .popover { left: auto !important; right: 0px !important;}
+    .top-cart .popover { left: auto !important; right: -10px !important;}
     .top-cart .popover .arrow {left: 80px !important;}
+    .top-cart .cart-icon { background-image: url("../images/bgIcons-mobile.png"); background-position: 0 0 ; background-repeat: no-repeat ; height: 30px ; width: 30px  ; }
+    .top-login .font .glyphicon { font-size: 100% ; line-height: 25px;}
+    .top-login { width: 30px;}
+    .top-cart {
+        width: 30px;
+        padding: 0;
+        margin: 0;
+    }
+    #search_mini_form { margin: 0 ;}
 
     .navbar {margin: 0;}
     .product-view .product-img-box .product-image {
