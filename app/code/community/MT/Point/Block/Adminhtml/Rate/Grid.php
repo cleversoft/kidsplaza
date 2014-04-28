@@ -21,7 +21,7 @@ class MT_Point_Block_Adminhtml_Rate_Grid extends Mage_Adminhtml_Block_Widget_Gri
             'width'     => 50
         ));
         $this->addColumn('name', array(
-            'header'    => Mage::helper('mtpoint')->__('Amount'),
+            'header'    => Mage::helper('mtpoint')->__('Money Amount'),
             'index'     => 'amount'
         ));
         $this->addColumn('point', array(

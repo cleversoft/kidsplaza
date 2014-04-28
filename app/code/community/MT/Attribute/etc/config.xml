@@ -62,15 +62,6 @@
     </global>
 
     <adminhtml>
-        <translate>
-            <modules>
-                <MT_Attribute>
-                    <files>
-                        <default>MT_Attribute.csv</default>
-                    </files>
-                </MT_Attribute>
-            </modules>
-        </translate>
         <events>
             <controller_action_layout_render_before_adminhtml_catalog_product_attribute_edit>
                 <observers>

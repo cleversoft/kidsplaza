@@ -11,7 +11,7 @@
 -->
 <config>
     <menu>
-        <promo>
+        <mt>
             <children>
                 <mtpoint translate="title">
                     <title>MT Customer Point Rate</title>
@@ -19,7 +19,7 @@
                     <sort_order>99</sort_order>
                 </mtpoint>
             </children>
-        </promo>
+        </mt>
     </menu>
 
     <acl>
