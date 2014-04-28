@@ -56,7 +56,7 @@
                             <show_in_store>1</show_in_store>
                             <comment>Url for mostviewed products collection</comment>
                         </mostviewed>
-                        <promotion translate="label comment">
+                        <promotion translate="label comment" module="mtcollection">
                             <label>Promotion</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>

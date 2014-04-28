@@ -15,7 +15,7 @@
             <children>
                 <attributes>
                     <children>
-                        <options translate="title">
+                        <options translate="title" module="mtattribute">
                             <title>Manage Attribute Options</title>
                             <action>mtattributeadmin/catalog_product_attribute/</action>
                         </options>

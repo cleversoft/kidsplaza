@@ -40,35 +40,35 @@
 </head>
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <a class="sr-only" href="#content">Skip to main content</a>
-    <section class="mt-container">
-        <?php echo $this->getChildHtml('mtcanvas') ?>
-        <section class="mt-wrapper">
-            <?php echo $this->getChildHtml('after_body_start') ?>
-            <div class="wrapper">
-                <?php echo $this->getChildHtml('header') ?>
-                <div class="container col3-layout" id="content">
-                    <?php echo $this->getChildHtml('global_notices') ?>
-                    <?php echo $this->getChildHtml('global_messages') ?>
-                    <div class="row">
-                        <div class="col-left sidebar col-lg-3">
-                            <?php echo $this->getChildHtml('left') ?>
-                        </div>
-                        <div class="col-main col-lg-6">
-                            <?php echo $this->getChildHtml('breadcrumbs') ?>
-                            <?php echo $this->getChildHtml('messages') ?>
-                            <?php echo $this->getChildHtml('content') ?>
-                        </div>
-                        <div class="col-right sidebar col-lg-3">
-                            <?php echo $this->getChildHtml('right') ?>
-                        </div>
+<section class="mt-container">
+    <?php echo $this->getChildHtml('mtcanvas') ?>
+    <section class="mt-wrapper">
+        <?php echo $this->getChildHtml('after_body_start') ?>
+        <div class="wrapper">
+            <?php echo $this->getChildHtml('header') ?>
+            <div class="container col3-layout" id="content">
+                <?php echo $this->getChildHtml('global_notices') ?>
+                <?php echo $this->getChildHtml('global_messages') ?>
+                <div class="row">
+                    <div class="col-left sidebar col-lg-3">
+                        <?php echo $this->getChildHtml('left') ?>
+                    </div>
+                    <div class="col-main col-lg-6">
+                        <?php echo $this->getChildHtml('breadcrumbs') ?>
+                        <?php echo $this->getChildHtml('messages') ?>
+                        <?php echo $this->getChildHtml('content') ?>
+                    </div>
+                    <div class="col-right sidebar col-lg-3">
+                        <?php echo $this->getChildHtml('right') ?>
                     </div>
                 </div>
-                <?php echo $this->getChildHtml('footer') ?>
             </div>
-            <?php echo $this->getAbsoluteFooter() ?>
-            <?php echo $this->getChildHtml('js_bottom') ?>
-            <?php echo $this->getChildHtml('before_body_end') ?>
-        </section>
+            <?php echo $this->getChildHtml('footer') ?>
+        </div>
+        <?php echo $this->getAbsoluteFooter() ?>
     </section>
+</section>
+<?php echo $this->getChildHtml('js_bottom') ?>
+<?php echo $this->getChildHtml('before_body_end') ?>
 </body>
 </html>

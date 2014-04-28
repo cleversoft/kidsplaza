@@ -57,6 +57,15 @@
     </admin>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_Attribute>
+                    <files>
+                        <default>MT_Widget.csv</default>
+                    </files>
+                </MT_Attribute>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <mtwidget>
