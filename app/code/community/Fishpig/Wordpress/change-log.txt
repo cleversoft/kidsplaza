@@ -5,6 +5,29 @@
 # URL:  http://fishpig.co.uk/magento/wordpress-integration/
 ##
 
+23/04/2014 - 3.1.0.6
+- Added updated add-on versions
+
+20/04/2014 - 3.1.0.5
+- Added G+ button to AddThis
+
+18/04/2014 - 3.1.0.3
+- Small fix for categories
+
+15/04/2014 - 3.1.0.0
+- Removed support for older versions of Magento
+
+14/04/2014 - 3.0.60.0
+- Fixed menu sidebar widget
+- Improved OG Tag support
+- Fixed ACL values for auto-login
+
+12/04/2014 - 3.0.56.0
+- Fix for CPT
+
+11/04/2014 - 3.0.55.0
+- Fix for Windows servers
+
 06/04/2014 - 3.0.53.0
 - Added legacy support for menu integration
 

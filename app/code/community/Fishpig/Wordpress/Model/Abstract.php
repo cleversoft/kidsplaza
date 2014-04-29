@@ -298,4 +298,16 @@ abstract class Fishpig_Wordpress_Model_Abstract extends Mage_Core_Model_Abstract
 	{
 		return $this->_eventObject;
 	}
+	
+	/**
+	 * Get a collection of posts
+	 * Child class should filter posts accordingly
+	 *
+	 * @return Fishpig_Wordpress_Model_Resource_Post_Collection
+	 */
+	public function getPostCollection()
+	{
+		return Mage::getResourceModel('wordpress/post_collection')
+			->setFlag('source', $this);
+	}
 }

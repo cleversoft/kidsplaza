@@ -165,6 +165,8 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 			}
 		}
 		
+		$this->_renderTitles();
+
 		return parent::renderLayout($output);
 	}
 
@@ -177,7 +179,7 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 		if (!$this->_isLayoutLoaded) {
 			$this->loadLayout();
 		}
-		
+
 		$this->_title()->_title(Mage::helper('wordpress')->getWpOption('blogname'));
 
 		$this->addCrumb('home', array('link' => Mage::getUrl(), 'label' => $this->__('Home')));
@@ -403,4 +405,24 @@ abstract class Fishpig_Wordpress_Controller_Abstract extends Mage_Core_Controlle
 					->toHtml()
 			);
 	}
+	
+	/**
+	 * Allows for legacy methods to be catered for
+	 *
+	 * @param string $method
+	 * @param array $args
+	 * @return mixed
+	 */
+	public function __call($method, $args)
+	{
+		$transport = new Varien_Object(array());
+		
+		Mage::dispatchEvent('wordpress_controller_method_invalid', array('method' => $method, 'args' => $args, 'object' => $this, 'transport' => $transport));
+		
+		if (!$transport->hasReturnValue()) {
+			throw new Varien_Exception("Invalid method ".get_class($this)."::".$method."(".print_r($args,1).")");
+		}
+		
+		return $transport->getReturnValue();
+	}    
 }

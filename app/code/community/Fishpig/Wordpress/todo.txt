@@ -1,0 +1,25 @@
+Rewrite Post model system.
+	- Better use of CPT to enable more customisation.
+	- Only allow certain taxonomies and features dependent on CPT
+	
+Rewrite Term/Taxonomy system
+	- Remove post category and tag models and replace with standardised term model
+	- Maybe reinstate post category and tag models but just extend standard term model (for backwards compat)
+	- Move category/feed block to term/feed
+	- Add feeds for all terms
+	
+Remove Controllers
+	- Remove Post/CustomtypeController.php
+	- Remove Category and Tag controller, use TermController instead
+	- Remove page controller
+	
+Improve SEO system
+
+Extract associations into unique (free) extension
+
+Remove deprecated blocks
+Set auto templates on all sidebar widgets and remove from config.xml
+Rewrite recent posts block
+Clean out all helper files
+Remove legacy code for performance but offer backwards compatible version
+Setup all add-on extensions to use correct router

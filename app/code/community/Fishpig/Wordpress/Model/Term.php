@@ -110,7 +110,7 @@ class Fishpig_Wordpress_Model_Term extends Fishpig_Wordpress_Model_Abstract
     	
     	return $this->_getData('posts');
     }
-    
+  
 	/**
 	 * Retrieve the object resource model
 	 *
@@ -118,9 +118,9 @@ class Fishpig_Wordpress_Model_Term extends Fishpig_Wordpress_Model_Abstract
 	 */    
     protected function _getObjectResourceModel()
     {
-	    return Mage::getResourceModel('wordpress/post_collection');
+    	return parent::getPostCollection();
     }
-    
+      
 	/**
 	 * Retrieve the numbers of items that belong to this term
 	 *

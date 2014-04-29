@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Fishpig_Wordpress>
-            <version>3.0.54.0</version>
+            <version>3.1.0.6</version>
         </Fishpig_Wordpress>
     </modules>
     <global>
@@ -70,14 +70,20 @@
 		</helpers>
 		<resources>
 			<wordpress_read>
-				<connection><use>wordpress</use></connection>
+				<connection>
+					<use>wordpress</use>
+				</connection>
 			</wordpress_read>
 			<wordpress_write>
-				<connection><use>wordpress</use></connection>
+				<connection>
+					<use>wordpress</use>
+				</connection>
 			</wordpress_write>
 			<wordpress_setup>
-				<setup><module>Fishpig_Wordpress</module></setup>
-				<connection><use>core_setup</use></connection>
+				<setup>
+					<module>Fishpig_Wordpress</module>
+					<class>Fishpig_Wordpress_Model_Resource_Setup</class>
+				</setup>
 			</wordpress_setup>
 		</resources>
 	</global>
@@ -191,6 +197,7 @@
 				<full>1</full>
 				<route>blog</route>
 				<path>wp</path>
+				<remove_trailing_slash>1</remove_trailing_slash>
 			</integration>
 			<toplink>
 				<enabled>1</enabled>
@@ -229,8 +236,8 @@
 					<term_taxonomy><table>term_taxonomy</table></term_taxonomy>
 					<menu><table>terms</table></menu>
 					<menu_item><table>posts</table></menu_item>
-					<user_meta><table>usermeta</table></user_meta>
 					<user><table>users</table></user>
+					<user_meta><table>usermeta</table></user_meta>
 					<image><table>posts</table></image>
 				</tables>
 			</before_connect>
@@ -249,35 +256,30 @@
 				<rss><block>sidebar_widget_rss</block><template>wordpress/sidebar/widget/rss.phtml</template></rss>
 				<nav_menu><block>sidebar_widget_menu</block><template>wordpress/sidebar/widget/menu.phtml</template></nav_menu>
 				<calendar><block>sidebar_widget_calendar</block></calendar>
-				<!-- Non-Default Widgets -->
 				<categoryposts><block>sidebar_widget_posts</block><template>wordpress/sidebar/widget/categoryposts.phtml</template></categoryposts>
 			</widgets>
 		</sidebar>
-		<!--
 		<post>
 			<types>
 				<post>
-					<hierarchical />
-					<rewrite />
-					<has_archive />
 					<taxonomies>category,post_tag</taxonomies>
-					<labels>
-						<name>Posts</name>
-						<singular_name>Post</singular_name>
-					</labels>
 				</post>
 				<page>
-					<hierarchical />
-					<rewrite />
-					<has_archive />
-					<taxonomies></taxonomies>
-					<labels>
-						<name>Pages</name>
-						<singular_name>Page</singular_name>
-					</labels>
+					<hierarchical>1</hierarchical>
 				</page>
 			</types>
 		</post>
-		-->
+		<taxonomy>
+			<category>
+				<label>Categories</label>
+				<singular_label>Category</singular_label>
+				<hierarchical>1</hierarchical>
+			</category>
+			<post_tag>
+				<label>Tags</label>
+				<singular_label>Tag</singular_label>
+				<hierarchical>0</hierarchical>
+			</post_tag>
+		</taxonomy>
 	</wordpress>
 </config>

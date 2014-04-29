@@ -38,7 +38,7 @@
 					<action method="setMedium"><medium>System Configuration</medium></action>
 					<action method="setLimit"><limit>2</limit></action>
 					<action method="setPreferred">
-						<pref><Fishpig_Wordpress_Addon_Facebook /><Fishpig_Wordpress_Addon_Root /><Fishpig_Wordpress_Addon_IntegratedSearch/></pref>
+						<pref><Fishpig_Wordpress_Addon_Root /><Fishpig_Wordpress_Addon_CS /><Fishpig_Wordpress_Addon_IntegratedSearch/><Fishpig_Wordpress_Addon_Facebook /></pref>
 					</action>
 				</block>
 			</block>
@@ -84,14 +84,14 @@
 	 */
 	 -->
 	<adminhtml_catalog_product_edit>
-		<!--reference name="product_tabs">
+		<reference name="product_tabs">
 			<action method="addTab">
 				<name>wp_posts</name><block>wordpress/adminhtml_associations_product_post</block>
 			</action>
 			<action method="addTab">
 				<name>wp_categories</name><block>wordpress/adminhtml_associations_product_category</block>
 			</action>
-		</reference-->
+		</reference>	
 	</adminhtml_catalog_product_edit>
 	<adminhtml_wordpress_association_product_post>
 		<block type="core/text_list" name="root" output="toHtml">

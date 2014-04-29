@@ -37,7 +37,7 @@ class Fishpig_Wordpress_Helper_Shortcode_Product extends Fishpig_Wordpress_Helpe
 						$params->setIds(array($params->getId()));
 					}
 					else if ($params->getSku()) {
-						$params->setIds(array($collection->getResource()->getIdBySku($params->getSku())));
+						$params->setIds(array(Mage::getResourceModel('catalog/product')->getIdBySku($params->getSku())));
 					}
 					else if ($params->getIds()) {
 						$params->setIds(explode(',', $params->getIds()));

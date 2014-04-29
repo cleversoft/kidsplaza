@@ -51,6 +51,7 @@ class Fishpig_Wordpress_Addon_AddThis_Block_Js extends Fishpig_Wordpress_Block_A
 			}
 
 			return implode('', array(
+				sprintf('<link rel="stylesheet" href="%s" media="all" />', Mage::helper('wordpress')->getBaseUrl('wp-content/plugins/addthis/css/output.css?ver=3.9')),
 				'<script type="text/javascript">var addthis_product = \'wpp-3.5.1\';',
 				$this->_mergeArrayJson($config, $helper->getOption('addthis_config_json'), "var addthis_config = '%s';"),
 				sprintf("var addthis_options = {%s};", trim($helper->getOption('addthis_options'), '{}')),

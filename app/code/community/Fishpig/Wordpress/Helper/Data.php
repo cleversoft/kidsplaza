@@ -388,18 +388,32 @@ class Fishpig_Wordpress_Helper_Data extends Fishpig_Wordpress_Helper_Abstract
 	}
 	
 	/**
-	 * Apply Legacy Hacks
+	 * Provides backwards compatibility for older Magento versions running Legacy
 	 *
-	 * @return $this
+	 * @param string $data
+	 * @param array $allowedTags = null
+	 * @return string
 	 */
-	public function applyLegacyHacks()
+	public function escapeHtml($data, $allowedTags = null)
 	{
-		if (!Mage::registry('wordpress_legacy_hacks')) {
-			Mage::register('wordpress_legacy_hacks', true);
-
-			require_once(Mage::getModuleDir('', 'Fishpig_Wordpress') . DS . 'legacy.php');
+		return Mage::helper('core')->htmlEscape($data, $allowedTags);
+	}
+	
+	/**
+	 * Determine wether the Legacy add-on is installed
+	 *
+	 * @return bool
+	 */
+	public function isLegacy()
+	{
+		if ($this->_isCached('is_legacy')) {
+			return $this->_cached('is_legacy');
 		}
 		
-		return $this;
+		$isLegacy = is_file(Mage::getBaseDir() . DS . 'app' . DS . 'etc' . DS . 'modules' . DS . 'Fishpig_Wordpress_Addon_Legacy.xml');
+		
+		$this->_cache('is_legacy', $isLegacy);
+		
+		return $isLegacy;
 	}
 }

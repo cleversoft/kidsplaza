@@ -49,10 +49,31 @@ class Fishpig_Wordpress_Addon_AddThis_Block_Icons extends Fishpig_Wordpress_Bloc
 			return '';
 		}
 
-		return sprintf(
-			$html,
+		$source = sprintf(
+			$html['src'],
 			'addthis:url="' . $post->getPermalink() . '" addthis:title="' . addslashes($this->escapeHtml($post->getPostTitle())) . '"'
 		);
+		
+		
+		$items = Mage::helper('wp_addon_addthis')->getOption($this->getPosition() . '_chosen_list');
+		
+		if (!$items) {
+			$items = $html['default'];
+		}
+		
+		if (strpos($items, ',') !== false) {
+			$items = explode(',', $items);
+			
+			$buttonHtml = '';
+			
+			foreach($items as $item) {	
+				$buttonHtml .= "\n" . $this->_getItemHtml(trim($item), $type);
+			}
+			
+			$source = str_replace('--BUTTONS--', $buttonHtml, $source);
+		}
+
+		return $source;
 	}
 	
 	/**
@@ -64,19 +85,82 @@ class Fishpig_Wordpress_Addon_AddThis_Block_Icons extends Fishpig_Wordpress_Bloc
 	protected function _getButtonHtmlTemplate($type)
 	{
 		$buttons = array(
-			'fb_tw_p1_sc' => '<div class="addthis_toolbox addthis_default_style " %s  ><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_button_pinterest_pinit"></a><a class="addthis_counter addthis_pill_style"></a></div>',
-			'large_toolbox' => '<div class="addthis_toolbox addthis_default_style addthis_32x32_style" %s ><a class="addthis_button_facebook"></a><a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_pinterest_share"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div>',
-			'small_toolbox' => '<div class="addthis_toolbox addthis_default_style addthis_" %s ><a class="addthis_button_facebook"></a><a class="addthis_button_twitter"></a><a class="addthis_button_email"></a><a class="addthis_button_pinterest_share"></a><a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a></div>',
-			'plus_one_share_counter' => '<div class="addthis_toolbox addthis_default_style" %s ><a class="addthis_button_google_plusone" g:plusone:size="medium" ></a><a class="addthis_counter addthis_pill_style"></a></div>',
-			'small_toolbox_with_share' =>  '<div class="addthis_toolbox addthis_default_style " %s ><a href="//addthis.com/bookmark.php?v='.$this->getVersion().'&amp;username=xa-4d2b47597ad291fb" class="addthis_button_compact">Share</a><span class="addthis_separator">|</span><a class="addthis_button_preferred_1"></a><a class="addthis_button_preferred_2"></a><a class="addthis_button_preferred_3"></a><a class="addthis_button_preferred_4"></a></div>',
-			'fb_tw_sc' => '<div class="addthis_toolbox addthis_default_style " %s  ><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a><a class="addthis_button_tweet"></a><a class="addthis_counter addthis_pill_style"></a></div>' , 'img' => 'fb-tw-sc.jpg' , 'name' => 'Like, Tweet, Counter',
-			'simple_button' => '<div class="addthis_toolbox addthis_default_style " %s><a href="//addthis.com/bookmark.php?v='.$this->getVersion().'&amp;username=xa-4d2b47f81ddfbdce" class="addthis_button_compact">Share</a></div>',
-			'button' => '<div><a class="addthis_button" href="//addthis.com/bookmark.php?v='.$this->getVersion().'" %s><img src="//cache.addthis.com/cachefly/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a></div>',
-			'share_counter' => '<div class="addthis_toolbox addthis_default_style " %s  ><a class="addthis_counter"></a></div>',
+			'fb_tw_p1_sc' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style " %s  >--BUTTONS--</div>',
+				'default' => 'facebook_like, tweet, pinterest_pinit, counter',
+			),
+			'large_toolbox' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style addthis_32x32_style" %s >--BUTTONS--</div>',
+				'default' => 'facebook, twitter, email, pinterest_share, compact, bubble',
+			),
+			'small_toolbox' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style addthis_" %s >--BUTTONS--</div>',
+				'default' => 'facebook, twitter, email, pinterest_share, compact, bubble',
+			),
+			'plus_one_share_counter' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style" %s >--BUTTONS</div>',
+				'default' => 'google_plusone, counter',
+			),
+			'small_toolbox_with_share' =>  array(
+				'src' => '<div class="addthis_toolbox addthis_default_style " %s >--BUTTONS--</div>',
+				'default' => 'compact, separator, preferred_1, preferred_2, preferred_3, preferred_4',
+			),
+			'fb_tw_sc' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style " %s  >--BUTTONS--</div>',
+				'default' => 'facebook_like, tweet, counter'
+			),
+			'simple_button' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style " %s>--BUTTONS</div>',
+				'default' => 'compact',
+			),		
+			'button' => array(
+				'src' => '<div><a class="addthis_button" href="//addthis.com/bookmark.php?v='.$this->getVersion().'" %s><img src="//cache.addthis.com/cachefly/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a></div>',
+				'default' => false,
+			),
+			'share_counter' => array(
+				'src' => '<div class="addthis_toolbox addthis_default_style " %s  ><a class="addthis_counter"></a></div>',
+				'default' => false,
+			),
 		);
 		
 		return isset($buttons[$type]) 
 			? $buttons[$type]
 			: '';
+	}
+	
+	public function getVersion()
+	{
+		return Mage::helper('wp_addon_addthis')->getVersion();
+	}
+
+	protected function _getItemHtml($item, $type = null)
+	{
+		$defaults = array(
+			'google_plusone' => '<a class="addthis_button_google_plusone" g:plusone:size="medium" ></a>',
+
+			'bubble' => '<a class="addthis_counter addthis_bubble_style"></a>',
+			'separator' => '<span class="addthis_separator">|</span>',
+			
+			'large_toolbox_counter' => '<a class="addthis_counter addthis_bubble_style"></a>', 
+
+			'small_toolbox' => '<a class="addthis_button_compact"></a>',
+			'small_toolbox_counter' => '<a class="addthis_counter addthis_bubble_style"></a>', 
+
+			'fb_tw_p1_sc_counter' => '<a class="addthis_counter addthis_pill_style"></a>',
+			'fb_tw_p1_sc_compact' => ' ',
+
+		);
+		
+		if (isset($defaults[$item])) {
+			return $defaults[$item];
+		}
+		
+		if (!is_null($type)) {
+			if (isset($defaults[$type . '_' . $item])) {
+				return $defaults[$type . '_' . $item];
+			}
+		}
+
+		return sprintf('<a class="addthis_button_%s __def"></a>', $item);
 	}
 }

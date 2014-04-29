@@ -30,8 +30,7 @@ class Fishpig_Wordpress_Model_Post_Tag extends Fishpig_Wordpress_Model_Term
 	 */
 	public function loadByPostId($postId)
 	{
-		$this->load($postId, 'object_id');
-		return $this;
+		return $this->load($postId, 'object_id');
 	}
 	
 	/**
@@ -42,11 +41,9 @@ class Fishpig_Wordpress_Model_Post_Tag extends Fishpig_Wordpress_Model_Term
     public function getPostCollection()
     {
     	if (!$this->hasPostCollection()) {
-			$posts = Mage::getResourceModel('wordpress/post_collection')
-    			->addIsViewableFilter()
-    			->addTagIdFilter($this->getId());
-    			
-    		$this->setPostCollection($posts);
+    		$this->setPostCollection(
+    			parent::getPostCollection()->addTagIdFilter($this->getId())
+    		);
     	}
     	
     	return $this->_getData('post_collection');

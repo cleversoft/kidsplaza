@@ -32,7 +32,6 @@ class Fishpig_Wordpress_TermController extends Fishpig_Wordpress_Controller_Abst
 		$term = $this->_initTerm();
 		
 		if ($term->isDefaultTerm()) {
-		exit('dfsdsf');
 			$this->_forceForwardViaException('noRoute');
 			return false;
 		}

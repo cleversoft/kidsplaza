@@ -9,15 +9,6 @@
 class Fishpig_Wordpress_Block_Post_List extends Fishpig_Wordpress_Block_Post_Abstract
 {
 	/**
-	 * Renderer and template information for post types
-	 *
-	 * @var array
-	 */
-	protected $_postTypeTemplates = array(
-		'post' => 'wordpress/post/list/renderer/default.phtml',
-	);
-
-	/**
 	 * Cache for post collection
 	 *
 	 * @var Fishpig_Wordpress_Model_Resource_Post_Collection
@@ -120,10 +111,24 @@ class Fishpig_Wordpress_Block_Post_List extends Fishpig_Wordpress_Block_Post_Abs
 		return $this->_getData('post_renderer')
 			->setPost($post)
 			->setTemplate(
-				$post->getPostListTemplate() ? $post->getPostListTemplate() : 'wordpress/post/list/renderer/default.phtml'
+				$post->getPostListTemplate() ? $post->getPostListTemplate() : $this->getPostRendererTemplate()
 			);
 	}
 	
+	/**
+	 * Get the post renderer template
+	 *
+	 * @return string
+	 */
+	public function getPostRendererTemplate()
+	{
+		if (!$this->hasPostRendererTemplate()) {
+			$this->setPostRendererTemplate('wordpress/post/list/renderer/default.phtml');
+		}
+		
+		return $this->_getData('post_renderer_template');
+	}
+
 	/**
 	 * Ensure that the post list handle is set (adds the pager)
 	 *

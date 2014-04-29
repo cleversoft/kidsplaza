@@ -477,15 +477,13 @@ class Fishpig_Wordpress_Helper_System extends Fishpig_Wordpress_Helper_Abstract
 		if (is_null($destination)) {
 			$destination = Mage::helper('wordpress')->getAdminUrl('index.php');
 		}
-		
+
 		$result = $this->makeHttpPostRequest(Mage::helper('wordpress')->getBaseUrl('wp-login.php'), array(
 			'log' => $username,
 			'pwd' => $password,
 			'rememberme' => 'forever',
 			'redirect_to' => $destination,
-			/* Removed for WordPress 3.7
-				'testcookie' => 1
-			*/
+#			'testcookie' => 1
 		));
 
 		if ($result !== false) {

@@ -16,6 +16,31 @@ abstract class Fishpig_Wordpress_Model_Post_Abstract extends Fishpig_Wordpress_M
 	protected $_metaTable = 'wordpress/post_meta';	
 	protected $_metaTableObjectField = 'post_id';
 	
+	static protected $_types = null;
+	
+	static public function getType($type = null)
+	{
+		if (is_null(self::$_types)) {
+			self::$_types = json_decode(json_encode((array)Mage::getConfig()->getNode('wordpress/post/types')), true);
+		}
+		
+		if (!$type) {
+			return self::$_types;
+		}
+		
+		return isset(self::$_types[$type])
+			? self::$_types[$type]
+			: false;
+	}
+	
+	static public function typeExists($type)
+	{
+		$types = self::getType();
+		
+		return isset($types[$type]);
+	}
+
+
 	/**
 	 * Inject string 'Protected: ' on password protected posts
 	 *
@@ -28,18 +53,6 @@ abstract class Fishpig_Wordpress_Model_Post_Abstract extends Fishpig_Wordpress_M
 		}
 	
 		return $this->_getData('post_title');
-	}
-	
-	/**
-	 * Load a page by a URI slug (post_name)
-	 * This is useful for loading pages based on the URL
-	 *
-	 * @param string slug
-	 * @return Fishpig_Wordpress_Model_Post_Abstract
-	 */
-	public function loadBySlug($slug)
-	{
-		return $this->load($slug, 'post_name');
 	}
 	
 	/**

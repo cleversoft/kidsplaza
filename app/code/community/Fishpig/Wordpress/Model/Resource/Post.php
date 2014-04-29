@@ -104,17 +104,32 @@ class Fishpig_Wordpress_Model_Resource_Post extends Fishpig_Wordpress_Model_Reso
 			->join(
 				array('_taxonomy' => $this->getTable('wordpress/term_taxonomy')),
 				"`_taxonomy`.`term_taxonomy_id` = `_relationship`.`term_taxonomy_id` AND `_taxonomy`.`taxonomy`= 'category'",
-				'')
-			->group('_relationship.object_id');
+				'*')
+			->join(
+				array('_term' => $this->getTable('wordpress/term')),
+				"`_term`.`term_id` = `_taxonomy`.`term_id`",
+				'name')
+			->order('_term.name ASC');
 
-		if ($getAllIds) {
-			$select->columns(array('category_ids' => new Zend_Db_Expr("GROUP_CONCAT(`_taxonomy`.`term_id` ORDER BY `_taxonomy`.`term_id` ASC)")));
+		if (!$getAllIds) {
+			$select->reset('columns')
+				->columns(array('category_id' => '_term.term_id', 'object_id'))
+				->limit(1);
+				
+			return $this->_getReadAdapter()->fetchAll($select);
 		}
-		else {
-			$select->columns(array('category_id' => new Zend_Db_Expr("MIN(_taxonomy.term_id)")));
-		}
+		
+		$wrapper = $this->_getReadAdapter()
+			->select()
+				->from(array('squery' => new Zend_Db_Expr('(' . (string)$select . ')')))
+				->group('squery.object_id')
+				->reset('columns')
+				->columns(array(
+					'object_id',
+					'category_ids' => new Zend_Db_Expr("GROUP_CONCAT(`squery`.`term_id` ORDER BY `squery`.`name` ASC)"
+				)));
 
-		return $this->_getReadAdapter()->fetchAll($select);
+		return $this->_getReadAdapter()->fetchAll($wrapper);
 	}
 	
 	/**
@@ -254,7 +269,7 @@ class Fishpig_Wordpress_Model_Resource_Post extends Fishpig_Wordpress_Model_Reso
 			
 				if (in_array('%category%', $tokens)) {
 					$categoryIds = $this->getParentCategoryIdsByPostIds(array_keys($routes), false);
-	
+					
 					foreach($categoryIds as $key => $category) {
 						if ($category['object_id'] == $result['id']) {
 							$categorySlug = Mage::getResourceSingleton('wordpress/term')->getUriById($category['category_id'], 'category');
