@@ -51,6 +51,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>scriptaculous/scriptaculous.js</script></action>
                 <action method="addJs"><script>scriptaculous/effects.js</script></action>
                 <action method="addJs"><script>scriptaculous/controls.js</script></action>
+                <action method="addJs" ifconfig="dev/debug/profiler"><script>scriptaculous/slider.js</script></action>
                 <action method="addJs"><script>mage/translate.js</script></action>
                 <action method="addJs"><script>mage/cookies.js</script></action>
                 <block type="page/js_cookie" name="js_cookies" template="page/js/cookie.phtml"/>
