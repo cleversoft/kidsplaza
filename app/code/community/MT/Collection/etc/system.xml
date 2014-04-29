@@ -27,7 +27,7 @@
                     <show_in_store>1</show_in_store>
                     <fields>
                         <lastest translate="label comment">
-                            <label>Lastest</label>
+                            <label>Lastest Link</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>
                             <sort_order>10</sort_order>
@@ -37,7 +37,7 @@
                             <comment>Url for lastest products collection</comment>
                         </lastest>
                         <bestsell translate="label comment">
-                            <label>Bestsell</label>
+                            <label>Bestsell Link</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>
                             <sort_order>20</sort_order>
@@ -47,7 +47,7 @@
                             <comment>Url for bestsell products collection</comment>
                         </bestsell>
                         <mostviewed translate="label comment">
-                            <label>Mostviewed</label>
+                            <label>Mostviewed Link</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>
                             <sort_order>30</sort_order>
@@ -57,7 +57,7 @@
                             <comment>Url for mostviewed products collection</comment>
                         </mostviewed>
                         <promotion translate="label comment" module="mtcollection">
-                            <label>Promotion</label>
+                            <label>Promotion Link</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>
                             <sort_order>40</sort_order>
@@ -67,7 +67,7 @@
                             <comment>Url for promotion products collection</comment>
                         </promotion>
                         <daily translate="label comment">
-                            <label>Daily Deal Products</label>
+                            <label>Daily Deal Products Link</label>
                             <frontend_type>text</frontend_type>
                             <backend_model>mtcollection/system_config_url</backend_model>
                             <sort_order>50</sort_order>
