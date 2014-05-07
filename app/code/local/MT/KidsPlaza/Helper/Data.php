@@ -368,6 +368,7 @@ class MT_KidsPlaza_Helper_Data extends Mage_Core_Helper_Abstract{
 
     public function getDiscount($product){
         if (!$product) return;
+        if ($product->getPrice() == 0) return;
         return floor(($product->getPrice()-$product->getFinalPrice())*100/$product->getPrice());
     }
 }

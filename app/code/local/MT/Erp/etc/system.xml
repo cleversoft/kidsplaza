@@ -20,7 +20,7 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <erp>
+                <erp translate="label">
                     <label>ERP Settings</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>10</sort_order>
@@ -28,7 +28,16 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <schedule translate="label comment">
+                        <run_all translate="label comment">
+                            <label>Scheduling Synchronization All</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
+                        </run_all>
+                        <!--schedule translate="label comment">
                             <label>Scheduling Synchronization</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>0</sort_order>
@@ -36,41 +45,7 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                             <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
-                        </schedule>
-                        <enable_clear_log translate="label comment">
-                            <label>Enable Log Cleaning</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>1</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment></comment>
-                        </enable_clear_log>
-                        <clear_log translate="label comment">
-                            <label>Log Cleaning Frequency</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>2</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
-                            <depends>
-                                <enable_clear_log>1</enable_clear_log>
-                            </depends>
-                        </clear_log>
-                        <log_days translate="label comment">
-                            <label>Save Log Days</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>3</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                            <comment></comment>
-                            <depends>
-                                <enable_clear_log>1</enable_clear_log>
-                            </depends>
-                        </log_days>
+                        </schedule-->
                         <adapter translate="label comment">
                             <label>ERP Connection Adapter</label>
                             <frontend_type>select</frontend_type>
@@ -149,14 +124,50 @@
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </test>
-                        <stores translate="label">
-                            <label>ERP Stores</label>
+                    </fields>
+                </erp>
+                <product translate="label">
+                    <label>ERP Product Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>11</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <promotion_store translate="label">
+                            <label>Promotion From Store ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </promotion_store>
+                        <price_store translate="label">
+                            <label>Price From Store ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>0</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </price_store>
+                        <stock_stores translate="label">
+                            <label>Stock From Store IDs</label>
                             <frontend_type>textarea</frontend_type>
                             <sort_order>20</sort_order>
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
-                        </stores>
+                        </stock_stores>
+                    </fields>
+                </product>
+                <customer translate="label">
+                    <label>ERP Customer Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>12</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
                         <customer translate="label comment">
                             <label>Customer to ERP</label>
                             <frontend_type>select</frontend_type>
@@ -174,7 +185,6 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <comment></comment>
                             <depends>
                                 <customer>1</customer>
                             </depends>
@@ -186,22 +196,56 @@
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
-                            <comment></comment>
                             <depends>
                                 <customer>1</customer>
                             </depends>
                         </khnid>
-                        <run_all translate="label comment">
-                            <label>Scheduling Synchronization All</label>
+                    </fields>
+                </customer>
+                <log translate="label">
+                    <label>ERP Synchronization Log</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>20</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <enable_clear_log translate="label comment">
+                            <label>Enable Log Cleaning</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                        </enable_clear_log>
+                        <clear_log translate="label comment">
+                            <label>Log Cleaning Frequency</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>40</sort_order>
+                            <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                             <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
-                        </run_all>
+                            <depends>
+                                <enable_clear_log>1</enable_clear_log>
+                            </depends>
+                        </clear_log>
+                        <log_days translate="label comment">
+                            <label>Save Log Days</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment></comment>
+                            <depends>
+                                <enable_clear_log>1</enable_clear_log>
+                            </depends>
+                        </log_days>
                     </fields>
-                </erp>
+                </log>
             </groups>
         </kidsplaza>
     </sections>

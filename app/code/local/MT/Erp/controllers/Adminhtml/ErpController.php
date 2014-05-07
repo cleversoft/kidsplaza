@@ -57,7 +57,10 @@ class MT_Erp_Adminhtml_ErpController extends Mage_Adminhtml_Controller_Action {
     protected function _testAPIConnection($url){
         $data = array();
 
-        if (file_get_contents($url) === false){
+        if (!$url){
+            $data['msg'] = Mage::helper('mterp')->__('URL not found');
+            $data['error'] = 1;
+        }elseif (file_get_contents($url) === false){
             $data['msg'] = Mage::helper('mterp')->__('Connection failed');
             $data['error'] = 1;
         }else{

@@ -8,7 +8,7 @@
  * @email       support@magentothemes.net
  */
 interface MT_Erp_Model_Adapter_Interface{
-    public function getProductsPromotion($date=null);
+    public function getProductsPromotion($date=null, $storeId);
     public function getStockByStores($productId, $stores);
     public function getProductBySku($sku);
     public function getProductCount();

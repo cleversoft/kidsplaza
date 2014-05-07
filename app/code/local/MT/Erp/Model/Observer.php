@@ -14,7 +14,11 @@ class MT_Erp_Model_Observer{
     protected $_entityTypes;
     protected $_promotions;
     protected $_websites;
+    protected $_websiteNames;
     protected $_stores;
+    protected $_priceWebsite;
+    protected $_specialPriceWebsite;
+    protected $_websiteStores;
     protected $_logger;
     protected $_logFile;
     protected $_isSync = true;
@@ -105,21 +109,35 @@ class MT_Erp_Model_Observer{
     /**
      * Get all products in promotions from ERP database
      */
-    protected function _getErpProductPromotion(){
-        if (is_null($this->_promotions)){
-            $this->_promotions = $this->_adapter->getProductsPromotion();
+    protected function _getErpProductPromotion($storeId){
+        if (isset($this->_promotions[$storeId])){
+            return $this->_promotions[$storeId];
         }
 
-        return $this->_promotions;
+        $this->_promotions[$storeId] = $this->_adapter->getProductsPromotion(null, $storeId);
+Mage::log($this->_promotions);
+        return $this->_promotions[$storeId];
     }
 
     /**
      * Get all websites in Magento
      */
     protected function _getWebsites(){
-        if (!is_array($this->_websites)){
+        if (is_null($this->_websites)){
             foreach (Mage::app()->getWebsites() as $website){
-                $this->_websites[] = $website->getId();
+                $websiteId = $website->getId();
+
+                $this->_websites[] = $websiteId;
+                $this->_websiteNames[$websiteId] = $website->getCode();
+
+                $this->_websiteStores[$websiteId] = array();
+                foreach ($website->getStores() as $store){
+                    $this->_websiteStores[$websiteId][] = $store->getId();
+                }
+
+                $this->_getErpStoresByWebsite($websiteId);
+                $this->_getErpPriceStoreByWebsite($websiteId);
+                $this->_getErpSpecialPriceStoreByWebsite($websiteId);
             }
         }
 
@@ -131,17 +149,20 @@ class MT_Erp_Model_Observer{
 
         if (isset($this->_stores[$website])) return $this->_stores[$website];
 
-        $storesInWebsite = Mage::app()->getWebsite($website)->getStores();
-        $storeInWebsite = array_pop($storesInWebsite);
+        $storeInWebsite = $this->_websiteStores[$website][0];
 
-        $erpStores = explode("\n", Mage::getStoreConfig('kidsplaza/erp/stores', $storeInWebsite));
-
-        if (count($erpStores)){
-            $this->_stores[$website] = $erpStores;
-            return $this->_stores[$website];
+        $storesString = Mage::getStoreConfig('kidsplaza/product/stock_stores', $storeInWebsite);
+        if (!$storesString){
+            $this->log(Mage::helper('mterp')->__('Stores for website %d not found. Ignore stock for this website', $website));
+            $erpStores = array();
+        }else{
+            foreach (explode("\n", strtoupper($storesString)) as $storeString){
+                $erpStores[] = strtoupper($storeString);
+            }
         }
 
-        return array();
+        $this->_stores[$website] = $erpStores;
+        return $erpStores;
     }
 
     protected function _getErpStockByWebsite($productId, $websiteId){
@@ -153,6 +174,61 @@ class MT_Erp_Model_Observer{
         return (int)$this->_adapter->getStockByStores($productId, $stores);
     }
 
+    protected function _getErpPriceStoreByWebsite($websiteId){
+        if (isset($this->_priceWebsite[$websiteId])){
+            return $this->_priceWebsite[$websiteId];
+        }
+
+        $storeInWebsite = $this->_websiteStores[$websiteId][0];
+
+        $storeString = Mage::getStoreConfig('kidsplaza/product/price_store', $storeInWebsite);
+        if (!$storeString){
+            $this->log(Mage::helper('mterp')->__('Price store for website [%d] not found. Ignore price for this website', $this->_websiteNames[$websiteId]));
+        }
+
+        $this->_priceWebsite[$websiteId] = $storeString;
+        return $storeString;
+    }
+
+    protected function _getErpPriceByWebsite($productId, $websiteId){
+        if (!$productId || !$websiteId) return 0;
+
+        $storeId = $this->_getErpPriceStoreByWebsite($websiteId);
+        if (!$storeId) return 0;
+
+        return $this->_adapter->getPriceByStore($productId, $storeId);
+    }
+
+    protected function _getErpSpecialPriceStoreByWebsite($websiteId){
+        if (isset($this->_specialPriceWebsite[$websiteId])){
+            return $this->_specialPriceWebsite[$websiteId];
+        }
+
+        $storeInWebsite = $this->_websiteStores[$websiteId][0];
+
+        $storeString = Mage::getStoreConfig('kidsplaza/product/promotion_store', $storeInWebsite);
+        if (!$storeString){
+            $this->log(Mage::helper('mterp')->__('Promotion store for website [%d] not found. Ignore promotion price for this website', $this->_websiteNames[$websiteId]));
+        }
+
+        $this->_specialPriceWebsite[$websiteId] = $storeString;
+        return $storeString;
+    }
+
+    protected function _getErpSpecialPriceByWebsite($productId, $websiteId){
+        if (!$productId || !$websiteId) return null;
+
+        $erpStore = $this->_getErpSpecialPriceStoreByWebsite($websiteId);
+        if (!$erpStore) return null;
+
+        $promotions = $this->_getErpProductPromotion($erpStore);
+
+        if (isset($promotions[$productId])){
+            return $promotions[$productId]['specialPrice'];
+        }
+        return null;
+    }
+
     protected function _updatePrices($productId, $erpProduct){
         if (!$productId || !is_array($erpProduct)) return false;
 
@@ -160,18 +236,17 @@ class MT_Erp_Model_Observer{
         $priceAttributeId = $this->_getAttributeId('price');
         $specialPriceAttributeId = $this->_getAttributeId('special_price');
         $entityTypeId = $this->_getEntityTypeId('catalog_product');
-        $promotions = $this->_getErpProductPromotion();
 
         $checkSql = "
             SELECT COUNT(*)
             FROM {$this->_getTableName('catalog_product_entity_decimal')}
-            WHERE entity_id = ? AND attribute_id = ? AND entity_type_id = ?
+            WHERE entity_id = ? AND attribute_id = ? AND entity_type_id = ? AND store_id = ?
         ";
 
         $updateSql = "
             UPDATE {$this->_getTableName('catalog_product_entity_decimal')}
             SET value = ?
-            WHERE attribute_id = ? AND entity_id = ?
+            WHERE attribute_id = ? AND entity_id = ? AND store_id = ? AND entity_type_id = ?
         ";
 
         $insertSql = "
@@ -180,27 +255,37 @@ class MT_Erp_Model_Observer{
             VALUES (?,?,?,?,?)
         ";
 
-        $price = isset($erpProduct['price']) ? $erpProduct['price'] : 0;
-        if (isset($promotions[$erpProduct['productCode']])){
-            $promotion = $promotions[$erpProduct['productCode']];
-            $specialPrice = $promotion['specialPrice'];
-        }else{
-            $specialPrice = null;
+        $logs1 = array();
+        $logs2 = array();
+
+        foreach ($this->_getWebsites() as $websiteId) {
+            $price = $this->_getErpPriceByWebsite($erpProduct['productId'], $websiteId);
+            $specialPrice = $this->_getErpSpecialPriceByWebsite($erpProduct['productId'], $websiteId);
+
+            foreach ($this->_websiteStores[$websiteId] as $storeId) {
+                if ($connection->fetchOne($checkSql, array($productId, $priceAttributeId, $entityTypeId, $storeId))) {
+                    $connection->query($updateSql, array($price, $priceAttributeId, $productId, $storeId, $entityTypeId));
+                } else {
+                    $connection->query($insertSql, array($entityTypeId, $priceAttributeId, $storeId, $productId, $price));
+                }
+
+                if ($connection->fetchOne($checkSql, array($productId, $specialPriceAttributeId, $entityTypeId, $storeId))) {
+                    $connection->query($updateSql, array($specialPrice, $specialPriceAttributeId, $productId, $storeId, $entityTypeId));
+                } else {
+                    $connection->query($insertSql, array($entityTypeId, $specialPriceAttributeId, $storeId, $productId, $specialPrice));
+                }
+            }
+
+            $logs1[] = sprintf('%s=%d', $this->_websiteNames[$websiteId], $price);
+            if ($specialPrice) {
+                $logs2[] = sprintf('%s=%d', $this->_websiteNames[$websiteId], $specialPrice);
+            }
         }
 
-        if ($connection->fetchOne($checkSql, array($productId, $priceAttributeId, $entityTypeId))){
-            $connection->query($updateSql, array($price, $priceAttributeId, $productId));
-        }else{
-            $connection->query($insertSql, array($entityTypeId, $priceAttributeId, 0, $productId, $price));
+        $this->log(sprintf("\tPRICE: %s", implode(', ', $logs1)));
+        if (count($logs2)){
+            $this->log(sprintf("\tPROMO: %s", implode(', ', $logs2)));
         }
-
-        if ($connection->fetchOne($checkSql, array($productId, $specialPriceAttributeId, $entityTypeId))){
-            $connection->query($updateSql, array($specialPrice, $specialPriceAttributeId, $productId));
-        }else{
-            $connection->query($insertSql, array($entityTypeId, $specialPriceAttributeId, 0, $productId, $specialPrice));
-        }
-
-        $this->log(sprintf('PRICE SKU [%s] price=%s, special_price=%s', $erpProduct['productCode'], $price, $specialPrice ? $specialPrice : 'NULL'));
 
         return true;
     }
@@ -250,7 +335,7 @@ class MT_Erp_Model_Observer{
                 $connection->query($insertSql, array($parentId, $websiteId, $stockId, 0, $stockStatus));
             }
 
-            $logs[] = sprintf('%d=%d(%d)', $websiteId, $stockStatus, $qty);
+            $logs[] = sprintf('%s=%d(%d)', $this->_websiteNames[$websiteId], $stockStatus, $qty);
         }
 
         $updateSql = "
@@ -296,7 +381,7 @@ class MT_Erp_Model_Observer{
                 ";
 
                 $connection->query($sql, array($newQty, $stockStatus, $productId, $website));
-                $logs[] = sprintf("%d=%d", $website, $newQty);
+                $logs[] = sprintf("%s=%d", $this->_websiteNames[$website], $newQty);
             }else{
                 if (is_null($stockId)){
                     $stockSql = "
@@ -313,7 +398,7 @@ class MT_Erp_Model_Observer{
                 ";
 
                 $connection->query($sql, array($productId, $website, $stockId, $newQty, $stockStatus));
-                $logs[] = sprintf("%d=%d", $website, $newQty);
+                $logs[] = sprintf("%s=%d", $this->_websiteNames[$website], $newQty);
             }
         }
 
@@ -337,7 +422,7 @@ class MT_Erp_Model_Observer{
         }
         $logs[] = sprintf("all=%s", $totalQty);
 
-        $this->log(sprintf('STOCK SKU [%s] %s', $erpProduct['productCode'], implode(', ', $logs)));
+        $this->log(sprintf("\tSTOCK: %s", implode(', ', $logs)));
         return true;
     }
 
@@ -477,6 +562,9 @@ class MT_Erp_Model_Observer{
         $this->_insertWebsites($product);
     }
 
+    /**
+     * Sync from ERP
+     */
     public function runAll(){
         try{
             $date = Mage::getModel('core/date');
@@ -489,11 +577,15 @@ class MT_Erp_Model_Observer{
                     $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
                     $db   = Mage::getStoreConfig('kidsplaza/erp/db');
                     $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
+                    $this->log(Mage::helper('mterp')->__('ERP adapter: Database'));
                     break;
                 case 'api':
                     $url = Mage::getStoreConfig('kidsplaza/erp/api');
                     $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
+                    $this->log(Mage::helper('mterp')->__('ERP adapter: API'));
                     break;
+                default:
+                    throw new Exception(Mage::helper('mterp')->__('No adapter found'));
             }
 
             $erpTotal = $this->_adapter->getProductCount();
@@ -501,12 +593,11 @@ class MT_Erp_Model_Observer{
                 throw new Exception('No ERP product found');
             }
             $this->log(sprintf('Total ERP products: %d', $erpTotal));
-            $paging = 100;
-            $pageTotal = ceil($erpTotal / $paging);
 
             $products = $this->_getProductCollection();
-            $total = count($products);
-            for ($i=0; $i<$total; $i++){
+            $webTotal = count($products);
+            $this->log(sprintf('Total website products: %d', $webTotal));
+            for ($i=0; $i<$webTotal; $i++){
                 $products[$products[$i]['sku']] = $products[$i];
             }
 
@@ -515,38 +606,45 @@ class MT_Erp_Model_Observer{
                 throw new Exception('Product attribute set not found');
             }
 
-            $updateProduct = 0;
-            $insertProduct = 0;
-            $failedProduct = 0;
+            $updateProduct  = 0;
+            $insertProduct  = 0;
+            $failedProduct  = 0;
+            $paging         = 50;
+            $pageTotal      = ceil($erpTotal / $paging);
+            $limit          = 0;
+
+            $this->_getWebsites();
+
             for ($i=1; $i<$pageTotal; $i++){
-                //if ($i == 14) break;
-                $erpProducts = $this->_adapter->getProducts($i, $paging);
-                $currentTotal = count($erpProducts);
-                if (!$currentTotal) break;
+                $erpProducts    = $this->_adapter->getProducts($i, $paging);
+                $currentTotal   = count($erpProducts);
+
+                if (!$currentTotal){
+                    //no more product from ERP
+                    break;
+                }
+
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($j == 4) break;
+                    if ($limit++ >= 10) break 2;
+
                     $erpProduct = $erpProducts[$j];
+
                     if (!isset($products[$erpProduct['productCode']])){
                         $product = Mage::getModel('catalog/product');
                         $product->setData(array(
-                            'entity_type_id' => 4,
-                            'type_id'       => 'simple',
-                            'attribute_set_id' => $attributeSetId,
-                            'sku'           => $erpProduct['productCode'],
-                            'name'          => $erpProduct['productName'],
-                            'website_ids'   => $this->_getWebsites(),
-                            'weight'        => 1,
-                            'visibility'    => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
-                            'status'        => Mage_Catalog_Model_Product_Status::STATUS_DISABLED,
-                            'tax_class_id'  => 0
-                            //'price'       => $erpProduct['price'],
-                            //'stock_data'  => array(
-                                //'qty' => $erpProduct['qty'] > 0 ? $erpProduct['qty'] : 0,
-                                //'is_in_stock' => $erpProduct['qty'] > 0 ? 1 : 0
-                            //)
+                            'entity_type_id'    => 4,
+                            'type_id'           => 'simple',
+                            'attribute_set_id'  => $attributeSetId,
+                            'sku'               => $erpProduct['productCode'],
+                            'name'              => $erpProduct['productName'],
+                            'website_ids'       => $this->_getWebsites(),
+                            'weight'            => 1,
+                            'visibility'        => Mage_Catalog_Model_Product_Visibility::VISIBILITY_BOTH,
+                            'status'            => Mage_Catalog_Model_Product_Status::STATUS_DISABLED,
+                            'tax_class_id'      => 0
                         ));
+
                         try{
-                            //$product->save();
                             $this->_saveProduct($product);
                             $this->log(sprintf('INSERT SKU [%s]', $product->getSku()));
                             $this->_updatePrices($product->getId(), $erpProduct);
@@ -557,6 +655,7 @@ class MT_Erp_Model_Observer{
                             $failedProduct++;
                         }
                     }else{
+                        $this->log(sprintf('FOUND SKU [%s]', $erpProduct['productCode']));
                         $product = $products[$erpProduct['productCode']];
                         $this->_updatePrices($product['entity_id'], $erpProduct);
                         $this->_updateStocks($product['entity_id'], $erpProduct);
@@ -570,7 +669,7 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Failed products: %d', $failedProduct));
 
             $this->log('Reindex catalog_product_price');
-            Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
+            //Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
             $this->_adapter->close();
         }catch (Exception $e){
@@ -584,6 +683,9 @@ class MT_Erp_Model_Observer{
         );
     }
 
+    /**
+     * Sync with ERP
+     */
     public function run(){
         try{
             switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
@@ -685,7 +787,7 @@ class MT_Erp_Model_Observer{
      */
     public function customerRegisterSuccess($observer, $customer=null){
         try{
-            if (!Mage::getStoreConfigFlag('kidsplaza/erp/customer')) return;
+            if (!Mage::getStoreConfigFlag('kidsplaza/customer/customer')) return;
 
             switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
                 case 'db':
@@ -718,10 +820,10 @@ class MT_Erp_Model_Observer{
      * Log cleaning
      */
     public function clearLog(){
-        if (!Mage::getStoreConfigFlag('kidsplaza/erp/enable_clear_log')) return;
+        if (!Mage::getStoreConfigFlag('kidsplaza/log/enable_clear_log')) return;
         $logDir = Mage::getBaseDir('media') . DS . 'erp';
         if (!is_dir($logDir)) return;
-        $keepLogDays = (int)Mage::getStoreConfig('kidsplaza/erp/log_days');
+        $keepLogDays = (int)Mage::getStoreConfig('kidsplaza/log/log_days');
         $keepLogDays = $keepLogDays > 0 ? $keepLogDays : 7;
         $date = Mage::getModel('core/date');
         $today = $date->timestamp($date->date('Y-m-d'));

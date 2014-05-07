@@ -87,12 +87,12 @@
                 <schedule><config_path>kidsplaza/erp/run_all</config_path></schedule>
                 <run><model>mterp/observer::runAll</model></run>
             </mterp_sync_all>
-            <mterp_sync>
+            <!--mterp_sync>
                 <schedule><config_path>kidsplaza/erp/schedule</config_path></schedule>
                 <run><model>mterp/observer::run</model></run>
-            </mterp_sync>
+            </mterp_sync-->
             <mterp_clear_log>
-                <schedule><config_path>kidsplaza/erp/clear_log</config_path></schedule>
+                <schedule><config_path>kidsplaza/log/clear_log</config_path></schedule>
                 <run><model>mterp/observer::clearLog</model></run>
             </mterp_clear_log>
         </jobs>
@@ -101,13 +101,13 @@
     <default>
         <kidsplaza>
             <erp>
-                <schedule>*/30 * * * *</schedule>
-                <user>sa</user>
+                <run_all>0 * * * *</run_all>
+            </erp>
+            <log>
                 <enable_clear_log>1</enable_clear_log>
                 <clear_log>0 0 * * 0</clear_log>
                 <log_days>7</log_days>
-                <run_all>0 0 * * 0</run_all>
-            </erp>
+            </log>
         </kidsplaza>
     </default>
 </config>
