@@ -345,7 +345,7 @@ class MT_Erp_Model_Observer{
         ";
 
         if ($connection->query($updateSql, array($inStock, $parentId))) {
-            $logs[] = sprintf('all=%d', $inStock);
+            $logs[] = sprintf('total=%d', $inStock);
         }
 
         $this->log(sprintf("\tSTOCK: %s", implode(', ', $logs)));
@@ -422,7 +422,7 @@ class MT_Erp_Model_Observer{
 
             $connection->query($insertItemSql, array($productId, 1, $totalQty, 1, 0, 1, 1, 1, $totalQty > 0 ? 1 : 0, 1, 1, 1, 1));
         }
-        $logs[] = sprintf("all=%s", $totalQty);
+        $logs[] = sprintf("total=%s", $totalQty);
 
         $this->log(sprintf("\tSTOCK: %s", implode(', ', $logs)));
         return true;
@@ -640,7 +640,7 @@ class MT_Erp_Model_Observer{
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
-                    if ($limit++ >= 10) break 2;
+                    //if ($limit++ >= 10) break 2;
 
                     $erpProduct = $erpProducts[$j];
 
@@ -692,7 +692,7 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Failed products: %d', $failedProduct));
 
             $this->log('Reindex catalog_product_price');
-            //Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
+            Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
             $this->_adapter->close();
         }catch (Exception $e){
