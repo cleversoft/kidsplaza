@@ -20,15 +20,19 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     protected function query($uri='/', $params=array()){
         $client = new Zend_Http_Client($this->_url . $uri);
 
-        if (count($params)) {
-            $paramsJson = Mage::helper('core')->jsonEncode($params);
-            $client->setRawData($paramsJson, 'application/json');
-            $response = $client->request('POST');
-        }else{
-            $response = $client->request();
-        }
+        try {
+            if (count($params)) {
+                $paramsJson = Mage::helper('core')->jsonEncode($params);
+                $client->setRawData($paramsJson, 'application/json');
+                $response = $client->request('POST');
+            } else {
+                $response = $client->request();
+            }
 
-        $data = $response->getBody();
+            $data = $response->getBody();
+        }catch (Exception $e){
+            $data = '';
+        }
 
         try{
             $data = Mage::helper('core')->jsonDecode($data);
@@ -155,11 +159,31 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     }
 
     public function getCustomerByTelephone($phoneNumber){
+        $action = '/GetCustomerByMobile?mobile=' . $phoneNumber;
+        $data = $this->query($action);
 
+        $output = array();
+        if ($data){
+            $output['customerName']     = isset($data['name']) ? $data['name'] : '';
+            $output['customerGender']   = isset($data['sex']) ? $data['sex'] : '';
+            $output['customerEmail']    = isset($data['email']) ? $data['email'] : '';
+        }
+
+        return $output;
     }
 
     public function addCustomer($customer){
-
+        $action = '/AddCustomer';
+        $data = array(
+            array(
+                'code'  => $customer->getPhoneNumber(),
+                'email' => $customer->getEmail(),
+                'mobile' => $customer->getPhoneNumber(),
+                'name'  => $customer->getName(),
+                'sex'   => $customer->getGender() == 1 ? 'Nam' : ($customer->getGender() == 2 ? 'Nữ' : '')
+            )
+        );
+        $this->query($action, $data);
     }
 
     public function close(){

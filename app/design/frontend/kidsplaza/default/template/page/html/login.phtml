@@ -31,7 +31,7 @@ $session = Mage::getSingleton('customer/session');
                 </button>
                 <p>
                     <span><?php echo Mage::helper('kidsplaza')->__('New customer?') ?></span>
-                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/login/');?><?php //echo $this->getUrl('customer/account/login') ?>"><?php echo Mage::helper('kidsplaza')->__('Create account') ?></a>
+                    <a href="<?php echo Mage::helper('kidsplaza')->getCustomRewriteUrl('customer/account/login/');?><?php //echo $this->getUrl('customer/account/login') ?>?is_register=1"><?php echo Mage::helper('kidsplaza')->__('Create account') ?></a>
                 </p>
             <?php endif ?>
             <ul>

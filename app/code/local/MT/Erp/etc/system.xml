@@ -132,7 +132,7 @@
                     <sort_order>11</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
-                    <show_in_store>0</show_in_store>
+                    <show_in_store>1</show_in_store>
                     <fields>
                         <promotion_store translate="label">
                             <label>Promotion From Store ID</label>
@@ -141,7 +141,17 @@
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <comment>Enter ERP store id</comment>
                         </promotion_store>
+                        <promotion_store_comment translate="label comment note">
+                            <label>Promotion From Store ID</label>
+                            <frontend_model>mterp/adminhtml_system_config_comment</frontend_model>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note>You need change to website scope to view configuration</note>
+                        </promotion_store_comment>
                         <price_store translate="label">
                             <label>Price From Store ID</label>
                             <frontend_type>text</frontend_type>
@@ -149,7 +159,17 @@
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <comment>Enter ERP store id</comment>
                         </price_store>
+                        <price_store_comment translate="label comment note">
+                            <label>Price From Store ID</label>
+                            <frontend_model>mterp/adminhtml_system_config_comment</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note>You need change to website scope to view configuration</note>
+                        </price_store_comment>
                         <stock_stores translate="label">
                             <label>Stock From Store IDs</label>
                             <frontend_type>textarea</frontend_type>
@@ -157,7 +177,17 @@
                             <show_in_default>0</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <comment>Enter multi ERP store ids</comment>
                         </stock_stores>
+                        <stock_stores_comment translate="label comment note">
+                            <label>Stock From Store IDs</label>
+                            <frontend_model>mterp/adminhtml_system_config_comment</frontend_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <note>You need change to website scope to view configuration</note>
+                        </stock_stores_comment>
                     </fields>
                 </product>
                 <customer translate="label">

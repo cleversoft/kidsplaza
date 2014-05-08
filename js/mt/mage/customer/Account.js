@@ -71,19 +71,21 @@ var VarienFormRegister = Class.create(VarienForm, {
     }
 });
 
-new VarienForm('login-form', true);
-new VarienForm('form-validate', true);
+new VarienForm('login-form');
+new VarienForm('form-validate');
 new VarienFormRegister('form-register');
 
 jQuery(document).ready(function(){
     jQuery(".btn-regisform").click(function(){
         jQuery(".form_register").toggle();
+        jQuery.uniform && jQuery.uniform.update();
     });
 
     jQuery.fn.equalHeights && jQuery.fn.equalHeights('.col-left .nav', '.col-main');
 
     if (window.location.href.indexOf('is_register') > 0){
         jQuery('.form_register').toggle();
+        jQuery.uniform && jQuery.uniform.update();
     }
 });
 

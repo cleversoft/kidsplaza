@@ -115,7 +115,7 @@ class MT_Erp_Model_Observer{
         }
 
         $this->_promotions[$storeId] = $this->_adapter->getProductsPromotion(null, $storeId);
-Mage::log($this->_promotions);
+
         return $this->_promotions[$storeId];
     }
 
@@ -335,7 +335,7 @@ Mage::log($this->_promotions);
                 $connection->query($insertSql, array($parentId, $websiteId, $stockId, 0, $stockStatus));
             }
 
-            $logs[] = sprintf('%s=%d(%d)', $this->_websiteNames[$websiteId], $stockStatus, $qty);
+            $logs[] = sprintf('%s=%d', $this->_websiteNames[$websiteId], $qty);
         }
 
         $updateSql = "
@@ -343,10 +343,12 @@ Mage::log($this->_promotions);
             SET is_in_stock = ?
             WHERE product_id = ?
         ";
-        if ($connection->query($updateSql, array($inStock, $parentId)))
-            $logs[] = sprintf('all=%d', $inStock);
 
-        $this->log(sprintf('STOCK ID [%d] %s', $parentId, implode(', ', $logs)));
+        if ($connection->query($updateSql, array($inStock, $parentId))) {
+            $logs[] = sprintf('all=%d', $inStock);
+        }
+
+        $this->log(sprintf("\tSTOCK: %s", implode(', ', $logs)));
 
         return true;
     }
@@ -597,9 +599,22 @@ Mage::log($this->_promotions);
             $products = $this->_getProductCollection();
             $webTotal = count($products);
             $this->log(sprintf('Total website products: %d', $webTotal));
+
+            $configurableProducts   = array();
+            $simpleProducts         = array();
+
             for ($i=0; $i<$webTotal; $i++){
-                $products[$products[$i]['sku']] = $products[$i];
+                if ($products[$i]['type_id'] == 'configurable'){
+                    $configurableProducts[] = $products[$i];
+                }elseif ($products[$i]['type_id'] == 'simple'){
+                    $simpleProducts[$products[$i]['sku']] = $products[$i];
+                }
             }
+
+            unset ($products);
+            $totalConfigurableProducts = count($configurableProducts);
+            $this->log(sprintf('Total configurable products: %d', $totalConfigurableProducts));
+            $this->log(sprintf('Total simple products: %d', count($simpleProducts)));
 
             $attributeSetId = $this->_getCatalogProductMeta();
             if (!$attributeSetId){
@@ -629,7 +644,7 @@ Mage::log($this->_promotions);
 
                     $erpProduct = $erpProducts[$j];
 
-                    if (!isset($products[$erpProduct['productCode']])){
+                    if (!isset($simpleProducts[$erpProduct['productCode']])){
                         $product = Mage::getModel('catalog/product');
                         $product->setData(array(
                             'entity_type_id'    => 4,
@@ -656,11 +671,19 @@ Mage::log($this->_promotions);
                         }
                     }else{
                         $this->log(sprintf('FOUND SKU [%s]', $erpProduct['productCode']));
-                        $product = $products[$erpProduct['productCode']];
+                        $product = $simpleProducts[$erpProduct['productCode']];
                         $this->_updatePrices($product['entity_id'], $erpProduct);
                         $this->_updateStocks($product['entity_id'], $erpProduct);
                         $updateProduct++;
                     }
+                }
+            }
+
+            if ($totalConfigurableProducts){
+                for ($i=0; $i<$totalConfigurableProducts; $i++){
+                    $this->log(sprintf('CONFIG SKU [%s]', $configurableProducts[$i]['sku']));
+                    $this->_updateParentStocks($configurableProducts[$i]['entity_id']);
+                    $updateProduct++;
                 }
             }
 
