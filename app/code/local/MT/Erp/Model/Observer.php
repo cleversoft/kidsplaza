@@ -19,9 +19,32 @@ class MT_Erp_Model_Observer{
     protected $_priceWebsite;
     protected $_specialPriceWebsite;
     protected $_websiteStores;
+    protected $_defaultPriceStore;
     protected $_logger;
     protected $_logFile;
     protected $_isSync = true;
+
+    public function __construct(){
+        switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
+            case 'db':
+                $host = Mage::getStoreConfig('kidsplaza/erp/host');
+                $user = Mage::getStoreConfig('kidsplaza/erp/user');
+                $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
+                $db   = Mage::getStoreConfig('kidsplaza/erp/db');
+                $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
+                $this->log(Mage::helper('mterp')->__('ERP adapter: Database'));
+                break;
+            case 'api':
+                $url = Mage::getStoreConfig('kidsplaza/erp/api');
+                $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
+                $this->log(Mage::helper('mterp')->__('ERP adapter: API'));
+                break;
+            default:
+                throw new Exception(Mage::helper('mterp')->__('No adapter found'));
+        }
+
+        return $this;
+    }
 
     public function setIsCron($flag=false){
         $this->_isSync = (bool)$flag;
@@ -138,10 +161,25 @@ class MT_Erp_Model_Observer{
                 $this->_getErpStoresByWebsite($websiteId);
                 $this->_getErpPriceStoreByWebsite($websiteId);
                 $this->_getErpSpecialPriceStoreByWebsite($websiteId);
+                $this->_getErpDefaultPriceStore();
             }
         }
 
         return $this->_websites;
+    }
+
+    protected function _getErpDefaultPriceStore(){
+        if ($this->_defaultPriceStore !== null){
+            return $this->_defaultPriceStore;
+        }
+
+        $storeString = Mage::getStoreConfig('kidsplaza/product/price_store_default');
+        if (!$storeString){
+            $this->log(Mage::helper('mterp')->__('Default price store not found. Ignore default price'));
+        }
+
+        $this->_defaultPriceStore = strtoupper($storeString);
+        return $storeString;
     }
 
     protected function _getErpStoresByWebsite($website){
@@ -186,7 +224,7 @@ class MT_Erp_Model_Observer{
             $this->log(Mage::helper('mterp')->__('Price store for website [%d] not found. Ignore price for this website', $this->_websiteNames[$websiteId]));
         }
 
-        $this->_priceWebsite[$websiteId] = $storeString;
+        $this->_priceWebsite[$websiteId] = strtoupper($storeString);
         return $storeString;
     }
 
@@ -211,8 +249,17 @@ class MT_Erp_Model_Observer{
             $this->log(Mage::helper('mterp')->__('Promotion store for website [%d] not found. Ignore promotion price for this website', $this->_websiteNames[$websiteId]));
         }
 
-        $this->_specialPriceWebsite[$websiteId] = $storeString;
+        $this->_specialPriceWebsite[$websiteId] = strtoupper($storeString);
         return $storeString;
+    }
+
+    protected function _getErpDefaultPrice($productId){
+        if (!$productId) return 0;
+
+        $storeId = $this->_getErpDefaultPriceStore();
+        if (!$storeId) return 0;
+
+        return $this->_adapter->getPriceByStore($productId, $storeId);
     }
 
     protected function _getErpSpecialPriceByWebsite($productId, $websiteId){
@@ -281,6 +328,14 @@ class MT_Erp_Model_Observer{
                 $logs2[] = sprintf('%s=%d', $this->_websiteNames[$websiteId], $specialPrice);
             }
         }
+
+        $defaultPrice = $this->_getErpDefaultPrice($erpProduct['productId']);
+        if ($connection->fetchOne($checkSql, array($productId, $priceAttributeId, $entityTypeId, 0))) {
+            $connection->query($updateSql, array($defaultPrice, $priceAttributeId, $productId, 0, $entityTypeId));
+        } else {
+            $connection->query($insertSql, array($entityTypeId, $priceAttributeId, 0, $productId, $defaultPrice));
+        }
+        $logs1[] = sprintf('default=%d', $defaultPrice);
 
         $this->log(sprintf("\tPRICE: %s", implode(', ', $logs1)));
         if (count($logs2)){
@@ -573,24 +628,6 @@ class MT_Erp_Model_Observer{
             $date = Mage::getModel('core/date');
             $this->_logFile = uniqid($date->date('Y-m-d-H-i-\A\L\L-')) . '.log';
 
-            switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
-                case 'db':
-                    $host = Mage::getStoreConfig('kidsplaza/erp/host');
-                    $user = Mage::getStoreConfig('kidsplaza/erp/user');
-                    $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
-                    $db   = Mage::getStoreConfig('kidsplaza/erp/db');
-                    $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
-                    $this->log(Mage::helper('mterp')->__('ERP adapter: Database'));
-                    break;
-                case 'api':
-                    $url = Mage::getStoreConfig('kidsplaza/erp/api');
-                    $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
-                    $this->log(Mage::helper('mterp')->__('ERP adapter: API'));
-                    break;
-                default:
-                    throw new Exception(Mage::helper('mterp')->__('No adapter found'));
-            }
-
             $erpTotal = $this->_adapter->getProductCount();
             if (!$erpTotal){
                 throw new Exception('No ERP product found');
@@ -641,7 +678,7 @@ class MT_Erp_Model_Observer{
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($limit++ >= 100) break 2;
+                    //if ($limit++ >= 10) break 2;
 
                     $erpProduct = $erpProducts[$j];
 
@@ -715,20 +752,6 @@ class MT_Erp_Model_Observer{
      */
     public function run(){
         try{
-            switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
-                case 'db':
-                    $host = Mage::getStoreConfig('kidsplaza/erp/host');
-                    $user = Mage::getStoreConfig('kidsplaza/erp/user');
-                    $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
-                    $db   = Mage::getStoreConfig('kidsplaza/erp/db');
-                    $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
-                    break;
-                case 'api':
-                    $url = Mage::getStoreConfig('kidsplaza/erp/api');
-                    $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
-                    break;
-            }
-
             $products = $this->_getProductCollection();
 
             $total = count($products);
@@ -786,20 +809,6 @@ class MT_Erp_Model_Observer{
         try{
             if (!$phoneNumber) return null;
 
-            switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
-                case 'db':
-                    $host = Mage::getStoreConfig('kidsplaza/erp/host');
-                    $user = Mage::getStoreConfig('kidsplaza/erp/user');
-                    $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
-                    $db   = Mage::getStoreConfig('kidsplaza/erp/db');
-                    $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
-                    break;
-                case 'api':
-                    $url = Mage::getStoreConfig('kidsplaza/erp/api');
-                    $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
-                    break;
-            }
-
             $customer = $this->_adapter->getCustomerByTelephone($phoneNumber);
             $this->_adapter->close();
             return $customer;
@@ -815,20 +824,6 @@ class MT_Erp_Model_Observer{
     public function customerRegisterSuccess($observer, $customer=null){
         try{
             if (!Mage::getStoreConfigFlag('kidsplaza/customer/customer')) return;
-
-            switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
-                case 'db':
-                    $host = Mage::getStoreConfig('kidsplaza/erp/host');
-                    $user = Mage::getStoreConfig('kidsplaza/erp/user');
-                    $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
-                    $db   = Mage::getStoreConfig('kidsplaza/erp/db');
-                    $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
-                    break;
-                case 'api':
-                    $url = Mage::getStoreConfig('kidsplaza/erp/api');
-                    $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
-                    break;
-            }
 
             /* @var $customer Mage_Customer_Model_Customer */
             $customer = $customer ? $customer : $observer->getEvent()->getCustomer();
@@ -863,5 +858,9 @@ class MT_Erp_Model_Observer{
             $dateOfFile = $date->timestamp(sprintf('%d-%d-%d', $parts[0], $parts[1], $parts[2]));
             if ($dateOfFile < $expireDate) @unlink($filePath);
         }
+    }
+
+    public function getErpStores(){
+        return $this->_adapter->getAllStores();
     }
 }

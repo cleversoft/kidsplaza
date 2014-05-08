@@ -189,4 +189,10 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     public function close(){
         return true;
     }
+
+    public function getAllStores(){
+        $action = '/GetAllListStore';
+        $data = $this->query($action);
+        return $data;
+    }
 }
