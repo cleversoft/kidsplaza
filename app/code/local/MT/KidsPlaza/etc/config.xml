@@ -30,6 +30,7 @@
                 <rewrite>
                     <catalog_product>MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Product</catalog_product>
                     <catalog_product_grid>MT_KidsPlaza_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                    <customer_grid>MT_KidsPlaza_Block_Adminhtml_Customer_Grid</customer_grid>
                 </rewrite>
             </adminhtml>
             <core>
