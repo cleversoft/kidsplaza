@@ -12,6 +12,7 @@ class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
         if (!$this->_validateFormKey()) return;
         $phoneNumber = $this->getRequest()->getParam('value');
         if (!$phoneNumber) return;
+        if (!Mage::getStoreConfigFlag('kidsplaza/customer/query')) return;
         $service = Mage::getModel('mterp/observer');
         $service->setIsCron(false);
         $customer = $service->getErpCustomer($phoneNumber);

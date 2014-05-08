@@ -15,7 +15,7 @@ class MT_Erp_Block_Adminhtml_System_Config_Comment extends Mage_Adminhtml_Block_
 	 * @return string
 	 */
 	protected function _getElementHtml(Varien_Data_Form_Element_Abstract $element) {
-		return $this->getElementData($element, 'note');
+		return sprintf('<small>%s</small>', $this->getElementData($element, 'note'));
 	}
 
     /**
@@ -33,7 +33,7 @@ class MT_Erp_Block_Adminhtml_System_Config_Comment extends Mage_Adminhtml_Block_
             foreach ($group->fields as $elements){
                 foreach ($elements as $id => $elm){
                     if ($fieldsetId . '_' . $id == $element->getId()){
-                        return $elm->$field;
+                        return Mage::helper('mterp')->__((string)$elm->$field);
                         break 3;
                     }
                 }
