@@ -5,7 +5,11 @@
             <p><?php echo Mage::getStoreConfig('mtonestepcheckout/titles/checkout_sub')?></p>
         <?php endif ?>
         <?php if (!$this->isCustomerLoggedIn()):?>
-            <p><a href="#" data-toggle="modal" data-target="#checkout-login-dialog"><?php echo $this->__('Already registered? Click here to login')?></a></p>
+            <!--p>
+                <a href="#" data-toggle="modal" data-target="#checkout-login-dialog">
+                    <?php echo $this->__('Already registered? Click here to login')?>
+                </a>
+            </p-->
             <div id="checkout-login-dialog" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                 <div class="modal-content">

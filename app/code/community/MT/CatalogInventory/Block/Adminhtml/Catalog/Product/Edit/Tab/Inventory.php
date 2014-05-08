@@ -21,15 +21,13 @@ class MT_CatalogInventory_Block_Adminhtml_Catalog_Product_Edit_Tab_Inventory
                     $stockStatus = Mage::getSingleton('cataloginventory/stock_status');
                     $this->_stockStatus = $stockStatus->getProductData($productId, $websiteId);
                 }
-                if (isset($this->_stockStatus[$productId])){
-                    switch ($field){
-                        case 'qty':
-                            return $this->_stockStatus[$productId]['qty'];
-                            break;
-                        case 'is_in_stock':
-                            return $this->_stockStatus[$productId]['stock_status'];
-                            break;
-                    }
+                switch ($field){
+                    case 'qty':
+                        return isset($this->_stockStatus[$productId]) ? $this->_stockStatus[$productId]['qty'] : 0;
+                        break;
+                    case 'is_in_stock':
+                        return isset($this->_stockStatus[$productId]) ? $this->_stockStatus[$productId]['stock_status'] : 0;
+                        break;
                 }
             }
             return $this->getStockItem()->getData($field);

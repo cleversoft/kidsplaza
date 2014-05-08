@@ -33,6 +33,15 @@
             </mterp>
         </models>
         <events>
+            <checkout_type_onepage_save_order_after>
+                <observers>
+                    <mterp>
+                        <type>singleton</type>
+                        <class>mterp/observer</class>
+                        <method>checkoutTypeOnepageSaveOrderAfter</method>
+                    </mterp>
+                </observers>
+            </checkout_type_onepage_save_order_after>
             <customer_register_success>
                 <observers>
                     <mterp>

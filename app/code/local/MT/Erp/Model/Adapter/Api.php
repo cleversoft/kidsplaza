@@ -173,6 +173,9 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     }
 
     public function addCustomer($customer){
+        $checkCustomer = $this->getCustomerByTelephone($customer->getPhoneNumber());
+        if (isset($checkCustomer['customerName'])) return;
+
         $action = '/AddCustomer';
         $data = array(
             array(

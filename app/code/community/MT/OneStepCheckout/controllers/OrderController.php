@@ -243,10 +243,9 @@ class MT_OneStepCheckout_OrderController extends Mage_Checkout_OnepageController
         $result = array();
 
         if (isset($data['billing'])){
-            if (isset($data['billing']['customer_password']) &&
-                $data['billing']['customer_password'] &&
-                isset($data['billing']['confirm_password']) &&
-                $data['billing']['confirm_password']){
+            if (isset($data['billing']['customer_password']) && $data['billing']['customer_password'] &&
+                isset($data['billing']['confirm_password']) && $data['billing']['confirm_password']){
+                $this->getOnepage()->getQuote()->setIsNewCustomer(true);
                 $this->getOnepage()->saveCheckoutMethod(Mage_Checkout_Model_Type_Onepage::METHOD_REGISTER);
             }
             $customerBillingAddressId = $this->getRequest()->getPost('billing_address_id', false);

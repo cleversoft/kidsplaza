@@ -818,6 +818,25 @@ class MT_Erp_Model_Observer{
         }
     }
 
+    public function checkoutTypeOnepageSaveOrderAfter($observer){
+        try{
+            $quote = $observer->getEvent()->getQuote();
+            if ($quote->getIsNewCustomer()){
+                $customer = $observer->getEvent()->getOrder()->getCustomer();
+                foreach ($customer->getAddresses() as $address){
+                    $phoneNumber = $address->getTelephone();
+                    if ($phoneNumber){
+                        $customer->setPhoneNumber($phoneNumber);
+                        $customer->save();
+                        $this->_adapter->addCustomer($customer);
+                        $this->_adapter->close();
+                        break;
+                    }
+                }
+            }
+        }catch (Exception $e){}
+    }
+
     /**
      * Send new customer to ERP
      */

@@ -57,3 +57,7 @@
 "Saved","Tiết kiệm"
 "There is already an account with this email address. If you are sure that it is your email address, <a href=""%s"">click here</a> to get your password and access your account.","Email này đã được sử đăng ký, nếu bạn quên mật khẩu hãy <a href=""%s"">nhấn vào đây</a> để lấy lại."
 "Thank you for registering with %s.","Cảm ơn bạn đã đăng ký thành viên với chúng tôi."
+"Already registered? Click here to login","Nếu bạn đã đăng ký, nhấn vào đây để đăng nhập"
+"Email address","Email"
+"Your order has been received.","Đặt hàng thành công."
+"Click <a href=""%s"" onclick=""this.target=\'_blank\'"">here to print</a> a copy of your order confirmation.","Nhấn <a href=""%s"" onclick=""this.target=\'_blank\'"">vào đây</a> để in đơn hàng của bạn."
