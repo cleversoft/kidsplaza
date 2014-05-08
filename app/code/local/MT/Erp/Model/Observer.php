@@ -345,7 +345,7 @@ class MT_Erp_Model_Observer{
         ";
 
         if ($connection->query($updateSql, array($inStock, $parentId))) {
-            $logs[] = sprintf('total=%d', $inStock);
+            $logs[] = sprintf('stock=%d', $inStock);
         }
 
         $this->log(sprintf("\tSTOCK: %s", implode(', ', $logs)));
@@ -569,6 +569,7 @@ class MT_Erp_Model_Observer{
      */
     public function runAll(){
         try{
+            $startTime = microtime(true);
             $date = Mage::getModel('core/date');
             $this->_logFile = uniqid($date->date('Y-m-d-H-i-\A\L\L-')) . '.log';
 
@@ -640,7 +641,7 @@ class MT_Erp_Model_Observer{
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($limit++ >= 10) break 2;
+                    //if ($limit++ >= 100) break 2;
 
                     $erpProduct = $erpProducts[$j];
 
@@ -667,6 +668,7 @@ class MT_Erp_Model_Observer{
                             $insertProduct++;
                         }catch (Exception $e){
                             $this->log(sprintf('INSERT ERROR SKU [%s]: %s', $product->getSku(), $e->getMessage()), Zend_Log::CRIT);
+                            Mage::logException($e);
                             $failedProduct++;
                         }
                     }else{
@@ -694,6 +696,8 @@ class MT_Erp_Model_Observer{
             $this->log('Reindex catalog_product_price');
             Mage::getModel('index/indexer')->getProcessByCode('catalog_product_price')->reindexAll();
 
+            $this->log('Done!');
+            $this->log(sprintf('Excution time: %ds', microtime(true) - $startTime));
             $this->_adapter->close();
         }catch (Exception $e){
             Mage::logException($e);
