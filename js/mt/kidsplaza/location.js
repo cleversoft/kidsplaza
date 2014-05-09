@@ -64,6 +64,63 @@ KidsPlazaLoginHeader.prototype = {
     }
 };
 
+var KidsPlazaPhone = Class.create();
+KidsPlazaPhone.prototype = {
+    initialize: function(id, fields){
+        var element = $(id);
+        if (!element) return;
+        fields = fields || {};
+        Event.observe(element, 'change', function(ev){
+            var input = Event.findElement(ev, 'input'),
+                spinner = input.up().down('.spinner'),
+                url = input.readAttribute('data-url'),
+                phoneValidator = Validation.get('validate-phoneprefix'),
+                form = input.up('form');
+
+            if (!url) return;
+
+            if (phoneValidator && phoneValidator.test(input.value, input)){
+                var advice = Validation.getAdvice('validate-phoneprefix', input);
+                if (advice) Validation.hideAdvice(input, advice);
+
+                var params = {value: input.value, form_key: Mage.FormKey};
+
+                spinner && spinner.show();
+                new Ajax.Request(url, {
+                    parameters: params,
+                    onSuccess: function(transport){
+                        spinner && spinner.hide();
+                        try{
+                            var response = transport.responseText.evalJSON();
+                            for (var i in fields){
+                                var elm = fields[i];
+                                if (elm && response[i]){
+                                    var target = $(elm);
+                                    if (!target) return;
+                                    target.value = response[i];
+                                    switch (i) {
+                                        case 'gender':
+                                            if (target.up().hasClassName('selector')) {
+                                                jQuery.uniform.update();
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                        }catch (e){}
+                    }.bind(this)
+                });
+            }else{
+                var advice = Validation.getAdvice('validate-phoneprefix', input);
+                if (!advice){
+                    advice = Validation.createAdvice('validate-phoneprefix', input);
+                }
+                Validation.showAdvice(input, advice, 'validate-phoneprefix');
+            }
+        });
+    }
+};
+
 var EnhancedAjaxAutocompleter = Class.create(Ajax.Autocompleter, {
     updateChoices: function(choices) {
         if(!this.changed && this.hasFocus) {

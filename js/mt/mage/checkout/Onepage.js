@@ -61,3 +61,10 @@ mtOneStepCheckout = new MT.OneStepCheckout(Object.extend(checkoutConfig, {
     review: review,
     terms: terms
 }));
+new KidsPlazaPhone('billing:telephone', {
+    fn: 'billing:firstname',
+    ln: 'billing:lastname',
+    email: 'billing:email',
+    gender: 'billing:gender',
+    address: 'billing:street1'
+});
