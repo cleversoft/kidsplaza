@@ -503,6 +503,14 @@ class MT_Erp_Model_Observer{
         return $connection->fetchAll($query);
     }
 
+    protected function _checkProductExist($sku){
+        if (!$sku) return false;
+
+        $connection = $this->_getConnection('core_read');
+        $query = "SELECT entity_id FROM {$this->_getTableName('catalog_product_entity')} WHERE sku = ?";
+        return $connection->fetchOne($query, array($sku));
+    }
+
     protected function _getCatalogProductMeta(){
         $connection = $this->_getConnection('core_read');
         $query = "
@@ -644,20 +652,20 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Total website products: %d', $webTotal));
 
             $configurableProducts   = array();
-            $simpleProducts         = array();
+            $simpleProductsCount    = 0;
 
             for ($i=0; $i<$webTotal; $i++){
                 if ($products[$i]['type_id'] == 'configurable'){
                     $configurableProducts[] = $products[$i];
                 }elseif ($products[$i]['type_id'] == 'simple'){
-                    $simpleProducts[$products[$i]['sku']] = $products[$i];
+                    $simpleProductsCount++;
                 }
             }
 
             unset ($products);
             $totalConfigurableProducts = count($configurableProducts);
             $this->log(sprintf('Total configurable products: %d', $totalConfigurableProducts));
-            $this->log(sprintf('Total simple products: %d', count($simpleProducts)));
+            $this->log(sprintf('Total simple products: %d', $simpleProductsCount));
 
             $attributeSetId = $this->_getCatalogProductMeta();
             if (!$attributeSetId){
@@ -682,11 +690,12 @@ class MT_Erp_Model_Observer{
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($limit++ >= 1000) break 2;
+                    //if ($limit++ >= 10) break 2;
 
                     $erpProduct = $erpProducts[$j];
+                    $productId  = $this->_checkProductExist($erpProduct['productCode']);
 
-                    if (!isset($simpleProducts[$erpProduct['productCode']])){
+                    if (!$productId){
                         $product = Mage::getModel('catalog/product');
                         $product->setData(array(
                             'entity_type_id'    => 4,
@@ -714,9 +723,8 @@ class MT_Erp_Model_Observer{
                         }
                     }else{
                         $this->log(sprintf('FOUND SKU [%s]', $erpProduct['productCode']));
-                        $product = $simpleProducts[$erpProduct['productCode']];
-                        $this->_updatePrices($product['entity_id'], $erpProduct);
-                        $this->_updateStocks($product['entity_id'], $erpProduct);
+                        $this->_updatePrices($productId, $erpProduct);
+                        $this->_updateStocks($productId, $erpProduct);
                         $updateProduct++;
                     }
                 }
@@ -725,7 +733,7 @@ class MT_Erp_Model_Observer{
             if ($totalConfigurableProducts){
                 $this->log('Process configurable products');
                 for ($i=0; $i<$totalConfigurableProducts; $i++){
-                    $this->log(sprintf('CONFIG SKU [%s]', $configurableProducts[$i]['sku']));
+                    $this->log(sprintf('CONFIGURABLE SKU [%s]', $configurableProducts[$i]['sku']));
                     $this->_updateParentStocks($configurableProducts[$i]['entity_id']);
                     $updateProduct++;
                 }
