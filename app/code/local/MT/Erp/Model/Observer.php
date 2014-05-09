@@ -32,12 +32,10 @@ class MT_Erp_Model_Observer{
                 $pass = Mage::getStoreConfig('kidsplaza/erp/pass');
                 $db   = Mage::getStoreConfig('kidsplaza/erp/db');
                 $this->_adapter = Mage::getModel('mterp/adapter_database', array($host, $user, $pass, $db));
-                $this->log(Mage::helper('mterp')->__('ERP adapter: Database'));
                 break;
             case 'api':
                 $url = Mage::getStoreConfig('kidsplaza/erp/api');
                 $this->_adapter = Mage::getModel('mterp/adapter_api', array($url));
-                $this->log(Mage::helper('mterp')->__('ERP adapter: API'));
                 break;
             default:
                 throw new Exception(Mage::helper('mterp')->__('No adapter found'));
@@ -59,9 +57,9 @@ class MT_Erp_Model_Observer{
             Mage::log($message, $level);
             return;
         }
-        if (!$this->_logger){
+        if (is_null($this->_logger)){
             $logDir = Mage::getBaseDir('media') . DS . 'erp';
-            if (!$this->_logFile){
+            if (is_null($this->_logFile)){
                 $date = Mage::getModel('core/date');
                 $this->_logFile = uniqid($date->date('Y-m-d-H-i-')) . '.log';
             }
@@ -185,16 +183,19 @@ class MT_Erp_Model_Observer{
     protected function _getErpStoresByWebsite($website){
         if (!$website) return array();
 
-        if (isset($this->_stores[$website])) return $this->_stores[$website];
+        if (isset($this->_stores[$website])){
+            return $this->_stores[$website];
+        }
 
         $storeInWebsite = $this->_websiteStores[$website][0];
 
         $storesString = Mage::getStoreConfig('kidsplaza/product/stock_stores', $storeInWebsite);
+        $erpStores = array();
+
         if (!$storesString){
             $this->log(Mage::helper('mterp')->__('Stores for website %d not found. Ignore stock for this website', $website));
-            $erpStores = array();
         }else{
-            foreach (explode("\n", strtoupper($storesString)) as $storeString){
+            foreach (explode(',', $storesString) as $storeString){
                 $erpStores[] = strtoupper($storeString);
             }
         }
@@ -634,6 +635,10 @@ class MT_Erp_Model_Observer{
             }
             $this->log(sprintf('Total ERP products: %d', $erpTotal));
 
+            $paging     = 50;
+            $pageTotal  = ceil($erpTotal / $paging);
+            $this->log(sprintf('Page limit: %d, total pages: %d', $paging, $pageTotal));
+
             $products = $this->_getProductCollection();
             $webTotal = count($products);
             $this->log(sprintf('Total website products: %d', $webTotal));
@@ -662,8 +667,6 @@ class MT_Erp_Model_Observer{
             $updateProduct  = 0;
             $insertProduct  = 0;
             $failedProduct  = 0;
-            $paging         = 50;
-            $pageTotal      = ceil($erpTotal / $paging);
             $limit          = 0;
 
             $this->_getWebsites();
@@ -678,7 +681,7 @@ class MT_Erp_Model_Observer{
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
-                    //if ($limit++ >= 10) break 2;
+                    //if ($limit++ >= 1000) break 2;
 
                     $erpProduct = $erpProducts[$j];
 

@@ -75,18 +75,14 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     public function getPriceByStore($productId, $storeId){
         $price = 0;
 
-        if ($this->_productCollection){
-            $storeId = strtoupper($storeId);
-            foreach ($this->_productCollection as $product){
-                if ($product['productId'] == $productId){
-                    if (isset($product['PriceAndQuantityInfo'])){
-                        $infoArray = $product['PriceAndQuantityInfo'];
-                        foreach ($infoArray as $info){
-                            if (strtoupper($info['KHOID']) == $storeId){
-                                $price = $info['PRICE'];
-                            }
-                        }
-                    }
+        if ($this->_productCollection && isset($this->_productCollection[$productId])){
+            $infoArray = $this->_productCollection[$productId];
+            if (!is_array($infoArray)) return $price;
+
+            foreach ($infoArray as $info){
+                if (strtoupper($info['KHOID']) == $storeId){
+                    $price = $info['PRICE'];
+                    break;
                 }
             }
         }
@@ -97,17 +93,13 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     public function getStockByStores($productId, $stores){
         $qty = 0;
 
-        if ($this->_productCollection){
-            foreach ($this->_productCollection as $product){
-                if ($product['productId'] == $productId){
-                    if (isset($product['PriceAndQuantityInfo'])){
-                        $infoArray = $product['PriceAndQuantityInfo'];
-                        foreach ($infoArray as $info){
-                            if (in_array(strtoupper($info['KHOID']), $stores)){
-                                $qty += (int)$info['QUANTITY'];
-                            }
-                        }
-                    }
+        if ($this->_productCollection && isset($this->_productCollection[$productId])){
+            $infoArray = $this->_productCollection[$productId];
+            if (!is_array($infoArray)) return $qty;
+
+            foreach ($infoArray as $info){
+                if (in_array(strtoupper($info['KHOID']), $stores)){
+                    $qty += (int)$info['QUANTITY'];
                 }
             }
         }
@@ -143,12 +135,7 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         $output = array();
         foreach ($data as $item){
             if (isset($item['PriceAndQuantityInfo'])){
-                $infoArray = $item['PriceAndQuantityInfo'];
-                foreach ($infoArray as $info){
-                    if ($info['PRICE'] > 0){
-                        $item['price'] = $info['PRICE'];
-                    }
-                }
+                $this->_productCollection[$item['productId']] = $item['PriceAndQuantityInfo'];
                 unset($item['PriceAndQuantityInfo']);
             }
 
