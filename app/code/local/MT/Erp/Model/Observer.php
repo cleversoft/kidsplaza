@@ -674,7 +674,7 @@ class MT_Erp_Model_Observer{
             for ($i=1; $i<$pageTotal; $i++){
                 $erpProducts    = $this->_adapter->getProducts($i, $paging);
                 $currentTotal   = count($erpProducts);
-                $this->log(sprintf("\nPage: %d, products: %d\n", $i, $currentTotal));
+                $this->log(sprintf("Page: %d, products: %d", $i, $currentTotal));
 
                 if (!$currentTotal){
                     $this->log('No product from ERP. Abort fetching.');
