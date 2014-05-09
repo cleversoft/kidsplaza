@@ -61,7 +61,7 @@ Default layout, loads most of the pages
                 <action method="addJs"><script>mt/extensions/jquery/jquery-1.11.0.min.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/compatibility.js</script></action>
                 <action method="addJs"><script>bootstrap/js/bootstrap.min.js</script></action>
-                <action method="addJs"><script>mt/extensions/jquery/plugins/uniform/jquery.uniform.min.js</script></action>
+                <action method="addJs"><script>mt/extensions/jquery/plugins/uniform/jquery.uniform.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/plugins/jquery.sticky.js</script></action>
                 <action method="addJs"><script>mt/extensions/jquery/plugins/countdown/jquery.countdown.js</script></action>
                 <!--action method="addJs"><script>mt/mage/catalog/ProductList.js</script></action-->

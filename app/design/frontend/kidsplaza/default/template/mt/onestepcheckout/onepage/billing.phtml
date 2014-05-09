@@ -44,11 +44,11 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 <?php if (Mage::getStoreConfig('mtonestepcheckout/field/telephone')):?>
                 <li class="fields">
                     <label for="billing:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
-                    <div class="input-box" style="position: relative;padding-right: 0;">
+                    <div class="input-box" style="position: relative;">
                         <input type="text" data-url="<?php echo Mage::getUrl('mterp/customer/query') ?>" name="billing[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-phoneprefix input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="billing:telephone" />
                         <span class="spinner" style="display: none"></span>
                     </div>
-                <li>
+                </li>
                 <?php else: ?>
                 <input type="hidden" name="billing[telephone]" value="N/A"/>
                 <?php endif ?>
@@ -66,30 +66,30 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 <?php else: ?>
                 <li class="fields">
                 <?php endif ?>
-        <?php if(!$this->isCustomerLoggedIn()): ?>
+                <?php if(!$this->isCustomerLoggedIn()): ?>
                     <div class="">
                         <label for="billing:email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
                         <div class="input-box">
                             <input type="text" name="billing[email]" id="billing:email" value="<?php echo $this->escapeHtml($address->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-sm form-control validate-email required-entry" />
                         </div>
                     </div>
-        <?php endif; ?>
+                <?php endif; ?>
                 </li>
-        <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
+                <?php $_streetValidationClass = $this->helper('customer/address')->getAttributeValidationClass('street'); ?>
                 <li class="fields">
                     <label for="billing:street1" class="required"><em>*</em><?php echo $this->__('Address') ?></label>
                     <div class="input-box">
                         <input type="text" title="<?php echo $this->__('Street Address') ?>" name="billing[street][]" id="billing:street1" value="<?php echo $this->escapeHtml($address->getStreet(1)) ?>" class="input-sm form-control <?php echo $_streetValidationClass ?>" />
                     </div>
                 </li>
-        <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
-        <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                <?php $_streetValidationClass = trim(str_replace('required-entry', '', $_streetValidationClass)); ?>
+                <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
                 <li class="fields">
                     <div class="input-box">
                         <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="billing[street][]" id="billing:street<?php echo $_i ?>" value="<?php echo $this->escapeHtml($address->getStreet($_i)) ?>" class="input-sm form-control <?php echo $_streetValidationClass ?>" />
                     </div>
                 </li>
-        <?php endfor; ?>
+                <?php endfor; ?>
                 <?php if ($this->helper('customer/address')->isVatAttributeVisible()) : ?>
                 <li class="fields">
                     <label for="billing:vat_id"><?php echo $this->__('VAT Number') ?></label>
@@ -107,8 +107,8 @@ $this->getAddress()->setCountryId($address->getCountryId());
                         </div>
                     </div>
                 <?php else: ?>
-                    <li>
-                        <input type="hidden" name="billing[city]" value="N/A"/>
+                <li>
+                <input type="hidden" name="billing[city]" value="N/A"/>
                 <?php endif ?>
                 <?php if (Mage::getStoreConfig('mtonestepcheckout/field/country') && Mage::getStoreConfig('mtonestepcheckout/field/state')):?>
                     <div class="fields">
@@ -121,8 +121,8 @@ $this->getAddress()->setCountryId($address->getCountryId());
                         </div>
                     </div>
                 <?php else: ?>
-                    <input type="hidden" name="billing[region_id]" value=""/>
-                    <input type="hidden" name="billing[region]" value=""/>
+                <input type="hidden" name="billing[region_id]" value=""/>
+                <input type="hidden" name="billing[region]" value=""/>
                 <?php endif ?>
                 </li>
                 <?php if (Mage::getStoreConfig('mtonestepcheckout/field/zip')):?>
@@ -135,7 +135,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                     </div>
                 <?php else: ?>
                 <li>
-                    <input type="hidden" name="billing[postcode]" value="N/A"/>
+                <input type="hidden" name="billing[postcode]" value="N/A"/>
                 <?php endif ?>
                 <?php if (Mage::getStoreConfig('mtonestepcheckout/field/country')):?>
                     <div class="fields">
@@ -149,41 +149,41 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 <?php endif ?>
                 </li>
                 <?php if (Mage::getStoreConfig('mtonestepcheckout/field/fax')):?>
+                <li class="fields">
                     <div class="field">
                         <label for="billing:fax"><?php echo $this->__('Fax') ?></label>
                         <div class="input-box">
                             <input type="text" name="billing[fax]" value="<?php echo $this->escapeHtml($address->getFax()) ?>" title="<?php echo $this->__('Fax') ?>" class="input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('fax') ?>" id="billing:fax" />
                         </div>
                     </div>
+                </li>
                 <?php else: ?>
-                    <input type="hidden" name="billing[fax]" value=""/>
+                <input type="hidden" name="billing[fax]" value=""/>
                 <?php endif ?>
-                </li>
                 <?php if(!$this->isCustomerLoggedIn()): ?>
-
-        <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
-        <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
-            <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
-                <li class="fields">
-                <?php if ($_dob->isEnabled()): ?>
-                    <div class="field">
-                        <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
-                    </div>
-                <?php endif; ?>
-                <?php if ($_gender->isEnabled()): ?>
-                    <div class="field">
-                        <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
-                    </div>
+                <?php $_dob = $this->getLayout()->createBlock('customer/widget_dob') ?>
+                <?php $_gender = $this->getLayout()->createBlock('customer/widget_gender') ?>
+                <?php if ($_dob->isEnabled() || $_gender->isEnabled()): ?>
+                    <li class="fields">
+                    <?php if ($_dob->isEnabled()): ?>
+                        <div class="field">
+                            <?php echo $_dob->setDate($this->getQuote()->getCustomerDob())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($_gender->isEnabled()): ?>
+                        <div class="field">
+                            <?php echo $_gender->setGender($this->getQuote()->getCustomerGender())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
+                        </div>
+                    <?php endif ?>
+                    </li>
                 <?php endif ?>
-                </li>
-            <?php endif ?>
 
-        <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
-        <?php if ($_taxvat->isEnabled()): ?>
+                <?php $_taxvat = $this->getLayout()->createBlock('customer/widget_taxvat') ?>
+                <?php if ($_taxvat->isEnabled()): ?>
                 <li>
                     <?php echo $_taxvat->setTaxvat($this->getQuote()->getCustomerTaxvat())->setFieldIdFormat('billing:%s')->setFieldNameFormat('billing[%s]')->toHtml() ?>
                 </li>
-        <?php endif ?>
+                <?php endif ?>
 
                 <li class="fields control">
                     <input type="checkbox" id="billing:register">
@@ -211,12 +211,12 @@ $this->getAddress()->setCountryId($address->getCountryId());
                 <?php endif; ?>
 
                 <?php if ($this->isCustomerLoggedIn() && $this->customerHasAddresses()):?>
-                    <li class="fields">
-                        <input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" style="padding-right: 3px;"/>
-                        <label for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
-                    </li>
+                <li class="fields">
+                    <input type="checkbox" name="billing[save_in_address_book]" value="1" title="<?php echo $this->__('Save in address book') ?>" id="billing:save_in_address_book" onchange="if(window.shipping) shipping.setSameAsBilling(false);"<?php if ($this->getAddress()->getSaveInAddressBook()):?> checked="checked"<?php endif;?> class="checkbox" style="padding-right: 3px;"/>
+                    <label for="billing:save_in_address_book"><?php echo $this->__('Save in address book') ?></label>
+                </li>
                 <?php else:?>
-                    <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>
+                <li class="no-display"><input type="hidden" name="billing[save_in_address_book]" value="1" /></li>
                 <?php endif; ?>
                 <?php echo $this->getChildHtml('form.additional.info'); ?>
             </ul>
