@@ -635,7 +635,7 @@ class MT_Erp_Model_Observer{
             }
             $this->log(sprintf('Total ERP products: %d', $erpTotal));
 
-            $paging     = 50;
+            $paging     = 100;
             $pageTotal  = ceil($erpTotal / $paging);
             $this->log(sprintf('Page limit: %d, total pages: %d', $paging, $pageTotal));
 
@@ -674,9 +674,10 @@ class MT_Erp_Model_Observer{
             for ($i=1; $i<$pageTotal; $i++){
                 $erpProducts    = $this->_adapter->getProducts($i, $paging);
                 $currentTotal   = count($erpProducts);
+                $this->log(sprintf("\nPage: %d, products: %d\n", $i, $currentTotal));
 
                 if (!$currentTotal){
-                    //no more product from ERP
+                    $this->log('No product from ERP. Abort fetching.');
                     break;
                 }
 
@@ -722,6 +723,7 @@ class MT_Erp_Model_Observer{
             }
 
             if ($totalConfigurableProducts){
+                $this->log('Process configurable products');
                 for ($i=0; $i<$totalConfigurableProducts; $i++){
                     $this->log(sprintf('CONFIG SKU [%s]', $configurableProducts[$i]['sku']));
                     $this->_updateParentStocks($configurableProducts[$i]['entity_id']);
@@ -729,8 +731,8 @@ class MT_Erp_Model_Observer{
                 }
             }
 
-            $this->log(sprintf('Update products: %d', $updateProduct));
-            $this->log(sprintf('Insert products: %d', $insertProduct));
+            $this->log(sprintf('Updated products: %d', $updateProduct));
+            $this->log(sprintf('Inserted products: %d', $insertProduct));
             $this->log(sprintf('Failed products: %d', $failedProduct));
 
             $this->log('Reindex catalog_product_price');
