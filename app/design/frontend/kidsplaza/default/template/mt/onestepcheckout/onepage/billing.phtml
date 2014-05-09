@@ -46,7 +46,7 @@ $this->getAddress()->setCountryId($address->getCountryId());
                     <label for="billing:telephone" class="required"><em>*</em><?php echo $this->__('Telephone') ?></label>
                     <div class="input-box" style="position: relative;">
                         <input type="text" data-url="<?php echo Mage::getUrl('mterp/customer/query') ?>" name="billing[telephone]" value="<?php echo $this->escapeHtml($address->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="validate-phoneprefix input-sm form-control <?php echo $this->helper('customer/address')->getAttributeValidationClass('telephone') ?>" id="billing:telephone" />
-                        <span class="spinner" style="display: none"></span>
+                        <span class="spinner" style="display:none;top:4px;right:10px;"></span>
                     </div>
                 </li>
                 <?php else: ?>
