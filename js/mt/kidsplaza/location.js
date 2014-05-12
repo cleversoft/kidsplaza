@@ -70,8 +70,10 @@ KidsPlazaPhone.prototype = {
         var element = $(id);
         if (!element) return;
         fields = fields || {};
+
         Event.observe(element, 'change', function(ev){
             var input = Event.findElement(ev, 'input'),
+                messageDiv = input.up().down('.validation-success'),
                 spinner = input.up().down('.spinner'),
                 url = input.readAttribute('data-url'),
                 phoneValidator = Validation.get('validate-phoneprefix'),
@@ -88,22 +90,32 @@ KidsPlazaPhone.prototype = {
                 spinner && spinner.show();
                 new Ajax.Request(url, {
                     parameters: params,
-                    onSuccess: function(transport){
+                    onComplete: function(){
                         spinner && spinner.hide();
+                    },
+                    onSuccess: function(transport){
                         try{
                             var response = transport.responseText.evalJSON();
-                            for (var i in fields){
-                                var elm = fields[i];
-                                if (elm && response[i]){
-                                    var target = $(elm);
-                                    if (!target) return;
-                                    target.value = response[i];
-                                    switch (i) {
-                                        case 'gender':
-                                            if (target.up().hasClassName('selector')) {
-                                                jQuery.uniform.update();
-                                            }
-                                            break;
+                            if (response){
+                                messageDiv && messageDiv.show();
+                                for (var i in fields){
+                                    var $elm = $(fields[i]);
+                                    if ($elm && response[i] != null){
+                                        $elm.value = response[i];
+                                        if ($elm.up().hasClassName('selector')) {
+                                            jQuery.uniform.update();
+                                        }
+                                    }
+                                }
+                            }else{
+                                messageDiv && messageDiv.hide();
+                                for (var i in fields){
+                                    var $elm = $(fields[i]);
+                                    if ($elm){
+                                        $elm.value = null;
+                                        if ($elm.up().hasClassName('selector')) {
+                                            jQuery.uniform.update();
+                                        }
                                     }
                                 }
                             }

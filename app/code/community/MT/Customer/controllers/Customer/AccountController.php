@@ -119,4 +119,35 @@ class MT_Customer_Customer_AccountController extends Mage_Customer_AccountContro
         $errUrl = $this->_getUrl('*/*/login', array('_secure' => true, 'is_register' => 1));
         $this->_redirectError($errUrl);
     }
+
+    /**
+     * Get Customer Model
+     *
+     * @return Mage_Customer_Model_Customer
+     */
+    protected function _getCustomer()
+    {
+        $customer = $this->_getFromRegistry('current_customer');
+        if (!$customer) {
+            $phoneNumber = $this->getRequest()->getParam('phone_number');
+            if ($phoneNumber){
+                $customer = Mage::helper('mtcustomer')->loadByTelephone($phoneNumber);
+                if (!$customer){
+                    $customer = $this->_getModel('customer/customer')->setId(null);
+                }
+            }else {
+                $customer = $this->_getModel('customer/customer')->setId(null);
+            }
+        }
+
+        if ($this->getRequest()->getParam('is_subscribed', false)) {
+            $customer->setIsSubscribed(1);
+        }
+        /**
+         * Initialize customer group id
+         */
+        $customer->getGroupId();
+
+        return $customer;
+    }
 }

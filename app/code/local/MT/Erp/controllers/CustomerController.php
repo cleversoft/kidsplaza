@@ -8,24 +8,58 @@
  * @email       support@magentothemes.net
  */
 class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
+    protected function _getAttributeValue($table, $entityId, $attributeCode){
+        $resource = Mage::getSingleton('core/resource');
+        $connection = $resource->getConnection('core_read');
+
+        $sql = "
+            SELECT v.value
+            FROM {$table} as v
+            INNER JOIN {$resource->getTableName('eav_attribute')} AS a ON v.attribute_id = a.attribute_id
+            WHERE a.attribute_code = ? AND v.entity_id = ?
+        ";
+
+        return $connection->fetchOne($sql, array($attributeCode, $entityId));
+    }
+
+    protected function _getCustomerInfo($phoneNumber){
+        if (!$phoneNumber) return;
+
+        $resource = Mage::getSingleton('core/resource');
+        $connection = $resource->getConnection('core_read');
+
+        $sql = "
+            SELECT v.entity_id
+            FROM {$resource->getTableName('customer_entity_varchar')} AS v
+            INNER JOIN {$resource->getTableName('eav_attribute')} AS a ON a.attribute_id = v.attribute_id
+            WHERE a.attribute_code = ? AND v.value = ?
+        ";
+
+        $customerId = $connection->fetchOne($sql, array('phone_number', $phoneNumber));
+
+        if ($customerId){
+            $data = array();
+            $data['fn'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'firstname');
+            $data['ln'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'lastname');
+            $data['gender'] = $this->_getAttributeValue($resource->getTableName('customer_entity_int'), $customerId, 'gender');
+            $sql = "SELECT email FROM {$resource->getTableName('customer_entity')} WHERE entity_id = ?";
+            $data['email'] = $connection->fetchOne($sql, array($customerId));
+
+            return $data;
+        }
+    }
+
     public function queryAction(){
         if (!$this->_validateFormKey()) return;
+
         $phoneNumber = $this->getRequest()->getParam('value');
         if (!$phoneNumber) return;
+
         if (!Mage::getStoreConfigFlag('kidsplaza/customer/query')) return;
-        $service = Mage::getModel('mterp/observer');
-        $service->setIsCron(false);
-        $customer = $service->getErpCustomer($phoneNumber);
-        $data = array();
-        if (is_array($customer)){
-            $name               = isset($customer['customerName']) ? trim($customer['customerName']) : '';
-            $data['ln']         = strrpos($name, ' ') > 0 ? substr($name, 0, strrpos($name, ' ')) : '';
-            $data['fn']         = strrpos($name, ' ') > 0 ? substr($name, strrpos($name, ' ') + 1, strlen($name)) : $name;
-            $sex                = isset($customer['customerGender']) ? trim($customer['customerGender']) : '';
-            $data['gender']     = $sex == 'Nam' ? 1 : ($sex == 'Nữ' ? 2 : '');
-            $data['email']      = isset($customer['customerEmail']) ? trim($customer['customerEmail']) : '';
-        }
-        $this->getResponse()->setHeader('Content-Type', 'applicaion/json');
+
+        $data = $this->_getCustomerInfo($phoneNumber);
+
+        $this->getResponse()->setHeader('Content-Type', 'applicaion/json', true);
         $this->getResponse()->setBody(Mage::helper('core')->jsonEncode($data));
     }
 }

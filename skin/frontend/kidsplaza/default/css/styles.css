@@ -361,6 +361,7 @@ p.error{color: #a94442;}
 .search-autocomplete li.selected{background-color:#67cdfe}
 .search-autocomplete .amount{float:right}
 .validation-advice{color:red;font-size:13px}
+.validation-success{color:green;font-size:13px;}
 input,textarea{outline:0}
 .form-solo .validation-advice{position:absolute;padding:5px 10px;font-size:13px;color:#a94442;background-color:#f2dede;border-color:#ebccd1;z-index:3}
 .block-subscribe .validation-advice{top: 40px;}
