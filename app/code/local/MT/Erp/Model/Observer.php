@@ -98,7 +98,7 @@ class MT_Erp_Model_Observer{
         return Mage::getSingleton('core/resource')->getTableName($tableName);
     }
 
-    protected function _getAttributeId($attribute_code){
+    protected function _getAttributeId($attribute_code, $entity_type_code='catalog_product'){
         if (!$attribute_code) return null;
 
         if (!isset($this->_attributes[$attribute_code])) {
@@ -108,7 +108,8 @@ class MT_Erp_Model_Observer{
                 FROM {$this->_getTableName('eav_attribute')}
                 WHERE entity_type_id = ? AND attribute_code = ?
             ";
-            $entity_type_id = $this->_getEntityTypeId('catalog_product');
+            $entity_type_id = $this->_getEntityTypeId($entity_type_code);
+            if (!$entity_type_id) return null;
             $this->_attributes[$attribute_code] = $connection->fetchOne($sql, array($entity_type_id, $attribute_code));
         }
 
@@ -511,6 +512,34 @@ class MT_Erp_Model_Observer{
         return $connection->fetchOne($query, array($sku));
     }
 
+    protected function _checkCustomerExist($customer){
+        if (!$customer) return false;
+
+        $connection = $this->_getConnection('core_read');
+
+        if (isset($customer['email']) && $customer['email']){
+            $query = "SELECT entity_id FROM {$this->_getTableName('customer_entity')} WHERE email = ?";
+            return $connection->fetchOne($query, array($customer['email']));
+        }elseif (isset($customer['mobile']) && $customer['mobile']){
+            $customerEntityId   = $this->_getEntityTypeId('customer');
+            $customerAttributes = $this->_getEavAttributes($customerEntityId);
+            foreach ($customerAttributes as $customerAttribute){
+                if ($customerAttribute['attribute_code'] == 'phone_number'){
+                    $entityValueTable = $this->_getTableName('customer_entity_' . $customerAttribute['backend_type']);
+                    $query = "
+                        SELECT e.entity_id
+                        FROM {$this->_getTableName('customer_entity')} AS e
+                        INNER JOIN {$entityValueTable} AS v ON e.entity_id = v.entity_id
+                        WHERE v.attribute_id = ? AND v.value = ?
+                    ";
+                    return $connection->fetchOne($query, array($customerAttribute['attribute_id'], $customer['mobile']));
+                }
+            }
+        }
+
+        return false;
+    }
+
     protected function _getCatalogProductMeta(){
         $connection = $this->_getConnection('core_read');
         $query = "
@@ -530,32 +559,60 @@ class MT_Erp_Model_Observer{
     }
 
 
-    protected function _insertEntity($product){
-        if (!$product->getSku() || !$product->getTypeId() || !$product->getAttributeSetId()){
-            throw new Exception('SKU, Type Id or Attribute Set Id not found');
+    protected function _insertEntity($model){
+        switch (get_class($model)){
+            case 'Mage_Catalog_Model_Product':
+                if (!$model->getSku() || !$model->getTypeId() || !$model->getAttributeSetId()){
+                    throw new Exception('SKU, Type Id or Attribute Set Id not found');
+                }
+
+                $connection = $this->_getConnection('core_write');
+                $checkSql = "SELECT entity_id FROM {$this->_getTableName('catalog_product_entity')} WHERE sku = ?";
+                $rs = $connection->fetchOne($checkSql, array($model->getSku()));
+                if ($rs){
+                    $model->setId($rs);
+                }else{
+                    $insertSql = "
+                        INSERT INTO {$this->_getTableName('catalog_product_entity')}
+                        (entity_type_id,attribute_set_id,type_id,sku,created_at,updated_at)
+                        VALUES (?,?,?,?,NOW(),NOW())";
+
+                    $connection->query($insertSql, array(
+                        $model->getEntityTypeId(),
+                        $model->getAttributeSetId(),
+                        $model->getTypeId(),
+                        $model->getSku()
+                    ));
+                    $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('catalog_product_entity')}");
+                    $model->setId($entityId);
+                }
+                break;
+            case 'Mage_Customer_Model_Customer':
+                if (!$model->getEntityTypeId() || !$model->getGroupId()){
+                    throw new Exception('Entity Id or Group Id not found');
+                }
+
+                $connection = $this->_getConnection('core_write');
+                $query = "
+                    INSERT INTO {$this->_getTableName('customer_entity')}
+                    (entity_type_id,attribute_set_id,email,group_id,created_at,updated_at,is_active,disable_auto_group_change)
+                    VALUES  (?,?,?,?,NOW(),NOW(),1,0)";
+
+                $connection->query($query, array(
+                    $model->getEntityTypeId(),
+                    $model->getAttributeSetId(),
+                    $model->getEmail(),
+                    $model->getGroupId()
+                ));
+
+                $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('customer_entity')}");
+                $model->setId($entityId);
+                break;
         }
-        $connection = $this->_getConnection('core_write');
-        $checkSql = "SELECT entity_id FROM {$this->_getTableName('catalog_product_entity')} WHERE sku = ?";
-        $rs = $connection->fetchOne($checkSql, array($product->getSku()));
-        if ($rs){
-            $product->setId($rs);
-        }else{
-            $insertSql = "
-            INSERT INTO {$this->_getTableName('catalog_product_entity')}
-            (entity_type_id,attribute_set_id,type_id,sku,created_at,updated_at) VALUES (?,?,?,?,NOW(),NOW())";
-            $connection->query($insertSql, array(
-                $product->getEntityTypeId(),
-                $product->getAttributeSetId(),
-                $product->getTypeId(),
-                $product->getSku()
-            ));
-            $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('catalog_product_entity')}");
-            $product->setId($entityId);
-        }
+        return $model;
     }
 
-    protected function _getEavAttributes($model){
-        $entityTypeId = $model->getEntityTypeId();
+    protected function _getEavAttributes($entityTypeId){
         if (!$entityTypeId){
             throw new Exception('Entity Type Id not found');
         }
@@ -569,36 +626,86 @@ class MT_Erp_Model_Observer{
         return $this->_eavAttributes[$entityTypeId];
     }
 
-    protected function _insertAttributes($product){
-        if (!$product->getId()){
-            throw new Exception('Product Id not found');
+    protected function _insertAttributes($model){
+        if (!$model->getId()){
+            throw new Exception('Model Id not found');
         }
 
-        $productAttributes = $this->_getEavAttributes($product);
-        $connection = $this->_getConnection('core_write');
-        foreach ($productAttributes as $productAttribute){
-            if ($product->getData($productAttribute['attribute_code']) === null) continue;
-            $backendType = $productAttribute['backend_type'];
-            switch ($backendType){
-                case 'varchar':
-                case 'decimal':
-                case 'int':
-                case 'text':
-                    $entityTable = $this->_getTableName('catalog_product_entity_' . $backendType);
-                    break;
-                default:
-                    $entityTable = null;
-            }
-            if (is_null($entityTable)) continue;
-            $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,store_id,entity_id,value) VALUES (?,?,?,?,?)";
-            $connection->query($sql, array(
-                $product->getEntityTypeId(),
-                $productAttribute['attribute_id'],
-                0,
-                $product->getId(),
-                $product->getData($productAttribute['attribute_code'])
-            ));
+        if (!$model->getEntityTypeId()){
+            throw new Exception('Model Entity Type Id not found');
         }
+
+        $connection = $this->_getConnection('core_write');
+        $modelAttributes = $this->_getEavAttributes($model->getEntityTypeId());
+
+        switch (get_class($model)){
+            case 'Mage_Catalog_Model_Product':
+                foreach ($modelAttributes as $modelAttribute){
+                    if ($model->getData($modelAttribute['attribute_code']) === null){
+                        continue;
+                    }
+
+                    $backendType = $modelAttribute['backend_type'];
+                    switch ($backendType){
+                        case 'varchar':
+                        case 'decimal':
+                        case 'int':
+                        case 'text':
+                            $entityTable = $this->_getTableName('catalog_product_entity_' . $backendType);
+                            break;
+                        default:
+                            $entityTable = null;
+                    }
+
+                    if (is_null($entityTable)){
+                        continue;
+                    }
+
+                    $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,store_id,entity_id,value) VALUES (?,?,?,?,?)";
+
+                    $connection->query($sql, array(
+                        $model->getEntityTypeId(),
+                        $modelAttribute['attribute_id'],
+                        (int)$model->getStoreId(),
+                        $model->getId(),
+                        $model->getData($modelAttribute['attribute_code'])
+                    ));
+                }
+                break;
+            case 'Mage_Customer_Model_Customer':
+                foreach ($modelAttributes as $modelAttribute){
+                    if ($model->getData($modelAttribute['attribute_code']) === null){
+                        continue;
+                    }
+
+                    $backendType = $modelAttribute['backend_type'];
+                    switch ($backendType){
+                        case 'varchar':
+                        case 'decimal':
+                        case 'int':
+                        case 'text':
+                            $entityTable = $this->_getTableName('customer_entity_' . $backendType);
+                            break;
+                        default:
+                            $entityTable = null;
+                    }
+
+                    if (is_null($entityTable)){
+                        continue;
+                    }
+
+                    $sql = "INSERT INTO {$entityTable} (entity_type_id,attribute_id,entity_id,value) VALUES (?,?,?,?)";
+
+                    $connection->query($sql, array(
+                        $model->getEntityTypeId(),
+                        $modelAttribute['attribute_id'],
+                        $model->getId(),
+                        $model->getData($modelAttribute['attribute_code'])
+                    ));
+                }
+                break;
+        }
+        return $model;
     }
 
     protected function _insertWebsites($product){
@@ -618,9 +725,18 @@ class MT_Erp_Model_Observer{
         }
     }
 
+    protected function _saveCustomer($customer){
+        if (!$customer instanceof Mage_Customer_Model_Customer){
+            throw new Exception('Customer model invalid');
+        }
+
+        $this->_insertEntity($customer);
+        $this->_insertAttributes($customer);
+    }
+
     protected function _saveProduct($product){
         if (!$product instanceof Mage_Catalog_Model_Product){
-            throw new Exception('Product Model invalid');
+            throw new Exception('Product model invalid');
         }
 
         $this->_insertEntity($product);
@@ -628,18 +744,108 @@ class MT_Erp_Model_Observer{
         $this->_insertWebsites($product);
     }
 
-    /**
-     * Sync from ERP
-     */
-    public function runAll(){
+    public function runCustomer(){
         try{
             $startTime = microtime(true);
             $date = Mage::getModel('core/date');
-            $this->_logFile = uniqid($date->date('Y-m-d-H-i-\A\L\L-')) . '.log';
+            $this->_logFile = uniqid($date->date('Y-m-d-H-i-\C\U\S\T\O\M\E\R-')) . '.log';
+
+            $erpTotal = $this->_adapter->getCustomerCount();
+            if (!$erpTotal){
+                throw new Exception('No ERP customer found. Abort now.');
+            }
+            $this->log(sprintf('Total ERP customers: %d', $erpTotal));
+
+            $paging     = 100;
+            $pageTotal  = ceil($erpTotal / $paging);
+            $this->log(sprintf('Page limit: %d, total pages: %d', $paging, $pageTotal));
+            $limit      = 0;
+            $updated    = 0;
+            $inserted   = 0;
+            $failed     = 0;
+
+            $entityTypeId = $this->_getEntityTypeId('customer');
+            if (!$entityTypeId){
+                throw new Exception('Customer Entity Type Id not found');
+            }
+
+            for ($i=1; $i<=$pageTotal; $i++){
+                $erpCustomers = $this->_adapter->getCustomers($i, $paging);
+                $currentTotal = count($erpCustomers);
+                $this->log(sprintf("Page: %d, customers: %d", $i, $currentTotal));
+
+                if (!$currentTotal){
+                    $this->log('No product from ERP. Abort fetching.');
+                    break;
+                }
+
+                for ($j=0; $j<$currentTotal; $j++){
+                    $erpCustomer = $erpCustomers[$j];
+                    if ((isset($erpCustomer['email']) && $erpCustomer['email']) || (isset($erpCustomer['mobile']) && $erpCustomer['mobile'])){
+                        continue;
+                    }
+
+                    if ($limit++ >= 10) break 2;
+
+                    $customerId = $this->_checkCustomerExist($erpCustomer);
+
+                    if (!$customerId){
+                        $customer = Mage::getModel('customer/customer');
+                        $customer->setData(array(
+                            'entity_type_id'    => $entityTypeId,
+                            'attribute_set_id'  => 0,
+                            'email'             => $erpCustomer['email'],
+                            'phone_number'      => $erpCustomer['mobile'],
+                            'firstname'         => $erpCustomer['name'],
+                            'lastname'          => $erpCustomer['name'],
+                            'gender'            => $erpCustomer['sex']
+                        ));
+                        try {
+                            $this->_saveCustomer($customer);
+                            $this->log(sprintf('INSERT CUSTOMER [%s]', isset($erpCustomer['email']) && $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
+                            $inserted++;
+                        }catch (Exception $e){
+                            $this->log(sprintf('INSERT CUSTOMER ERROR [%s]: %s', $customer->getPhoneNumber(), $e->getMessage()), Zend_Log::CRIT);
+                            Mage::logException($e);
+                            $failed++;
+                        }
+                    }else{
+                        $updated++;
+                        $this->log(sprintf('FOUND CUSTOMER [%s]', isset($erpCustomer['email']) && $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
+                    }
+                }
+            }
+
+            $this->log(sprintf('Updated customers: %d', $updated));
+            $this->log(sprintf('Inserted customers: %d', $inserted));
+            $this->log(sprintf('Failed customers: %d', $failed));
+
+            $this->log('Done!');
+            $this->log(sprintf('Excution time: %ds', microtime(true) - $startTime));
+            $this->_adapter->close();
+        }catch (Exception $e){
+            //Mage::logException($e);
+            $this->log($e->getMessage(), Zend_Log::CRIT);
+        }
+
+        return sprintf('<a href="%s" target="_blank">%s</a>',
+            Mage::getBaseUrl('media') . 'erp/' . $this->_logFile,
+            Mage::helper('mterp')->__('View log')
+        );
+    }
+
+    /**
+     * Sync from ERP
+     */
+    public function runProduct(){
+        try{
+            $startTime = microtime(true);
+            $date = Mage::getModel('core/date');
+            $this->_logFile = uniqid($date->date('Y-m-d-H-i-\P\R\O\D\U\C\T-')) . '.log';
 
             $erpTotal = $this->_adapter->getProductCount();
             if (!$erpTotal){
-                throw new Exception('No ERP product found');
+                throw new Exception('No ERP product found. Abort now.');
             }
             $this->log(sprintf('Total ERP products: %d', $erpTotal));
 
@@ -677,7 +883,7 @@ class MT_Erp_Model_Observer{
             $failedProduct  = 0;
             $limit          = 0;
 
-            $this->_getWebsites();
+            $this->_getWebsites(true);
 
             for ($i=1; $i<$pageTotal; $i++){
                 $erpProducts    = $this->_adapter->getProducts($i, $paging);
@@ -718,7 +924,7 @@ class MT_Erp_Model_Observer{
                             $insertProduct++;
                         }catch (Exception $e){
                             $this->log(sprintf('INSERT ERROR SKU [%s]: %s', $product->getSku(), $e->getMessage()), Zend_Log::CRIT);
-                            Mage::logException($e);
+                            //Mage::logException($e);
                             $failedProduct++;
                         }
                     }else{
@@ -750,7 +956,7 @@ class MT_Erp_Model_Observer{
             $this->log(sprintf('Excution time: %ds', microtime(true) - $startTime));
             $this->_adapter->close();
         }catch (Exception $e){
-            Mage::logException($e);
+            //Mage::logException($e);
             $this->log($e->getMessage(), Zend_Log::CRIT);
         }
 
@@ -835,10 +1041,12 @@ class MT_Erp_Model_Observer{
         try{
             $quote = $observer->getEvent()->getQuote();
             if ($quote->getIsNewCustomer()){
+                /* @var $customer Mage_Customer_Model_Customer */
                 $customer = $observer->getEvent()->getOrder()->getCustomer();
                 foreach ($customer->getAddresses() as $address){
                     $phoneNumber = $address->getTelephone();
                     if ($phoneNumber){
+                        $customer->getGroupId();
                         $customer->setPhoneNumber($phoneNumber);
                         $customer->save();
                         $this->_adapter->addCustomer($customer);
@@ -861,6 +1069,7 @@ class MT_Erp_Model_Observer{
             $customer = $customer ? $customer : $observer->getEvent()->getCustomer();
 
             if ($customer->getId() && $customer->getPhoneNumber()){
+                $customer->getGroupId();
                 $this->_adapter->addCustomer($customer);
                 $this->_adapter->close();
             }

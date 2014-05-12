@@ -92,10 +92,10 @@
 
     <crontab>
         <jobs>
-            <mterp_sync_all>
+            <mterp_sync_product>
                 <schedule><config_path>kidsplaza/erp/run_all</config_path></schedule>
-                <run><model>mterp/observer::runAll</model></run>
-            </mterp_sync_all>
+                <run><model>mterp/observer::runProduct</model></run>
+            </mterp_sync_product>
             <!--mterp_sync>
                 <schedule><config_path>kidsplaza/erp/schedule</config_path></schedule>
                 <run><model>mterp/observer::run</model></run>
@@ -104,6 +104,10 @@
                 <schedule><config_path>kidsplaza/log/clear_log</config_path></schedule>
                 <run><model>mterp/observer::clearLog</model></run>
             </mterp_clear_log>
+            <mterp_sync_customer>
+                <schedule><config_path>kidsplaza/customer/run</config_path></schedule>
+                <run><model>mterp/observer::runCustomer</model></run>
+            </mterp_sync_customer>
         </jobs>
     </crontab>
 

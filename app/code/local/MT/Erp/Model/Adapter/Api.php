@@ -111,6 +111,17 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
 
     }
 
+    public function getCustomerCount(){
+        $action = '/GetCountAllCustomer';
+        $data   = $this->query($action);
+
+        if (isset($data['Counts'])){
+            return (int)$data['Counts'];
+        }
+
+        return 0;
+    }
+
     public function getProductCount(){
         $action = '/GetCountProductActive';
         $data   = $this->query($action);
@@ -120,6 +131,17 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         }
 
         return 0;
+    }
+
+    public function getCustomers($page, $limit){
+        $action = '/LoadAllCustomerListPaging';
+        $params = array(
+            'Page'      => $page,
+            'PageLimit' => $limit
+        );
+        $data = $this->query($action, $params);
+
+        return $data;
     }
 
     public function getProducts($page, $limit){
@@ -166,11 +188,12 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         $action = '/AddCustomer';
         $data = array(
             array(
-                'code'  => $customer->getPhoneNumber(),
-                'email' => $customer->getEmail(),
-                'mobile' => $customer->getPhoneNumber(),
-                'name'  => $customer->getName(),
-                'sex'   => $customer->getGender() == 1 ? 'Nam' : ($customer->getGender() == 2 ? 'Nữ' : '')
+                'type'      => $customer->getGroupId() ? $customer->getGroupId() : 1,
+                'code'      => $customer->getPhoneNumber(),
+                'email'     => $customer->getEmail(),
+                'mobile'    => $customer->getPhoneNumber(),
+                'name'      => $customer->getName(),
+                'sex'       => $customer->getGender() == 1 ? 'Nam' : ($customer->getGender() == 2 ? 'Nữ' : null)
             )
         );
         $this->query($action, $data);

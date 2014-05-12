@@ -211,6 +211,15 @@
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
                     <fields>
+                        <run translate="label">
+                            <label>Scheduling Synchronization</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment><![CDATA[<a href="http://en.wikipedia.org/wiki/Cron" target="_blank">See here</a> for more information]]></comment>
+                        </run>
                         <customer translate="label comment">
                             <label>Customer to ERP</label>
                             <frontend_type>select</frontend_type>
