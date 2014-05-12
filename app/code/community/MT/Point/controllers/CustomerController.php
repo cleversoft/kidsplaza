@@ -17,10 +17,7 @@ class MT_Point_CustomerController extends Mage_Adminhtml_Controller_Action{
     }
 
     public function historyGridAction(){
-        $customerId = $this->getRequest()->getParam('id');
-        $grid = $this->getLayout()->createBlock('mtpoint/adminhtml_customer_edit_tab_point_history_grid', '',
-            array('customer_id', $customerId)
-        );
+        $grid = $this->getLayout()->createBlock('mtpoint/adminhtml_customer_edit_tab_point_history_grid');
         $this->getResponse()->setBody($grid->toHtml());
     }
 }

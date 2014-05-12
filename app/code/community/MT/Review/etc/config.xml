@@ -79,6 +79,11 @@
                     <helper>MT_Review_Block_Helper</helper>
                 </rewrite>
             </review>
+            <adminhtml>
+                <rewrite>
+                    <customer_edit_tabs>MT_Review_Block_Adminhtml_Customer_Edit_Tabs</customer_edit_tabs>
+                </rewrite>
+            </adminhtml>
         </blocks>
         <helpers>
             <mtreview>

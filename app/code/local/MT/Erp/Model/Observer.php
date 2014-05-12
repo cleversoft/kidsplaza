@@ -23,6 +23,7 @@ class MT_Erp_Model_Observer{
     protected $_logger;
     protected $_logFile;
     protected $_isSync = true;
+    protected $_groups;
 
     public function __construct(){
         switch (Mage::getStoreConfig('kidsplaza/erp/adapter')){
@@ -126,6 +127,22 @@ class MT_Erp_Model_Observer{
         }
 
         return $this->_entityTypes[$entity_type_code];
+    }
+
+    protected function _getGroups(){
+        if (is_null($this->_groups)){
+            $erpGroupIds = array(0, 1, 2);
+
+            foreach ($erpGroupIds as $erpGroupId){
+                $value = Mage::getStoreConfig('kidsplaza/customer/group' . $erpGroupId);
+                if ($value == ''){
+                    throw new Exception('ERP customer group mapping not correct');
+                }
+                $this->_groups[$erpGroupId] = (int)$value;
+            }
+        }
+
+        return $this->_groups;
     }
 
     /**
@@ -517,10 +534,10 @@ class MT_Erp_Model_Observer{
 
         $connection = $this->_getConnection('core_read');
 
-        if (isset($customer['email']) && $customer['email']){
+        if ($customer['email']){
             $query = "SELECT entity_id FROM {$this->_getTableName('customer_entity')} WHERE email = ?";
-            return $connection->fetchOne($query, array($customer['email']));
-        }elseif (isset($customer['mobile']) && $customer['mobile']){
+            return $connection->fetchOne($query, array(trim($customer['email'])));
+        }elseif ($customer['mobile']){
             $customerEntityId   = $this->_getEntityTypeId('customer');
             $customerAttributes = $this->_getEavAttributes($customerEntityId);
             foreach ($customerAttributes as $customerAttribute){
@@ -532,7 +549,7 @@ class MT_Erp_Model_Observer{
                         INNER JOIN {$entityValueTable} AS v ON e.entity_id = v.entity_id
                         WHERE v.attribute_id = ? AND v.value = ?
                     ";
-                    return $connection->fetchOne($query, array($customerAttribute['attribute_id'], $customer['mobile']));
+                    return $connection->fetchOne($query, array($customerAttribute['attribute_id'], trim($customer['mobile'])));
                 }
             }
         }
@@ -567,29 +584,24 @@ class MT_Erp_Model_Observer{
                 }
 
                 $connection = $this->_getConnection('core_write');
-                $checkSql = "SELECT entity_id FROM {$this->_getTableName('catalog_product_entity')} WHERE sku = ?";
-                $rs = $connection->fetchOne($checkSql, array($model->getSku()));
-                if ($rs){
-                    $model->setId($rs);
-                }else{
-                    $insertSql = "
-                        INSERT INTO {$this->_getTableName('catalog_product_entity')}
-                        (entity_type_id,attribute_set_id,type_id,sku,created_at,updated_at)
-                        VALUES (?,?,?,?,NOW(),NOW())";
+                $query = "
+                    INSERT INTO {$this->_getTableName('catalog_product_entity')}
+                    (entity_type_id,attribute_set_id,type_id,sku,created_at,updated_at)
+                    VALUES (?,?,?,?,NOW(),NOW())";
 
-                    $connection->query($insertSql, array(
-                        $model->getEntityTypeId(),
-                        $model->getAttributeSetId(),
-                        $model->getTypeId(),
-                        $model->getSku()
-                    ));
-                    $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('catalog_product_entity')}");
-                    $model->setId($entityId);
-                }
+                $connection->query($query, array(
+                    $model->getEntityTypeId(),
+                    $model->getAttributeSetId(),
+                    $model->getTypeId(),
+                    $model->getSku()
+                ));
+
+                $entityId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('catalog_product_entity')}");
+                $model->setId($entityId);
                 break;
             case 'Mage_Customer_Model_Customer':
-                if (!$model->getEntityTypeId() || !$model->getGroupId()){
-                    throw new Exception('Entity Id or Group Id not found');
+                if (!$model->getEntityTypeId()){
+                    throw new Exception('Entity Type Id not found');
                 }
 
                 $connection = $this->_getConnection('core_write');
@@ -725,13 +737,45 @@ class MT_Erp_Model_Observer{
         }
     }
 
+    protected function _insertPoint($customer){
+        if (!$customer->getId()){
+            throw new Exception('Customer Id not found');
+        }
+
+        if (!is_numeric($customer->getPoint())) return;
+
+        $connection = $this->_getConnection('core_write');
+
+        $sql = "SELECT id FROM {$this->_getTableName('mt_point')} WHERE customer_id = ?";
+        $pointId = $connection->fetchOne($sql, array($customer->getId()));
+
+        if (!$pointId){
+            $sql = "INSERT INTO {$this->_getTableName('mt_point')} (customer_id,balance) VALUES (?,?)";
+            $connection->query($sql, array($customer->getId(), $customer->getPoint()));
+        }else{
+            $sql = "UPDATE {$this->_getTableName('mt_point')} SET balance = ? WHERE id = ?";
+            $connection->query($sql, array($customer->getPoint(), $pointId));
+        }
+
+        $sql = "INSERT INTO {$this->_getTableName('mt_point_history')} (point_id,balance,delta,comment,created_at) VALUES (?,?,?,?,NOW())";
+        $connection->query($sql, array(
+            $pointId,
+            $customer->getPoint(),
+            null,
+            '[ERP] Import from ERP'
+        ));
+    }
+
     protected function _saveCustomer($customer){
         if (!$customer instanceof Mage_Customer_Model_Customer){
             throw new Exception('Customer model invalid');
         }
 
-        $this->_insertEntity($customer);
-        $this->_insertAttributes($customer);
+        if (!$customer->getId()) {
+            $this->_insertEntity($customer);
+            $this->_insertAttributes($customer);
+        }
+        $this->_insertPoint($customer);
     }
 
     protected function _saveProduct($product){
@@ -769,6 +813,8 @@ class MT_Erp_Model_Observer{
                 throw new Exception('Customer Entity Type Id not found');
             }
 
+            $groups = $this->_getGroups();
+
             for ($i=1; $i<=$pageTotal; $i++){
                 $erpCustomers = $this->_adapter->getCustomers($i, $paging);
                 $currentTotal = count($erpCustomers);
@@ -781,37 +827,48 @@ class MT_Erp_Model_Observer{
 
                 for ($j=0; $j<$currentTotal; $j++){
                     $erpCustomer = $erpCustomers[$j];
-                    if ((isset($erpCustomer['email']) && $erpCustomer['email']) || (isset($erpCustomer['mobile']) && $erpCustomer['mobile'])){
+                    if (!$erpCustomer['email'] && !$erpCustomer['mobile']){
                         continue;
                     }
 
                     if ($limit++ >= 10) break 2;
 
+                    $customer = Mage::getModel('customer/customer');
+                    $customer->setData(array(
+                        'entity_type_id'    => $entityTypeId,
+                        'attribute_set_id'  => 0,
+                        'email'             => $erpCustomer['email'],
+                        'phone_number'      => $erpCustomer['mobile'],
+                        'firstname'         => $erpCustomer['firstname'],
+                        'lastname'          => $erpCustomer['lastname'],
+                        'gender'            => $erpCustomer['gender'],
+                        'point'             => $erpCustomer['point'],
+                        'group_id'          => isset($groups[$erpCustomer['type']]) ? $groups[$erpCustomer['type']] : 1
+                    ));
+
                     $customerId = $this->_checkCustomerExist($erpCustomer);
 
                     if (!$customerId){
-                        $customer = Mage::getModel('customer/customer');
-                        $customer->setData(array(
-                            'entity_type_id'    => $entityTypeId,
-                            'attribute_set_id'  => 0,
-                            'email'             => $erpCustomer['email'],
-                            'phone_number'      => $erpCustomer['mobile'],
-                            'firstname'         => $erpCustomer['name'],
-                            'lastname'          => $erpCustomer['name'],
-                            'gender'            => $erpCustomer['sex']
-                        ));
                         try {
                             $this->_saveCustomer($customer);
-                            $this->log(sprintf('INSERT CUSTOMER [%s]', isset($erpCustomer['email']) && $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
+                            $this->log(sprintf('INSERT CUSTOMER [%s]', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
                             $inserted++;
                         }catch (Exception $e){
-                            $this->log(sprintf('INSERT CUSTOMER ERROR [%s]: %s', $customer->getPhoneNumber(), $e->getMessage()), Zend_Log::CRIT);
+                            $this->log(sprintf('INSERT CUSTOMER ERROR [%s]: %s', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile'], $e->getMessage()), Zend_Log::CRIT);
                             Mage::logException($e);
                             $failed++;
                         }
                     }else{
-                        $updated++;
-                        $this->log(sprintf('FOUND CUSTOMER [%s]', isset($erpCustomer['email']) && $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
+                        try {
+                            $customer->setId($customerId);
+                            $this->_saveCustomer($customer);
+                            $updated++;
+                            $this->log(sprintf('FOUND CUSTOMER [%s]', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
+                        }catch (Exception $e){
+                            $this->log(sprintf('UPDATE CUSTOMER ERROR [%s]: %s', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile'], $e->getMessage()), Zend_Log::CRIT);
+                            Mage::logException($e);
+                            $failed++;
+                        }
                     }
                 }
             }

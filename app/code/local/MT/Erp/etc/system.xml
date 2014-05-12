@@ -240,6 +240,36 @@
                             <show_in_store>0</show_in_store>
                             <comment>Query customer info from ERP in registration</comment>
                         </query>
+                        <group0 translate="label">
+                            <label>Nhóm: Khách hàng</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mterp/system_config_source_group</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Chọn một nhóm trong website tương ứng</comment>
+                        </group0>
+                        <group1 translate="label">
+                            <label>Nhóm: Nhà cung cấp</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mterp/system_config_source_group</source_model>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Chọn một nhóm trong website tương ứng</comment>
+                        </group1>
+                        <group2 translate="label">
+                            <label>Nhóm: Khách hàng + Nhà cung cấp</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>mterp/system_config_source_group</source_model>
+                            <sort_order>42</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Chọn một nhóm trong website tương ứng</comment>
+                        </group2>
                     </fields>
                 </customer>
                 <log translate="label">

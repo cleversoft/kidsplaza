@@ -141,7 +141,31 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         );
         $data = $this->query($action, $params);
 
-        return $data;
+        $output = array();
+        if (is_array($data)) {
+            foreach ($data as $item) {
+                if (isset($item['name']) && $item['name']) {
+                    $pos = strrpos($item['name'], ' ');
+                    if ($pos > 0){
+                        $item['firstname']  = substr($item['name'], 0, $pos);
+                        $item['lastname']   = substr($item['name'], $pos+1, strlen($item['name']));
+                    }
+                }else{
+                    $item['firstname']  = null;
+                    $item['lastname']   = null;
+                }
+
+                if (isset($item['sex']) && $item['sex']){
+                    $item['gender'] = $item['sex'] == 'Nam' ? 1 : ($item['sex'] == 'Nữ' ? 2 : null);
+                }else{
+                    $item['gender'] = null;
+                }
+
+                $output[] = $item;
+            }
+        }
+
+        return $output;
     }
 
     public function getProducts($page, $limit){
@@ -155,13 +179,15 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         $this->_productCollection = $data;
 
         $output = array();
-        foreach ($data as $item){
-            if (isset($item['PriceAndQuantityInfo'])){
-                $this->_productCollection[$item['productId']] = $item['PriceAndQuantityInfo'];
-                unset($item['PriceAndQuantityInfo']);
-            }
+        if (is_array($data)) {
+            foreach ($data as $item) {
+                if (isset($item['PriceAndQuantityInfo'])) {
+                    $this->_productCollection[$item['productId']] = $item['PriceAndQuantityInfo'];
+                    unset($item['PriceAndQuantityInfo']);
+                }
 
-            $output[] = $item;
+                $output[] = $item;
+            }
         }
 
         return $output;

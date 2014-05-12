@@ -25,7 +25,11 @@
     <adminhtml_customer_edit>
         <reference name="customer_edit_tabs">
             <block type="mtpoint/adminhtml_customer_edit_tab_point" name="customer_edit_tab_point"/>
-            <action method="addTab"><name>customer_edit_tab_point</name><block>customer_edit_tab_point</block></action>
+            <action method="addTabAfter">
+                <name>point</name>
+                <block>customer_edit_tab_point</block>
+                <after>account</after>
+            </action>
         </reference>
     </adminhtml_customer_edit>
 </layout>
