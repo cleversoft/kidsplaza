@@ -832,7 +832,7 @@ class MT_Erp_Model_Observer{
                         continue;
                     }
 
-                    //if ($limit++ >= 100) break 2;
+                    //if ($limit++ >= 5000) break 2;
 
                     $customer = Mage::getModel('customer/customer');
                     $customer->setData(array(
