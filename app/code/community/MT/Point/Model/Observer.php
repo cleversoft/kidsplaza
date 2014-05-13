@@ -8,6 +8,18 @@
  * @email       support@magentothemes.net
  */
 class MT_Point_Model_Observer{
+    public function customerDeleteAfter($observer){
+        $customer = $observer->getEvent()->getCustomer();
+        if ($customer->getId()){
+            $collection = Mage::getResourceModel('mtpoint/point_collection')
+                ->addCustomerFilter($customer);
+
+            foreach ($collection as $item){
+                $item->delete();
+            }
+        }
+    }
+
     public function adminhtmlCustomerSaveAfter($observer){
         $request = $observer->getEvent()->getRequest()->getPost();
         if (isset($request['point']) && $request['point']['delta']){

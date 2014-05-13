@@ -56,6 +56,15 @@
             </mtpoint_setup>
         </resources>
         <events>
+            <customer_delete_after>
+                <observers>
+                    <mtpoint>
+                        <type>singleton</type>
+                        <class>mtpoint/observer</class>
+                        <method>customerDeleteAfter</method>
+                    </mtpoint>
+                </observers>
+            </customer_delete_after>
             <mt_review_approved>
                 <observers>
                     <mtpoint>

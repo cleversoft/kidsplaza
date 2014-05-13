@@ -28,4 +28,12 @@ class MT_Point_Model_Mysql4_Point extends Mage_Core_Model_Mysql4_Abstract{
         }
         return $point;
     }
+
+    protected function _afterDelete(Mage_Core_Model_Abstract $point){
+        $adapter = $this->_getWriteAdapter();
+        $adapter->delete(
+            $this->getTable('mtpoint/history'),
+            $adapter->quoteInto('point_id = ?', $point->getId())
+        );
+    }
 }

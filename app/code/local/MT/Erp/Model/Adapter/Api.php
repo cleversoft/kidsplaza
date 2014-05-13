@@ -144,11 +144,14 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
         $output = array();
         if (is_array($data)) {
             foreach ($data as $item) {
-                if (isset($item['name']) && $item['name']) {
+                if (isset($item['name']) && $item['name']){
                     $pos = strrpos($item['name'], ' ');
                     if ($pos > 0){
                         $item['firstname']  = substr($item['name'], 0, $pos);
                         $item['lastname']   = substr($item['name'], $pos+1, strlen($item['name']));
+                    }else{
+                        $item['firstname']  = null;
+                        $item['lastname']   = $item['name'];
                     }
                 }else{
                     $item['firstname']  = null;

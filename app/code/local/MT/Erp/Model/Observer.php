@@ -752,6 +752,7 @@ class MT_Erp_Model_Observer{
         if (!$pointId){
             $sql = "INSERT INTO {$this->_getTableName('mt_point')} (customer_id,balance) VALUES (?,?)";
             $connection->query($sql, array($customer->getId(), $customer->getPoint()));
+            $pointId = $connection->fetchOne("SELECT LAST_INSERT_ID() FROM {$this->_getTableName('mt_point')}");
         }else{
             $sql = "UPDATE {$this->_getTableName('mt_point')} SET balance = ? WHERE id = ?";
             $connection->query($sql, array($customer->getPoint(), $pointId));
@@ -831,7 +832,7 @@ class MT_Erp_Model_Observer{
                         continue;
                     }
 
-                    if ($limit++ >= 10) break 2;
+                    //if ($limit++ >= 100) break 2;
 
                     $customer = Mage::getModel('customer/customer');
                     $customer->setData(array(
