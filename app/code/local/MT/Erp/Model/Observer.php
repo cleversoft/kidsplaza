@@ -856,7 +856,7 @@ class MT_Erp_Model_Observer{
                             $inserted++;
                         }catch (Exception $e){
                             $this->log(sprintf('INSERT CUSTOMER ERROR [%s]: %s', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile'], $e->getMessage()), Zend_Log::CRIT);
-                            Mage::logException($e);
+                            //Mage::logException($e);
                             $failed++;
                         }
                     }else{
@@ -867,7 +867,7 @@ class MT_Erp_Model_Observer{
                             $this->log(sprintf('FOUND CUSTOMER [%s]', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile']));
                         }catch (Exception $e){
                             $this->log(sprintf('UPDATE CUSTOMER ERROR [%s]: %s', $erpCustomer['email'] ? $erpCustomer['email'] : $erpCustomer['mobile'], $e->getMessage()), Zend_Log::CRIT);
-                            Mage::logException($e);
+                            //Mage::logException($e);
                             $failed++;
                         }
                     }
