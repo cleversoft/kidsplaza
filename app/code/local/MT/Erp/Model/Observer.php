@@ -822,8 +822,30 @@ class MT_Erp_Model_Observer{
                 $this->log(sprintf("Page: %d, customers: %d", $i, $currentTotal));
 
                 if (!$currentTotal){
-                    $this->log('No product from ERP. Abort fetching.');
-                    break;
+                    if ($i != $pageTotal){
+                        $retry = 5;
+                        $sleep = 5;
+                        $this->log(sprintf('Expected page: %d, current page: %d. Try fetching %d time(s)', $pageTotal+1, $i, $retry));
+                        for ($k = 1; $k <= $retry; $k++){
+                            $this->log(sprintf('Retry: %d', $k));
+                            $erpCustomers = $this->_adapter->getCustomers($i, $paging);
+                            $currentTotal = count($erpCustomers);
+                            $this->log(sprintf("Page: %d, customers: %d", $i, $currentTotal));
+                            if ($currentTotal){
+                                break;
+                            }else{
+                                if ($k == $retry){
+                                    $this->log(sprintf('Nothing found after %d retry. Abort fetching.', $k));
+                                    break 2;
+                                }else {
+                                    sleep($sleep);
+                                }
+                            }
+                        }
+                    }else {
+                        $this->log('No product from ERP. Abort fetching.');
+                        break;
+                    }
                 }
 
                 for ($j=0; $j<$currentTotal; $j++){
@@ -832,7 +854,7 @@ class MT_Erp_Model_Observer{
                         continue;
                     }
 
-                    //if ($limit++ >= 5000) break 2;
+                    //if ($limit++ >= 10) break 2;
 
                     $customer = Mage::getModel('customer/customer');
                     $customer->setData(array(
