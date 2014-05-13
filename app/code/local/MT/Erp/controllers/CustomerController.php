@@ -38,14 +38,24 @@ class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
         $customerId = $connection->fetchOne($sql, array('phone_number', $phoneNumber));
 
         if ($customerId){
-            $data = array();
-            $data['fn'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'firstname');
-            $data['ln'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'lastname');
-            $data['gender'] = $this->_getAttributeValue($resource->getTableName('customer_entity_int'), $customerId, 'gender');
-            $sql = "SELECT email FROM {$resource->getTableName('customer_entity')} WHERE entity_id = ?";
-            $data['email'] = $connection->fetchOne($sql, array($customerId));
+            $sql = "
+                SELECT v.value
+                FROM {$resource->getTableName('customer_entity_varchar')} AS v
+                INNER JOIN {$resource->getTableName('eav_attribute')} AS a ON a.attribute_id = v.attribute_id
+                WHERE a.attribute_code = ? AND v.entity_id = ?
+            ";
 
-            return $data;
+            if  (!$connection->fetchOne($sql, array('password_hash', $customerId))){
+                $data = array();
+
+                $data['fn'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'firstname');
+                $data['ln'] = $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'lastname');
+                $data['gender'] = $this->_getAttributeValue($resource->getTableName('customer_entity_int'), $customerId, 'gender');
+                $sql = "SELECT email FROM {$resource->getTableName('customer_entity')} WHERE entity_id = ?";
+                $data['email'] = $connection->fetchOne($sql, array($customerId));
+
+                return $data;
+            }
         }
     }
 

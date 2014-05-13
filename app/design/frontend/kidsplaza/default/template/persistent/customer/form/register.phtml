@@ -50,6 +50,7 @@
                                 id="phone_number"
                                 value="<?php echo $this->escapeHtml($this->getFormData()->getPhoneNumber()) ?>"
                                 title="<?php echo $this->__('Telephone') ?>"
+                                data-validate="validate-phoneprefix"
                                 class="validate-phoneprefix input-text form-control<?php echo $this->helper('customer/address')->getAttributeValidationClass('phone_number') ?>" />
                             <div class="validation-success" style="display:none"><?php echo Mage::helper('kidsplaza')->__('You already have a account. Please update missing infomation.') ?></div>
                             <span class="spinner" style="display:none"></span>

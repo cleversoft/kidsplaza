@@ -631,7 +631,7 @@ input.form-control,textarea.form-control{border-radius:0 ; font-size: 13px; box-
 .col2-set-right .btn-login{display: block;}
 .account-login .content{min-height:255px;padding:34px 25px 20px;background:0;border:1px solid #dfdfdf;overflow:hidden;background:#f9f9f9 ;}
 .account-login .content ul{margin:0;list-style:none ; background: #f9f9f9 ;}
-.account-login .content ul .input-box{clear:both;display:block;width:100%; padding: 0 ;}
+.account-login .content ul .input-box{clear:both;display:block;width:100%;padding:0;position:relative;}
 .account-login .content .form-list label{color:#636363;float:left;font-weight:normal;position:relative;z-index:0}
 .account-login .content .form-list label.required em{color:#f74d88;float:right;font-style:normal;}
 .account-login .content h3{font-weight:bold;font-size:110%; color : #666666 ;margin:0 0 14px;padding:0 0 5px 0;background-position:0 1px;background-repeat:no-repeat;text-transform:uppercase}

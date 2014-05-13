@@ -66,7 +66,7 @@ KidsPlazaLoginHeader.prototype = {
 
 var KidsPlazaPhone = Class.create();
 KidsPlazaPhone.prototype = {
-    initialize: function(id, fields){
+    initialize: function(id, fields, callback){
         var element = $(id);
         if (!element) return;
         fields = fields || {};
@@ -76,12 +76,12 @@ KidsPlazaPhone.prototype = {
                 messageDiv = input.up().down('.validation-success'),
                 spinner = input.up().down('.spinner'),
                 url = input.readAttribute('data-url'),
-                phoneValidator = Validation.get('validate-phoneprefix'),
+                validator = Validation.get(input.readAttribute('data-validate')),
                 form = input.up('form');
 
             if (!url) return;
 
-            if (phoneValidator && phoneValidator.test(input.value, input)){
+            if (validator && validator.test(input.value, input)){
                 var advice = Validation.getAdvice('validate-phoneprefix', input);
                 if (advice) Validation.hideAdvice(input, advice);
 
@@ -96,6 +96,7 @@ KidsPlazaPhone.prototype = {
                     onSuccess: function(transport){
                         try{
                             var response = transport.responseText.evalJSON();
+                            if (callback) callback(input, response);
                             if (response){
                                 messageDiv && messageDiv.show();
                                 for (var i in fields){
@@ -128,6 +129,7 @@ KidsPlazaPhone.prototype = {
                     advice = Validation.createAdvice('validate-phoneprefix', input);
                 }
                 Validation.showAdvice(input, advice, 'validate-phoneprefix');
+                messageDiv.hide();
             }
         });
     }
@@ -329,9 +331,15 @@ jQuery(document).ready(function(){
 //init phone validation
 Validation && Validation.addAllThese([
     ['validate-phoneprefix', 'Please enter a valid phone number in this field.', function(value){
-        if (!validatePhonePrefix) return true;
+        if (!Validation.get('validate-digits').test(value)){
+            return false;
+        }
 
-        var phonePrefix = validatePhonePrefix.split(','),
+        if (!window.validatePhonePrefix){
+            return true;
+        }
+
+        var phonePrefix = window.validatePhonePrefix.split(','),
             phoneLen = 7;
 
         for (var i=0; i<phonePrefix.length; i++) {
@@ -341,6 +349,13 @@ Validation && Validation.addAllThese([
         }
 
         return Validation.get('IsEmpty').test(value);
+    }],
+    ['validate-email-phoneprefix', 'Please enter a valid email or phone number in this field.', function(value) {
+        if (value.indexOf('@') > 0){
+            return Validation.get('validate-email').test(value);
+        }else {
+            return Validation.get('validate-phoneprefix').test(value);
+        }
     }]
 ]);
 //extend Validation
