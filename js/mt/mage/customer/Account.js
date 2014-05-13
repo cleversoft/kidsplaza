@@ -38,7 +38,7 @@ var VarienFormLogin = Class.create(VarienForm, {
                 if (elements[row].id == 'email'){
                     new KidsPlazaPhone('email', {}, function(elm, response){
                         if (response){
-                            response.mobile = elm.value;
+                            //response.mobile = elm.value;
                             jQuery('.form_register').show();
                             var fields = {
                                 fn: 'firstname',

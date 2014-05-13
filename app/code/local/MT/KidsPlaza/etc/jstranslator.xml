@@ -19,4 +19,7 @@
     <related-no-select translate="message" module="kidsplaza">
         <message>You must select a product!</message>
     </related-no-select>
+    <m1 translate="message" module="kidsplaza">
+        <message>Please enter a valid email or phone number in this field.</message>
+    </m1>
 </jstranslator>

@@ -76,13 +76,14 @@ KidsPlazaPhone.prototype = {
                 messageDiv = input.up().down('.validation-success'),
                 spinner = input.up().down('.spinner'),
                 url = input.readAttribute('data-url'),
-                validator = Validation.get(input.readAttribute('data-validate')),
+                validateClass = input.readAttribute('data-validate'),
+                validator = Validation.get(validateClass),
                 form = input.up('form');
 
             if (!url) return;
 
             if (validator && validator.test(input.value, input)){
-                var advice = Validation.getAdvice('validate-phoneprefix', input);
+                var advice = Validation.getAdvice(validateClass, input);
                 if (advice) Validation.hideAdvice(input, advice);
 
                 var params = {value: input.value, form_key: Mage.FormKey};
@@ -124,12 +125,12 @@ KidsPlazaPhone.prototype = {
                     }.bind(this)
                 });
             }else{
-                var advice = Validation.getAdvice('validate-phoneprefix', input);
+                var advice = Validation.getAdvice(validateClass, input);
                 if (!advice){
-                    advice = Validation.createAdvice('validate-phoneprefix', input);
+                    advice = Validation.createAdvice(validateClass, input);
                 }
-                Validation.showAdvice(input, advice, 'validate-phoneprefix');
-                messageDiv.hide();
+                Validation.showAdvice(input, advice, validateClass);
+                messageDiv && messageDiv.hide();
             }
         });
     }

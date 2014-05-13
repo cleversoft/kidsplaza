@@ -28,14 +28,28 @@ class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
         $resource = Mage::getSingleton('core/resource');
         $connection = $resource->getConnection('core_read');
 
-        $sql = "
-            SELECT v.entity_id
-            FROM {$resource->getTableName('customer_entity_varchar')} AS v
-            INNER JOIN {$resource->getTableName('eav_attribute')} AS a ON a.attribute_id = v.attribute_id
-            WHERE a.attribute_code = ? AND v.value = ?
-        ";
+        $emailValidator = new Zend_Validate_EmailAddress();
+        $isEmail = false;
+        if ($emailValidator->isValid($phoneNumber)){
+            $isEmail = true;
 
-        $customerId = $connection->fetchOne($sql, array('phone_number', $phoneNumber));
+            $sql = "
+                SELECT entity_id
+                FROM {$resource->getTableName('customer_entity')}
+                WHERE email = ?
+            ";
+
+            $customerId = $connection->fetchOne($sql, array($phoneNumber));
+        }else {
+            $sql = "
+                SELECT v.entity_id
+                FROM {$resource->getTableName('customer_entity_varchar')} AS v
+                INNER JOIN {$resource->getTableName('eav_attribute')} AS a ON a.attribute_id = v.attribute_id
+                WHERE a.attribute_code = ? AND v.value = ?
+            ";
+
+            $customerId = $connection->fetchOne($sql, array('phone_number', $phoneNumber));
+        }
 
         if ($customerId){
             $sql = "
@@ -53,6 +67,7 @@ class MT_Erp_CustomerController extends Mage_Core_Controller_Front_Action{
                 $data['gender'] = $this->_getAttributeValue($resource->getTableName('customer_entity_int'), $customerId, 'gender');
                 $sql = "SELECT email FROM {$resource->getTableName('customer_entity')} WHERE entity_id = ?";
                 $data['email'] = $connection->fetchOne($sql, array($customerId));
+                $data['mobile'] = $isEmail ? $this->_getAttributeValue($resource->getTableName('customer_entity_varchar'), $customerId, 'phone_number') : $phoneNumber;
 
                 return $data;
             }

@@ -150,4 +150,21 @@ class MT_Customer_Customer_AccountController extends Mage_Customer_AccountContro
 
         return $customer;
     }
+
+    /**
+     * Validate customer data and return errors if they are
+     *
+     * @param Mage_Customer_Model_Customer $customer
+     * @return array|string
+     */
+    protected function _getCustomerErrors($customer)
+    {
+        $errors = parent::_getCustomerErrors($customer);
+
+        if ($customer->getPhoneNumber() && $customer->getId()){
+            $errors[] = Mage::helper('mtcustomer')->__('Phone number is in use.');
+        }
+
+        return $errors;
+    }
 }
