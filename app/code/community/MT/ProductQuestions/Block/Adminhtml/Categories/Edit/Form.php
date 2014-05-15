@@ -51,12 +51,6 @@ Class MT_ProductQuestions_Block_Adminhtml_Categories_Edit_Form extends Mage_Admi
                 'values'    => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
             ));
 
-        $fieldset->addField('text', 'editor', array(
-            'name'      => 'text',
-            'label'     => $this->__('Text'),
-            'required'  => true,
-            'style'     => 'width:700px; height:200px;',
-        ));
         $fieldset->addField('status', 'select', array(
             'name'      => 'status',
             'label'     => $this->__('Visibility'),
