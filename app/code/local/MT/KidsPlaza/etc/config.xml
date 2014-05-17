@@ -104,6 +104,15 @@
     </global>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_KidsPlaza>
+                    <files>
+                        <default>MT_KidsPlaza_Adminhtml.csv</default>
+                    </files>
+                </MT_KidsPlaza>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <kidsplaza>

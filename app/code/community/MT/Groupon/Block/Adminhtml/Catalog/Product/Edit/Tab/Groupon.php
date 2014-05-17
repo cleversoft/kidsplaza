@@ -40,19 +40,19 @@ class MT_Groupon_Block_Adminhtml_Catalog_Product_Edit_Tab_Groupon extends Mage_A
                 Mage_Core_Model_Locale::FORMAT_TYPE_SHORT
             )
         ));
-        $f4 = $fieldset->addField('groupon_qty', 'text', array(
+        /*$f4 = $fieldset->addField('groupon_qty', 'text', array(
             'name'      => 'product[groupon_qty]',
             'label'     => Mage::helper('mtgroupon')->__('Minimum Qty'),
             'note'      => Mage::helper('mtgroupon')->__('Set minimum quantity for group buy')
-        ));
+        ));*/
         $this->setChild('form_after', $this->getLayout()->createBlock('adminhtml/widget_form_element_dependence')
             ->addFieldMap($f1->getHtmlId(), $f1->getName())
             ->addFieldMap($f2->getHtmlId(), $f2->getName())
             ->addFieldMap($f3->getHtmlId(), $f3->getName())
-            ->addFieldMap($f4->getHtmlId(), $f4->getName())
+            //->addFieldMap($f4->getHtmlId(), $f4->getName())
             ->addFieldDependence($f2->getName(), $f1->getName(), 1)
             ->addFieldDependence($f3->getName(), $f1->getName(), 1)
-            ->addFieldDependence($f4->getName(), $f1->getName(), 1)
+            //->addFieldDependence($f4->getName(), $f1->getName(), 1)
         );
         $form->setValues($product->getData());
         $this->setForm($form);

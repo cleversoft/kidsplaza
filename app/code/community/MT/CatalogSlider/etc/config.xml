@@ -61,6 +61,15 @@
     </global>
 
     <adminhtml>
+        <translate>
+            <modules>
+                <MT_CatalogSlider>
+                    <files>
+                        <default>MT_CatalogSlider.csv</default>
+                    </files>
+                </MT_CatalogSlider>
+            </modules>
+        </translate>
         <layout>
             <updates>
                 <mtcatalogslider>

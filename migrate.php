@@ -1,5 +1,15 @@
 <?php
-die;
+/**
+ * @category    MT
+ * @package     KidsPlaza
+ * @copyright   Copyright (C) 2008-2013 MagentoThemes.net. All Rights Reserved.
+ * @license     GNU General Public License version 2 or later
+ * @author      MagentoThemes.net
+ * @email       support@magentothemes.net
+ */
+
+if (php_sapi_name() != 'cli') die('Access denied.');
+
 require_once 'app/Mage.php';
 Mage::app('admin', 'store');
 
@@ -111,7 +121,7 @@ while ($row = mysql_fetch_assoc($rs)){
     if (!$productId) echo 'Saved product: '.$product->getName()."\n\n";
     else echo 'Updated product: '.$product->getName()."\n\n";
 
-    //if ($i++ == 1) break;
+    if ($i >= 10) break;
     $i++;
 }
 echo 'Save product(s): '.$i."\n";

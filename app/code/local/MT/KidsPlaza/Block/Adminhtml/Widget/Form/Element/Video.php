@@ -38,7 +38,7 @@ class MT_KidsPlaza_Block_Adminhtml_Widget_Form_Element_Video extends Mage_Adminh
 
     protected function _prepareLayout(){
         $addBtn = $this->getLayout()->createBlock('adminhtml/widget_button')->setData(array(
-            'label'     => Mage::helper('revslider')->__('Add Video'),
+            'label'     => Mage::helper('kidsplaza')->__('Add Video'),
             'onclick'   => 'return videoForm.add()',
             'class'     => 'add'
         ));

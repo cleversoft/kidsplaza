@@ -31,10 +31,11 @@
                 <type>text</type>
                 <description>If set, caching this widget (in seconds)</description>
             </cache>
-            <classes translate="label">
+            <classes translate="label description">
                 <label>Widget Classes</label>
                 <visible>1</visible>
                 <type>text</type>
+                <description>Custom classes</description>
             </classes>
             <widget_type translate="label description">
                 <label>Widget Type</label>
