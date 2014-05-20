@@ -15,6 +15,12 @@ class MT_Search_Adminhtml_SolrController extends Mage_Adminhtml_Controller_Actio
 		$host = $this->getRequest()->getParam('host');
 		$port = $this->getRequest()->getParam('port');
 		$path = $this->getRequest()->getParam('path');
+		$user = $this->getRequest()->getParam('user');
+		$pass = $this->getRequest()->getParam('pass');
+
+        if ($user && $pass){
+            $host = sprintf('%s:%s@%s', $user, $pass, $host);
+        }
 
 		$data = array(
 			'status' => '',

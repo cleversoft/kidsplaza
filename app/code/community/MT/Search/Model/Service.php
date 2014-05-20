@@ -17,7 +17,13 @@ class MT_Search_Model_Service extends Apache_Solr_Service {
 		$host = Mage::getStoreConfig('mtsearch/solr/host');
 		$port = Mage::getStoreConfig('mtsearch/solr/port');
 		$path = Mage::getStoreConfig('mtsearch/solr/path');
-		
+		$user = Mage::getStoreConfig('mtsearch/solr/user');
+		$pass = Mage::getStoreConfig('mtsearch/solr/pass');
+
+        if ($user && $pass){
+            $host = sprintf('%s:%s@%s', $user, $pass, $host);
+        }
+
 		parent::__construct($host, $port, $path);
 	}
 
