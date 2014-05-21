@@ -86,6 +86,22 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_New_Form extends Mage_Adminh
         }
         return false;
     }
+
+    protected function _getNodeHtml($category, $value=null){
+        if (!$category instanceof Mage_Catalog_Model_Category) return '';
+
+        $html = sprintf('<option value="%s" %s>', $category->getId(), $category->getId() == $value ? 'selected="selected"' : '');
+        $html .= str_repeat('-', $category->getLevel() > 2 ? 2*($category->getLevel() - 2) : 0) . ' ' . $category->getName();
+        $html .= '</option>';
+
+        if ($category->hasChildren()){
+            foreach ($category->getChildrenCategories() as $child){
+                $html .= $this->_getNodeHtml($child, $value);
+            }
+        }
+
+        return $html;
+    }
     
     public function nodeToSelectHtml($name, $select = 0, $disabled = false) {
         $nodeData = null;
@@ -95,27 +111,51 @@ class MagenThemes_Megamenu_Block_Adminhtml_Megamenu_New_Form extends Mage_Adminh
                 $nodeData = $data;
             }
         }
-        
-        $collection = Mage::getModel($nodeData->getModel())->getCollection();
-        $html .= '<select name="megamenu[article]" id="megamenu[article]" class="input-text required-entry"';
-        if($disabled)
-            $html .= 'disabled="disabled"';
-        $html .= '>';
-        $html .= '<option value="">'.$this->__('-- Please Select Article --').'</option>';
-        foreach($collection as $option) {
-            $type = Mage::getModel($nodeData->getModel())->load($option->getId());
-            if($type->getData($nodeData->getTitleField())) {
-                if($select) {
-                    $selectOption = '';
-                    if($option->getId() == $select)
-                        $selectOption = 'selected="selected"';
-                    $html .= '<option value="'.$option->getId().'" '.$selectOption.'>'.$type->getData($nodeData->getTitleField()).'</option>';
-                } else {
-                    $html .= '<option value="'.$option->getId().'">'.$type->getData($nodeData->getTitleField()).'</option>';
+
+        switch($nodeData->getModel()){
+            case 'catalog/category':
+                $collection = Mage::getModel('catalog/category')->getCollection()
+                    ->addAttributeToSelect('name')
+                    ->addFieldToFilter('parent_id', array('eq' => 2));
+
+                $html .= '<select name="megamenu[article]" id="megamenu[article]" class="input-text required-entry"';
+
+                if ($disabled) {
+                    $html .= 'disabled="disabled"';
                 }
-            }
+
+                $html .= '>';
+                $html .= '<option value="">'.$this->__('-- Please Select Article --').'</option>';
+
+                foreach ($collection as $item) {
+                    $html .= $this->_getNodeHtml($item, $select);
+                }
+
+                $html .= '</select>';
+                break;
+            default:
+                $collection = Mage::getModel($nodeData->getModel())->getCollection();
+                $html .= '<select name="megamenu[article]" id="megamenu[article]" class="input-text required-entry"';
+                if($disabled)
+                    $html .= 'disabled="disabled"';
+                $html .= '>';
+                $html .= '<option value="">'.$this->__('-- Please Select Article --').'</option>';
+                foreach($collection as $option) {
+                    $type = Mage::getModel($nodeData->getModel())->load($option->getId());
+                    if($type->getData($nodeData->getTitleField())) {
+                        if($select) {
+                            $selectOption = '';
+                            if($option->getId() == $select)
+                                $selectOption = 'selected="selected"';
+                            $html .= '<option value="'.$option->getId().'" '.$selectOption.'>'.$type->getData($nodeData->getTitleField()).'</option>';
+                        } else {
+                            $html .= '<option value="'.$option->getId().'">'.$type->getData($nodeData->getTitleField()).'</option>';
+                        }
+                    }
+                }
+                $html .= '</select>';
         }
-        $html .= '</select>';
+
         return $html;
     }
 }
