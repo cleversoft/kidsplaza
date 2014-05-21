@@ -39,5 +39,12 @@
 "Answers","Trả lời"
 "Manager Answers","Tất cả trả lời"
 "Setting","Cấu hình"
-
-
+"Display captcha","Hiển thị CAPTCHA"
+"Arithmetic actions for CAPTCHA","Biểu thức toán học CAPTCHA"
+"Plus (+)","Phép cộng (+)"
+"Minus (−)","Phép trừ (-)"
+"Multiplication (×)","Phép nhân (*)"
+"CAPTCHA complexity level","Độ phức tạp phép toán"
+"Numbers","Dùng số"
+"Words","Dùng chữ"
+"Allow Guests question","Khách vãng lai đặt câu hỏi"
