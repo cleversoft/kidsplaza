@@ -14,7 +14,7 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
     public function __construct($config=array()){
         $this->_url = isset($config[0]) ? $config[0] : null;
 
-        return $this->_initConnection();
+        //return $this->_initConnection();
     }
 
     protected function query($uri='/', $params=array()){
