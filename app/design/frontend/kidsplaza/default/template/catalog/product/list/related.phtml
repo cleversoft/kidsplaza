@@ -27,8 +27,17 @@
 $size = $this->getItems()->getSize();
 $product = Mage::registry('product');
 $totalPrice = 0;
+$ignore = true;
+if ($size){
+    foreach ($this->getItems() as $_item){
+        if ($_item->isSaleable()){
+            $ignore = false;
+            break;
+        }
+    }
+}
 ?>
-<?php if ($size): ?>
+<?php if (!$ignore): ?>
 <div id="product-related">
 <h3><?php echo $this->__('Frequently Bought Together') ?></h3>
 <script type="text/javascript">
@@ -36,12 +45,14 @@ $totalPrice = 0;
 </script>
 <div class="related-wrapper">
     <ol class="related-img">
+        <?php if ($product->isSaleable()): ?>
         <li class="related-<?php echo $product->getId() ?> related-img-item first" style="display: inline-block">
             <a href="<?php echo $product->getProductUrl() ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="">
                 <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(135) ?>" alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
             </a>
             <div class="related-separator">+</div>
         </li>
+        <?php endif ?>
         <?php foreach ($this->getItems() as $_item): ?>
             <?php if ($_item->isSaleable()): ?>
                 <li class="hide related-<?php echo $_item->getId() ?> related-img-item" style="display: inline-block">
@@ -62,17 +73,25 @@ $totalPrice = 0;
                         <?php $_price = $product->getFinalPrice() ?>
                         <?php $_priceIncTax = Mage::helper('tax')->getPrice($product, $_price, true) ?>
                         <?php $_priceExcTax = Mage::helper('tax')->getPrice($product, $_price) ?>
-                        <input type="checkbox" class="checkbox related-checkbox" checked id="related-checkbox<?php echo $product->getId() ?>" name="related_products[]" value="<?php echo $product->getId() ?>" price="<?php echo $_price ?>" price1="<?php echo $_priceIncTax ?>" price2="<?php echo $_priceExcTax ?>"/>
-
+                        <input
+                            type="checkbox"
+                            class="checkbox related-checkbox"
+                            checked
+                            id="related-checkbox<?php echo $product->getId() ?>"
+                            name="related_products[]"
+                            value="<?php echo $product->getId() ?>"
+                            price="<?php echo $_price ?>"
+                            price1="<?php echo $_priceIncTax ?>"
+                            price2="<?php echo $_priceExcTax ?>"/>
+                        <strong><?php echo $this->__('Current item') ?>:</strong>
+                        <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
+                        <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
                     <?php else: ?>
                         <script type="text/javascript">
-                            window['related<?php echo $product->getId() ?>'].priceExclTax=0;
-                            window['related<?php echo $product->getId() ?>'].productPrice=0;
+                            //window['related<?php echo $product->getId() ?>'].priceExclTax=0;
+                            //window['related<?php echo $product->getId() ?>'].productPrice=0;
                         </script>
                     <?php endif ?>
-                    <strong><?php echo $this->__('Current item') ?>:</strong>
-                    <a href="<?php echo $product->getProductUrl() ?>"><?php echo $this->escapeHtml($product->getName()) ?></a>
-                    <?php echo Mage::helper('core')->formatPrice($product->getFinalPrice()) ?>
                 </li>
                 <?php foreach ($this->getItems() as $_item): ?>
                 <li class="related-name-item">
