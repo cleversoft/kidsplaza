@@ -41,3 +41,4 @@ codeception.yml
 wp/wp-config.php
 wp/wp-content/themes/twentythirteen/*
 wp/wp-content/themes/twentytwelve/*
+wp/wp-content/uploads/*
