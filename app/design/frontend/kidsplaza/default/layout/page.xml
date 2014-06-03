@@ -42,7 +42,7 @@ Default layout, loads most of the pages
                 <action method="addItem"><type>js</type><js>respond/respond.min.js</js><params/><if>lt IE 9</if></action>
 
                 <action method="addJs"><script>mt/extensions/cufon-yui.js</script></action>
-                <action method="addJs"><script>mt/extensions/UTM.Cookies.js</script></action>
+                <action method="addJs"><script>mt/extensions/UTM_Cookies.js</script></action>
             </block>
 
             <block type="page/html_head" name="js_bottom" as="js_bottom" template="page/html/js_bottom.phtml">
