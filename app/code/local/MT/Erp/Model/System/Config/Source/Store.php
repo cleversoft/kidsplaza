@@ -23,13 +23,18 @@ class MT_Erp_Model_System_Config_Source_Store{
 
         if (!$stores) {
             $service    = $this->_getService();
-            $stores     = $service->getErpStores();
-            Mage::app()->saveCache(
-                Mage::helper('core')->jsonEncode($stores),
-                'ERP_STORES',
-                array(Mage_Core_Model_Resource_Db_Collection_Abstract::CACHE_TAG),
-                3600
-            );
+            try{
+                $stores     = $service->getErpStores();
+                Mage::app()->saveCache(
+                    Mage::helper('core')->jsonEncode($stores),
+                    'ERP_STORES',
+                    array(Mage_Core_Model_Resource_Db_Collection_Abstract::CACHE_TAG),
+                    3600
+                );
+            }catch (Exception $e){
+                Mage::logException($e);
+                $stores = array();
+            }
         }else{
             $stores = Mage::helper('core')->jsonDecode($stores);
         }
