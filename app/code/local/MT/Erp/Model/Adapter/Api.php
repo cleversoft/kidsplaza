@@ -66,7 +66,19 @@ class MT_Erp_Model_Adapter_Api implements MT_Erp_Model_Adapter_Interface{
 
         $output = array();
         foreach ($data as $item){
-            $output[$item['productCode']] = $item;
+            if (is_array($item)) {
+                $output[$item['productId']] = array(
+                    'price'         => $item['price'],
+                    'specialPrice'  => $item['specialPrice'],
+                    'productCodeRelated' => $item['productCodeRelated']
+                );
+            }elseif (is_object($item)){
+                $output[$item->productId] = array(
+                    'price'         => $item->price,
+                    'specialPrice'  => $item->specialPrice,
+                    'productCodeRelated' => $item->productCodeRelated
+                );
+            }
         }
 
         return $output;
